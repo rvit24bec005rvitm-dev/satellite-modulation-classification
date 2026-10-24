@@ -1,7 +1,6 @@
 
-import json
-import pickle
 from pathlib import Path
+import json
 
 import numpy as np
 import pandas as pd
@@ -19,10 +18,7 @@ MODEL_PATH = PROJECT_DIR / "satellite_modulation_cnn_all_snr.keras"
 STATS_PATH = PROJECT_DIR / "normalization_stats_all_snr.npz"
 RESULTS_PATH = PROJECT_DIR / "snr_accuracy_results.csv"
 EVALUATION_PATH = PROJECT_DIR / "evaluation_results.json"
-
-DATASET_PATH = (
-    Path.home() / "Downloads" / "RML2016.10a_dict_optimized.pkl"
-)
+SAMPLES_PATH = PROJECT_DIR / "classifier_samples.npz"
 
 CLASSES = ["BPSK", "QPSK", "QAM16"]
 
@@ -61,7 +57,7 @@ def load_model(path):
 
 
 if not MODEL_PATH.exists():
-    st.error(f"Trained model not found: {MODEL_PATH}")
+    st.error(f"Trained CNN model not found: {MODEL_PATH}")
     st.stop()
 
 try:
@@ -94,6 +90,9 @@ def load_stats(path):
         mean = data["mean"].copy()
         std = data["std"].copy()
 
+    # Avoid division by zero if any standard deviation is zero.
+    std = np.where(std == 0, 1.0, std)
+
     return mean, std
 
 
@@ -103,7 +102,6 @@ if not STATS_PATH.exists():
 
 try:
     mean, std = load_stats(str(STATS_PATH))
-    std = np.maximum(std, 1e-7)
     st.success("Normalization values loaded successfully!")
 
 except Exception as error:
@@ -112,11 +110,11 @@ except Exception as error:
 
 
 # =========================================================
-# 5. MODEL EVALUATION RESULTS
+# 5. DISPLAY MODEL EVALUATION RESULTS
 # =========================================================
 
 st.divider()
-st.header("📈 CNN Test Evaluation")
+st.header("📊 CNN Model Evaluation")
 
 if EVALUATION_PATH.exists():
 
@@ -124,177 +122,191 @@ if EVALUATION_PATH.exists():
         with open(EVALUATION_PATH, "r", encoding="utf-8") as file:
             evaluation = json.load(file)
 
-        test_accuracy = float(evaluation["accuracy"])
-        cm_values = evaluation["confusion_matrix"]
-        report = evaluation["classification_report"]
+        # Display common evaluation metrics when available.
+        metric_columns = st.columns(3)
 
-        metric1, metric2, metric3 = st.columns(3)
-
-        with metric1:
-            st.metric(
-                "Overall Test Accuracy",
-                f"{test_accuracy:.2f}%"
-            )
-
-        with metric2:
-            st.metric("Test Signals", "900")
-
-        with metric3:
-            st.metric("Modulation Classes", "3")
-
-        st.subheader("Confusion Matrix")
-
-        cm = pd.DataFrame(
-            cm_values,
-            index=CLASSES,
-            columns=CLASSES
+        accuracy = evaluation.get(
+            "test_accuracy",
+            evaluation.get("accuracy")
         )
 
-        st.caption(
-            "Rows represent actual classes. "
-            "Columns represent predicted classes."
+        loss = evaluation.get("test_loss", evaluation.get("loss"))
+
+        sample_count = evaluation.get(
+            "test_samples",
+            evaluation.get("num_test_samples")
         )
 
-        st.dataframe(cm, use_container_width=True)
+        with metric_columns[0]:
+            if accuracy is not None:
+                accuracy_value = float(accuracy)
+                if accuracy_value <= 1:
+                    accuracy_value *= 100
 
-        st.subheader("Classification Report")
+                st.metric("Test Accuracy", f"{accuracy_value:.2f}%")
+            else:
+                st.metric("Test Accuracy", "See report below")
 
-        report_rows = []
+        with metric_columns[1]:
+            if loss is not None:
+                st.metric("Test Loss", f"{float(loss):.4f}")
+            else:
+                st.metric("Test Loss", "N/A")
 
-        for class_name in CLASSES:
-            report_rows.append({
-                "Modulation": class_name,
-                "Precision": report[class_name]["precision"],
-                "Recall": report[class_name]["recall"],
-                "F1-score": report[class_name]["f1-score"],
-                "Support": int(report[class_name]["support"])
-            })
+        with metric_columns[2]:
+            if sample_count is not None:
+                st.metric("Test Samples", str(sample_count))
+            else:
+                st.metric("Test Samples", "N/A")
 
-        report_df = pd.DataFrame(report_rows)
-
-        for column in ["Precision", "Recall", "F1-score"]:
-            report_df[column] = report_df[column].round(3)
-
-        st.dataframe(report_df, use_container_width=True)
-
-        st.caption(
-            "Precision, recall and F1-score range from 0 to 1. "
-            "Higher values generally indicate better performance."
+        # Display a confusion matrix if the JSON contains one.
+        confusion = evaluation.get(
+            "confusion_matrix",
+            evaluation.get("confusion")
         )
+
+        if confusion is not None:
+            st.subheader("Confusion Matrix")
+
+            confusion_array = np.asarray(confusion)
+
+            if confusion_array.ndim == 2:
+                confusion_df = pd.DataFrame(
+                    confusion_array,
+                    index=CLASSES[:confusion_array.shape[0]],
+                    columns=CLASSES[:confusion_array.shape[1]]
+                )
+                st.dataframe(confusion_df)
+
+        # Display a classification report if available.
+        report = evaluation.get("classification_report")
+
+        if report is not None:
+            st.subheader("Classification Report")
+
+            if isinstance(report, dict):
+                try:
+                    report_df = pd.DataFrame(report).transpose()
+                    st.dataframe(report_df)
+                except (ValueError, TypeError):
+                    st.json(report)
+            else:
+                st.text(str(report))
 
     except Exception as error:
-        st.error(f"Could not display evaluation results: {error}")
+        st.warning(f"Could not display evaluation JSON: {error}")
 
 else:
     st.warning(
-        "Evaluation results were not found. "
-        "Run evaluate_cnn.py to generate evaluation_results.json."
+        "Evaluation results file is not available. "
+        "The CNN model and classifier may still work."
     )
 
 
 # =========================================================
-# 6. ACCURACY AT DIFFERENT SNR LEVELS
+# 6. DISPLAY ACCURACY AT DIFFERENT SNR LEVELS
 # =========================================================
 
 st.divider()
-st.header("📊 Overall Accuracy at Different SNR Levels")
+st.header("📈 Accuracy at Different SNR Levels")
 
 if RESULTS_PATH.exists():
 
     try:
-        results = pd.read_csv(RESULTS_PATH)
+        snr_results = pd.read_csv(RESULTS_PATH)
 
-        st.dataframe(results, use_container_width=True)
+        if not snr_results.empty:
+            st.subheader("SNR Accuracy Results")
+            st.dataframe(snr_results, use_container_width=True)
 
-        if (
-            "SNR_dB" in results.columns
-            and "Overall_Accuracy_Percent" in results.columns
-        ):
-            chart_data = results[
-                ["SNR_dB", "Overall_Accuracy_Percent"]
-            ].copy()
-
-            chart_data["SNR_dB"] = pd.to_numeric(
-                chart_data["SNR_dB"]
+            # Find the SNR column and accuracy column.
+            snr_column = next(
+                (
+                    column for column in snr_results.columns
+                    if "snr" in column.lower()
+                ),
+                None
             )
 
-            chart_data = chart_data.sort_values("SNR_dB")
-            chart_data = chart_data.set_index("SNR_dB")
-
-            st.line_chart(chart_data)
-
-            st.caption(
-                "Accuracy is generally higher at larger SNR values, "
-                "where the signal is clearer relative to noise."
+            accuracy_column = next(
+                (
+                    column for column in snr_results.columns
+                    if "accuracy" in column.lower()
+                ),
+                None
             )
 
-        else:
-            st.warning(
-                "The CSV does not contain the expected SNR and "
-                "accuracy column names."
-            )
+            if snr_column and accuracy_column:
+                chart_data = snr_results[
+                    [snr_column, accuracy_column]
+                ].copy()
+
+                chart_data[snr_column] = pd.to_numeric(
+                    chart_data[snr_column], errors="coerce"
+                )
+
+                chart_data[accuracy_column] = pd.to_numeric(
+                    chart_data[accuracy_column], errors="coerce"
+                )
+
+                chart_data = chart_data.dropna().set_index(snr_column)
+
+                if not chart_data.empty:
+                    st.subheader("SNR vs Accuracy")
+                    st.line_chart(chart_data)
+
+            else:
+                st.info(
+                    "The CSV columns could not be identified "
+                    "automatically for the graph."
+                )
 
     except Exception as error:
-        st.error(f"Could not display SNR results: {error}")
+        st.warning(f"Could not load SNR results: {error}")
 
 else:
-    st.warning(f"SNR results CSV not found: {RESULTS_PATH}")
+    st.warning("SNR accuracy results CSV file was not found.")
 
 
 # =========================================================
-# 7. LOAD THE RADIOML DATASET
-# =========================================================
-
-@st.cache_data
-def load_dataset(path):
-    with open(path, "rb") as file:
-        return pickle.load(file, encoding="latin1")
-
-
-# =========================================================
-# 8. TRY THE MODULATION CLASSIFIER
+# 7. INTERACTIVE MODULATION CLASSIFIER
 # =========================================================
 
 st.divider()
-st.header("🔬 Try the Modulation Classifier")
+st.header("🛰️ Interactive Modulation Classifier")
 
 st.write(
-    "Select a modulation class, an SNR level and a signal sample. "
-    "The trained CNN will predict its modulation class."
+    "Choose a modulation class and SNR level, then classify "
+    "one of the saved RadioML signal samples."
 )
 
-if not DATASET_PATH.exists():
+if not SAMPLES_PATH.exists():
 
     st.error(
-        f"RadioML dataset not found at:\n\n{DATASET_PATH}"
-    )
-
-    st.info(
-        "Make sure RML2016.10a_dict_optimized.pkl is in your "
-        "Windows Downloads folder."
+        "Classifier sample file not found. "
+        "Make sure classifier_samples.npz is in the project folder."
     )
 
 else:
 
     try:
-        dataset = load_dataset(str(DATASET_PATH))
+        with np.load(SAMPLES_PATH, allow_pickle=False) as sample_data:
+            signals = sample_data["signals"].copy()
+            labels = sample_data["labels"].astype(str)
+            snrs = sample_data["snrs"].copy()
 
     except Exception as error:
-        st.error(f"Could not load the RadioML dataset: {error}")
+        st.error(f"Could not load classifier samples: {error}")
         st.stop()
 
-    available_snrs = sorted({
-        key[1]
-        for key in dataset
-        if isinstance(key, tuple)
-        and len(key) == 2
-        and key[0] in CLASSES
-        and all((modulation, key[1]) in dataset for modulation in CLASSES)
-    })
-
-    if not available_snrs:
-        st.error("No common SNR levels were found for all classes.")
+    # Check that the sample file contains usable data.
+    if len(signals) == 0:
+        st.error("The classifier sample file contains no signals.")
         st.stop()
+
+    available_snrs = sorted(
+        int(value) for value in np.unique(snrs)
+    )
 
     col1, col2, col3 = st.columns(3)
 
@@ -306,7 +318,9 @@ else:
 
     with col2:
         default_snr_index = (
-            available_snrs.index(0) if 0 in available_snrs else 0
+            available_snrs.index(0)
+            if 0 in available_snrs
+            else 0
         )
 
         selected_snr = st.selectbox(
@@ -315,71 +329,75 @@ else:
             index=default_snr_index
         )
 
-    signal_key = (selected_class, selected_snr)
-    sample_count = len(dataset[signal_key])
+    # Find saved signals matching the selected class and SNR.
+    matching_indices = np.where(
+        (labels == selected_class) &
+        (snrs == selected_snr)
+    )[0]
 
-    with col3:
-        sample_index = st.number_input(
-            "Signal sample index",
-            min_value=0,
-            max_value=sample_count - 1,
-            value=0,
-            step=1
+    if len(matching_indices) == 0:
+
+        st.warning(
+            "No saved signals are available for this "
+            "modulation class and SNR."
         )
 
-    if st.button("🚀 Classify Signal", type="primary"):
+    else:
 
-        try:
-            signal = np.asarray(
-                dataset[signal_key][int(sample_index)],
-                dtype=np.float32
+        with col3:
+            sample_index = st.number_input(
+                "Signal sample index",
+                min_value=0,
+                max_value=len(matching_indices) - 1,
+                value=0,
+                step=1
             )
 
-            if signal.ndim != 2:
-                st.error(
-                    f"Unexpected signal dimensions: {signal.shape}"
+        if st.button("🚀 Classify Signal", type="primary"):
+
+            try:
+                signal = np.asarray(
+                    signals[matching_indices[int(sample_index)]],
+                    dtype=np.float32
                 )
 
-            else:
+                # The CNN expects 128 time steps and 2 channels.
                 if signal.shape == (2, 128):
                     signal = signal.T
 
-                elif signal.shape != (128, 2):
+                if signal.shape != (128, 2):
                     st.error(
                         f"Unexpected signal shape: {signal.shape}. "
-                        "Expected (2, 128) or (128, 2)."
+                        "Expected (128, 2)."
                     )
                     st.stop()
 
-                # Apply the same normalization values as training.
-                try:
-                    signal = (signal - mean) / std
+                # Apply the normalization values used for training.
+                signal = (signal - mean) / std
 
-                except ValueError as error:
-                    st.error(
-                        "Normalization dimensions do not match "
-                        f"the signal: {error}"
-                    )
-                    st.stop()
-
+                # Add a batch dimension for the CNN.
                 model_input = np.expand_dims(signal, axis=0)
 
                 expected_shape = tuple(model.input_shape[1:])
                 actual_shape = tuple(model_input.shape[1:])
 
                 if actual_shape != expected_shape:
+
                     st.error(
                         f"Model expects {expected_shape}, "
                         f"but the prepared signal has {actual_shape}."
                     )
 
                 elif model.output_shape[-1] != len(CLASSES):
+
                     st.error(
-                        "The model output does not match the three "
-                        "modulation classes."
+                        "The CNN output does not match "
+                        "the three modulation classes."
                     )
 
                 else:
+
+                    # Predict the modulation class.
                     scores = model.predict(
                         model_input,
                         verbose=0
@@ -388,7 +406,9 @@ else:
                     predicted_index = int(np.argmax(scores))
                     predicted_class = CLASSES[predicted_index]
 
-                    score_percent = float(scores[predicted_index]) * 100
+                    score_percent = (
+                        float(scores[predicted_index]) * 100
+                    )
 
                     st.subheader("Prediction Result")
 
@@ -411,16 +431,17 @@ else:
                     )
 
                     if predicted_class == selected_class:
-                        st.success("Prediction matches the dataset label.")
-
+                        st.success(
+                            "Prediction matches the dataset label."
+                        )
                     else:
                         st.warning(
                             "Prediction does not match the dataset label."
                         )
 
-                    st.write(
-                        f"Model score for predicted class: "
-                        f"**{score_percent:.2f}%**"
+                    st.metric(
+                        "Model score for predicted class",
+                        f"{score_percent:.2f}%"
                     )
 
                     score_table = pd.DataFrame({
@@ -435,17 +456,18 @@ else:
                     )
 
                     st.caption(
-                        "Scores are model outputs, not necessarily "
-                        "calibrated probabilities. This sample may "
-                        "have been included in training."
+                        "Scores are model outputs and are not "
+                        "necessarily calibrated probabilities. "
+                        "The saved samples may overlap with data "
+                        "used during model training."
                     )
 
-        except Exception as error:
-            st.error(f"Prediction failed: {error}")
+            except Exception as error:
+                st.error(f"Prediction failed: {error}")
 
 
 # =========================================================
-# 9. FOOTER
+# 8. FOOTER
 # =========================================================
 
 st.divider()
