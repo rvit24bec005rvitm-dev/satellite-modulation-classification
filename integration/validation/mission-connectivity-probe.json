@@ -1,0 +1,7 @@
+{
+  "productionUrl": "http://127.0.0.1:8010/",
+  "connectedToOfflineMs": 11077,
+  "reconnectedMs": 9909,
+  "noFabricatedProbabilities": true,
+  "passed": true
+}

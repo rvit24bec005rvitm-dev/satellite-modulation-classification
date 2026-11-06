@@ -25,8 +25,8 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install pytest flake8
+          pip install -r requirements-dev.txt
+          pip install flake8
 
       - name: Lint with flake8
         run: |
@@ -38,3 +38,34 @@ jobs:
       - name: Run unit test suite
         run: |
           pytest tests/ -v
+
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install Python test dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm install
+      - name: Check frontend types, lint, routes, and components
+        working-directory: frontend
+        run: |
+          npm run typecheck
+          npm run lint
+          npm test
+      - name: Exercise real client-to-Python contracts
+        working-directory: frontend
+        env:
+          SATMOD_PYTHON: python
+        run: npm run test:integration
+      - name: Build production frontend and check SPA hosting
+        run: |
+          npm --prefix frontend run build
+          python scripts/check_production.py

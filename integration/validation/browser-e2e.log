@@ -1,0 +1,12 @@
+
+> test:e2e
+> playwright test
+
+[WebServer] INFO:     Started server process [37476]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] ERROR:    [Errno 1] error while attempting to bind on address ('127.0.0.1', 8000): operation not permitted
+[WebServer] INFO:     Waiting for application shutdown.
+[WebServer] INFO:     Application shutdown complete.
+Error: Process from config.webServer was not able to start. Exit code: 3
+

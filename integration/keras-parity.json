@@ -1,0 +1,7 @@
+{
+  "frames": 43,
+  "maxAbsoluteError": 5.662441253662109e-07,
+  "classAgreement": 1.0,
+  "tensorflowVersion": "2.16.2",
+  "npzWeightsMatchKerasArchive": true
+}

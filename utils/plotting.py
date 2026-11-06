@@ -15,8 +15,6 @@ DARK_LAYOUT = dict(
     paper_bgcolor="#0A0E1A",
     plot_bgcolor="#111827",
     font=dict(color="#E2E8F0", family="Inter, sans-serif"),
-    margin=dict(l=40, r=20, t=50, b=40),
-    legend=dict(bgcolor="rgba(0,0,0,0.4)", bordercolor="#1F2937"),
 )
 
 CLASS_COLORS = {
@@ -305,4 +303,329 @@ def plot_entropy_gauge(entropy: float, max_entropy: float) -> go.Figure:
         number=dict(font=dict(color=color, size=32)),
     ))
     fig.update_layout(**DARK_LAYOUT, height=280)
+    return fig
+
+
+# ── 3D Constellation Trajectory (I vs Q vs Time) ──────────────────────────────
+
+def plot_constellation_3d(
+    iq: np.ndarray,
+    predicted_class: str = "Unknown",
+) -> go.Figure:
+    """
+    3D interactive phase-space trajectory: In-Phase (X) vs Quadrature (Y) vs Time (Z).
+    Enables interactive inspection of Doppler rotation, phase spirals, and cluster stability.
+    """
+    I, Q = iq[:, 0], iq[:, 1]
+    n = np.arange(len(iq))
+    color = CLASS_COLORS.get(predicted_class, CLASS_COLORS["Unknown"])
+
+    fig = go.Figure()
+
+    # Trajectory path line
+    fig.add_trace(go.Scatter3d(
+        x=I, y=Q, z=n,
+        mode="lines",
+        line=dict(color=color, width=3),
+        opacity=0.6,
+        name="Phase Trajectory",
+        hoverinfo="skip",
+    ))
+
+    # Symbol sample points with gradient along time
+    fig.add_trace(go.Scatter3d(
+        x=I, y=Q, z=n,
+        mode="markers",
+        marker=dict(
+            size=4,
+            color=n,
+            colorscale=[[0, "#00D4FF"], [0.5, "#7C3AED"], [1, "#EC4899"]],
+            opacity=0.9,
+            line=dict(color="white", width=0.5),
+        ),
+        name="I/Q Samples",
+        hovertemplate="Sample: %{z}<br>I: %{x:.3f}<br>Q: %{y:.3f}<extra></extra>",
+    ))
+
+    fig.update_layout(
+        **DARK_LAYOUT,
+        title=dict(text=f"🌀 3D Temporal Phase Space (I vs Q vs Time) — {predicted_class}", font=dict(size=16)),
+        scene=dict(
+            xaxis=dict(title="In-Phase (I)", backgroundcolor="#0D1322", gridcolor="#1F2937", zerolinecolor="#374151"),
+            yaxis=dict(title="Quadrature (Q)", backgroundcolor="#0D1322", gridcolor="#1F2937", zerolinecolor="#374151"),
+            zaxis=dict(title="Sample Index (Time)", backgroundcolor="#0D1322", gridcolor="#1F2937"),
+            camera=dict(eye=dict(x=1.6, y=1.6, z=1.2)),
+        ),
+        height=520,
+        margin=dict(l=20, r=20, t=50, b=20),
+    )
+    return fig
+
+
+# ── Eye Diagram Plot ──────────────────────────────────────────────────────────
+
+def plot_eye_diagram(
+    t_axis: np.ndarray,
+    i_traces: list[np.ndarray],
+    q_traces: list[np.ndarray],
+) -> go.Figure:
+    """
+    Dual-channel RF Eye Diagram showing Inter-Symbol Interference (ISI) & timing jitter.
+    """
+    fig = make_subplots(
+        rows=2, cols=1,
+        shared_xaxes=True,
+        subplot_titles=["In-Phase (I) Eye Diagram", "Quadrature (Q) Eye Diagram"],
+        vertical_spacing=0.10,
+    )
+
+    # Plot I traces
+    for trace in i_traces:
+        fig.add_trace(go.Scatter(
+            x=t_axis, y=trace,
+            mode="lines",
+            line=dict(color="#00D4FF", width=1.2),
+            opacity=0.35,
+            showlegend=False,
+            hoverinfo="skip",
+        ), row=1, col=1)
+
+    # Plot Q traces
+    for trace in q_traces:
+        fig.add_trace(go.Scatter(
+            x=t_axis, y=trace,
+            mode="lines",
+            line=dict(color="#A78BFA", width=1.2),
+            opacity=0.35,
+            showlegend=False,
+            hoverinfo="skip",
+        ), row=2, col=1)
+
+    fig.update_layout(
+        **DARK_LAYOUT,
+        title=dict(text="👁️ Vector Eye Diagram (Inter-Symbol Interference & Jitter)", font=dict(size=16)),
+        height=480,
+    )
+    for r in [1, 2]:
+        fig.update_yaxes(title="Amplitude", gridcolor="#1F2937", zerolinecolor="#374151", row=r, col=1)
+    fig.update_xaxes(title="Normalized Symbol Period (T)", gridcolor="#1F2937", row=2, col=1)
+    return fig
+
+
+# ── LEO Doppler Pass & Elevation Curves ───────────────────────────────────────
+
+def plot_doppler_pass(orbit_data: dict) -> go.Figure:
+    """
+    Dual-axis flight pass telemetry: Antenna Elevation (deg) & Doppler S-Curve (kHz).
+    """
+    t = orbit_data["time_sec"]
+    elev = orbit_data["elevation_deg"]
+    dop = orbit_data["doppler_khz"]
+
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+    # Elevation trace (filled area)
+    fig.add_trace(
+        go.Scatter(
+            x=t, y=elev,
+            name="Antenna Elevation (°)",
+            mode="lines",
+            line=dict(color="#10B981", width=2.5),
+            fill="tozeroy",
+            fillcolor="rgba(16, 185, 129, 0.12)",
+            hovertemplate="Time: %{x}s<br>Elevation: %{y:.1f}°<extra></extra>",
+        ),
+        secondary_y=False,
+    )
+
+    # Doppler curve
+    fig.add_trace(
+        go.Scatter(
+            x=t, y=dop,
+            name="Doppler Shift (kHz)",
+            mode="lines",
+            line=dict(color="#00D4FF", width=2.5),
+            hovertemplate="Time: %{x}s<br>Doppler: %{y:.2f} kHz<extra></extra>",
+        ),
+        secondary_y=True,
+    )
+
+    fig.add_vline(x=0, line_dash="dash", line_color="#F59E0B", annotation_text="Zenith (TCA)")
+
+    fig.update_layout(
+        **DARK_LAYOUT,
+        title=dict(text="🛰️ Ground Station Pass Telemetry (Elevation & Doppler S-Curve)", font=dict(size=16)),
+        xaxis=dict(title="Time to Closest Approach TCA (seconds)", gridcolor="#1F2937"),
+        height=380,
+        legend=dict(orientation="h", y=1.12, x=0.2),
+        hovermode="x unified",
+    )
+    fig.update_yaxes(title_text="Elevation Angle (°)", range=[0, 95], gridcolor="#1F2937", secondary_y=False)
+    fig.update_yaxes(title_text="Doppler Shift (kHz)", zeroline=True, zerolinecolor="#374151", gridcolor="#1F2937", secondary_y=True)
+    return fig
+
+
+# ── LEO Ground Track Map ──────────────────────────────────────────────────────
+
+def plot_orbit_ground_track(orbit_data: dict) -> go.Figure:
+    """
+    Orbital ground track map showing satellite trajectory over ground station.
+    """
+    station = orbit_data["station"]
+    lats = orbit_data["track_lats"]
+    lons = orbit_data["track_lons"]
+
+    fig = go.Figure()
+
+    # Ground Track Path
+    fig.add_trace(go.Scattergeo(
+        lon=lons,
+        lat=lats,
+        mode="lines",
+        line=dict(width=3, color="#00D4FF"),
+        name="Satellite Orbit Ground Track",
+        hoverinfo="skip",
+    ))
+
+    # Satellite Current Position (at TCA t=0, middle of array)
+    mid_idx = len(lats) // 2
+    fig.add_trace(go.Scattergeo(
+        lon=[lons[mid_idx]],
+        lat=[lats[mid_idx]],
+        mode="markers+text",
+        marker=dict(size=14, color="#EC4899", symbol="star"),
+        text=["🛰️ LEO Satellite (Active)"],
+        textposition="top center",
+        name="Satellite",
+    ))
+
+    # Ground Station Marker
+    fig.add_trace(go.Scattergeo(
+        lon=[station["lon"]],
+        lat=[station["lat"]],
+        mode="markers+text",
+        marker=dict(size=12, color="#10B981", symbol="diamond"),
+        text=[f"📡 {station['name']}"],
+        textposition="bottom center",
+        name="Ground Station",
+    ))
+
+    fig.update_layout(
+        paper_bgcolor="#0A0E1A",
+        font=dict(color="#E2E8F0", family="Inter, sans-serif"),
+        geo=dict(
+            bgcolor="#0A0E1A",
+            lakecolor="#111827",
+            landcolor="#141E33",
+            oceancolor="#070B14",
+            showocean=True,
+            showland=True,
+            showlakes=True,
+            showcountries=True,
+            countrycolor="#1F2937",
+            coastlinecolor="#2A3B58",
+            projection_type="equirectangular",
+            center=dict(lat=station["lat"], lon=station["lon"]),
+            projection_scale=2.2,
+        ),
+        title=dict(text="🌍 Orbital Ground Track & Downlink Footprint", font=dict(size=16)),
+        height=380,
+        margin=dict(l=10, r=10, t=50, b=10),
+        legend=dict(orientation="h", y=1.08, x=0.1),
+    )
+    return fig
+
+
+# ── Model Architecture Radar Chart ────────────────────────────────────────────
+
+def plot_radar_metrics(models_specs: dict) -> go.Figure:
+    """
+    Radar/Spider chart comparing Deep Learning and RF baseline architectures.
+    """
+    categories = ["Overall Acc", "High-SNR Acc", "Low-SNR Acc", "Speed (Low Latency)", "Compactness"]
+    
+    # Normalized scores 0 to 100 for each model
+    arch_scores = {
+        "1D-CNN (Baseline)": [72.4, 98.2, 28.6, 92.0, 95.0],
+        "1D-ResNet": [79.2, 99.4, 38.2, 85.0, 82.0],
+        "CLDNN (CNN+LSTM)": [81.6, 99.7, 42.5, 70.0, 70.0],
+        "RF Expert Baseline": [68.9, 94.1, 24.3, 98.0, 78.0],
+    }
+
+    colors = {
+        "1D-CNN (Baseline)": "#00D4FF",
+        "1D-ResNet": "#10B981",
+        "CLDNN (CNN+LSTM)": "#8B5CF6",
+        "RF Expert Baseline": "#F59E0B",
+    }
+
+    fig = go.Figure()
+    for name, scores in arch_scores.items():
+        # Append first score to close the polygon
+        r_vals = scores + [scores[0]]
+        theta_vals = categories + [categories[0]]
+        fig.add_trace(go.Scatterpolar(
+            r=r_vals,
+            theta=theta_vals,
+            fill="toself",
+            name=name,
+            line=dict(color=colors.get(name, "#FFFFFF"), width=2),
+            opacity=0.65,
+        ))
+
+    fig.update_layout(
+        **DARK_LAYOUT,
+        polar=dict(
+            bgcolor="#0D1322",
+            radialaxis=dict(visible=True, range=[0, 105], gridcolor="#1F2937", tickfont=dict(color="#94A3B8")),
+            angularaxis=dict(gridcolor="#1F2937", tickfont=dict(color="#E2E8F0")),
+        ),
+        title=dict(text="🕸️ Multi-Dimensional Architecture Benchmark Radar", font=dict(size=16)),
+        height=420,
+        legend=dict(orientation="h", y=1.15, x=0.1),
+    )
+    return fig
+
+
+# ── Per-Class Evaluation Radar ────────────────────────────────────────────────
+
+def plot_class_radar(report_dict: dict, classes: list[str]) -> go.Figure:
+    """
+    Radar chart comparing Precision, Recall, and F1 across modulation classes.
+    """
+    categories = ["Precision", "Recall", "F1-Score"]
+    fig = go.Figure()
+
+    for cls in classes:
+        if cls in report_dict:
+            r_data = report_dict[cls]
+            scores = [
+                float(r_data.get("precision", 0)) * 100,
+                float(r_data.get("recall", 0)) * 100,
+                float(r_data.get("f1-score", 0)) * 100,
+            ]
+            r_vals = scores + [scores[0]]
+            theta_vals = categories + [categories[0]]
+            color = CLASS_COLORS.get(cls, "#00D4FF")
+
+            fig.add_trace(go.Scatterpolar(
+                r=r_vals,
+                theta=theta_vals,
+                fill="toself",
+                name=f"{cls}",
+                line=dict(color=color, width=2.5),
+                opacity=0.6,
+            ))
+
+    fig.update_layout(
+        **DARK_LAYOUT,
+        polar=dict(
+            bgcolor="#0D1322",
+            radialaxis=dict(visible=True, range=[0, 105], gridcolor="#1F2937", tickfont=dict(color="#94A3B8")),
+            angularaxis=dict(gridcolor="#1F2937", tickfont=dict(color="#E2E8F0")),
+        ),
+        title=dict(text="🎯 Per-Class Precision / Recall / F1 Radar Profile", font=dict(size=16)),
+        height=380,
+        legend=dict(orientation="h", y=1.15, x=0.2),
+    )
     return fig

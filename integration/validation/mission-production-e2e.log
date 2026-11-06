@@ -1,0 +1,31 @@
+
+> satmodclass-frontend@1.0.0 test:e2e
+> playwright test
+
+
+Running 20 tests using 1 worker
+
+(node:15348) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 e2e/mission-dashboard.spec.ts:12:1 › mission dashboard renders real WebGL, geographical map, and honest data states (5.4s)
+  ✓   2 e2e/mission-dashboard.spec.ts:34:1 › Earth rotates continuously without pointer input and obeys its pause toggle (14.7s)
+  ✓   3 e2e/mission-dashboard.spec.ts:56:1 › camera zoom/reset, scroll zoom, and drag interaction work (18.9s)
+  ✓   4 e2e/mission-dashboard.spec.ts:91:1 › satellite selector and clickable marker labels update satellite details (11.7s)
+  ✓   5 e2e/mission-dashboard.spec.ts:107:1 › shared classifier result populates actual three-class probabilities on Overview (17.9s)
+  ✓   6 e2e/mission-dashboard.spec.ts:122:1 › reduced-motion preference disables automatic movement by default (9.5s)
+  ✓   7 e2e/mission-dashboard.spec.ts:138:1 › backend offline state is explicit while the demonstration remains usable (8.5s)
+  ✓   8 e2e/mission-dashboard.spec.ts:148:1 › WebGL unavailable state offers an honest geographical fallback (3.9s)
+  ✓   9 e2e/mission-dashboard.spec.ts:168:3 › mission layout remains usable at 1440px (7.2s)
+  ✓  10 e2e/mission-dashboard.spec.ts:168:3 › mission layout remains usable at 1024px (8.8s)
+  ✓  11 e2e/mission-dashboard.spec.ts:168:3 › mission layout remains usable at 820px (5.9s)
+  ✓  12 e2e/mission-dashboard.spec.ts:168:3 › mission layout remains usable at 390px (4.3s)
+  ✓  13 e2e/workflows.spec.ts:3:1 › workflow 1: upload a real saved I/Q frame and display CNN output (5.0s)
+  ✓  14 e2e/workflows.spec.ts:24:3 › workflow 2: generate BPSK and classify the same full capture (6.3s)
+  ✓  15 e2e/workflows.spec.ts:24:3 › workflow 3: generate QPSK and classify the same full capture (5.9s)
+  ✓  16 e2e/workflows.spec.ts:46:1 › workflow 4: actual evaluation matrices, SNR curves, and per-class metrics (4.9s)
+  ✓  17 e2e/workflows.spec.ts:62:1 › workflow 5: measured CNN latency and unavailable model comparison (2.1s)
+  ✓  18 e2e/workflows.spec.ts:70:1 › workflow 6: backend disconnection never produces predictions (2.5s)
+  ✓  19 e2e/workflows.spec.ts:78:1 › workflow 7: malformed upload is rejected visibly (1.5s)
+  ✓  20 e2e/workflows.spec.ts:89:1 › all routes remain reachable on a narrow viewport (5.1s)
+
+  20 passed (2.6m)

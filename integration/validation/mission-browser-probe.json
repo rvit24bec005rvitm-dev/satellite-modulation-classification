@@ -1,0 +1,24 @@
+{
+  "url": "http://127.0.0.1:5173/",
+  "cadence": {
+    "durationMs": 4033.0999999999995,
+    "frames": 115,
+    "averageRafFps": 28.514046267139424,
+    "p95IntervalMs": 33.5,
+    "renderer": "ANGLE (Intel, ANGLE Metal Renderer: Intel(R) Iris(TM) Plus Graphics, Unspecified Version)",
+    "canvasPixels": [
+      626,
+      510
+    ],
+    "dpr": 1
+  },
+  "visibility": {
+    "hiddenBefore": 0.44023021499470333,
+    "hiddenAfter": 0.44023021499470333,
+    "resumed": 0.5139645581259035,
+    "passed": true
+  },
+  "sidebarCollapseExpand": true,
+  "fullscreenEnterExit": true,
+  "runtimeErrors": []
+}

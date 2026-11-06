@@ -1,0 +1,18 @@
+{
+  "spaRoutesChecked": [
+    "/",
+    "/classifier",
+    "/studio",
+    "/evaluation",
+    "/arena",
+    "/intelligence",
+    "/theory",
+    "/settings"
+  ],
+  "indexAssetsChecked": [
+    "/assets/index-CiuEEZWy.js",
+    "/assets/index-ZQNJOZu8.css"
+  ],
+  "health": 200,
+  "unknownApi": 404
+}

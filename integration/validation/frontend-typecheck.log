@@ -1,0 +1,43 @@
+
+> pretypecheck
+> node scripts/generate-routes.mjs
+
+
+> typecheck
+> tsc --noEmit
+
+src/components/satmod-app.tsx(2,22): error TS7016: Could not find a declaration file for module '@tanstack/react-router'. '<repo>/frontend/node_modules/@tanstack/react-router/dist/esm/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/tanstack__react-router` if it exists or add a new declaration (.d.ts) file containing `declare module '@tanstack/react-router';`
+src/main.tsx(3,32): error TS7016: Could not find a declaration file for module '@tanstack/react-router'. '<repo>/frontend/node_modules/@tanstack/react-router/dist/esm/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/tanstack__react-router` if it exists or add a new declaration (.d.ts) file containing `declare module '@tanstack/react-router';`
+src/main.tsx(7,16): error TS2665: Invalid module name in augmentation. Module '@tanstack/react-router' resolves to an untyped module at '<repo>/frontend/node_modules/@tanstack/react-router/dist/esm/index.js', which cannot be augmented.
+src/pages/classifier.tsx(2,22): error TS7016: Could not find a declaration file for module '@tanstack/react-router'. '<repo>/frontend/node_modules/@tanstack/react-router/dist/esm/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/tanstack__react-router` if it exists or add a new declaration (.d.ts) file containing `declare module '@tanstack/react-router';`
+src/pages/overview.tsx(1,22): error TS7016: Could not find a declaration file for module '@tanstack/react-router'. '<repo>/frontend/node_modules/@tanstack/react-router/dist/esm/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/tanstack__react-router` if it exists or add a new declaration (.d.ts) file containing `declare module '@tanstack/react-router';`
+src/pages/studio.tsx(2,22): error TS7016: Could not find a declaration file for module '@tanstack/react-router'. '<repo>/frontend/node_modules/@tanstack/react-router/dist/esm/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/tanstack__react-router` if it exists or add a new declaration (.d.ts) file containing `declare module '@tanstack/react-router';`
+src/router.tsx(2,30): error TS7016: Could not find a declaration file for module '@tanstack/react-router'. '<repo>/frontend/node_modules/@tanstack/react-router/dist/esm/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/tanstack__react-router` if it exists or add a new declaration (.d.ts) file containing `declare module '@tanstack/react-router';`
+src/routes/__root.tsx(2,58): error TS7016: Could not find a declaration file for module '@tanstack/react-router'. '<repo>/frontend/node_modules/@tanstack/react-router/dist/esm/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/tanstack__react-router` if it exists or add a new declaration (.d.ts) file containing `declare module '@tanstack/react-router';`
+src/routes/__root.tsx(15,22): error TS7031: Binding element 'error' implicitly has an 'any' type.
+src/routes/__root.tsx(15,29): error TS7031: Binding element 'reset' implicitly has an 'any' type.
+src/routes/arena.tsx(1,33): error TS7016: Could not find a declaration file for module '@tanstack/react-router'. '<repo>/frontend/node_modules/@tanstack/react-router/dist/esm/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/tanstack__react-router` if it exists or add a new declaration (.d.ts) file containing `declare module '@tanstack/react-router';`
+src/routes/classifier.tsx(1,33): error TS7016: Could not find a declaration file for module '@tanstack/react-router'. '<repo>/frontend/node_modules/@tanstack/react-router/dist/esm/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/tanstack__react-router` if it exists or add a new declaration (.d.ts) file containing `declare module '@tanstack/react-router';`
+src/routes/evaluation.tsx(1,33): error TS7016: Could not find a declaration file for module '@tanstack/react-router'. '<repo>/frontend/node_modules/@tanstack/react-router/dist/esm/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/tanstack__react-router` if it exists or add a new declaration (.d.ts) file containing `declare module '@tanstack/react-router';`
+src/routes/index.tsx(1,33): error TS7016: Could not find a declaration file for module '@tanstack/react-router'. '<repo>/frontend/node_modules/@tanstack/react-router/dist/esm/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/tanstack__react-router` if it exists or add a new declaration (.d.ts) file containing `declare module '@tanstack/react-router';`
+src/routes/intelligence.tsx(1,33): error TS7016: Could not find a declaration file for module '@tanstack/react-router'. '<repo>/frontend/node_modules/@tanstack/react-router/dist/esm/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/tanstack__react-router` if it exists or add a new declaration (.d.ts) file containing `declare module '@tanstack/react-router';`
+src/routes/settings.tsx(1,33): error TS7016: Could not find a declaration file for module '@tanstack/react-router'. '<repo>/frontend/node_modules/@tanstack/react-router/dist/esm/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/tanstack__react-router` if it exists or add a new declaration (.d.ts) file containing `declare module '@tanstack/react-router';`
+src/routes/studio.tsx(1,33): error TS7016: Could not find a declaration file for module '@tanstack/react-router'. '<repo>/frontend/node_modules/@tanstack/react-router/dist/esm/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/tanstack__react-router` if it exists or add a new declaration (.d.ts) file containing `declare module '@tanstack/react-router';`
+src/routes/theory.tsx(1,33): error TS7016: Could not find a declaration file for module '@tanstack/react-router'. '<repo>/frontend/node_modules/@tanstack/react-router/dist/esm/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/tanstack__react-router` if it exists or add a new declaration (.d.ts) file containing `declare module '@tanstack/react-router';`
+src/test/app-routing.test.tsx(2,64): error TS7016: Could not find a declaration file for module '@tanstack/react-router'. '<repo>/frontend/node_modules/@tanstack/react-router/dist/esm/index.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/tanstack__react-router` if it exists or add a new declaration (.d.ts) file containing `declare module '@tanstack/react-router';`

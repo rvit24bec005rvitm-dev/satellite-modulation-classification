@@ -30,16 +30,16 @@ except ImportError:
 class NumPyCNNEngine:
     """
     Pure NumPy implementation of the Satellite Modulation 1D-CNN.
-    Matches TensorFlow/Keras output with 100% fidelity, zero external C++ dependencies,
-    and runs in <1ms on CPU with minimal memory footprint.
+    Executes the saved Keras architecture using NumPy.
+    Latency depends on the host and is measured by the benchmark endpoint.
     """
     def __init__(self, weights: dict[str, np.ndarray]):
         self.w = weights
 
     @classmethod
     def from_npz(cls, path: str | Path) -> "NumPyCNNEngine":
-        data = np.load(path)
-        return cls({k: data[k] for k in data.files})
+        with np.load(path, allow_pickle=False) as data:
+            return cls({k: data[k].copy() for k in data.files})
 
     @classmethod
     def from_keras_zip(cls, path: str | Path) -> "NumPyCNNEngine":
@@ -84,7 +84,9 @@ class NumPyCNNEngine:
     def _conv1d(self, x: np.ndarray, w: np.ndarray, b: np.ndarray) -> np.ndarray:
         K, _, C_out = w.shape
         T = x.shape[0]
-        out_T = T - K + 1
+        # The saved Keras Conv1D layers use padding="same".
+        x = np.pad(x, ((K // 2, K // 2), (0, 0)))
+        out_T = T
         out = np.zeros((out_T, C_out), dtype=np.float32)
         for i in range(out_T):
             patch = x[i : i + K, :]
@@ -101,19 +103,19 @@ class NumPyCNNEngine:
 
     def predict(self, iq: np.ndarray) -> np.ndarray:
         w = self.w
-        # Conv 1 + BN + ReLU + MaxPool
+        # Conv 1 + ReLU + BN + MaxPool
         x = self._conv1d(iq, w["c1_w"], w["c1_b"])
-        x = np.maximum(self._bn(x, w["bn1_g"], w["bn1_b"], w["bn1_m"], w["bn1_v"]), 0.0)
+        x = self._bn(np.maximum(x, 0.0), w["bn1_g"], w["bn1_b"], w["bn1_m"], w["bn1_v"])
         x = self._maxpool(x, 2)
 
-        # Conv 2 + BN + ReLU + MaxPool
+        # Conv 2 + ReLU + BN + MaxPool
         x = self._conv1d(x, w["c2_w"], w["c2_b"])
-        x = np.maximum(self._bn(x, w["bn2_g"], w["bn2_b"], w["bn2_m"], w["bn2_v"]), 0.0)
+        x = self._bn(np.maximum(x, 0.0), w["bn2_g"], w["bn2_b"], w["bn2_m"], w["bn2_v"])
         x = self._maxpool(x, 2)
 
-        # Conv 3 + BN + ReLU
+        # Conv 3 + ReLU + BN
         x = self._conv1d(x, w["c3_w"], w["c3_b"])
-        x = np.maximum(self._bn(x, w["bn3_g"], w["bn3_b"], w["bn3_m"], w["bn3_v"]), 0.0)
+        x = self._bn(np.maximum(x, 0.0), w["bn3_g"], w["bn3_b"], w["bn3_m"], w["bn3_v"])
 
         # GlobalAveragePooling1D
         x = np.mean(x, axis=0)
@@ -175,7 +177,7 @@ class ModelBackend:
 
         if npz_candidate.exists():
             engine = NumPyCNNEngine.from_npz(npz_candidate)
-            return cls(engine, "NumPy Native Engine (Zero-RAM)")
+            return cls(engine, "NumPy Native Engine")
 
         if p.suffix == ".keras" and p.exists():
             try:
@@ -201,6 +203,8 @@ class ModelBackend:
         -------
         probs : np.ndarray  shape (num_classes,)  softmax probabilities
         """
+        if iq.shape != (128, 2) or not np.isfinite(iq).all():
+            raise ValueError("Expected finite I/Q samples with shape (128, 2)")
         if self.backend_name.startswith("NumPy"):
             return self._session.predict(iq.astype(np.float32))
 

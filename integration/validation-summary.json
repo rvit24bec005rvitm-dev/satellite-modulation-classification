@@ -1,0 +1,44 @@
+{
+  "backend": {
+    "passed": 66,
+    "failed": 0
+  },
+  "frontend": {
+    "passed": 22,
+    "failed": 0
+  },
+  "realClientBackendContract": {
+    "passed": 8,
+    "failed": 0,
+    "transport": "TypeScript client \u2192 Python subprocess \u2192 actual FastAPI TestClient; no listening socket"
+  },
+  "productionBuild": "passed",
+  "productionServing": {
+    "spaRoutesPassed": 8,
+    "apiHealth": 200,
+    "unknownApi": 404
+  },
+  "eslint": {
+    "errors": 0,
+    "warnings": 18
+  },
+  "kerasParity": {
+    "frames": 43,
+    "maxAbsoluteError": 5.662441253662109e-07,
+    "classAgreement": 1.0,
+    "tensorflowVersion": "2.16.2",
+    "npzWeightsMatchKerasArchive": true
+  },
+  "strictTypecheck": {
+    "status": "failed",
+    "reason": "Offline TanStack production package omits TypeScript declarations; resulting missing-module and contextual-type errors remain."
+  },
+  "browserE2E": {
+    "status": "blocked-before-tests",
+    "reason": "Both TCP binds are denied with EPERM; system Chrome launch also aborts under the sandbox."
+  },
+  "cleanDependencyInstallation": {
+    "status": "blocked",
+    "reason": "npm/PyPI DNS/network access denied. Build/tests used recovered local cached packages; clean online dependency installation remains unverified."
+  }
+}

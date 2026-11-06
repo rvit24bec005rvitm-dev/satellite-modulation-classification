@@ -47,3 +47,18 @@ htmlcov/
 
 # Streamlit local credentials
 .streamlit/secrets.toml
+
+# Full-stack local artifacts
+node_modules/
+.output/
+.tanstack/
+.vite/
+.env
+.env.local
+playwright-report/
+test-results/
+integration/pre-integration-working-tree.patch
+
+# Keep React application source despite the Python packaging lib/ rule above.
+!frontend/src/lib/
+!frontend/src/lib/**

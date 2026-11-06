@@ -1,0 +1,20 @@
+
+> pretest
+> node scripts/generate-routes.mjs
+
+
+> test
+> vitest run
+
+
+ RUN  v2.1.9 <repo>/frontend
+
+ ✓ src/test/api.test.ts (8 tests) 38ms
+ ✓ src/test/workspace-ui.test.tsx (6 tests) 40ms
+ ✓ src/test/app-routing.test.tsx (8 tests) 29ms
+
+ Test Files  3 passed (3)
+      Tests  22 passed (22)
+   Start at  23:14:28
+   Duration  8.12s (transform 627ms, setup 642ms, collect 2.62s, tests 107ms, environment 1ms, prepare 775ms)
+

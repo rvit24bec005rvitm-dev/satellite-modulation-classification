@@ -1,0 +1,56 @@
+{
+  "validatedAt": "2026-11-06T17:04:45.891936+00:00",
+  "development": {
+    "frontend": "http://localhost:5173",
+    "backend": "http://127.0.0.1:8003",
+    "httpStatus": 200,
+    "modelConnected": true
+  },
+  "productionBrowserBaseUrl": "http://127.0.0.1:8010",
+  "tests": {
+    "python": {
+      "passed": 66
+    },
+    "frontend": {
+      "passed": 32
+    },
+    "realApiClientIntegration": {
+      "passed": 8
+    },
+    "productionBrowser": {
+      "passed": 20,
+      "failed": 0
+    },
+    "typecheck": "passed",
+    "build": "passed",
+    "lint": {
+      "errors": 0,
+      "warnings": 18
+    },
+    "productionServing": "passed"
+  },
+  "screenshots": [
+    "mission-1440.png",
+    "mission-1024.png",
+    "mission-820.png",
+    "mission-390.png"
+  ],
+  "limitations": [
+    "Educational circular-orbit simulation, not live tracking",
+    "Reference screenshots unavailable as image attachments; written specification followed",
+    "Headless Chrome baseline 30fps; 60fps not verified",
+    "Windows startup not executed"
+  ],
+  "preservation": {
+    "originalLovableSiblingClean": true,
+    "backendMlRetained": true,
+    "legacyStreamlitRetained": true
+  },
+  "connectivityProbe": {
+    "productionUrl": "http://127.0.0.1:8010/",
+    "connectedToOfflineMs": 11077,
+    "reconnectedMs": 9909,
+    "noFabricatedProbabilities": true,
+    "passed": true
+  }
+}

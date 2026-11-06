@@ -1,0 +1,17 @@
+{
+  "frontend": "http://localhost:5173",
+  "backend": "http://127.0.0.1:8003",
+  "frontendHttpStatus": 200,
+  "proxiedHealthConnected": true,
+  "browser": "installed Google Chrome via Playwright",
+  "overviewRuntimeErrors": [],
+  "browserWorkflow": "BPSK generation at 18 dB \u2192 full 256-sample capture handoff \u2192 real CNN classification visible",
+  "workflowPassed": true,
+  "workflowRuntimeErrors": [],
+  "launcherBusyPortChecks": "passed",
+  "screenshots": [
+    "running-overview.png",
+    "running-classifier.png"
+  ],
+  "fullPlaywrightSuiteRerun": false
+}

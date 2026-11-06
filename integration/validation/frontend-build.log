@@ -1,0 +1,19 @@
+
+> prebuild
+> node scripts/generate-routes.mjs
+
+
+> build
+> vite build
+
+vite v7.1.12 building for production...
+transforming...
+✓ 2697 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                 0.85 kB │ gzip:     0.48 kB
+dist/assets/orbit-observation-B2LCi1FP.jpg    170.31 kB
+dist/assets/index-C4llrNXm.css                 78.20 kB │ gzip:    13.17 kB
+dist/assets/index-VFVV_Iti.js                 867.28 kB │ gzip:   256.15 kB
+dist/assets/plotly.min-DZyqaqhR.js          4,776.97 kB │ gzip: 1,472.41 kB
+✓ built in 43.93s

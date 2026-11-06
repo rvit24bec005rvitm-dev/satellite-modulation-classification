@@ -1,0 +1,30 @@
+{
+  "artifacts": {
+    "models/cnn_weights.npz": {
+      "sha256": "e9705c98275e26d4a60210b2d563c4cc32ef94f4f0368974f1168245f91cf33d",
+      "unchangedFromGit": true
+    },
+    "classifier_samples.npz": {
+      "sha256": "561343c008b34403e4d4d89d85ea26b3ac54a900d67711d8bcd39a6a774fcaef",
+      "unchangedFromGit": true
+    },
+    "evaluation_results.json": {
+      "sha256": "b9aa35ebce1bfe95d75ce16f2f2252020219b4e7f65a2a0b651c4d2f420fc054",
+      "unchangedFromGit": true
+    },
+    "snr_accuracy_results.csv": {
+      "sha256": "b1a8f2ea01d411800e151b2221bc489992de700ba9f1ee3a44e27237c8f3ce93",
+      "unchangedFromGit": true
+    },
+    "normalization_stats_all_snr.npz": {
+      "sha256": "6b6500e2366422345b814e0cc3f10469b0114c409d252134c9b67ab93b245f0a",
+      "unchangedFromGit": true
+    },
+    "satellite_modulation_cnn_all_snr.keras": {
+      "sha256": "a0e34e332328ddd6d0709c4af7875ef41127a3c6c3ef3cce8e51a7b7e5cad724",
+      "unchangedFromGit": true
+    }
+  },
+  "originalFrontendWorkingTreeClean": true,
+  "legacyUserEditsPreserved": true
+}

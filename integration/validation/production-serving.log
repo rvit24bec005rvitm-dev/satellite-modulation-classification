@@ -1,0 +1,44 @@
+{"event": "request", "method": "GET", "path": "/", "status": 200, "elapsedMs": 25.88}
+HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+{"event": "request", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 6.8}
+HTTP Request: GET http://testserver/classifier "HTTP/1.1 200 OK"
+{"event": "request", "method": "GET", "path": "/studio", "status": 200, "elapsedMs": 3.39}
+HTTP Request: GET http://testserver/studio "HTTP/1.1 200 OK"
+{"event": "request", "method": "GET", "path": "/evaluation", "status": 200, "elapsedMs": 3.73}
+HTTP Request: GET http://testserver/evaluation "HTTP/1.1 200 OK"
+{"event": "request", "method": "GET", "path": "/arena", "status": 200, "elapsedMs": 3.96}
+HTTP Request: GET http://testserver/arena "HTTP/1.1 200 OK"
+{"event": "request", "method": "GET", "path": "/intelligence", "status": 200, "elapsedMs": 6.37}
+HTTP Request: GET http://testserver/intelligence "HTTP/1.1 200 OK"
+{"event": "request", "method": "GET", "path": "/theory", "status": 200, "elapsedMs": 3.66}
+HTTP Request: GET http://testserver/theory "HTTP/1.1 200 OK"
+{"event": "request", "method": "GET", "path": "/settings", "status": 200, "elapsedMs": 4.48}
+HTTP Request: GET http://testserver/settings "HTTP/1.1 200 OK"
+{"event": "request", "method": "GET", "path": "/", "status": 200, "elapsedMs": 3.51}
+HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+{"event": "request", "method": "GET", "path": "/assets/index-VFVV_Iti.js", "status": 200, "elapsedMs": 4.22}
+HTTP Request: GET http://testserver/assets/index-VFVV_Iti.js "HTTP/1.1 200 OK"
+{"event": "request", "method": "GET", "path": "/assets/index-C4llrNXm.css", "status": 200, "elapsedMs": 3.75}
+HTTP Request: GET http://testserver/assets/index-C4llrNXm.css "HTTP/1.1 200 OK"
+{"event": "request", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 15.98}
+HTTP Request: GET http://testserver/api/health "HTTP/1.1 200 OK"
+{"event": "request", "method": "GET", "path": "/api/does-not-exist", "status": 404, "elapsedMs": 2.92}
+HTTP Request: GET http://testserver/api/does-not-exist "HTTP/1.1 404 Not Found"
+{
+  "spaRoutesChecked": [
+    "/",
+    "/classifier",
+    "/studio",
+    "/evaluation",
+    "/arena",
+    "/intelligence",
+    "/theory",
+    "/settings"
+  ],
+  "indexAssetsChecked": [
+    "/assets/index-VFVV_Iti.js",
+    "/assets/index-C4llrNXm.css"
+  ],
+  "health": 200,
+  "unknownApi": 404
+}
