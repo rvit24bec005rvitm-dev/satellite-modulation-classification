@@ -26,7 +26,7 @@ from utils.plotting import (
     CLASS_COLORS,
 )
 from utils.model_backend import ModelBackend
-from utils.signal_processing import normalize_signal
+from backend.services.classifier import preprocess
 
 st.set_page_config(
     page_title="Model Evaluation · SatModClass",
@@ -134,6 +134,7 @@ t1, t2, t3, t4 = st.tabs([
 # ── Tab 1: Dynamic Confusion Matrix ─────────────────────────────────────────────
 with t1:
     st.subheader("Dynamic Confusion Matrix Inspector")
+    st.caption("The full historical matrix covers 900 observations; live SNR slices use only the separate 300-frame demo library with unknown split provenance.")
     st.markdown("Inspect the confusion matrix across **all SNR levels combined**, or filter dynamically by a specific SNR band to see how noise degrades class separation.")
 
     snr_view_mode = st.radio(
@@ -182,7 +183,7 @@ with t1:
             sub_labels = test_labels[mask]
 
             # Normalize and predict
-            sub_norm = (sub_sigs - eval_mean) / eval_std
+            sub_norm = np.array([preprocess(sig) for sig in sub_sigs])
             sub_preds = []
             for sig in sub_norm:
                 p = eval_backend.predict(sig)

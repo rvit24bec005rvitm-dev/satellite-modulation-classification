@@ -62,3 +62,6 @@ integration/pre-integration-working-tree.patch
 # Keep React application source despite the Python packaging lib/ rule above.
 !frontend/src/lib/
 !frontend/src/lib/**
+
+# Optional isolated ML training environments
+.venv-*/

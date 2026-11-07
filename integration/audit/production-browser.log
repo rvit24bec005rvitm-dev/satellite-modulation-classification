@@ -1,0 +1,36 @@
+
+> satmodclass-frontend@1.0.0 test:e2e
+> playwright test
+
+
+Running 25 tests using 1 worker
+
+(node:54014) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 e2e/mission-dashboard.spec.ts:12:1 › mission dashboard renders real WebGL, geographical map, and honest data states (9.9s)
+  ✓   2 e2e/mission-dashboard.spec.ts:34:1 › Earth rotates continuously without pointer input and obeys its pause toggle (12.3s)
+  ✓   3 e2e/mission-dashboard.spec.ts:56:1 › camera zoom/reset, scroll zoom, and drag interaction work (15.3s)
+  ✓   4 e2e/mission-dashboard.spec.ts:91:1 › satellite selector and clickable marker labels update satellite details (8.2s)
+  ✓   5 e2e/mission-dashboard.spec.ts:107:1 › shared classifier result populates actual three-class probabilities on Overview (9.9s)
+  ✓   6 e2e/mission-dashboard.spec.ts:122:1 › reduced-motion preference disables automatic movement by default (7.2s)
+  ✓   7 e2e/mission-dashboard.spec.ts:144:1 › backend offline state is explicit while the demonstration remains usable (5.6s)
+  ✓   8 e2e/mission-dashboard.spec.ts:154:1 › WebGL unavailable state offers an honest geographical fallback (3.6s)
+  ✓   9 e2e/mission-dashboard.spec.ts:174:3 › mission layout remains usable at 1440px (7.8s)
+  ✓  10 e2e/mission-dashboard.spec.ts:174:3 › mission layout remains usable at 1024px (10.4s)
+  ✓  11 e2e/mission-dashboard.spec.ts:174:3 › mission layout remains usable at 820px (8.3s)
+  ✓  12 e2e/mission-dashboard.spec.ts:174:3 › mission layout remains usable at 390px (8.7s)
+  ✓  13 e2e/scientific-workflows.spec.ts:4:1 › impaired signal → real CNN → Integrated Gradients → exported scientific report (12.2s)
+  ✓  14 e2e/scientific-workflows.spec.ts:50:1 › upload preserves raw samples and applies an explicitly changed sample clock (4.1s)
+  ✓  15 e2e/scientific-workflows.spec.ts:75:1 › GMSK and BFSK controls drive real frequency modulation without fake symbol eyes (8.3s)
+  ✓  16 e2e/scientific-workflows.spec.ts:105:1 › two captures with mixed known/unknown rates use common normalized axes and real predictions (12.9s)
+  ✓  17 e2e/scientific-workflows.spec.ts:136:1 › real demo diagnostics and matched experimental comparisons remain distinct from historical scores (7.3s)
+  ✓  18 e2e/workflows.spec.ts:3:1 › workflow 1: upload a real saved I/Q frame and display CNN output (8.8s)
+  ✓  19 e2e/workflows.spec.ts:24:3 › workflow 2: generate BPSK and classify the same full capture (10.5s)
+  ✓  20 e2e/workflows.spec.ts:24:3 › workflow 3: generate QPSK and classify the same full capture (11.3s)
+  ✓  21 e2e/workflows.spec.ts:46:1 › workflow 4: actual evaluation matrices, SNR curves, and per-class metrics (6.7s)
+  ✓  22 e2e/workflows.spec.ts:62:1 › workflow 5: measured CNN latency and unavailable model comparison (2.7s)
+  ✓  23 e2e/workflows.spec.ts:70:1 › workflow 6: backend disconnection never produces predictions (3.2s)
+  ✓  24 e2e/workflows.spec.ts:78:1 › workflow 7: malformed upload is rejected visibly (2.4s)
+  ✓  25 e2e/workflows.spec.ts:89:1 › all routes remain reachable on a narrow viewport (15.9s)
+
+  25 passed (4.2m)

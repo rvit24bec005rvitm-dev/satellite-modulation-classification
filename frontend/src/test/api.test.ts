@@ -66,4 +66,33 @@ describe("Signal API transport", () => {
     fetchMock.mockResolvedValue(new Response("<h1>Proxy error</h1>", { status: 502 }));
     await expect(satmodApi.health()).rejects.toThrow("HTTP 502");
   });
+  it("sends explicit method and class to the actual explain endpoint", async () => {
+    fetchMock.mockResolvedValue(new Response("{}"));
+    await satmodApi.explain({
+      samples: [{ i: 0.01, q: 0.02 }],
+      targetClass: "16-QAM",
+      method: "saliency",
+      steps: 64,
+    });
+    expect(fetchMock.mock.calls[0]?.[0]).toBe("/api/explain");
+    expect(JSON.parse(String(fetchMock.mock.calls[0]?.[1]?.body))).toMatchObject({
+      targetClass: "16-QAM",
+      method: "saliency",
+    });
+  });
+  it("keeps analysis-only uploads separate from classifier uploads", async () => {
+    fetchMock.mockResolvedValue(new Response("{}"));
+    await satmodApi.uploadCapture(new File(["[]"], "short.json"));
+    expect(fetchMock.mock.calls[0]?.[0]).toBe("/api/signal/upload");
+    expect(fetchMock.mock.calls[0]?.[1]?.body).toBeInstanceOf(FormData);
+  });
+  it("combines query cancellation with a request deadline", async () => {
+    fetchMock.mockResolvedValue(new Response("{}"));
+    const c = new AbortController();
+    await satmodApi.health(c.signal);
+    const signal = fetchMock.mock.calls[0]?.[1]?.signal as AbortSignal;
+    expect(signal.aborted).toBe(false);
+    c.abort();
+    expect(signal.aborted).toBe(true);
+  });
 });

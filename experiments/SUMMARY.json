@@ -1,0 +1,306 @@
+[
+  {
+    "id": "rf-control-v1",
+    "protocolId": "c7c74ee438f937fdcf4e409028c3abf4802d9f275c400d631c3c3ba1e594db44",
+    "accuracy": 0.6694444444444444,
+    "macroF1": 0.6507145477307283,
+    "testSamples": 360,
+    "snrAccuracy": [
+      {
+        "snrDb": -12.0,
+        "samples": 60,
+        "accuracy": 0.26666666666666666,
+        "perClass": {
+          "BPSK": 0.2,
+          "QPSK": 0.4375,
+          "16-QAM": 0.21052631578947367
+        }
+      },
+      {
+        "snrDb": -6.0,
+        "samples": 60,
+        "accuracy": 0.48333333333333334,
+        "perClass": {
+          "BPSK": 0.64,
+          "QPSK": 0.3125,
+          "16-QAM": 0.42105263157894735
+        }
+      },
+      {
+        "snrDb": 0.0,
+        "samples": 60,
+        "accuracy": 0.65,
+        "perClass": {
+          "BPSK": 1.0,
+          "QPSK": 0.25,
+          "16-QAM": 0.5263157894736842
+        }
+      },
+      {
+        "snrDb": 6.0,
+        "samples": 60,
+        "accuracy": 0.7666666666666667,
+        "perClass": {
+          "BPSK": 1.0,
+          "QPSK": 0.5,
+          "16-QAM": 0.6842105263157895
+        }
+      },
+      {
+        "snrDb": 12.0,
+        "samples": 60,
+        "accuracy": 0.9166666666666666,
+        "perClass": {
+          "BPSK": 1.0,
+          "QPSK": 1.0,
+          "16-QAM": 0.7368421052631579
+        }
+      },
+      {
+        "snrDb": 18.0,
+        "samples": 60,
+        "accuracy": 0.9333333333333333,
+        "perClass": {
+          "BPSK": 1.0,
+          "QPSK": 1.0,
+          "16-QAM": 0.7894736842105263
+        }
+      }
+    ],
+    "productionOnSameTest": 0.6583333333333333,
+    "artifact": {
+      "filename": "random-forest.joblib",
+      "sha256": "9388cc39d7cb8511b7270dbc444db453284fdffbba3e4572c39bd52cd4397ecb",
+      "bytes": 2003873
+    },
+    "productionPromoted": false
+  },
+  {
+    "id": "rf-awgn-v1",
+    "protocolId": "c7c74ee438f937fdcf4e409028c3abf4802d9f275c400d631c3c3ba1e594db44",
+    "accuracy": 0.6666666666666666,
+    "macroF1": 0.6481319606319605,
+    "testSamples": 360,
+    "snrAccuracy": [
+      {
+        "snrDb": -12.0,
+        "samples": 60,
+        "accuracy": 0.2833333333333333,
+        "perClass": {
+          "BPSK": 0.16,
+          "QPSK": 0.375,
+          "16-QAM": 0.3684210526315789
+        }
+      },
+      {
+        "snrDb": -6.0,
+        "samples": 60,
+        "accuracy": 0.5666666666666667,
+        "perClass": {
+          "BPSK": 0.68,
+          "QPSK": 0.3125,
+          "16-QAM": 0.631578947368421
+        }
+      },
+      {
+        "snrDb": 0.0,
+        "samples": 60,
+        "accuracy": 0.6333333333333333,
+        "perClass": {
+          "BPSK": 1.0,
+          "QPSK": 0.375,
+          "16-QAM": 0.3684210526315789
+        }
+      },
+      {
+        "snrDb": 6.0,
+        "samples": 60,
+        "accuracy": 0.7,
+        "perClass": {
+          "BPSK": 1.0,
+          "QPSK": 0.4375,
+          "16-QAM": 0.5263157894736842
+        }
+      },
+      {
+        "snrDb": 12.0,
+        "samples": 60,
+        "accuracy": 0.9,
+        "perClass": {
+          "BPSK": 1.0,
+          "QPSK": 1.0,
+          "16-QAM": 0.6842105263157895
+        }
+      },
+      {
+        "snrDb": 18.0,
+        "samples": 60,
+        "accuracy": 0.9166666666666666,
+        "perClass": {
+          "BPSK": 1.0,
+          "QPSK": 1.0,
+          "16-QAM": 0.7368421052631579
+        }
+      }
+    ],
+    "productionOnSameTest": 0.6583333333333333,
+    "artifact": {
+      "filename": "random-forest.joblib",
+      "sha256": "a3c49aa424551d9c43f88be26bea4a49a8f76e617af4fddad73539670ce8a3ba",
+      "bytes": 4876385
+    },
+    "productionPromoted": false
+  },
+  {
+    "id": "resnet-synthetic-v1",
+    "protocolId": "c7c74ee438f937fdcf4e409028c3abf4802d9f275c400d631c3c3ba1e594db44",
+    "accuracy": 0.49444444444444446,
+    "macroF1": 0.4237939876648758,
+    "testSamples": 360,
+    "snrAccuracy": [
+      {
+        "snrDb": -12.0,
+        "samples": 60,
+        "accuracy": 0.26666666666666666,
+        "perClass": {
+          "BPSK": 0.0,
+          "QPSK": 1.0,
+          "16-QAM": 0.0
+        }
+      },
+      {
+        "snrDb": -6.0,
+        "samples": 60,
+        "accuracy": 0.26666666666666666,
+        "perClass": {
+          "BPSK": 0.0,
+          "QPSK": 1.0,
+          "16-QAM": 0.0
+        }
+      },
+      {
+        "snrDb": 0.0,
+        "samples": 60,
+        "accuracy": 0.43333333333333335,
+        "perClass": {
+          "BPSK": 0.4,
+          "QPSK": 1.0,
+          "16-QAM": 0.0
+        }
+      },
+      {
+        "snrDb": 6.0,
+        "samples": 60,
+        "accuracy": 0.6333333333333333,
+        "perClass": {
+          "BPSK": 0.84,
+          "QPSK": 1.0,
+          "16-QAM": 0.05263157894736842
+        }
+      },
+      {
+        "snrDb": 12.0,
+        "samples": 60,
+        "accuracy": 0.6666666666666666,
+        "perClass": {
+          "BPSK": 0.92,
+          "QPSK": 1.0,
+          "16-QAM": 0.05263157894736842
+        }
+      },
+      {
+        "snrDb": 18.0,
+        "samples": 60,
+        "accuracy": 0.7,
+        "perClass": {
+          "BPSK": 1.0,
+          "QPSK": 1.0,
+          "16-QAM": 0.05263157894736842
+        }
+      }
+    ],
+    "productionOnSameTest": 0.6583333333333333,
+    "artifact": {
+      "filename": "best.keras",
+      "sha256": "3c8dc0d6f05a69f4c366e48fe48ba7e7c9868d87b0d3dbe883cb4d7490011277",
+      "bytes": 2442222
+    },
+    "productionPromoted": false
+  },
+  {
+    "id": "cldnn-synthetic-v1",
+    "protocolId": "c7c74ee438f937fdcf4e409028c3abf4802d9f275c400d631c3c3ba1e594db44",
+    "accuracy": 0.6888888888888889,
+    "macroF1": 0.6686904265252199,
+    "testSamples": 360,
+    "snrAccuracy": [
+      {
+        "snrDb": -12.0,
+        "samples": 60,
+        "accuracy": 0.3333333333333333,
+        "perClass": {
+          "BPSK": 0.2,
+          "QPSK": 0.5,
+          "16-QAM": 0.3684210526315789
+        }
+      },
+      {
+        "snrDb": -6.0,
+        "samples": 60,
+        "accuracy": 0.6,
+        "perClass": {
+          "BPSK": 0.76,
+          "QPSK": 0.5625,
+          "16-QAM": 0.42105263157894735
+        }
+      },
+      {
+        "snrDb": 0.0,
+        "samples": 60,
+        "accuracy": 0.75,
+        "perClass": {
+          "BPSK": 1.0,
+          "QPSK": 0.75,
+          "16-QAM": 0.42105263157894735
+        }
+      },
+      {
+        "snrDb": 6.0,
+        "samples": 60,
+        "accuracy": 0.8,
+        "perClass": {
+          "BPSK": 1.0,
+          "QPSK": 0.875,
+          "16-QAM": 0.47368421052631576
+        }
+      },
+      {
+        "snrDb": 12.0,
+        "samples": 60,
+        "accuracy": 0.8333333333333334,
+        "perClass": {
+          "BPSK": 1.0,
+          "QPSK": 0.875,
+          "16-QAM": 0.5789473684210527
+        }
+      },
+      {
+        "snrDb": 18.0,
+        "samples": 60,
+        "accuracy": 0.8166666666666667,
+        "perClass": {
+          "BPSK": 1.0,
+          "QPSK": 0.875,
+          "16-QAM": 0.5263157894736842
+        }
+      }
+    ],
+    "productionOnSameTest": 0.6583333333333333,
+    "artifact": {
+      "filename": "best.keras",
+      "sha256": "62aa060d52b37797d81aa1b9c06499d92f4e7fdfadf457838a79fa94f9e395c6",
+      "bytes": 352870
+    },
+    "productionPromoted": false
+  }
+]

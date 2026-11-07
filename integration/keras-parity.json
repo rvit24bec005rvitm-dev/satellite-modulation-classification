@@ -1,7 +1,9 @@
 {
   "frames": 43,
-  "maxAbsoluteError": 5.662441253662109e-07,
+  "maxAbsoluteError": 4.172325134277344e-07,
   "classAgreement": 1.0,
+  "logitGradientMaxAbsoluteError": 2.384185791015625e-07,
+  "gradientClassTargets": 3,
   "tensorflowVersion": "2.16.2",
   "npzWeightsMatchKerasArchive": true
 }

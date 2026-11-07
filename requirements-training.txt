@@ -1,0 +1,3 @@
+-r requirements-dev.txt
+# Optional deep training; use a TensorFlow-supported Python/OS combination.
+tensorflow>=2.16,<3

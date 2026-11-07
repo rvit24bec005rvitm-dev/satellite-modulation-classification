@@ -2,16 +2,21 @@ name: CI / Model Validation
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: ["main", "master"]
   pull_request:
-    branches: [ "main", "master" ]
+    branches: ["main", "master"]
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
+        os: [ubuntu-latest]
         python-version: ["3.10", "3.11", "3.12"]
+        include:
+          - os: windows-latest
+            python-version: "3.12"
 
     steps:
       - name: Checkout repository
@@ -53,7 +58,7 @@ jobs:
         run: python -m pip install -r requirements-dev.txt
       - name: Install frontend dependencies
         working-directory: frontend
-        run: npm install
+        run: npm ci
       - name: Check frontend types, lint, routes, and components
         working-directory: frontend
         run: |
@@ -69,3 +74,24 @@ jobs:
         run: |
           npm --prefix frontend run build
           python scripts/check_production.py
+      - name: Install browser and system dependencies
+        working-directory: frontend
+        run: npx playwright install --with-deps chromium
+      - name: Exercise the compiled application in Chromium
+        working-directory: frontend
+        env:
+          SATMOD_PYTHON: python
+          SATMOD_TEST_API_URL: http://127.0.0.1:8000
+          SATMOD_TEST_BASE_URL: http://127.0.0.1:8000
+          SATMOD_TEST_PRODUCTION: "1"
+        run: npm run test:e2e -- --reporter=list,html
+      - name: Preserve browser diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-browser-diagnostics
+          path: |
+            frontend/playwright-report/
+            frontend/test-results/
+            integration/validation/
+          retention-days: 14

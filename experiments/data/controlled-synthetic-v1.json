@@ -1,0 +1,17 @@
+{
+  "domain": "controlled-synthetic",
+  "seed": 2026,
+  "sourceGroups": 300,
+  "frames": 1800,
+  "sps": 4,
+  "snrs": [
+    -12,
+    -6,
+    0,
+    6,
+    12,
+    18
+  ],
+  "sha256": "8ee79e4b788674c0bcb4da668199384c3cb10901e219462e1a2a04d1161ecaf6",
+  "limitation": "RRC/AWGN educational distribution; does not represent original RadioML capture provenance or real satellite generalization."
+}

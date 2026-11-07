@@ -27,6 +27,7 @@ from utils.plotting import (
     plot_spectrogram, plot_class_scores, plot_entropy_gauge, plot_eye_diagram,
 )
 from utils.model_backend import ModelBackend
+from backend.services.classifier import preprocess
 
 # ── Page config ─────────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -250,14 +251,18 @@ iq = generate_iq_signal(
     rng_seed=int(rng_seed),
 )
 
+# Explicit simulator scale matching the saved training standard deviation.
+if std_val is not None:
+    iq *= np.sqrt(2)*std_val
+
 # ── Run CNN Classification ────────────────────────────────────────────────────
 probs = None
 pred_class = None
 entropy = 0.0
 
-if model and mean_val is not None and auto_classify:
+if model and mean_val is not None and auto_classify and mod_key in CLASSES:
     try:
-        iq_norm = normalize_signal(iq, mean_val, std_val)
+        iq_norm = preprocess(iq)
         probs = model.predict(iq_norm)
         pred_idx = int(np.argmax(probs))
         pred_class = CLASSES[pred_idx]
@@ -277,7 +282,7 @@ with col_telemetry:
     st.markdown("##### 📡 Baseband Telemetry Metrics")
     st_c1, st_c2, st_c3, st_c4 = st.columns(4)
     with st_c1:
-        st.markdown(f'<div class="stat-pill"><div class="stat-val">{10*np.log10(s_pwr+1e-30):.1f}</div><div class="stat-lbl">Power (dBW)</div></div>', unsafe_allow_html=True)
+        st.markdown(f'<div class="stat-pill"><div class="stat-val">{10*np.log10(s_pwr+1e-30):.1f}</div><div class="stat-lbl">Power (dB re sample units²)</div></div>', unsafe_allow_html=True)
     with st_c2:
         st.markdown(f'<div class="stat-pill"><div class="stat-val">{np.mean(A):.3f}</div><div class="stat-lbl">Mean |A|</div></div>', unsafe_allow_html=True)
     with st_c3:
@@ -286,7 +291,7 @@ with col_telemetry:
         st.markdown(f'<div class="stat-pill"><div class="stat-val">{np.degrees(np.std(np.arctan2(Q,I))):.0f}°</div><div class="stat-lbl">Phase Std</div></div>', unsafe_allow_html=True)
 
 with col_audio_box:
-    st.markdown("##### 🔊 Audible RF Demodulation")
+    st.markdown("##### 🔊 Audible baseband visualization")
     audio_wav = generate_audio_waveform(iq, carrier_tone_hz=880.0, duration_sec=1.5)
     st.audio(audio_wav, format="audio/wav")
     st.caption("Drag Doppler or CFO to hear the frequency pitch shift!")
@@ -324,7 +329,7 @@ viz1, viz2, viz3, viz4, viz5, viz6 = st.tabs([
 ])
 
 with viz1:
-    ref = CONSTELLATION_REFS.get(mod_key)
+    ref = None  # Raw received samples have channel/pulse shaping, not unit-energy symbol coordinates.
     fig_const = plot_constellation(iq, pred_class or mod_key, ref)
     st.plotly_chart(fig_const, use_container_width=True)
 
@@ -334,10 +339,12 @@ with viz2:
     st.caption("Notice how continuous Doppler and CFO unwind into a corkscrew spiral across the temporal axis!")
 
 with viz3:
-    t_axis, i_traces, q_traces = compute_eye_diagram(iq, sps=sps)
-    fig_eye = plot_eye_diagram(t_axis, i_traces, q_traces)
-    st.plotly_chart(fig_eye, use_container_width=True)
-    st.caption("Eye diagram opening closure indicates ISI degradation from channel filtering, noise, or amplifier compression.")
+    if mod_key in ['GMSK','BFSK']:
+        st.info('Continuous-phase frequency modulation has no linear symbol eye. Inspect phase/frequency trajectories instead.')
+    else:
+        t_axis,i_traces,q_traces=compute_eye_diagram(iq,sps=sps)
+        st.plotly_chart(plot_eye_diagram(t_axis,i_traces,q_traces),use_container_width=True)
+        st.caption('Transmitter-timing overlays. These are not a recovered matched-filter receiver eye.')
 
 with viz4:
     st.plotly_chart(plot_time_domain(iq), use_container_width=True)
@@ -358,12 +365,7 @@ if probs is not None:
         st.plotly_chart(plot_class_scores(CLASSES, probs, pred_class), use_container_width=True)
     with ent_col:
         st.plotly_chart(plot_entropy_gauge(entropy, MAX_ENTROPY), use_container_width=True)
-        if entropy > MAX_ENTROPY * 0.75:
-            st.error("🔴 **Extreme Uncertainty** — Channel corruption exceeds trained model bounds.")
-        elif entropy > MAX_ENTROPY * 0.4:
-            st.warning("🟡 **Moderate Uncertainty** — Transitional SNR or moderate impairment.")
-        else:
-            st.success("🟢 **High Confidence Classification**")
+        st.info('Uncalibrated predictive entropy; no validated unknown-modulation detector. Confidence does not establish correctness.')
 
 st.divider()
 

@@ -9,6 +9,7 @@ import {
   percent,
   ExportButton,
 } from "@/components/workspace-ui";
+import { ModelDiagnostics } from "@/components/model-diagnostics";
 import { ScientificChart } from "@/components/scientific-chart";
 export function EvaluationPage() {
   const query = useEvaluation();
@@ -70,7 +71,7 @@ export function EvaluationPage() {
                     y: data.classes,
                     z: normalized
                       ? data.confusionMatrix.map((row) =>
-                          row.map((v) => (100 * v) / row.reduce((a, b) => a + b, 0)),
+                          row.map((v) => (100 * v) / (row.reduce((a, b) => a + b, 0) || 1)),
                         )
                       : data.confusionMatrix,
                     colorscale: "Viridis",
@@ -155,6 +156,7 @@ export function EvaluationPage() {
               </p>
             </Surface>
           </div>
+          <ModelDiagnostics />
           <Surface className="p-4">
             <SectionHeading title="Evaluation provenance" note={data.source} />
             {data.notes.map((n) => (

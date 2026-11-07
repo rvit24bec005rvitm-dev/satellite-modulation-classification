@@ -1,0 +1,36 @@
+
+> satmodclass-frontend@1.0.0 test:e2e
+> playwright test e2e/workflows.spec.ts --grep generate .* and classify
+
+
+Running 2 tests using 1 worker
+
+(node:68809) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 e2e/workflows.spec.ts:24:3 › workflow 2: generate BPSK and classify the same full capture (15.4m)
+(node:69872) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  2 e2e/workflows.spec.ts:24:3 › workflow 3: generate QPSK and classify the same full capture (10.3s)
+
+
+  1) e2e/workflows.spec.ts:24:3 › workflow 2: generate BPSK and classify the same full capture ─────
+
+    Test timeout of 60000ms exceeded.
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/workflows-workflow-2-gener-c7169-ssify-the-same-full-capture/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/workflows-workflow-2-gener-c7169-ssify-the-same-full-capture/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/workflows-workflow-2-gener-c7169-ssify-the-same-full-capture/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/workflows-workflow-2-gener-c7169-ssify-the-same-full-capture/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  1 failed
+    e2e/workflows.spec.ts:24:3 › workflow 2: generate BPSK and classify the same full capture ──────
+  1 passed (16.9m)

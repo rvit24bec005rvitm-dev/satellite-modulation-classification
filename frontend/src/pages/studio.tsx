@@ -29,6 +29,14 @@ export function StudioPage() {
     numSamples: 1024,
     sps: preferences.defaultSps,
     sampleRate: 1,
+    gaussianBt: 0.3,
+    bfskDeviationHz: null,
+    continuousPhase: true,
+    apskRadii: null,
+    apskOffsets: null,
+    phaseNoiseMode: "iid",
+    fadingBlockSamples: 1,
+    normalizeOutput: true,
     rrcAlpha: 0.35,
     rrcEnabled: true,
     dopplerHz: 0,
@@ -56,7 +64,13 @@ export function StudioPage() {
       /* Mutation error is shown inline. */
     }
   };
-  const dirty = signal !== null && JSON.stringify(signal.parameters) !== JSON.stringify(params);
+  const dirty =
+    signal !== null &&
+    Object.entries(params).some(
+      ([key, value]) =>
+        JSON.stringify(signal.parameters[key as keyof SignalGenerationRequest]) !==
+        JSON.stringify(value),
+    );
   const send = () => {
     if (signal) {
       setCapture(signal);
@@ -93,7 +107,13 @@ export function StudioPage() {
               className="control"
               value={params.modulation}
               onChange={(e) =>
-                update("modulation", e.target.value as SignalGenerationRequest["modulation"])
+                setParams((p) => ({
+                  ...p,
+                  modulation: e.target.value as SignalGenerationRequest["modulation"],
+                  apskRadii: null,
+                  apskOffsets: null,
+                  bfskDeviationHz: null,
+                }))
               }
             >
               {GENERATOR_MODULATIONS.map((m) => (
@@ -101,6 +121,65 @@ export function StudioPage() {
               ))}
             </select>
           </Field>
+          {params.modulation === "GMSK" && (
+            <NumberField
+              label="Gaussian BT product"
+              value={params.gaussianBt ?? 0.3}
+              onChange={(n) => update("gaussianBt", n)}
+              min={0.05}
+              max={1}
+              step={0.05}
+            />
+          )}
+          {params.modulation === "BFSK" && (
+            <>
+              <NumberField
+                label="BFSK deviation (Hz; default Rs/4)"
+                value={params.bfskDeviationHz ?? params.sampleRate / (4 * params.sps)}
+                onChange={(n) => update("bfskDeviationHz", n)}
+                min={0.000001}
+                max={params.sampleRate / 2}
+                step={0.001}
+              />
+              <Field label="Continuous-phase BFSK">
+                <input
+                  type="checkbox"
+                  checked={params.continuousPhase ?? true}
+                  onChange={(e) => update("continuousPhase", e.target.checked)}
+                />
+              </Field>
+            </>
+          )}
+          {["16-APSK", "32-APSK"].includes(params.modulation) && (
+            <>
+              <NumberField
+                label="APSK middle/inner radius ratio"
+                value={params.apskRadii?.[1] ?? 2.53}
+                min={1.01}
+                max={10}
+                step={0.1}
+                onChange={(n) =>
+                  update(
+                    "apskRadii",
+                    params.modulation === "32-APSK" ? [1, n, params.apskRadii?.[2] ?? 4.3] : [1, n],
+                  )
+                }
+              />
+              {params.modulation === "32-APSK" && (
+                <NumberField
+                  label="APSK outer/inner radius ratio"
+                  value={params.apskRadii?.[2] ?? 4.3}
+                  min={1.02}
+                  max={20}
+                  step={0.1}
+                  onChange={(n) => update("apskRadii", [1, params.apskRadii?.[1] ?? 2.53, n])}
+                />
+              )}
+              <p className="mb-4 text-xs text-muted-foreground">
+                Educational ring mapping; no DVB-S2 compliance claim.
+              </p>
+            </>
+          )}
           <NumberField
             label="AWGN SNR (dB)"
             value={params.snrDb}
@@ -142,6 +221,16 @@ export function StudioPage() {
             The default RMS matches the training statistics scale. This is a simulator calibration,
             not a guarantee of classifier accuracy. Upload amplitudes are preserved.
           </p>
+          <Field label="Output amplitude policy">
+            <select
+              className="control"
+              value={params.normalizeOutput === false ? "preserve" : "unit"}
+              onChange={(e) => update("normalizeOutput", e.target.value === "unit")}
+            >
+              <option value="unit">Calibrate final capture to selected RMS</option>
+              <option value="preserve">Preserve channel/amplifier gain</option>
+            </select>
+          </Field>
           <details className="mb-5 border-y border-border py-3" open>
             <summary className="cursor-pointer text-sm text-primary">Channel impairments</summary>
             <div className="mt-4">
@@ -180,8 +269,22 @@ export function StudioPage() {
                 onChange={(n) => update("cfoHz", n)}
                 step={0.001}
               />
+              <Field label="Phase-noise model">
+                <select
+                  className="control"
+                  value={params.phaseNoiseMode ?? "iid"}
+                  onChange={(e) => update("phaseNoiseMode", e.target.value as "iid" | "wiener")}
+                >
+                  <option value="iid">Independent phase jitter (σ radians)</option>
+                  <option value="wiener">Wiener phase walk (σ radians/sample increment)</option>
+                </select>
+              </Field>
               <NumberField
-                label="Phase noise σ (rad/sample)"
+                label={
+                  params.phaseNoiseMode === "wiener"
+                    ? "Phase increment σ (rad/sample)"
+                    : "Phase jitter σ (rad)"
+                }
                 value={params.phaseNoiseStd}
                 onChange={(n) => update("phaseNoiseStd", n)}
                 min={0}
@@ -195,6 +298,15 @@ export function StudioPage() {
                   onChange={(e) => update("ricianEnabled", e.target.checked)}
                 />
               </Field>
+              {params.ricianEnabled && (
+                <NumberField
+                  label="Fading coherence block (samples)"
+                  value={params.fadingBlockSamples ?? 1}
+                  onChange={(n) => update("fadingBlockSamples", n)}
+                  min={1}
+                  max={65536}
+                />
+              )}
               <NumberField
                 label="Rician K (linear ratio)"
                 value={params.ricianK}
@@ -268,11 +380,36 @@ export function StudioPage() {
               />
               <p className="my-4 text-xs leading-6 text-muted-foreground">
                 AWGN SNR is the requested clean-signal/noise power ratio; a finite random
-                realization may differ. Output is scaled to the selected RMS amplitude.{" "}
+                realization may differ. The selected output policy determines whether channel gain
+                is retained or final RMS is calibrated.{" "}
                 {signal.classifierSupported
                   ? ""
                   : "This modulation is outside the CNN training classes; classification is unavailable."}
               </p>
+              {signal.generation && (
+                <>
+                  <Stats
+                    items={[
+                      ["Realized simulator SNR", `${numeric(signal.generation.realizedSnrDb)} dB`],
+                      ["Amplitude policy", signal.generation.outputPowerPolicy],
+                      ["Modulation index", numeric(signal.generation.modulationIndex)],
+                    ]}
+                  />
+                  <p className="my-3 text-xs leading-5 text-muted-foreground">
+                    SNR here is known from separate clean/noise components inside the simulator, not
+                    estimated from the received capture. Channel order:{" "}
+                    {signal.generation.channelOrder.join(" → ")}. {signal.generation.referenceNote}
+                  </p>
+                  <details className="mb-4 text-xs">
+                    <summary className="cursor-pointer text-primary">
+                      Pre-calibration channel power
+                    </summary>
+                    <pre className="mt-3 overflow-auto">
+                      {JSON.stringify(signal.generation.powerStages, null, 2)}
+                    </pre>
+                  </details>
+                </>
+              )}
               <div className="flex flex-wrap gap-2">
                 <Button variant="outline" onClick={() => downloadCapture(signal)}>
                   Download I/Q CSV

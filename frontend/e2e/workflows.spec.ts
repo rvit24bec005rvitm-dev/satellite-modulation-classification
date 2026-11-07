@@ -36,11 +36,19 @@ for (const modulation of ["BPSK", "QPSK"])
     const captureRequest = page.waitForRequest(
       (r) => r.url().endsWith("/api/classify") && r.method() === "POST",
     );
+    const captureResponse = page.waitForResponse(
+      (r) => r.url().endsWith("/api/classify") && r.request().method() === "POST",
+    );
     await page.getByRole("button", { name: "Run CNN classification" }).click();
     const payload = (await captureRequest).postDataJSON() as { samples: unknown[]; source: string };
     expect(payload.samples).toHaveLength(1024);
     expect(payload.source).toContain(modulation);
-    await expect(page.getByText("Shannon entropy", { exact: true })).toBeVisible();
+    const response = await captureResponse;
+    expect(response.status()).toBe(200);
+    expect((await response.json()).preprocessing.windowLength).toBe(128);
+    await expect(page.getByText("Shannon entropy", { exact: true })).toBeVisible({
+      timeout: 15000,
+    });
   });
 
 test("workflow 4: actual evaluation matrices, SNR curves, and per-class metrics", async ({

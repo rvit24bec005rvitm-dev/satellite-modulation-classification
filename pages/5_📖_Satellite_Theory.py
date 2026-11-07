@@ -335,13 +335,13 @@ with tabs[3]:
         ```
         Input Tensor: (None, 128, 2)  [128 time samples x 2 channels (I, Q)]
           │
-          ├── Conv1D (32 filters, kernel=5) + BatchNorm + ReLU
+          ├── Conv1D (32 filters, kernel=5) + ReLU + BatchNorm
           ├── MaxPool1D (pool_size=2) + Dropout(0.20)
           │
-          ├── Conv1D (64 filters, kernel=5) + BatchNorm + ReLU
+          ├── Conv1D (64 filters, kernel=5) + ReLU + BatchNorm
           ├── MaxPool1D (pool_size=2) + Dropout(0.25)
           │
-          ├── Conv1D (96 filters, kernel=3) + BatchNorm + ReLU
+          ├── Conv1D (96 filters, kernel=3) + ReLU + BatchNorm
           ├── GlobalAveragePooling1D (Temporal Collapse) -> (96,)
           │
           ├── Dense (64 units) + ReLU + Dropout(0.40)
@@ -352,10 +352,10 @@ with tabs[3]:
     with c_net2:
         st.markdown("#### Shannon Entropy for Uncertainty Estimation")
         st.markdown("""
-        In real mission operations, the classifier must identify when a signal is corrupted beyond recognition or belongs to an unknown out-of-distribution modulation:
+        Prediction entropy measures ambiguity within the trained classes. It cannot establish corruption or identify unknown modulations without independent validation:
         """)
         st.latex(r"H(p) = -\sum_{i=1}^{C} p_i \log_2(p_i)")
         st.markdown(r"""
-        - **$H(p) \approx 0\text{ bits}$**: High confidence. The network has concentrated $>95\%$ probability mass into a single class.
-        - **$H(p) > 1.2\text{ bits}$**: Ambiguity alert! The signal-to-noise ratio is too low ($\text{SNR} < -6\text{ dB}$) or the transponder is experiencing uncompensated Doppler drift.
+        - **$H(p) \approx 0\text{ bits}$**: A concentrated probability distribution, which can still be confidently wrong.
+        - **$H(p) > 1.2\text{ bits}$**: High within-model ambiguity; this does not uniquely identify an SNR, impairment, or unknown modulation.
         """)

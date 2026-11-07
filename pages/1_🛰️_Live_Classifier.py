@@ -1,16 +1,16 @@
 """
 pages/1_🛰️_Live_Classifier.py
 Interactive modulation classifier with:
- - RadioML Sample Library & quick filters
+ - Saved demo Sample Library & quick filters
  - Space Mission Presets
  - File upload (.npy, .npz, .csv, .mat, .wav)
  - 2D & 3D Constellation, time-domain, PSD, STFT Spectrogram, and Eye Diagram
- - Audible RF Demodulation player
+ - Audible baseband visualization player
  - Shannon entropy uncertainty gauge & telemetry report export
 """
 
 from pathlib import Path
-import sys, io, json, time
+import sys, io, json, time, html
 
 import numpy as np
 import pandas as pd
@@ -30,6 +30,9 @@ from utils.plotting import (
     plot_spectrogram, plot_class_scores, plot_entropy_gauge, plot_eye_diagram,
 )
 from utils.model_backend import ModelBackend
+from backend.services.signals import parse_capture
+from backend.services.classifier import preprocess
+from backend.core.config import MAX_UPLOAD_BYTES
 
 # ── Page config ─────────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -156,7 +159,7 @@ st.divider()
 
 # ── Signal source selection ─────────────────────────────────────────────────────
 tab_sample, tab_presets, tab_upload = st.tabs([
-    "📦 RadioML Sample Library",
+    "📦 Saved demo Sample Library",
     "⚡ Space Mission Presets",
     "📂 Upload Custom I/Q File"
 ])
@@ -166,7 +169,7 @@ ground_truth: str | None = None
 selected_snr: int | None = None
 source_name: str = "Unknown"
 
-# ┌── Tab 1: RadioML Sample library ───────────────────────────────────────────┐
+# ┌── Tab 1: Saved demo Sample library ───────────────────────────────────────────┐
 with tab_sample:
     if signals_all is None:
         st.warning("⚠️ `classifier_samples.npz` not found.")
@@ -189,12 +192,12 @@ with tab_sample:
                 sample_idx = st.number_input("Sample Index", 0, len(matching) - 1, 0, key="sc_idx")
             signal_iq = signals_all[matching[int(sample_idx)]].copy()
             ground_truth = sel_class
-            source_name = f"RadioML {sel_class} [{selected_snr} dB, #{sample_idx}]"
+            source_name = f"Saved demo {sel_class} [{selected_snr} dB, #{sample_idx}]"
             st.caption(f"Shape: `{signal_iq.shape}` — {len(matching)} samples available at {selected_snr} dB")
 
 # ┌── Tab 2: Space Mission Presets ─────────────────────────────────────────────┐
 with tab_presets:
-    st.markdown("Quickly test realistic operational satellite link scenarios:")
+    st.markdown("Seeded educational scenarios; these are not captures from the named spacecraft:")
     col_p1, col_p2, col_p3, col_p4 = st.columns(4)
     
     preset_choice = None
@@ -216,7 +219,7 @@ with tab_presets:
         st.session_state["preset_sig"] = generate_iq_signal(
             modulation=p_mod, num_samples=128, snr_db=p_snr,
             doppler_hz=p_dop, twta_alpha_a=p_twta, rng_seed=42
-        )
+        ) * (std_val * np.sqrt(2))
         st.session_state["preset_gt"] = p_mod
         st.session_state["preset_snr"] = int(p_snr)
         st.session_state["preset_name"] = p_name
@@ -240,57 +243,19 @@ with tab_upload:
     )
     
     if uploaded:
-        ext = Path(uploaded.name).suffix.lower()
         try:
-            if ext == ".npy":
-                arr = np.load(io.BytesIO(uploaded.read()))
-            elif ext == ".npz":
-                z = np.load(io.BytesIO(uploaded.read()), allow_pickle=False)
-                arr = z[z.files[0]]
-            elif ext == ".csv":
-                df_up = pd.read_csv(uploaded)
-                arr = df_up.values
-            elif ext == ".mat":
-                from scipy.io import loadmat
-                mat = loadmat(io.BytesIO(uploaded.read()))
-                keys = [k for k in mat if not k.startswith("_")]
-                arr = mat[keys[0]] if keys else None
-            elif ext == ".wav":
-                from scipy.io import wavfile
-                sr, wav = wavfile.read(io.BytesIO(uploaded.read()))
-                if wav.ndim == 1:
-                    arr = np.stack([wav, np.zeros_like(wav)], axis=1).astype(np.float32)
-                else:
-                    arr = wav[:, :2].astype(np.float32)
-            else:
-                arr = None
-
-            if arr is None:
-                st.error("Could not parse the uploaded file.")
-            else:
-                if arr.shape == (2, 128):
-                    arr = arr.T
-                if arr.shape[0] != 128:
-                    if arr.shape[0] > 128:
-                        arr = arr[:128, :]
-                    else:
-                        arr = np.pad(arr, ((0, 128 - arr.shape[0]), (0, 0)))
-                if arr.shape != (128, 2):
-                    arr = arr.reshape(128, 2)
-                
-                # Normalise to unit power
-                pwr = np.mean(arr[:, 0]**2 + arr[:, 1]**2)
-                if pwr > 0:
-                    arr = arr / np.sqrt(pwr)
-                
-                signal_iq = arr.astype(np.float32)
-                ground_truth = None
-                selected_snr = None
-                source_name = f"Uploaded `{uploaded.name}`"
-                st.success(f"✅ Loaded `{uploaded.name}` → Normalized shape `{signal_iq.shape}`")
-
-        except Exception as e:
-            st.error(f"Parse error: {e}")
+            payload=uploaded.read(MAX_UPLOAD_BYTES+1)
+            signal_iq, uploaded_rate=parse_capture(uploaded.name,payload)
+            if len(signal_iq)<128:
+                signal_iq=None
+                raise ValueError('Classification requires at least 128 samples. No padding is applied.')
+            ground_truth=None
+            selected_snr=None
+            source_name=f'Uploaded {html.escape(uploaded.name)}'
+            st.success(f'Loaded {len(signal_iq)} samples; raw amplitude preserved, I first / Q second.')
+        except Exception as exc:
+            signal_iq=None
+            st.error(f'Invalid capture: {exc}')
 
 st.divider()
 
@@ -304,7 +269,8 @@ if signal_iq is not None:
 
     if run_classify or auto_run:
         # Normalise for CNN
-        iq_norm = normalize_signal(signal_iq, mean_val, std_val)
+        window_start=int(st.number_input('Classification window start',0,max(0,len(signal_iq)-128),0))
+        iq_norm = preprocess(signal_iq,window_start)
 
         # Model Inference
         t0 = time.perf_counter()
@@ -352,18 +318,12 @@ if signal_iq is not None:
         with col_ent:
             st.plotly_chart(plot_entropy_gauge(entropy, MAX_ENTROPY), use_container_width=True)
         with col_audio:
-            st.markdown("#### 🔊 RF Demodulated Audio")
+            st.markdown("#### 🔊 Audible baseband visualization")
             st.markdown("Listen to the audible baseband heterodyne tone:")
             audio_bytes = generate_audio_waveform(signal_iq, carrier_tone_hz=880.0, duration_sec=1.5)
             st.audio(audio_bytes, format="audio/wav")
             
-            # Uncertainty indicator
-            if entropy > MAX_ENTROPY * 0.75:
-                st.warning("⚠️ **Severe Uncertainty** — SNR may be below -8 dB or heavy multipath fading.")
-            elif entropy > MAX_ENTROPY * 0.4:
-                st.info("ℹ️ **Moderate Uncertainty** — Transitional SNR band.")
-            else:
-                st.success("🟢 **High-Confidence Lock** — Clean constellation clustering.")
+            st.info('Predictive entropy is ambiguity among the three trained classes. Confidence is uncalibrated and OOD detection is not validated; a confident result can still be wrong.')
 
         st.divider()
 
@@ -379,7 +339,7 @@ if signal_iq is not None:
         ])
 
         with viz_tab1:
-            ref = CONSTELLATION_REFS.get(pred_class)
+            ref = None  # Receiver amplitude, phase and symbol timing are not calibrated.
             fig_const = plot_constellation(signal_iq, pred_class, ref)
             st.plotly_chart(fig_const, use_container_width=True)
             st.caption("White crosses denote ideal symbol coordinate centroids. Cluster dispersion indicates channel noise variance.")
@@ -390,10 +350,12 @@ if signal_iq is not None:
             st.caption("Rotate and zoom this 3D trajectory to inspect how symbols evolve across sample index time, revealing phase rotation (Doppler) or cluster drift.")
 
         with viz_tab3:
-            t_axis, i_traces, q_traces = compute_eye_diagram(signal_iq, sps=8)
-            fig_eye = plot_eye_diagram(t_axis, i_traces, q_traces)
-            st.plotly_chart(fig_eye, use_container_width=True)
-            st.caption("Eye diagram opening height correlates with noise margin; eye width opening correlates with timing jitter margin.")
+            st.info('Symbol timing is unknown for uploaded/demo captures. No recovered receiver eye is available.')
+            if st.checkbox('Show exploratory traces with an explicitly assumed symbol clock'):
+                assumed_sps=int(st.number_input('Assumed samples per symbol',1,32,8))
+                t_axis,i_traces,q_traces=compute_eye_diagram(signal_iq,sps=assumed_sps)
+                st.plotly_chart(plot_eye_diagram(t_axis,i_traces,q_traces),use_container_width=True)
+                st.caption('Assumed-timing overlays only; no timing recovery or validated receiver eye.')
 
         with viz_tab4:
             fig_td = plot_time_domain(signal_iq)

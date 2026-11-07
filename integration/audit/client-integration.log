@@ -1,0 +1,18 @@
+
+> satmodclass-frontend@1.0.0 test:integration
+> vitest run --config vitest.integration.config.ts
+
+
+ RUN  v2.1.9 <PROJECT>/frontend
+
+ ✓ src/test/fullstack.integration.test.ts (11 tests) 12086ms
+   ✓ TypeScript API client → real Python model and DSP > loads health and genuine model metadata 4231ms
+   ✓ TypeScript API client → real Python model and DSP > workflows 2/3: generates BPSK and classifies the full capture 654ms
+   ✓ TypeScript API client → real Python model and DSP > workflows 2/3: generates QPSK and classifies the full capture 623ms
+   ✓ TypeScript API client → real Python model and DSP > analyzes and compares the exact generated samples 1309ms
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  13:02:31
+   Duration  14.22s (transform 155ms, setup 0ms, collect 142ms, tests 12.09s, environment 0ms, prepare 155ms)
+

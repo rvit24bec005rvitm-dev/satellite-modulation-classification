@@ -24,6 +24,7 @@ import {
   Stats,
   ExportButton,
 } from "@/components/workspace-ui";
+import { ClassificationInsights } from "@/components/classification-insights";
 import { CapturePlots, ScientificChart } from "@/components/scientific-chart";
 
 export function ClassifierPage() {
@@ -35,12 +36,14 @@ export function ClassifierPage() {
   const [classFilter, setClassFilter] = useState("All");
   const [snrFilter, setSnrFilter] = useState("All");
   const [windowStart, setWindowStart] = useState(0);
+  const [sampleRate, setSampleRate] = useState(capture?.sampleRate ?? 1);
   const [result, setResult] = useState<ClassificationResult | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [busy, setBusy] = useState(false);
   const accept = (next: Capture) => {
     setCapture(next);
     setWindowStart(0);
+    setSampleRate(next.sampleRate);
     setResult(null);
     setError(null);
   };
@@ -56,9 +59,16 @@ export function ClassifierPage() {
       setBusy(false);
     }
   };
+  const previousCaptureFor = (value: ClassificationResult): Capture => ({
+    ...value,
+    ...(capture?.source === value.source
+      ? { modulation: capture.modulation, snrDb: capture.snrDb }
+      : {}),
+  });
   const complete = (value: ClassificationResult) => {
     setResult(value);
     setClassification(value);
+    setCapture(previousCaptureFor(value));
     void queryClient.invalidateQueries({ queryKey: ["history"] });
     toast.success("CNN classification complete");
   };
@@ -71,7 +81,7 @@ export function ClassifierPage() {
         await classify.mutateAsync({
           samples: capture.samples,
           source: capture.source,
-          sampleRate: capture.sampleRate,
+          sampleRate,
           windowStart,
         }),
       );
@@ -91,6 +101,7 @@ export function ClassifierPage() {
     setBusy(true);
     try {
       const value = await satmodApi.upload(file);
+      setSampleRate(value.sampleRate);
       setCapture(value);
       setWindowStart(0);
       complete(value);
@@ -103,7 +114,12 @@ export function ClassifierPage() {
   // Reset on external capture changes without discarding a just-uploaded result.
   const unsupported =
     !!capture?.modulation && !SUPPORTED_MODULATIONS.some((m) => m === capture.modulation);
-  const displayedResult = result && result.source === capture?.source ? result : null;
+  const displayedResult =
+    result &&
+    result.source === capture?.source &&
+    Number(result.preprocessing["windowStart"]) === windowStart
+      ? result
+      : null;
   const filtered =
     samples.data?.filter(
       (s) =>
@@ -204,6 +220,17 @@ export function ClassifierPage() {
             min={0}
             max={Math.max(0, (capture?.samples.length ?? 128) - 128)}
           />
+          <NumberField
+            label="Capture sample rate (Hz; 1 = normalized)"
+            value={sampleRate}
+            onChange={setSampleRate}
+            min={1}
+            max={1e9}
+          />
+          <p className="mb-3 text-xs text-muted-foreground">
+            Reclassify to apply a changed sample clock to the analytical plots. I/Q amplitudes are
+            preserved.
+          </p>
           <Button
             className="w-full"
             disabled={
@@ -285,6 +312,15 @@ export function ClassifierPage() {
               />
             )}
           </Surface>
+          {displayedResult && (
+            <ClassificationInsights
+              key={displayedResult.id}
+              result={displayedResult}
+              onExplanation={(explanation) =>
+                setResult((previous) => (previous ? { ...previous, explanation } : previous))
+              }
+            />
+          )}
           {capture && (
             <Surface className="p-4">
               <SectionHeading title="Signal metrics" />

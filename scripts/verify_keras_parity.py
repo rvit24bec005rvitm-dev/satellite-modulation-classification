@@ -46,9 +46,21 @@ def main():
     expected=model(frames,training=False).numpy()
     actual=np.array([engine.predict(frame) for frame in frames])
     np.testing.assert_allclose(actual,expected,atol=2e-5,rtol=2e-5)
+    gradient_errors=[]
+    feature_model=tf.keras.Model(model.inputs,model.layers[-1].input)
+    for target in range(3):
+        value=tf.Variable(frames[:3])
+        with tf.GradientTape() as tape:
+            features=feature_model(value,training=False)
+            logits=tf.linalg.matmul(features,model.layers[-1].kernel)+model.layers[-1].bias
+            score=tf.reduce_sum(logits[:,target])
+        expected_gradient=tape.gradient(score,value).numpy()
+        actual_gradient=np.stack([engine.logit_gradient(frame,target) for frame in frames[:3]])
+        np.testing.assert_allclose(actual_gradient,expected_gradient,atol=2e-4,rtol=2e-4)
+        gradient_errors.append(float(np.max(np.abs(actual_gradient-expected_gradient))))
     report={'frames':len(indices),'maxAbsoluteError':float(np.max(np.abs(actual-expected))),
             'classAgreement':float(np.mean(actual.argmax(1)==expected.argmax(1))),
-            'tensorflowVersion':tf.__version__,'npzWeightsMatchKerasArchive':True}
+            'logitGradientMaxAbsoluteError':max(gradient_errors),'gradientClassTargets':3,'tensorflowVersion':tf.__version__,'npzWeightsMatchKerasArchive':True}
     print(json.dumps(report,indent=2))
     (root/'integration/keras-parity.json').write_text(json.dumps(report,indent=2)+'\n')
 if __name__=='__main__': main()

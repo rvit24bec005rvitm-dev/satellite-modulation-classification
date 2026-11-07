@@ -11,17 +11,17 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response
 import numpy as np
 from backend.core.config import VERSION, CORS_ORIGINS, MAX_UPLOAD_BYTES
-from backend.api.schemas import ClassifyRequest, ClassificationResult, SignalRequest, GenerateRequest, CompareRequest, BenchmarkRequest, HealthStatus
+from backend.api.schemas import ClassifyRequest, ClassificationResult, SignalRequest, GenerateRequest, CompareRequest, BenchmarkRequest, HealthStatus, ExplainRequest, ExplanationResult
 from backend.services import classifier as svc
 from backend.services.signals import analyze, parse_capture, from_rows, rows
 from backend.services.evaluation import evaluation, snr_results
-from backend.services.model_registry import REGISTRY, describe_models
+from backend.services.model_registry import REGISTRY, describe_models, benchmark_model
+from backend.services.explain import explain as explain_signal
 from utils.signal_processing import generate_iq_signal, CONSTELLATION_REFS, simulate_orbit_pass, generate_audio_waveform
 
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 logger = logging.getLogger('satmod')
 app = FastAPI(title='SatModClass — Satellite Signal Intelligence',version=VERSION)
-app.add_middleware(CORSMiddleware, allow_origins=CORS_ORIGINS,allow_credentials=False,allow_methods=['GET','POST'],allow_headers=['Content-Type'])
 
 
 class BodyLimit:
@@ -31,19 +31,37 @@ class BodyLimit:
         if scope['type'] != 'http':
             return await self.app(scope, receive, send)
         limit = MAX_UPLOAD_BYTES + 65536 if scope['path'].endswith('/upload') else 16*1024*1024
-        size, chunks = 0, []
+        content_length = dict(scope.get('headers', [])).get(b'content-length')
+        if content_length is not None:
+            # HTTP Content-Length is decimal digits only, never a signed value.
+            if not content_length or not content_length.isdigit():
+                return await JSONResponse(status_code=400,content={'detail':'Invalid Content-Length.'})(scope,receive,send)
+            try: declared = int(content_length)
+            except ValueError:
+                return await JSONResponse(status_code=400,content={'detail':'Invalid Content-Length.'})(scope,receive,send)
+            if declared > limit:
+                return await JSONResponse(status_code=413,content={'detail':'Request body exceeds the configured size limit.'})(scope,receive,send)
+        size, payload = 0, bytearray()
         while True:
             message = await receive()
             if message['type'] == 'http.disconnect': return
             size += len(message.get('body',b''))
             if size > limit:
                 return await JSONResponse(status_code=413,content={'detail':'Request body exceeds the configured size limit.'})(scope,receive,send)
-            chunks.append(message)
+            payload.extend(message.get('body',b''))
             if not message.get('more_body',False): break
+        buffered = bytes(payload)
+        del payload
+        consumed = False
         async def bounded_receive():
-            return chunks.pop(0) if chunks else await receive()
+            nonlocal consumed
+            if not consumed:
+                consumed = True
+                return {'type':'http.request','body':buffered,'more_body':False}
+            return await receive()
         await self.app(scope,bounded_receive,send)
 app.add_middleware(BodyLimit)
+app.add_middleware(CORSMiddleware, allow_origins=CORS_ORIGINS,allow_credentials=False,allow_methods=['GET','POST'],allow_headers=['Content-Type'])
 
 @app.exception_handler(ValueError)
 async def invalid_input(request: Request, exc: ValueError):
@@ -56,7 +74,17 @@ async def invalid_schema(request: Request, exc: RequestValidationError):
 @app.exception_handler(Exception)
 async def internal_error(request: Request, exc: Exception):
     logger.exception(json.dumps({'event':'request_failed','path':request.url.path,'error':type(exc).__name__}))
-    return JSONResponse(status_code=500,content={'detail':'The signal service could not complete this request. Check the backend log.'})
+    response = JSONResponse(status_code=500,content={'detail':'The signal service could not complete this request. Check the backend log.'})
+    # Starlette's outer ServerErrorMiddleware creates this response outside the
+    # normal CORS middleware. Apply the same configured origin policy here so
+    # a separate-origin frontend can read the error without exposing details.
+    origin = request.headers.get('origin')
+    if origin and '*' in CORS_ORIGINS:
+        response.headers['Access-Control-Allow-Origin'] = '*'
+    elif origin in CORS_ORIGINS:
+        response.headers['Access-Control-Allow-Origin'] = origin
+        response.headers.add_vary_header('Origin')
+    return response
 
 @app.middleware('http')
 async def log_request(request: Request, call_next):
@@ -81,7 +109,7 @@ def system_info():
             'architecture':'Conv1D(32,5,same,ReLU) → BN → MaxPool → Conv1D(64,5,same,ReLU) → BN → MaxPool → Conv1D(96,3,same,ReLU) → BN → GlobalAveragePool → Dense(64,ReLU) → Dense(3,Softmax)',
             'normalization':{'mean':mean,'std':std,'policy':'Preserve amplitude; training z-score only'},
             'defaultAmplitudeRms':float(std*np.sqrt(2)), 'maxUploadBytes':MAX_UPLOAD_BYTES,'maxSamples':65536,
-            'generatorModulations':['BPSK','QPSK','16-QAM','8-PSK','16-APSK','32-APSK','GMSK','BFSK'],
+            'generatorModulations':['BPSK','QPSK','16-QAM','32-QAM','8-PSK','16-APSK','32-APSK','GMSK','BFSK'],
             'historyPolicy':'In-memory, most recent 100 classifications; clears on restart'}
 
 @app.get('/api/models')
@@ -107,6 +135,17 @@ def upload(file: UploadFile = File(...), windowStart: int = Query(0,ge=0,le=6540
         return svc.classify(iq,(file.filename or 'upload')[:200],fs,windowStart)
     finally: file.file.close()
 
+@app.post('/api/signal/upload')
+def upload_signal(file: UploadFile = File(...)):
+    try:
+        payload=file.file.read(MAX_UPLOAD_BYTES+1)
+        if len(payload)>MAX_UPLOAD_BYTES: raise HTTPException(413,'Capture exceeds upload size limit.')
+        try: iq,fs=parse_capture(file.filename or 'capture',payload)
+        except (ValueError,OSError,KeyError,IndexError,EOFError,TypeError,struct.error,zlib.error,zipfile.BadZipFile) as exc:
+            raise HTTPException(422,f'Invalid capture: {exc}') from exc
+        return {'samples':rows(iq),'sampleRate':fs,'source':(file.filename or 'Uploaded capture')[:200],'analysis':analyze(iq,fs)}
+    finally: file.file.close()
+
 @app.get('/api/samples')
 def samples():
     d = svc.dataset()
@@ -119,19 +158,32 @@ def sample(sample_id: int):
     iq = d['signals'][sample_id]
     return {'samples':rows(iq),'source':f'Demo sample {sample_id}','modulation':str(d['labels'][sample_id]).replace('QAM16','16-QAM'),'snrDb':float(d['snrs'][sample_id]),'sampleRate':1,'analysis':analyze(iq)}
 
+@app.get('/api/constellations')
+def constellation_tables():
+    from utils.modulation import constellation
+    names=['BPSK','QPSK','16-QAM','32-QAM','8-PSK','16-APSK','32-APSK','GMSK','BFSK']
+    return {'mapping':'Natural-binary symbol index, MSB first; educational APSK and rectangular 8×4 32-QAM, no DVB-S2 claim.',
+            'energyPolicy':'Unit average ideal symbol energy; received pulse/channel samples need not land on these points.',
+            'modulations':{name:rows(constellation(name)) for name in names}}
+
 @app.post('/api/signal/generate')
 def generate(body: GenerateRequest):
     if abs(body.dopplerHz+body.cfoHz) > body.sampleRate/2:
         raise ValueError('Combined carrier offset must be within the Nyquist interval ±sampleRate/2.')
-    mod = {'16-QAM':'QAM16','8-PSK':'8PSK','16-APSK':'16APSK','32-APSK':'32APSK'}.get(body.modulation,body.modulation)
-    iq = generate_iq_signal(mod,num_samples=body.numSamples,sps=body.sps,snr_db=body.snrDb,rrc_alpha=body.rrcAlpha,
-            doppler_hz=body.dopplerHz/body.sampleRate,cfo_hz=body.cfoHz/body.sampleRate,phase_noise_std=body.phaseNoiseStd,
+    mod = {'32-QAM':'QAM32','16-QAM':'QAM16','8-PSK':'8PSK','16-APSK':'16APSK','32-APSK':'32APSK'}.get(body.modulation,body.modulation)
+    iq, generation = generate_iq_signal(mod,num_samples=body.numSamples,sps=body.sps,snr_db=body.snrDb,rrc_alpha=body.rrcAlpha,
+            doppler_hz=body.dopplerHz,cfo_hz=body.cfoHz,sample_rate=body.sampleRate,phase_noise_std=body.phaseNoiseStd,
             rician_k=body.ricianK if body.ricianEnabled else 0,rician_enabled=body.ricianEnabled,
-            twta_alpha_a=2.1587 if body.twtaDrive>0 else 0,twta_drive=body.twtaDrive,rng_seed=body.seed,rrc_enabled=body.rrcEnabled)*body.amplitudeRms
+            twta_alpha_a=2.1587 if body.twtaDrive>0 else 0,twta_drive=body.twtaDrive,rng_seed=body.seed,rrc_enabled=body.rrcEnabled, gaussian_bt=body.gaussianBt,
+            bfsk_deviation_hz=body.bfskDeviationHz, continuous_phase=body.continuousPhase,
+            apsk_radii=body.apskRadii, apsk_offsets=body.apskOffsets, phase_noise_mode=body.phaseNoiseMode,
+            fading_block_samples=body.fadingBlockSamples, normalize_output=body.normalizeOutput, return_metadata=True)
+    iq *= body.amplitudeRms
+    generation['outputAmplitudeScale'] = body.amplitudeRms
     return {'samples':rows(iq),'modulation':body.modulation,'snrDb':body.snrDb,'sampleRate':body.sampleRate,
             'source':f'Synthetic {body.modulation} at {body.snrDb} dB','parameters':body.model_dump(),
-            'reference':rows(CONSTELLATION_REFS.get(mod,np.empty((0,2)))*body.amplitudeRms),
-            'classifierSupported':body.modulation in svc.stats()[2], 'analysis':analyze(iq,body.sampleRate,body.sps)}
+            'generation':generation, 'reference':rows(np.asarray(generation['reference']).reshape(-1,2)*body.amplitudeRms),
+            'classifierSupported':body.modulation in ['BPSK','QPSK','16-QAM'], 'analysis':analyze(iq,body.sampleRate,body.sps if mod not in ['GMSK','BFSK'] else None)}
 
 @app.post('/api/signal/analyze')
 def analysis(body: SignalRequest):
@@ -139,37 +191,59 @@ def analysis(body: SignalRequest):
 
 @app.post('/api/signal/compare')
 def compare(body: CompareRequest):
+    begin = perf_counter()
     a,b = from_rows(body.first.samples),from_rows(body.second.samples)
     aa,bb = analyze(a,body.first.sampleRate),analyze(b,body.second.sampleRate)
+    normalized = body.first.sampleRate == 1 or body.second.sampleRate == 1
+    def prediction(iq):
+        if len(iq) < 128: return {'status':'unavailable', 'reason':'A complete 128-sample classification window is required.'}
+        try: return {'status':'available', **svc.predict_window(iq)}
+        except RuntimeError as exc: return {'status':'unavailable', 'reason':str(exc)}
+    def plot_data(value):
+        fs = value['sampleRate']
+        return {'waveform':[{'x':p['sample'] if normalized else p['time'], 'i':p['i'], 'q':p['q']} for p in value['waveform']],
+                'spectrum':[{'frequency':p['frequency']/fs if normalized else p['frequency'],
+                             'psd':p['psd']+10*np.log10(fs) if normalized else p['psd']} for p in value['spectrum']]}
     n = min(len(a),len(b))
-    return {'first':aa,'second':bb,'powerDifferenceDb':aa['powerDb']-bb['powerDb'],
+    return {'first':aa, 'second':bb, 'predictions':{'first':prediction(a), 'second':prediction(b)},
+            'processingMs':(perf_counter()-begin)*1000,
+            'powerDifferenceDb':aa['powerDb']-bb['powerDb'] if aa['powerDb'] is not None and bb['powerDb'] is not None else None,
             'sampleMse':float(np.mean((a[:n].astype(float)-b[:n])**2)) if body.first.sampleRate==body.second.sampleRate else None,
-            'note':'MSE compares overlapping, unaligned samples only; it is not a modulation similarity score.'}
+            'overlapSamples':n, 'lengthsEqual':len(a)==len(b), 'ratesEqual':body.first.sampleRate==body.second.sampleRate,
+            'plots':{'first':plot_data(aa),'second':plot_data(bb), 'frequencyUnit':'cycles/sample' if normalized else 'Hz',
+                     'timeUnit':'Sample index' if normalized else 'Time (s)'},
+            'note':'MSE uses overlapping unaligned samples only at equal sample rates; it is not a modulation similarity score. '
+                   + ('At least one sample rate is unknown (Fs=1): both plots use normalized sample/frequency axes. No resampling is inferred.' if normalized else 'Physical frequency/time axes use each capture’s supplied sample clock. No alignment or resampling is inferred.')}
+
+@app.post('/api/explain',response_model=ExplanationResult)
+def explain(body: ExplainRequest):
+    try: svc.model()
+    except RuntimeError as exc: raise HTTPException(503, str(exc)) from exc
+    try: return explain_signal(from_rows(body.samples), body.windowStart, body.targetClass, body.method, body.steps)
+    except RuntimeError as exc: raise HTTPException(409,str(exc)) from exc
+
+@app.get('/api/experiments')
+def experiments():
+    from backend.services.experiments import experiment_reports
+    return experiment_reports()
 
 @app.get('/api/evaluation')
 def evaluation_results(): return evaluation()
+
+@app.get('/api/evaluation/diagnostics')
+def diagnostics():
+    from backend.services.diagnostics import demo_diagnostics
+    return demo_diagnostics()
 
 @app.get('/api/evaluation/snr')
 def snr(): return snr_results()
 
 @app.post('/api/benchmark')
 def benchmark(body: BenchmarkRequest):
-    spec = REGISTRY.get(body.modelId)
-    if spec is None:
-        raise HTTPException(404, 'Model is not registered.')
-    if spec.loader is None or spec.prepare is None:
-        raise HTTPException(409, 'This model has no independently trained artifact.')
-    backend = spec.loader()
-    x = spec.prepare(svc.dataset()['signals'][body.sampleId])
-    with svc.LOCK:
-        for _ in range(3): backend.predict(x)
-        times = []
-        for _ in range(body.iterations):
-            t = perf_counter(); backend.predict(x); times.append((perf_counter()-t)*1000)
-    return {'modelId':body.modelId,'iterations':body.iterations,'sampleId':body.sampleId,'warmupIterations':3,
-            'meanMs':float(np.mean(times)),'medianMs':float(np.median(times)),'p95Ms':float(np.percentile(times,95)),
-            'minMs':min(times),'maxMs':max(times),'throughputFps':float(1000/np.mean(times)),'latenciesMs':times,
-            'scope':'Single-frame CPU inference only; excludes preprocessing, upload, and analysis. Host-dependent.'}
+    if body.modelId not in REGISTRY: raise HTTPException(404, 'Model is not registered.')
+    if REGISTRY[body.modelId].loader is None: raise HTTPException(409, 'This model has no independently trained artifact.')
+    try: return benchmark_model(body.modelId,body.sampleId,body.iterations)
+    except RuntimeError as exc: raise HTTPException(503,str(exc)) from exc
 
 @app.get('/api/history')
 def history():
@@ -196,9 +270,11 @@ if os.getenv('SATMOD_SERVE_FRONTEND') == '1':
     app.mount('/assets',StaticFiles(directory=dist/'assets'),name='assets')
     @app.get('/{frontend_path:path}',include_in_schema=False)
     def frontend(frontend_path: str):
-        if frontend_path.startswith('api/'):
+        if frontend_path=='api' or frontend_path.startswith('api/'):
             raise HTTPException(404,'API endpoint does not exist.')
         requested=(dist/frontend_path).resolve()
         if requested.is_relative_to(dist.resolve()) and requested.is_file():
             return FileResponse(requested)
+        if frontend_path.startswith(('textures/','maps/')) or frontend_path in ['favicon.ico','robots.txt']:
+            raise HTTPException(404,'Static asset does not exist.')
         return FileResponse(dist/'index.html')

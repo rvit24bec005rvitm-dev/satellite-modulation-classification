@@ -28,6 +28,9 @@ from utils.plotting import (
     DARK_LAYOUT,
 )
 from utils.model_backend import ModelBackend
+from backend.services.classifier import preprocess
+from backend.services.model_registry import describe_models, benchmark_model
+from backend.services.evaluation import evaluation
 
 # ── Page config ────────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -259,7 +262,7 @@ def load_stats():
     if stats_path.exists():
         with np.load(stats_path) as d:
             return float(d["mean"]), float(d["std"]), list(d["modulations"])
-    return -6.56e-5, 0.00607, ["BPSK", "QPSK", "16-QAM"]
+    raise RuntimeError('Training normalization statistics are missing.')
 
 backend = load_backend()
 norm_mean, norm_std, trained_classes = load_stats()
@@ -269,7 +272,7 @@ st.markdown("""
 <div class="telemetry-ticker mono-font">
     <div>
         <span class="pulse-dot"></span>
-        <strong style="color:#10B981;">TELEMETRY LINK: LOCKED</strong> &nbsp;|&nbsp;
+        <strong style="color:#10B981;">DEMONSTRATION SCENARIO — NO LIVE RF LINK</strong> &nbsp;|&nbsp;
         <span>ORBIT: LEO-550km SUN-SYNC</span>
     </div>
     <div>
@@ -289,49 +292,33 @@ st.markdown("""
     </div>
     <div class="hero-sub" style="margin-top:0.75rem;">
         An aerospace-grade deep learning intelligence suite that identifies spaceborne modulation schemes
-        (<strong>BPSK</strong>, <strong>QPSK</strong>, <strong>16-QAM</strong>, <strong>16/32-APSK</strong>)
+        (<strong>BPSK</strong>, <strong>QPSK</strong>, <strong>16-QAM</strong> only; other modulations are simulation tools)
         directly from raw I/Q baseband signals under extreme LEO Doppler shifts, TWTA amplifier saturation, and space channel fading.
     </div>
     <div>
-        <span class="badge badge-cyan">🛰️ RadioML Satellite Benchmark</span>
-        <span class="badge badge-purple">🧠 1D-CNN · Residual Blocks</span>
-        <span class="badge badge-green">⚡ Real-time Latency: &lt;1.0 ms</span>
-        <span class="badge badge-amber">🔊 Audible RF Demodulation</span>
+        <span class="badge badge-cyan">🛰️ Supplied CNN Artifact</span>
+        <span class="badge badge-purple">🧠 Trained 1D-CNN</span>
+        <span class="badge badge-green">⚡ Latency measured on this host</span>
+        <span class="badge badge-amber">🔊 Audible baseband visualization</span>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# ── Metric Highlights Row ──────────────────────────────────────────────────────
-st.markdown("""
-<div class="metric-row">
-    <div class="metric-box">
-        <div class="metric-val" style="color:#00D4FF;">72.44%</div>
-        <div class="metric-label">All-SNR Accuracy</div>
-    </div>
-    <div class="metric-box">
-        <div class="metric-val" style="color:#34D399;">100%</div>
-        <div class="metric-label">Peak Acc @ +6dB</div>
-    </div>
-    <div class="metric-box">
-        <div class="metric-val" style="color:#A78BFA;">0.85 ms</div>
-        <div class="metric-label">Inference Latency</div>
-    </div>
-    <div class="metric-box">
-        <div class="metric-val" style="color:#FCD34D;">20,419</div>
-        <div class="metric-label">Trainable Params</div>
-    </div>
-    <div class="metric-box">
-        <div class="metric-val" style="color:#F87171;">−20 → +18</div>
-        <div class="metric-label">SNR Range (dB)</div>
-    </div>
-</div>
-""", unsafe_allow_html=True)
+# Actual stored metrics and artifact metadata, without hardcoded timing claims.
+metadata=describe_models()[0]
+report=evaluation()
+metric_cols=st.columns(4)
+metric_cols[0].metric('Historical stored accuracy',f"{report['metrics']['accuracy']*100:.2f}%")
+metric_cols[1].metric('Historical observations',report['metrics']['samples'])
+metric_cols[2].metric('Trainable parameters',metadata.get('trainableParameters','Unavailable'))
+metric_cols[3].metric('Model availability',metadata['status'])
+st.caption('Historical aggregates have not been independently reproduced. No validated calibration or OOD detection is available.')
 
 st.divider()
 
 # ── INTERACTIVE LIVE CONSOLE: Space Mission Quick-Scanner ──────────────────────
 st.markdown("### ⚡ Live Space Mission Quick-Scanner & Audio Demodulator")
-st.markdown("Experience instant RF modulation classification right on the home console. Select an operational space scenario to synthesize signals, run real-time CNN inference, and listen to the raw audio.")
+st.markdown("Experience instant RF modulation classification right on the home console. Select a clearly simulated educational scenario to synthesize signals, run real-time CNN inference, and listen to the raw audio.")
 
 # Preset mission scenarios
 MISSION_PRESETS = {
@@ -363,7 +350,7 @@ m_spec = MISSION_PRESETS[selected_mission]
 st.caption(f"**Mission Profile:** {m_spec['desc']} (SNR: `{m_spec['snr']} dB`, Doppler: `{m_spec['doppler']}`, TWTA: `{m_spec['twta']}`)")
 
 # Generate quick signal
-seed_rand = int(time.time() * 10) % 9999
+seed_rand = int(st.number_input('Simulation seed',0,4294967295,42))
 iq_sample = generate_iq_signal(
     modulation=m_spec["mod"],
     num_samples=128,
@@ -374,8 +361,9 @@ iq_sample = generate_iq_signal(
     rng_seed=seed_rand,
 )
 
-# Run Model Inference
-norm_iq = normalize_signal(iq_sample, norm_mean, norm_std)
+# Explicit simulation output scale; same canonical preprocessing as uploads and saved samples.
+iq_sample *= np.sqrt(2)*norm_std
+norm_iq = preprocess(iq_sample)
 t_start = time.perf_counter()
 probs = backend.predict(norm_iq)
 latency_ms = (time.perf_counter() - t_start) * 1000
@@ -511,7 +499,7 @@ with arch_tabs[3]:
     **Layers 5-6: Dense Decision Head & Shannon Uncertainty**
     - **Dense Layer:** 64 units, ReLU activation, Dropout($0.40$).
     - **Output Layer:** 3 units with Softmax activation yielding calibrated class posterior probabilities $P(\text{BPSK}), P(\text{QPSK}), P(\text{16-QAM})$.
-    - **Uncertainty Quantification:** Computes instantaneous Shannon entropy $H(p) = -\sum p_i \log_2 p_i$. Alerts operators if signal is corrupted beyond reliable classification.
+    - **Uncertainty Quantification:** Computes instantaneous Shannon entropy $H(p) = -\sum p_i \log_2 p_i$. Measures within-model ambiguity; it does not validate signal correctness or identify unknown signals.
     """)
 
 st.divider()
@@ -525,7 +513,7 @@ st.markdown("""
     <div class="feat-card">
         <div class="feat-icon">🛰️</div>
         <div class="feat-title">Live Classifier</div>
-        <div class="feat-desc">Interactively inspect RadioML signals or upload custom I/Q files (.npy, .npz, .mat, .wav) with full 3D phase-space visualization and XAI entropy gauge.</div>
+        <div class="feat-desc">Interactively inspect RadioML signals or upload custom I/Q files (.npy, .npz, .mat, .wav) with full 3D phase-space visualization and predictive entropy gauge.</div>
     </div>
     <div class="feat-card">
         <div class="feat-icon">🎛️</div>
@@ -540,7 +528,7 @@ st.markdown("""
     <div class="feat-card">
         <div class="feat-icon">🔬</div>
         <div class="feat-title">Model Arena</div>
-        <div class="feat-desc">Compare 1D-CNN vs 1D-ResNet vs CLDNN vs RF Expert baseline side-by-side with live latency profiling, throughput histograms, and trade-off radars.</div>
+        <div class="feat-desc">Measure actual CNN latency and inspect model availability. Untrained alternatives have no prediction or benchmark scores.</div>
     </div>
     <div class="feat-card">
         <div class="feat-icon">📖</div>

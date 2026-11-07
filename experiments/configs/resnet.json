@@ -1,0 +1,1 @@
+{"model":"resnet","seed":42,"epochs":50,"batchSize":64,"learningRate":0.001,"awgnSnr":[-8,18],"temperatureScaling":true}

@@ -94,7 +94,12 @@ describe("TypeScript API client → real Python model and DSP", () => {
     expect((await satmodApi.health()).connected).toBe(true);
     const models = await satmodApi.models();
     expect(models[0]?.parameters).toBe(36355);
-    expect(models.filter((m) => m.status === "available")).toHaveLength(1);
+    expect(models.find((m) => m.id === "1d-cnn")?.status).toBe("available");
+    expect(
+      models
+        .filter((m) => ["resnet", "cldnn", "random-forest"].includes(m.id))
+        .every((m) => m.status === "not-trained"),
+    ).toBe(true);
   });
   it("workflow 1: uploads a real saved capture and returns probabilities and FFT", async () => {
     const sample = await satmodApi.sample(97);
@@ -149,5 +154,34 @@ describe("TypeScript API client → real Python model and DSP", () => {
     const result = await satmodApi.compare(generated, generated);
     expect(result.sampleMse).toBe(0);
     expect(result.powerDifferenceDb).toBe(0);
+  });
+  it("computes actual class-specific attributions with explicit trust status", async () => {
+    const sample = await satmodApi.sample(42);
+    const result = await satmodApi.classify({ samples: sample.samples });
+    expect(result.trust.calibration.status).toBe("not-calibrated");
+    expect(result.trust.ood.detected).toBeNull();
+    const explained = await satmodApi.explain({
+      samples: sample.samples,
+      targetClass: "QPSK",
+      method: "integrated-gradients",
+      steps: 32,
+    });
+    expect(explained.samples).toHaveLength(128);
+    expect(explained.targetClass).toBe("QPSK");
+    expect(explained.samples.some((p) => p.importance > 0)).toBe(true);
+  });
+  it("normalizes comparison axes while preserving unequal raw captures", async () => {
+    const a = await satmodApi.sample(42),
+      b = await satmodApi.sample(142);
+    const compared = await satmodApi.compare(a, { ...b, sampleRate: 8000 });
+    expect(compared.sampleMse).toBeNull();
+    expect(compared.plots.frequencyUnit).toBe("cycles/sample");
+    expect(compared.predictions.first.status).toBe("available");
+  });
+  it("loads real experimental evidence without claiming production promotion", async () => {
+    const reports = await satmodApi.experiments();
+    expect(reports.length).toBeGreaterThanOrEqual(2);
+    expect(reports[0]?.productionPromoted).toBe(false);
+    expect(reports[0]?.protocolId).toBe(reports[1]?.protocolId);
   });
 });

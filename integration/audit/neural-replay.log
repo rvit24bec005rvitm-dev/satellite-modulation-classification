@@ -1,0 +1,2 @@
+resnet-synthetic-v1 replay 0.0 counts {'total': 189635, 'trainable': 188483, 'nonTrainable': 1152}
+cldnn-synthetic-v1 replay 0.0 counts {'total': 23747, 'trainable': 23555, 'nonTrainable': 192}

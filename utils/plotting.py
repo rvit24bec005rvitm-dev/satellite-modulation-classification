@@ -145,8 +145,8 @@ def plot_psd(freqs: np.ndarray, psd_db: np.ndarray) -> go.Figure:
     fig.update_layout(
         **DARK_LAYOUT,
         title=dict(text="📡 Power Spectral Density (Two-Sided)", font=dict(size=16)),
-        xaxis=dict(title="Normalised Frequency (×π rad/sample)", gridcolor="#1F2937"),
-        yaxis=dict(title="PSD (dBW/Hz)", gridcolor="#1F2937"),
+        xaxis=dict(title="Normalised Frequency (cycles/sample)", gridcolor="#1F2937"),
+        yaxis=dict(title="PSD (dB re sample units² / cycles/sample)", gridcolor="#1F2937"),
         height=380,
     )
     return fig
@@ -162,13 +162,13 @@ def plot_spectrogram(times: np.ndarray, freqs: np.ndarray, Zxx_db: np.ndarray) -
         z=Zxx_db,
         colorscale="Plasma",
         colorbar=dict(title="dB", tickfont=dict(color="#E2E8F0")),
-        hovertemplate="Time: %{x:.3f}<br>Freq: %{y:.4f}<br>PSD: %{z:.2f} dB",
+        hovertemplate="Time: %{x:.3f} samples<br>Freq: %{y:.4f} cycles/sample<br>STFT magnitude: %{z:.2f} dB re sample units",
     ))
     fig.update_layout(
         **DARK_LAYOUT,
         title=dict(text="🌊 STFT Spectrogram (Time–Frequency)", font=dict(size=16)),
         xaxis=dict(title="Time (samples)", gridcolor="#1F2937"),
-        yaxis=dict(title="Normalised Frequency", gridcolor="#1F2937"),
+        yaxis=dict(title="Normalised Frequency (cycles/sample)", gridcolor="#1F2937"),
         height=380,
     )
     return fig
@@ -282,23 +282,18 @@ def plot_confusion_matrix(matrix: np.ndarray, classes: list[str]) -> go.Figure:
 def plot_entropy_gauge(entropy: float, max_entropy: float) -> go.Figure:
     """Speedometer gauge showing prediction uncertainty."""
     pct = min(entropy / max_entropy, 1.0) * 100
-    color = "#10B981" if pct < 40 else "#F59E0B" if pct < 75 else "#EF4444"
+    color = "#00D4FF"
     fig = go.Figure(go.Indicator(
         mode="gauge+number+delta",
         value=round(entropy, 3),
         delta=dict(reference=0, valueformat=".3f"),
-        title=dict(text="Shannon Entropy H(p)<br><span style='font-size:0.7em;color:#9CA3AF'>0 = certain · 1.58 = maximum (3 classes)</span>"),
+        title=dict(text="Shannon Entropy H(p)<br><span style='font-size:0.7em;color:#9CA3AF'>0 = concentrated · 1.58 = uniform; not validated OOD</span>"),
         gauge=dict(
             axis=dict(range=[0, max_entropy], tickcolor="#E2E8F0"),
             bar=dict(color=color),
             bgcolor="#111827",
             bordercolor="#374151",
-            steps=[
-                dict(range=[0, max_entropy * 0.4], color="#064E3B"),
-                dict(range=[max_entropy * 0.4, max_entropy * 0.75], color="#78350F"),
-                dict(range=[max_entropy * 0.75, max_entropy], color="#450A0A"),
-            ],
-            threshold=dict(line=dict(color="#EF4444", width=3), thickness=0.8, value=max_entropy * 0.75),
+
         ),
         number=dict(font=dict(color=color, size=32)),
     ))

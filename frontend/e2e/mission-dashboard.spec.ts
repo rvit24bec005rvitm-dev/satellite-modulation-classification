@@ -129,6 +129,12 @@ test("reduced-motion preference disables automatic movement by default", async (
     "false",
   );
   await page.waitForTimeout(1000);
+  // Reduced motion also stops infinite decorative CSS animations.
+  expect(
+    await page.evaluate(
+      () => document.getAnimations().filter((a) => a.playState === "running").length,
+    ),
+  ).toBe(0);
   const before = await rotation(page);
   await page.waitForTimeout(1100);
   expect(await rotation(page)).toBeCloseTo(before, 5);

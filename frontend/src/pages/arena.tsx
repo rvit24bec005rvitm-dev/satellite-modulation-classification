@@ -13,6 +13,7 @@ import {
   numeric,
   ExportButton,
 } from "@/components/workspace-ui";
+import { ExperimentResults } from "@/components/experiment-results";
 import { ScientificChart } from "@/components/scientific-chart";
 export function ArenaPage() {
   const models = useModels(),
@@ -36,7 +37,11 @@ export function ArenaPage() {
             <h2 className="font-display text-xl">{m.name}</h2>
             <dl className="mt-5 space-y-3 text-xs">
               <div className="flex justify-between gap-2">
-                <dt>Stored accuracy</dt>
+                <dt>
+                  {m.evaluationMetadata?.status === "held-out-synthetic-experiment"
+                    ? "Synthetic test accuracy"
+                    : "Historical stored accuracy"}
+                </dt>
                 <dd className="text-primary">{percent(m.accuracy)}</dd>
               </div>
               <div className="flex justify-between gap-2">
@@ -44,6 +49,17 @@ export function ArenaPage() {
                 <dd>{m.parameters?.toLocaleString() ?? "—"}</dd>
               </div>
             </dl>
+            {m.artifactBytes != null && (
+              <p className="mt-3 text-xs font-mono">
+                Artifact: {(m.artifactBytes / 1024).toFixed(1)} KiB · {m.version}
+              </p>
+            )}
+            {m.evaluationMetadata && (
+              <p className="mt-3 text-xs leading-5 text-signal-warning">
+                {m.evaluationMetadata.status} · {m.evaluationMetadata.samples} observations.{" "}
+                {m.evaluationMetadata.note}
+              </p>
+            )}
             <p className="mt-4 text-xs leading-5 text-muted-foreground">
               {m.backend ?? m.reason ?? m.error}
             </p>
@@ -65,7 +81,12 @@ export function ArenaPage() {
             >
               {models.data?.map((m) => (
                 <option key={m.id} value={m.id} disabled={m.status !== "available"}>
-                  {m.name} {m.status !== "available" ? "— Not Trained" : ""}
+                  {m.name}{" "}
+                  {m.status === "not-trained"
+                    ? "— Not Trained"
+                    : m.status === "unavailable"
+                      ? "— Unavailable"
+                      : ""}
                 </option>
               ))}
             </select>
@@ -92,7 +113,11 @@ export function ArenaPage() {
           }
           onClick={() => benchmark.mutate({ modelId, sampleId, iterations })}
         >
-          {benchmark.isPending ? "Benchmarking…" : "Run CNN benchmark"}
+          {benchmark.isPending
+            ? "Benchmarking…"
+            : modelId === "1d-cnn"
+              ? "Run CNN benchmark"
+              : "Run selected model benchmark"}
         </Button>
         <Message error={benchmark.error} />
         {benchmark.data && (
@@ -118,6 +143,17 @@ export function ArenaPage() {
               xTitle="Iteration"
               yTitle="Latency (ms)"
             />
+            <Stats
+              items={[
+                ["Median preprocessing", `${numeric(benchmark.data.preprocessing.medianMs)} ms`],
+                ["Batch size", benchmark.data.hardware.batchSize],
+                ["Hardware", `${benchmark.data.hardware.os} ${benchmark.data.hardware.machine}`],
+                [
+                  "Runtime",
+                  `Python ${benchmark.data.hardware.python} · NumPy ${benchmark.data.hardware.numpy}`,
+                ],
+              ]}
+            />
             <p className="mb-4 text-xs text-muted-foreground">{benchmark.data.scope}</p>
             <ExportButton onClick={() => downloadJson(benchmark.data, "satmod-benchmark.json")} />
           </>
@@ -142,11 +178,15 @@ export function ArenaPage() {
         </Field>
         <p className="text-sm leading-6 text-muted-foreground">
           {other?.name ?? "Alternative model"}:{" "}
-          {other?.reason ?? "No trained artifact is available."} Predictions, accuracy, and latency
-          remain unavailable. To add a real model, register its artifact loader and input contract
-          in the backend model registry and supply an independently measured evaluation.
+          {other?.status === "available"
+            ? "A real independently trained artifact is available. Benchmark it above. Accuracy comparisons require the same test protocol; use the matched experiment results below."
+            : (other?.reason ?? other?.error ?? "No trained artifact is available.")}{" "}
+          Untrained models have no prediction, accuracy or latency result. To add a real model,
+          register its artifact loader and input contract in the backend model registry and supply
+          an independently measured evaluation.
         </p>
       </Surface>
+      <ExperimentResults />
     </div>
   );
 }

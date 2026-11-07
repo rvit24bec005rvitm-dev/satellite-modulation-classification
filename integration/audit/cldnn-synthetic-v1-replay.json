@@ -1,0 +1,195 @@
+{
+  "protocolId": "c7c74ee438f937fdcf4e409028c3abf4802d9f275c400d631c3c3ba1e594db44",
+  "artifactSha256": "62aa060d52b37797d81aa1b9c06499d92f4e7fdfadf457838a79fa94f9e395c6",
+  "datasetSha256": "8ee79e4b788674c0bcb4da668199384c3cb10901e219462e1a2a04d1161ecaf6",
+  "maxReplayProbabilityError": 0.0,
+  "test": {
+    "samples": 360,
+    "accuracy": 0.6888888888888889,
+    "precision": 0.6852243363871272,
+    "recall": 0.6770540935672514,
+    "macroF1": 0.6686904265252199,
+    "confusionMatrix": [
+      [
+        124,
+        13,
+        13
+      ],
+      [
+        5,
+        71,
+        20
+      ],
+      [
+        3,
+        58,
+        53
+      ]
+    ],
+    "perClass": [
+      {
+        "className": "BPSK",
+        "precision": 0.9393939393939394,
+        "recall": 0.8266666666666667,
+        "f1": 0.8794326241134752,
+        "support": 150
+      },
+      {
+        "className": "QPSK",
+        "precision": 0.5,
+        "recall": 0.7395833333333334,
+        "f1": 0.5966386554621849,
+        "support": 96
+      },
+      {
+        "className": "16-QAM",
+        "precision": 0.6162790697674418,
+        "recall": 0.4649122807017544,
+        "f1": 0.53,
+        "support": 114
+      }
+    ],
+    "snrAccuracy": [
+      {
+        "snrDb": -12.0,
+        "samples": 60,
+        "accuracy": 0.3333333333333333,
+        "perClass": {
+          "BPSK": 0.2,
+          "QPSK": 0.5,
+          "16-QAM": 0.3684210526315789
+        }
+      },
+      {
+        "snrDb": -6.0,
+        "samples": 60,
+        "accuracy": 0.6,
+        "perClass": {
+          "BPSK": 0.76,
+          "QPSK": 0.5625,
+          "16-QAM": 0.42105263157894735
+        }
+      },
+      {
+        "snrDb": 0.0,
+        "samples": 60,
+        "accuracy": 0.75,
+        "perClass": {
+          "BPSK": 1.0,
+          "QPSK": 0.75,
+          "16-QAM": 0.42105263157894735
+        }
+      },
+      {
+        "snrDb": 6.0,
+        "samples": 60,
+        "accuracy": 0.8,
+        "perClass": {
+          "BPSK": 1.0,
+          "QPSK": 0.875,
+          "16-QAM": 0.47368421052631576
+        }
+      },
+      {
+        "snrDb": 12.0,
+        "samples": 60,
+        "accuracy": 0.8333333333333334,
+        "perClass": {
+          "BPSK": 1.0,
+          "QPSK": 0.875,
+          "16-QAM": 0.5789473684210527
+        }
+      },
+      {
+        "snrDb": 18.0,
+        "samples": 60,
+        "accuracy": 0.8166666666666667,
+        "perClass": {
+          "BPSK": 1.0,
+          "QPSK": 0.875,
+          "16-QAM": 0.5263157894736842
+        }
+      }
+    ],
+    "calibration": {
+      "ece": 0.04877739532126321,
+      "nll": 0.6422689334653433,
+      "brier": 0.38981721420230286,
+      "reliability": [
+        {
+          "lower": 0.0,
+          "upper": 0.1,
+          "count": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.1,
+          "upper": 0.2,
+          "count": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.2,
+          "upper": 0.3,
+          "count": 0,
+          "accuracy": null,
+          "confidence": null
+        },
+        {
+          "lower": 0.3,
+          "upper": 0.4,
+          "count": 19,
+          "accuracy": 0.3157894736842105,
+          "confidence": 0.37582725600192424
+        },
+        {
+          "lower": 0.4,
+          "upper": 0.5,
+          "count": 81,
+          "accuracy": 0.49382716049382713,
+          "confidence": 0.4575271937582228
+        },
+        {
+          "lower": 0.5,
+          "upper": 0.6,
+          "count": 67,
+          "accuracy": 0.6119402985074627,
+          "confidence": 0.5453903550532326
+        },
+        {
+          "lower": 0.6,
+          "upper": 0.7,
+          "count": 57,
+          "accuracy": 0.5789473684210527,
+          "confidence": 0.6446872499951145
+        },
+        {
+          "lower": 0.7,
+          "upper": 0.8,
+          "count": 31,
+          "accuracy": 0.8064516129032258,
+          "confidence": 0.7486842216983918
+        },
+        {
+          "lower": 0.8,
+          "upper": 0.9,
+          "count": 20,
+          "accuracy": 0.9,
+          "confidence": 0.8501497805118561
+        },
+        {
+          "lower": 0.9,
+          "upper": 1.0,
+          "count": 85,
+          "accuracy": 1.0,
+          "confidence": 0.9707643039086286
+        }
+      ],
+      "samples": 360,
+      "bins": 10,
+      "brierConvention": "Mean sum of squared class-probability errors, range 0\u20132"
+    }
+  }
+}

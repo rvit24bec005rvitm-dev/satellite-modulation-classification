@@ -9,6 +9,7 @@ import {
   Message,
   Stats,
   numeric,
+  percent,
   Field,
   Empty,
   ExportButton,
@@ -21,6 +22,13 @@ export function IntelligencePage() {
   const [second, setSecond] = useState<Capture | null>(null);
   const [sampleId, setSampleId] = useState(142);
   const loader = useMutation({ mutationFn: () => satmodApi.sample(sampleId) });
+  const upload = useMutation({
+    mutationFn: (file: File) => satmodApi.uploadCapture(file),
+    onSuccess: (value) => {
+      setSecond(value);
+      comparison.reset();
+    },
+  });
   const comparison = useMutation({
     mutationFn: () => {
       if (!capture || !second) throw new Error("Select two captures first.");
@@ -84,7 +92,19 @@ export function IntelligencePage() {
         <p className="text-xs text-muted-foreground">
           Capture A also receives signals from Satellite Studio and Live Classifier.
         </p>
-        <Message error={loader.error ?? samples.error} />
+        <Field label="Upload signal B for analysis (no classification required)">
+          <input
+            className="control"
+            type="file"
+            accept=".npy,.npz,.csv,.mat,.wav,.json"
+            disabled={upload.isPending}
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) upload.mutate(file);
+            }}
+          />
+        </Field>
+        <Message error={loader.error ?? samples.error ?? upload.error} loading={upload.isPending} />
       </Surface>
       {capture ? (
         <>
@@ -159,36 +179,70 @@ export function IntelligencePage() {
         <Message error={comparison.error} />
         {comparison.data && (
           <>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <ExportButton
+                onClick={() =>
+                  downloadJson(
+                    { ...comparison.data, captures: { first: capture, second } },
+                    "satmod-comparison.json",
+                  )
+                }
+              />
+            </div>
             <Stats
               items={[
                 ["A − B power", `${numeric(comparison.data.powerDifferenceDb)} dB`],
                 ["Sample MSE", numeric(comparison.data.sampleMse)],
                 ["A samples", comparison.data.first.sampleCount],
                 ["B samples", comparison.data.second.sampleCount],
+                ["Comparison processing", `${numeric(comparison.data.processingMs)} ms`],
+                ["A sample rate", `${comparison.data.first.sampleRate} (1 = unknown/normalized)`],
+                ["B sample rate", `${comparison.data.second.sampleRate} (1 = unknown/normalized)`],
               ]}
             />
+            <div className="mt-4 grid gap-4 md:grid-cols-2">
+              {(["first", "second"] as const).map((key, i) => {
+                const prediction = comparison.data.predictions[key];
+                return (
+                  <Surface key={key} className="p-3">
+                    <SectionHeading title={`Capture ${i === 0 ? "A" : "B"} · real CNN`} />
+                    {prediction.status === "available" ? (
+                      <Stats
+                        items={[
+                          ["Predicted class", prediction.predictedModulation ?? "Unavailable"],
+                          ["Uncalibrated confidence", percent(prediction.confidence)],
+                          ["Inference time", `${numeric(prediction.processingMs)} ms`],
+                        ]}
+                      />
+                    ) : (
+                      <p className="text-xs text-muted-foreground">{prediction.reason}</p>
+                    )}
+                  </Surface>
+                );
+              })}
+            </div>
             <div className="mt-4 grid gap-4 lg:grid-cols-2">
               <ScientificChart
-                data={[comparison.data.first, comparison.data.second].map((a, i) => ({
-                  x: a.waveform.map((p) => p.time),
+                data={[comparison.data.plots.first, comparison.data.plots.second].map((a, i) => ({
+                  x: a.waveform.map((p) => p.x),
                   y: a.waveform.map((p) => p.i),
                   mode: "lines",
                   type: "scattergl",
                   name: i === 0 ? "Capture A" : "Capture B",
                 }))}
-                xTitle={comparison.data.first.sampleRate === 1 ? "Sample index" : "Time (s)"}
+                xTitle={comparison.data.plots.timeUnit}
                 yTitle="In-phase amplitude (relative)"
               />
               <ScientificChart
-                data={[comparison.data.first, comparison.data.second].map((a, i) => ({
+                data={[comparison.data.plots.first, comparison.data.plots.second].map((a, i) => ({
                   x: a.spectrum.map((p) => p.frequency),
                   y: a.spectrum.map((p) => p.psd),
                   mode: "lines",
                   type: "scattergl",
                   name: i === 0 ? "Capture A" : "Capture B",
                 }))}
-                xTitle="Frequency (Hz; cycles/sample when Fs=1)"
-                yTitle="PSD (dB relative per frequency unit)"
+                xTitle={`Frequency (${comparison.data.plots.frequencyUnit})`}
+                yTitle={`PSD (dB relative / ${comparison.data.plots.frequencyUnit})`}
               />
             </div>
             <p className="text-xs text-muted-foreground">{comparison.data.note}</p>

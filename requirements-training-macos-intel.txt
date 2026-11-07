@@ -1,0 +1,4 @@
+-r requirements-training.txt
+# Pinned Intel macOS experiment configuration. Use Python 3.12.
+tensorflow==2.16.2
+numpy<2

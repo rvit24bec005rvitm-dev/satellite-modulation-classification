@@ -84,6 +84,6 @@ def test_extract_features():
     sig = np.random.randn(128, 2).astype(np.float32)
     feats = extract_features(sig)
     assert isinstance(feats, dict)
-    assert "Signal_Power_dBW" in feats
+    assert "Signal_Power_dB_relative" in feats
     assert "Kurtosis_I" in feats
     assert "PAPR_dB" in feats

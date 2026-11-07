@@ -1,0 +1,22 @@
+
+> satmodclass-frontend@1.0.0 pretest
+> node scripts/generate-routes.mjs
+
+
+> satmodclass-frontend@1.0.0 test
+> vitest run
+
+
+ RUN  v2.1.9 <PROJECT>/frontend
+
+ ✓ src/test/api.test.ts (11 tests) 318ms
+ ✓ src/test/orbital-simulation.test.ts (10 tests) 582ms
+   ✓ Simulated orbital geometry and display timing > splits antimeridian crossings without drawing a line through the whole map 440ms
+ ✓ src/test/workspace-ui.test.tsx (6 tests) 136ms
+ ✓ src/test/app-routing.test.tsx (8 tests) 154ms
+
+ Test Files  4 passed (4)
+      Tests  35 passed (35)
+   Start at  12:57:15
+   Duration  44.21s (transform 2.07s, setup 3.22s, collect 5.86s, tests 1.19s, environment 6ms, prepare 3.54s)
+

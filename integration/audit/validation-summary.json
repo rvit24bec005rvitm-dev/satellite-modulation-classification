@@ -1,0 +1,150 @@
+{
+  "python": {
+    "passed": 149,
+    "log": "python-tests.log"
+  },
+  "frontend": {
+    "passed": 35,
+    "log": "frontend-tests.log"
+  },
+  "realApiClient": {
+    "passed": 11,
+    "log": "client-integration.log"
+  },
+  "productionBrowser": {
+    "passed": 25,
+    "log": "production-browser.log"
+  },
+  "responseRegression": {
+    "passed": 2,
+    "log": "response-regression-rerun.log"
+  },
+  "legacyStreamlit": {
+    "pagesPassed": 6,
+    "realBenchmarkPassed": true,
+    "log": "streamlit.log"
+  },
+  "scientificBrowser": {
+    "passed": 5,
+    "log": "scientific-browser.log"
+  },
+  "kerasParity": {
+    "frames": 43,
+    "maxAbsoluteError": 4.172325134277344e-07,
+    "classAgreement": 1.0,
+    "logitGradientMaxAbsoluteError": 2.384185791015625e-07,
+    "gradientClassTargets": 3,
+    "tensorflowVersion": "2.16.2",
+    "npzWeightsMatchKerasArchive": true
+  },
+  "originalArtifactsUnchanged": 6,
+  "productionPromoted": false,
+  "scientificLimitations": {
+    "historical900IndependentlyReproduced": false,
+    "originalTrainingDataProvided": false,
+    "productionCalibrated": false,
+    "productionOodValidated": false,
+    "windowsExecuted": false
+  },
+  "currentDevelopment": {
+    "frontend": "http://localhost:5173",
+    "backend": "http://127.0.0.1:8003"
+  },
+  "sourceSnapshots": {
+    "frontend/src/components/mission/earth-globe.tsx": "f76f01e91087d89594c780e7e25b15cba430ba220b1b85735f659f33b8d2eb49",
+    "utils/model_backend.py": "c39bbe08a15aae0b8692ed133528396edb0e6f9077395ab4bac425a518e6688d",
+    "utils/preprocessing.py": "b4ba92c4a8d7c61311df02d2763d7d2f557c25deeadc78b339910337555e92bd",
+    "utils/signal_processing.py": "7d95aee45b23e9e1d6e74806ed55b2bdd25ee1eed6eb973366170f40f30ab375",
+    "backend/main.py": "06a4be84b0e58c55604d904dd9ae7edc51167d472fcb55d61507e3f93eaec2f3",
+    "frontend/playwright.config.ts": "bcb6c81b550bd038bdc3d4fbc26c978ab1bf8ff20caddfa43303ac624c312ea1"
+  },
+  "typecheck": "passed",
+  "eslint": {
+    "errors": 0,
+    "existingWarnings": 18
+  },
+  "cosmicVisual": {
+    "runtimeErrors": [],
+    "consoleErrors": [],
+    "screenshots": [
+      "cosmic-earth-detail.png",
+      "cosmic-mission-dashboard.png"
+    ]
+  },
+  "productionBuild": "passed",
+  "latestCosmicMissionBrowser": {
+    "passed": 12,
+    "target": "development, final galaxy source",
+    "log": "cosmic-mission-browser.log"
+  },
+  "productionServing": {
+    "spaRoutes": 8,
+    "referencedAssets": "passed",
+    "health": 200,
+    "unknownApi": 404
+  },
+  "finalProductionCosmicProbe": {
+    "url": "http://127.0.0.1:8010/",
+    "cadence": {
+      "durationMs": 4016.5,
+      "frames": 222,
+      "averageRafFps": 55.27200298767584,
+      "p95IntervalMs": 16.80000000000109,
+      "renderer": "ANGLE (Intel, ANGLE Metal Renderer: Intel(R) Iris(TM) Plus Graphics, Unspecified Version)",
+      "canvasPixels": [
+        626,
+        510
+      ],
+      "dpr": 1
+    },
+    "blankPageBaseline": {
+      "durationMs": 4016.5000000000005,
+      "frames": 239,
+      "averageRafFps": 59.50454375700236,
+      "p95IntervalMs": 16.799999999999727
+    },
+    "scope": "Short sequential headless Chrome blank-page and final galaxy-scene requestAnimationFrame cadence probes on this host; not a GPU benchmark or a 60 FPS guarantee.",
+    "visibility": {
+      "hiddenBefore": 0.41985058709488887,
+      "hiddenAfter": 0.41985058709488887,
+      "resumed": 0.5061163942574889,
+      "passed": true
+    },
+    "sidebarCollapseExpand": true,
+    "fullscreenEnterExit": true,
+    "runtimeErrors": []
+  },
+  "testedSourceSnapshotsUnchanged": true,
+  "apiRegression": {
+    "passed": 52,
+    "log": "continuation-api.log"
+  },
+  "ciProductionSmoke": {
+    "passed": 4,
+    "seconds": 48.7,
+    "managedServerLifecycle": true,
+    "log": "continuation-browser.log"
+  },
+  "pythonCiLint": {
+    "errors": 0,
+    "selection": "E9,F63,F7,F82",
+    "log": "python-ci-lint.log"
+  },
+  "ciConfiguration": {
+    "windowsPython": [
+      "3.12"
+    ],
+    "linuxPython": [
+      "3.10",
+      "3.11",
+      "3.12"
+    ],
+    "compiledBrowserSuite": true,
+    "remoteExecutionObserved": false
+  },
+  "errorHandlingBeforeFix": {
+    "unexpectedErrorStatus": 500,
+    "allowedOriginHeader": null,
+    "negativeContentLengthStatus": 200
+  }
+}

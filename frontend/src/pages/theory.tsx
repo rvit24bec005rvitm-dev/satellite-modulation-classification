@@ -45,7 +45,7 @@ const topics = [
   [
     "FSK and GMSK",
     "x[n] = exp(jφ[n]); φ[n] = φ[n−1] + 2πf[n]/Fs",
-    "Frequency-shift keying encodes information in frequency. The BFSK simulator uses continuous phase with h=0.5. GMSK Gaussian-filters the NRZ frequency pulse at BT=0.3 before phase integration; both have a constant clean envelope. They have no fixed discrete I/Q constellation.",
+    "Frequency-shift keying encodes information in frequency. The BFSK default is continuous phase with h=0.5; deviation and continuity are configurable. GMSK always uses h=0.5 and Gaussian-filters the NRZ frequency pulse at configurable BT (default 0.3) before phase integration; both have a constant clean envelope. They have no fixed discrete I/Q constellation.",
   ],
   [
     "SNR and AWGN",
@@ -65,7 +65,7 @@ const topics = [
   [
     "Phase noise and Rician fading",
     "h = √(K/(K+1)) + (a+jb)/√(2(K+1))",
-    "K is a linear line-of-sight to scattered-power ratio. K=0 gives Rayleigh fading when enabled. The simulator uses independent scatter per sample and independent Gaussian phase jitter; it does not model a Doppler-correlated channel.",
+    "K is a linear line-of-sight to scattered-power ratio. K=0 gives Rayleigh fading when enabled. The simulator supports independent scatter per configurable sample block and either independent phase jitter or a Wiener phase walk. It does not model a Doppler-correlated scattering process.",
   ],
   [
     "Saleh TWTA amplifier",
@@ -86,7 +86,7 @@ export function TheoryPage() {
   const [gain, setGain] = useState(2.1587);
   const orbit = useQuery({
     queryKey: ["orbit", altitude, carrier],
-    queryFn: () => satmodApi.orbit(altitude, carrier),
+    queryFn: ({ signal }) => satmodApi.orbit(altitude, carrier, signal),
     retry: 1,
     enabled:
       Number.isFinite(altitude) &&
@@ -96,21 +96,18 @@ export function TheoryPage() {
       carrier > 0 &&
       carrier <= 100,
   });
-  const n = scheme === "BPSK" ? 2 : scheme === "QPSK" ? 4 : 8;
-  const points =
-    scheme === "16-QAM"
-      ? [-3, -1, 1, 3].flatMap((i) =>
-          [-3, -1, 1, 3].map((q) => ({ i: i / Math.sqrt(10), q: q / Math.sqrt(10) })),
-        )
-      : Array.from({ length: n }, (_, k) => ({
-          i: Math.cos((2 * Math.PI * k) / n + (n === 4 ? Math.PI / 4 : 0)),
-          q: Math.sin((2 * Math.PI * k) / n + (n === 4 ? Math.PI / 4 : 0)),
-        }));
+  const references = useQuery({
+    queryKey: ["constellations"],
+    queryFn: ({ signal }) => satmodApi.constellations(signal),
+    retry: 1,
+  });
+  const points = references.data?.modulations[scheme] ?? [];
   const radii = Array.from({ length: 100 }, (_, i) => i * 0.03);
   return (
     <div className="space-y-5">
       <Surface className="p-5">
-        <SectionHeading title="Modulation explorer" note="IDEAL EDUCATIONAL REFERENCE" />
+        <SectionHeading title="Modulation explorer" note="SHARED TRANSMITTER REFERENCE TABLE" />
+        <Message loading={references.isPending} error={references.error} />
         <div className="grid gap-5 lg:grid-cols-2">
           <div>
             <Field label="Ideal constellation">
@@ -119,7 +116,7 @@ export function TheoryPage() {
                 value={scheme}
                 onChange={(e) => setScheme(e.target.value)}
               >
-                {["BPSK", "QPSK", "8-PSK", "16-QAM"].map((s) => (
+                {["BPSK", "QPSK", "8-PSK", "16-QAM", "32-QAM", "16-APSK", "32-APSK"].map((s) => (
                   <option key={s}>{s}</option>
                 ))}
               </select>
@@ -127,14 +124,15 @@ export function TheoryPage() {
             <NumberField label="Sample SNR (dB)" value={snr} onChange={setSnr} min={-30} max={60} />
             <Stats
               items={[
-                ["Complex noise RMS (Es=1)", numeric(Math.sqrt(10 ** (-snr / 10)))],
+                ["Complex noise RMS (sample power = 1)", numeric(Math.sqrt(10 ** (-snr / 10)))],
                 ["Per-quadrature noise σ", numeric(Math.sqrt(10 ** (-snr / 10) / 2))],
               ]}
             />
             <p className="mt-4 text-xs leading-6 text-muted-foreground">
               Points show the ideal symbol alphabet. The noise figures use unit signal power.
-              Generate an actual noisy waveform in Satellite Studio. 8-PSK is a simulator and theory
-              option; the CNN supports only three classes.
+              Generate an actual noisy waveform in Satellite Studio. All seven discrete symbol
+              alphabets use the exact same backend source as the generator. The CNN supports only
+              BPSK, QPSK and 16-QAM. {references.data?.mapping}
             </p>
           </div>
           <ScientificChart
@@ -165,7 +163,7 @@ export function TheoryPage() {
         ))}
       </div>
       <Surface className="p-5">
-        <SectionHeading title="Approximate LEO pass" note="ILLUSTRATIVE GEOMETRY" />
+        <SectionHeading title="Simulated circular LEO pass" note="SIDEREAL EARTH ROTATION" />
         <div className="grid gap-4 sm:grid-cols-2">
           <NumberField
             label="Altitude (km)"

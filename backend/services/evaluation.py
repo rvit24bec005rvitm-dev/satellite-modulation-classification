@@ -17,11 +17,13 @@ def snr_results() -> list[dict]:
 def evaluation() -> dict:
     raw = json.loads((ROOT/'evaluation_results.json').read_text())
     cm = np.asarray(raw['confusion_matrix'],dtype=int)
+    if cm.shape != (3,3) or np.any(cm < 0) or cm.sum() <= 0:
+        raise ValueError('Stored confusion matrix must be a nonempty nonnegative 3×3 count matrix.')
     support = cm.sum(axis=1)
     predicted = cm.sum(axis=0)
     precision = np.divide(cm.diagonal(),predicted,out=np.zeros(3),where=predicted!=0)
-    recall = cm.diagonal()/support
-    f1 = 2*precision*recall/(precision+recall)
+    recall = np.divide(cm.diagonal(),support,out=np.zeros(3),where=support!=0)
+    f1 = np.divide(2*precision*recall,precision+recall,out=np.zeros(3),where=precision+recall!=0)
     accuracy = float(cm.trace()/cm.sum())
     per_class = [{'className':label,'precision':float(precision[i]),'recall':float(recall[i]),'f1':float(f1[i]),'support':int(support[i])} for i,label in enumerate(stats()[2])]
     errors = sorted([{'actual':stats()[2][i],'predicted':stats()[2][j],'count':int(cm[i,j])} for i in range(3) for j in range(3) if i!=j],key=lambda e:-e['count'])

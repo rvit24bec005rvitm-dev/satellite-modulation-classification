@@ -1,14 +1,94 @@
 export type Modulation = "BPSK" | "QPSK" | "16-QAM";
-export type GeneratorModulation = Modulation | "8-PSK" | "16-APSK" | "32-APSK" | "GMSK" | "BFSK";
+export type GeneratorModulation =
+  Modulation | "32-QAM" | "8-PSK" | "16-APSK" | "32-APSK" | "GMSK" | "BFSK";
 export const SUPPORTED_MODULATIONS: Modulation[] = ["BPSK", "QPSK", "16-QAM"];
 export const GENERATOR_MODULATIONS: GeneratorModulation[] = [
   ...SUPPORTED_MODULATIONS,
+  "32-QAM",
   "8-PSK",
   "16-APSK",
   "32-APSK",
   "GMSK",
   "BFSK",
 ];
+export interface TrustStatus {
+  inputValidity: { status: string; checks: string[]; channelOrder: string };
+  calibration: { status: string; temperature: number; reason: string };
+  ood: { status: string; detected: boolean | null; reason: string };
+  interpretation: string;
+}
+export interface AttributionResult {
+  method: "integrated-gradients" | "saliency";
+  targetClass: Modulation;
+  targetQuantity: string;
+  modelId: string;
+  windowStart: number;
+  windowLength: number;
+  integrationSteps: number;
+  baseline: { description: string; rawValue: number; normalizedValue: number };
+  inputLogit: number;
+  baselineLogit: number;
+  logitDifference: number;
+  attributionSum: number | null;
+  completenessError: number | null;
+  processingMs: number;
+  samples: {
+    sample: number;
+    i: number;
+    q: number;
+    importance: number;
+    rawI: number;
+    rawQ: number;
+  }[];
+  limitations: string[];
+}
+export interface CalibrationMetrics {
+  ece: number;
+  nll: number;
+  brier: number;
+  reliability: {
+    lower: number;
+    upper: number;
+    count: number;
+    accuracy: number | null;
+    confidence: number | null;
+  }[];
+}
+export interface MeasuredMetrics {
+  samples: number;
+  accuracy: number;
+  macroF1: number;
+  precision: number;
+  recall: number;
+  calibration: CalibrationMetrics;
+  snrAccuracy: {
+    snrDb: number;
+    samples: number;
+    accuracy: number;
+    perClass: Record<string, number | null>;
+  }[];
+}
+export interface DemoDiagnostics {
+  scope: string;
+  independentTest: boolean;
+  productionChanged: boolean;
+  samples: number;
+  comparisons: Record<string, MeasuredMetrics>;
+  warning: string;
+}
+export interface ExperimentReport {
+  id: string;
+  model: string;
+  status: string;
+  protocolId: string;
+  productionPromoted: boolean;
+  dataset: { id: string; sha256: string; samples: number };
+  test: MeasuredMetrics;
+  productionOnSameTest: MeasuredMetrics;
+  calibration: { temperature: number; fitSplit: string; testCalibrated: MeasuredMetrics };
+  limitations: string[];
+}
+
 export interface IQSample {
   i: number;
   q: number;
@@ -25,13 +105,16 @@ export interface SignalAnalysis {
   sampleCount: number;
   sampleRate: number;
   signalPower: number;
-  powerDb: number;
+  powerDb: number | null;
   rmsAmplitude: number;
-  bandwidthHz: number;
+  bandwidthHz: number | null;
   noisePower: number | null;
   estimatedSnrDb: number | null;
   qualityNote: string;
   features: Record<string, number | null>;
+  phaseTrace?: { sample: number; time: number; phaseRad: number }[];
+  instantaneousFrequency?: { sample: number; time: number; frequency: number | null }[];
+  instantaneousFrequencyNote?: string;
   waveform: WavePoint[];
   constellation: IQSample[];
   spectrum: { frequency: number; psd: number; magnitude: number }[];
@@ -63,6 +146,9 @@ export interface ClassificationResult extends Capture {
   entropyBits: number;
   processingMs: number;
   modelId: string;
+  trust: TrustStatus;
+  preprocessingMs: number;
+  explanation?: AttributionResult;
   preprocessing: Record<string, number | string>;
   warnings: string[];
 }
@@ -72,6 +158,14 @@ export interface SignalGenerationRequest {
   numSamples: number;
   sps: number;
   sampleRate: number;
+  gaussianBt?: number;
+  bfskDeviationHz?: number | null;
+  continuousPhase?: boolean;
+  apskRadii?: number[] | null;
+  apskOffsets?: number[] | null;
+  phaseNoiseMode?: "iid" | "wiener";
+  fadingBlockSamples?: number;
+  normalizeOutput?: boolean;
   rrcAlpha: number;
   rrcEnabled: boolean;
   dopplerHz: number;
@@ -87,6 +181,15 @@ export interface GeneratedSignal extends Capture {
   modulation: GeneratorModulation;
   snrDb: number;
   parameters: SignalGenerationRequest;
+  generation?: {
+    realizedSnrDb: number;
+    channelOrder: string[];
+    powerStages: Record<string, number>;
+    outputPowerPolicy: string;
+    referenceNote: string;
+    modulationIndex?: number;
+    frequencyDeviationHz?: number;
+  };
   reference: IQSample[];
   classifierSupported: boolean;
 }
@@ -96,6 +199,18 @@ export interface ApiModel {
   status: "available" | "not-trained" | "unavailable";
   accuracy?: number;
   parameters?: number;
+  trainableParameters?: number;
+  nonTrainableParameters?: number;
+  version?: string | null;
+  artifactBytes?: number;
+  evaluationMetadata?: {
+    status: string;
+    note: string;
+    source: string;
+    samples: number;
+    datasetId?: string;
+  };
+  trainingMetadata?: { status: string; reason?: string };
   backend?: string;
   reason?: string;
   error?: string;
@@ -163,13 +278,48 @@ export interface BenchmarkResult {
   maxMs: number;
   throughputFps: number;
   latenciesMs: number[];
+  preprocessing: { medianMs: number; p95Ms: number };
+  hardware: {
+    os: string;
+    machine: string;
+    processor: string;
+    python: string;
+    numpy: string;
+    batchSize: number;
+  };
   scope: string;
 }
 export interface Comparison {
   first: SignalAnalysis;
   second: SignalAnalysis;
-  powerDifferenceDb: number;
+  powerDifferenceDb: number | null;
   sampleMse: number | null;
+  processingMs: number;
+  ratesEqual: boolean;
+  lengthsEqual: boolean;
+  overlapSamples: number;
+  predictions: Record<
+    "first" | "second",
+    {
+      status: string;
+      reason?: string;
+      predictedModulation?: string;
+      confidence?: number;
+      processingMs?: number;
+    }
+  >;
+  plots: {
+    frequencyUnit: string;
+    timeUnit: string;
+    first: {
+      waveform: { x: number; i: number; q: number }[];
+      spectrum: { frequency: number; psd: number }[];
+    };
+    second: {
+      waveform: { x: number; i: number; q: number }[];
+      spectrum: { frequency: number; psd: number }[];
+    };
+  };
   note: string;
 }
 export interface OrbitResult {
@@ -195,7 +345,9 @@ export async function request<T>(path: string, options: RequestInit = {}): Promi
         ...(options.body instanceof FormData ? {} : { "Content-Type": "application/json" }),
         ...options.headers,
       },
-      signal: options.signal ?? AbortSignal.timeout(60000),
+      signal: options.signal
+        ? AbortSignal.any([options.signal, AbortSignal.timeout(60000)])
+        : AbortSignal.timeout(60000),
     });
   } catch (error) {
     if (error instanceof DOMException && error.name === "AbortError") throw error;
@@ -233,6 +385,28 @@ export const satmodApi = {
       body: form,
     });
   },
+  explain: (
+    body: ClassifyRequest & {
+      targetClass?: Modulation;
+      method: "integrated-gradients" | "saliency";
+      steps: number;
+    },
+    signal?: AbortSignal,
+  ) => post<AttributionResult>("/api/explain", body, signal),
+  constellations: (signal?: AbortSignal) =>
+    request<{ mapping: string; energyPolicy: string; modulations: Record<string, IQSample[]> }>(
+      "/api/constellations",
+      signal ? { signal } : {},
+    ),
+  diagnostics: (signal?: AbortSignal) =>
+    request<DemoDiagnostics>("/api/evaluation/diagnostics", signal ? { signal } : {}),
+  experiments: (signal?: AbortSignal) =>
+    request<ExperimentReport[]>("/api/experiments", signal ? { signal } : {}),
+  uploadCapture: (file: File) => {
+    const form = new FormData();
+    form.append("file", file);
+    return request<Capture>("/api/signal/upload", { method: "POST", body: form });
+  },
   generate: (body: SignalGenerationRequest) => post<GeneratedSignal>("/api/signal/generate", body),
   analyze: (capture: Capture) =>
     post<SignalAnalysis>("/api/signal/analyze", {
@@ -256,8 +430,11 @@ export const satmodApi = {
     request<Capture>(`/api/samples/${id}`, signal ? { signal } : {}),
   benchmark: (modelId: string, sampleId: number, iterations: number) =>
     post<BenchmarkResult>("/api/benchmark", { modelId, sampleId, iterations }),
-  orbit: (altitude: number, carrier: number) =>
-    request<OrbitResult>(`/api/orbit?altitudeKm=${altitude}&carrierGhz=${carrier}`),
+  orbit: (altitude: number, carrier: number, signal?: AbortSignal) =>
+    request<OrbitResult>(
+      `/api/orbit?altitudeKm=${altitude}&carrierGhz=${carrier}`,
+      signal ? { signal } : {},
+    ),
 };
 export function downloadJson(value: unknown, name: string) {
   downloadBlob(new Blob([JSON.stringify(value, null, 2)], { type: "application/json" }), name);

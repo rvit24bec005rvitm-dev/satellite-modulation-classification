@@ -35,8 +35,46 @@ def test_health_and_registry(client):
     models=client.get('/api/models').json()
     assert models[0]['status']=='available'
     assert models[0]['parameters']==36355
-    assert all(m['status']=='not-trained' and 'accuracy' not in m for m in models[1:])
+    assert all(m['status']=='not-trained' and 'accuracy' not in m for m in models if m['id'] in ['resnet','cldnn','random-forest'])
     assert client.get('/api/system/info').json()['classes']==['BPSK','QPSK','16-QAM']
+
+
+@pytest.mark.parametrize('origin,expected',[
+    ('http://localhost:5173','http://localhost:5173'),
+    ('https://unapproved.example',None),
+    (None,None),
+])
+def test_unexpected_failures_preserve_cors_policy_without_exposing_details(monkeypatch,origin,expected):
+    from backend import main
+    def unavailable_stats():
+        raise RuntimeError('private-model-location must not reach the browser')
+    monkeypatch.setattr(main.svc,'stats',unavailable_stats)
+    with TestClient(app,raise_server_exceptions=False) as client:
+        response=client.get('/api/system/info',headers={'Origin':origin} if origin else {})
+    assert response.status_code==500
+    assert response.headers.get('access-control-allow-origin')==expected
+    assert 'private-model-location' not in response.text
+    assert response.json()['detail'].startswith('The signal service could not complete')
+    if expected:assert 'Origin' in response.headers.get('vary','')
+
+
+def test_unexpected_failures_allow_wildcard_only_when_configured(monkeypatch):
+    from backend import main
+    def unavailable_stats():raise RuntimeError('Test metadata failure')
+    monkeypatch.setattr(main.svc,'stats',unavailable_stats)
+    monkeypatch.setattr(main,'CORS_ORIGINS',['*'])
+    with TestClient(app,raise_server_exceptions=False) as client:
+        response=client.get('/api/system/info',headers={'Origin':'https://example.org'})
+    assert response.status_code==500
+    assert response.headers['access-control-allow-origin']=='*'
+
+
+@pytest.mark.parametrize('declared',['-1','+0','not-a-number','', ' 0'])
+def test_invalid_content_length_is_rejected_before_processing(client,declared):
+    response=client.get('/api/health',headers={'Content-Length':declared,'Origin':'http://localhost:5173'})
+    assert response.status_code==400
+    assert response.json()['detail']=='Invalid Content-Length.'
+    assert response.headers['access-control-allow-origin']=='http://localhost:5173'
 
 @pytest.mark.parametrize('kind',['npy','npz','csv','mat','wav','json'])
 def test_upload_matches_saved_sample_preprocessing(client,kind):
@@ -67,7 +105,7 @@ def test_generator_and_analysis(client,mod):
     assert response.status_code==200,response.text
     signal=response.json()
     assert len(signal['samples'])==1024
-    assert signal['analysis']['eye'] is not None
+    assert (signal['analysis']['eye'] is None) == (mod in ['GMSK','BFSK'])
     assert signal['classifierSupported']==(mod in ['BPSK','QPSK','16-QAM'])
     assert signal['analysis']['rmsAmplitude']==pytest.approx(.008584335,rel=1e-5)
     for plot in ['waveform','constellation','spectrum','amplitudeDistribution','phaseDistribution']:

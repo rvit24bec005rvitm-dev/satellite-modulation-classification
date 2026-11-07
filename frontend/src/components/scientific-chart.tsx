@@ -152,6 +152,8 @@ export function CapturePlots({ capture }: { capture: Capture | null }) {
             "spectrum",
             "psd",
             "spectrogram",
+            ...(a.phaseTrace ? ["phase"] : []),
+            ...(a.instantaneousFrequency ? ["instantaneous frequency"] : []),
             ...(a.eye ? ["eye"] : []),
           ].map((v) => (
             <TabsTrigger key={v} value={v} className="text-xs capitalize">
@@ -173,6 +175,12 @@ export function CapturePlots({ capture }: { capture: Capture | null }) {
           />
         </TabsContent>
         <TabsContent value="constellation">
+          {["GMSK", "BFSK"].includes(capture.modulation ?? "") && (
+            <p className="mb-3 text-xs text-muted-foreground">
+              Continuous-phase trajectory samples; no static symbol constellation. Use the phase and
+              instantaneous-frequency views to inspect modulation.
+            </p>
+          )}
           <ScientificChart
             data={[
               {
@@ -231,6 +239,41 @@ export function CapturePlots({ capture }: { capture: Capture | null }) {
             yTitle={a.sampleRate === 1 ? "Frequency (cycles/sample)" : "Frequency (Hz)"}
           />
         </TabsContent>
+        {a.phaseTrace && (
+          <TabsContent value="phase">
+            <ScientificChart
+              data={[
+                {
+                  x: a.phaseTrace.map((p) => p.time),
+                  y: a.phaseTrace.map((p) => p.phaseRad ?? NaN),
+                  type: "scattergl",
+                  mode: "lines",
+                  name: "Unwrapped phase",
+                },
+              ]}
+              xTitle={a.sampleRate === 1 ? "Sample index" : "Time (s)"}
+              yTitle="Unwrapped phase (radians)"
+            />
+          </TabsContent>
+        )}
+        {a.instantaneousFrequency && (
+          <TabsContent value="instantaneous frequency">
+            <ScientificChart
+              data={[
+                {
+                  x: a.instantaneousFrequency.map((p) => p.time),
+                  y: a.instantaneousFrequency.map((p) => p.frequency ?? NaN),
+                  type: "scattergl",
+                  mode: "lines",
+                  name: "Instantaneous frequency",
+                },
+              ]}
+              xTitle={a.sampleRate === 1 ? "Sample index" : "Time (s)"}
+              yTitle={a.sampleRate === 1 ? "Frequency (cycles/sample)" : "Frequency (Hz)"}
+            />
+            <p className="text-xs text-muted-foreground">{a.instantaneousFrequencyNote}</p>
+          </TabsContent>
+        )}
         {a.eye && (
           <TabsContent value="eye">
             <ScientificChart

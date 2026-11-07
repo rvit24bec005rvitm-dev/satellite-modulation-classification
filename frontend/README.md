@@ -7,3 +7,5 @@ See the [repository README](../README.md) for prerequisites, the combined launch
 Commands: `npm run typecheck`, `npm run lint`, `npm test`, `npm run test:integration`, `npm run build`, `npm run test:e2e`.
 
 Edit `src/routes/*.tsx` to change workspaces. `scripts/generate-routes.mjs` generates the flat route tree before dev/build/test/typecheck. The shared mission-control shell preserves the original UI primitives and all eight workspaces. Overview loads a real Three.js / React Three Fiber globe and a local Leaflet map; all orbit data is explicitly simulated. Full captures live in shared context; pages use React Query and the typed `src/lib/satmod-api.ts` client.
+
+Scientific backend/ML audit, actual experiment results, and expanded UI validation: [audit report](../integration/audit/REPORT.md).

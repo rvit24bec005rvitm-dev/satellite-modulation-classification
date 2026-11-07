@@ -1,0 +1,31 @@
+{
+  "url": "http://127.0.0.1:8010/",
+  "cadence": {
+    "durationMs": 4016.5,
+    "frames": 222,
+    "averageRafFps": 55.27200298767584,
+    "p95IntervalMs": 16.80000000000109,
+    "renderer": "ANGLE (Intel, ANGLE Metal Renderer: Intel(R) Iris(TM) Plus Graphics, Unspecified Version)",
+    "canvasPixels": [
+      626,
+      510
+    ],
+    "dpr": 1
+  },
+  "blankPageBaseline": {
+    "durationMs": 4016.5000000000005,
+    "frames": 239,
+    "averageRafFps": 59.50454375700236,
+    "p95IntervalMs": 16.799999999999727
+  },
+  "scope": "Short sequential headless Chrome blank-page and final galaxy-scene requestAnimationFrame cadence probes on this host; not a GPU benchmark or a 60 FPS guarantee.",
+  "visibility": {
+    "hiddenBefore": 0.41985058709488887,
+    "hiddenAfter": 0.41985058709488887,
+    "resumed": 0.5061163942574889,
+    "passed": true
+  },
+  "sidebarCollapseExpand": true,
+  "fullscreenEnterExit": true,
+  "runtimeErrors": []
+}

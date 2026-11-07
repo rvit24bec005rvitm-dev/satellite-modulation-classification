@@ -1,5 +1,7 @@
 # Actual validation record
 
+The latest scientific audit and expanded regression results are in [audit/REPORT.md](audit/REPORT.md). The mission-control implementation record below is retained as earlier validation evidence.
+
 The integrated development application responds at **http://localhost:5173**, with the real NumPy CNN backend at **http://127.0.0.1:8003**. Docker reserves ports 8000–8002; the combined launcher selects available ports and configures the proxy automatically. A separate built-app test server used port 8010 during verification.
 
 ## Mission-control redesign

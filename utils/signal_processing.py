@@ -35,7 +35,7 @@ def phase_rad(iq: np.ndarray) -> np.ndarray:
 
 
 def power_dbw(iq: np.ndarray) -> float:
-    """Mean signal power in dBW."""
+    """Mean power in dB relative to squared sample units (legacy function name)."""
     pwr = np.mean(iq[:, 0] ** 2 + iq[:, 1] ** 2)
     return 10.0 * np.log10(pwr + 1e-30)
 
@@ -80,73 +80,8 @@ def compute_spectrogram(
     return freqs, times, Zxx_db
 
 
-def _apsk_refs(n1: int, n2: int, r1: float, r2: float) -> np.ndarray:
-    """Generate 2-ring APSK reference constellation."""
-    ring1 = np.array(
-        [[r1 * np.cos(2 * np.pi * k / n1), r1 * np.sin(2 * np.pi * k / n1)]
-         for k in range(n1)],
-        dtype=np.float32,
-    )
-    ring2 = np.array(
-        [[r2 * np.cos(2 * np.pi * k / n2 + np.pi / n2),
-          r2 * np.sin(2 * np.pi * k / n2 + np.pi / n2)]
-         for k in range(n2)],
-        dtype=np.float32,
-    )
-    combined = np.vstack([ring1, ring2])
-    return combined / np.sqrt(np.mean(np.sum(combined**2, axis=1)))
+from utils.modulation import CONSTELLATION_REFS, constellation, canonical_modulation, map_bits, frequency_modulate
 
-
-# ──────────────────────────────────────────────────────────────────────────────
-# Theoretical constellation reference points
-# ──────────────────────────────────────────────────────────────────────────────
-
-CONSTELLATION_REFS: dict[str, np.ndarray] = {
-    "BPSK": np.array([[-1, 0], [1, 0]], dtype=np.float32),
-    "QPSK": np.array(
-        [[1, 1], [-1, 1], [-1, -1], [1, -1]], dtype=np.float32
-    ) / np.sqrt(2),
-    "8PSK": np.array(
-        [[np.cos(k * np.pi / 4), np.sin(k * np.pi / 4)] for k in range(8)],
-        dtype=np.float32,
-    ),
-    "8-PSK": np.array(
-        [[np.cos(k * np.pi / 4), np.sin(k * np.pi / 4)] for k in range(8)],
-        dtype=np.float32,
-    ),
-    "QAM16": np.array(
-        [
-            [i, q]
-            for i in [-3, -1, 1, 3]
-            for q in [-3, -1, 1, 3]
-        ],
-        dtype=np.float32,
-    ) / np.sqrt(10),
-    "16-QAM": np.array(
-        [
-            [i, q]
-            for i in [-3, -1, 1, 3]
-            for q in [-3, -1, 1, 3]
-        ],
-        dtype=np.float32,
-    ) / np.sqrt(10),
-    "16APSK": _apsk_refs(4, 12, r1=1.0, r2=2.53),
-    "16-APSK": _apsk_refs(4, 12, r1=1.0, r2=2.53),
-    "32APSK": np.array([[r * np.cos(2*np.pi*k/n + offset), r * np.sin(2*np.pi*k/n + offset)]
-                         for n, r, offset in [(4, 1., 0.), (12, 2.53, np.pi/12), (16, 4.3, 0.)]
-                         for k in range(n)], dtype=np.float32),
-    # Continuous-phase FSK schemes do not have a discrete symbol constellation.
-    "GMSK": np.empty((0, 2), dtype=np.float32),
-    "BFSK": np.empty((0, 2), dtype=np.float32),
-}
-CONSTELLATION_REFS["32APSK"] /= np.sqrt(np.mean(np.sum(CONSTELLATION_REFS["32APSK"]**2, axis=1)))
-CONSTELLATION_REFS["32-APSK"] = CONSTELLATION_REFS["32APSK"]
-
-
-
-# ──────────────────────────────────────────────────────────────────────────────
-# Synthetic I/Q signal generation
-# ──────────────────────────────────────────────────────────────────────────────
 
 def _rrc_filter(num_taps: int, sps: int, alpha: float) -> np.ndarray:
     """Root-Raised Cosine FIR filter coefficients."""
@@ -169,139 +104,104 @@ def _rrc_filter(num_taps: int, sps: int, alpha: float) -> np.ndarray:
     return h
 
 
+def add_awgn(signal: np.ndarray, snr_db: float, rng: np.random.Generator) -> tuple[np.ndarray, np.ndarray]:
+    if not np.isfinite(snr_db) or not -100 <= snr_db <= 300:
+        raise ValueError('SNR must be finite and between -100 and 300 dB.')
+    power = float(np.mean(np.abs(signal)**2))
+    noise = np.sqrt(power * 10**(-snr_db/10) / 2) * (rng.standard_normal(len(signal)) + 1j*rng.standard_normal(len(signal)))
+    return signal + noise, noise
+
+
 def generate_iq_signal(
-    modulation: str,
-    num_samples: int = 128,
-    sps: int = 8,
-    snr_db: float = 10.0,
-    rrc_alpha: float = 0.35,
-    doppler_hz: float = 0.0,
-    cfo_hz: float = 0.0,
-    rician_k: float = 0.0,
-    twta_alpha_a: float = 0.0,
-    phase_noise_std: float = 0.0,
-    rng_seed: int | None = None,
-    rrc_enabled: bool = True,
-    rician_enabled: bool = False,
-    twta_drive: float = 1.0,
-) -> np.ndarray:
+    modulation: str, num_samples: int = 128, sps: int = 8, snr_db: float = 10., rrc_alpha: float = .35,
+    doppler_hz: float = 0., cfo_hz: float = 0., rician_k: float = 0., twta_alpha_a: float = 0.,
+    phase_noise_std: float = 0., rng_seed: int | None = None, rrc_enabled: bool = True,
+    rician_enabled: bool | None = None, twta_drive: float = 1., sample_rate: float = 1.,
+    gaussian_bt: float = .3, bfsk_deviation_hz: float | None = None, continuous_phase: bool = True,
+    apsk_radii=None, apsk_offsets=None, phase_noise_mode: str = 'iid', fading_block_samples: int = 1,
+    normalize_output: bool = True, return_metadata: bool = False,
+):
+    """Seeded baseband transmitter → TWTA → flat fading → phase error → CFO/Doppler → AWGN.
+
+    Frequencies use Hz (cycles/sample when sample_rate=1). Phase noise is either
+    IID phase jitter or a Wiener phase walk with the configured per-sample increment σ.
+    Output normalization is explicit; pre-normalization power stages are returned
+    on request so RMS calibration cannot be mistaken for conserved amplifier gain.
     """
-    Generate a synthetic baseband I/Q signal with optional channel impairments.
-
-    Parameters
-    ----------
-    modulation : one of BPSK | QPSK | 8PSK | QAM16 | 16APSK | 32APSK | GMSK | BFSK
-    num_samples : number of output time samples (default 128 to match CNN input)
-    sps         : samples per symbol (used for RRC shaping)
-    snr_db      : additive white Gaussian noise level in dB
-    rrc_alpha   : roll-off factor for Root-Raised Cosine pulse shaping
-    doppler_hz  : normalised Doppler frequency (0–0.5) simulating LEO satellite motion
-    cfo_hz      : normalised carrier frequency offset
-    rician_k    : Rician K-factor (0 = Rayleigh, >10 ≈ AWGN/LOS channel)
-    twta_alpha_a: Saleh AM/AM gain compression (0 = linear, 0.5 typical TWTA)
-    phase_noise_std: standard deviation of additive phase noise (radians)
-    rng_seed    : optional random seed for reproducibility
-
-    Returns
-    -------
-    iq : np.ndarray, shape (num_samples, 2)  I=[:,0], Q=[:,1]
-    """
-    if num_samples < 16 or num_samples > 65536 or not 1 <= sps <= 32:
-        raise ValueError("Invalid signal length or samples per symbol")
-    if not 0 < rrc_alpha <= 1 or not np.isfinite(snr_db):
-        raise ValueError("Invalid roll-off or SNR")
-    rng = np.random.default_rng(rng_seed)
-    num_symbols = int(np.ceil(num_samples / sps)) + 16  # extra for filter settling
-
-    mod = modulation.upper().replace("-", "").replace("_", "")
-
-    # ── 1. Symbol generation ─────────────────────────────────────────
-    if mod in ("BPSK", "GMSK", "BFSK"):
-        bits = rng.integers(0, 2, size=num_symbols)
-        symbols = (2 * bits - 1).astype(complex)
-
-    elif mod == "QPSK":
-        bits = rng.integers(0, 2, size=(num_symbols, 2))
-        symbols = ((2 * bits[:, 0] - 1) + 1j * (2 * bits[:, 1] - 1)) / np.sqrt(2)
-
-    elif mod == "8PSK":
-        idx = rng.integers(0, 8, size=num_symbols)
-        angles = idx * np.pi / 4
-        symbols = np.exp(1j * angles)
-
-    elif mod in ("QAM16", "16QAM"):
-        levels = np.array([-3, -1, 1, 3])
-        i_sym = rng.choice(levels, size=num_symbols)
-        q_sym = rng.choice(levels, size=num_symbols)
-        symbols = (i_sym + 1j * q_sym) / np.sqrt(10)
-
-    elif mod in ("16APSK", "32APSK"):
-        refs = CONSTELLATION_REFS[mod]
-        chosen = refs[rng.integers(0, len(refs), size=num_symbols)]
-        symbols = chosen[:, 0] + 1j * chosen[:, 1]
-
+    if not isinstance(num_samples, (int, np.integer)) or not 16 <= num_samples <= 65536 or not isinstance(sps, (int, np.integer)) or not 1 <= sps <= 32:
+        raise ValueError('Invalid signal length or samples per symbol.')
+    values = [rrc_alpha, sample_rate, doppler_hz, cfo_hz, rician_k, phase_noise_std, twta_drive, twta_alpha_a]
+    if not np.isfinite(values).all() or not 0 < rrc_alpha <= 1 or sample_rate <= 0 or min(rician_k, phase_noise_std, twta_drive, twta_alpha_a) < 0:
+        raise ValueError('Invalid channel parameters, roll-off or sample rate.')
+    if phase_noise_mode not in ['iid', 'wiener'] or not isinstance(fading_block_samples, (int, np.integer)) or fading_block_samples < 1:
+        raise ValueError('Invalid phase-noise mode or fading block length.')
+    offset = doppler_hz + cfo_hz
+    if abs(offset) > sample_rate/2: raise ValueError('Combined carrier offset exceeds Nyquist.')
+    mod = canonical_modulation(modulation)
+    refs = constellation(mod, apsk_radii, apsk_offsets)
+    if mod in ['GMSK', 'BFSK']:
+        deviation = sample_rate/(4*sps) if mod == 'GMSK' or bfsk_deviation_hz is None else bfsk_deviation_hz
+        if abs(offset) + deviation >= sample_rate/2: raise ValueError('FSK frequency states plus carrier offset exceed Nyquist.')
+    # Independent streams make controlled channel comparisons reproducible.
+    symbol_seed, fading_seed, phase_seed, noise_seed = np.random.SeedSequence(rng_seed).spawn(4)
+    rng = np.random.default_rng(symbol_seed)
+    guard_symbols = max(8, int(np.ceil(.8/gaussian_bt))) if mod == 'GMSK' else 8
+    symbols_count = int(np.ceil(num_samples/sps)) + 2*guard_symbols
+    if mod in ['GMSK', 'BFSK']:
+        bits = rng.integers(0, 2, size=symbols_count)
+        shaped = frequency_modulate(bits, sps, sample_rate, deviation, gaussian_bt if mod == 'GMSK' else None, continuous_phase)
     else:
-        raise ValueError(f"Unsupported modulation: {modulation}")
-
-    if mod in ("GMSK", "BFSK"):
-        # CPFSK: h=0.5, deviation ±Rs/4. GMSK smooths the NRZ
-        # frequency pulse with a Gaussian lowpass (BT=0.3).
-        nrz = np.repeat(symbols.real, sps)
-        if mod == "GMSK":
-            t = np.arange(-4*sps, 4*sps+1) / sps
-            g = np.exp(-2 * (np.pi * 0.3 * t)**2 / np.log(2))
-            nrz = np.convolve(nrz, g/g.sum(), mode="same")
-        shaped = np.exp(1j * np.cumsum(np.pi * nrz / (2*sps)))
-    elif rrc_enabled:
-        upsampled = np.zeros(len(symbols) * sps, dtype=complex)
-        upsampled[::sps] = symbols
-        h = _rrc_filter(num_taps=8*sps+1, sps=sps, alpha=rrc_alpha)
-        shaped = np.convolve(upsampled, h, mode="same")
-    else:
-        shaped = np.repeat(symbols, sps)
-    # Discard the initial pulse-shaping transient.
-    shaped = shaped[8*sps:8*sps + num_samples]
-
-    # ── 4. TWTA Saleh AM/AM distortion ───────────────────────────────
-    if twta_alpha_a > 0.0:
-        shaped_iq = np.column_stack((shaped.real, shaped.imag))
-        distorted = saleh_twta(shaped_iq * twta_drive, alpha_a=twta_alpha_a)
-        shaped = distorted[:, 0] + 1j*distorted[:, 1]
-
-    # ── 5. Rician fading ─────────────────────────────────────────────
-    if rician_enabled or rician_k > 0.0:
-        los = np.sqrt(rician_k / (rician_k + 1.0))
-        scatter_std = np.sqrt(0.5 / (rician_k + 1.0))
-        scatter = scatter_std * (rng.standard_normal(num_samples) + 1j * rng.standard_normal(num_samples))
-        channel = los + scatter
-        shaped = shaped * channel
-
-    # ── 6. Phase noise ────────────────────────────────────────────────
-    if phase_noise_std > 0.0:
-        pn = rng.normal(0, phase_noise_std, num_samples)
-        shaped = shaped * np.exp(1j * pn)
-
-    # ── 7. Doppler + CFO ─────────────────────────────────────────────
-    total_freq_offset = doppler_hz + cfo_hz
-    if total_freq_offset != 0.0:
-        n = np.arange(num_samples)
-        shaped = shaped * np.exp(1j * 2.0 * np.pi * total_freq_offset * n)
-
-    # ── 8. AWGN ──────────────────────────────────────────────────────
-    sig_power = np.mean(np.abs(shaped) ** 2)
-    noise_power = sig_power / (10.0 ** (snr_db / 10.0) + 1e-30)
-    noise = np.sqrt(noise_power / 2.0) * (
-        rng.standard_normal(num_samples) + 1j * rng.standard_normal(num_samples)
-    )
-    noisy = shaped + noise
-
-    # Normalise to unit power
-    final_power = np.mean(np.abs(noisy) ** 2)
-    if final_power > 0:
-        noisy /= np.sqrt(final_power)
-
-    iq = np.stack([noisy.real, noisy.imag], axis=-1).astype(np.float32)
-    return iq
+        width = int(np.log2(len(refs)))
+        bits = rng.integers(0, 2, size=symbols_count * width)
+        symbols = map_bits(bits, mod, apsk_radii, apsk_offsets)
+        if rrc_enabled:
+            up = np.zeros(len(symbols)*sps, dtype=complex); up[::sps] = symbols
+            shaped = np.convolve(up, _rrc_filter(8*sps+1, sps, rrc_alpha), mode='same')
+        else: shaped = np.repeat(symbols, sps)
+    shaped = shaped[guard_symbols*sps:guard_symbols*sps+num_samples]
+    tx_gain = 1/np.sqrt(np.mean(np.abs(shaped)**2))
+    shaped *= tx_gain  # transmitter RMS calibration, before the channel
+    power = lambda z: float(np.mean(np.abs(z)**2))
+    stages = {'transmitter': power(shaped)}
+    if twta_alpha_a > 0 and twta_drive > 0:
+        distorted = saleh_twta(np.column_stack((shaped.real, shaped.imag))*twta_drive, alpha_a=twta_alpha_a)
+        shaped = distorted[:, 0].astype(float) + 1j*distorted[:, 1]
+    stages['afterTwta'] = power(shaped)
+    fading = rician_k > 0 if rician_enabled is None else rician_enabled
+    if fading:
+        rng_fade = np.random.default_rng(fading_seed)
+        blocks = int(np.ceil(num_samples/fading_block_samples))
+        scatter = (rng_fade.standard_normal(blocks) + 1j*rng_fade.standard_normal(blocks))/np.sqrt(2*(rician_k+1))
+        channel = np.repeat(np.sqrt(rician_k/(rician_k+1)) + scatter, fading_block_samples)[:num_samples]
+        shaped *= channel
+    stages['afterFading'] = power(shaped)
+    if phase_noise_std > 0:
+        angles = np.random.default_rng(phase_seed).normal(0, phase_noise_std, num_samples)
+        if phase_noise_mode == 'wiener': angles = np.cumsum(angles)
+        shaped *= np.exp(1j*angles)
+    shaped *= np.exp(2j*np.pi*offset*np.arange(num_samples)/sample_rate)
+    noisy, noise = add_awgn(shaped, snr_db, np.random.default_rng(noise_seed))
+    stages['beforeOutputScale'] = power(noisy)
+    gain = 1/np.sqrt(stages['beforeOutputScale']) if normalize_output and stages['beforeOutputScale'] > 0 else 1.
+    noisy *= gain
+    iq = np.column_stack((noisy.real, noisy.imag)).astype(np.float32)
+    metadata = {'channelOrder': ['transmitter', 'TWTA', 'flat Rician/Rayleigh fading', 'phase noise', 'CFO + Doppler', 'AWGN', 'output amplitude policy'],
+                'pulseShaping':'Gaussian continuous-phase' if mod=='GMSK' else 'BFSK frequency states' if mod=='BFSK' else 'RRC' if rrc_enabled else 'rectangular symbol hold',
+                'rrcApplied':bool(rrc_enabled and len(refs)), 'fadingApplied':bool(fading), 'twtaApplied':bool(twta_alpha_a>0 and twta_drive>0),
+                'powerStages': stages, 'outputGain': float(gain), 'transmitterGain': float(tx_gain),
+                'outputPowerPolicy': 'unit-rms' if normalize_output else 'preserve-channel-gain',
+                'requestedSnrDb': snr_db, 'realizedSnrDb': float(10*np.log10(max(power(shaped), 1e-300)/max(power(noise), 1e-300))),
+                'symbolRate': sample_rate/sps, 'filterGroupDelaySamples': (max(4,int(np.ceil(.8/gaussian_bt)))*sps if mod == 'GMSK' else 4*sps if rrc_enabled and len(refs) else 0),
+                'filterDelayPolicy':'Centered FIR convolution with guarded source symbols; nominal causal delay is compensated.',
+                'phaseNoiseUnits':'radians per sample increment' if phase_noise_mode == 'wiener' else 'radians (independent jitter)',
+                'discardedGuardSamples': guard_symbols*sps, 'mapping': 'Natural-binary index, MSB first; educational APSK, rectangular 8×4 32-QAM; no DVB-S2 claim',
+                'fadingModel': f'Independent flat fading per {fading_block_samples} samples' if fading else 'bypassed',
+                'referenceNote': 'Transmitter symbol table. Pulse shaping and channel effects move received samples away from ideal symbols.',
+                'reference': (refs * (tx_gain * gain if not rrc_enabled else gain)).tolist()}
+    if mod in ['GMSK', 'BFSK']:
+        metadata.update(frequencyDeviationHz=deviation, modulationIndex=2*deviation*sps/sample_rate,
+                        phaseContinuous=mod == 'GMSK' or continuous_phase, gaussianBt=gaussian_bt if mod == 'GMSK' else None)
+    return (iq, metadata) if return_metadata else iq
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -318,7 +218,10 @@ def extract_features(iq: np.ndarray) -> dict[str, float | None]:
     phi = np.angle(s)
 
     def moment(function, values):
-        return float(function(values)) if np.std(values) > 1e-15 else None
+        scale = np.max(np.abs(values))
+        if scale == 0: return None
+        normalized = values / scale
+        return float(function(normalized)) if np.std(normalized) > 8*np.finfo(float).eps else None
 
     feats = {
         "I_Mean": float(np.mean(I)),
@@ -327,12 +230,15 @@ def extract_features(iq: np.ndarray) -> dict[str, float | None]:
         "Q_Std": float(np.std(Q)),
         "Amplitude_Mean": float(np.mean(A)),
         "Amplitude_Std": float(np.std(A)),
-        "Phase_Std_rad": float(np.std(phi)),
+        "Phase_Std_rad": float(np.std(phi[A > 0])) if np.any(A > 0) else None,
         "Kurtosis_I": moment(kurtosis, I),
         "Kurtosis_Q": moment(kurtosis, Q),
         "Skewness_I": moment(skew, I),
         "Skewness_Q": moment(skew, Q),
-        "Signal_Power_dBW": float(power_dbw(iq)),
+        "Signal_Power_dB_relative": float(power_dbw(iq)) if np.mean(A**2) > 0 else None,
+        "I_Variance": float(np.var(I)),
+        "Q_Variance": float(np.var(Q)),
+        "Crest_Factor": float(np.max(A) / np.sqrt(np.mean(A**2))) if np.mean(A**2) > 0 else None,
         "PAPR_dB": float(10 * np.log10(np.max(A ** 2) / np.mean(A ** 2))) if np.mean(A ** 2) > 0 else None,
     }
     return {k: v if v is not None and np.isfinite(v) else None for k, v in feats.items()}
@@ -344,8 +250,11 @@ def extract_features(iq: np.ndarray) -> dict[str, float | None]:
 
 def shannon_entropy(probs: np.ndarray) -> float:
     """H(p) = -sum p_i * log2(p_i).  Input: probability vector."""
-    p = np.clip(probs, 1e-12, 1.0)
-    return float(-np.sum(p * np.log2(p)))
+    p = np.asarray(probs,dtype=float)
+    if p.ndim != 1 or not len(p) or not np.isfinite(p).all() or np.any(p < 0) or not np.isclose(p.sum(),1,atol=1e-5):
+        raise ValueError('Entropy requires a finite normalized probability vector.')
+    positive = p[p > 0]
+    return float(-np.sum(positive*np.log2(positive)))
 
 
 # ──────────────────────────────────────────────────────────────────────────────
@@ -468,58 +377,45 @@ def simulate_orbit_pass(
     altitude_km: float = 550.0,
     carrier_freq_ghz: float = 29.5,
     max_elevation_deg: float = 78.0,
-) -> dict[str, np.ndarray | float | str]:
+) -> dict:
+    """Spherical circular-orbit demonstration with a rotating Earth and one station.
+
+    The closest-approach geometry fixes the requested peak elevation. Range rate,
+    Doppler, elevation and geographic track all use the SAME propagated vectors.
+    This is an educational two-body scenario, not a real spacecraft/TLE feed.
     """
-    Simulates a 10-minute LEO ground station overflight (e.g. Starlink or Earth Observation satellite).
-    Computes elevation, distance, Doppler frequency curve, and orbital parameters.
-    """
-    # Earth physical constants
-    R_E = 6378.137  # Earth radius in km
-    GM = 398600.4418  # Earth gravitational constant km^3 / s^2
-    c_kms = 299792.458  # Speed of light in km/s
-
-    # Orbital mechanics
-    r_orbit = R_E + altitude_km
-    v_orbit = np.sqrt(GM / r_orbit)  # ~7.6 km/s for LEO
-    period_min = 2 * np.pi * np.sqrt(r_orbit**3 / GM) / 60.0
-
-    # 10 minute pass window (-300s to +300s)
-    t = np.linspace(-300, 300, 201)
-
-    # Angular distance traveled along ground track
-    omega_orbit = v_orbit / r_orbit
-    theta = omega_orbit * t  # radians
-
-    # Distance to ground station (approximation based on max elevation geometry)
-    min_dist = altitude_km / np.sin(np.radians(max_elevation_deg))
-    dist = np.sqrt(min_dist**2 + (v_orbit * t)**2)
-
-    # Line of sight velocity: v_los = d(dist)/dt
-    v_los = (v_orbit**2 * t) / np.maximum(dist, 1e-6)
-
-    # Doppler shift: df = - (v_los / c) * fc
-    carrier_hz = carrier_freq_ghz * 1e9
-    doppler_khz = -(v_los / c_kms) * (carrier_hz / 1e3)
-
-    # Elevation angle (degrees)
-    elev_deg = np.degrees(np.arctan2(altitude_km, np.abs(v_orbit * t) + 1e-6))
-    elev_deg = np.clip(elev_deg * (max_elevation_deg / 90.0), 0.0, 90.0)
-
-    # Simulated ground track (Latitude / Longitude trace passing over ground station)
-    ground_station = {"name": "Svalbard Satellite Station (SGS)", "lat": 78.229, "lon": 15.407}
-    track_lats = ground_station["lat"] + (t / 300.0) * 12.0
-    track_lons = ground_station["lon"] - (t / 300.0) * 8.0
-
-    return {
-        "time_sec": t,
-        "elevation_deg": elev_deg,
-        "doppler_khz": doppler_khz,
-        "range_km": dist,
-        "v_orbit_kms": float(v_orbit),
-        "period_min": float(period_min),
-        "max_doppler_khz": float(np.max(np.abs(doppler_khz))),
-        "station": ground_station,
-        "track_lats": track_lats,
-        "track_lons": track_lons,
-    }
-
+    if not np.isfinite([altitude_km,carrier_freq_ghz,max_elevation_deg]).all() or altitude_km <= 0 or carrier_freq_ghz <= 0 or not 0 < max_elevation_deg <= 90:
+        raise ValueError('Altitude/carrier must be positive and peak elevation must be in (0,90].')
+    radius_earth,mu,c_kms=6378.137,398600.4418,299792.458
+    orbital_radius=radius_earth+altitude_km
+    omega=np.sqrt(mu/orbital_radius**3)
+    earth_omega=2*np.pi/86164.0905
+    station={'name':'Svalbard reference station (simulated pass)','lat':78.229,'lon':15.407}
+    latitude,longitude=np.radians([station['lat'],station['lon']])
+    up=np.array([np.cos(latitude)*np.cos(longitude),np.cos(latitude)*np.sin(longitude),np.sin(latitude)])
+    north=np.array([-np.sin(latitude)*np.cos(longitude),-np.sin(latitude)*np.sin(longitude),np.cos(latitude)])
+    east=np.array([-np.sin(longitude),np.cos(longitude),0.])
+    elevation=np.radians(max_elevation_deg)
+    closest=-radius_earth*np.sin(elevation)+np.sqrt(orbital_radius**2-radius_earth**2*np.cos(elevation)**2)
+    initial=radius_earth*up+closest*(np.sin(elevation)*up+np.cos(elevation)*north)
+    time=np.linspace(-300,300,201)
+    position=np.cos(omega*time)[:,None]*initial+np.sin(omega*time)[:,None]*orbital_radius*east
+    velocity=omega*(-np.sin(omega*time)[:,None]*initial+np.cos(omega*time)[:,None]*orbital_radius*east)
+    def spin(v,angle):
+        angle=np.asarray(angle)
+        return np.column_stack((v[:,0]*np.cos(angle)-v[:,1]*np.sin(angle),v[:,0]*np.sin(angle)+v[:,1]*np.cos(angle),v[:,2]))
+    ground=spin(np.tile(radius_earth*up,(len(time),1)),earth_omega*time)
+    ground_velocity=earth_omega*np.column_stack((-ground[:,1],ground[:,0],np.zeros(len(time))))
+    line=position-ground
+    distance=np.linalg.norm(line,axis=1)
+    range_rate=np.sum(line*(velocity-ground_velocity),axis=1)/distance
+    angles=np.degrees(np.arcsin(np.clip(np.sum(line*ground,axis=1)/(distance*radius_earth),-1,1)))
+    ecef=spin(position,-earth_omega*time)
+    track_lat=np.degrees(np.arcsin(np.clip(ecef[:,2]/orbital_radius,-1,1)))
+    track_lon=np.degrees(np.arctan2(ecef[:,1],ecef[:,0]))
+    doppler=-range_rate/c_kms*carrier_freq_ghz*1e6
+    return {'time_sec':time,'elevation_deg':angles,'doppler_khz':doppler,'range_km':distance,
+            'range_rate_kms':range_rate,'visible':angles>=0,'v_orbit_kms':float(np.sqrt(mu/orbital_radius)),
+            'period_min':float(2*np.pi/omega/60),'max_doppler_khz':float(np.max(abs(doppler))),
+            'station':station,'track_lats':track_lat,'track_lons':track_lon,
+            'model':'Simulated spherical two-body circular orbit; sidereal Earth rotation; no oblateness, perturbations or live ephemeris.'}
