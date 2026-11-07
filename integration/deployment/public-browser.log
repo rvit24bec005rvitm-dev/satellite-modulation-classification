@@ -1,0 +1,12 @@
+
+> satmodclass-frontend@1.0.0 test:e2e
+> playwright test e2e/mission-dashboard.spec.ts --grep mission dashboard renders real WebGL
+
+
+Running 1 test using 1 worker
+
+(node:98267) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 e2e/mission-dashboard.spec.ts:12:1 › mission dashboard renders real WebGL, geographical map, and honest data states (6.2s)
+
+  1 passed (11.8s)

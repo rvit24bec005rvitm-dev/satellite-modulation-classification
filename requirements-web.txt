@@ -1,0 +1,10 @@
+# Tested NumPy inference runtime; legacy Streamlit/training dependencies remain separate.
+numpy==2.5.3
+scipy==1.18.1
+scikit-learn==1.9.1
+joblib==1.6.0
+h5py==3.16.0
+fastapi==0.142.2
+uvicorn[standard]==0.54.0
+python-multipart==0.0.32
+python-dotenv==1.2.4

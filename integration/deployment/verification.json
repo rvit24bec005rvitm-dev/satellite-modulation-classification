@@ -1,0 +1,31 @@
+{
+  "url": "https://yacht-passenger-extension-tender.trycloudflare.com",
+  "health": {
+    "connected": true,
+    "modelId": "1d-cnn",
+    "backend": "NumPy Native Engine",
+    "error": null,
+    "version": "1.0.0"
+  },
+  "spaRoutes": 8,
+  "assets": 2,
+  "realClassification": "BPSK",
+  "generatedSignalClassification": true,
+  "validUploadMatchesDirect": true,
+  "invalidUpload": 422,
+  "evaluationSamples": 900,
+  "unknownApi": 404,
+  "sourceCommit": "414ddd721b687db870dbea6e6248377e8b44b070",
+  "verifiedAtUtc": "2026-11-07T12:08:58.172450+00:00",
+  "permanentProductionDeployment": false,
+  "hosting": "Temporary Cloudflare tunnel to a fresh local production server; available while the host and tunnel are running.",
+  "publicWebGlBrowser": {
+    "passed": 1,
+    "seconds": 11.8
+  },
+  "containerBuild": {
+    "local": "blocked: Docker Hub base-image metadata timed out",
+    "remote": "pending"
+  },
+  "permanentHostingConnection": "not connected"
+}

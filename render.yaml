@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: satmodclass
+    runtime: docker
+    plan: free
+    branch: main
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health

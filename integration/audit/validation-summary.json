@@ -44,7 +44,8 @@
     "originalTrainingDataProvided": false,
     "productionCalibrated": false,
     "productionOodValidated": false,
-    "windowsExecuted": false
+    "windowsExecuted": true,
+    "windowsFrontendExecuted": false
   },
   "currentDevelopment": {
     "frontend": "http://localhost:5173",
@@ -140,11 +141,43 @@
       "3.12"
     ],
     "compiledBrowserSuite": true,
-    "remoteExecutionObserved": false
+    "remoteExecutionObserved": true
   },
   "errorHandlingBeforeFix": {
     "unexpectedErrorStatus": 500,
     "allowedOriginHeader": null,
     "negativeContentLengthStatus": 200
+  },
+  "githubCi": {
+    "url": "https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/actions/runs/42370564582",
+    "commit": "414ddd721b687db870dbea6e6248377e8b44b070",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "name": "frontend",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "test (ubuntu-latest, 3.12)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "test (ubuntu-latest, 3.11)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "test (ubuntu-latest, 3.10)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "test (windows-latest, 3.12)",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
   }
 }

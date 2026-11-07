@@ -58,6 +58,15 @@ python scripts/serve.py
 
 This serves the compiled frontend and API together at **http://localhost:8000**. All eight frontend routes have a SPA fallback. Frontend hosting elsewhere must provide a history fallback and a backend URL. The development interface and API are intended for a trusted local environment; authentication and multi-user storage are not included.
 
+For deployment, the multi-stage Docker image builds React and serves it alongside the real NumPy/FastAPI API. It includes the supplied model, normalization statistics, evaluation files, demo data and experimental reports. Python web dependencies are pinned in `requirements-web.txt`; TensorFlow and legacy Streamlit are not needed for production CNN inference.
+
+```bash
+docker build -t satmodclass .
+docker run --rm -p 8000:8000 satmodclass
+```
+
+The service listens on `0.0.0.0` and the host-provided `PORT` (default 8000). `/api/health` verifies the actual CNN and normalization files. `railway.toml` and `render.yaml` configure Docker builds and health checks; connecting the repository to a hosting account is still required. After deployment, use the HTTPS URL returned by that provider and verify `/api/health` plus a real classification. A GitHub commit or temporary tunnel does not establish a permanent production deployment.
+
 The Overview includes an interactive, continuously rotating Earth with a restrained procedural galaxy, seeded stars and decorative constellation links. Earth stays the primary illuminated subject; the star patterns are scenery, not an astronomical catalog. Globe pause, reduced-motion preferences and hidden-tab handling also stop background drift.
 
 ## Workspaces
@@ -247,7 +256,7 @@ npm run build
 SATMOD_TEST_PRODUCTION=1 SATMOD_TEST_API_URL=http://127.0.0.1:8100 SATMOD_TEST_BASE_URL=http://127.0.0.1:8100 npm run test:e2e
 ```
 
-CI runs the Python suite on Linux (3.10–3.12) and Windows (3.12), then checks frontend types/lint/unit tests, real client contracts and the production build on Linux. Its Chromium job exercises the compiled application, enables software WebGL when no GPU is available, and retains failure traces/screenshots. These jobs are configured; local validation does not establish that the remote Windows/Linux jobs have passed.
+CI runs the Python suite on Linux (3.10–3.12) and Windows (3.12), then checks frontend types/lint/unit tests, real client contracts and the production build on Linux. Its Chromium job exercises the compiled application, enables software WebGL when no GPU is available, and retains failure traces/screenshots. [Remote run 42370564582](https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/actions/runs/42370564582) passed the Linux/Windows backend jobs (149 tests each), 35 frontend tests, 11 client contracts and 25 production Chromium scenarios. The container job added afterward builds the deployment image and runs real HTTP inference/upload smoke checks.
 
 Optional independent Keras parity check (requires TensorFlow + h5py in that interpreter):
 

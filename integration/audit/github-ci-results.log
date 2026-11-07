@@ -1,0 +1,7 @@
+frontend	Check frontend types, lint, routes, and components	2026-11-07T12:02:04.5236904Z ^[[2m      Tests ^[[22m ^[[1m^[[32m35 passed^[[39m^[[22m^[[90m (35)^[[39m
+frontend	Exercise real client-to-Python contracts	2026-11-07T12:02:07.9404973Z ^[[2m      Tests ^[[22m ^[[1m^[[32m11 passed^[[39m^[[22m^[[90m (11)^[[39m
+frontend	Exercise the compiled application in Chromium	2026-11-07T12:05:05.9618781Z   25 passed (2.3m)
+test (ubuntu-latest, 3.12)	Run unit test suite	2026-11-07T12:01:23.0312523Z ======================== 149 passed, 1 warning in 6.82s ========================
+test (ubuntu-latest, 3.11)	Run unit test suite	2026-11-07T12:01:20.3428951Z ======================== 149 passed, 1 warning in 6.53s ========================
+test (ubuntu-latest, 3.10)	Run unit test suite	2026-11-07T12:01:08.9932004Z ======================== 149 passed, 1 warning in 2.97s ========================
+test (windows-latest, 3.12)	Run unit test suite	2026-11-07T12:02:14.9372565Z ======================= 149 passed, 1 warning in 9.81s ========================

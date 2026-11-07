@@ -7,6 +7,20 @@ on:
     branches: ["main", "master"]
 
 jobs:
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build the deployable application image
+        run: docker build -t satmodclass:ci .
+      - name: Check the running image with real inference and uploads
+        run: |
+          docker run -d --name satmodclass-ci -p 127.0.0.1:8000:8000 satmodclass:ci
+          python scripts/check_deployment.py http://127.0.0.1:8000 --wait-seconds 90
+      - name: Show container logs
+        if: always()
+        run: docker logs satmodclass-ci || true
+
   test:
     runs-on: ${{ matrix.os }}
     strategy:
