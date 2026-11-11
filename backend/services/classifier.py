@@ -29,7 +29,10 @@ def stats():
 
 @lru_cache(maxsize=1)
 def model():
-    return ModelBackend.load(MODEL_PATH)
+    import hashlib
+    backend=ModelBackend.load(MODEL_PATH)
+    backend.artifact_sha256=hashlib.sha256(MODEL_PATH.read_bytes()).hexdigest()
+    return backend
 
 
 @lru_cache(maxsize=1)
@@ -72,4 +75,6 @@ def classify(iq: np.ndarray, source: str, fs: float = 1, start: int = 0) -> dict
               'source': source, 'sampleRate': fs, 'analysis': analyze(iq, fs), 'samples': rows(iq)}
     with LOCK:
         HISTORY.appendleft({k: result[k] for k in ['id', 'createdAt', 'source', 'predictedModulation', 'confidence', 'entropyBits', 'processingMs']})
+    from backend.services.workspace_store import save_analysis
+    save_analysis(result)
     return result

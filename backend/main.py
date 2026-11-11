@@ -22,7 +22,21 @@ from utils.signal_processing import generate_iq_signal, CONSTELLATION_REFS, simu
 logging.basicConfig(level=logging.INFO, format='%(message)s')
 logger = logging.getLogger('satmod')
 app = FastAPI(title='SatModClass — Satellite Signal Intelligence',version=VERSION)
+import threading
+IMPORT_SLOTS=threading.BoundedSemaphore(2)
 
+class WorkspaceAccess:
+    def __init__(self,app):self.app=app
+    async def __call__(self,scope,receive,send):
+        import os,hmac
+        if scope['type']=='http' and scope['path'].startswith('/api/') and scope['path']!='/api/health' and scope['method']!='OPTIONS':
+            expected=os.getenv('SATMOD_ACCESS_TOKEN','')
+            supplied=dict(scope.get('headers',[])).get(b'x-satmod-token',b'').decode('latin1')
+            if os.getenv('SATMOD_PUBLIC')=='1' and not expected:
+                return await JSONResponse(status_code=503,content={'detail':'Public workspace access is not configured.'})(scope,receive,send)
+            if expected and not hmac.compare_digest(supplied,expected):
+                return await JSONResponse(status_code=401,content={'detail':'Workspace access token required. Configure it in Settings.'})(scope,receive,send)
+        await self.app(scope,receive,send)
 
 class BodyLimit:
     """Bound both Content-Length and streamed/chunked bodies before parsing."""
@@ -30,7 +44,9 @@ class BodyLimit:
     async def __call__(self, scope, receive, send):
         if scope['type'] != 'http':
             return await self.app(scope, receive, send)
-        limit = MAX_UPLOAD_BYTES + 65536 if scope['path'].endswith('/upload') else 16*1024*1024
+        import os
+        limit = (int(os.getenv('SATMOD_CAPTURE_UPLOAD_BYTES',str(128*1024**2)))+131072 if scope['path']=='/api/workspace/captures'
+                 else MAX_UPLOAD_BYTES + 65536 if scope['path'].endswith('/upload') else 16*1024*1024)
         content_length = dict(scope.get('headers', [])).get(b'content-length')
         if content_length is not None:
             # HTTP Content-Length is decimal digits only, never a signed value.
@@ -41,6 +57,32 @@ class BodyLimit:
                 return await JSONResponse(status_code=400,content={'detail':'Invalid Content-Length.'})(scope,receive,send)
             if declared > limit:
                 return await JSONResponse(status_code=413,content={'detail':'Request body exceeds the configured size limit.'})(scope,receive,send)
+        # Managed imports are read/spooled by Starlette; bound their stream
+        # without accumulating a second large in-memory body.
+        if scope['path']=='/api/workspace/captures':
+            from tempfile import SpooledTemporaryFile
+            if not IMPORT_SLOTS.acquire(blocking=False):
+                return await JSONResponse(status_code=429,content={'detail':'Two capture imports are already active.'})(scope,receive,send)
+            try:
+                with SpooledTemporaryFile(max_size=1024**2) as spool:
+                    size=0
+                    while True:
+                        message=await receive()
+                        if message['type']=='http.disconnect':return
+                        chunk=message.get('body',b'');size+=len(chunk)
+                        if size>limit:return await JSONResponse(status_code=413,content={'detail':'External capture request exceeds its size limit.'})(scope,receive,send)
+                        spool.write(chunk)
+                        if not message.get('more_body',False):break
+                    spool.seek(0);remaining=size
+                    async def limited_receive():
+                        nonlocal remaining
+                        if remaining:
+                            data=spool.read(min(65536,remaining));remaining-=len(data)
+                            return {'type':'http.request','body':data,'more_body':remaining>0}
+                        return await receive()
+                    await self.app(scope,limited_receive,send)
+            finally:IMPORT_SLOTS.release()
+            return
         size, payload = 0, bytearray()
         while True:
             message = await receive()
@@ -61,11 +103,16 @@ class BodyLimit:
             return await receive()
         await self.app(scope,bounded_receive,send)
 app.add_middleware(BodyLimit)
-app.add_middleware(CORSMiddleware, allow_origins=CORS_ORIGINS,allow_credentials=False,allow_methods=['GET','POST'],allow_headers=['Content-Type'])
+app.add_middleware(WorkspaceAccess)
+app.add_middleware(CORSMiddleware, allow_origins=CORS_ORIGINS,allow_credentials=False,allow_methods=['GET','POST','DELETE'],allow_headers=['Content-Type','X-Satmod-Token'])
 
 @app.exception_handler(ValueError)
 async def invalid_input(request: Request, exc: ValueError):
     return JSONResponse(status_code=422,content={'detail':str(exc)})
+
+@app.exception_handler(KeyError)
+async def record_missing(request: Request,exc: KeyError):
+    return JSONResponse(status_code=404,content={'detail':'Managed record not found.'})
 
 @app.exception_handler(RequestValidationError)
 async def invalid_schema(request: Request, exc: RequestValidationError):
@@ -75,6 +122,7 @@ async def invalid_schema(request: Request, exc: RequestValidationError):
 async def internal_error(request: Request, exc: Exception):
     logger.exception(json.dumps({'event':'request_failed','path':request.url.path,'error':type(exc).__name__}))
     response = JSONResponse(status_code=500,content={'detail':'The signal service could not complete this request. Check the backend log.'})
+    if getattr(request.state,'request_id',None):response.headers['X-Request-ID']=request.state.request_id
     # Starlette's outer ServerErrorMiddleware creates this response outside the
     # normal CORS middleware. Apply the same configured origin policy here so
     # a separate-origin frontend can read the error without exposing details.
@@ -88,9 +136,12 @@ async def internal_error(request: Request, exc: Exception):
 
 @app.middleware('http')
 async def log_request(request: Request, call_next):
+    from uuid import uuid4
+    request_id=str(uuid4());request.state.request_id=request_id
     t0 = perf_counter()
     response = await call_next(request)
-    logger.info(json.dumps({'event':'request','method':request.method,'path':request.url.path,'status':response.status_code,'elapsedMs':round((perf_counter()-t0)*1000,2)}))
+    response.headers['X-Request-ID']=request_id
+    logger.info(json.dumps({'event':'request','requestId':request_id,'method':request.method,'path':request.url.path,'status':response.status_code,'elapsedMs':round((perf_counter()-t0)*1000,2)}))
     return response
 
 @app.get('/api/health',response_model=HealthStatus)
@@ -100,7 +151,8 @@ def health():
         svc.stats()
         return {'connected':True,'modelId':'1d-cnn','backend':backend.backend_name,'version':VERSION}
     except Exception as exc:
-        return JSONResponse(status_code=503,content={'connected':False,'modelId':'1d-cnn','error':str(exc),'version':VERSION})
+        logger.error(json.dumps({'event':'model_unavailable','error':type(exc).__name__}))
+        return JSONResponse(status_code=503,content={'connected':False,'modelId':'1d-cnn','error':'Model or training statistics unavailable; inspect backend logs.','version':VERSION})
 
 @app.get('/api/system/info')
 def system_info():
@@ -110,7 +162,7 @@ def system_info():
             'normalization':{'mean':mean,'std':std,'policy':'Preserve amplitude; training z-score only'},
             'defaultAmplitudeRms':float(std*np.sqrt(2)), 'maxUploadBytes':MAX_UPLOAD_BYTES,'maxSamples':65536,
             'generatorModulations':['BPSK','QPSK','16-QAM','32-QAM','8-PSK','16-APSK','32-APSK','GMSK','BFSK'],
-            'historyPolicy':'In-memory, most recent 100 classifications; clears on restart'}
+            'historyPolicy':'SQLite-backed single shared workspace; managed reports persist across restarts. Clear/delete through history controls.'}
 
 @app.get('/api/models')
 def models():
@@ -247,7 +299,8 @@ def benchmark(body: BenchmarkRequest):
 
 @app.get('/api/history')
 def history():
-    with svc.LOCK: return list(svc.HISTORY)
+    from backend.services.workspace_store import listing
+    return listing('analysis',100)['items']
 
 @app.get('/api/orbit')
 def orbit(altitudeKm: float = Query(550,ge=200,le=2000),carrierGhz: float = Query(8.4,gt=0,le=100),elevationDeg: float = Query(78,ge=5,le=90)):
@@ -256,6 +309,9 @@ def orbit(altitudeKm: float = Query(550,ge=200,le=2000),carrierGhz: float = Quer
 @app.post('/api/signal/audio')
 def audio(body: SignalRequest):
     return Response(generate_audio_waveform(from_rows(body.samples)),media_type='audio/wav')
+
+from backend.api.workspace import router as workspace_router
+app.include_router(workspace_router)
 
 # Optional single-origin production hosting after `npm run build`.
 import os

@@ -18,3 +18,4 @@ frontend/playwright-report
 integration
 .streamlit/secrets.toml
 *.log
+.satmod

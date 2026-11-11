@@ -7,6 +7,16 @@ on:
     branches: ["main", "master"]
 
 jobs:
+  runtime-security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.14"
+      - run: python -m pip install pip-audit
+      - run: python -m pip_audit -r requirements-web.txt
+
   container:
     runs-on: ubuntu-latest
     steps:
@@ -14,8 +24,10 @@ jobs:
       - name: Build the deployable application image
         run: docker build -t satmodclass:ci .
       - name: Check the running image with real inference and uploads
+        env:
+          SATMOD_ACCESS_TOKEN: ci-only-local-container-key
         run: |
-          docker run -d --name satmodclass-ci -p 127.0.0.1:8000:8000 satmodclass:ci
+          docker run -d --name satmodclass-ci -e SATMOD_ACCESS_TOKEN -p 127.0.0.1:8000:8000 satmodclass:ci
           python scripts/check_deployment.py http://127.0.0.1:8000 --wait-seconds 90
       - name: Show container logs
         if: always()
@@ -59,7 +71,11 @@ jobs:
           pytest tests/ -v
 
   frontend:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -73,6 +89,9 @@ jobs:
       - name: Install frontend dependencies
         working-directory: frontend
         run: npm ci
+      - name: Audit frontend production dependencies
+        working-directory: frontend
+        run: npm audit --omit=dev
       - name: Check frontend types, lint, routes, and components
         working-directory: frontend
         run: |
@@ -103,7 +122,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: production-browser-diagnostics
+          name: production-browser-diagnostics-${{ matrix.os }}
           path: |
             frontend/playwright-report/
             frontend/test-results/

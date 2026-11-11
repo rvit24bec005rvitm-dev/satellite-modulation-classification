@@ -1,3 +1,5 @@
+import { ExternalWorkspace } from "@/components/external-workspace";
+import { PersistentHistory } from "@/components/persistent-history";
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
@@ -117,6 +119,8 @@ export function ClassifierPage() {
   const displayedResult =
     result &&
     result.source === capture?.source &&
+    result.samples === capture.samples &&
+    result.sampleRate === sampleRate &&
     Number(result.preprocessing["windowStart"]) === windowStart
       ? result
       : null;
@@ -128,6 +132,8 @@ export function ClassifierPage() {
     ) ?? [];
   return (
     <div className="space-y-4">
+      <ExternalWorkspace />
+      <PersistentHistory />
       <Message error={error ?? classify.error} />
       {unsupported && (
         <p

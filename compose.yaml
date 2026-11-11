@@ -1,0 +1,14 @@
+services:
+  satmodclass:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      SATMOD_ACCESS_TOKEN: ${SATMOD_ACCESS_TOKEN:?Set a long random workspace token}
+      SATMOD_PUBLIC: "1"
+      SATMOD_DATA_DIR: /data
+    volumes:
+      - satmod-data:/data
+    restart: unless-stopped
+volumes:
+  satmod-data:

@@ -1,3 +1,4 @@
+import { ExternalEvaluation } from "@/components/external-evaluation";
 import { useState } from "react";
 import { useEvaluation } from "@/hooks/use-satmod";
 import { downloadJson, downloadBlob } from "@/lib/satmod-api";
@@ -17,6 +18,7 @@ export function EvaluationPage() {
   const data = query.data;
   return (
     <div className="space-y-5">
+      <ExternalEvaluation />
       <Message loading={query.isPending} error={query.error} />
       {data && (
         <>

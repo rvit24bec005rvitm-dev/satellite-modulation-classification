@@ -2,6 +2,7 @@
 import argparse
 import json
 import math
+import os
 import re
 import time
 from urllib.error import HTTPError, URLError
@@ -16,7 +17,9 @@ def check(base_url: str, wait_seconds: float = 0) -> dict:
 
     def request(path, data=None, content_type='application/json'):
         payload=json.dumps(data).encode() if data is not None and content_type=='application/json' else data
-        req=Request(base_url+path,data=payload,headers={'Content-Type':content_type} if payload is not None else {})
+        headers={'Content-Type':content_type} if payload is not None else {}
+        if os.getenv('SATMOD_ACCESS_TOKEN'):headers['X-Satmod-Token']=os.environ['SATMOD_ACCESS_TOKEN']
+        req=Request(base_url+path,data=payload,headers=headers)
         with urlopen(req,timeout=30) as response:
             return response.read(),response.headers.get('Content-Type','')
 

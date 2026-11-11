@@ -1,3 +1,5 @@
+import { ExternalWorkspace } from "@/components/external-workspace";
+import { PersistentHistory } from "@/components/persistent-history";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useSignal, useAnalysis, useSamples } from "@/hooks/use-satmod";
@@ -56,6 +58,8 @@ export function IntelligencePage() {
   };
   return (
     <div className="space-y-5">
+      <ExternalWorkspace />
+      <PersistentHistory />
       <Surface className="p-4">
         <SectionHeading title="Capture selection" note="FULL RESOLUTION" />
         <div className="grid gap-4 sm:grid-cols-[1fr_auto_auto]">

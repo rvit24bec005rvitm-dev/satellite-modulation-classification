@@ -7,3 +7,6 @@ services:
     dockerfilePath: ./Dockerfile
     dockerContext: .
     healthCheckPath: /api/health
+    envVars:
+      - key: SATMOD_ACCESS_TOKEN
+        sync: false

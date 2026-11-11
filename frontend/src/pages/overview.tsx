@@ -1,3 +1,4 @@
+import { operationsApi } from "@/lib/operations-api";
 import { lazy, Suspense, useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { useIsMutating, useQuery } from "@tanstack/react-query";
@@ -75,6 +76,12 @@ export function OverviewPage() {
   const health = useHealth(),
     info = useInfo(),
     evaluation = useEvaluation();
+  const workspace = useQuery({
+    queryKey: ["workspace-status"],
+    queryFn: () => operationsApi.status(),
+    refetchInterval: 5000,
+    retry: 1,
+  });
   const online = health.isSuccess && health.data.connected;
   const { capture, classification } = useSignal();
   const history = useQuery({
@@ -420,7 +427,10 @@ export function OverviewPage() {
                 : (health.error?.message ?? "Connecting to inference service…")}
             </span>
             <span>
-              T+ {elapsedLabel(clock.seconds)} <small>SIM / 30×</small>
+              {workspace.data
+                ? `${workspace.data.captures} captures · ${workspace.data.runningJobs} jobs`
+                : "Workspace status unavailable"}{" "}
+              · T+ {elapsedLabel(clock.seconds)} <small>SIM / 30×</small>
             </span>
           </div>
         </Panel>

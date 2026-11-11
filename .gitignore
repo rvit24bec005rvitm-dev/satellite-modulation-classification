@@ -65,3 +65,4 @@ integration/pre-integration-working-tree.patch
 
 # Optional isolated ML training environments
 .venv-*/
+.satmod/

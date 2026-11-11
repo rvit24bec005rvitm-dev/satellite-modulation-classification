@@ -75,6 +75,18 @@ export function SettingsPage() {
         </p>
       </Surface>
       <Surface className="p-5">
+        <Field label="Workspace access token (session only)">
+          <input
+            className="control"
+            type="password"
+            autoComplete="off"
+            defaultValue={sessionStorage.getItem("satmod-access-token:" + apiBase()) ?? ""}
+            onChange={(e) => {
+              sessionStorage.setItem("satmod-access-token:" + apiBase(), e.target.value);
+              void client.invalidateQueries();
+            }}
+          />
+        </Field>
         <SectionHeading title="Workspace preferences" note="LOCAL TO THIS BROWSER" />
         <Field label="Theme">
           <select

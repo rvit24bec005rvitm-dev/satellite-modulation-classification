@@ -343,6 +343,10 @@ export async function request<T>(path: string, options: RequestInit = {}): Promi
       ...options,
       headers: {
         ...(options.body instanceof FormData ? {} : { "Content-Type": "application/json" }),
+        "X-Satmod-Token":
+          typeof sessionStorage === "undefined"
+            ? ""
+            : (sessionStorage.getItem("satmod-access-token:" + apiBase()) ?? ""),
         ...options.headers,
       },
       signal: options.signal
