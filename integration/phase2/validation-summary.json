@@ -50,5 +50,32 @@
   ],
   "globeSourceUnchanged": true,
   "protectedNativeRestart": "passed",
-  "draftPr": "https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/pull/1"
+  "draftPr": "https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/pull/1",
+  "firstPhase2WindowsBrowser": {
+    "runId": 43055972786,
+    "source": "41ebc4f",
+    "passed": 28,
+    "status": "success"
+  },
+  "containerCi": {
+    "runId": 43057384206,
+    "source": "d48a17b",
+    "status": "success",
+    "protectedManagedCapture": true,
+    "batchWindows": 4,
+    "pdf": true,
+    "persistedAfterContainerRecreation": true
+  },
+  "remotePythonMatrix": {
+    "source": "d48a17b",
+    "linux": [
+      "3.10",
+      "3.11",
+      "3.12"
+    ],
+    "windows": [
+      "3.12"
+    ],
+    "status": "success"
+  }
 }

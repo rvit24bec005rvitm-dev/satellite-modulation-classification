@@ -33,9 +33,9 @@ Branch: `feat/phase2-signal-operations`. Starting source: `70c411b`. The working
 | Resource limits and observability | COMPLETE AND VERIFIED | Streamed disk spooling, two import slots, file/record/quota bounds, request IDs, structured logs, safe error responses, job state/counts and real inference summaries. |
 | Production dependencies | COMPLETE AND VERIFIED | Production npm audit: zero findings after removing unused Zod and updating Seroval. Resolved Python web audit: zero findings over 30 dependencies. |
 | Full development-tool remediation | PARTIALLY IMPLEMENTED | All-dependency npm audit still reports 14 development-tool findings (10 moderate, 2 high, 2 critical). Test/build toolchain upgrades were not forced into this feature phase; test servers remain local. Do not interpret runtime audit as a complete security guarantee. |
-| Docker persistence/security | PARTIALLY IMPLEMENTED pending current-image execution | Non-root image, `/data` volume, fail-closed public mode, Compose named volume, secret configuration, pinned dependencies and health check. Local image download exceeded the initial 180-second build budget. The first Phase 2 remote image build and original inference/upload smoke passed on source `41ebc4f`; the strengthened volume-recreation workflow is pending current CI. |
+| Docker persistence/security | COMPLETE AND VERIFIED | Non-root image, `/data` volume, fail-closed public mode, Compose named volume, secret configuration, pinned dependencies and health check. Local image download exceeded the initial 180-second build budget. Remote Linux source `d48a17b` built the current image and passed real inference/upload checks, protected capture import/batch/PDF checks, then removed/recreated the container and reloaded the same named-volume data. This is image execution evidence, separate from permanent hosting. |
 | Permanent hosting | BLOCKED | No authenticated hosting connection. Render/Railway configuration is prepared. Free/ephemeral host filesystems do not guarantee persistence across redeployments; provision a persistent volume or keep operation local. |
-| Windows browser | PARTIALLY IMPLEMENTED pending current CI | Added a real Windows browser matrix entry; configuration is not execution evidence. Previous Windows backend verification remains separate. |
+| Windows browser | COMPLETE AND VERIFIED for initial Phase 2 source | Windows source `41ebc4f`: 40 frontend, 11 contracts, build and 28 production Chromium tests passed. Final source `d48a17b` is being rechecked separately. This is Windows Chromium execution, not a macOS/Linux browser substitute. |
 
 ## Architecture and storage
 
@@ -78,7 +78,7 @@ Existing endpoints remain. Protected operations require `X-Satmod-Token` when `S
 - Original weights/statistics/demos/evaluation files and prior audit screenshots were preserved; current screenshots and logs are under `integration/phase2/`.
 - Browser test authoring failures (missing jsdom environment and unawaited download path) were corrected; no production predictions or regression assertions were weakened.
 
-First Phase 2 remote checks on `41ebc4f` passed Python on Linux 3.10/3.11/3.12 and Windows 3.12, the image smoke and the resolved Python security audit. Browser jobs and the strengthened follow-up source remain pending until observed. A protected native server was also restarted and its capture, batch output and PDF successfully reloaded using `scripts/check_workspace_deployment.py`; this native check is separate from container volume evidence.
+First Phase 2 remote checks on `41ebc4f` passed Python on Linux 3.10/3.11/3.12 and Windows 3.12, the image smoke, resolved Python security audit, and 28 actual Windows Chromium scenarios. Follow-up `d48a17b` passed all four Python matrix jobs, the security audit and the strengthened named-volume recreation/image check; final browser jobs remain pending until observed. A protected native server was also restarted and its capture, batch output and PDF successfully reloaded using `scripts/check_workspace_deployment.py`; this native check is separate from container volume evidence.
 
 ## Performance
 
@@ -96,7 +96,7 @@ npm --prefix frontend ci
 python scripts/dev.py
 ```
 
-The launcher prints available URLs. The current Phase 2 development session uses UI `http://localhost:5192`, API `http://127.0.0.1:8142`; restart it after backend edits. For explicit independent servers, set `SATMOD_API_PORT` / `SATMOD_FRONTEND_PORT` on the combined launcher. Persistent data defaults to `.satmod/`; do not commit it.
+The launcher prints available URLs. Use the URLs printed by the launcher; it selects free ports when defaults are occupied. Restart it after backend edits. For explicit independent servers, set `SATMOD_API_PORT` / `SATMOD_FRONTEND_PORT` on the combined launcher. Persistent data defaults to `.satmod/`; do not commit it.
 
 Production, same-origin native server:
 
@@ -138,3 +138,11 @@ npm --prefix frontend run build
 # and SATMOD_TEST_API_URL variables documented in frontend/playwright.config.ts.
 python scripts/profile_workspace.py
 ```
+
+## Source isolation
+
+Another active editor changed the shared checkout to `feat/phase2-readiness-followup` during final testing. Final Phase 2 verification was isolated in a separate Git worktree on `feat/phase2-signal-operations`; the other checkout and its uncommitted work were preserved. The review branch is available in draft PR #1. Main was not changed by this phase.
+
+## CI browser infrastructure correction
+
+The first Linux browser job failed before browser execution: optional font packages could not be fetched because `azure.archive.ubuntu.com` DNS resolution failed. Application types/tests/contracts/build had passed. Linux CI now records and uses the runner’s preinstalled Google Chrome; Windows installs Playwright Chromium without a Linux package-manager step. The full browser assertions are retained. This is an infrastructure correction, not a suppressed application test. The final run must pass before claiming current Linux browser verification.
