@@ -90,6 +90,8 @@ def import_capture(upload, options: ImportOptions, sigmf: dict | None=None) -> d
                     def slice_iq(start,end):return mapped[:,start:end].T if transposed else mapped[start:end]
                 detected_rate=1
             else:
+                from backend.core.config import MAX_UPLOAD_BYTES
+                if size>MAX_UPLOAD_BYTES:raise ValueError('This application format exceeds its bounded upload limit; use NPY or explicit binary for long recordings.')
                 iq,detected_rate=parse_capture(metadata['filename'],temporary.read_bytes())
                 source_count=len(iq)
                 def slice_iq(start,end):return iq[start:end]
@@ -149,9 +151,10 @@ def import_capture(upload, options: ImportOptions, sigmf: dict | None=None) -> d
                 data=np.memmap(destination,dtype='<f4',mode='r',shape=(end-start,2))
                 from training.data import forbidden_demo_frame_hashes
                 forbidden=forbidden_demo_frame_hashes()
-                if any(hashlib.sha256(data[i:i+128].tobytes()).digest() in forbidden for i in range(0,len(data)-127,128)):
-                    raise ValueError('Original demo frames have unknown split membership and cannot be assigned a fitting/evaluation split.')
-                del data
+                try:
+                    if any(hashlib.sha256(data[i:i+128].tobytes()).digest() in forbidden for i in range(0,len(data)-127,128)):
+                        raise ValueError('Original demo frames have unknown split membership and cannot be assigned a fitting/evaluation split.')
+                finally:data._mmap.close()
             return store.put('capture',metadata)
     except BaseException:
         destination.unlink(missing_ok=True);raise
@@ -169,11 +172,12 @@ def all_captures():
 
 
 def window(record_id, start=0, length=128):
-    meta=store.get('capture',record_id)
-    if start<0 or not 16<=length<=65536 or start+length>meta['sampleCount']:raise ValueError('Window lies outside the capture or exceeds 65,536 samples.')
-    mm=np.memmap(store.file_path(record_id,'iq'),dtype='<f4',mode='r',offset=start*8,shape=(length,2))
-    try:iq=np.array(mm,copy=True)
-    finally:mm._mmap.close()
+    with store.LOCK:
+        meta=store.get('capture',record_id)
+        if start<0 or not 16<=length<=65536 or start+length>meta['sampleCount']:raise ValueError('Window lies outside the capture or exceeds 65,536 samples.')
+        mm=np.memmap(store.file_path(record_id,'iq'),dtype='<f4',mode='r',offset=start*8,shape=(length,2))
+        try:iq=np.array(mm,copy=True)
+        finally:mm._mmap.close()
     return iq,meta
 
 

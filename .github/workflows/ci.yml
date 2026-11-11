@@ -27,8 +27,13 @@ jobs:
         env:
           SATMOD_ACCESS_TOKEN: ci-only-local-container-key
         run: |
-          docker run -d --name satmodclass-ci -e SATMOD_ACCESS_TOKEN -p 127.0.0.1:8000:8000 satmodclass:ci
+          docker volume create satmod-ci-data
+          docker run -d --name satmodclass-ci -e SATMOD_ACCESS_TOKEN --mount type=volume,src=satmod-ci-data,dst=/data -p 127.0.0.1:8000:8000 satmodclass:ci
           python scripts/check_deployment.py http://127.0.0.1:8000 --wait-seconds 90
+          python scripts/check_workspace_deployment.py http://127.0.0.1:8000 --state-file /tmp/workspace-state.json
+          docker rm -f satmodclass-ci
+          docker run -d --name satmodclass-ci -e SATMOD_ACCESS_TOKEN --mount type=volume,src=satmod-ci-data,dst=/data -p 127.0.0.1:8000:8000 satmodclass:ci
+          python scripts/check_workspace_deployment.py http://127.0.0.1:8000 --state-file /tmp/workspace-state.json --verify-existing
       - name: Show container logs
         if: always()
         run: docker logs satmodclass-ci || true

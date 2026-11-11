@@ -70,11 +70,13 @@ def predict_window(iq: np.ndarray, start: int = 0) -> dict:
                               'amplitudePolicy': 'Preserve samples; training z-score only'}, 'warnings': warnings}
 
 
-def classify(iq: np.ndarray, source: str, fs: float = 1, start: int = 0) -> dict:
+def classify(iq: np.ndarray, source: str, fs: float = 1, start: int = 0, *, capture_metadata: dict | None = None, capture_position: dict | None = None) -> dict:
     result = {**predict_window(iq, start), 'id': str(uuid4()), 'createdAt': datetime.now(timezone.utc).isoformat(),
               'source': source, 'sampleRate': fs, 'analysis': analyze(iq, fs), 'samples': rows(iq)}
+    if capture_metadata is not None:
+        result.update(captureMetadata=capture_metadata,capturePosition=capture_position)
+    from backend.services.workspace_store import save_analysis
+    save_analysis(result,capture_metadata['id'] if capture_metadata else None)
     with LOCK:
         HISTORY.appendleft({k: result[k] for k in ['id', 'createdAt', 'source', 'predictedModulation', 'confidence', 'entropyBits', 'processingMs']})
-    from backend.services.workspace_store import save_analysis
-    save_analysis(result)
     return result

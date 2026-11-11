@@ -31,7 +31,7 @@ def register_dataset(name, entries, source, license_text):
         if bytes.fromhex(digest) in forbidden_demo_frame_hashes():raise ValueError('Demo frames have unknown historical split membership; external evaluation/fitting is prohibited.')
         if digest in hashes and hashes[digest]!=entry.split:raise ValueError('Duplicate frame crosses dataset splits.')
         hashes[digest]=entry.split
-        candidate={**entry.model_dump(),'frameHash':digest,'sessionId':meta['sessionId'],'sourceHash':meta['sourceHash'],'sourceStart':meta['sourceOffset']+entry.start,'canonicalSourceHash':meta['hash']}
+        candidate={**entry.model_dump(),'captureId':meta['id'],'frameHash':digest,'sessionId':meta['sessionId'],'sourceHash':meta['sourceHash'],'sourceStart':meta['sourceOffset']+entry.start,'canonicalSourceHash':meta['hash']}
         for prior in normalized:
             if prior['split']!=entry.split and overlaps(prior,candidate):
                 raise ValueError('Overlapping recording windows cross splits.')
@@ -103,7 +103,8 @@ def execute(record_id, slots):
         if job['kind']=='batch':
             entries=[{'captureId':params['captureId'],'start':params['start']+i*params['stride']} for i in range(params['windows'])]
         else:
-            entries=[entry for entry in store.get('dataset',params['datasetId'])['entries'] if entry['split']=='test']
+            dataset=store.get('dataset',params['datasetId'])
+            entries=[entry for entry in dataset['entries'] if entry['split']=='test']
             if not entries:raise ValueError('External evaluation requires explicitly labeled test windows.')
         for index,entry in enumerate(entries):
             if store.get('job',record_id)['cancelRequested']:
@@ -112,7 +113,8 @@ def execute(record_id, slots):
             if meta['id'] not in provenance:
                 provenance[meta['id']]={k:meta.get(k) for k in ['id','source','hash','sourceHash','sessionId','sampleCount','sampleRate','sampleRateKnown','sourceOffset','centerFrequency','license','createdAt']}
             result=classifier.predict_window(iq)
-            predictions.append({'index':index,'start':entry['start'],'captureId':entry['captureId'],**captures.timing(meta,entry['start']),**result})
+            predictions.append({'index':index,'start':entry['start'],'captureId':entry['captureId'],**captures.timing(meta,entry['start']),**result,
+                                **({'groundTruth':entry['label'],'snrDb':entry.get('snrDb')} if job['kind']=='evaluation' else {})})
             if index%16==0:update(record_id,progress=(index+1)/len(entries))
         result={'reportVersion':'satmod-batch-v1','jobId':record_id,'createdAt':job['createdAt'],'parameters':params,'captures':provenance,'modelId':'1d-cnn','modelVersion':'supplied-cnn-v1','modelHash':store.artifact_hash(),
                 'predictions':predictions,'classCounts':dict(Counter(p['predictedModulation'] for p in predictions)),
@@ -122,11 +124,12 @@ def execute(record_id, slots):
             from utils.preprocessing import CLASS_LABELS
             y=[CLASS_LABELS.index(e['label']) for e in entries]
             snrs=[e.get('snrDb') for e in entries]
-            metrics=evaluate_probabilities([list(p['probabilities'].values()) for p in predictions],y,[s if s is not None else 0 for s in snrs],CLASS_LABELS)
+            metrics=evaluate_probabilities([[p['probabilities'][c] for c in CLASS_LABELS] for p in predictions],y,[s if s is not None else 0 for s in snrs],CLASS_LABELS)
             # Zero is never substituted as a reported measured SNR.
             known=[i for i,s in enumerate(snrs) if s is not None]
-            metrics['snrAccuracy']=evaluate_probabilities([list(predictions[i]['probabilities'].values()) for i in known],[y[i] for i in known],[snrs[i] for i in known],CLASS_LABELS)['snrAccuracy'] if known else []
-            result.update(metrics=metrics,datasetId=params['datasetId'],labelSource='Importer-supplied independent labels; not model predictions',calibration='Diagnostic only; production temperature unchanged')
+            metrics['snrAccuracy']=evaluate_probabilities([[predictions[i]['probabilities'][c] for c in CLASS_LABELS] for i in known],[y[i] for i in known],[snrs[i] for i in known],CLASS_LABELS)['snrAccuracy'] if known else []
+            result.update(metrics=metrics,datasetId=params['datasetId'],dataset=dataset,classOrder=list(CLASS_LABELS),
+                          labelSource='Importer-supplied labels; acquisition independence is declared, not automatically proven',calibration='Diagnostic only; production temperature unchanged')
         data=json.dumps(result,allow_nan=False).encode()
         with store.LOCK:
             if store.get('job',record_id)['cancelRequested']:update(record_id,state='cancelled');return
@@ -141,7 +144,8 @@ def execute(record_id, slots):
 
 
 def job_result(record_id,offset=0,limit=200):
-    job=store.get('job',record_id)
-    if job['state']!='completed':raise ValueError('Job has no completed result.')
-    result=json.loads(store.file_path(record_id,'json').read_text())
+    with store.LOCK:
+        job=store.get('job',record_id)
+        if job['state']!='completed':raise ValueError('Job has no completed result.')
+        result=json.loads(store.file_path(record_id,'json').read_text())
     predictions=result.pop('predictions');return {**result,'predictions':predictions[offset:offset+limit],'total':len(predictions),'offset':offset}

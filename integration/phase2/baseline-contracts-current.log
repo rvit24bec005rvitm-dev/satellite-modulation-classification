@@ -1,0 +1,6 @@
+
+> satmodclass-frontend@1.0.0 test:integration
+> vitest run --config vitest.integration.config.ts
+
+
+ RUN  v2.1.9 /Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend

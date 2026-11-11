@@ -7,16 +7,19 @@
 > vitest run
 
 
- RUN  v2.1.9 <PROJECT>/frontend
+ RUN  v2.1.9 /Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend
 
- ✓ src/test/api.test.ts (11 tests) 27ms
- ✓ src/test/operations.test.tsx (5 tests) 523ms
-   ✓ Phase2 operational controls > requires explicit binary encoding, clock and session before import 316ms
- ✓ src/test/orbital-simulation.test.ts (10 tests) 60ms
- ✓ src/test/app-routing.test.tsx (8 tests) 24ms
- ✓ src/test/workspace-ui.test.tsx (6 tests) 19ms
+ ✓ src/test/api.test.ts (11 tests) 911ms
+ ✓ src/test/orbital-simulation.test.ts (10 tests) 262ms
+ ✓ src/test/operations.test.tsx (5 tests) 4115ms
+   ✓ Phase2 operational controls > requires explicit binary encoding, clock and session before import 2354ms
+   ✓ Phase2 operational controls > surfaces connection errors instead of a fabricated capture 622ms
+   ✓ Phase2 operational controls > shows persistent job state and sends cancellation to its actual ID 591ms
+   ✓ Phase2 operational controls > rejects invalid evaluation JSON locally without inventing ground truth 349ms
+ ✓ src/test/workspace-ui.test.tsx (6 tests) 94ms
+ ✓ src/test/app-routing.test.tsx (8 tests) 198ms
 
  Test Files  5 passed (5)
       Tests  40 passed (40)
-   Start at  21:34:49
-   Duration  6.58s (transform 956ms, setup 858ms, collect 3.14s, tests 652ms, environment 933ms, prepare 731ms)
+   Start at  21:45:28
+   Duration  38.94s (transform 6.84s, setup 9.23s, collect 20.07s, tests 5.58s, environment 5.48s, prepare 7.08s)
