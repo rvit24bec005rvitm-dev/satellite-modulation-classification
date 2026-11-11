@@ -44,7 +44,10 @@ class BodyLimit:
     async def __call__(self, scope, receive, send):
         if scope['type'] != 'http':
             return await self.app(scope, receive, send)
-        import os
+        import os,asyncio
+        deadline=perf_counter()+max(.001,float(os.getenv('SATMOD_BODY_TIMEOUT_SECONDS','120')))
+        async def body_receive():
+            return await asyncio.wait_for(receive(),timeout=max(.001,deadline-perf_counter()))
         limit = (int(os.getenv('SATMOD_CAPTURE_UPLOAD_BYTES',str(128*1024**2)))+131072 if scope['path']=='/api/workspace/captures'
                  else MAX_UPLOAD_BYTES + 65536 if scope['path'].endswith('/upload') else 16*1024*1024)
         content_length = dict(scope.get('headers', [])).get(b'content-length')
@@ -67,7 +70,9 @@ class BodyLimit:
                 with SpooledTemporaryFile(max_size=1024**2) as spool:
                     size=0
                     while True:
-                        message=await receive()
+                        try:message=await body_receive()
+                        except asyncio.TimeoutError:
+                            return await JSONResponse(status_code=408,content={'detail':'Request body upload timed out.'})(scope,receive,send)
                         if message['type']=='http.disconnect':return
                         chunk=message.get('body',b'');size+=len(chunk)
                         if size>limit:return await JSONResponse(status_code=413,content={'detail':'External capture request exceeds its size limit.'})(scope,receive,send)
@@ -85,7 +90,9 @@ class BodyLimit:
             return
         size, payload = 0, bytearray()
         while True:
-            message = await receive()
+            try:message = await body_receive()
+            except asyncio.TimeoutError:
+                return await JSONResponse(status_code=408,content={'detail':'Request body upload timed out.'})(scope,receive,send)
             if message['type'] == 'http.disconnect': return
             size += len(message.get('body',b''))
             if size > limit:

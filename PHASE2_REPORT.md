@@ -146,3 +146,7 @@ Another active editor changed the shared checkout to `feat/phase2-readiness-foll
 ## CI browser infrastructure correction
 
 The first Linux browser job failed before browser execution: optional font packages could not be fetched because `azure.archive.ubuntu.com` DNS resolution failed. Application types/tests/contracts/build had passed. Linux CI now records and uses the runner’s preinstalled Google Chrome; Windows installs Playwright Chromium without a Linux package-manager step. The full browser assertions are retained. This is an infrastructure correction, not a suppressed application test. The final run must pass before claiming current Linux browser verification.
+
+## Upload deadline
+
+`SATMOD_BODY_TIMEOUT_SECONDS` defaults to 120 seconds for complete request-body reads. Slow/chunked requests return 408 and release import slots and spool files. This limits upload reading, not background job execution. A regression test covers managed and ordinary API bodies, request IDs, and a successful subsequent import.
