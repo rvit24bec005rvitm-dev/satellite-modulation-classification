@@ -1,0 +1,1287 @@
+﻿2026-11-11T16:37:02.6616075Z Current runner version: '2.338.2'
+2026-11-11T16:37:02.6636216Z ##[group]Runner Image Provisioner
+2026-11-11T16:37:02.6637053Z Hosted Compute Agent
+2026-11-11T16:37:02.6637537Z Version: 20261028.624
+2026-11-11T16:37:02.6638068Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-11T16:37:02.6638672Z Build Date: 2026-10-28T21:51:42Z
+2026-11-11T16:37:02.6639254Z Worker ID: {e86d3d7c-3c30-46a8-86a8-2b09ec0cb200}
+2026-11-11T16:37:02.6639860Z Region: centralus
+2026-11-11T16:37:02.6640316Z Cloud: Azure
+2026-11-11T16:37:02.6640800Z ##[endgroup]
+2026-11-11T16:37:02.6642166Z ##[group]Operating System
+2026-11-11T16:37:02.6642709Z Ubuntu
+2026-11-11T16:37:02.6643160Z 24.04.5
+2026-11-11T16:37:02.6643582Z LTS
+2026-11-11T16:37:02.6644057Z ##[endgroup]
+2026-11-11T16:37:02.6644746Z ##[group]Runner Image
+2026-11-11T16:37:02.6645257Z Image: ubuntu-24.04
+2026-11-11T16:37:02.6645726Z Version: 20261101.360.1
+2026-11-11T16:37:02.6646784Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261101.360/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-11T16:37:02.6648062Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261101.360
+2026-11-11T16:37:02.6648866Z ##[endgroup]
+2026-11-11T16:37:02.6649857Z ##[group]GITHUB_TOKEN Permissions
+2026-11-11T16:37:02.6651555Z Contents: read
+2026-11-11T16:37:02.6652085Z Metadata: read
+2026-11-11T16:37:02.6652568Z Packages: read
+2026-11-11T16:37:02.6653008Z ##[endgroup]
+2026-11-11T16:37:02.6655037Z Secret source: Actions
+2026-11-11T16:37:02.6655778Z Cache mode: write
+2026-11-11T16:37:02.6656414Z Prepare workflow directory
+2026-11-11T16:37:02.6928074Z Prepare all required actions
+2026-11-11T16:37:02.6968496Z Getting action download info
+2026-11-11T16:37:02.9713033Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-11T16:37:03.0733793Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-11T16:37:03.1683047Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-11-11T16:37:03.2859780Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-11T16:37:03.5104198Z Complete job name: frontend (ubuntu-latest)
+2026-11-11T16:37:03.5812901Z ##[group]Run actions/checkout@v4
+2026-11-11T16:37:03.5813785Z with:
+2026-11-11T16:37:03.5814719Z   repository: rvit24bec005rvitm-dev/satellite-modulation-classification
+2026-11-11T16:37:03.5818957Z   token: ***
+2026-11-11T16:37:03.5819565Z   ssh-strict: true
+2026-11-11T16:37:03.5820123Z   ssh-user: git
+2026-11-11T16:37:03.5820663Z   persist-credentials: true
+2026-11-11T16:37:03.5821218Z   clean: true
+2026-11-11T16:37:03.5821718Z   sparse-checkout-cone-mode: true
+2026-11-11T16:37:03.5822357Z   fetch-depth: 1
+2026-11-11T16:37:03.5822859Z   fetch-tags: false
+2026-11-11T16:37:03.5823374Z   show-progress: true
+2026-11-11T16:37:03.5823899Z   lfs: false
+2026-11-11T16:37:03.5824496Z   submodules: false
+2026-11-11T16:37:03.5825112Z   set-safe-directory: true
+2026-11-11T16:37:03.5825720Z   allow-unsafe-pr-checkout: false
+2026-11-11T16:37:03.5826508Z ##[endgroup]
+2026-11-11T16:37:03.8294647Z Syncing repository: rvit24bec005rvitm-dev/satellite-modulation-classification
+2026-11-11T16:37:03.8297357Z ##[group]Getting Git version info
+2026-11-11T16:37:03.8298325Z Working directory is '/home/runner/work/satellite-modulation-classification/satellite-modulation-classification'
+2026-11-11T16:37:03.8299620Z [command]/usr/bin/git version
+2026-11-11T16:37:03.8371063Z git version 2.56.0
+2026-11-11T16:37:03.8386655Z ##[endgroup]
+2026-11-11T16:37:03.8406820Z Temporarily overriding HOME='/home/runner/work/_temp/fdefd1ac-5197-47bb-ab00-16911a4f1615' before making global git config changes
+2026-11-11T16:37:03.8413039Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-11T16:37:03.8415111Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/satellite-modulation-classification/satellite-modulation-classification
+2026-11-11T16:37:03.8476101Z Deleting the contents of '/home/runner/work/satellite-modulation-classification/satellite-modulation-classification'
+2026-11-11T16:37:03.8478429Z ##[group]Initializing the repository
+2026-11-11T16:37:03.8479887Z [command]/usr/bin/git init /home/runner/work/satellite-modulation-classification/satellite-modulation-classification
+2026-11-11T16:37:03.8549548Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-11T16:37:03.8550844Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-11T16:37:03.8551774Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-11T16:37:03.8552612Z hint: call:
+2026-11-11T16:37:03.8553050Z hint:
+2026-11-11T16:37:03.8553575Z hint: 	git config --global init.defaultBranch <name>
+2026-11-11T16:37:03.8554138Z hint:
+2026-11-11T16:37:03.8555057Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-11T16:37:03.8555908Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-11T16:37:03.8556611Z hint:
+2026-11-11T16:37:03.8557071Z hint: 	git branch -m <name>
+2026-11-11T16:37:03.8557525Z hint:
+2026-11-11T16:37:03.8558120Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-11T16:37:03.8560819Z Initialized empty Git repository in /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/.git/
+2026-11-11T16:37:03.8569199Z [command]/usr/bin/git remote add origin https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification
+2026-11-11T16:37:03.8705578Z ##[endgroup]
+2026-11-11T16:37:03.8706827Z ##[group]Disabling automatic garbage collection
+2026-11-11T16:37:03.8707805Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-11T16:37:03.8733197Z ##[endgroup]
+2026-11-11T16:37:03.8734254Z ##[group]Setting up auth
+2026-11-11T16:37:03.8738423Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-11T16:37:03.8767991Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-11T16:37:03.9108642Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-11T16:37:03.9140508Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-11T16:37:03.9304068Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-11T16:37:03.9332328Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-11T16:37:03.9495713Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-11T16:37:03.9528743Z ##[endgroup]
+2026-11-11T16:37:03.9529512Z ##[group]Fetching the repository
+2026-11-11T16:37:03.9539636Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +eb3576587a74cd5ac32d1083f003aacb9508a2f3:refs/remotes/pull/1/merge
+2026-11-11T16:37:05.1985108Z From https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification
+2026-11-11T16:37:05.1987008Z  * [new ref]         eb3576587a74cd5ac32d1083f003aacb9508a2f3 -> pull/1/merge
+2026-11-11T16:37:05.1991764Z ##[endgroup]
+2026-11-11T16:37:05.1993196Z ##[group]Determining the checkout info
+2026-11-11T16:37:05.1994937Z ##[endgroup]
+2026-11-11T16:37:05.1995937Z [command]/usr/bin/git sparse-checkout disable
+2026-11-11T16:37:05.2046501Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-11T16:37:05.2074540Z ##[group]Checking out the ref
+2026-11-11T16:37:05.2077881Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/1/merge
+2026-11-11T16:37:05.3327771Z Note: switching to 'refs/remotes/pull/1/merge'.
+2026-11-11T16:37:05.3329399Z
+2026-11-11T16:37:05.3330538Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-11T16:37:05.3333084Z changes and commit them, and you can discard any commits you make in this
+2026-11-11T16:37:05.3335635Z state without impacting any branches by switching back to a branch.
+2026-11-11T16:37:05.3336891Z
+2026-11-11T16:37:05.3338029Z If you want to create a new branch to retain commits you create, you may
+2026-11-11T16:37:05.3339894Z do so (now or later) by using -c with the switch command. Example:
+2026-11-11T16:37:05.3340748Z
+2026-11-11T16:37:05.3341173Z   git switch -c <new-branch-name>
+2026-11-11T16:37:05.3341782Z
+2026-11-11T16:37:05.3342200Z Or undo this operation with:
+2026-11-11T16:37:05.3342812Z
+2026-11-11T16:37:05.3343261Z   git switch -
+2026-11-11T16:37:05.3343822Z
+2026-11-11T16:37:05.3344709Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-11T16:37:05.3345744Z
+2026-11-11T16:37:05.3346856Z HEAD is now at eb35765 Merge cd5eec7fad7b859ebe6fc3ccb2238a1d980b5199 into 70c411b85de61685f7827bab26990f1388708d07
+2026-11-11T16:37:05.3350828Z ##[endgroup]
+2026-11-11T16:37:05.3379582Z [command]/usr/bin/git log -1 --format=%H
+2026-11-11T16:37:05.3402388Z eb3576587a74cd5ac32d1083f003aacb9508a2f3
+2026-11-11T16:37:05.3735188Z ##[group]Run actions/setup-python@v5
+2026-11-11T16:37:05.3736350Z with:
+2026-11-11T16:37:05.3737210Z   python-version: 3.11
+2026-11-11T16:37:05.3738153Z   check-latest: false
+2026-11-11T16:37:05.3746045Z   token: ***
+2026-11-11T16:37:05.3746952Z   update-environment: true
+2026-11-11T16:37:05.3747988Z   allow-prereleases: false
+2026-11-11T16:37:05.3748981Z   freethreaded: false
+2026-11-11T16:37:05.3749865Z ##[endgroup]
+2026-11-11T16:37:05.4889712Z ##[group]Installed versions
+2026-11-11T16:37:05.4982876Z (node:2088) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-11T16:37:05.4985666Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-11T16:37:05.4987844Z Successfully set up CPython (3.11.18)
+2026-11-11T16:37:05.4991020Z ##[endgroup]
+2026-11-11T16:37:05.5255968Z ##[group]Run actions/setup-node@v4
+2026-11-11T16:37:05.5257463Z with:
+2026-11-11T16:37:05.5258557Z   node-version: 22
+2026-11-11T16:37:05.5259712Z   always-auth: false
+2026-11-11T16:37:05.5260999Z   check-latest: false
+2026-11-11T16:37:05.5269701Z   token: ***
+2026-11-11T16:37:05.5270595Z env:
+2026-11-11T16:37:05.5271585Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:37:05.5273056Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-11T16:37:05.5274740Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:37:05.5276087Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:37:05.5277420Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:37:05.5278832Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-11T16:37:05.5280067Z ##[endgroup]
+2026-11-11T16:37:05.6565800Z (node:2097) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-11T16:37:05.6568175Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-11T16:37:05.6574662Z Found in cache @ /opt/hostedtoolcache/node/22.23.4/x64
+2026-11-11T16:37:05.6576901Z ##[group]Environment details
+2026-11-11T16:37:05.9912639Z node: v22.23.4
+2026-11-11T16:37:05.9913256Z npm: 10.9.9
+2026-11-11T16:37:05.9913671Z yarn: 1.22.22
+2026-11-11T16:37:05.9914839Z ##[endgroup]
+2026-11-11T16:37:06.0030350Z ##[group]Run python -m pip install -r requirements-dev.txt
+2026-11-11T16:37:06.0031064Z python -m pip install -r requirements-dev.txt
+2026-11-11T16:37:06.0055997Z shell: /usr/bin/bash -e {0}
+2026-11-11T16:37:06.0056397Z env:
+2026-11-11T16:37:06.0056846Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:37:06.0057361Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-11T16:37:06.0058053Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:37:06.0058548Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:37:06.0059020Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:37:06.0059460Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-11T16:37:06.0059860Z ##[endgroup]
+2026-11-11T16:37:06.8381862Z Collecting streamlit>=1.35.0 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:37:06.9258894Z   Downloading streamlit-1.67.0-py3-none-any.whl.metadata (10 kB)
+2026-11-11T16:37:07.1017981Z Collecting numpy>=1.24.0 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 2))
+2026-11-11T16:37:07.1176454Z   Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+2026-11-11T16:37:07.2144659Z Collecting pandas>=2.0.0 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 3))
+2026-11-11T16:37:07.2313261Z   Downloading pandas-3.1.1-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (16 kB)
+2026-11-11T16:37:07.3421027Z Collecting scipy>=1.11.0 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 4))
+2026-11-11T16:37:07.3571777Z   Downloading scipy-1.17.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
+2026-11-11T16:37:07.4518023Z Collecting scikit-learn>=1.3.0 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 5))
+2026-11-11T16:37:07.4673576Z   Downloading scikit_learn-1.9.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.3 kB)
+2026-11-11T16:37:07.5021545Z Collecting plotly>=5.20.0 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 6))
+2026-11-11T16:37:07.5174518Z   Downloading plotly-7.1.0-py3-none-any.whl.metadata (8.8 kB)
+2026-11-11T16:37:07.5616195Z Collecting h5py>=3.10.0 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 7))
+2026-11-11T16:37:07.5775287Z   Downloading h5py-3.16.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (3.0 kB)
+2026-11-11T16:37:07.6327774Z Collecting fastapi<1,>=0.115 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:37:07.6513833Z   Downloading fastapi-0.162.4-py3-none-any.whl.metadata (27 kB)
+2026-11-11T16:37:07.6860350Z Collecting uvicorn<1,>=0.30 (from uvicorn[standard]<1,>=0.30->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 9))
+2026-11-11T16:37:07.7012732Z   Downloading uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+2026-11-11T16:37:07.7246426Z Collecting python-multipart<1,>=0.0.20 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 10))
+2026-11-11T16:37:07.7402366Z   Downloading python_multipart-0.0.33-py3-none-any.whl.metadata (6.3 kB)
+2026-11-11T16:37:07.7651144Z Collecting python-dotenv<2,>=1.0 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 11))
+2026-11-11T16:37:07.7852594Z   Downloading python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
+2026-11-11T16:37:07.8644721Z Collecting reportlab<6,>=4 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 12))
+2026-11-11T16:37:07.8799249Z   Downloading reportlab-5.1.0-py3-none-any.whl.metadata (1.6 kB)
+2026-11-11T16:37:07.9107196Z Collecting pytest<10,>=8 (from -r requirements-dev.txt (line 2))
+2026-11-11T16:37:07.9264197Z   Downloading pytest-9.2.0-py3-none-any.whl.metadata (7.9 kB)
+2026-11-11T16:37:07.9518608Z Collecting httpx<1,>=0.27 (from -r requirements-dev.txt (line 3))
+2026-11-11T16:37:07.9686617Z   Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+2026-11-11T16:37:07.9989858Z Collecting starlette>=0.46.0 (from fastapi<1,>=0.115->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:37:08.0141269Z   Downloading starlette-1.10.0-py3-none-any.whl.metadata (6.6 kB)
+2026-11-11T16:37:08.0421078Z Collecting anyio>=4.1.0 (from fastapi<1,>=0.115->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:37:08.0571450Z   Downloading anyio-4.16.0-py3-none-any.whl.metadata (4.7 kB)
+2026-11-11T16:37:08.1611356Z Collecting pydantic>=2.9.0 (from fastapi<1,>=0.115->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:37:08.1769527Z   Downloading pydantic-2.14.3-py3-none-any.whl.metadata (141 kB)
+2026-11-11T16:37:08.2186395Z Collecting typing-extensions>=4.8.0 (from fastapi<1,>=0.115->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:37:08.2338603Z   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+2026-11-11T16:37:08.2552146Z Collecting typing-inspection>=0.4.2 (from fastapi<1,>=0.115->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:37:08.2704277Z   Downloading typing_inspection-0.4.5-py3-none-any.whl.metadata (2.6 kB)
+2026-11-11T16:37:08.2941987Z Collecting annotated-doc>=0.0.2 (from fastapi<1,>=0.115->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:37:08.3094001Z   Downloading annotated_doc-0.0.6-py3-none-any.whl.metadata (6.5 kB)
+2026-11-11T16:37:08.3346662Z Collecting opentelemetry-api>=1.44.0 (from fastapi<1,>=0.115->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:37:08.3496701Z   Downloading opentelemetry_api-1.45.2-py3-none-any.whl.metadata (1.4 kB)
+2026-11-11T16:37:08.3750242Z Collecting click>=7.0 (from uvicorn<1,>=0.30->uvicorn[standard]<1,>=0.30->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 9))
+2026-11-11T16:37:08.3901683Z   Downloading click-8.5.1-py3-none-any.whl.metadata (2.6 kB)
+2026-11-11T16:37:08.4119640Z Collecting h11>=0.8 (from uvicorn<1,>=0.30->uvicorn[standard]<1,>=0.30->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 9))
+2026-11-11T16:37:08.4302472Z   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+2026-11-11T16:37:08.5520874Z Collecting pillow>=9.0.0 (from reportlab<6,>=4->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 12))
+2026-11-11T16:37:08.5672000Z   Downloading pillow-13.0.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+2026-11-11T16:37:08.6591442Z Collecting charset-normalizer (from reportlab<6,>=4->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 12))
+2026-11-11T16:37:08.6745246Z   Downloading charset_normalizer-3.5.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+2026-11-11T16:37:08.6978149Z Collecting iniconfig>=2 (from pytest<10,>=8->-r requirements-dev.txt (line 2))
+2026-11-11T16:37:08.7174684Z   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+2026-11-11T16:37:08.7596137Z Collecting packaging>=24 (from pytest<10,>=8->-r requirements-dev.txt (line 2))
+2026-11-11T16:37:08.7747023Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-11-11T16:37:08.8002025Z Collecting pluggy<2,>=1.6 (from pytest<10,>=8->-r requirements-dev.txt (line 2))
+2026-11-11T16:37:08.8152573Z   Downloading pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+2026-11-11T16:37:08.8413678Z Collecting pygments>=2.15 (from pytest<10,>=8->-r requirements-dev.txt (line 2))
+2026-11-11T16:37:08.8563341Z   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+2026-11-11T16:37:08.8824880Z Collecting certifi (from httpx<1,>=0.27->-r requirements-dev.txt (line 3))
+2026-11-11T16:37:08.8976642Z   Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+2026-11-11T16:37:08.9219685Z Collecting httpcore==1.* (from httpx<1,>=0.27->-r requirements-dev.txt (line 3))
+2026-11-11T16:37:08.9374033Z   Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+2026-11-11T16:37:08.9621151Z Collecting idna (from httpx<1,>=0.27->-r requirements-dev.txt (line 3))
+2026-11-11T16:37:08.9773529Z   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+2026-11-11T16:37:09.0236078Z Collecting httptools>=0.8.0 (from uvicorn[standard]<1,>=0.30->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 9))
+2026-11-11T16:37:09.0386938Z   Downloading httptools-0.9.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (3.5 kB)
+2026-11-11T16:37:09.0984612Z Collecting pyyaml>=5.1 (from uvicorn[standard]<1,>=0.30->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 9))
+2026-11-11T16:37:09.1139492Z   Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+2026-11-11T16:37:09.1600757Z Collecting uvloop>=0.15.1 (from uvicorn[standard]<1,>=0.30->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 9))
+2026-11-11T16:37:09.1751407Z   Downloading uvloop-0.23.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.1 kB)
+2026-11-11T16:37:09.2371225Z Collecting watchfiles>=0.20 (from uvicorn[standard]<1,>=0.30->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 9))
+2026-11-11T16:37:09.2702393Z   Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+2026-11-11T16:37:09.3632572Z Collecting websockets>=13.0 (from uvicorn[standard]<1,>=0.30->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 9))
+2026-11-11T16:37:09.3859416Z   Downloading websockets-17.4-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
+2026-11-11T16:37:09.4113629Z Collecting altair!=5.4.0,!=5.4.1,<7,>=5.0.0 (from streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:37:09.4264503Z   Downloading altair-6.3.0-py3-none-any.whl.metadata (11 kB)
+2026-11-11T16:37:09.4593349Z Collecting pydeck<1,>=0.8.0b4 (from streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:37:09.5655893Z   Downloading pydeck-0.9.3-py2.py3-none-any.whl.metadata (4.2 kB)
+2026-11-11T16:37:09.6725554Z Collecting protobuf<8,>=5.26.1 (from streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:37:09.6903834Z   Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl.metadata (595 bytes)
+2026-11-11T16:37:09.7820775Z Collecting pyarrow!=25.0.0,<27,>=12.0.0 (from streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:37:09.8350729Z   Downloading pyarrow-26.0.1-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (3.0 kB)
+2026-11-11T16:37:09.8641046Z Collecting requests<3,>=2.27 (from streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:37:09.8815150Z   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+2026-11-11T16:37:09.9088149Z Collecting itsdangerous<3,>=2.1.2 (from streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:37:09.9274296Z   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+2026-11-11T16:37:09.9717238Z Collecting watchdog<8,>=2.1.5 (from streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:37:09.9868523Z   Downloading watchdog-7.1.0-py3-none-manylinux_2_17_x86_64.whl.metadata (62 kB)
+2026-11-11T16:37:10.0152334Z Collecting python-dateutil>=2.9.0 (from pandas>=2.0.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 3))
+2026-11-11T16:37:10.0302168Z   Downloading python_dateutil-4.0.0-py3-none-any.whl.metadata (7.3 kB)
+2026-11-11T16:37:10.0547339Z Collecting jinja2 (from altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:37:10.0698736Z   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+2026-11-11T16:37:10.0973211Z Collecting jsonschema>=3.0 (from altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:37:10.1122231Z   Downloading jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+2026-11-11T16:37:10.1676642Z Collecting narwhals>=2.4.0 (from altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:37:10.1862304Z   Downloading narwhals-2.28.0-py3-none-any.whl.metadata (15 kB)
+2026-11-11T16:37:10.2266537Z Collecting urllib3<3,>=1.26 (from requests<3,>=2.27->streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:37:10.2422591Z   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+2026-11-11T16:37:10.5050289Z Collecting joblib>=1.4.0 (from scikit-learn>=1.3.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 5))
+2026-11-11T16:37:10.5212624Z   Downloading joblib-1.6.0-py3-none-any.whl.metadata (6.5 kB)
+2026-11-11T16:37:10.8307555Z Collecting threadpoolctl>=3.5.0 (from scikit-learn>=1.3.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 5))
+2026-11-11T16:37:10.8463857Z   Downloading threadpoolctl-3.8.0-py3-none-any.whl.metadata (29 kB)
+2026-11-11T16:37:11.0968983Z Collecting MarkupSafe>=2.0 (from jinja2->altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:37:11.1138457Z   Downloading markupsafe-3.0.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+2026-11-11T16:37:11.1396747Z Collecting cloudpickle>=3.0 (from joblib>=1.4.0->scikit-learn>=1.3.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 5))
+2026-11-11T16:37:11.1544483Z   Downloading cloudpickle-3.1.2-py3-none-any.whl.metadata (7.1 kB)
+2026-11-11T16:37:11.1783336Z Collecting attrs>=22.2.0 (from jsonschema>=3.0->altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:37:11.1935456Z   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+2026-11-11T16:37:11.2346271Z Collecting jsonschema-specifications>=2023.03.6 (from jsonschema>=3.0->altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:37:11.2497127Z   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+2026-11-11T16:37:11.2769425Z Collecting referencing>=0.28.4 (from jsonschema>=3.0->altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:37:11.2919754Z   Downloading referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+2026-11-11T16:37:11.5037018Z Collecting rpds-py>=0.25.0 (from jsonschema>=3.0->altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:37:11.5229218Z   Downloading rpds_py-2026.9.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+2026-11-11T16:37:11.5497263Z Collecting annotated-types>=0.6.0 (from pydantic>=2.9.0->fastapi<1,>=0.115->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:37:11.5668548Z   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+2026-11-11T16:37:12.0410307Z Collecting pydantic-core==2.50.4 (from pydantic>=2.9.0->fastapi<1,>=0.115->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:37:12.0561900Z   Downloading pydantic_core-2.50.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (6.6 kB)
+2026-11-11T16:37:12.0825331Z Collecting tzdata (from python-dateutil>=2.9.0->pandas>=2.0.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 3))
+2026-11-11T16:37:12.0980853Z   Downloading tzdata-2026.6-py2.py3-none-any.whl.metadata (1.4 kB)
+2026-11-11T16:37:12.1237888Z Downloading fastapi-0.162.4-py3-none-any.whl (151 kB)
+2026-11-11T16:37:12.1483126Z Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
+2026-11-11T16:37:12.1659504Z Downloading python_multipart-0.0.33-py3-none-any.whl (32 kB)
+2026-11-11T16:37:12.1832842Z Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+2026-11-11T16:37:12.1998476Z Downloading reportlab-5.1.0-py3-none-any.whl (2.0 MB)
+2026-11-11T16:37:12.2477685Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 42.4 MB/s  0:00:00
+2026-11-11T16:37:12.2632526Z Downloading pytest-9.2.0-py3-none-any.whl (411 kB)
+2026-11-11T16:37:12.2819718Z Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+2026-11-11T16:37:12.2988966Z Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+2026-11-11T16:37:12.3184048Z Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+2026-11-11T16:37:12.3359764Z Downloading streamlit-1.67.0-py3-none-any.whl (11.2 MB)
+2026-11-11T16:37:12.4300521Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.2/11.2 MB 119.3 MB/s  0:00:00
+2026-11-11T16:37:12.4471454Z Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.9 MB)
+2026-11-11T16:37:12.5688600Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.9/16.9 MB 139.3 MB/s  0:00:00
+2026-11-11T16:37:12.5863438Z Downloading pandas-3.1.1-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (12.4 MB)
+2026-11-11T16:37:12.7269972Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.4/12.4 MB 89.5 MB/s  0:00:00
+2026-11-11T16:37:12.7432081Z Downloading altair-6.3.0-py3-none-any.whl (797 kB)
+2026-11-11T16:37:12.7526659Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 797.2/797.2 kB 73.3 MB/s  0:00:00
+2026-11-11T16:37:12.7680252Z Downloading anyio-4.16.0-py3-none-any.whl (134 kB)
+2026-11-11T16:37:12.7852287Z Downloading click-8.5.1-py3-none-any.whl (126 kB)
+2026-11-11T16:37:12.8025174Z Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+2026-11-11T16:37:12.8220170Z Downloading pillow-13.0.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.1 MB)
+2026-11-11T16:37:12.8719121Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.1/7.1 MB 143.4 MB/s  0:00:00
+2026-11-11T16:37:12.8872773Z Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl (343 kB)
+2026-11-11T16:37:12.9060234Z Downloading pyarrow-26.0.1-cp311-cp311-manylinux_2_28_x86_64.whl (55.0 MB)
+2026-11-11T16:37:13.3423051Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 55.0/55.0 MB 126.1 MB/s  0:00:00
+2026-11-11T16:37:13.3588756Z Downloading pydeck-0.9.3-py2.py3-none-any.whl (11.4 MB)
+2026-11-11T16:37:13.4417143Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.4/11.4 MB 139.4 MB/s  0:00:00
+2026-11-11T16:37:13.4580439Z Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+2026-11-11T16:37:13.4760021Z Downloading charset_normalizer-3.5.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (269 kB)
+2026-11-11T16:37:13.4946664Z Downloading idna-3.20-py3-none-any.whl (69 kB)
+2026-11-11T16:37:13.5129460Z Downloading starlette-1.10.0-py3-none-any.whl (80 kB)
+2026-11-11T16:37:13.5305380Z Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+2026-11-11T16:37:13.5475238Z Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+2026-11-11T16:37:13.5737237Z Downloading watchdog-7.1.0-py3-none-manylinux_2_17_x86_64.whl (103 kB)
+2026-11-11T16:37:13.5911491Z Downloading websockets-17.4-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (226 kB)
+2026-11-11T16:37:13.6093174Z Downloading scipy-1.17.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (35.3 MB)
+2026-11-11T16:37:13.8908133Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 35.3/35.3 MB 125.7 MB/s  0:00:00
+2026-11-11T16:37:13.9065678Z Downloading scikit_learn-1.9.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (9.3 MB)
+2026-11-11T16:37:13.9803788Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.3/9.3 MB 126.9 MB/s  0:00:00
+2026-11-11T16:37:13.9960392Z Downloading plotly-7.1.0-py3-none-any.whl (9.7 MB)
+2026-11-11T16:37:14.0713739Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.7/9.7 MB 130.8 MB/s  0:00:00
+2026-11-11T16:37:14.0876237Z Downloading h5py-3.16.0-cp311-cp311-manylinux_2_28_x86_64.whl (5.0 MB)
+2026-11-11T16:37:14.1401153Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.0/5.0 MB 94.0 MB/s  0:00:00
+2026-11-11T16:37:14.1558696Z Downloading annotated_doc-0.0.6-py3-none-any.whl (5.3 kB)
+2026-11-11T16:37:14.1736568Z Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+2026-11-11T16:37:14.1916342Z Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+2026-11-11T16:37:14.2099276Z Downloading httptools-0.9.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (499 kB)
+2026-11-11T16:37:14.2291920Z Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+2026-11-11T16:37:14.2464759Z Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+2026-11-11T16:37:14.2642926Z Downloading joblib-1.6.0-py3-none-any.whl (306 kB)
+2026-11-11T16:37:14.2820455Z Downloading cloudpickle-3.1.2-py3-none-any.whl (22 kB)
+2026-11-11T16:37:14.2993841Z Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+2026-11-11T16:37:14.3173388Z Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+2026-11-11T16:37:14.3370901Z Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+2026-11-11T16:37:14.3541123Z Downloading markupsafe-3.0.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+2026-11-11T16:37:14.3841918Z Downloading narwhals-2.28.0-py3-none-any.whl (490 kB)
+2026-11-11T16:37:14.4019694Z Downloading opentelemetry_api-1.45.2-py3-none-any.whl (60 kB)
+2026-11-11T16:37:14.4218100Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-11-11T16:37:14.4399593Z Downloading pydantic-2.14.3-py3-none-any.whl (494 kB)
+2026-11-11T16:37:14.4584772Z Downloading pydantic_core-2.50.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (2.3 MB)
+2026-11-11T16:37:14.4687921Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.3/2.3 MB 236.9 MB/s  0:00:00
+2026-11-11T16:37:14.4852099Z Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+2026-11-11T16:37:14.5025904Z Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+2026-11-11T16:37:14.5081301Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 255.1 MB/s  0:00:00
+2026-11-11T16:37:14.5229188Z Downloading python_dateutil-4.0.0-py3-none-any.whl (92 kB)
+2026-11-11T16:37:14.5400378Z Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (806 kB)
+2026-11-11T16:37:14.5447727Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 806.6/806.6 kB 178.5 MB/s  0:00:00
+2026-11-11T16:37:14.5599829Z Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
+2026-11-11T16:37:14.5772079Z Downloading rpds_py-2026.9.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (375 kB)
+2026-11-11T16:37:14.6139957Z Downloading threadpoolctl-3.8.0-py3-none-any.whl (32 kB)
+2026-11-11T16:37:14.6313010Z Downloading typing_inspection-0.4.5-py3-none-any.whl (14 kB)
+2026-11-11T16:37:14.6494832Z Downloading uvloop-0.23.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.0 MB)
+2026-11-11T16:37:14.6697300Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.0/4.0 MB 208.7 MB/s  0:00:00
+2026-11-11T16:37:14.6854259Z Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (458 kB)
+2026-11-11T16:37:14.7048788Z Downloading tzdata-2026.6-py2.py3-none-any.whl (348 kB)
+2026-11-11T16:37:15.1123328Z Installing collected packages: websockets, watchdog, uvloop, urllib3, tzdata, typing-extensions, threadpoolctl, rpds-py, pyyaml, python-multipart, python-dotenv, pygments, pyarrow, protobuf, pluggy, pillow, packaging, numpy, narwhals, MarkupSafe, itsdangerous, iniconfig, idna, httptools, h11, cloudpickle, click, charset-normalizer, certifi, attrs, annotated-types, annotated-doc, uvicorn, typing-inspection, scipy, requests, reportlab, referencing, python-dateutil, pytest, pydantic-core, plotly, opentelemetry-api, joblib, jinja2, httpcore, h5py, anyio, watchfiles, starlette, scikit-learn, pydeck, pydantic, pandas, jsonschema-specifications, httpx, jsonschema, fastapi, altair, streamlit
+2026-11-11T16:37:30.4405153Z
+2026-11-11T16:37:30.4429938Z Successfully installed MarkupSafe-3.0.4 altair-6.3.0 annotated-doc-0.0.6 annotated-types-0.8.0 anyio-4.16.0 attrs-26.1.0 certifi-2026.10.23 charset-normalizer-3.5.2 click-8.5.1 cloudpickle-3.1.2 fastapi-0.162.4 h11-0.16.0 h5py-3.16.0 httpcore-1.0.9 httptools-0.9.0 httpx-0.28.1 idna-3.20 iniconfig-2.3.1 itsdangerous-2.2.0 jinja2-3.1.6 joblib-1.6.0 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 narwhals-2.28.0 numpy-2.4.6 opentelemetry-api-1.45.2 packaging-26.3 pandas-3.1.1 pillow-13.0.0 plotly-7.1.0 pluggy-1.7.0 protobuf-7.36.2 pyarrow-26.0.1 pydantic-2.14.3 pydantic-core-2.50.4 pydeck-0.9.3 pygments-2.21.0 pytest-9.2.0 python-dateutil-4.0.0 python-dotenv-1.2.4 python-multipart-0.0.33 pyyaml-6.0.3 referencing-0.37.0 reportlab-5.1.0 requests-2.34.2 rpds-py-2026.9.1 scikit-learn-1.9.1 scipy-1.17.1 starlette-1.10.0 streamlit-1.67.0 threadpoolctl-3.8.0 typing-extensions-4.16.0 typing-inspection-0.4.5 tzdata-2026.6 urllib3-2.8.0 uvicorn-0.54.0 uvloop-0.23.0 watchdog-7.1.0 watchfiles-1.3.0 websockets-17.4
+2026-11-11T16:37:30.4435777Z
+2026-11-11T16:37:30.4436272Z [notice] A new release of pip is available: 26.2.2 -> 26.3
+2026-11-11T16:37:30.4436885Z [notice] To update, run: pip install --upgrade pip
+2026-11-11T16:37:30.5976541Z ##[group]Run npm ci
+2026-11-11T16:37:30.5976863Z npm ci
+2026-11-11T16:37:30.5990534Z shell: /usr/bin/bash -e {0}
+2026-11-11T16:37:30.5990846Z env:
+2026-11-11T16:37:30.5991182Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:37:30.5991678Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-11T16:37:30.5992120Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:37:30.5992580Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:37:30.5992982Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:37:30.5993403Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-11T16:37:30.5993792Z ##[endgroup]
+2026-11-11T16:37:33.5308378Z npm warn ERESOLVE overriding peer dependency
+2026-11-11T16:37:33.5313344Z npm warn While resolving: @vitest/mocker@2.1.9
+2026-11-11T16:37:33.5314121Z npm warn Found: vite@7.1.12
+2026-11-11T16:37:33.5315139Z npm warn node_modules/vite
+2026-11-11T16:37:33.5315965Z npm warn   dev vite@"7.1.12" from the root project
+2026-11-11T16:37:33.5316743Z npm warn   2 more (@tailwindcss/vite, @vitejs/plugin-react)
+2026-11-11T16:37:33.5317368Z npm warn
+2026-11-11T16:37:33.5317997Z npm warn Could not resolve dependency:
+2026-11-11T16:37:33.5318745Z npm warn peerOptional vite@"^5.0.0" from @vitest/mocker@2.1.9
+2026-11-11T16:37:33.5319541Z npm warn node_modules/@vitest/mocker
+2026-11-11T16:37:33.5320210Z npm warn   @vitest/mocker@"2.1.9" from vitest@2.1.9
+2026-11-11T16:37:33.5320884Z npm warn   node_modules/vitest
+2026-11-11T16:37:33.5321476Z npm warn
+2026-11-11T16:37:33.5322101Z npm warn Conflicting peer dependency: vite@5.4.21
+2026-11-11T16:37:33.5322771Z npm warn node_modules/vite
+2026-11-11T16:37:33.5323467Z npm warn   peerOptional vite@"^5.0.0" from @vitest/mocker@2.1.9
+2026-11-11T16:37:33.5324198Z npm warn   node_modules/@vitest/mocker
+2026-11-11T16:37:33.5325107Z npm warn     @vitest/mocker@"2.1.9" from vitest@2.1.9
+2026-11-11T16:37:33.5325837Z npm warn     node_modules/vitest
+2026-11-11T16:38:12.0571599Z
+2026-11-11T16:38:12.0574865Z added 581 packages, and audited 583 packages in 41s
+2026-11-11T16:38:12.0575758Z
+2026-11-11T16:38:12.0576551Z 85 packages are looking for funding
+2026-11-11T16:38:12.0577128Z   run `npm fund` for details
+2026-11-11T16:38:12.2224026Z
+2026-11-11T16:38:12.2224868Z 14 vulnerabilities (10 moderate, 2 high, 2 critical)
+2026-11-11T16:38:12.2225131Z
+2026-11-11T16:38:12.2225372Z To address issues that do not require attention, run:
+2026-11-11T16:38:12.2225724Z   npm audit fix
+2026-11-11T16:38:12.2225907Z
+2026-11-11T16:38:12.2226147Z To address all issues (including breaking changes), run:
+2026-11-11T16:38:12.2226582Z   npm audit fix --force
+2026-11-11T16:38:12.2226731Z
+2026-11-11T16:38:12.2226903Z Run `npm audit` for details.
+2026-11-11T16:38:12.2677426Z ##[group]Run npm audit --omit=dev
+2026-11-11T16:38:12.2677777Z npm audit --omit=dev
+2026-11-11T16:38:12.2690554Z shell: /usr/bin/bash -e {0}
+2026-11-11T16:38:12.2690877Z env:
+2026-11-11T16:38:12.2691239Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:12.2691705Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-11T16:38:12.2692137Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:12.2692540Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:12.2692931Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:12.2693334Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-11T16:38:12.2693699Z ##[endgroup]
+2026-11-11T16:38:12.6857184Z found 0 vulnerabilities
+2026-11-11T16:38:12.6941165Z ##[group]Run npm run typecheck
+2026-11-11T16:38:12.6941524Z npm run typecheck
+2026-11-11T16:38:12.6941808Z npm run lint
+2026-11-11T16:38:12.6942110Z npm test
+2026-11-11T16:38:12.6955361Z shell: /usr/bin/bash -e {0}
+2026-11-11T16:38:12.6955698Z env:
+2026-11-11T16:38:12.6956007Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:12.6956492Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-11T16:38:12.6956927Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:12.6957332Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:12.6957752Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:12.6958149Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-11T16:38:12.6958538Z ##[endgroup]
+2026-11-11T16:38:12.7762997Z
+2026-11-11T16:38:12.7763631Z > satmodclass-frontend@1.0.0 pretypecheck
+2026-11-11T16:38:12.7764574Z > node scripts/generate-routes.mjs
+2026-11-11T16:38:12.7764875Z
+2026-11-11T16:38:12.8067347Z
+2026-11-11T16:38:12.8068001Z > satmodclass-frontend@1.0.0 typecheck
+2026-11-11T16:38:12.8068520Z > tsc --noEmit
+2026-11-11T16:38:12.8068743Z
+2026-11-11T16:38:19.2137882Z
+2026-11-11T16:38:19.2139097Z > satmodclass-frontend@1.0.0 lint
+2026-11-11T16:38:19.2139694Z > eslint .
+2026-11-11T16:38:19.2140004Z
+2026-11-11T16:38:20.8497095Z
+2026-11-11T16:38:20.8499064Z /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend/src/components/ui/badge.tsx
+2026-11-11T16:38:20.8535014Z ##[warning]  32:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:38:20.8544495Z
+2026-11-11T16:38:20.8545578Z /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend/src/components/ui/button.tsx
+2026-11-11T16:38:20.8548278Z ##[warning]  49:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:38:20.8549988Z
+2026-11-11T16:38:20.8550764Z /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend/src/components/ui/form.tsx
+2026-11-11T16:38:20.8553150Z ##[warning]  163:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:38:20.8554853Z
+2026-11-11T16:38:20.8555747Z /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend/src/components/ui/navigation-menu.tsx
+2026-11-11T16:38:20.8558186Z ##[warning]  111:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:38:20.8559838Z
+2026-11-11T16:38:20.8560630Z /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend/src/components/ui/sidebar.tsx
+2026-11-11T16:38:20.8562866Z ##[warning]  743:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:38:20.8564566Z
+2026-11-11T16:38:20.8565358Z /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend/src/components/ui/toggle.tsx
+2026-11-11T16:38:20.8567668Z ##[warning]  42:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:38:20.8569162Z
+2026-11-11T16:38:20.8569896Z /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend/src/components/workspace-ui.tsx
+2026-11-11T16:38:20.8572813Z ##[warning]  173:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:38:20.8576130Z ##[warning]  175:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:38:20.8577745Z
+2026-11-11T16:38:20.8578521Z /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend/src/hooks/use-satmod.tsx
+2026-11-11T16:38:20.8580888Z ##[warning]   10:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:38:20.8583891Z ##[warning]   17:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:38:20.8587157Z ##[warning]   19:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:38:20.8590064Z ##[warning]   25:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:38:20.8592999Z ##[warning]   27:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:38:20.8596160Z ##[warning]   29:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:38:20.8599226Z ##[warning]   34:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:38:20.8602246Z ##[warning]   36:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:38:20.8605619Z ##[warning]   38:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:38:20.8608874Z ##[warning]  108:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:38:20.8610326Z
+2026-11-11T16:38:20.8610930Z ✖ 18 problems (0 errors, 18 warnings)
+2026-11-11T16:38:20.8611198Z
+2026-11-11T16:38:21.0290409Z
+2026-11-11T16:38:21.0291277Z > satmodclass-frontend@1.0.0 pretest
+2026-11-11T16:38:21.0291718Z > node scripts/generate-routes.mjs
+2026-11-11T16:38:21.0292027Z
+2026-11-11T16:38:21.0577107Z
+2026-11-11T16:38:21.0578131Z > satmodclass-frontend@1.0.0 test
+2026-11-11T16:38:21.0578649Z > vitest run
+2026-11-11T16:38:21.0578982Z
+2026-11-11T16:38:21.3428298Z
+2026-11-11T16:38:21.3430298Z  RUN  v2.1.9 /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend
+2026-11-11T16:38:21.3430970Z
+2026-11-11T16:38:21.8327759Z  ✓ src/test/api.test.ts (11 tests) 27ms
+2026-11-11T16:38:21.8378856Z  ✓ src/test/orbital-simulation.test.ts (10 tests) 30ms
+2026-11-11T16:38:22.2366282Z  ✓ src/test/workspace-ui.test.tsx (6 tests) 13ms
+2026-11-11T16:38:22.7497434Z  ✓ src/test/operations.test.tsx (5 tests) 244ms
+2026-11-11T16:38:22.9485664Z  ✓ src/test/app-routing.test.tsx (8 tests) 8ms
+2026-11-11T16:38:22.9579291Z
+2026-11-11T16:38:22.9587060Z  Test Files  5 passed (5)
+2026-11-11T16:38:22.9587984Z       Tests  40 passed (40)
+2026-11-11T16:38:22.9588697Z    Start at  16:38:21
+2026-11-11T16:38:22.9589811Z    Duration  1.61s (transform 678ms, setup 405ms, collect 1.54s, tests 322ms, environment 475ms, prepare 345ms)
+2026-11-11T16:38:22.9590420Z
+2026-11-11T16:38:22.9821180Z ##[group]Run npm run test:integration
+2026-11-11T16:38:22.9821535Z npm run test:integration
+2026-11-11T16:38:22.9833841Z shell: /usr/bin/bash -e {0}
+2026-11-11T16:38:22.9834179Z env:
+2026-11-11T16:38:22.9834612Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:22.9835081Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-11T16:38:22.9835586Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:22.9835956Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:22.9836369Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:22.9836755Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-11T16:38:22.9837106Z   SATMOD_PYTHON: python
+2026-11-11T16:38:22.9837407Z ##[endgroup]
+2026-11-11T16:38:23.0582466Z
+2026-11-11T16:38:23.0582991Z > satmodclass-frontend@1.0.0 test:integration
+2026-11-11T16:38:23.0583946Z > vitest run --config vitest.integration.config.ts
+2026-11-11T16:38:23.0584491Z
+2026-11-11T16:38:23.3455731Z
+2026-11-11T16:38:23.3457536Z  RUN  v2.1.9 /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend
+2026-11-11T16:38:23.3458542Z
+2026-11-11T16:38:26.3692054Z  ✓ src/test/fullstack.integration.test.ts (11 tests) 2726ms
+2026-11-11T16:38:26.3693343Z    ✓ TypeScript API client → real Python model and DSP > loads health and genuine model metadata 512ms
+2026-11-11T16:38:26.3694791Z    ✓ TypeScript API client → real Python model and DSP > analyzes and compares the exact generated samples 303ms
+2026-11-11T16:38:26.3801829Z
+2026-11-11T16:38:26.3810539Z  Test Files  1 passed (1)
+2026-11-11T16:38:26.3811493Z       Tests  11 passed (11)
+2026-11-11T16:38:26.3812281Z    Start at  16:38:23
+2026-11-11T16:38:26.3813237Z    Duration  3.03s (transform 84ms, setup 0ms, collect 86ms, tests 2.73s, environment 0ms, prepare 54ms)
+2026-11-11T16:38:26.3813848Z
+2026-11-11T16:38:26.4037893Z ##[group]Run npm --prefix frontend run build
+2026-11-11T16:38:26.4038511Z npm --prefix frontend run build
+2026-11-11T16:38:26.4039000Z python scripts/check_production.py
+2026-11-11T16:38:26.4056729Z shell: /usr/bin/bash -e {0}
+2026-11-11T16:38:26.4057197Z env:
+2026-11-11T16:38:26.4057751Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:26.4058390Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-11T16:38:26.4058995Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:26.4059648Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:26.4060232Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:26.4060927Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-11T16:38:26.4061446Z ##[endgroup]
+2026-11-11T16:38:26.4881069Z
+2026-11-11T16:38:26.4882048Z > satmodclass-frontend@1.0.0 prebuild
+2026-11-11T16:38:26.4883065Z > node scripts/generate-routes.mjs
+2026-11-11T16:38:26.4883519Z
+2026-11-11T16:38:26.5177112Z
+2026-11-11T16:38:26.5178091Z > satmodclass-frontend@1.0.0 build
+2026-11-11T16:38:26.5178972Z > vite build
+2026-11-11T16:38:26.5179297Z
+2026-11-11T16:38:26.7906729Z vite v7.1.12 building for production...
+2026-11-11T16:38:26.8536952Z transforming...
+2026-11-11T16:38:43.5021357Z ✓ 3366 modules transformed.
+2026-11-11T16:38:44.1838137Z rendering chunks...
+2026-11-11T16:38:45.0471900Z computing gzip size...
+2026-11-11T16:38:45.1687095Z dist/index.html                                0.85 kB │ gzip:     0.48 kB
+2026-11-11T16:38:45.1688520Z dist/assets/ground-track-map-CIGW-MKW.css     15.61 kB │ gzip:     6.46 kB
+2026-11-11T16:38:45.1689807Z dist/assets/index-GHWTy0J_.css                98.92 kB │ gzip:    17.74 kB
+2026-11-11T16:38:45.1691075Z dist/assets/ground-track-map-Bt86yWIP.js     156.04 kB │ gzip:    45.90 kB
+2026-11-11T16:38:45.1692847Z dist/assets/index-BYaJufXb.js                580.50 kB │ gzip:   181.73 kB
+2026-11-11T16:38:45.1694206Z dist/assets/earth-globe-CSpBQsoy.js          998.12 kB │ gzip:   270.02 kB
+2026-11-11T16:38:45.1695667Z dist/assets/plotly.min-FQndyn-C.js         4,776.97 kB │ gzip: 1,472.41 kB
+2026-11-11T16:38:45.1696689Z ✓ built in 18.34s
+2026-11-11T16:38:45.5249328Z /opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+2026-11-11T16:38:45.5250846Z   from starlette.testclient import TestClient as TestClient  # noqa
+2026-11-11T16:38:46.2197109Z {"event": "request", "requestId": "9b17a8a0-03ba-419f-859c-a5bae81fb794", "method": "GET", "path": "/", "status": 200, "elapsedMs": 14.53}
+2026-11-11T16:38:46.2201085Z HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-11-11T16:38:46.2243802Z {"event": "request", "requestId": "731ea7ce-1407-4949-80bf-183e4cf0e11a", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 1.12}
+2026-11-11T16:38:46.2246933Z HTTP Request: GET http://testserver/classifier "HTTP/1.1 200 OK"
+2026-11-11T16:38:46.2284273Z {"event": "request", "requestId": "b761b6d9-b12d-48ee-a522-122ac24988c8", "method": "GET", "path": "/studio", "status": 200, "elapsedMs": 1.0}
+2026-11-11T16:38:46.2287558Z HTTP Request: GET http://testserver/studio "HTTP/1.1 200 OK"
+2026-11-11T16:38:46.2324943Z {"event": "request", "requestId": "32caa73d-038d-4e9a-976e-c114b6b8ca4e", "method": "GET", "path": "/evaluation", "status": 200, "elapsedMs": 0.94}
+2026-11-11T16:38:46.2328007Z HTTP Request: GET http://testserver/evaluation "HTTP/1.1 200 OK"
+2026-11-11T16:38:46.2364455Z {"event": "request", "requestId": "3e8b4b53-1520-40e7-95b7-7f18163f0860", "method": "GET", "path": "/arena", "status": 200, "elapsedMs": 0.94}
+2026-11-11T16:38:46.2367581Z HTTP Request: GET http://testserver/arena "HTTP/1.1 200 OK"
+2026-11-11T16:38:46.2405938Z {"event": "request", "requestId": "f01610f4-fa0a-443d-8238-b0f32a939f12", "method": "GET", "path": "/intelligence", "status": 200, "elapsedMs": 1.12}
+2026-11-11T16:38:46.2408642Z HTTP Request: GET http://testserver/intelligence "HTTP/1.1 200 OK"
+2026-11-11T16:38:46.2446092Z {"event": "request", "requestId": "5091d10f-31b7-4be0-b26f-284159da4ab5", "method": "GET", "path": "/theory", "status": 200, "elapsedMs": 1.06}
+2026-11-11T16:38:46.2449202Z HTTP Request: GET http://testserver/theory "HTTP/1.1 200 OK"
+2026-11-11T16:38:46.2487562Z {"event": "request", "requestId": "2004abef-3000-406f-b992-d07c9d177d02", "method": "GET", "path": "/settings", "status": 200, "elapsedMs": 1.34}
+2026-11-11T16:38:46.2491413Z HTTP Request: GET http://testserver/settings "HTTP/1.1 200 OK"
+2026-11-11T16:38:46.2522596Z {"event": "request", "requestId": "3a0bfb22-a6e3-4263-9ee1-29226a5ad2bb", "method": "GET", "path": "/", "status": 200, "elapsedMs": 1.08}
+2026-11-11T16:38:46.2523777Z HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-11-11T16:38:46.2559169Z {"event": "request", "requestId": "25e732c6-590a-4b02-8aba-7e59f45f9b7c", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 1.12}
+2026-11-11T16:38:46.2561450Z HTTP Request: GET http://testserver/assets/index-BYaJufXb.js "HTTP/1.1 200 OK"
+2026-11-11T16:38:46.2627762Z {"event": "request", "requestId": "283c1920-ed69-49a3-bf55-6a06545de968", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 0.98}
+2026-11-11T16:38:46.2630660Z HTTP Request: GET http://testserver/assets/index-GHWTy0J_.css "HTTP/1.1 200 OK"
+2026-11-11T16:38:46.2698906Z {"event": "request", "requestId": "b465051c-e727-4ca8-bde6-825423163963", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 4.48}
+2026-11-11T16:38:46.2700500Z HTTP Request: GET http://testserver/api/health "HTTP/1.1 200 OK"
+2026-11-11T16:38:46.2732250Z {"event": "request", "requestId": "0c4e2942-0bf2-4ecc-bd16-2ac75617b6d0", "method": "GET", "path": "/api/does-not-exist", "status": 404, "elapsedMs": 0.94}
+2026-11-11T16:38:46.2734130Z HTTP Request: GET http://testserver/api/does-not-exist "HTTP/1.1 404 Not Found"
+2026-11-11T16:38:46.2756570Z {
+2026-11-11T16:38:46.2757230Z   "spaRoutesChecked": [
+2026-11-11T16:38:46.2757729Z     "/",
+2026-11-11T16:38:46.2758234Z     "/classifier",
+2026-11-11T16:38:46.2758686Z     "/studio",
+2026-11-11T16:38:46.2759115Z     "/evaluation",
+2026-11-11T16:38:46.2759651Z     "/arena",
+2026-11-11T16:38:46.2760137Z     "/intelligence",
+2026-11-11T16:38:46.2760630Z     "/theory",
+2026-11-11T16:38:46.2761068Z     "/settings"
+2026-11-11T16:38:46.2761489Z   ],
+2026-11-11T16:38:46.2761975Z   "indexAssetsChecked": [
+2026-11-11T16:38:46.2762653Z     "/assets/index-BYaJufXb.js",
+2026-11-11T16:38:46.2763286Z     "/assets/index-GHWTy0J_.css"
+2026-11-11T16:38:46.2763826Z   ],
+2026-11-11T16:38:46.2764238Z   "health": 200,
+2026-11-11T16:38:46.2764921Z   "unknownApi": 404
+2026-11-11T16:38:46.2765405Z }
+2026-11-11T16:38:46.3871430Z ##[group]Run google-chrome --version
+2026-11-11T16:38:46.3871787Z google-chrome --version
+2026-11-11T16:38:46.3884805Z shell: /usr/bin/bash -e {0}
+2026-11-11T16:38:46.3885141Z env:
+2026-11-11T16:38:46.3885510Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:46.3885948Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-11T16:38:46.3886425Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:46.3886815Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:46.3887212Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:46.3887618Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-11T16:38:46.3887962Z ##[endgroup]
+2026-11-11T16:38:48.2126673Z Google Chrome 156.0.8078.79
+2026-11-11T16:38:48.2305925Z ##[group]Run npm run test:e2e -- --reporter=list,html
+2026-11-11T16:38:48.2306376Z npm run test:e2e -- --reporter=list,html
+2026-11-11T16:38:48.2318443Z shell: /usr/bin/bash -e {0}
+2026-11-11T16:38:48.2318746Z env:
+2026-11-11T16:38:48.2319046Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:48.2319512Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-11T16:38:48.2319959Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:48.2320408Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:48.2320796Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:38:48.2321181Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-11T16:38:48.2321560Z   SATMOD_PYTHON: python
+2026-11-11T16:38:48.2321887Z   SATMOD_TEST_API_URL: http://127.0.0.1:8000
+2026-11-11T16:38:48.2322229Z   SATMOD_TEST_BASE_URL: http://127.0.0.1:8000
+2026-11-11T16:38:48.2322781Z   SATMOD_TEST_PRODUCTION: 1
+2026-11-11T16:38:48.2323070Z   PLAYWRIGHT_CHANNEL: chrome
+2026-11-11T16:38:48.2323382Z ##[endgroup]
+2026-11-11T16:38:48.3068337Z
+2026-11-11T16:38:48.3068915Z > satmodclass-frontend@1.0.0 test:e2e
+2026-11-11T16:38:48.3069469Z > playwright test --reporter=list,html
+2026-11-11T16:38:48.3069814Z
+2026-11-11T16:38:50.5807655Z [WebServer] INFO:     Started server process [2777]
+2026-11-11T16:38:50.5808972Z [WebServer] INFO:     Waiting for application startup.
+2026-11-11T16:38:50.5810063Z [WebServer] INFO:     Application startup complete.
+2026-11-11T16:38:50.5820335Z [WebServer] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2026-11-11T16:38:51.5359489Z [WebServer] {"event": "request", "requestId": "a2aaf3c6-1931-4f53-9920-55618bbf9822", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 5.97}
+2026-11-11T16:38:51.6951416Z
+2026-11-11T16:38:51.6952094Z Running 28 tests using 1 worker
+2026-11-11T16:38:51.6952529Z
+2026-11-11T16:38:58.8105874Z [WebServer] {"event": "request", "requestId": "85068f48-21dd-4bd2-b539-ffc462fd763f", "method": "GET", "path": "/", "status": 200, "elapsedMs": 18.21}
+2026-11-11T16:38:58.9330720Z [WebServer] {"event": "request", "requestId": "8624fd3a-8013-4d9f-b976-231df5972818", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 2.35}
+2026-11-11T16:38:58.9340848Z [WebServer] {"event": "request", "requestId": "261e38b0-3d5b-4355-b5dd-f14557b823ff", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 3.3}
+2026-11-11T16:38:59.2849161Z [WebServer] {"event": "request", "requestId": "4efae1e6-e01b-4771-90b1-58991c2a44ee", "method": "GET", "path": "/assets/ground-track-map-Bt86yWIP.js", "status": 200, "elapsedMs": 1.79}
+2026-11-11T16:38:59.2859989Z [WebServer] {"event": "request", "requestId": "aabdb4b8-d2f4-4f9c-84a5-80b36db5a1ab", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 2.55}
+2026-11-11T16:38:59.3136333Z [WebServer] {"event": "request", "requestId": "f802100b-c968-46f1-a8bc-988473fb7329", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 4.95}
+2026-11-11T16:38:59.3184884Z [WebServer] {"event": "request", "requestId": "364893f8-f62b-40de-a9da-c9cc6cac7a86", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 9.43}
+2026-11-11T16:38:59.3202060Z [WebServer] {"event": "request", "requestId": "2ff6bfd3-f5b9-4e1e-8146-ae6baad07f9d", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 11.49}
+2026-11-11T16:38:59.3229243Z [WebServer] {"event": "request", "requestId": "f7e44859-4209-47dc-81bb-552994e5a125", "method": "GET", "path": "/assets/earth-globe-CSpBQsoy.js", "status": 200, "elapsedMs": 9.22}
+2026-11-11T16:38:59.3420738Z [WebServer] {"event": "request", "requestId": "7b5f6b08-f956-43a0-bb59-8bfc5c1d498c", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 31.48}
+2026-11-11T16:38:59.3434442Z [WebServer] {"event": "request", "requestId": "1f6d033b-758f-4fc2-aa45-08f5f1baba62", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 32.82}
+2026-11-11T16:38:59.3459039Z [WebServer] {"event": "request", "requestId": "8ba1ba7a-976c-463e-af55-87f611c2d4a9", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 36.26}
+2026-11-11T16:38:59.4390273Z [WebServer] {"event": "request", "requestId": "0b206100-c7f8-4de8-b5e3-c3f055ca6645", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 1.41}
+2026-11-11T16:38:59.5838460Z [WebServer] {"event": "request", "requestId": "bf54d1da-832c-47e1-b401-511b83bff6e1", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 1.65}
+2026-11-11T16:38:59.5910238Z [WebServer] {"event": "request", "requestId": "abfa7eea-7c61-44b8-a5e9-fdd85fc073f4", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 1.35}
+2026-11-11T16:38:59.8555928Z [WebServer] {"event": "request", "requestId": "26ae8965-0e33-4472-abf6-a5bd480c5ff4", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 1.7}
+2026-11-11T16:39:00.0533290Z [WebServer] {"event": "request", "requestId": "f53488ae-1d7d-430b-ae6c-454bff9b379d", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 4.44}
+2026-11-11T16:39:00.0597035Z [WebServer] {"event": "request", "requestId": "ecb55a94-2c4a-4793-972b-dee699ba8802", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 6.45}
+2026-11-11T16:39:00.0646891Z [WebServer] {"event": "request", "requestId": "690394ed-1584-4374-b7fc-fa5a2d49c94e", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 6.84}
+2026-11-11T16:39:00.0649028Z [WebServer] {"event": "request", "requestId": "7f9f76e5-dcb0-44e1-90f3-c06de87f2dbf", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 10.21}
+2026-11-11T16:39:00.0676013Z [WebServer] {"event": "request", "requestId": "b4484d1b-03e3-4e73-8c16-2f779993a81f", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 10.02}
+2026-11-11T16:39:04.5180322Z [WebServer] {"event": "request", "requestId": "2eaecbaa-2a9a-48f3-ac46-c9dc6211e55e", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 2.58}
+2026-11-11T16:39:04.5201887Z [WebServer] {"event": "request", "requestId": "2ed3820e-39a2-4bd1-8e3d-981506aad445", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 4.49}
+2026-11-11T16:39:07.2187258Z   ✓   1 e2e/mission-dashboard.spec.ts:12:1 › mission dashboard renders real WebGL, geographical map, and honest data states (10.6s)
+2026-11-11T16:39:07.4569165Z [WebServer] {"event": "request", "requestId": "fbb8a96c-72a1-48f2-9142-474a1a6f34e7", "method": "GET", "path": "/", "status": 200, "elapsedMs": 1.46}
+2026-11-11T16:39:07.4869058Z [WebServer] {"event": "request", "requestId": "c5fc0762-b514-40d2-baef-0e30fb0cf09c", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 3.33}
+2026-11-11T16:39:07.4954814Z [WebServer] {"event": "request", "requestId": "956ac9b3-ed4b-46f1-a435-656923894ed0", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 7.72}
+2026-11-11T16:39:07.6925478Z [WebServer] {"event": "request", "requestId": "348aacd1-788c-47a5-826d-ac8f98ae4517", "method": "GET", "path": "/assets/ground-track-map-Bt86yWIP.js", "status": 200, "elapsedMs": 0.91}
+2026-11-11T16:39:07.7086895Z [WebServer] {"event": "request", "requestId": "1eb2da80-ca7e-4bc9-858f-8c1eca77667a", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 6.88}
+2026-11-11T16:39:07.7110414Z [WebServer] {"event": "request", "requestId": "9790edc2-2c2e-4019-9ed3-1994ad4c838d", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 8.91}
+2026-11-11T16:39:07.7153485Z [WebServer] {"event": "request", "requestId": "cdfdbcf5-bd70-4b66-8c8d-05210c8b802c", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 8.68}
+2026-11-11T16:39:07.7195581Z [WebServer] {"event": "request", "requestId": "75d217dd-076d-4429-9856-28cf5b3862f7", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 13.72}
+2026-11-11T16:39:07.7203349Z [WebServer] {"event": "request", "requestId": "d82c33b1-7c19-4e3b-951f-2691d2388b3c", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 12.96}
+2026-11-11T16:39:07.7206347Z [WebServer] {"event": "request", "requestId": "084a5eaa-f484-43fa-bb37-a59341dba7a9", "method": "GET", "path": "/assets/earth-globe-CSpBQsoy.js", "status": 200, "elapsedMs": 5.01}
+2026-11-11T16:39:07.7258704Z [WebServer] {"event": "request", "requestId": "2d8a7367-f5e0-48c5-9e2d-3b46fb5af391", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 18.94}
+2026-11-11T16:39:07.7422561Z [WebServer] {"event": "request", "requestId": "24def002-f47f-457f-8474-ec42234463b0", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 29.58}
+2026-11-11T16:39:07.7775673Z [WebServer] {"event": "request", "requestId": "f33c9054-aa90-46eb-9367-812d6ec9aae8", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 1.5}
+2026-11-11T16:39:07.8405663Z [WebServer] {"event": "request", "requestId": "afea3826-cdbf-4f0b-96be-bbcc2adf049e", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 1.16}
+2026-11-11T16:39:08.0155638Z [WebServer] {"event": "request", "requestId": "d5579648-9347-48b1-a9ce-29379e5b62e7", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 1.59}
+2026-11-11T16:39:08.2346345Z [WebServer] {"event": "request", "requestId": "437e2932-12c9-4cd6-9227-e5b29dbfb8e2", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 3.07}
+2026-11-11T16:39:08.2520617Z [WebServer] {"event": "request", "requestId": "093a4521-86fb-4a46-b443-3bbad476755a", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 13.01}
+2026-11-11T16:39:08.2524961Z [WebServer] {"event": "request", "requestId": "d5aadaf3-0e7a-471a-b0af-5d21f1c5f882", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 13.5}
+2026-11-11T16:39:08.2526861Z [WebServer] {"event": "request", "requestId": "41026737-5c66-4717-a980-8213aa90ec4c", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 15.02}
+2026-11-11T16:39:08.2553946Z [WebServer] {"event": "request", "requestId": "0078ecd3-cbcc-4b63-a8e4-ba070ec34c91", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 17.94}
+2026-11-11T16:39:08.2556281Z [WebServer] {"event": "request", "requestId": "7c1ff395-46d6-45cb-8204-49e133c99d6c", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 17.81}
+2026-11-11T16:39:12.9136788Z [WebServer] {"event": "request", "requestId": "9532489b-ae68-4c29-9f0f-b57fd7d1b2df", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 4.84}
+2026-11-11T16:39:12.9165125Z [WebServer] {"event": "request", "requestId": "c8ae08da-ade2-4572-aead-89fb0298b2c1", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 6.22}
+2026-11-11T16:39:17.8126747Z [WebServer] {"event": "request", "requestId": "1cd92fc2-e127-4bf3-8619-3fcdb5645f94", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 1.16}
+2026-11-11T16:39:18.7311479Z [WebServer] {"event": "request", "requestId": "035989a5-0c4f-44f4-8ab4-57e53de7a2c9", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 1.93}
+2026-11-11T16:39:18.7356352Z [WebServer] {"event": "request", "requestId": "eb03faa0-6428-49ff-9d37-6ec51601479a", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 2.45}
+2026-11-11T16:39:19.7926955Z   ✓   2 e2e/mission-dashboard.spec.ts:34:1 › Earth rotates continuously without pointer input and obeys its pause toggle (12.5s)
+2026-11-11T16:39:19.9444509Z [WebServer] {"event": "request", "requestId": "86e8ccda-e809-4399-9ad8-287b1b3ecb76", "method": "GET", "path": "/", "status": 200, "elapsedMs": 1.61}
+2026-11-11T16:39:19.9649856Z [WebServer] {"event": "request", "requestId": "d34703da-4942-40f9-9aa2-2c1c7e3a441c", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 3.32}
+2026-11-11T16:39:19.9675055Z [WebServer] {"event": "request", "requestId": "4dbfc05d-e7de-4c97-9402-b6937ff1fe59", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 3.88}
+2026-11-11T16:39:20.1703277Z [WebServer] {"event": "request", "requestId": "f04e86e9-abae-4cb0-8ae7-572217aa841d", "method": "GET", "path": "/assets/ground-track-map-Bt86yWIP.js", "status": 200, "elapsedMs": 1.97}
+2026-11-11T16:39:20.1714003Z [WebServer] {"event": "request", "requestId": "d2e6eed4-29e0-4503-a673-c840f232b116", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 3.22}
+2026-11-11T16:39:20.1877784Z [WebServer] {"event": "request", "requestId": "a9f0008d-5d2f-4fbd-b8be-678e170945a6", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 10.17}
+2026-11-11T16:39:20.1880280Z [WebServer] {"event": "request", "requestId": "39497307-5764-4d53-ab22-2973022791c2", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 7.88}
+2026-11-11T16:39:20.1882128Z [WebServer] {"event": "request", "requestId": "58889b70-fb9c-48c4-9dd9-6e28c89c68aa", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 11.47}
+2026-11-11T16:39:20.1984564Z [WebServer] {"event": "request", "requestId": "ea8c302f-cd97-464a-84ab-ef1f4241df6a", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 20.85}
+2026-11-11T16:39:20.1988214Z [WebServer] {"event": "request", "requestId": "26000c31-5481-40c4-aae3-71837ddb9ff5", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 18.67}
+2026-11-11T16:39:20.1998412Z [WebServer] {"event": "request", "requestId": "c5fae46e-bb24-41fc-bba5-353c5c866bb8", "method": "GET", "path": "/assets/earth-globe-CSpBQsoy.js", "status": 200, "elapsedMs": 8.05}
+2026-11-11T16:39:20.2021438Z [WebServer] {"event": "request", "requestId": "c2bd0336-0cff-42f7-9358-dd3d9f7d2839", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 23.89}
+2026-11-11T16:39:20.2225840Z [WebServer] {"event": "request", "requestId": "12a4a7a1-5d34-42ca-941f-635562c190bf", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 2.33}
+2026-11-11T16:39:20.2780660Z [WebServer] {"event": "request", "requestId": "7d309f3c-f5f4-4bd2-a0f1-4d496533aed3", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 1.01}
+2026-11-11T16:39:20.3831277Z [WebServer] {"event": "request", "requestId": "b50ef932-a279-4bd6-b885-c6d29065c937", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 1.04}
+2026-11-11T16:39:20.6788342Z [WebServer] {"event": "request", "requestId": "e0a3b5d4-c53f-4b3e-a653-a778dd9e44ac", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 1.61}
+2026-11-11T16:39:20.6875697Z [WebServer] {"event": "request", "requestId": "3eced6a2-7584-4039-adb4-b8d69bb62afc", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 3.44}
+2026-11-11T16:39:20.6907816Z [WebServer] {"event": "request", "requestId": "aa335f28-db3c-46b7-8a3b-16592b380995", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 6.99}
+2026-11-11T16:39:20.6938544Z [WebServer] {"event": "request", "requestId": "c84181ce-de35-4151-8f90-b3cd38be2333", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 6.45}
+2026-11-11T16:39:20.6972783Z [WebServer] {"event": "request", "requestId": "bc2f3f95-66d3-43be-8429-d36f93a422a5", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 9.66}
+2026-11-11T16:39:20.6975164Z [WebServer] {"event": "request", "requestId": "581773a7-1dd4-4f7f-8e1b-a2d383fe6750", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 9.45}
+2026-11-11T16:39:25.4174680Z [WebServer] {"event": "request", "requestId": "73c1f406-ac97-49ae-adf4-99471b336c27", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 2.78}
+2026-11-11T16:39:25.4177698Z [WebServer] {"event": "request", "requestId": "b1563391-5e00-4a79-9584-63dfd2eb0cda", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 5.02}
+2026-11-11T16:39:30.4752965Z [WebServer] {"event": "request", "requestId": "1661d8e4-0e33-4d84-825d-12a6406be5e9", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 1.5}
+2026-11-11T16:39:30.9041603Z [WebServer] {"event": "request", "requestId": "1a1f9edd-d736-4edd-b6e3-f86e859cd997", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 6.92}
+2026-11-11T16:39:30.9046956Z [WebServer] {"event": "request", "requestId": "82b1ac80-d4b4-489b-832f-7be70ebb79aa", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 6.11}
+2026-11-11T16:39:36.5019373Z [WebServer] {"event": "request", "requestId": "406fbdbb-a4c4-4f58-8ae5-0d2f41fbe025", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 3.32}
+2026-11-11T16:39:36.5070189Z [WebServer] {"event": "request", "requestId": "9916b7db-ac05-4e06-b80e-db182e5871eb", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 3.75}
+2026-11-11T16:39:40.9043190Z [WebServer] {"event": "request", "requestId": "36b8ac1a-09ce-4b11-93da-c197d47ae671", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 1.3}
+2026-11-11T16:39:41.8323799Z [WebServer] {"event": "request", "requestId": "4e8a00ad-3b93-4f10-ae83-e9b5de0c610d", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 2.19}
+2026-11-11T16:39:41.8354132Z [WebServer] {"event": "request", "requestId": "8288835a-ed28-4b67-843f-204a0483543b", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 4.03}
+2026-11-11T16:39:46.8635703Z   ✓   3 e2e/mission-dashboard.spec.ts:56:1 › camera zoom/reset, scroll zoom, and drag interaction work (27.1s)
+2026-11-11T16:39:46.9665106Z [WebServer] {"event": "request", "requestId": "427c669b-9ac3-48bf-a41f-284102c2dbcf", "method": "GET", "path": "/", "status": 200, "elapsedMs": 3.69}
+2026-11-11T16:39:46.9926950Z [WebServer] {"event": "request", "requestId": "dac331d6-a94c-4de8-93c5-54afb6df543f", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 2.0}
+2026-11-11T16:39:46.9931678Z [WebServer] {"event": "request", "requestId": "f4e915c7-1b46-4661-b294-b704d96caa42", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 2.35}
+2026-11-11T16:39:47.1916218Z [WebServer] {"event": "request", "requestId": "189ec67b-7e46-44dd-aa10-51425d5baf71", "method": "GET", "path": "/assets/ground-track-map-Bt86yWIP.js", "status": 200, "elapsedMs": 4.82}
+2026-11-11T16:39:47.1969894Z [WebServer] {"event": "request", "requestId": "b3eaf860-398d-4ef2-ae18-d1cb14b1d08a", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 6.21}
+2026-11-11T16:39:47.2063368Z [WebServer] {"event": "request", "requestId": "a08a09f3-79f3-48d5-8da7-a0bf952e7109", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 9.59}
+2026-11-11T16:39:47.2073938Z [WebServer] {"event": "request", "requestId": "b9fa175d-59b3-413f-935d-e1ab54a5d8d2", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 9.5}
+2026-11-11T16:39:47.2098078Z [WebServer] {"event": "request", "requestId": "18d76391-4617-44da-b13c-19123867daad", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 14.56}
+2026-11-11T16:39:47.2148599Z [WebServer] {"event": "request", "requestId": "79de500f-69aa-4879-a232-699f52d25652", "method": "GET", "path": "/assets/earth-globe-CSpBQsoy.js", "status": 200, "elapsedMs": 3.42}
+2026-11-11T16:39:47.2322208Z [WebServer] {"event": "request", "requestId": "89df5402-a6f5-4a60-a5bb-6d1f580db481", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 33.07}
+2026-11-11T16:39:47.2328173Z [WebServer] {"event": "request", "requestId": "5bc9af43-4835-4d66-98c9-2cdb52b73bad", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 22.45}
+2026-11-11T16:39:47.2331922Z [WebServer] {"event": "request", "requestId": "d0e5f1b1-82ca-4802-8779-2e91a3d6f907", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 23.24}
+2026-11-11T16:39:47.2467376Z [WebServer] {"event": "request", "requestId": "0682de9a-500f-4900-9f29-c0546358c5b4", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 3.16}
+2026-11-11T16:39:47.2924555Z [WebServer] {"event": "request", "requestId": "a5a3a597-0bae-485b-8d7c-f01cde6221fd", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 1.02}
+2026-11-11T16:39:47.4030488Z [WebServer] {"event": "request", "requestId": "3ce21c18-150d-4a8a-ace4-602b4c4a8e92", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 1.56}
+2026-11-11T16:39:47.6693459Z [WebServer] {"event": "request", "requestId": "599e74ae-eca2-48c6-bbea-3d5cc2ed3ac5", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 1.42}
+2026-11-11T16:39:47.6806671Z [WebServer] {"event": "request", "requestId": "1fc33564-3998-4f6f-822a-5c94c27efa2f", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 6.61}
+2026-11-11T16:39:47.6839152Z [WebServer] {"event": "request", "requestId": "7498c761-7911-486d-8dcc-1e7bf55278f4", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 7.23}
+2026-11-11T16:39:47.6865921Z [WebServer] {"event": "request", "requestId": "cf308056-33f4-44c0-b529-583bba44a083", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 7.5}
+2026-11-11T16:39:47.6874212Z [WebServer] {"event": "request", "requestId": "0767ec87-8118-41b9-aed1-db3193bf2f79", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 8.12}
+2026-11-11T16:39:47.6907750Z [WebServer] {"event": "request", "requestId": "6e68d48e-68b3-4e91-a149-7af3de360226", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 8.26}
+2026-11-11T16:39:51.9196098Z   ✓   4 e2e/mission-dashboard.spec.ts:91:1 › satellite selector and clickable marker labels update satellite details (5.0s)
+2026-11-11T16:39:52.0313583Z [WebServer] {"event": "request", "requestId": "97157a01-a61a-4972-8a67-a9732f31a344", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 4.73}
+2026-11-11T16:39:52.0526863Z [WebServer] {"event": "request", "requestId": "c798a6d9-82ba-496e-b568-1054f4773608", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 1.38}
+2026-11-11T16:39:52.0548751Z [WebServer] {"event": "request", "requestId": "cd3fe286-cd50-44d1-9dc2-364b6f23ec54", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 2.62}
+2026-11-11T16:39:52.2410763Z [WebServer] {"event": "request", "requestId": "76a5b15d-1fe7-420e-bac0-82d4221bc331", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 2.58}
+2026-11-11T16:39:52.2466464Z [WebServer] {"event": "request", "requestId": "cf82392a-724a-4d72-93fa-311d26027467", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 5.68}
+2026-11-11T16:39:52.2474552Z [WebServer] {"event": "request", "requestId": "3528454e-53e3-4ff9-93d1-1b70a0fdf274", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 6.86}
+2026-11-11T16:39:52.2519144Z [WebServer] {"event": "request", "requestId": "e74ed53d-336d-44d7-b3f0-fd2a3162b401", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 10.25}
+2026-11-11T16:39:52.2529492Z [WebServer] {"event": "request", "requestId": "884b944b-8976-46a2-a6b6-3f361f588801", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 8.79}
+2026-11-11T16:39:52.2934631Z [WebServer] {"event": "request", "requestId": "204d15bf-3436-41a4-9722-3e06e2c3c0b0", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 3.08}
+2026-11-11T16:39:52.4182085Z [WebServer] {"event": "request", "requestId": "59c2961a-cd3d-463b-a9b3-548484c2bcfa", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 15.82}
+2026-11-11T16:39:52.4312974Z [WebServer] {"event": "request", "requestId": "9c83019a-b1a4-4011-8158-54035b5aa0fe", "method": "GET", "path": "/assets/plotly.min-FQndyn-C.js", "status": 200, "elapsedMs": 1.95}
+2026-11-11T16:39:52.5197426Z [WebServer] {"event": "request", "requestId": "47d672f5-e0bc-4038-95e7-b01d12eb5aa5", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 18.31}
+2026-11-11T16:39:53.8028158Z [WebServer] {"event": "request", "requestId": "0497dde3-5925-40b7-802d-7e2176fbb67c", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 1.15}
+2026-11-11T16:39:53.8434886Z [WebServer] {"event": "request", "requestId": "b08002c7-ab2d-4402-9c11-63572e7a3901", "method": "GET", "path": "/assets/ground-track-map-Bt86yWIP.js", "status": 200, "elapsedMs": 1.92}
+2026-11-11T16:39:53.8440988Z [WebServer] {"event": "request", "requestId": "b5a2d5cd-c272-42b3-900c-b1fbb980e2fd", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 2.49}
+2026-11-11T16:39:53.8536025Z [WebServer] {"event": "request", "requestId": "7b206b60-c57d-4c2e-82f8-8b7cb8f45cf0", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 3.56}
+2026-11-11T16:39:53.8543412Z [WebServer] {"event": "request", "requestId": "d669c7ce-12cb-4469-adbe-3146efbb9294", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 4.84}
+2026-11-11T16:39:53.8576261Z [WebServer] {"event": "request", "requestId": "71906156-0994-4f48-a764-7aff2ee4fde5", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 5.43}
+2026-11-11T16:39:53.8591370Z [WebServer] {"event": "request", "requestId": "7b089532-4eac-4d83-b584-4fa1d9ced19c", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 6.07}
+2026-11-11T16:39:53.8603875Z [WebServer] {"event": "request", "requestId": "dc97675f-5efc-4668-9448-74496e1b1a96", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 8.07}
+2026-11-11T16:39:53.8667357Z [WebServer] {"event": "request", "requestId": "aa66571f-6c70-464b-ae0f-d297b1d8453f", "method": "GET", "path": "/assets/earth-globe-CSpBQsoy.js", "status": 200, "elapsedMs": 1.0}
+2026-11-11T16:39:53.9090328Z [WebServer] {"event": "request", "requestId": "7b1f509f-3087-47a3-b575-407c7b518bba", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 1.02}
+2026-11-11T16:39:54.0083854Z [WebServer] {"event": "request", "requestId": "24596886-3946-47b1-be4e-6d481e033c3d", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 1.11}
+2026-11-11T16:39:54.1295016Z   ✓   5 e2e/mission-dashboard.spec.ts:107:1 › shared classifier result populates actual three-class probabilities on Overview (2.2s)
+2026-11-11T16:39:54.2550954Z [WebServer] {"event": "request", "requestId": "03b7e603-3015-4112-9154-2a3d57a4c5ce", "method": "GET", "path": "/", "status": 200, "elapsedMs": 1.65}
+2026-11-11T16:39:54.2720744Z [WebServer] {"event": "request", "requestId": "cb608f21-506e-4085-a1c9-f2fd965d9475", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 1.91}
+2026-11-11T16:39:54.2738769Z [WebServer] {"event": "request", "requestId": "f6d92478-2a8f-4136-b494-b9e08f2bcd10", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 2.95}
+2026-11-11T16:39:54.4661877Z [WebServer] {"event": "request", "requestId": "e11ff9a6-0601-45bf-88a6-c54d4fe04774", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 1.78}
+2026-11-11T16:39:54.4666524Z [WebServer] {"event": "request", "requestId": "780ab377-4a9c-4087-9fbb-68bb563109cc", "method": "GET", "path": "/assets/ground-track-map-Bt86yWIP.js", "status": 200, "elapsedMs": 3.37}
+2026-11-11T16:39:54.4743045Z [WebServer] {"event": "request", "requestId": "c8e357ee-b7cd-4353-aac1-b3ab84741b3e", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 1.99}
+2026-11-11T16:39:54.4760331Z [WebServer] {"event": "request", "requestId": "8da00a49-661d-43f7-ad88-18f96d386c1d", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 2.82}
+2026-11-11T16:39:54.4806820Z [WebServer] {"event": "request", "requestId": "ae4a2e0c-9a55-4d06-ba25-f558ce0df00f", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 4.62}
+2026-11-11T16:39:54.4835684Z [WebServer] {"event": "request", "requestId": "581811f3-7cae-4694-8b0e-dc1d70a43d26", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 8.0}
+2026-11-11T16:39:54.4856880Z [WebServer] {"event": "request", "requestId": "b6f3b9fc-5c99-4515-9da9-9a005ecc1cf6", "method": "GET", "path": "/assets/earth-globe-CSpBQsoy.js", "status": 200, "elapsedMs": 6.37}
+2026-11-11T16:39:54.4969912Z [WebServer] {"event": "request", "requestId": "7620a267-7b0c-4232-96f6-7f477d5e22e1", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 21.05}
+2026-11-11T16:39:54.5002388Z [WebServer] {"event": "request", "requestId": "dd81351d-0530-45fa-b8ef-a35f56412b44", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 23.76}
+2026-11-11T16:39:54.5258067Z [WebServer] {"event": "request", "requestId": "fb37ed50-69de-4be3-88f0-91038b055647", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 2.27}
+2026-11-11T16:39:54.5624601Z [WebServer] {"event": "request", "requestId": "454c20ec-54cc-454e-b71b-7193d7b4ebc4", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 1.16}
+2026-11-11T16:39:54.7416584Z [WebServer] {"event": "request", "requestId": "e12161ad-d34b-4dbe-9ee4-b52216947aa8", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 11.21}
+2026-11-11T16:39:54.9400800Z [WebServer] {"event": "request", "requestId": "f7b0c7bd-56c8-498a-8816-dc86399ec70d", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 1.18}
+2026-11-11T16:39:54.9476918Z [WebServer] {"event": "request", "requestId": "1673b7b6-16f8-4469-b523-f8fb8a2c2d70", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 3.92}
+2026-11-11T16:39:54.9496156Z [WebServer] {"event": "request", "requestId": "de898d40-aae6-4d35-9e1b-07ba07b5424e", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 4.34}
+2026-11-11T16:39:54.9521752Z [WebServer] {"event": "request", "requestId": "31d5e969-d9ef-4463-a762-8659ad1d9231", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 6.9}
+2026-11-11T16:39:54.9758134Z [WebServer] {"event": "request", "requestId": "6324fb46-0fc7-499b-9e17-b4dd106faeec", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 7.3}
+2026-11-11T16:39:54.9766749Z [WebServer] {"event": "request", "requestId": "84044d79-1579-4db4-8a86-cda814c78080", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 14.45}
+2026-11-11T16:39:58.7008918Z   ✓   6 e2e/mission-dashboard.spec.ts:122:1 › reduced-motion preference disables automatic movement by default (4.6s)
+2026-11-11T16:39:58.8228206Z [WebServer] {"event": "request", "requestId": "508e3564-e89e-41bb-a886-c0d243054953", "method": "GET", "path": "/", "status": 200, "elapsedMs": 1.92}
+2026-11-11T16:39:58.8483914Z [WebServer] {"event": "request", "requestId": "28074b07-df77-4b4b-9012-e36c5306e771", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 2.27}
+2026-11-11T16:39:58.8512937Z [WebServer] {"event": "request", "requestId": "6f54054e-11d0-4213-8ad1-89d7863cb5ea", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 2.75}
+2026-11-11T16:39:59.0619112Z [WebServer] {"event": "request", "requestId": "4c0673ac-e3f5-429b-a3f2-ad879825e3db", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 2.21}
+2026-11-11T16:39:59.0642614Z [WebServer] {"event": "request", "requestId": "d1d6e849-8de7-4c59-aaba-74ef8322af69", "method": "GET", "path": "/assets/ground-track-map-Bt86yWIP.js", "status": 200, "elapsedMs": 2.26}
+2026-11-11T16:39:59.0707700Z [WebServer] {"event": "request", "requestId": "15b5fd7d-b3d5-4d57-9ef6-a4f08866cd89", "method": "GET", "path": "/assets/earth-globe-CSpBQsoy.js", "status": 200, "elapsedMs": 1.08}
+2026-11-11T16:39:59.1971543Z [WebServer] {"event": "request", "requestId": "f541883d-adad-44c8-85d6-a779d9eedcea", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 1.4}
+2026-11-11T16:39:59.3632753Z [WebServer] {"event": "request", "requestId": "69ee634c-5c9d-451d-8412-8a1c931ac5ce", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 1.61}
+2026-11-11T16:39:59.5031672Z [WebServer] {"event": "request", "requestId": "9149541c-35c6-48a3-9b27-b5dc55d56c88", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 9.25}
+2026-11-11T16:39:59.5058481Z [WebServer] {"event": "request", "requestId": "c138efc8-4994-4e2c-a556-1f95d8ce537b", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 10.66}
+2026-11-11T16:39:59.5085973Z [WebServer] {"event": "request", "requestId": "61fe9e9f-e395-44cc-b56f-15ecc1f56ca8", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 10.63}
+2026-11-11T16:39:59.5088541Z [WebServer] {"event": "request", "requestId": "18fdaa78-077f-4e80-bd96-3f2fb26bfd41", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 10.71}
+2026-11-11T16:39:59.5090587Z [WebServer] {"event": "request", "requestId": "48cc8141-9deb-4c99-bf81-5bfb03021324", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 11.63}
+2026-11-11T16:39:59.5104947Z [WebServer] {"event": "request", "requestId": "ec4bab2a-26bd-4447-a579-15cc40df7a6d", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 16.12}
+2026-11-11T16:40:03.5906992Z   ✓   7 e2e/mission-dashboard.spec.ts:144:1 › backend offline state is explicit while the demonstration remains usable (4.9s)
+2026-11-11T16:40:03.7056010Z [WebServer] {"event": "request", "requestId": "4043f18a-93c4-48cd-90ea-616d351b2d04", "method": "GET", "path": "/", "status": 200, "elapsedMs": 1.68}
+2026-11-11T16:40:03.7233194Z [WebServer] {"event": "request", "requestId": "1d3521ee-30c5-446a-8988-bd80d3d7b8b1", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 1.72}
+2026-11-11T16:40:03.7278605Z [WebServer] {"event": "request", "requestId": "735a50c2-13dc-4514-95c2-cb7279e2fb6b", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 3.93}
+2026-11-11T16:40:03.9070781Z [WebServer] {"event": "request", "requestId": "c61275fe-f834-4ad4-b2df-bbc33c4b5e54", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 1.87}
+2026-11-11T16:40:03.9083424Z [WebServer] {"event": "request", "requestId": "154902cc-c3da-4850-9f2c-eb4512d72826", "method": "GET", "path": "/assets/ground-track-map-Bt86yWIP.js", "status": 200, "elapsedMs": 2.58}
+2026-11-11T16:40:03.9130118Z [WebServer] {"event": "request", "requestId": "b1ae2af7-c04e-434e-ba6e-a42db83b21d7", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 0.86}
+2026-11-11T16:40:03.9140426Z [WebServer] {"event": "request", "requestId": "26628c7c-e385-469c-b6f2-f6a445ee1a53", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 2.58}
+2026-11-11T16:40:03.9277909Z [WebServer] {"event": "request", "requestId": "8d81aca3-b795-4c4b-975b-d514e38976f3", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 11.9}
+2026-11-11T16:40:03.9299203Z [WebServer] {"event": "request", "requestId": "3573953c-a1aa-4baf-ad88-4d66d029b1d7", "method": "GET", "path": "/assets/earth-globe-CSpBQsoy.js", "status": 200, "elapsedMs": 8.8}
+2026-11-11T16:40:03.9371689Z [WebServer] {"event": "request", "requestId": "bb4aec38-2906-4851-96dd-24996ddb45aa", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 18.63}
+2026-11-11T16:40:03.9418641Z [WebServer] {"event": "request", "requestId": "992431e8-60ad-45fa-8f45-7b37b84d3799", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 22.98}
+2026-11-11T16:40:03.9433855Z [WebServer] {"event": "request", "requestId": "8fee526b-6eca-4eeb-a17b-f7cf6aecf901", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 26.5}
+2026-11-11T16:40:03.9648198Z [WebServer] {"event": "request", "requestId": "d94a446b-88ef-4779-a85b-7c2ed251e20d", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 1.4}
+2026-11-11T16:40:04.0089073Z [WebServer] {"event": "request", "requestId": "8c6cd615-30f9-46d8-9d75-84845cd3c97c", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 0.83}
+2026-11-11T16:40:04.1619297Z [WebServer] {"event": "request", "requestId": "28c17293-5c75-450a-ac0a-65a9e04d264d", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 5.53}
+2026-11-11T16:40:04.5015125Z   ✓   8 e2e/mission-dashboard.spec.ts:154:1 › WebGL unavailable state offers an honest geographical fallback (899ms)
+2026-11-11T16:40:04.6116360Z [WebServer] {"event": "request", "requestId": "9ffd58ae-bc04-4b9a-a22c-8ef6a49c8246", "method": "GET", "path": "/", "status": 200, "elapsedMs": 1.66}
+2026-11-11T16:40:04.6348653Z [WebServer] {"event": "request", "requestId": "3d1e45f7-823a-4629-a4e4-38a55c5e852a", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 1.11}
+2026-11-11T16:40:04.6406235Z [WebServer] {"event": "request", "requestId": "3e75a4f7-1ec9-40ad-bcc3-14621c2453f4", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 2.34}
+2026-11-11T16:40:04.8156421Z [WebServer] {"event": "request", "requestId": "91a46c00-8112-4220-b58a-22571822992b", "method": "GET", "path": "/assets/ground-track-map-Bt86yWIP.js", "status": 200, "elapsedMs": 1.78}
+2026-11-11T16:40:04.8160831Z [WebServer] {"event": "request", "requestId": "2b28a2a8-9527-401d-b219-b8eae440d76f", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 2.81}
+2026-11-11T16:40:04.8327999Z [WebServer] {"event": "request", "requestId": "8c9ce2fa-b6bb-4747-ba35-c21e9ed1bb98", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 13.19}
+2026-11-11T16:40:04.8335100Z [WebServer] {"event": "request", "requestId": "f8e3ad66-b29b-488e-93f5-317830865926", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 10.36}
+2026-11-11T16:40:04.8520943Z [WebServer] {"event": "request", "requestId": "40ce958a-9c59-4165-8169-66e32488e007", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 24.22}
+2026-11-11T16:40:04.8523140Z [WebServer] {"event": "request", "requestId": "0d397caf-f193-4cc1-ae1b-48b538cbd119", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 24.45}
+2026-11-11T16:40:04.8525063Z [WebServer] {"event": "request", "requestId": "f37d76e3-181c-41c3-b4e2-88357a142736", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 24.92}
+2026-11-11T16:40:04.8550558Z [WebServer] {"event": "request", "requestId": "2679b2eb-4ec0-44df-871e-4979b5a48f7d", "method": "GET", "path": "/assets/earth-globe-CSpBQsoy.js", "status": 200, "elapsedMs": 3.25}
+2026-11-11T16:40:04.8562204Z [WebServer] {"event": "request", "requestId": "f8f299b0-0d8a-4a1a-bc9a-2350a43fcd34", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 28.05}
+2026-11-11T16:40:04.8683198Z [WebServer] {"event": "request", "requestId": "458edbf6-3bf2-4393-a060-1abfb0675518", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 5.25}
+2026-11-11T16:40:04.9234838Z [WebServer] {"event": "request", "requestId": "bcd24a86-77c9-4f70-aef2-4171f03d42e5", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 0.99}
+2026-11-11T16:40:05.0412951Z [WebServer] {"event": "request", "requestId": "366836ae-37d8-4684-b4b6-ddb55a16e18a", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 1.64}
+2026-11-11T16:40:05.3094268Z [WebServer] {"event": "request", "requestId": "6c105d3a-2600-43fe-8619-f28b8e2270e1", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 1.54}
+2026-11-11T16:40:05.3212770Z [WebServer] {"event": "request", "requestId": "9585f807-c88f-415f-a06f-45de20c1b25a", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 5.89}
+2026-11-11T16:40:05.3215199Z [WebServer] {"event": "request", "requestId": "72d097e1-1d0d-4222-a6ca-dd4bc67ad310", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 6.5}
+2026-11-11T16:40:05.3217250Z [WebServer] {"event": "request", "requestId": "35537c21-6e31-48c1-880d-d3efeed78fc1", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 6.79}
+2026-11-11T16:40:05.3243478Z [WebServer] {"event": "request", "requestId": "45aeb9c2-e34c-47ed-8db7-263e43a82908", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 6.69}
+2026-11-11T16:40:05.3273458Z [WebServer] {"event": "request", "requestId": "040dac65-1589-4cc7-9b41-5ba6aebfffba", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 10.54}
+2026-11-11T16:40:10.1149231Z [WebServer] {"event": "request", "requestId": "935ddf23-ce84-4219-a0b2-6a1a605efe55", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 3.48}
+2026-11-11T16:40:10.1182716Z [WebServer] {"event": "request", "requestId": "3f26500f-86eb-44f2-bd1e-6f33edf52b03", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 6.34}
+2026-11-11T16:40:12.7936237Z   ✓   9 e2e/mission-dashboard.spec.ts:174:3 › mission layout remains usable at 1440px (8.3s)
+2026-11-11T16:40:12.9525701Z [WebServer] {"event": "request", "requestId": "8cdda1bf-af5c-4c43-8c58-0b51189a0598", "method": "GET", "path": "/", "status": 200, "elapsedMs": 3.69}
+2026-11-11T16:40:12.9806220Z [WebServer] {"event": "request", "requestId": "834a6d35-44c6-4fdf-a591-fa7381b97129", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 2.43}
+2026-11-11T16:40:12.9827720Z [WebServer] {"event": "request", "requestId": "39d2415c-cf90-4488-8a9c-4dad5a4efdf1", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 2.13}
+2026-11-11T16:40:13.1893517Z [WebServer] {"event": "request", "requestId": "8cc1780a-47f1-4134-bae3-5eab854eafeb", "method": "GET", "path": "/assets/ground-track-map-Bt86yWIP.js", "status": 200, "elapsedMs": 1.91}
+2026-11-11T16:40:13.1898252Z [WebServer] {"event": "request", "requestId": "84c2c280-6d99-456f-ba4b-b668c5ab7638", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 2.5}
+2026-11-11T16:40:13.1980627Z [WebServer] {"event": "request", "requestId": "dd6b4894-a3cb-47a3-bec6-db58a5da0c44", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 3.19}
+2026-11-11T16:40:13.2007333Z [WebServer] {"event": "request", "requestId": "ff1c2eb2-2159-4d8e-82e5-1b4fda20ce71", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 5.57}
+2026-11-11T16:40:13.2025637Z [WebServer] {"event": "request", "requestId": "c5b1b3c4-5893-4a3f-9fb2-f52651dbba13", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 7.69}
+2026-11-11T16:40:13.2056734Z [WebServer] {"event": "request", "requestId": "533bb298-c07e-4d24-86f2-00490870bec8", "method": "GET", "path": "/assets/earth-globe-CSpBQsoy.js", "status": 200, "elapsedMs": 3.82}
+2026-11-11T16:40:13.2194187Z [WebServer] {"event": "request", "requestId": "1b9eecb2-4a4b-406c-9967-22767a4e7f67", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 20.71}
+2026-11-11T16:40:13.2218582Z [WebServer] {"event": "request", "requestId": "9bcec632-b74b-4775-bcb5-fcf2d56ef882", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 23.04}
+2026-11-11T16:40:13.2220444Z [WebServer] {"event": "request", "requestId": "fa235c2a-e6e1-4949-bd01-2fe83fd80326", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 25.27}
+2026-11-11T16:40:13.2390833Z [WebServer] {"event": "request", "requestId": "6b8c6ea2-84cc-44d6-b94d-df9ed6e97d95", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 1.79}
+2026-11-11T16:40:13.2810668Z [WebServer] {"event": "request", "requestId": "056ba985-0868-4eed-aa29-486a811fedbb", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 0.85}
+2026-11-11T16:40:13.4333638Z [WebServer] {"event": "request", "requestId": "b2510823-1868-4765-a8ad-ef90806688b0", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 0.95}
+2026-11-11T16:40:13.6815749Z [WebServer] {"event": "request", "requestId": "a6fc02db-dd71-4dc0-aa5c-93382494021e", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 1.4}
+2026-11-11T16:40:13.6957788Z [WebServer] {"event": "request", "requestId": "94fece4b-1931-40d9-90ab-f9b4a5f1add6", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 6.65}
+2026-11-11T16:40:13.6973638Z [WebServer] {"event": "request", "requestId": "ea2eecd3-5065-4664-b498-db4e58dfd615", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 9.45}
+2026-11-11T16:40:13.6979628Z [WebServer] {"event": "request", "requestId": "0a0c99d7-0cc7-4cd5-85b3-3721b769d4f6", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 11.7}
+2026-11-11T16:40:13.6982170Z [WebServer] {"event": "request", "requestId": "ba8cb594-6e46-4350-b619-513857913a59", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 11.64}
+2026-11-11T16:40:13.6993295Z [WebServer] {"event": "request", "requestId": "6fa8f1f9-02c4-4ed6-b323-57b582194438", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 12.6}
+2026-11-11T16:40:18.3303584Z [WebServer] {"event": "request", "requestId": "af4ad412-0979-4d1b-b8a3-60f0a138fff6", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 2.28}
+2026-11-11T16:40:18.3319672Z [WebServer] {"event": "request", "requestId": "d9205310-901d-4998-8398-12b92cf123ed", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 4.43}
+2026-11-11T16:40:23.3819631Z [WebServer] {"event": "request", "requestId": "3fa00469-0c0c-4e53-9ea6-d1f041be6833", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 1.02}
+2026-11-11T16:40:23.6348100Z [WebServer] {"event": "request", "requestId": "018e661c-4990-43c7-bd75-242ce7010ea0", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 4.5}
+2026-11-11T16:40:23.6366552Z [WebServer] {"event": "request", "requestId": "6cac8daa-d757-4e39-8bd4-ab7f7d223048", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 2.71}
+2026-11-11T16:40:23.9208268Z [WebServer] {"event": "request", "requestId": "29f2ffb6-8ed6-4db8-9314-27f31a1c4133", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 4.4}
+2026-11-11T16:40:23.9305325Z [WebServer] {"event": "request", "requestId": "d6422cc9-4512-481c-93fc-40080a760496", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 10.0}
+2026-11-11T16:40:23.9323572Z [WebServer] {"event": "request", "requestId": "f82e2d1e-b082-4efe-98e2-4492fe431b07", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 10.63}
+2026-11-11T16:40:23.9330837Z [WebServer] {"event": "request", "requestId": "905ef992-84f0-45d8-9808-2e2a3b5fba74", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 14.27}
+2026-11-11T16:40:23.9336794Z [WebServer] {"event": "request", "requestId": "cf5d2ed6-d260-46c8-b641-6aca020fdadd", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 11.24}
+2026-11-11T16:40:23.9555983Z [WebServer] {"event": "request", "requestId": "99e668b6-9a8b-4387-9d4f-fee57da6fd73", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 1.27}
+2026-11-11T16:40:24.0496243Z   ✓  10 e2e/mission-dashboard.spec.ts:174:3 › mission layout remains usable at 1024px (11.2s)
+2026-11-11T16:40:24.1654538Z [WebServer] {"event": "request", "requestId": "2aae3123-b46b-4021-8a5f-825f2c303e64", "method": "GET", "path": "/", "status": 200, "elapsedMs": 2.98}
+2026-11-11T16:40:24.1897361Z [WebServer] {"event": "request", "requestId": "da75478a-7a62-4512-a0f2-3ce836991218", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 2.05}
+2026-11-11T16:40:24.1915691Z [WebServer] {"event": "request", "requestId": "72c7d01d-b00b-4ca5-8a4e-6a4bd8fa4482", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 3.14}
+2026-11-11T16:40:24.3555764Z [WebServer] {"event": "request", "requestId": "4d4f5702-4140-475e-9f7f-18d1b4503ce9", "method": "GET", "path": "/assets/ground-track-map-Bt86yWIP.js", "status": 200, "elapsedMs": 1.96}
+2026-11-11T16:40:24.3569031Z [WebServer] {"event": "request", "requestId": "1b33f67c-68e4-4790-8dc5-3c1d96b97f2b", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 2.76}
+2026-11-11T16:40:24.3676681Z [WebServer] {"event": "request", "requestId": "66f1e0a8-636f-4835-87e0-0e2f1accfb0e", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 6.39}
+2026-11-11T16:40:24.3714870Z [WebServer] {"event": "request", "requestId": "7c7ccd87-8e08-415d-afe1-950f12702062", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 8.47}
+2026-11-11T16:40:24.3747761Z [WebServer] {"event": "request", "requestId": "678a541b-c9f2-48c8-a474-d090d85eb375", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 8.63}
+2026-11-11T16:40:24.3787501Z [WebServer] {"event": "request", "requestId": "5c30008b-343c-41da-b8da-f9fa1635f451", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 12.79}
+2026-11-11T16:40:24.3903701Z [WebServer] {"event": "request", "requestId": "d256d58e-973d-4b51-be9f-74f1ca302cf9", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 23.83}
+2026-11-11T16:40:24.3910644Z [WebServer] {"event": "request", "requestId": "58861d67-e8ad-49a9-b1eb-48fea2e005dc", "method": "GET", "path": "/assets/earth-globe-CSpBQsoy.js", "status": 200, "elapsedMs": 21.49}
+2026-11-11T16:40:24.3925723Z [WebServer] {"event": "request", "requestId": "68234452-e399-4cc0-9f8b-b13eda469b48", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 26.07}
+2026-11-11T16:40:24.4131983Z [WebServer] {"event": "request", "requestId": "90d60908-24db-4da6-b16a-38a9f576dc1b", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 3.64}
+2026-11-11T16:40:24.4509849Z [WebServer] {"event": "request", "requestId": "4c80faae-bfe6-4486-8d0f-10a3a290b838", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 0.84}
+2026-11-11T16:40:24.5954200Z [WebServer] {"event": "request", "requestId": "fb0c57cc-83b7-49d3-a8de-5a62561ca2ce", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 1.11}
+2026-11-11T16:40:24.8350872Z [WebServer] {"event": "request", "requestId": "be956e51-ac5d-4081-9531-2d74ab645a15", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 0.93}
+2026-11-11T16:40:24.8465499Z [WebServer] {"event": "request", "requestId": "de091d2e-35b2-4363-846a-a19c22737811", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 4.78}
+2026-11-11T16:40:24.8475470Z [WebServer] {"event": "request", "requestId": "c634b68b-57df-4bc8-bd11-1263b8c9f0f1", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 6.12}
+2026-11-11T16:40:24.8484148Z [WebServer] {"event": "request", "requestId": "749704d7-93d6-4c8d-95cc-6c37678c7705", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 8.04}
+2026-11-11T16:40:24.8521317Z [WebServer] {"event": "request", "requestId": "334a405b-5333-429a-b20b-0105200e4587", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 8.08}
+2026-11-11T16:40:24.8523594Z [WebServer] {"event": "request", "requestId": "2a2e5f55-36ad-4089-958f-722603b46ee5", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 9.15}
+2026-11-11T16:40:29.6886344Z [WebServer] {"event": "request", "requestId": "37d5738c-eb75-4679-b43f-60c2a5e8f6c4", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 3.81}
+2026-11-11T16:40:29.6903403Z [WebServer] {"event": "request", "requestId": "6c4bbef4-32ea-4a40-b870-a90b86c3b2b1", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 4.31}
+2026-11-11T16:40:34.5859216Z [WebServer] {"event": "request", "requestId": "a51ea402-6b56-4e7d-b840-4aced8144ce1", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 0.81}
+2026-11-11T16:40:35.2068220Z [WebServer] {"event": "request", "requestId": "5b6abc5f-7946-4ce3-952e-f3b381d97cdd", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 3.98}
+2026-11-11T16:40:35.2096207Z [WebServer] {"event": "request", "requestId": "7da95c5f-17df-44d0-a56f-14102d304e7a", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 5.92}
+2026-11-11T16:40:35.2127505Z [WebServer] {"event": "request", "requestId": "c8cf0831-ed0a-47ac-982c-a225e9300d4a", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 7.68}
+2026-11-11T16:40:35.2151594Z [WebServer] {"event": "request", "requestId": "570f9078-26a7-4455-ba49-85ee289cbe5e", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 10.34}
+2026-11-11T16:40:35.2161886Z [WebServer] {"event": "request", "requestId": "ac65a1ab-769c-47f7-9320-c89fdb62a482", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 10.54}
+2026-11-11T16:40:35.2316715Z [WebServer] {"event": "request", "requestId": "4888db60-e242-4732-96a5-8486976471db", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 2.17}
+2026-11-11T16:40:35.3492730Z   ✓  11 e2e/mission-dashboard.spec.ts:174:3 › mission layout remains usable at 820px (11.3s)
+2026-11-11T16:40:35.4662605Z [WebServer] {"event": "request", "requestId": "86e62da1-f98f-4226-bd74-e7172aa89fc2", "method": "GET", "path": "/", "status": 200, "elapsedMs": 2.79}
+2026-11-11T16:40:35.4905184Z [WebServer] {"event": "request", "requestId": "932e80a0-8da4-4975-af21-c098c94784c0", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 5.33}
+2026-11-11T16:40:35.4918359Z [WebServer] {"event": "request", "requestId": "1a2bb650-195f-4246-84a1-c062e556c257", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 5.8}
+2026-11-11T16:40:35.6914488Z [WebServer] {"event": "request", "requestId": "89625f24-81cb-48dd-8b2e-a1205eb718fb", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 1.66}
+2026-11-11T16:40:35.6926316Z [WebServer] {"event": "request", "requestId": "97e5f3c7-eb64-4cf7-8fab-74f1788cd8db", "method": "GET", "path": "/assets/ground-track-map-Bt86yWIP.js", "status": 200, "elapsedMs": 2.8}
+2026-11-11T16:40:35.7002321Z [WebServer] {"event": "request", "requestId": "e6d94c6e-f4d8-4e16-90ed-dca158bfeaff", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 3.03}
+2026-11-11T16:40:35.7015851Z [WebServer] {"event": "request", "requestId": "74dffe24-ba2a-4fa4-8a71-fedc51e153af", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 6.04}
+2026-11-11T16:40:35.7061982Z [WebServer] {"event": "request", "requestId": "a297cc0d-4d51-48d1-9bd3-9a8db048b9e5", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 6.07}
+2026-11-11T16:40:35.7233584Z [WebServer] {"event": "request", "requestId": "d80f2209-ca24-4f16-895c-081b8e51ec3a", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 19.97}
+2026-11-11T16:40:35.7242491Z [WebServer] {"event": "request", "requestId": "e64ccf77-0a48-4942-ac6a-bb5b8b2126b1", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 22.52}
+2026-11-11T16:40:35.7253679Z [WebServer] {"event": "request", "requestId": "645e9985-a678-4703-a20e-8ccfa4865fe2", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 22.83}
+2026-11-11T16:40:35.7256174Z [WebServer] {"event": "request", "requestId": "9344aa8f-ef4b-4534-9856-127534838e8c", "method": "GET", "path": "/assets/earth-globe-CSpBQsoy.js", "status": 200, "elapsedMs": 17.95}
+2026-11-11T16:40:35.7400268Z [WebServer] {"event": "request", "requestId": "c275c690-65d3-43a3-a3e3-9272b625db45", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 1.94}
+2026-11-11T16:40:35.7886392Z [WebServer] {"event": "request", "requestId": "45019e9f-2c1d-42c6-9270-b057a8e9eb75", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 0.83}
+2026-11-11T16:40:35.8801424Z [WebServer] {"event": "request", "requestId": "ca0b129c-4500-4f26-8407-1c60e46953d0", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 1.28}
+2026-11-11T16:40:36.1614819Z [WebServer] {"event": "request", "requestId": "95b708f2-b59d-471d-bf16-bae15fd721bf", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 1.18}
+2026-11-11T16:40:36.1707025Z [WebServer] {"event": "request", "requestId": "962ce356-ff46-4a2f-b28e-67678f66b36f", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 3.97}
+2026-11-11T16:40:36.1740000Z [WebServer] {"event": "request", "requestId": "b12b8409-d854-4f30-bfab-78b01bf7080d", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 6.37}
+2026-11-11T16:40:36.1771276Z [WebServer] {"event": "request", "requestId": "76c279e7-d334-4d35-8494-6abd4f0ac33e", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 11.43}
+2026-11-11T16:40:36.1781883Z [WebServer] {"event": "request", "requestId": "d0e22a20-6e88-4417-9baa-c92aaacf96eb", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 11.59}
+2026-11-11T16:40:36.1799937Z [WebServer] {"event": "request", "requestId": "38aad577-3a80-47ba-9b2a-7710e1f0c03a", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 13.8}
+2026-11-11T16:40:40.7780582Z [WebServer] {"event": "request", "requestId": "86afe857-822a-47f2-85e5-0f3c997ed5ba", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 2.84}
+2026-11-11T16:40:40.7797429Z [WebServer] {"event": "request", "requestId": "24105c5d-aaf2-4a09-95ef-38a620f1c0dc", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 3.3}
+2026-11-11T16:40:43.8386206Z [WebServer] {"event": "request", "requestId": "9c2f049c-0063-4b6b-9b2e-39e9d77fb785", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 3.26}
+2026-11-11T16:40:43.8435404Z [WebServer] {"event": "request", "requestId": "f19ba101-d960-442b-a3bd-0990ff4fc8fc", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 6.0}
+2026-11-11T16:40:43.8444991Z [WebServer] {"event": "request", "requestId": "c8bbe25a-ea84-49f9-98ff-f8f0931dccb2", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 7.41}
+2026-11-11T16:40:43.8456578Z [WebServer] {"event": "request", "requestId": "775c0e37-10df-4425-bcdb-4992652bbda3", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 7.37}
+2026-11-11T16:40:43.8465182Z [WebServer] {"event": "request", "requestId": "77863c2b-27ca-4fdc-83ab-14ffe368ea45", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 9.82}
+2026-11-11T16:40:43.9591574Z   ✓  12 e2e/mission-dashboard.spec.ts:174:3 › mission layout remains usable at 390px (8.6s)
+2026-11-11T16:40:44.0723636Z [WebServer] {"event": "request", "requestId": "63343ab1-e5cd-4d52-8a2d-c2f385707378", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 1.06}
+2026-11-11T16:40:44.1004191Z [WebServer] {"event": "request", "requestId": "a33cc3f3-1fd9-4632-bd04-30f0fcc41c57", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 1.33}
+2026-11-11T16:40:44.1011035Z [WebServer] {"event": "request", "requestId": "5090341f-3bf4-4202-8f4a-96531c5bbd9e", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 4.63}
+2026-11-11T16:40:44.2942562Z [WebServer] {"event": "request", "requestId": "9549eeac-9142-45ae-ba58-f323a9cc639d", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 7.14}
+2026-11-11T16:40:44.2966053Z [WebServer] {"event": "request", "requestId": "f0348c41-25ca-4e24-b2a9-c6813bbe500f", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 6.33}
+2026-11-11T16:40:44.2967767Z [WebServer] {"event": "request", "requestId": "aaceea9a-1895-442f-b9ad-9556b9dbc1ae", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 6.58}
+2026-11-11T16:40:44.2985255Z [WebServer] {"event": "request", "requestId": "3edd2c76-3108-48bf-9b74-d29483e425f8", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 6.7}
+2026-11-11T16:40:44.3000524Z [WebServer] {"event": "request", "requestId": "16e57f7a-e072-47c2-8136-313e34c7d15d", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 7.01}
+2026-11-11T16:40:44.3315566Z [WebServer] {"event": "request", "requestId": "cf0c6b22-8139-428b-ad87-20df1db0161d", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 1.59}
+2026-11-11T16:40:44.7338357Z [WebServer] {"event": "request", "requestId": "dfb52129-7343-49c6-96ef-2944cf26cc1e", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 23.62}
+2026-11-11T16:40:44.7537779Z [WebServer] {"event": "request", "requestId": "68d3374a-e9ec-4371-bd87-9dd81d07c1a1", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 1.73}
+2026-11-11T16:40:44.7830288Z [WebServer] {"event": "request", "requestId": "93aec0ed-e1cf-4bbf-aa97-3f74b297edf7", "method": "GET", "path": "/api/workspace/captures/6591c341-6205-441a-8758-d99098f7a69e", "status": 200, "elapsedMs": 16.34}
+2026-11-11T16:40:44.7878545Z [WebServer] {"event": "request", "requestId": "d6d88690-bb55-4301-b854-a7a637effed6", "method": "GET", "path": "/assets/plotly.min-FQndyn-C.js", "status": 200, "elapsedMs": 1.0}
+2026-11-11T16:40:44.9397168Z [WebServer] {"event": "request", "requestId": "1904b3e1-dd9d-413e-a1fc-ede2449a42e1", "method": "POST", "path": "/api/workspace/jobs/batch", "status": 200, "elapsedMs": 3.99}
+2026-11-11T16:40:44.9571528Z [WebServer] {"event": "request", "requestId": "5848daeb-c2e6-4a0d-b46a-34e5ac441e8b", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 0.82}
+2026-11-11T16:40:45.9142624Z [WebServer] {"event": "request", "requestId": "234e9aef-7903-4d7a-96df-335ef41dd6f5", "method": "GET", "path": "/api/workspace/jobs/eb521000-ca3d-46fe-8d33-ff0a6742a6cb/result", "status": 200, "elapsedMs": 6.86}
+2026-11-11T16:40:46.0456790Z [WebServer] {"event": "request", "requestId": "9bb3c59b-2828-4638-a2fd-0d73b4c25ed9", "method": "GET", "path": "/api/workspace/jobs/eb521000-ca3d-46fe-8d33-ff0a6742a6cb/export", "status": 200, "elapsedMs": 2.0}
+2026-11-11T16:40:46.0595259Z [WebServer] {"event": "request", "requestId": "c82aa26b-e4b3-4633-bf42-f0dd448400ae", "method": "GET", "path": "/api/workspace/jobs/eb521000-ca3d-46fe-8d33-ff0a6742a6cb/export", "status": 200, "elapsedMs": 1.34}
+2026-11-11T16:40:46.1673254Z [WebServer] {"event": "request", "requestId": "531b107e-6aca-4bb5-b380-eb07d5db32df", "method": "POST", "path": "/api/workspace/captures/6591c341-6205-441a-8758-d99098f7a69e/classify", "status": 200, "elapsedMs": 54.57}
+2026-11-11T16:40:46.1717606Z [WebServer] {"event": "request", "requestId": "978504d0-f83c-48d4-845f-42c4f637784c", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 1.58}
+2026-11-11T16:40:46.4803309Z [WebServer] {"event": "request", "requestId": "93ec8f96-8b30-44b5-b723-ba4f024c8594", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 1.9}
+2026-11-11T16:40:46.5800315Z [WebServer] {"event": "request", "requestId": "c04b8c2a-6dcd-4e36-b124-0c09d60681c5", "method": "GET", "path": "/api/workspace/history/67e1e82d-e8de-4f7d-8640-e3200a3f1951/report", "status": 200, "elapsedMs": 36.48}
+2026-11-11T16:40:46.5867024Z [WebServer] {"event": "request", "requestId": "fc89324c-0b94-4ef1-a7c8-e25849acb889", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 1.71}
+2026-11-11T16:40:46.5936459Z [WebServer] {"event": "request", "requestId": "1ba80be6-a593-4ce4-b888-61256e56ff13", "method": "GET", "path": "/api/workspace/history/67e1e82d-e8de-4f7d-8640-e3200a3f1951/report", "status": 200, "elapsedMs": 7.89}
+2026-11-11T16:40:46.6827335Z   ✓  13 e2e/phase2-workflows.spec.ts:5:1 › external binary → late window → actual batch timeline → persisted PDF report (2.7s)
+2026-11-11T16:40:46.7748022Z [WebServer] {"event": "request", "requestId": "959410c1-ec66-406a-80ca-698ce01e6e12", "method": "GET", "path": "/intelligence", "status": 200, "elapsedMs": 1.76}
+2026-11-11T16:40:46.8036199Z [WebServer] {"event": "request", "requestId": "92482a76-79cf-4c39-afd8-92f5f84e0428", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 1.21}
+2026-11-11T16:40:46.8135830Z [WebServer] {"event": "request", "requestId": "df194778-7730-4883-8a14-5d18ac72d46c", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 5.28}
+2026-11-11T16:40:46.9909423Z [WebServer] {"event": "request", "requestId": "3ad0b7dc-5bc0-4be3-a33c-3ea022bac553", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 4.31}
+2026-11-11T16:40:46.9935936Z [WebServer] {"event": "request", "requestId": "28fbf5a2-0217-4e24-8ce3-aa7e8ff4a98e", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 4.59}
+2026-11-11T16:40:46.9985191Z [WebServer] {"event": "request", "requestId": "ca7a58c3-3251-4f12-a651-7c53fa36ce8e", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 9.08}
+2026-11-11T16:40:46.9990867Z [WebServer] {"event": "request", "requestId": "5c6313a1-dca9-4a19-ac5c-ba38d8dfee5c", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 10.83}
+2026-11-11T16:40:47.0007415Z [WebServer] {"event": "request", "requestId": "eaff6dc0-812c-4933-aeaa-52ee193617fd", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 10.06}
+2026-11-11T16:40:47.0270814Z [WebServer] {"event": "request", "requestId": "1dd1f20e-5f57-420f-abfb-c5d1ca8cd34b", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 1.78}
+2026-11-11T16:40:47.2642612Z [WebServer] {"event": "request", "requestId": "6dc76e7d-91f1-41f4-9ec2-33cd9002ca77", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 3.53}
+2026-11-11T16:40:47.2982102Z [WebServer] {"event": "request", "requestId": "a2063cc0-e4fe-482d-84e8-d857d98ca05b", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 1.24}
+2026-11-11T16:40:47.3119963Z [WebServer] {"event": "request", "requestId": "6f677a42-18f1-4ce1-acbb-854c395be531", "method": "GET", "path": "/api/workspace/captures/fed6d064-7d6d-4e7c-8af1-f6ff1c234f2c", "status": 200, "elapsedMs": 3.01}
+2026-11-11T16:40:47.3175604Z [WebServer] {"event": "request", "requestId": "bf74b3d5-78dd-4dc2-84a0-76e6dfd2e8a2", "method": "GET", "path": "/assets/plotly.min-FQndyn-C.js", "status": 200, "elapsedMs": 0.74}
+2026-11-11T16:40:47.4308133Z [WebServer] {"event": "request", "requestId": "770882c7-249f-4aa6-9c77-7f94e0e9b3be", "method": "GET", "path": "/api/workspace/captures/fed6d064-7d6d-4e7c-8af1-f6ff1c234f2c/window", "status": 200, "elapsedMs": 16.05}
+2026-11-11T16:40:48.6192783Z [WebServer] {"event": "request", "requestId": "40ea546c-7eeb-44b3-a43d-6733c3cb2766", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 1.68}
+2026-11-11T16:40:48.6956211Z   ✓  14 e2e/phase2-workflows.spec.ts:54:1 › SigMF metadata supplies sample clock and UTC window timestamp (2.0s)
+2026-11-11T16:40:48.9421135Z [WebServer] {"event": "request", "requestId": "d517e07f-4c01-4648-b653-eb6ca4bcad58", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 117.44}
+2026-11-11T16:40:48.9612729Z [WebServer] {"event": "request", "requestId": "5506b86d-6a8a-46ed-bf01-7d1a3b8ffbfc", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 3.98}
+2026-11-11T16:40:48.9726092Z [WebServer] {"event": "request", "requestId": "c166b69d-9da0-421b-9238-7b2de3dbdceb", "method": "GET", "path": "/evaluation", "status": 200, "elapsedMs": 1.51}
+2026-11-11T16:40:48.9957456Z [WebServer] {"event": "request", "requestId": "78ed5782-bee5-42af-b84c-7511a63a918c", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 1.57}
+2026-11-11T16:40:48.9959143Z [WebServer] {"event": "request", "requestId": "e56500f5-bf31-4c85-a00c-507e57bac61c", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 2.66}
+2026-11-11T16:40:49.1490589Z [WebServer] {"event": "request", "requestId": "71aab74f-c046-4920-891f-7824a71c7eeb", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 6.09}
+2026-11-11T16:40:49.1493333Z [WebServer] {"event": "request", "requestId": "401eea12-e010-4998-9d9e-a2a44247f2d4", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 7.51}
+2026-11-11T16:40:49.1504646Z [WebServer] {"event": "request", "requestId": "86bbb326-3f08-4bdc-a646-42603dfbd489", "method": "GET", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 10.36}
+2026-11-11T16:40:49.1506804Z [WebServer] {"event": "request", "requestId": "fa34fc1b-815e-4646-b18a-9f24344dbf9a", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 9.18}
+2026-11-11T16:40:49.1761235Z [WebServer] {"event": "request", "requestId": "a9f7361b-1f1b-46d9-bfaa-84df64507f21", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 4.11}
+2026-11-11T16:40:49.1852176Z [WebServer] {"event": "request", "requestId": "0df60b92-5da9-4fd7-b61b-3cdb572697c2", "method": "GET", "path": "/assets/plotly.min-FQndyn-C.js", "status": 200, "elapsedMs": 1.33}
+2026-11-11T16:40:49.6680126Z [WebServer] {"event": "request", "requestId": "9b7cf47e-9be5-42b9-bc23-db4b7ff8086e", "method": "POST", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 325.01}
+2026-11-11T16:40:50.4046953Z [WebServer] {"event": "request", "requestId": "569479da-726c-41a4-9d40-00c30258f6b7", "method": "GET", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 4.29}
+2026-11-11T16:40:50.5472775Z [WebServer] {"event": "request", "requestId": "6cb32e54-678f-4a5b-be63-8bfc24986686", "method": "POST", "path": "/api/workspace/datasets/279cd652-b401-4e55-a19f-023a40c8e16a/evaluate", "status": 200, "elapsedMs": 3.05}
+2026-11-11T16:40:50.5622408Z [WebServer] {"event": "request", "requestId": "276ceb1f-01e3-4e2b-9fcd-8fff3be4e94a", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 3.05}
+2026-11-11T16:40:52.0805744Z [WebServer] {"event": "request", "requestId": "553b9a70-e0fd-4e73-8e7c-9062045b4ba1", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 1.27}
+2026-11-11T16:40:52.0860144Z [WebServer] {"event": "request", "requestId": "8dde2e23-8112-451f-95a8-8dfcb3bf8089", "method": "GET", "path": "/api/workspace/jobs/ebeaaa65-77fb-49d5-bb69-49cd24bf88a8/result", "status": 200, "elapsedMs": 2.13}
+2026-11-11T16:40:52.4952025Z   ✓  15 e2e/phase2-workflows.spec.ts:95:1 › registered independent labels produce an actual external evaluation report (3.8s)
+2026-11-11T16:40:52.6134254Z [WebServer] {"event": "request", "requestId": "306ae24b-441f-401a-aec2-ad667195b11f", "method": "GET", "path": "/studio", "status": 200, "elapsedMs": 1.6}
+2026-11-11T16:40:52.6339962Z [WebServer] {"event": "request", "requestId": "e7f10c29-cf19-48ad-9c7e-eee41136c790", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 1.88}
+2026-11-11T16:40:52.6410485Z [WebServer] {"event": "request", "requestId": "80dc1562-870f-4676-939e-b59d2690b544", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 2.77}
+2026-11-11T16:40:52.8386183Z [WebServer] {"event": "request", "requestId": "aa420cb2-2288-4e9c-aace-cfa2477d6972", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 3.11}
+2026-11-11T16:40:52.8687553Z [WebServer] {"event": "request", "requestId": "44316980-70ae-40cf-a23a-d4a69465c927", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 3.64}
+2026-11-11T16:40:53.0883174Z [WebServer] {"event": "request", "requestId": "c1d80ab6-ac08-4346-ba23-165785af4abc", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 77.0}
+2026-11-11T16:40:53.1036845Z [WebServer] {"event": "request", "requestId": "a1b76c9f-1842-4fd2-a757-234d1f3da05c", "method": "GET", "path": "/assets/plotly.min-FQndyn-C.js", "status": 200, "elapsedMs": 0.95}
+2026-11-11T16:40:53.2363059Z [WebServer] {"event": "request", "requestId": "1baad037-08a9-40e7-99d5-f053a8a3e0bd", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 11.66}
+2026-11-11T16:40:53.2407152Z [WebServer] {"event": "request", "requestId": "f72e9539-a7eb-42ae-8598-368c9127d957", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 16.62}
+2026-11-11T16:40:53.2422106Z [WebServer] {"event": "request", "requestId": "987bce46-85b9-42ca-b0b9-852105709f66", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 19.57}
+2026-11-11T16:40:53.2424499Z [WebServer] {"event": "request", "requestId": "50d3f299-4c1e-428c-8cd9-af5a3203330b", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 18.18}
+2026-11-11T16:40:53.2445775Z [WebServer] {"event": "request", "requestId": "8646c6ab-6d91-47b5-924e-604010761d7a", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 16.87}
+2026-11-11T16:40:54.5605806Z [WebServer] {"event": "request", "requestId": "acc3fea8-5826-40f9-8ad4-b351ae9eeb19", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 39.28}
+2026-11-11T16:40:54.9663429Z [WebServer] {"event": "request", "requestId": "eb36e6d4-1218-4853-9437-048344a399e9", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 2.45}
+2026-11-11T16:40:55.2088044Z [WebServer] {"event": "request", "requestId": "cab894a6-25e3-441c-9ea9-c280f44ac804", "method": "POST", "path": "/api/explain", "status": 200, "elapsedMs": 144.09}
+2026-11-11T16:40:55.9177077Z   ✓  16 e2e/scientific-workflows.spec.ts:4:1 › impaired signal → real CNN → Integrated Gradients → exported scientific report (3.4s)
+2026-11-11T16:40:56.0358752Z [WebServer] {"event": "request", "requestId": "24d577c8-79fc-45bb-adbe-6f2fde78c051", "method": "GET", "path": "/api/samples/97", "status": 200, "elapsedMs": 20.94}
+2026-11-11T16:40:56.0481771Z [WebServer] {"event": "request", "requestId": "515f328c-6ade-4d3b-be4e-87e68be0cdd6", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 1.96}
+2026-11-11T16:40:56.0743292Z [WebServer] {"event": "request", "requestId": "57209225-2897-4b0e-b757-3385d28415d5", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 2.88}
+2026-11-11T16:40:56.0822525Z [WebServer] {"event": "request", "requestId": "9493d4a2-0a77-4dfe-98bd-2dc4da6f214b", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 6.04}
+2026-11-11T16:40:56.2628198Z [WebServer] {"event": "request", "requestId": "cd8910b5-1e39-4918-bb7f-e58ed8a2ef7b", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 1.76}
+2026-11-11T16:40:56.2663350Z [WebServer] {"event": "request", "requestId": "ea894cc6-4cd6-44d2-89aa-2b3b2889bb5c", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 3.79}
+2026-11-11T16:40:56.2717381Z [WebServer] {"event": "request", "requestId": "ccb80dd5-a138-47d8-a0dc-27aa96133ef7", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 5.77}
+2026-11-11T16:40:56.2727481Z [WebServer] {"event": "request", "requestId": "92ab957a-0c2d-4049-bdda-8832f7bbeea9", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 7.29}
+2026-11-11T16:40:56.2731500Z [WebServer] {"event": "request", "requestId": "071546cc-dd88-42e1-9db3-ac7b66e1ac22", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 6.64}
+2026-11-11T16:40:56.2993922Z [WebServer] {"event": "request", "requestId": "f8016c5f-0fc6-4a38-a5a3-61ad0c67bd9f", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 1.67}
+2026-11-11T16:40:56.3803690Z [WebServer] {"event": "request", "requestId": "f063d959-8074-4b00-8625-dd798433202f", "method": "POST", "path": "/api/classify/upload", "status": 200, "elapsedMs": 13.38}
+2026-11-11T16:40:56.4102075Z [WebServer] {"event": "request", "requestId": "6eea7cc1-24af-4663-82ba-43500bd6c401", "method": "GET", "path": "/assets/plotly.min-FQndyn-C.js", "status": 200, "elapsedMs": 0.98}
+2026-11-11T16:40:56.5933909Z [WebServer] {"event": "request", "requestId": "018b95ce-80ad-4538-958b-8c11f9c61f30", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 16.93}
+2026-11-11T16:40:57.9078383Z [WebServer] {"event": "request", "requestId": "ffb123e3-3c97-4bd1-b368-0be8c7b0ae36", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 2.58}
+2026-11-11T16:40:57.9996878Z   ✓  17 e2e/scientific-workflows.spec.ts:50:1 › upload preserves raw samples and applies an explicitly changed sample clock (2.1s)
+2026-11-11T16:40:58.1139988Z [WebServer] {"event": "request", "requestId": "fc5339de-e69c-450b-8955-8de65f1f1665", "method": "GET", "path": "/studio", "status": 200, "elapsedMs": 4.17}
+2026-11-11T16:40:58.1364850Z [WebServer] {"event": "request", "requestId": "39d09098-aeb0-4e8b-b8d0-2e4a19005c60", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 1.71}
+2026-11-11T16:40:58.1381154Z [WebServer] {"event": "request", "requestId": "c75c22a3-8d66-4e19-b364-ab4929da841f", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 2.28}
+2026-11-11T16:40:58.3372280Z [WebServer] {"event": "request", "requestId": "c7e8efc7-2f74-470b-8a3a-2c9636d4190d", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 1.04}
+2026-11-11T16:40:58.3714589Z [WebServer] {"event": "request", "requestId": "6b184c16-d8cf-4dc7-9c79-dbd1e3f84b44", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 3.12}
+2026-11-11T16:40:58.5468773Z [WebServer] {"event": "request", "requestId": "600848a0-4b69-4396-90fd-c2f17e600cd3", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 70.0}
+2026-11-11T16:40:58.5613869Z [WebServer] {"event": "request", "requestId": "4b86c130-2add-4840-b543-6871194bc67d", "method": "GET", "path": "/assets/plotly.min-FQndyn-C.js", "status": 200, "elapsedMs": 0.86}
+2026-11-11T16:41:00.2099387Z [WebServer] {"event": "request", "requestId": "d800db42-957a-4c33-9adb-37a77da65e99", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 74.85}
+2026-11-11T16:41:00.5858337Z   ✓  18 e2e/scientific-workflows.spec.ts:75:1 › GMSK and BFSK controls drive real frequency modulation without fake symbol eyes (2.6s)
+2026-11-11T16:41:00.7109216Z [WebServer] {"event": "request", "requestId": "341e50fb-1d78-4451-86ba-3aa938a014b2", "method": "GET", "path": "/api/samples/97", "status": 200, "elapsedMs": 16.57}
+2026-11-11T16:41:00.7345963Z [WebServer] {"event": "request", "requestId": "1ac5affe-d1f6-4c43-86e9-fdbf6227b74d", "method": "GET", "path": "/studio", "status": 200, "elapsedMs": 6.01}
+2026-11-11T16:41:00.7571577Z [WebServer] {"event": "request", "requestId": "8447ca26-6667-43e4-bca0-feb723c7ae72", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 3.92}
+2026-11-11T16:41:00.7593662Z [WebServer] {"event": "request", "requestId": "970b4604-d814-46ce-8c14-78171b646dd4", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 4.32}
+2026-11-11T16:41:00.9244098Z [WebServer] {"event": "request", "requestId": "1ab5341b-a59b-4a63-be71-b291586471f9", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 0.92}
+2026-11-11T16:41:00.9534227Z [WebServer] {"event": "request", "requestId": "db814d9a-32bb-4185-bc45-3593e2c12409", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 2.11}
+2026-11-11T16:41:01.1049462Z [WebServer] {"event": "request", "requestId": "0cdd90d8-b81b-4800-84b5-02e92cc5dbc5", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 75.39}
+2026-11-11T16:41:01.1210260Z [WebServer] {"event": "request", "requestId": "de1e6a79-6f02-40d2-84b5-91e703d966df", "method": "GET", "path": "/assets/plotly.min-FQndyn-C.js", "status": 200, "elapsedMs": 1.03}
+2026-11-11T16:41:01.2744080Z [WebServer] {"event": "request", "requestId": "e7ea393d-d63c-4c8c-8d3d-bf988347c97d", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 2.4}
+2026-11-11T16:41:01.2785823Z [WebServer] {"event": "request", "requestId": "ef484503-d246-4c58-8ef6-3f0da461c65a", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 3.65}
+2026-11-11T16:41:01.2822181Z [WebServer] {"event": "request", "requestId": "75c830c1-be32-4e35-a0ad-218dedc4f9ef", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 9.54}
+2026-11-11T16:41:01.2846095Z [WebServer] {"event": "request", "requestId": "03e99bfc-b714-4593-aa9b-0cb936d030a7", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 7.61}
+2026-11-11T16:41:01.2865845Z [WebServer] {"event": "request", "requestId": "768ead7d-0cd4-4833-878f-0a81fdc836fc", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 7.43}
+2026-11-11T16:41:02.8212136Z [WebServer] {"event": "request", "requestId": "6fee94a1-c899-4b55-8b73-924ebde886ae", "method": "POST", "path": "/api/signal/upload", "status": 200, "elapsedMs": 14.07}
+2026-11-11T16:41:03.4280314Z [WebServer] {"event": "request", "requestId": "c7c7b247-6531-42eb-8ea7-f684e0972364", "method": "POST", "path": "/api/signal/compare", "status": 200, "elapsedMs": 115.7}
+2026-11-11T16:41:04.1219810Z [WebServer] {"event": "request", "requestId": "e56d14ac-071f-4d80-b2e9-cfbca0559d2a", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 1.43}
+2026-11-11T16:41:04.4570294Z   ✓  19 e2e/scientific-workflows.spec.ts:105:1 › two captures with mixed known/unknown rates use common normalized axes and real predictions (3.9s)
+2026-11-11T16:41:04.5753052Z [WebServer] {"event": "request", "requestId": "b587ec65-3eb5-4912-b86f-37a0e6bb571c", "method": "GET", "path": "/evaluation", "status": 200, "elapsedMs": 2.1}
+2026-11-11T16:41:04.6013826Z [WebServer] {"event": "request", "requestId": "cbb2e189-b089-4894-906c-3450ca638327", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 1.95}
+2026-11-11T16:41:04.6029696Z [WebServer] {"event": "request", "requestId": "bc8b8c07-dfc2-4f8f-baa7-103a20f5116e", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 2.87}
+2026-11-11T16:41:04.7906400Z [WebServer] {"event": "request", "requestId": "c9f58bf4-f37e-48de-9978-5986c3aff48e", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 3.34}
+2026-11-11T16:41:04.7930871Z [WebServer] {"event": "request", "requestId": "bd6eaca0-a249-4bd6-bc9b-1f0a7c1fab8b", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 7.78}
+2026-11-11T16:41:04.7959228Z [WebServer] {"event": "request", "requestId": "757528cf-04a1-40df-ad8c-4b8296fcd61c", "method": "GET", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 12.2}
+2026-11-11T16:41:04.7969941Z [WebServer] {"event": "request", "requestId": "49a6cb0a-cb7d-44e1-beb8-e076a7d91bc5", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 6.35}
+2026-11-11T16:41:04.8202479Z [WebServer] {"event": "request", "requestId": "3c151efb-e118-47d1-8d28-322798d205be", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 2.64}
+2026-11-11T16:41:04.8259800Z [WebServer] {"event": "request", "requestId": "1b0d94be-7daf-474c-b42c-595b80965954", "method": "GET", "path": "/assets/plotly.min-FQndyn-C.js", "status": 200, "elapsedMs": 1.04}
+2026-11-11T16:41:05.3501175Z [WebServer] {"event": "request", "requestId": "47cde171-10a3-403c-8247-07066d31a9f6", "method": "GET", "path": "/api/evaluation/diagnostics", "status": 200, "elapsedMs": 448.56}
+2026-11-11T16:41:06.1136832Z [WebServer] {"event": "request", "requestId": "b0126c28-27e2-46b5-8144-796cc1bb6807", "method": "GET", "path": "/arena", "status": 200, "elapsedMs": 1.42}
+2026-11-11T16:41:06.1666119Z [WebServer] {"event": "request", "requestId": "91c8ea34-c061-4ba5-a3fa-c29a065f974f", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 5.18}
+2026-11-11T16:41:06.1881784Z [WebServer] {"event": "request", "requestId": "fba5af59-db68-4055-9521-25308b1c2fb7", "method": "GET", "path": "/api/experiments", "status": 200, "elapsedMs": 26.47}
+2026-11-11T16:41:06.2830181Z [WebServer] {"event": "request", "requestId": "147955e9-1d87-4d51-b322-085262b1821f", "method": "GET", "path": "/api/models", "status": 200, "elapsedMs": 123.55}
+2026-11-11T16:41:06.5997717Z [WebServer] {"event": "request", "requestId": "fe36179c-6dc9-420b-9832-02c3e9702177", "method": "POST", "path": "/api/benchmark", "status": 200, "elapsedMs": 207.51}
+2026-11-11T16:41:07.0371179Z   ✓  20 e2e/scientific-workflows.spec.ts:136:1 › real demo diagnostics and matched experimental comparisons remain distinct from historical scores (2.6s)
+2026-11-11T16:41:07.1736087Z [WebServer] {"event": "request", "requestId": "60a5e826-6e9c-4a4b-ac7c-ff6806cb81ce", "method": "GET", "path": "/api/samples/97", "status": 200, "elapsedMs": 26.19}
+2026-11-11T16:41:07.1905989Z [WebServer] {"event": "request", "requestId": "28f65f0a-5ec1-4e1e-ace0-7c2e699fd8a6", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 2.98}
+2026-11-11T16:41:07.2193431Z [WebServer] {"event": "request", "requestId": "38a8b37b-4d8d-42e1-9caf-0ecfe2058dc7", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 3.36}
+2026-11-11T16:41:07.2201889Z [WebServer] {"event": "request", "requestId": "1287a135-b2e9-4310-85cb-27f88948f393", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 4.35}
+2026-11-11T16:41:07.3928312Z [WebServer] {"event": "request", "requestId": "032e7ec8-c65e-45fe-b92f-0889f2622fea", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 4.55}
+2026-11-11T16:41:07.3947615Z [WebServer] {"event": "request", "requestId": "f3011284-5956-4613-8c2c-ce0cfd363bbf", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 5.88}
+2026-11-11T16:41:07.4010451Z [WebServer] {"event": "request", "requestId": "afaafa0f-96e7-4677-9494-3c94c07635b1", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 10.81}
+2026-11-11T16:41:07.4013858Z [WebServer] {"event": "request", "requestId": "c362ca1c-8823-472a-a767-f969c61f3618", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 11.99}
+2026-11-11T16:41:07.4026275Z [WebServer] {"event": "request", "requestId": "b20199ab-afb5-43a4-8696-147c41d1c54e", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 10.97}
+2026-11-11T16:41:07.4261203Z [WebServer] {"event": "request", "requestId": "d279c8cd-0b4a-401c-baa5-fb6f27bae532", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 2.54}
+2026-11-11T16:41:07.5155773Z [WebServer] {"event": "request", "requestId": "8a4272c9-35d3-463f-aeba-30b22c00bdb5", "method": "POST", "path": "/api/classify/upload", "status": 200, "elapsedMs": 13.55}
+2026-11-11T16:41:07.5391669Z [WebServer] {"event": "request", "requestId": "ed9c8051-ccdf-481b-8652-778798c24494", "method": "GET", "path": "/assets/plotly.min-FQndyn-C.js", "status": 200, "elapsedMs": 1.89}
+2026-11-11T16:41:08.9315550Z [WebServer] {"event": "request", "requestId": "6537091f-305f-4476-99e6-a70b33474287", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 1.23}
+2026-11-11T16:41:09.0996915Z   ✓  21 e2e/workflows.spec.ts:3:1 › workflow 1: upload a real saved I/Q frame and display CNN output (2.0s)
+2026-11-11T16:41:09.2146080Z [WebServer] {"event": "request", "requestId": "edb3f674-9693-45ac-b6be-e39f70e9c3e7", "method": "GET", "path": "/studio", "status": 200, "elapsedMs": 5.72}
+2026-11-11T16:41:09.2338503Z [WebServer] {"event": "request", "requestId": "e5a3f577-5436-4a8a-8081-af711982ad06", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 1.21}
+2026-11-11T16:41:09.2360837Z [WebServer] {"event": "request", "requestId": "cd79f882-b93b-4a52-8660-da36a73395af", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 3.8}
+2026-11-11T16:41:09.4142634Z [WebServer] {"event": "request", "requestId": "41ed045a-fab4-4857-a36a-2a10db5047e9", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 1.77}
+2026-11-11T16:41:09.4455681Z [WebServer] {"event": "request", "requestId": "86993184-71b0-4b71-b3af-e846df63364b", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 1.75}
+2026-11-11T16:41:09.6270035Z [WebServer] {"event": "request", "requestId": "c1c451af-117b-476e-9754-ae6e97099c07", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 72.42}
+2026-11-11T16:41:09.6429710Z [WebServer] {"event": "request", "requestId": "232da25b-8392-4b0c-bf7d-f172971f2e93", "method": "GET", "path": "/assets/plotly.min-FQndyn-C.js", "status": 200, "elapsedMs": 0.74}
+2026-11-11T16:41:09.7596252Z [WebServer] {"event": "request", "requestId": "f318973e-2cca-40ef-a397-76d4ef22250c", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 4.27}
+2026-11-11T16:41:09.7604828Z [WebServer] {"event": "request", "requestId": "5a82fd71-62e1-40da-8aff-cae70edc1276", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 4.85}
+2026-11-11T16:41:09.7606709Z [WebServer] {"event": "request", "requestId": "a06f7b4a-5271-4478-8700-270cb60db487", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 5.66}
+2026-11-11T16:41:09.7672983Z [WebServer] {"event": "request", "requestId": "04192e6c-6d17-478b-bf45-6caaefe6c1d3", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 11.87}
+2026-11-11T16:41:09.7706222Z [WebServer] {"event": "request", "requestId": "79065ac8-5afa-41b9-a502-c2dc22aeb2be", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 10.81}
+2026-11-11T16:41:11.2068240Z [WebServer] {"event": "request", "requestId": "b83ee9d7-becc-492f-9e8a-6b98c8789d02", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 87.13}
+2026-11-11T16:41:11.3080286Z [WebServer] {"event": "request", "requestId": "4fb797c2-fda4-4396-b82a-147854920249", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 1.7}
+2026-11-11T16:41:11.6419526Z   ✓  22 e2e/workflows.spec.ts:24:3 › workflow 2: generate BPSK and classify the same full capture (2.5s)
+2026-11-11T16:41:11.7602158Z [WebServer] {"event": "request", "requestId": "b09e54b5-9622-439c-b0b2-1e51f0436d49", "method": "GET", "path": "/studio", "status": 200, "elapsedMs": 2.63}
+2026-11-11T16:41:11.7791244Z [WebServer] {"event": "request", "requestId": "13324de7-dd24-4de3-9ddc-9da892599868", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 2.2}
+2026-11-11T16:41:11.7827572Z [WebServer] {"event": "request", "requestId": "9992d6c0-f64f-4f62-8624-84dbf48a3543", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 3.03}
+2026-11-11T16:41:11.9708823Z [WebServer] {"event": "request", "requestId": "c535b22b-deaf-4276-957c-61d25facd33c", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 1.37}
+2026-11-11T16:41:12.0056372Z [WebServer] {"event": "request", "requestId": "b6e46931-f7e4-43dd-aca4-5b7ce2497295", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 6.73}
+2026-11-11T16:41:12.1722521Z [WebServer] {"event": "request", "requestId": "b2242dba-bb53-41e4-b606-d391e7350d5d", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 79.44}
+2026-11-11T16:41:12.1863124Z [WebServer] {"event": "request", "requestId": "c1a56bec-c41d-4fb5-92ed-e2c89c9c5c3e", "method": "GET", "path": "/assets/plotly.min-FQndyn-C.js", "status": 200, "elapsedMs": 1.03}
+2026-11-11T16:41:12.2976258Z [WebServer] {"event": "request", "requestId": "ab7ac3e8-827a-45f8-a771-5adba6b37703", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 3.99}
+2026-11-11T16:41:12.3016671Z [WebServer] {"event": "request", "requestId": "c9bad5b5-01fa-4a2c-9e09-7c294131b5a2", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 7.14}
+2026-11-11T16:41:12.3055835Z [WebServer] {"event": "request", "requestId": "9c4920ba-19c5-4e29-83a4-bd07dd545b76", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 12.93}
+2026-11-11T16:41:12.3068193Z [WebServer] {"event": "request", "requestId": "b2991bb7-08a3-4d0a-be2d-e4539f24bd55", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 11.18}
+2026-11-11T16:41:12.3095051Z [WebServer] {"event": "request", "requestId": "37dea533-acbe-4998-b094-feea404bacac", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 10.64}
+2026-11-11T16:41:13.6648908Z [WebServer] {"event": "request", "requestId": "91494882-faf2-4030-a101-5a146bcfde42", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 42.3}
+2026-11-11T16:41:13.8522951Z [WebServer] {"event": "request", "requestId": "3c9034ac-e2e9-48eb-a153-cc8cd12b993a", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 1.62}
+2026-11-11T16:41:14.1585664Z   ✓  23 e2e/workflows.spec.ts:24:3 › workflow 3: generate QPSK and classify the same full capture (2.5s)
+2026-11-11T16:41:14.2693039Z [WebServer] {"event": "request", "requestId": "a52f5917-7be8-4fd1-8304-a5f6001db67d", "method": "GET", "path": "/evaluation", "status": 200, "elapsedMs": 3.53}
+2026-11-11T16:41:14.2926309Z [WebServer] {"event": "request", "requestId": "09e39eac-3e81-4d17-b7c5-44162d286dfb", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 2.18}
+2026-11-11T16:41:14.2935220Z [WebServer] {"event": "request", "requestId": "2c5acdc1-6155-4c60-8fd7-7e8ddffe7e62", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 2.42}
+2026-11-11T16:41:14.4838099Z [WebServer] {"event": "request", "requestId": "6bae331c-9285-4569-a665-ecbc9bf48f21", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 5.23}
+2026-11-11T16:41:14.4845134Z [WebServer] {"event": "request", "requestId": "17dfd125-0a3d-47e2-9ea1-7a16a28da093", "method": "GET", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 10.07}
+2026-11-11T16:41:14.4850449Z [WebServer] {"event": "request", "requestId": "b128ca5f-e275-4b59-8956-a17afda71a79", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 6.68}
+2026-11-11T16:41:14.4859907Z [WebServer] {"event": "request", "requestId": "a40eb531-c7e5-4fd7-882e-092ba3c678f3", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 7.35}
+2026-11-11T16:41:14.5052504Z [WebServer] {"event": "request", "requestId": "bc4800b8-e10c-4ad5-b3a7-2711d3580faf", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 1.39}
+2026-11-11T16:41:14.5218544Z [WebServer] {"event": "request", "requestId": "4f42eeb1-b2a8-44e1-8f0f-234b95f1c07a", "method": "GET", "path": "/assets/plotly.min-FQndyn-C.js", "status": 200, "elapsedMs": 0.93}
+2026-11-11T16:41:15.8707464Z   ✓  24 e2e/workflows.spec.ts:54:1 › workflow 4: actual evaluation matrices, SNR curves, and per-class metrics (1.7s)
+2026-11-11T16:41:15.9838875Z [WebServer] {"event": "request", "requestId": "8850ee50-fd6f-41f4-aec4-5629f529db1f", "method": "GET", "path": "/arena", "status": 200, "elapsedMs": 1.66}
+2026-11-11T16:41:16.0021552Z [WebServer] {"event": "request", "requestId": "cc4c015c-647d-4d58-8548-d796a02e9b7f", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 1.51}
+2026-11-11T16:41:16.0058359Z [WebServer] {"event": "request", "requestId": "ff74eaab-0cd9-4fde-915f-78fdf1f4a0a2", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 2.68}
+2026-11-11T16:41:16.2085847Z [WebServer] {"event": "request", "requestId": "fe3c81b7-a8e2-42a0-a5fa-e412d96ef75c", "method": "GET", "path": "/api/experiments", "status": 200, "elapsedMs": 20.37}
+2026-11-11T16:41:16.2118072Z [WebServer] {"event": "request", "requestId": "c996deb1-7224-40e8-9a72-d7b067780c2a", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 2.42}
+2026-11-11T16:41:16.2171429Z [WebServer] {"event": "request", "requestId": "60e3dd68-fbc1-4eb7-9f76-c46ad04cce32", "method": "GET", "path": "/api/models", "status": 200, "elapsedMs": 8.84}
+2026-11-11T16:41:16.2362631Z [WebServer] {"event": "request", "requestId": "2024db2b-404e-41e8-b6a4-4e6adce89605", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 1.91}
+2026-11-11T16:41:16.3395457Z [WebServer] {"event": "request", "requestId": "293888f6-78d3-4462-b983-36f51ccfc4fd", "method": "POST", "path": "/api/benchmark", "status": 200, "elapsedMs": 28.12}
+2026-11-11T16:41:16.3659875Z [WebServer] {"event": "request", "requestId": "3935e69a-3aeb-4c5d-b10b-97107eadf565", "method": "GET", "path": "/assets/plotly.min-FQndyn-C.js", "status": 200, "elapsedMs": 1.26}
+2026-11-11T16:41:16.4734800Z   ✓  25 e2e/workflows.spec.ts:70:1 › workflow 5: measured CNN latency and unavailable model comparison (592ms)
+2026-11-11T16:41:16.6018789Z [WebServer] {"event": "request", "requestId": "7b5fe4f9-7f43-4057-a3fb-40eabe7528c7", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 5.37}
+2026-11-11T16:41:16.6316129Z [WebServer] {"event": "request", "requestId": "64a8dd89-5b8c-4054-9aa5-6d42bb61e07a", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 2.2}
+2026-11-11T16:41:16.6352946Z [WebServer] {"event": "request", "requestId": "af402173-dab4-4387-8fbb-cd8a72d58018", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 2.98}
+2026-11-11T16:41:18.2556596Z   ✓  26 e2e/workflows.spec.ts:78:1 › workflow 6: backend disconnection never produces predictions (1.8s)
+2026-11-11T16:41:18.3740086Z [WebServer] {"event": "request", "requestId": "57c804d1-5de9-4acb-8832-fe5cb9b4f73a", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 3.56}
+2026-11-11T16:41:18.4034190Z [WebServer] {"event": "request", "requestId": "4cfae466-4cbe-4732-881c-39b419b77e52", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 2.23}
+2026-11-11T16:41:18.4059307Z [WebServer] {"event": "request", "requestId": "a3738616-8d54-41a2-aa1c-0bf007ce20b0", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 3.21}
+2026-11-11T16:41:18.5843052Z [WebServer] {"event": "request", "requestId": "0758d2b6-443b-42e9-91df-1d9de2f99fd6", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 7.38}
+2026-11-11T16:41:18.5856166Z [WebServer] {"event": "request", "requestId": "f35ba654-0e99-4d6b-a04e-1d46867a051e", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 6.0}
+2026-11-11T16:41:18.5888178Z [WebServer] {"event": "request", "requestId": "46c522e6-7054-4761-b2ab-1c9191c55d0e", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 10.12}
+2026-11-11T16:41:18.5905513Z [WebServer] {"event": "request", "requestId": "928bc219-fb4f-4297-a1f1-81b8664378cb", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 11.71}
+2026-11-11T16:41:18.5906696Z [WebServer] {"event": "request", "requestId": "2e3c6903-3b09-4ad8-9309-7911aec8bd83", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 11.36}
+2026-11-11T16:41:18.6122940Z [WebServer] {"event": "request", "requestId": "fcb2a34d-d1fa-4699-a4d7-cd1b952bd409", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 1.42}
+2026-11-11T16:41:18.6924170Z [WebServer] {"event": "request", "requestId": "40ccbba1-5212-4644-a47c-1bf95c517c0d", "method": "POST", "path": "/api/classify/upload", "status": 422, "elapsedMs": 3.69}
+2026-11-11T16:41:18.8196014Z   ✓  27 e2e/workflows.spec.ts:86:1 › workflow 7: malformed upload is rejected visibly (552ms)
+2026-11-11T16:41:18.9302377Z [WebServer] {"event": "request", "requestId": "dd56dbb7-8b5d-4c3b-b7db-3f59cbf86300", "method": "GET", "path": "/", "status": 200, "elapsedMs": 5.73}
+2026-11-11T16:41:18.9555015Z [WebServer] {"event": "request", "requestId": "c41f6410-35fe-4fa0-ab50-e2c01c60b18f", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 1.82}
+2026-11-11T16:41:18.9573378Z [WebServer] {"event": "request", "requestId": "42ab9313-4e43-4b9a-b8db-b78e5619f0c2", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 3.07}
+2026-11-11T16:41:19.1427606Z [WebServer] {"event": "request", "requestId": "5fffd66b-1094-4db9-8646-5559d0e569e9", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 2.01}
+2026-11-11T16:41:19.1446394Z [WebServer] {"event": "request", "requestId": "77824be6-cd3b-4a0a-ac9a-14b06b492242", "method": "GET", "path": "/assets/ground-track-map-Bt86yWIP.js", "status": 200, "elapsedMs": 2.47}
+2026-11-11T16:41:19.1557732Z [WebServer] {"event": "request", "requestId": "1aa49db5-95c0-4664-975b-0b2b2419fd80", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 6.15}
+2026-11-11T16:41:19.1589285Z [WebServer] {"event": "request", "requestId": "c0c7d562-b61c-420b-b094-660da1cee862", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 10.85}
+2026-11-11T16:41:19.1593588Z [WebServer] {"event": "request", "requestId": "6f083bcc-d5b7-46f8-8c61-6b1af9d4e682", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 10.38}
+2026-11-11T16:41:19.1626602Z [WebServer] {"event": "request", "requestId": "b0cb0e9e-69bf-4011-b588-447d498338ad", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 10.68}
+2026-11-11T16:41:19.1637034Z [WebServer] {"event": "request", "requestId": "4a18189d-80b0-4a88-8129-12b1ac42ca7c", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 14.39}
+2026-11-11T16:41:19.1756910Z [WebServer] {"event": "request", "requestId": "fd5ef586-51ac-4289-a73c-68a503b87352", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 23.14}
+2026-11-11T16:41:19.1765278Z [WebServer] {"event": "request", "requestId": "54bb1c55-5cb8-4f53-80c4-80d0ed3eb75a", "method": "GET", "path": "/assets/earth-globe-CSpBQsoy.js", "status": 200, "elapsedMs": 19.56}
+2026-11-11T16:41:19.1919081Z [WebServer] {"event": "request", "requestId": "4ed96d52-5ef5-4006-a6c9-729e2f5df389", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 0.91}
+2026-11-11T16:41:19.2458244Z [WebServer] {"event": "request", "requestId": "b59bbca7-2c69-4623-b2e2-4b26358a92f8", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 1.27}
+2026-11-11T16:41:19.3442308Z [WebServer] {"event": "request", "requestId": "34737299-983a-4370-8654-ac687aeab74c", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 6.9}
+2026-11-11T16:41:19.4028858Z [WebServer] {"event": "request", "requestId": "ec9b211d-3841-42b0-8064-a6231624f36e", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 0.99}
+2026-11-11T16:41:19.4578605Z [WebServer] {"event": "request", "requestId": "fda93c32-e489-4464-bc43-a96d1ce79ea6", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 4.49}
+2026-11-11T16:41:19.4588003Z [WebServer] {"event": "request", "requestId": "d437d4fb-bb3c-44c0-ba95-fe7856eef1b3", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 4.63}
+2026-11-11T16:41:19.4644065Z [WebServer] {"event": "request", "requestId": "fb895e2f-193b-4466-8fd0-0cc255bf4313", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 8.12}
+2026-11-11T16:41:19.4658940Z [WebServer] {"event": "request", "requestId": "0f497e5e-a9e8-4640-afd6-123d4293d343", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 8.51}
+2026-11-11T16:41:19.4661634Z [WebServer] {"event": "request", "requestId": "7658f6e5-7979-4df3-85d8-4f69b75c5528", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 11.74}
+2026-11-11T16:41:19.5681886Z [WebServer] {"event": "request", "requestId": "78686a1d-660b-4b07-b195-5b37c300ecc9", "method": "GET", "path": "/studio", "status": 200, "elapsedMs": 0.92}
+2026-11-11T16:41:19.6120218Z [WebServer] {"event": "request", "requestId": "c31c23f8-7b83-43f9-b139-71e81e46f4da", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 1.11}
+2026-11-11T16:41:19.6756412Z [WebServer] {"event": "request", "requestId": "f3b1ca03-4f98-4298-beda-83680bf72653", "method": "GET", "path": "/evaluation", "status": 200, "elapsedMs": 1.04}
+2026-11-11T16:41:19.7186655Z [WebServer] {"event": "request", "requestId": "89dd768d-f8ca-49ba-be9d-2424cde0a767", "method": "GET", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 7.48}
+2026-11-11T16:41:19.7212336Z [WebServer] {"event": "request", "requestId": "5e6de0ab-af13-4d6d-b2f2-36ee8287052b", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 9.75}
+2026-11-11T16:41:19.7255825Z [WebServer] {"event": "request", "requestId": "611b203e-9150-4c00-95aa-3d0fd3fc41d9", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 4.93}
+2026-11-11T16:41:19.7257120Z [WebServer] {"event": "request", "requestId": "8172c92b-fb42-4440-beb9-474da679a052", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 5.73}
+2026-11-11T16:41:19.7363317Z [WebServer] {"event": "request", "requestId": "efe1df0d-0e25-4bea-a206-c7664f3396be", "method": "GET", "path": "/assets/plotly.min-FQndyn-C.js", "status": 200, "elapsedMs": 1.05}
+2026-11-11T16:41:19.7892034Z [WebServer] {"event": "request", "requestId": "c2fb903d-d722-4ac5-a64c-1d28dc50a562", "method": "GET", "path": "/arena", "status": 200, "elapsedMs": 0.86}
+2026-11-11T16:41:19.8523016Z [WebServer] {"event": "request", "requestId": "f41c7dde-457e-4d0a-aa56-6a35529e500b", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 25.37}
+2026-11-11T16:41:19.8578115Z [WebServer] {"event": "request", "requestId": "04ff9f3c-09bc-4a9d-b156-1038bb911798", "method": "GET", "path": "/api/experiments", "status": 200, "elapsedMs": 33.33}
+2026-11-11T16:41:19.8615673Z [WebServer] {"event": "request", "requestId": "794ff7e3-4b68-4dbc-a3c0-f7f767ba7aa2", "method": "GET", "path": "/api/models", "status": 200, "elapsedMs": 39.27}
+2026-11-11T16:41:19.9191118Z [WebServer] {"event": "request", "requestId": "53ca6ea1-4fb7-42f6-a37d-56e54c3f89f8", "method": "GET", "path": "/intelligence", "status": 200, "elapsedMs": 1.0}
+2026-11-11T16:41:19.9648445Z [WebServer] {"event": "request", "requestId": "5e297d0a-d817-460e-b944-62593b83c7a9", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 6.18}
+2026-11-11T16:41:19.9661001Z [WebServer] {"event": "request", "requestId": "06c7f397-a5de-494f-9e47-77a6af2d0753", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 5.73}
+2026-11-11T16:41:19.9686612Z [WebServer] {"event": "request", "requestId": "8ee5cc37-9525-478b-ba1e-f52e98db354d", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 11.55}
+2026-11-11T16:41:19.9693978Z [WebServer] {"event": "request", "requestId": "76cfcd15-a6db-47fa-b3d8-cf4d530c7c44", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 10.66}
+2026-11-11T16:41:19.9709871Z [WebServer] {"event": "request", "requestId": "94a1cf9c-184f-4599-8c3f-7ffaeab319a9", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 12.69}
+2026-11-11T16:41:20.0738197Z [WebServer] {"event": "request", "requestId": "356ad34a-e3b2-4c9f-8c97-07a91dcc218a", "method": "GET", "path": "/theory", "status": 200, "elapsedMs": 1.2}
+2026-11-11T16:41:20.1172419Z [WebServer] {"event": "request", "requestId": "aa3b4c71-ada6-4096-813d-f8ea5a34beb9", "method": "GET", "path": "/api/orbit", "status": 200, "elapsedMs": 5.8}
+2026-11-11T16:41:20.1219057Z [WebServer] {"event": "request", "requestId": "b87f0a4c-502c-4248-9d33-b27795f84075", "method": "GET", "path": "/api/constellations", "status": 200, "elapsedMs": 9.48}
+2026-11-11T16:41:20.1251669Z [WebServer] {"event": "request", "requestId": "d6d2f17c-f06f-4e46-b8c5-4375b024015f", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 10.46}
+2026-11-11T16:41:20.1278304Z [WebServer] {"event": "request", "requestId": "c9065ee5-b0f4-4361-bed3-0fb905cb5a71", "method": "GET", "path": "/assets/plotly.min-FQndyn-C.js", "status": 206, "elapsedMs": 7.97}
+2026-11-11T16:41:20.1870398Z [WebServer] {"event": "request", "requestId": "4321413d-1393-4866-aea0-ab7a48914d0a", "method": "GET", "path": "/assets/plotly.min-FQndyn-C.js", "status": 206, "elapsedMs": 1.07}
+2026-11-11T16:41:20.2123360Z [WebServer] {"event": "request", "requestId": "33a0d805-a43b-4752-8650-5fdc4ff8ede3", "method": "GET", "path": "/settings", "status": 200, "elapsedMs": 1.12}
+2026-11-11T16:41:20.2697023Z [WebServer] {"event": "request", "requestId": "fec79e34-2ff4-4e29-ac62-0aa811505b41", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 3.27}
+2026-11-11T16:41:20.2722108Z [WebServer] {"event": "request", "requestId": "9d759231-5f70-48ee-8b86-25ec8d6cf8e7", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 9.87}
+2026-11-11T16:41:20.2805503Z [WebServer] {"event": "request", "requestId": "723186c8-3e3c-493c-af13-f1fc575738e4", "method": "GET", "path": "/api/models", "status": 200, "elapsedMs": 14.23}
+2026-11-11T16:41:20.6144757Z [WebServer] {"event": "request", "requestId": "e2cc2e35-5879-4fbd-9e46-d92ea9ce0295", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 9.48}
+2026-11-11T16:41:20.6149079Z [WebServer] {"event": "request", "requestId": "76b71dcb-33e4-416f-bc70-332fdb913978", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 9.3}
+2026-11-11T16:41:20.6180765Z [WebServer] {"event": "request", "requestId": "706c93c5-ebc1-415c-abc2-a560e15d1054", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 14.18}
+2026-11-11T16:41:20.6215932Z [WebServer] {"event": "request", "requestId": "65ba7399-78a0-49a6-b909-a3c6cef83244", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 15.13}
+2026-11-11T16:41:20.6235878Z [WebServer] {"event": "request", "requestId": "c0e70a23-f8da-447c-ae32-a6c998b5607a", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 15.75}
+2026-11-11T16:41:20.6893653Z   ✓  28 e2e/workflows.spec.ts:97:1 › all routes remain reachable on a narrow viewport (1.9s)
+2026-11-11T16:41:20.9795358Z
+2026-11-11T16:41:20.9798598Z   28 passed (2.5m)
+2026-11-11T16:41:21.0542532Z ##[group]Run actions/upload-artifact@v4
+2026-11-11T16:41:21.0542792Z with:
+2026-11-11T16:41:21.0543030Z   name: production-browser-diagnostics-ubuntu-latest
+2026-11-11T16:41:21.0543436Z   path: frontend/playwright-report/
+frontend/test-results/
+integration/validation/
+
+2026-11-11T16:41:21.0543791Z   retention-days: 14
+2026-11-11T16:41:21.0543989Z   if-no-files-found: warn
+2026-11-11T16:41:21.0544195Z   compression-level: 6
+2026-11-11T16:41:21.0544791Z   overwrite: false
+2026-11-11T16:41:21.0544993Z   include-hidden-files: false
+2026-11-11T16:41:21.0545198Z env:
+2026-11-11T16:41:21.0545419Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:41:21.0545771Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-11T16:41:21.0546127Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:41:21.0546432Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:41:21.0546780Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:41:21.0547088Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-11T16:41:21.0547352Z ##[endgroup]
+2026-11-11T16:41:21.1961929Z (node:4088) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-11T16:41:21.1962858Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-11T16:41:21.2079724Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-11-11T16:41:21.2082140Z The least common ancestor is /home/runner/work/satellite-modulation-classification/satellite-modulation-classification. This will be the root directory of the artifact
+2026-11-11T16:41:21.2083356Z With the provided path, there will be 28 files uploaded
+2026-11-11T16:41:21.2087221Z Artifact name is valid!
+2026-11-11T16:41:21.2087894Z Root directory input is valid!
+2026-11-11T16:41:21.4894396Z Beginning upload of artifact content to blob storage
+2026-11-11T16:41:21.6345576Z (node:4088) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-11T16:41:21.9948802Z Uploaded bytes 3365000
+2026-11-11T16:41:22.0384869Z Finished uploading artifact content to blob storage!
+2026-11-11T16:41:22.0385952Z SHA256 digest of uploaded artifact zip is 5ce5f857d4aff4546d210d5fb23591148a2103e5396756fdeeeffc6cbec89afb
+2026-11-11T16:41:22.0387210Z Finalizing artifact upload
+2026-11-11T16:41:22.4528268Z Artifact production-browser-diagnostics-ubuntu-latest.zip successfully finalized. Artifact ID 13874155781
+2026-11-11T16:41:22.4529853Z Artifact production-browser-diagnostics-ubuntu-latest has been successfully uploaded! Final size is 3365000 bytes. Artifact ID is 13874155781
+2026-11-11T16:41:22.4534269Z Artifact download URL: https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/actions/runs/43060024518/artifacts/13874155781
+2026-11-11T16:41:22.4699427Z Post job cleanup.
+2026-11-11T16:41:22.5767502Z (node:4101) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-11T16:41:22.5768140Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-11T16:41:22.5881157Z Post job cleanup.
+2026-11-11T16:41:22.6931760Z (node:4109) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-11T16:41:22.6932860Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-11T16:41:22.7077469Z Post job cleanup.
+2026-11-11T16:41:22.7817218Z [command]/usr/bin/git version
+2026-11-11T16:41:22.7853560Z git version 2.56.0
+2026-11-11T16:41:22.7889185Z Temporarily overriding HOME='/home/runner/work/_temp/fffb8372-b003-4523-a534-b285a2a289f6' before making global git config changes
+2026-11-11T16:41:22.7890100Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-11T16:41:22.7894868Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/satellite-modulation-classification/satellite-modulation-classification
+2026-11-11T16:41:22.7928292Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-11T16:41:22.7958276Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-11T16:41:22.8152670Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-11T16:41:22.8173918Z http.https://github.com/.extraheader
+2026-11-11T16:41:22.8183514Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-11T16:41:22.8213550Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-11T16:41:22.8409286Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-11T16:41:22.8448732Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-11T16:41:22.8750142Z Cleaning up orphan processes
+2026-11-11T16:41:22.9023829Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

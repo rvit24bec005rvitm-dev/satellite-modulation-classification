@@ -1,0 +1,11 @@
+{
+  "fullEvaluationExportPredictions": 201,
+  "manifestEntries": 201,
+  "retainedGroundTruth": true,
+  "source": "Known synthetic BPSK, not real RF",
+  "exportEvidence": "export-layout.log: full UI download verified before corrected layout selector",
+  "mobileBounds": {
+    "width": 390,
+    "scrollWidth": 390
+  }
+}

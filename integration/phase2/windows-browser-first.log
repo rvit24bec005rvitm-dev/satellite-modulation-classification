@@ -90,22 +90,22 @@
 2026-11-11T16:12:30.4048081Z ##[group]Checking out the ref
 2026-11-11T16:12:30.4055798Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force refs/remotes/pull/1/merge
 2026-11-11T16:12:30.6758048Z Note: switching to 'refs/remotes/pull/1/merge'.
-2026-11-11T16:12:30.6758442Z 
+2026-11-11T16:12:30.6758442Z
 2026-11-11T16:12:30.6758630Z You are in 'detached HEAD' state. You can look around, make experimental
 2026-11-11T16:12:30.6759014Z changes and commit them, and you can discard any commits you make in this
 2026-11-11T16:12:30.6759395Z state without impacting any branches by switching back to a branch.
-2026-11-11T16:12:30.6759608Z 
+2026-11-11T16:12:30.6759608Z
 2026-11-11T16:12:30.6759766Z If you want to create a new branch to retain commits you create, you may
 2026-11-11T16:12:30.6761570Z do so (now or later) by using -c with the switch command. Example:
-2026-11-11T16:12:30.6761768Z 
+2026-11-11T16:12:30.6761768Z
 2026-11-11T16:12:30.6761868Z   git switch -c <new-branch-name>
-2026-11-11T16:12:30.6762007Z 
+2026-11-11T16:12:30.6762007Z
 2026-11-11T16:12:30.6762088Z Or undo this operation with:
-2026-11-11T16:12:30.6762392Z 
+2026-11-11T16:12:30.6762392Z
 2026-11-11T16:12:30.6762493Z   git switch -
-2026-11-11T16:12:30.6762602Z 
+2026-11-11T16:12:30.6762602Z
 2026-11-11T16:12:30.6762762Z Turn off this advice by setting config variable advice.detachedHead to false
-2026-11-11T16:12:30.6762996Z 
+2026-11-11T16:12:30.6762996Z
 2026-11-11T16:12:30.6763290Z HEAD is now at 78ccc00 Merge 41ebc4fc085daa0bca6fb1ef17c3404dd85f1777 into 70c411b85de61685f7827bab26990f1388708d07
 2026-11-11T16:12:30.7365365Z ##[endgroup]
 2026-11-11T16:12:30.7371411Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
@@ -350,7 +350,7 @@
 2026-11-11T16:12:54.9816828Z Downloading watchfiles-1.3.0-cp310-abi3-win_amd64.whl (290 kB)
 2026-11-11T16:12:55.1119676Z Downloading tzdata-2026.6-py2.py3-none-any.whl (348 kB)
 2026-11-11T16:12:55.9367711Z Installing collected packages: websockets, watchdog, urllib3, tzdata, typing-extensions, threadpoolctl, rpds-py, pyyaml, python-multipart, python-dotenv, pygments, pyarrow, protobuf, pluggy, pillow, packaging, numpy, narwhals, MarkupSafe, itsdangerous, iniconfig, idna, httptools, h11, colorama, cloudpickle, click, charset-normalizer, certifi, attrs, annotated-types, annotated-doc, uvicorn, typing-inspection, scipy, requests, reportlab, referencing, python-dateutil, pytest, pydantic-core, plotly, opentelemetry-api, joblib, jinja2, httpcore, h5py, anyio, watchfiles, starlette, scikit-learn, pydeck, pydantic, pandas, jsonschema-specifications, httpx, jsonschema, fastapi, altair, streamlit
-2026-11-11T16:13:39.1818568Z 
+2026-11-11T16:13:39.1818568Z
 2026-11-11T16:13:39.1847608Z Successfully installed MarkupSafe-3.0.4 altair-6.3.0 annotated-doc-0.0.6 annotated-types-0.8.0 anyio-4.16.0 attrs-26.1.0 certifi-2026.10.23 charset-normalizer-3.5.2 click-8.5.1 cloudpickle-3.1.2 colorama-0.4.6 fastapi-0.162.4 h11-0.16.0 h5py-3.16.0 httpcore-1.0.9 httptools-0.9.0 httpx-0.28.1 idna-3.20 iniconfig-2.3.1 itsdangerous-2.2.0 jinja2-3.1.6 joblib-1.6.0 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 narwhals-2.28.0 numpy-2.4.6 opentelemetry-api-1.45.2 packaging-26.3 pandas-3.1.1 pillow-13.0.0 plotly-7.1.0 pluggy-1.7.0 protobuf-7.36.2 pyarrow-26.0.1 pydantic-2.14.3 pydantic-core-2.50.4 pydeck-0.9.3 pygments-2.21.0 pytest-9.2.0 python-dateutil-4.0.0 python-dotenv-1.2.4 python-multipart-0.0.33 pyyaml-6.0.3 referencing-0.37.0 reportlab-5.1.0 requests-2.34.2 rpds-py-2026.9.1 scikit-learn-1.9.1 scipy-1.17.1 starlette-1.10.0 streamlit-1.67.0 threadpoolctl-3.8.0 typing-extensions-4.16.0 typing-inspection-0.4.5 tzdata-2026.6 urllib3-2.8.0 uvicorn-0.54.0 watchdog-7.1.0 watchfiles-1.3.0 websockets-17.4
 2026-11-11T16:13:39.5999667Z ##[group]Run npm ci
 2026-11-11T16:13:39.5999909Z npm ci
@@ -381,20 +381,20 @@
 2026-11-11T16:13:45.8550025Z npm warn   node_modules/@vitest/mocker
 2026-11-11T16:13:45.8550426Z npm warn     @vitest/mocker@"2.1.9" from vitest@2.1.9
 2026-11-11T16:13:45.8550837Z npm warn     node_modules/vitest
-2026-11-11T16:14:42.1690144Z 
+2026-11-11T16:14:42.1690144Z
 2026-11-11T16:14:42.1690810Z added 582 packages, and audited 584 packages in 1m
-2026-11-11T16:14:42.1691131Z 
+2026-11-11T16:14:42.1691131Z
 2026-11-11T16:14:42.1691287Z 85 packages are looking for funding
 2026-11-11T16:14:42.1691602Z   run `npm fund` for details
-2026-11-11T16:14:42.3475939Z 
+2026-11-11T16:14:42.3475939Z
 2026-11-11T16:14:42.3476576Z 14 vulnerabilities (10 moderate, 2 high, 2 critical)
-2026-11-11T16:14:42.3476809Z 
+2026-11-11T16:14:42.3476809Z
 2026-11-11T16:14:42.3476978Z To address issues that do not require attention, run:
 2026-11-11T16:14:42.3477239Z   npm audit fix
-2026-11-11T16:14:42.3477348Z 
+2026-11-11T16:14:42.3477348Z
 2026-11-11T16:14:42.3477505Z To address all issues (including breaking changes), run:
 2026-11-11T16:14:42.3477782Z   npm audit fix --force
-2026-11-11T16:14:42.3477899Z 
+2026-11-11T16:14:42.3477899Z
 2026-11-11T16:14:42.3478000Z Run `npm audit` for details.
 2026-11-11T16:14:43.8615163Z ##[group]Run npm audit --omit=dev
 2026-11-11T16:14:43.8615466Z npm audit --omit=dev
@@ -419,41 +419,41 @@
 2026-11-11T16:14:45.0046321Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
 2026-11-11T16:14:45.0046647Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
 2026-11-11T16:14:45.0046895Z ##[endgroup]
-2026-11-11T16:14:45.6243982Z 
+2026-11-11T16:14:45.6243982Z
 2026-11-11T16:14:45.6244527Z > satmodclass-frontend@1.0.0 pretypecheck
 2026-11-11T16:14:45.6244995Z > node scripts/generate-routes.mjs
-2026-11-11T16:14:45.6245154Z 
-2026-11-11T16:14:45.6879318Z 
+2026-11-11T16:14:45.6245154Z
+2026-11-11T16:14:45.6879318Z
 2026-11-11T16:14:45.6879945Z > satmodclass-frontend@1.0.0 typecheck
 2026-11-11T16:14:45.6880256Z > tsc --noEmit
-2026-11-11T16:14:45.6880371Z 
-2026-11-11T16:14:53.2140301Z 
+2026-11-11T16:14:45.6880371Z
+2026-11-11T16:14:53.2140301Z
 2026-11-11T16:14:53.2141140Z > satmodclass-frontend@1.0.0 lint
 2026-11-11T16:14:53.2141660Z > eslint .
-2026-11-11T16:14:53.2141894Z 
-2026-11-11T16:14:55.5030765Z 
+2026-11-11T16:14:53.2141894Z
+2026-11-11T16:14:55.5030765Z
 2026-11-11T16:14:55.5031827Z D:\a\satellite-modulation-classification\satellite-modulation-classification\frontend\src\components\ui\badge.tsx
 2026-11-11T16:14:55.5061591Z ##[warning]  32:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
-2026-11-11T16:14:55.5068441Z 
+2026-11-11T16:14:55.5068441Z
 2026-11-11T16:14:55.5068925Z D:\a\satellite-modulation-classification\satellite-modulation-classification\frontend\src\components\ui\button.tsx
 2026-11-11T16:14:55.5070779Z ##[warning]  49:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
-2026-11-11T16:14:55.5071632Z 
+2026-11-11T16:14:55.5071632Z
 2026-11-11T16:14:55.5072010Z D:\a\satellite-modulation-classification\satellite-modulation-classification\frontend\src\components\ui\form.tsx
 2026-11-11T16:14:55.5073272Z ##[warning]  163:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
-2026-11-11T16:14:55.5074065Z 
+2026-11-11T16:14:55.5074065Z
 2026-11-11T16:14:55.5074469Z D:\a\satellite-modulation-classification\satellite-modulation-classification\frontend\src\components\ui\navigation-menu.tsx
 2026-11-11T16:14:55.5075754Z ##[warning]  111:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
-2026-11-11T16:14:55.5076547Z 
+2026-11-11T16:14:55.5076547Z
 2026-11-11T16:14:55.5076932Z D:\a\satellite-modulation-classification\satellite-modulation-classification\frontend\src\components\ui\sidebar.tsx
 2026-11-11T16:14:55.5078167Z ##[warning]  743:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
-2026-11-11T16:14:55.5078930Z 
+2026-11-11T16:14:55.5078930Z
 2026-11-11T16:14:55.5079284Z D:\a\satellite-modulation-classification\satellite-modulation-classification\frontend\src\components\ui\toggle.tsx
 2026-11-11T16:14:55.5080462Z ##[warning]  42:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
-2026-11-11T16:14:55.5081517Z 
+2026-11-11T16:14:55.5081517Z
 2026-11-11T16:14:55.5081889Z D:\a\satellite-modulation-classification\satellite-modulation-classification\frontend\src\components\workspace-ui.tsx
 2026-11-11T16:14:55.5085198Z ##[warning]  173:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
 2026-11-11T16:14:55.5087227Z ##[warning]  175:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
-2026-11-11T16:14:55.5088045Z 
+2026-11-11T16:14:55.5088045Z
 2026-11-11T16:14:55.5088414Z D:\a\satellite-modulation-classification\satellite-modulation-classification\frontend\src\hooks\use-satmod.tsx
 2026-11-11T16:14:55.5090016Z ##[warning]   10:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
 2026-11-11T16:14:55.5091732Z ##[warning]   17:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
@@ -465,31 +465,31 @@
 2026-11-11T16:14:55.5101292Z ##[warning]   36:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
 2026-11-11T16:14:55.5102821Z ##[warning]   38:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
 2026-11-11T16:14:55.5104555Z ##[warning]  108:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
-2026-11-11T16:14:55.5105431Z 
+2026-11-11T16:14:55.5105431Z
 2026-11-11T16:14:55.5105841Z ✖ 18 problems (0 errors, 18 warnings)
-2026-11-11T16:14:55.5105994Z 
-2026-11-11T16:14:59.5903085Z 
+2026-11-11T16:14:55.5105994Z
+2026-11-11T16:14:59.5903085Z
 2026-11-11T16:14:59.5904113Z > satmodclass-frontend@1.0.0 pretest
 2026-11-11T16:14:59.5904667Z > node scripts/generate-routes.mjs
-2026-11-11T16:14:59.5904903Z 
-2026-11-11T16:14:59.6610126Z 
+2026-11-11T16:14:59.5904903Z
+2026-11-11T16:14:59.6610126Z
 2026-11-11T16:14:59.6610882Z > satmodclass-frontend@1.0.0 test
 2026-11-11T16:14:59.6611291Z > vitest run
-2026-11-11T16:14:59.6611437Z 
-2026-11-11T16:15:00.2304369Z 
+2026-11-11T16:14:59.6611437Z
+2026-11-11T16:15:00.2304369Z
 2026-11-11T16:15:00.2306820Z  RUN  v2.1.9 D:/a/satellite-modulation-classification/satellite-modulation-classification/frontend
-2026-11-11T16:15:00.2307288Z 
+2026-11-11T16:15:00.2307288Z
 2026-11-11T16:15:00.7902100Z  ✓ src/test/api.test.ts (11 tests) 19ms
 2026-11-11T16:15:00.7904953Z  ✓ src/test/orbital-simulation.test.ts (10 tests) 24ms
 2026-11-11T16:15:01.3014726Z  ✓ src/test/workspace-ui.test.tsx (6 tests) 17ms
 2026-11-11T16:15:02.1732487Z  ✓ src/test/operations.test.tsx (5 tests) 287ms
 2026-11-11T16:15:02.4436181Z  ✓ src/test/app-routing.test.tsx (8 tests) 11ms
-2026-11-11T16:15:02.4627952Z 
+2026-11-11T16:15:02.4627952Z
 2026-11-11T16:15:02.4640821Z  Test Files  5 passed (5)
 2026-11-11T16:15:02.4641555Z       Tests  40 passed (40)
 2026-11-11T16:15:02.4642089Z    Start at  16:15:00
 2026-11-11T16:15:02.4645309Z    Duration  2.23s (transform 709ms, setup 622ms, collect 1.88s, tests 359ms, environment 840ms, prepare 575ms)
-2026-11-11T16:15:02.4649134Z 
+2026-11-11T16:15:02.4649134Z
 2026-11-11T16:15:02.5500571Z ##[group]Run npm run test:integration
 2026-11-11T16:15:02.5500886Z npm run test:integration
 2026-11-11T16:15:02.5561222Z shell: C:\Program Files\PowerShell\7\pwsh.EXE -command ". '{0}'"
@@ -501,22 +501,22 @@
 2026-11-11T16:15:02.5563103Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
 2026-11-11T16:15:02.5563365Z   SATMOD_PYTHON: python
 2026-11-11T16:15:02.5563539Z ##[endgroup]
-2026-11-11T16:15:03.1444949Z 
+2026-11-11T16:15:03.1444949Z
 2026-11-11T16:15:03.1445660Z > satmodclass-frontend@1.0.0 test:integration
 2026-11-11T16:15:03.1446494Z > vitest run --config vitest.integration.config.ts
-2026-11-11T16:15:03.1446802Z 
-2026-11-11T16:15:03.6628052Z 
+2026-11-11T16:15:03.1446802Z
+2026-11-11T16:15:03.6628052Z
 2026-11-11T16:15:03.6631322Z  RUN  v2.1.9 D:/a/satellite-modulation-classification/satellite-modulation-classification/frontend
-2026-11-11T16:15:03.6631999Z 
+2026-11-11T16:15:03.6631999Z
 2026-11-11T16:15:07.6400040Z  ✓ src/test/fullstack.integration.test.ts (11 tests) 3638ms
 2026-11-11T16:15:07.6402739Z    ✓ TypeScript API client → real Python model and DSP > loads health and genuine model metadata 660ms
 2026-11-11T16:15:07.6404531Z    ✓ TypeScript API client → real Python model and DSP > analyzes and compares the exact generated samples 315ms
-2026-11-11T16:15:07.6543605Z 
+2026-11-11T16:15:07.6543605Z
 2026-11-11T16:15:07.6571837Z  Test Files  1 passed (1)
 2026-11-11T16:15:07.6580517Z       Tests  11 passed (11)
 2026-11-11T16:15:07.6608877Z    Start at  16:15:03
 2026-11-11T16:15:07.6613227Z    Duration  3.99s (transform 71ms, setup 0ms, collect 79ms, tests 3.64s, environment 0ms, prepare 81ms)
-2026-11-11T16:15:07.6613871Z 
+2026-11-11T16:15:07.6613871Z
 2026-11-11T16:15:07.7477330Z ##[group]Run npm --prefix frontend run build
 2026-11-11T16:15:07.7477690Z npm --prefix frontend run build
 2026-11-11T16:15:07.7477936Z python scripts/check_production.py
@@ -528,14 +528,14 @@
 2026-11-11T16:15:07.7538330Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
 2026-11-11T16:15:07.7538632Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
 2026-11-11T16:15:07.7538881Z ##[endgroup]
-2026-11-11T16:15:08.3125522Z 
+2026-11-11T16:15:08.3125522Z
 2026-11-11T16:15:08.3126749Z > satmodclass-frontend@1.0.0 prebuild
 2026-11-11T16:15:08.3127158Z > node scripts/generate-routes.mjs
-2026-11-11T16:15:08.3127307Z 
-2026-11-11T16:15:08.3756248Z 
+2026-11-11T16:15:08.3127307Z
+2026-11-11T16:15:08.3756248Z
 2026-11-11T16:15:08.3756761Z > satmodclass-frontend@1.0.0 build
 2026-11-11T16:15:08.3757055Z > vite build
-2026-11-11T16:15:08.3757148Z 
+2026-11-11T16:15:08.3757148Z
 2026-11-11T16:15:08.9445227Z vite v7.1.12 building for production...
 2026-11-11T16:15:09.0200982Z transforming...
 2026-11-11T16:15:31.1823932Z ✓ 3366 modules transformed.
@@ -605,12 +605,12 @@
 2026-11-11T16:15:34.5059141Z   Python2_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
 2026-11-11T16:15:34.5059780Z   Python3_ROOT_DIR: C:\hostedtoolcache\windows\Python\3.11.9\x64
 2026-11-11T16:15:34.5060095Z ##[endgroup]
-2026-11-11T16:18:20.7045267Z 
-2026-11-11T16:18:20.7052779Z Success Restart Needed Exit Code      Feature Result                               
-2026-11-11T16:18:20.7056171Z ------- -------------- ---------      --------------                               
-2026-11-11T16:18:20.7058695Z True    No             Success        {Media Foundation}                           
-2026-11-11T16:18:20.7061489Z 
-2026-11-11T16:18:20.7061773Z 
+2026-11-11T16:18:20.7045267Z
+2026-11-11T16:18:20.7052779Z Success Restart Needed Exit Code      Feature Result
+2026-11-11T16:18:20.7056171Z ------- -------------- ---------      --------------
+2026-11-11T16:18:20.7058695Z True    No             Success        {Media Foundation}
+2026-11-11T16:18:20.7061489Z
+2026-11-11T16:18:20.7061773Z
 2026-11-11T16:18:20.8009404Z Downloading Chrome for Testing 151.0.7922.34 (playwright chromium v1234) from https://cdn.playwright.dev/builds/cft/151.0.7922.34/win64/chrome-win64.zip
 2026-11-11T16:18:21.2435280Z |                                                                                |   0% of 191.8 MiB
 2026-11-11T16:18:21.4804696Z |■■■■■■■■                                                                        |  10% of 191.8 MiB
@@ -674,18 +674,18 @@
 2026-11-11T16:18:32.0040086Z   SATMOD_TEST_BASE_URL: http://127.0.0.1:8000
 2026-11-11T16:18:32.0040346Z   SATMOD_TEST_PRODUCTION: 1
 2026-11-11T16:18:32.0040528Z ##[endgroup]
-2026-11-11T16:18:32.5586455Z 
+2026-11-11T16:18:32.5586455Z
 2026-11-11T16:18:32.5587297Z > satmodclass-frontend@1.0.0 test:e2e
 2026-11-11T16:18:32.5587857Z > playwright test --reporter=list,html
-2026-11-11T16:18:32.5588149Z 
+2026-11-11T16:18:32.5588149Z
 2026-11-11T16:18:35.0242247Z [WebServer] INFO:     Started server process [1724]
 2026-11-11T16:18:35.0243937Z [WebServer] INFO:     Waiting for application startup.
 2026-11-11T16:18:35.0244455Z [WebServer] INFO:     Application startup complete.
 2026-11-11T16:18:35.0244955Z [WebServer] INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
 2026-11-11T16:18:35.7157362Z [WebServer] {"event": "request", "requestId": "e9a89fbc-d819-4f18-b3cd-617276dac773", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 6.92}
-2026-11-11T16:18:35.9174625Z 
+2026-11-11T16:18:35.9174625Z
 2026-11-11T16:18:35.9175285Z Running 28 tests using 1 worker
-2026-11-11T16:18:35.9175522Z 
+2026-11-11T16:18:35.9175522Z
 2026-11-11T16:18:36.6371765Z [WebServer] {"event": "request", "requestId": "2916519b-b638-475e-9191-d00d8bbe5ab1", "method": "GET", "path": "/", "status": 200, "elapsedMs": 38.57}
 2026-11-11T16:18:36.6596797Z [WebServer] {"event": "request", "requestId": "15c65e68-73fa-40d0-b3ee-2d9adae7c5f8", "method": "GET", "path": "/assets/index-DgYuTCdU.js", "status": 200, "elapsedMs": 5.07}
 2026-11-11T16:18:36.6602224Z [WebServer] {"event": "request", "requestId": "723bf5c5-1aea-4c8d-855b-d2b4df69dfd4", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 4.63}
@@ -1226,7 +1226,7 @@
 2026-11-11T16:20:50.1198833Z [WebServer] {"event": "request", "requestId": "e41f6a06-e251-40a7-80f1-05f8708f8ccb", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 13.62}
 2026-11-11T16:20:50.1201897Z [WebServer] {"event": "request", "requestId": "ea61789e-8658-4fc8-8ad7-606113f15135", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 16.29}
 2026-11-11T16:20:50.1907828Z   ok 28 e2e\workflows.spec.ts:97:1 › all routes remain reachable on a narrow viewport (3.3s)
-2026-11-11T16:20:50.4960229Z 
+2026-11-11T16:20:50.4960229Z
 2026-11-11T16:20:50.4964773Z   28 passed (2.3m)
 2026-11-11T16:20:50.5992816Z ##[group]Run actions/upload-artifact@v4
 2026-11-11T16:20:50.5993108Z with:

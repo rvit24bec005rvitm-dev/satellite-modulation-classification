@@ -19,7 +19,7 @@ Starting commit: `70c411b`; branch `feat/phase2-signal-operations`. Working tree
 | Mission-control integration | Existing UI | Implemented and tested capture/history/evaluation panels and actual dashboard counters; shell/globe preserved |
 | Container / hosting | Existing Docker, remote image check passed | Implemented volume/public-access configuration; current source image and named-volume recreation passed on remote Linux; permanent host blocked |
 | Request IDs / observability / public access controls | Partially implemented | Implemented and tested request IDs, structured logs, limits and shared workspace access key |
-| Windows backend / Linux browser | Existing remote verification | Existing backend verification repeated successfully; initial Phase 2 Windows Chromium 28-scenario run passed; final follow-up in progress |
+| Windows backend / Linux browser | Existing remote verification | Existing backend verification repeated successfully; current Windows Chromium and Linux Chrome suites passed 28 cases each; macOS Chrome passed 28 |
 | Production calibration / validated OOD | Tools exist, no independent corpus | Blocked by data; keep honest unavailable states |
 
 This file is updated with actual executed checks as implementation proceeds. `PHASE2_REPORT.md` records final scope and limitations.
@@ -29,11 +29,11 @@ This file is updated with actual executed checks as implementation proceeds. `PH
 
 - Baseline 149 Python / 35 frontend / 11 real contracts passed.
 - Implemented and tested: external decoding/SigMF subset, mapped windows, real batch timeline, persistent SQLite/report files, cancellation/recovery, dataset provenance/leakage, external evaluation, Welch/quality/activity/domain diagnostics, history JSON/CSV/PDF, protected public-mode APIs and request IDs.
-- Local verification: 195 Python, 40 frontend, 11 contracts, 28 production browser cases; build/type/lint passed. Runtime npm and resolved Python audits report zero findings. See PHASE2_REPORT.md for exact boundaries.
+- Local verification: 196 Python, 40 frontend, 11 contracts, 28 production browser cases; build/type/lint passed. Runtime npm and resolved Python audits report zero findings. See PHASE2_REPORT.md for exact boundaries.
 - Existing and verified: model artifacts/checkpoints, preprocessing, eight routes, original DSP/IG, training tools and prior CI records.
-- Partially implemented: bounded synchronous imports/overview/registration (not all job types); restricted SigMF; development-tool vulnerability remediation; final browser matrix until actually observed.
+- Partially implemented: imports/overview/registration remain bounded synchronous operations; restricted SigMF coverage; development-tool vulnerability remediation. Batch/attribution PDF exports are not implemented.
 - Blocked by data: independent real-world accuracy, production calibration/OOD, scientifically justified class expansion or production model improvements.
 - Blocked by authorization/storage provisioning: permanent public host with persistent storage. No live deployment claim.
-- Not implemented: batch PDFs, persisted attribution PDFs, new training experiments or production promotion.
+- Not implemented: batch/persisted attribution/comparison PDFs, a registry-backed training adapter, external multi-model evaluation, new training experiments or production promotion.
 
 The detailed final status table, architecture, API/storage contracts, run commands and known limits are in PHASE2_REPORT.md. This document is a tracker, not evidence of unexecuted remote jobs.
