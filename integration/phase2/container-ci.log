@@ -1,0 +1,532 @@
+﻿2026-11-11T16:36:43.8545051Z Current runner version: '2.338.2'
+2026-11-11T16:36:43.8567868Z ##[group]Runner Image Provisioner
+2026-11-11T16:36:43.8568601Z Hosted Compute Agent
+2026-11-11T16:36:43.8569182Z Version: 20261028.624
+2026-11-11T16:36:43.8569743Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-11T16:36:43.8570388Z Build Date: 2026-10-28T21:51:42Z
+2026-11-11T16:36:43.8571063Z Worker ID: {c3e39df4-b200-4dae-8c74-445c7e2bac15}
+2026-11-11T16:36:43.8571667Z Region: westus3
+2026-11-11T16:36:43.8572169Z Cloud: Azure
+2026-11-11T16:36:43.8572689Z ##[endgroup]
+2026-11-11T16:36:43.8574118Z ##[group]Operating System
+2026-11-11T16:36:43.8574724Z Ubuntu
+2026-11-11T16:36:43.8575188Z 24.04.5
+2026-11-11T16:36:43.8575623Z LTS
+2026-11-11T16:36:43.8576173Z ##[endgroup]
+2026-11-11T16:36:43.8576796Z ##[group]Runner Image
+2026-11-11T16:36:43.8577398Z Image: ubuntu-24.04
+2026-11-11T16:36:43.8577898Z Version: 20261101.360.1
+2026-11-11T16:36:43.8579011Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261101.360/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-11T16:36:43.8580261Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261101.360
+2026-11-11T16:36:43.8581143Z ##[endgroup]
+2026-11-11T16:36:43.8582126Z ##[group]GITHUB_TOKEN Permissions
+2026-11-11T16:36:43.8583800Z Contents: read
+2026-11-11T16:36:43.8584331Z Metadata: read
+2026-11-11T16:36:43.8584809Z Packages: read
+2026-11-11T16:36:43.8585366Z ##[endgroup]
+2026-11-11T16:36:43.8587530Z Secret source: Actions
+2026-11-11T16:36:43.8588471Z Cache mode: write
+2026-11-11T16:36:43.8589077Z Prepare workflow directory
+2026-11-11T16:36:43.9043326Z Prepare all required actions
+2026-11-11T16:36:43.9084963Z Getting action download info
+2026-11-11T16:36:44.1809758Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-11T16:36:44.5404934Z Complete job name: container
+2026-11-11T16:36:44.6113801Z ##[group]Run actions/checkout@v4
+2026-11-11T16:36:44.6114494Z with:
+2026-11-11T16:36:44.6115019Z   repository: rvit24bec005rvitm-dev/satellite-modulation-classification
+2026-11-11T16:36:44.6118524Z   token: ***
+2026-11-11T16:36:44.6118888Z   ssh-strict: true
+2026-11-11T16:36:44.6119255Z   ssh-user: git
+2026-11-11T16:36:44.6119625Z   persist-credentials: true
+2026-11-11T16:36:44.6120027Z   clean: true
+2026-11-11T16:36:44.6120396Z   sparse-checkout-cone-mode: true
+2026-11-11T16:36:44.6120815Z   fetch-depth: 1
+2026-11-11T16:36:44.6121177Z   fetch-tags: false
+2026-11-11T16:36:44.6121537Z   show-progress: true
+2026-11-11T16:36:44.6121899Z   lfs: false
+2026-11-11T16:36:44.6122239Z   submodules: false
+2026-11-11T16:36:44.6122602Z   set-safe-directory: true
+2026-11-11T16:36:44.6123053Z   allow-unsafe-pr-checkout: false
+2026-11-11T16:36:44.6123655Z ##[endgroup]
+2026-11-11T16:36:44.9636339Z Syncing repository: rvit24bec005rvitm-dev/satellite-modulation-classification
+2026-11-11T16:36:44.9639024Z ##[group]Getting Git version info
+2026-11-11T16:36:44.9640026Z Working directory is '/home/runner/work/satellite-modulation-classification/satellite-modulation-classification'
+2026-11-11T16:36:44.9641316Z [command]/usr/bin/git version
+2026-11-11T16:36:44.9695757Z git version 2.56.0
+2026-11-11T16:36:44.9718941Z ##[endgroup]
+2026-11-11T16:36:44.9726206Z Temporarily overriding HOME='/home/runner/work/_temp/c38f6cda-6f1c-4356-83e1-93bf6aa62057' before making global git config changes
+2026-11-11T16:36:44.9728122Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-11T16:36:44.9730204Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/satellite-modulation-classification/satellite-modulation-classification
+2026-11-11T16:36:44.9777678Z Deleting the contents of '/home/runner/work/satellite-modulation-classification/satellite-modulation-classification'
+2026-11-11T16:36:44.9780689Z ##[group]Initializing the repository
+2026-11-11T16:36:44.9784587Z [command]/usr/bin/git init /home/runner/work/satellite-modulation-classification/satellite-modulation-classification
+2026-11-11T16:36:44.9867196Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-11T16:36:44.9868579Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-11T16:36:44.9870012Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-11T16:36:44.9871113Z hint: call:
+2026-11-11T16:36:44.9871821Z hint:
+2026-11-11T16:36:44.9872585Z hint: 	git config --global init.defaultBranch <name>
+2026-11-11T16:36:44.9873480Z hint:
+2026-11-11T16:36:44.9874327Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-11T16:36:44.9875650Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-11T16:36:44.9876847Z hint:
+2026-11-11T16:36:44.9877495Z hint: 	git branch -m <name>
+2026-11-11T16:36:44.9878211Z hint:
+2026-11-11T16:36:44.9879175Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-11T16:36:44.9881175Z Initialized empty Git repository in /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/.git/
+2026-11-11T16:36:44.9884594Z [command]/usr/bin/git remote add origin https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification
+2026-11-11T16:36:44.9957695Z ##[endgroup]
+2026-11-11T16:36:44.9958696Z ##[group]Disabling automatic garbage collection
+2026-11-11T16:36:44.9962275Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-11T16:36:44.9996779Z ##[endgroup]
+2026-11-11T16:36:44.9997725Z ##[group]Setting up auth
+2026-11-11T16:36:45.0003722Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-11T16:36:45.0042770Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-11T16:36:45.0367280Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-11T16:36:45.0407376Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-11T16:36:45.0619528Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-11T16:36:45.0659123Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-11T16:36:45.0873209Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-11T16:36:45.0916935Z ##[endgroup]
+2026-11-11T16:36:45.0917942Z ##[group]Fetching the repository
+2026-11-11T16:36:45.0928019Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +eb3576587a74cd5ac32d1083f003aacb9508a2f3:refs/remotes/pull/1/merge
+2026-11-11T16:36:46.4958513Z From https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification
+2026-11-11T16:36:46.4960374Z  * [new ref]         eb3576587a74cd5ac32d1083f003aacb9508a2f3 -> pull/1/merge
+2026-11-11T16:36:46.4969426Z ##[endgroup]
+2026-11-11T16:36:46.4970387Z ##[group]Determining the checkout info
+2026-11-11T16:36:46.4971440Z ##[endgroup]
+2026-11-11T16:36:46.4972078Z [command]/usr/bin/git sparse-checkout disable
+2026-11-11T16:36:46.5030521Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-11T16:36:46.5077909Z ##[group]Checking out the ref
+2026-11-11T16:36:46.5080390Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/1/merge
+2026-11-11T16:36:46.6213323Z Note: switching to 'refs/remotes/pull/1/merge'.
+2026-11-11T16:36:46.6214181Z
+2026-11-11T16:36:46.6214836Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-11T16:36:46.6216308Z changes and commit them, and you can discard any commits you make in this
+2026-11-11T16:36:46.6218007Z state without impacting any branches by switching back to a branch.
+2026-11-11T16:36:46.6219103Z
+2026-11-11T16:36:46.6219718Z If you want to create a new branch to retain commits you create, you may
+2026-11-11T16:36:46.6221139Z do so (now or later) by using -c with the switch command. Example:
+2026-11-11T16:36:46.6221964Z
+2026-11-11T16:36:46.6222393Z   git switch -c <new-branch-name>
+2026-11-11T16:36:46.6222979Z
+2026-11-11T16:36:46.6223399Z Or undo this operation with:
+2026-11-11T16:36:46.6223961Z
+2026-11-11T16:36:46.6224335Z   git switch -
+2026-11-11T16:36:46.6224871Z
+2026-11-11T16:36:46.6225625Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-11T16:36:46.6226837Z
+2026-11-11T16:36:46.6228030Z HEAD is now at eb35765 Merge cd5eec7fad7b859ebe6fc3ccb2238a1d980b5199 into 70c411b85de61685f7827bab26990f1388708d07
+2026-11-11T16:36:46.6233978Z ##[endgroup]
+2026-11-11T16:36:46.6281112Z [command]/usr/bin/git log -1 --format=%H
+2026-11-11T16:36:46.6312323Z eb3576587a74cd5ac32d1083f003aacb9508a2f3
+2026-11-11T16:36:46.6558711Z ##[group]Run docker build -t satmodclass:ci .
+2026-11-11T16:36:46.6560000Z docker build -t satmodclass:ci .
+2026-11-11T16:36:46.6582474Z shell: /usr/bin/bash -e {0}
+2026-11-11T16:36:46.6583442Z ##[endgroup]
+2026-11-11T16:36:47.3671310Z #0 building with "default" instance using docker driver
+2026-11-11T16:36:47.3671666Z
+2026-11-11T16:36:47.3671804Z #1 [internal] load build definition from Dockerfile
+2026-11-11T16:36:47.6072162Z #1 transferring dockerfile: 1.42kB done
+2026-11-11T16:36:47.6072644Z #1 DONE 0.0s
+2026-11-11T16:36:47.6072783Z
+2026-11-11T16:36:47.6073012Z #2 [internal] load metadata for docker.io/library/node:22-bookworm-slim
+2026-11-11T16:36:47.6073380Z #2 ...
+2026-11-11T16:36:47.6073532Z
+2026-11-11T16:36:47.6073694Z #3 [auth] library/node:pull token for registry-1.docker.io
+2026-11-11T16:36:47.6074005Z #3 DONE 0.0s
+2026-11-11T16:36:47.6074160Z
+2026-11-11T16:36:47.6074339Z #4 [auth] library/python:pull token for registry-1.docker.io
+2026-11-11T16:36:47.6074784Z #4 DONE 0.0s
+2026-11-11T16:36:47.7570965Z
+2026-11-11T16:36:47.7571699Z #5 [internal] load metadata for docker.io/library/python:3.14-slim
+2026-11-11T16:36:48.3156784Z #5 ...
+2026-11-11T16:36:48.3157809Z
+2026-11-11T16:36:48.3158038Z #2 [internal] load metadata for docker.io/library/node:22-bookworm-slim
+2026-11-11T16:36:48.3158447Z #2 DONE 1.1s
+2026-11-11T16:36:48.4490778Z
+2026-11-11T16:36:48.4492049Z #5 [internal] load metadata for docker.io/library/python:3.14-slim
+2026-11-11T16:36:48.4492584Z #5 DONE 1.1s
+2026-11-11T16:36:48.4492759Z
+2026-11-11T16:36:48.4492905Z #6 [internal] load .dockerignore
+2026-11-11T16:36:48.4493255Z #6 transferring context: 301B done
+2026-11-11T16:36:48.4493570Z #6 DONE 0.0s
+2026-11-11T16:36:48.4493717Z
+2026-11-11T16:36:48.4494252Z #7 [frontend 1/7] FROM docker.io/library/node:22-bookworm-slim@sha256:5ec23b7c622b00547753bc6ffd78085dd868a68aeb41c8e0a1418f033e13d96d
+2026-11-11T16:36:48.4495137Z #7 resolve docker.io/library/node:22-bookworm-slim@sha256:5ec23b7c622b00547753bc6ffd78085dd868a68aeb41c8e0a1418f033e13d96d 0.0s done
+2026-11-11T16:36:48.5622195Z #7 ...
+2026-11-11T16:36:48.5623662Z
+2026-11-11T16:36:48.5624066Z #8 [internal] load build context
+2026-11-11T16:36:48.5637729Z #8 transferring context: 21.18MB 0.1s done
+2026-11-11T16:36:48.5638125Z #8 DONE 0.1s
+2026-11-11T16:36:48.5638270Z
+2026-11-11T16:36:48.5638818Z #7 [frontend 1/7] FROM docker.io/library/node:22-bookworm-slim@sha256:5ec23b7c622b00547753bc6ffd78085dd868a68aeb41c8e0a1418f033e13d96d
+2026-11-11T16:36:48.5639802Z #7 sha256:3c5f479ca65a7b3147df7d9724ac331de960e91ea4034826b7a5c3f9eed57934 3.31kB / 3.31kB 0.1s done
+2026-11-11T16:36:48.5640587Z #7 sha256:5d0c6c5710f1cdc2a30a47c236d5a75ab16d2785fc0aed022b46273ffafd13c6 4.19MB / 49.89MB 0.2s
+2026-11-11T16:36:48.5641390Z #7 sha256:5ec23b7c622b00547753bc6ffd78085dd868a68aeb41c8e0a1418f033e13d96d 5.22kB / 5.22kB done
+2026-11-11T16:36:48.5642155Z #7 sha256:aaa4b5baf1ecff3b283486bb1f90405cdda225a3e6f79660d2c559fa510a7292 1.93kB / 1.93kB done
+2026-11-11T16:36:48.5642964Z #7 sha256:8700da48cc6592503feabf399d242414f932197c3b44f43970d2cbc5671e06b0 6.77kB / 6.77kB done
+2026-11-11T16:36:48.5644295Z #7 sha256:dd051e1b8c92ff101fa3071ab97ea4924885942f15644e01c3dc095764e863e3 28.25MB / 28.25MB 0.2s
+2026-11-11T16:36:48.5645083Z #7 sha256:1b7992cf5ea802ac4b2bcb787738f6040d742e27f6d10e1395bee16b0a3c6d03 0B / 1.71MB 0.2s
+2026-11-11T16:36:48.7201790Z #7 sha256:5d0c6c5710f1cdc2a30a47c236d5a75ab16d2785fc0aed022b46273ffafd13c6 27.26MB / 49.89MB 0.3s
+2026-11-11T16:36:48.7202848Z #7 sha256:1b7992cf5ea802ac4b2bcb787738f6040d742e27f6d10e1395bee16b0a3c6d03 1.71MB / 1.71MB 0.3s
+2026-11-11T16:36:48.7203634Z #7 extracting sha256:dd051e1b8c92ff101fa3071ab97ea4924885942f15644e01c3dc095764e863e3
+2026-11-11T16:36:48.8220605Z #7 sha256:5d0c6c5710f1cdc2a30a47c236d5a75ab16d2785fc0aed022b46273ffafd13c6 49.89MB / 49.89MB 0.4s
+2026-11-11T16:36:48.8221482Z #7 sha256:dd051e1b8c92ff101fa3071ab97ea4924885942f15644e01c3dc095764e863e3 28.25MB / 28.25MB 0.3s done
+2026-11-11T16:36:48.8223154Z #7 sha256:1b7992cf5ea802ac4b2bcb787738f6040d742e27f6d10e1395bee16b0a3c6d03 1.71MB / 1.71MB 0.3s done
+2026-11-11T16:36:49.1837610Z #7 sha256:5d0c6c5710f1cdc2a30a47c236d5a75ab16d2785fc0aed022b46273ffafd13c6 49.89MB / 49.89MB 0.7s done
+2026-11-11T16:36:49.1838495Z #7 sha256:ff2c4258f9cf850b921ff6d790c9a52585dca4811afdb2b78f92be33696d8b5d 0B / 448B 0.8s
+2026-11-11T16:36:49.3208062Z #7 sha256:ff2c4258f9cf850b921ff6d790c9a52585dca4811afdb2b78f92be33696d8b5d 448B / 448B 0.9s
+2026-11-11T16:36:49.4270173Z #7 sha256:ff2c4258f9cf850b921ff6d790c9a52585dca4811afdb2b78f92be33696d8b5d 448B / 448B 1.0s done
+2026-11-11T16:36:50.0386834Z #7 extracting sha256:dd051e1b8c92ff101fa3071ab97ea4924885942f15644e01c3dc095764e863e3 1.3s done
+2026-11-11T16:36:50.5311147Z #7 extracting sha256:3c5f479ca65a7b3147df7d9724ac331de960e91ea4034826b7a5c3f9eed57934 done
+2026-11-11T16:36:51.4868558Z #7 extracting sha256:5d0c6c5710f1cdc2a30a47c236d5a75ab16d2785fc0aed022b46273ffafd13c6
+2026-11-11T16:36:52.5992634Z #7 extracting sha256:5d0c6c5710f1cdc2a30a47c236d5a75ab16d2785fc0aed022b46273ffafd13c6 1.0s done
+2026-11-11T16:36:53.5219898Z #7 extracting sha256:1b7992cf5ea802ac4b2bcb787738f6040d742e27f6d10e1395bee16b0a3c6d03
+2026-11-11T16:36:53.6298250Z #7 extracting sha256:1b7992cf5ea802ac4b2bcb787738f6040d742e27f6d10e1395bee16b0a3c6d03 0.0s done
+2026-11-11T16:36:53.8578763Z #7 extracting sha256:ff2c4258f9cf850b921ff6d790c9a52585dca4811afdb2b78f92be33696d8b5d done
+2026-11-11T16:36:53.8579354Z #7 DONE 5.4s
+2026-11-11T16:36:53.8579502Z
+2026-11-11T16:36:53.8579624Z #9 [frontend 2/7] WORKDIR /build/frontend
+2026-11-11T16:36:53.8580063Z #9 DONE 0.0s
+2026-11-11T16:36:53.8580211Z
+2026-11-11T16:36:53.8580694Z #10 [application  1/11] FROM docker.io/library/python:3.14-slim@sha256:9aaa474097d094040649f2162a627c0049b408f52138d980916788d80f04802f
+2026-11-11T16:36:53.8581613Z #10 resolve docker.io/library/python:3.14-slim@sha256:9aaa474097d094040649f2162a627c0049b408f52138d980916788d80f04802f 0.0s done
+2026-11-11T16:36:53.8582400Z #10 sha256:9aaa474097d094040649f2162a627c0049b408f52138d980916788d80f04802f 10.37kB / 10.37kB done
+2026-11-11T16:36:53.8583094Z #10 sha256:ac25e5afbfdb4a94ff99cc24b0345719210133144481480bcba6085efa36a341 1.75kB / 1.75kB done
+2026-11-11T16:36:53.8583802Z #10 sha256:d8f0d5177291a2af21536287c48e3d17fea2d6bff80436c9bd206dd505b29e52 5.09kB / 5.09kB done
+2026-11-11T16:36:53.8584548Z #10 sha256:37fb86c2a767b88d500c6872195f88078f64765fe0d2f9cc375cc2efbd4c0a41 29.86MB / 29.86MB 0.8s done
+2026-11-11T16:36:53.8585322Z #10 sha256:d6d089a6c0a2543e3dd748a4ffcbfe409ab93f2049d42640588be3a3f67acffe 1.29MB / 1.29MB 0.8s done
+2026-11-11T16:36:53.8586056Z #10 sha256:0e665593ff40197b851364fab0389fc6f5fa35bc74814ddfad07f96f417fc574 12.41MB / 12.41MB 1.0s done
+2026-11-11T16:36:53.8586928Z #10 sha256:ce3c2a9291f81f0f8349de8621c9878a424552bfc64d0e4f20a4ac6006489fe1 249B / 249B 0.9s done
+2026-11-11T16:36:53.8587528Z #10 extracting sha256:37fb86c2a767b88d500c6872195f88078f64765fe0d2f9cc375cc2efbd4c0a41 1.2s done
+2026-11-11T16:36:53.8588256Z #10 extracting sha256:d6d089a6c0a2543e3dd748a4ffcbfe409ab93f2049d42640588be3a3f67acffe 0.3s done
+2026-11-11T16:36:53.8588829Z #10 extracting sha256:0e665593ff40197b851364fab0389fc6f5fa35bc74814ddfad07f96f417fc574 0.3s
+2026-11-11T16:36:54.2768419Z #10 ...
+2026-11-11T16:36:54.2774434Z
+2026-11-11T16:36:54.2776159Z #11 [frontend 3/7] COPY frontend/package.json frontend/package-lock.json ./
+2026-11-11T16:36:54.2782234Z #11 DONE 0.5s
+2026-11-11T16:36:54.2783725Z
+2026-11-11T16:36:54.2784335Z #10 [application  1/11] FROM docker.io/library/python:3.14-slim@sha256:9aaa474097d094040649f2162a627c0049b408f52138d980916788d80f04802f
+2026-11-11T16:36:54.2785949Z #10 extracting sha256:0e665593ff40197b851364fab0389fc6f5fa35bc74814ddfad07f96f417fc574 0.7s done
+2026-11-11T16:36:54.2787256Z #10 extracting sha256:ce3c2a9291f81f0f8349de8621c9878a424552bfc64d0e4f20a4ac6006489fe1
+2026-11-11T16:36:54.2788774Z #10 ...
+2026-11-11T16:36:54.2789020Z
+2026-11-11T16:36:54.2789554Z #12 [frontend 4/7] COPY frontend/vendor/ ./vendor/
+2026-11-11T16:36:54.3909874Z #12 DONE 0.1s
+2026-11-11T16:36:54.3911404Z
+2026-11-11T16:36:54.3911913Z #10 [application  1/11] FROM docker.io/library/python:3.14-slim@sha256:9aaa474097d094040649f2162a627c0049b408f52138d980916788d80f04802f
+2026-11-11T16:36:54.3912865Z #10 extracting sha256:ce3c2a9291f81f0f8349de8621c9878a424552bfc64d0e4f20a4ac6006489fe1 done
+2026-11-11T16:36:54.3913396Z #10 DONE 6.0s
+2026-11-11T16:36:54.3913595Z
+2026-11-11T16:36:54.3918534Z #13 [application  2/11] WORKDIR /app
+2026-11-11T16:36:54.4058796Z #13 DONE 0.1s
+2026-11-11T16:36:54.4060318Z
+2026-11-11T16:36:54.4060716Z #14 [application  3/11] COPY requirements-web.txt ./
+2026-11-11T16:36:54.4061119Z #14 DONE 0.0s
+2026-11-11T16:36:54.4061283Z
+2026-11-11T16:36:54.4061563Z #15 [frontend 5/7] RUN npm ci
+2026-11-11T16:36:57.2024582Z #15 2.742 npm warn ERESOLVE overriding peer dependency
+2026-11-11T16:36:57.2026235Z #15 2.742 npm warn While resolving: @vitest/mocker@2.1.9
+2026-11-11T16:36:57.2027424Z #15 2.742 npm warn Found: vite@7.1.12
+2026-11-11T16:36:57.2028283Z #15 2.742 npm warn node_modules/vite
+2026-11-11T16:36:57.2048061Z #15 2.742 npm warn   dev vite@"7.1.12" from the root project
+2026-11-11T16:36:57.2048626Z #15 2.742 npm warn   2 more (@tailwindcss/vite, @vitejs/plugin-react)
+2026-11-11T16:36:57.2049075Z #15 2.742 npm warn
+2026-11-11T16:36:57.2049387Z #15 2.742 npm warn Could not resolve dependency:
+2026-11-11T16:36:57.2049852Z #15 2.742 npm warn peerOptional vite@"^5.0.0" from @vitest/mocker@2.1.9
+2026-11-11T16:36:57.2050246Z #15 2.742 npm warn node_modules/@vitest/mocker
+2026-11-11T16:36:57.2050620Z #15 2.742 npm warn   @vitest/mocker@"2.1.9" from vitest@2.1.9
+2026-11-11T16:36:57.2051033Z #15 2.742 npm warn   node_modules/vitest
+2026-11-11T16:36:57.2051361Z #15 2.742 npm warn
+2026-11-11T16:36:57.2051732Z #15 2.742 npm warn Conflicting peer dependency: vite@5.4.21
+2026-11-11T16:36:57.2052160Z #15 2.742 npm warn node_modules/vite
+2026-11-11T16:36:57.2052602Z #15 2.742 npm warn   peerOptional vite@"^5.0.0" from @vitest/mocker@2.1.9
+2026-11-11T16:36:57.2053096Z #15 2.742 npm warn   node_modules/@vitest/mocker
+2026-11-11T16:36:57.2053545Z #15 2.742 npm warn     @vitest/mocker@"2.1.9" from vitest@2.1.9
+2026-11-11T16:36:57.2053971Z #15 2.742 npm warn     node_modules/vitest
+2026-11-11T16:36:59.5804362Z #15 ...
+2026-11-11T16:36:59.5804566Z
+2026-11-11T16:36:59.5806103Z #16 [application  4/11] RUN python -m pip install --no-cache-dir -r requirements-web.txt     && useradd --create-home --uid 10001 satmod     && mkdir /data && chown satmod:satmod /data
+2026-11-11T16:36:59.5807263Z #16 1.480 Collecting numpy==2.5.3 (from -r requirements-web.txt (line 2))
+2026-11-11T16:36:59.5807994Z #16 1.507   Downloading numpy-2.5.3-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+2026-11-11T16:36:59.5808699Z #16 1.591 Collecting scipy==1.18.1 (from -r requirements-web.txt (line 3))
+2026-11-11T16:36:59.5809387Z #16 1.594   Downloading scipy-1.18.1-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
+2026-11-11T16:36:59.5810176Z #16 1.655 Collecting scikit-learn==1.9.1 (from -r requirements-web.txt (line 4))
+2026-11-11T16:36:59.5810938Z #16 1.659   Downloading scikit_learn-1.9.1-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.3 kB)
+2026-11-11T16:36:59.5812083Z #16 1.670 Collecting joblib==1.6.0 (from -r requirements-web.txt (line 5))
+2026-11-11T16:36:59.5812558Z #16 1.674   Downloading joblib-1.6.0-py3-none-any.whl.metadata (6.5 kB)
+2026-11-11T16:36:59.5812982Z #16 1.703 Collecting h5py==3.16.0 (from -r requirements-web.txt (line 6))
+2026-11-11T16:36:59.5813473Z #16 1.708   Downloading h5py-3.16.0-cp314-cp314-manylinux_2_28_x86_64.whl.metadata (3.0 kB)
+2026-11-11T16:36:59.5813883Z #16 1.735 Collecting fastapi==0.142.2 (from -r requirements-web.txt (line 7))
+2026-11-11T16:36:59.5814266Z #16 1.738   Downloading fastapi-0.142.2-py3-none-any.whl.metadata (27 kB)
+2026-11-11T16:36:59.5814720Z #16 1.755 Collecting uvicorn==0.54.0 (from uvicorn[standard]==0.54.0->-r requirements-web.txt (line 8))
+2026-11-11T16:36:59.5815401Z #16 1.758   Downloading uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+2026-11-11T16:36:59.5815954Z #16 1.767 Collecting python-multipart==0.0.32 (from -r requirements-web.txt (line 9))
+2026-11-11T16:36:59.5816381Z #16 1.770   Downloading python_multipart-0.0.32-py3-none-any.whl.metadata (2.1 kB)
+2026-11-11T16:36:59.5817146Z #16 1.782 Collecting python-dotenv==1.2.4 (from -r requirements-web.txt (line 10))
+2026-11-11T16:36:59.5817604Z #16 1.785   Downloading python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
+2026-11-11T16:36:59.5818207Z #16 1.876 Collecting reportlab==5.0.1 (from -r requirements-web.txt (line 11))
+2026-11-11T16:36:59.5818726Z #16 1.880   Downloading reportlab-5.0.1-py3-none-any.whl.metadata (1.6 kB)
+2026-11-11T16:36:59.5819191Z #16 1.904 Collecting narwhals>=2.0.1 (from scikit-learn==1.9.1->-r requirements-web.txt (line 4))
+2026-11-11T16:36:59.5819628Z #16 1.908   Downloading narwhals-2.28.0-py3-none-any.whl.metadata (15 kB)
+2026-11-11T16:36:59.5820074Z #16 1.917 Collecting threadpoolctl>=3.5.0 (from scikit-learn==1.9.1->-r requirements-web.txt (line 4))
+2026-11-11T16:36:59.5820506Z #16 1.921   Downloading threadpoolctl-3.8.0-py3-none-any.whl.metadata (29 kB)
+2026-11-11T16:36:59.5820914Z #16 1.933 Collecting cloudpickle>=3.0 (from joblib==1.6.0->-r requirements-web.txt (line 5))
+2026-11-11T16:36:59.5821493Z #16 1.937   Downloading cloudpickle-3.1.2-py3-none-any.whl.metadata (7.1 kB)
+2026-11-11T16:36:59.5822083Z #16 1.952 Collecting starlette>=0.46.0 (from fastapi==0.142.2->-r requirements-web.txt (line 7))
+2026-11-11T16:36:59.5822649Z #16 1.956   Downloading starlette-1.10.0-py3-none-any.whl.metadata (6.6 kB)
+2026-11-11T16:36:59.5823164Z #16 2.028 Collecting pydantic>=2.9.0 (from fastapi==0.142.2->-r requirements-web.txt (line 7))
+2026-11-11T16:36:59.5823604Z #16 2.032   Downloading pydantic-2.14.3-py3-none-any.whl.metadata (141 kB)
+2026-11-11T16:36:59.5824260Z #16 2.049 Collecting typing-extensions>=4.8.0 (from fastapi==0.142.2->-r requirements-web.txt (line 7))
+2026-11-11T16:36:59.5824861Z #16 2.051   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+2026-11-11T16:36:59.5825466Z #16 2.059 Collecting typing-inspection>=0.4.2 (from fastapi==0.142.2->-r requirements-web.txt (line 7))
+2026-11-11T16:36:59.5825909Z #16 2.063   Downloading typing_inspection-0.4.5-py3-none-any.whl.metadata (2.6 kB)
+2026-11-11T16:36:59.5826463Z #16 2.068 Collecting annotated-doc>=0.0.2 (from fastapi==0.142.2->-r requirements-web.txt (line 7))
+2026-11-11T16:36:59.5827101Z #16 2.072   Downloading annotated_doc-0.0.6-py3-none-any.whl.metadata (6.5 kB)
+2026-11-11T16:36:59.5828027Z #16 2.082 Collecting opentelemetry-api>=1.44.0 (from fastapi==0.142.2->-r requirements-web.txt (line 7))
+2026-11-11T16:36:59.5828584Z #16 2.086   Downloading opentelemetry_api-1.45.2-py3-none-any.whl.metadata (1.4 kB)
+2026-11-11T16:36:59.5829148Z #16 2.099 Collecting click>=7.0 (from uvicorn==0.54.0->uvicorn[standard]==0.54.0->-r requirements-web.txt (line 8))
+2026-11-11T16:36:59.5829696Z #16 2.103   Downloading click-8.5.1-py3-none-any.whl.metadata (2.6 kB)
+2026-11-11T16:36:59.5830129Z #16 2.109 Collecting h11>=0.8 (from uvicorn==0.54.0->uvicorn[standard]==0.54.0->-r requirements-web.txt (line 8))
+2026-11-11T16:36:59.5830706Z #16 2.112   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+2026-11-11T16:36:59.5831233Z #16 2.239 Collecting pillow>=9.0.0 (from reportlab==5.0.1->-r requirements-web.txt (line 11))
+2026-11-11T16:36:59.5831738Z #16 2.242   Downloading pillow-13.0.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+2026-11-11T16:36:59.5832273Z #16 2.323 Collecting charset-normalizer (from reportlab==5.0.1->-r requirements-web.txt (line 11))
+2026-11-11T16:36:59.5832858Z #16 2.327   Downloading charset_normalizer-3.5.2-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+2026-11-11T16:36:59.5833492Z #16 2.352 Collecting httptools>=0.8.0 (from uvicorn[standard]==0.54.0->-r requirements-web.txt (line 8))
+2026-11-11T16:36:59.5834556Z #16 2.356   Downloading httptools-0.9.0-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (3.5 kB)
+2026-11-11T16:36:59.5835419Z #16 2.380 Collecting pyyaml>=5.1 (from uvicorn[standard]==0.54.0->-r requirements-web.txt (line 8))
+2026-11-11T16:36:59.5836005Z #16 2.390   Downloading pyyaml-6.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+2026-11-11T16:36:59.5836895Z #16 2.415 Collecting uvloop>=0.15.1 (from uvicorn[standard]==0.54.0->-r requirements-web.txt (line 8))
+2026-11-11T16:36:59.5837804Z #16 2.418   Downloading uvloop-0.23.0-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.1 kB)
+2026-11-11T16:36:59.5838610Z #16 2.468 Collecting watchfiles>=0.20 (from uvicorn[standard]==0.54.0->-r requirements-web.txt (line 8))
+2026-11-11T16:36:59.5839730Z #16 2.471   Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+2026-11-11T16:36:59.5840514Z #16 2.591 Collecting websockets>=13.0 (from uvicorn[standard]==0.54.0->-r requirements-web.txt (line 8))
+2026-11-11T16:36:59.5841402Z #16 2.595   Downloading websockets-17.4-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
+2026-11-11T16:36:59.5842326Z #16 2.605 Collecting annotated-types>=0.6.0 (from pydantic>=2.9.0->fastapi==0.142.2->-r requirements-web.txt (line 7))
+2026-11-11T16:36:59.5843044Z #16 2.609   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+2026-11-11T16:36:59.5843620Z #16 3.132 Collecting pydantic-core==2.50.4 (from pydantic>=2.9.0->fastapi==0.142.2->-r requirements-web.txt (line 7))
+2026-11-11T16:36:59.5844180Z #16 3.136   Downloading pydantic_core-2.50.4-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (6.6 kB)
+2026-11-11T16:36:59.5844875Z #16 3.151 Collecting anyio<5,>=4.0.0 (from starlette>=0.46.0->fastapi==0.142.2->-r requirements-web.txt (line 7))
+2026-11-11T16:36:59.5845556Z #16 3.156   Downloading anyio-4.16.0-py3-none-any.whl.metadata (4.7 kB)
+2026-11-11T16:36:59.5846241Z #16 3.165 Collecting idna>=2.8 (from anyio<5,>=4.0.0->starlette>=0.46.0->fastapi==0.142.2->-r requirements-web.txt (line 7))
+2026-11-11T16:36:59.5847072Z #16 3.169   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+2026-11-11T16:36:59.5848167Z #16 3.185 Downloading numpy-2.5.3-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.7 MB)
+2026-11-11T16:36:59.5848984Z #16 3.220    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.7/16.7 MB 526.6 MB/s  0:00:00
+2026-11-11T16:36:59.5849526Z #16 3.226 Downloading scipy-1.18.1-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (35.3 MB)
+2026-11-11T16:36:59.5850060Z #16 3.298    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 35.3/35.3 MB 537.9 MB/s  0:00:00
+2026-11-11T16:36:59.5850479Z #16 3.302 Downloading scikit_learn-1.9.1-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (9.2 MB)
+2026-11-11T16:36:59.5851492Z #16 3.317    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.2/9.2 MB 721.5 MB/s  0:00:00
+2026-11-11T16:36:59.5851989Z #16 3.321 Downloading joblib-1.6.0-py3-none-any.whl (306 kB)
+2026-11-11T16:36:59.5852471Z #16 3.327 Downloading h5py-3.16.0-cp314-cp314-manylinux_2_28_x86_64.whl (5.4 MB)
+2026-11-11T16:36:59.5852886Z #16 3.353    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.4/5.4 MB 228.5 MB/s  0:00:00
+2026-11-11T16:36:59.5853205Z #16 3.358 Downloading fastapi-0.142.2-py3-none-any.whl (144 kB)
+2026-11-11T16:36:59.5853673Z #16 3.361 Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
+2026-11-11T16:36:59.5854187Z #16 3.365 Downloading python_multipart-0.0.32-py3-none-any.whl (30 kB)
+2026-11-11T16:36:59.5854629Z #16 3.369 Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+2026-11-11T16:36:59.5854946Z #16 3.373 Downloading reportlab-5.0.1-py3-none-any.whl (2.0 MB)
+2026-11-11T16:36:59.5855349Z #16 3.378    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 504.5 MB/s  0:00:00
+2026-11-11T16:36:59.5855675Z #16 3.382 Downloading annotated_doc-0.0.6-py3-none-any.whl (5.3 kB)
+2026-11-11T16:36:59.5856213Z #16 3.387 Downloading click-8.5.1-py3-none-any.whl (126 kB)
+2026-11-11T16:36:59.5857017Z #16 3.391 Downloading cloudpickle-3.1.2-py3-none-any.whl (22 kB)
+2026-11-11T16:36:59.5857498Z #16 3.394 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+2026-11-11T16:36:59.5858143Z #16 3.398 Downloading httptools-0.9.0-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (514 kB)
+2026-11-11T16:36:59.5858689Z #16 3.403 Downloading narwhals-2.28.0-py3-none-any.whl (490 kB)
+2026-11-11T16:36:59.5859192Z #16 3.407 Downloading opentelemetry_api-1.45.2-py3-none-any.whl (60 kB)
+2026-11-11T16:36:59.5859706Z #16 3.411 Downloading pillow-13.0.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.1 MB)
+2026-11-11T16:36:59.5860354Z #16 3.422    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.1/7.1 MB 735.8 MB/s  0:00:00
+2026-11-11T16:36:59.5860667Z #16 3.427 Downloading pydantic-2.14.3-py3-none-any.whl (494 kB)
+2026-11-11T16:36:59.5861244Z #16 3.431 Downloading pydantic_core-2.50.4-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (2.3 MB)
+2026-11-11T16:36:59.5862020Z #16 3.439    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.3/2.3 MB 395.5 MB/s  0:00:00
+2026-11-11T16:36:59.5862394Z #16 3.443 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+2026-11-11T16:36:59.5863003Z #16 3.447 Downloading pyyaml-6.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (794 kB)
+2026-11-11T16:36:59.5863671Z #16 3.451    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 794.2/794.2 kB 796.8 MB/s  0:00:00
+2026-11-11T16:36:59.5864113Z #16 3.455 Downloading starlette-1.10.0-py3-none-any.whl (80 kB)
+2026-11-11T16:36:59.5864408Z #16 3.459 Downloading anyio-4.16.0-py3-none-any.whl (134 kB)
+2026-11-11T16:36:59.5864688Z #16 3.463 Downloading idna-3.20-py3-none-any.whl (69 kB)
+2026-11-11T16:36:59.5864983Z #16 3.467 Downloading threadpoolctl-3.8.0-py3-none-any.whl (32 kB)
+2026-11-11T16:36:59.5865314Z #16 3.471 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+2026-11-11T16:36:59.5866118Z #16 3.474 Downloading typing_inspection-0.4.5-py3-none-any.whl (14 kB)
+2026-11-11T16:36:59.5866762Z #16 3.479 Downloading uvloop-0.23.0-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.4 MB)
+2026-11-11T16:36:59.5867361Z #16 3.488    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.4/4.4 MB 666.5 MB/s  0:00:00
+2026-11-11T16:36:59.5867776Z #16 3.491 Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (458 kB)
+2026-11-11T16:36:59.5868341Z #16 3.496 Downloading websockets-17.4-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (226 kB)
+2026-11-11T16:36:59.5868968Z #16 3.501 Downloading charset_normalizer-3.5.2-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (255 kB)
+2026-11-11T16:36:59.5870338Z #16 3.836 Installing collected packages: websockets, uvloop, typing-extensions, threadpoolctl, pyyaml, python-multipart, python-dotenv, pillow, numpy, narwhals, idna, httptools, h11, cloudpickle, click, charset-normalizer, annotated-types, annotated-doc, uvicorn, typing-inspection, scipy, reportlab, pydantic-core, opentelemetry-api, joblib, h5py, anyio, watchfiles, starlette, scikit-learn, pydantic, fastapi
+2026-11-11T16:37:12.5827902Z #16 18.19
+2026-11-11T16:37:12.7387619Z #16 18.19 Successfully installed annotated-doc-0.0.6 annotated-types-0.8.0 anyio-4.16.0 charset-normalizer-3.5.2 click-8.5.1 cloudpickle-3.1.2 fastapi-0.142.2 h11-0.16.0 h5py-3.16.0 httptools-0.9.0 idna-3.20 joblib-1.6.0 narwhals-2.28.0 numpy-2.5.3 opentelemetry-api-1.45.2 pillow-13.0.0 pydantic-2.14.3 pydantic-core-2.50.4 python-dotenv-1.2.4 python-multipart-0.0.32 pyyaml-6.0.3 reportlab-5.0.1 scikit-learn-1.9.1 scipy-1.18.1 starlette-1.10.0 threadpoolctl-3.8.0 typing-extensions-4.16.0 typing-inspection-0.4.5 uvicorn-0.54.0 uvloop-0.23.0 watchfiles-1.3.0 websockets-17.4
+2026-11-11T16:37:12.7392277Z #16 18.19 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+2026-11-11T16:37:12.7394044Z #16 18.20
+2026-11-11T16:37:12.7394381Z #16 18.20 [notice] A new release of pip is available: 26.2.2 -> 26.3
+2026-11-11T16:37:12.7394895Z #16 18.20 [notice] To update, run: pip install --upgrade pip
+2026-11-11T16:37:16.1999811Z #16 DONE 21.8s
+2026-11-11T16:37:16.2000057Z
+2026-11-11T16:37:16.2001302Z #15 [frontend 5/7] RUN npm ci
+2026-11-11T16:37:16.3578056Z #15 ...
+2026-11-11T16:37:16.3578974Z
+2026-11-11T16:37:16.3579163Z #17 [application  5/11] COPY backend/ ./backend/
+2026-11-11T16:37:16.3579546Z #17 DONE 0.0s
+2026-11-11T16:37:16.3579684Z
+2026-11-11T16:37:16.3579819Z #18 [application  6/11] COPY utils/ ./utils/
+2026-11-11T16:37:16.3580145Z #18 DONE 0.0s
+2026-11-11T16:37:16.3580282Z
+2026-11-11T16:37:16.3580498Z #19 [application  7/11] COPY training/ ./training/
+2026-11-11T16:37:16.3580800Z #19 DONE 0.0s
+2026-11-11T16:37:16.3580952Z
+2026-11-11T16:37:16.3581086Z #20 [application  8/11] COPY models/ ./models/
+2026-11-11T16:37:16.3581322Z #20 DONE 0.0s
+2026-11-11T16:37:16.3581409Z
+2026-11-11T16:37:16.3581548Z #21 [application  9/11] COPY experiments/ ./experiments/
+2026-11-11T16:37:16.3581857Z #21 DONE 0.1s
+2026-11-11T16:37:16.5244091Z
+2026-11-11T16:37:16.5245403Z #22 [application 10/11] COPY classifier_samples.npz normalization_stats_all_snr.npz satellite_modulation_cnn_all_snr.keras evaluation_results.json snr_accuracy_results.csv ./
+2026-11-11T16:37:16.5246480Z #22 DONE 0.0s
+2026-11-11T16:37:16.5246772Z
+2026-11-11T16:37:16.5247007Z #15 [frontend 5/7] RUN npm ci
+2026-11-11T16:37:39.7022911Z #15 45.39
+2026-11-11T16:37:39.7023254Z #15 45.39 added 581 packages, and audited 583 packages in 45s
+2026-11-11T16:37:39.7023547Z #15 45.39
+2026-11-11T16:37:39.7023729Z #15 45.39 85 packages are looking for funding
+2026-11-11T16:37:39.7024011Z #15 45.39   run `npm fund` for details
+2026-11-11T16:37:39.8791223Z #15 45.57
+2026-11-11T16:37:39.8791569Z #15 45.57 14 vulnerabilities (10 moderate, 2 high, 2 critical)
+2026-11-11T16:37:39.8791847Z #15 45.57
+2026-11-11T16:37:39.8792063Z #15 45.57 To address issues that do not require attention, run:
+2026-11-11T16:37:39.8792344Z #15 45.57   npm audit fix
+2026-11-11T16:37:39.8792527Z #15 45.57
+2026-11-11T16:37:39.8792738Z #15 45.57 To address all issues (including breaking changes), run:
+2026-11-11T16:37:39.8793012Z #15 45.57   npm audit fix --force
+2026-11-11T16:37:39.8793206Z #15 45.57
+2026-11-11T16:37:39.8793367Z #15 45.57 Run `npm audit` for details.
+2026-11-11T16:37:40.0308890Z #15 45.57 npm notice
+2026-11-11T16:37:40.0309626Z #15 45.57 npm notice New major version of npm available! 10.9.9 -> 12.2.2
+2026-11-11T16:37:40.0310229Z #15 45.57 npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+2026-11-11T16:37:40.0310757Z #15 45.57 npm notice To update run: npm install -g npm@12.2.2
+2026-11-11T16:37:40.0311152Z #15 45.57 npm notice
+2026-11-11T16:37:42.0286940Z #15 DONE 47.7s
+2026-11-11T16:37:42.2707096Z
+2026-11-11T16:37:42.2707714Z #23 [frontend 6/7] COPY frontend/ ./
+2026-11-11T16:37:42.2708119Z #23 DONE 0.1s
+2026-11-11T16:37:42.2708264Z
+2026-11-11T16:37:42.2708379Z #24 [frontend 7/7] RUN npm run build
+2026-11-11T16:37:42.3111302Z #24 0.190
+2026-11-11T16:37:42.3111684Z #24 0.190 > satmodclass-frontend@1.0.0 prebuild
+2026-11-11T16:37:42.3112005Z #24 0.190 > node scripts/generate-routes.mjs
+2026-11-11T16:37:42.3112232Z #24 0.190
+2026-11-11T16:37:42.4937353Z #24 0.222
+2026-11-11T16:37:42.4937837Z #24 0.222 > satmodclass-frontend@1.0.0 build
+2026-11-11T16:37:42.4938199Z #24 0.222 > vite build
+2026-11-11T16:37:42.6334267Z #24 0.222
+2026-11-11T16:37:42.6334551Z #24 0.513 vite v7.1.12 building for production...
+2026-11-11T16:37:42.8503626Z #24 0.579 transforming...
+2026-11-11T16:38:03.4615283Z #24 21.34 ✓ 3366 modules transformed.
+2026-11-11T16:38:04.2912273Z #24 22.17 rendering chunks...
+2026-11-11T16:38:05.1340968Z #24 23.01 computing gzip size...
+2026-11-11T16:38:05.2473001Z #24 23.13 dist/index.html                                0.85 kB │ gzip:     0.48 kB
+2026-11-11T16:38:05.2473859Z #24 23.13 dist/assets/ground-track-map-CIGW-MKW.css     15.61 kB │ gzip:     6.46 kB
+2026-11-11T16:38:05.2474598Z #24 23.13 dist/assets/index-GHWTy0J_.css                98.92 kB │ gzip:    17.74 kB
+2026-11-11T16:38:05.3981105Z #24 23.13 dist/assets/ground-track-map-Bt86yWIP.js     156.04 kB │ gzip:    45.90 kB
+2026-11-11T16:38:05.3981718Z #24 23.13 dist/assets/index-BYaJufXb.js                580.50 kB │ gzip:   181.73 kB
+2026-11-11T16:38:05.3982236Z #24 23.13 dist/assets/earth-globe-CSpBQsoy.js          998.12 kB │ gzip:   270.02 kB
+2026-11-11T16:38:05.3982738Z #24 23.13 dist/assets/plotly.min-FQndyn-C.js         4,776.97 kB │ gzip: 1,472.41 kB
+2026-11-11T16:38:05.3983112Z #24 23.13 ✓ built in 22.59s
+2026-11-11T16:38:05.5878974Z #24 DONE 23.5s
+2026-11-11T16:38:06.0899297Z
+2026-11-11T16:38:06.0900905Z #25 [application 11/11] COPY --from=frontend /build/frontend/dist/ ./frontend/dist/
+2026-11-11T16:38:06.3002066Z #25 DONE 0.1s
+2026-11-11T16:38:06.3002443Z
+2026-11-11T16:38:06.3002816Z #26 exporting to image
+2026-11-11T16:38:06.3003314Z #26 exporting layers
+2026-11-11T16:38:08.5706190Z #26 exporting layers 2.4s done
+2026-11-11T16:38:08.6178072Z #26 writing image sha256:8085f12e8c951f2dc681f6460b9ca4c958c919cde3d9bf2c2057838f623531b3 done
+2026-11-11T16:38:08.6178754Z #26 naming to docker.io/library/satmodclass:ci done
+2026-11-11T16:38:08.6179111Z #26 DONE 2.4s
+2026-11-11T16:38:08.6299333Z ##[group]Run docker volume create satmod-ci-data
+2026-11-11T16:38:08.6299681Z docker volume create satmod-ci-data
+2026-11-11T16:38:08.6300241Z docker run -d --name satmodclass-ci -e SATMOD_ACCESS_TOKEN --mount type=volume,src=satmod-ci-data,dst=/data -p 127.0.0.1:8000:8000 satmodclass:ci
+2026-11-11T16:38:08.6300919Z python scripts/check_deployment.py http://127.0.0.1:8000 --wait-seconds 90
+2026-11-11T16:38:08.6301463Z python scripts/check_workspace_deployment.py http://127.0.0.1:8000 --state-file /tmp/workspace-state.json
+2026-11-11T16:38:08.6301910Z docker rm -f satmodclass-ci
+2026-11-11T16:38:08.6302426Z docker run -d --name satmodclass-ci -e SATMOD_ACCESS_TOKEN --mount type=volume,src=satmod-ci-data,dst=/data -p 127.0.0.1:8000:8000 satmodclass:ci
+2026-11-11T16:38:08.6303132Z python scripts/check_workspace_deployment.py http://127.0.0.1:8000 --state-file /tmp/workspace-state.json --verify-existing
+2026-11-11T16:38:08.6321792Z shell: /usr/bin/bash -e {0}
+2026-11-11T16:38:08.6322015Z env:
+2026-11-11T16:38:08.6322217Z   SATMOD_ACCESS_TOKEN: ci-only-local-container-key
+2026-11-11T16:38:08.6322465Z ##[endgroup]
+2026-11-11T16:38:08.6485287Z satmod-ci-data
+2026-11-11T16:38:08.7149451Z 0e306c005d1fb0cbb013a6672091353dc6afe5d86c36c89af41606f414327a6d
+2026-11-11T16:38:10.6348158Z {
+2026-11-11T16:38:10.6348565Z   "url": "http://127.0.0.1:8000",
+2026-11-11T16:38:10.6348853Z   "health": {
+2026-11-11T16:38:10.6349029Z     "connected": true,
+2026-11-11T16:38:10.6349645Z     "modelId": "1d-cnn",
+2026-11-11T16:38:10.6349852Z     "backend": "NumPy Native Engine",
+2026-11-11T16:38:10.6350071Z     "error": null,
+2026-11-11T16:38:10.6350234Z     "version": "1.0.0"
+2026-11-11T16:38:10.6350394Z   },
+2026-11-11T16:38:10.6350542Z   "spaRoutes": 8,
+2026-11-11T16:38:10.6350705Z   "assets": 2,
+2026-11-11T16:38:10.6350880Z   "realClassification": "BPSK",
+2026-11-11T16:38:10.6351141Z   "generatedSignalClassification": true,
+2026-11-11T16:38:10.6351398Z   "validUploadMatchesDirect": true,
+2026-11-11T16:38:10.6351605Z   "invalidUpload": 422,
+2026-11-11T16:38:10.6351792Z   "evaluationSamples": 900,
+2026-11-11T16:38:10.6351985Z   "unknownApi": 404
+2026-11-11T16:38:10.6352148Z }
+2026-11-11T16:38:11.1645861Z {
+2026-11-11T16:38:11.1646115Z   "protectedApi": true,
+2026-11-11T16:38:11.1646346Z   "managedCapture": true,
+2026-11-11T16:38:11.1646546Z   "batchWindows": 4,
+2026-11-11T16:38:11.1646929Z   "pdf": true,
+2026-11-11T16:38:11.1647129Z   "persistedAfterRecreation": false,
+2026-11-11T16:38:11.1647491Z   "modelHash": "e9705c98275e26d4a60210b2d563c4cc32ef94f4f0368974f1168245f91cf33d"
+2026-11-11T16:38:11.1647795Z }
+2026-11-11T16:38:11.3120333Z satmodclass-ci
+2026-11-11T16:38:11.3398347Z aa70d6eef07da9ceba23128678f121287587c817fd9f696e5b24bf8650c41a8d
+2026-11-11T16:38:13.0967217Z {
+2026-11-11T16:38:13.0967538Z   "protectedApi": true,
+2026-11-11T16:38:13.0967801Z   "managedCapture": true,
+2026-11-11T16:38:13.0968004Z   "batchWindows": 4,
+2026-11-11T16:38:13.0968223Z   "pdf": true,
+2026-11-11T16:38:13.0968431Z   "persistedAfterRecreation": true,
+2026-11-11T16:38:13.0968765Z   "modelHash": "e9705c98275e26d4a60210b2d563c4cc32ef94f4f0368974f1168245f91cf33d"
+2026-11-11T16:38:13.0969091Z }
+2026-11-11T16:38:13.1092334Z ##[group]Run docker logs satmodclass-ci || true
+2026-11-11T16:38:13.1092653Z docker logs satmodclass-ci || true
+2026-11-11T16:38:13.1110330Z shell: /usr/bin/bash -e {0}
+2026-11-11T16:38:13.1110546Z ##[endgroup]
+2026-11-11T16:38:13.1278379Z INFO:     Started server process [1]
+2026-11-11T16:38:13.1278873Z INFO:     Waiting for application startup.
+2026-11-11T16:38:13.1279209Z INFO:     Application startup complete.
+2026-11-11T16:38:13.1279544Z INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+2026-11-11T16:38:13.1280120Z {"event": "request", "requestId": "47929b81-51b6-4674-9bf9-b301711e6fdd", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 7.06}
+2026-11-11T16:38:13.1280834Z {"event": "request", "requestId": "da5ec1a0-5ea0-468c-812c-e902309c0f67", "method": "GET", "path": "/api/workspace/captures", "status": 401, "elapsedMs": 0.2}
+2026-11-11T16:38:13.1281740Z {"event": "request", "requestId": "8a976b2a-22dc-47ee-9944-0d28494608db", "method": "GET", "path": "/api/workspace/captures/b7ef484c-2456-41e3-b738-f664c777df67", "status": 200, "elapsedMs": 12.26}
+2026-11-11T16:38:13.1282677Z {"event": "request", "requestId": "34d72fad-a1fc-4c78-b66c-2426213e59dd", "method": "GET", "path": "/api/workspace/captures/b7ef484c-2456-41e3-b738-f664c777df67/window", "status": 200, "elapsedMs": 10.89}
+2026-11-11T16:38:13.1283616Z {"event": "request", "requestId": "86f037ab-e9c5-4144-aae0-6f4e78431268", "method": "GET", "path": "/api/workspace/history/7ffac003-6409-42d8-9d80-1bf3086d7ce3/report", "status": 200, "elapsedMs": 3.24}
+2026-11-11T16:38:13.1284521Z {"event": "request", "requestId": "774036a5-f36d-432b-88aa-0c5d1852a137", "method": "GET", "path": "/api/workspace/history/7ffac003-6409-42d8-9d80-1bf3086d7ce3/report", "status": 200, "elapsedMs": 31.8}
+2026-11-11T16:38:13.1285434Z {"event": "request", "requestId": "409c1cb9-160c-4f4e-9d4b-562074581e5c", "method": "GET", "path": "/api/workspace/jobs/612bc575-1626-462c-aeb5-9af79b6f6ddb/result", "status": 200, "elapsedMs": 1.73}
+2026-11-11T16:38:13.1286052Z INFO:     172.17.0.1:57974 - "GET /api/health HTTP/1.1" 200 OK
+2026-11-11T16:38:13.1286389Z INFO:     172.17.0.1:57976 - "GET /api/workspace/captures HTTP/1.1" 401 Unauthorized
+2026-11-11T16:38:13.1287001Z INFO:     172.17.0.1:57978 - "GET /api/workspace/captures/b7ef484c-2456-41e3-b738-f664c777df67 HTTP/1.1" 200 OK
+2026-11-11T16:38:13.1287894Z INFO:     172.17.0.1:57980 - "GET /api/workspace/captures/b7ef484c-2456-41e3-b738-f664c777df67/window?start=128 HTTP/1.1" 200 OK
+2026-11-11T16:38:13.1288464Z INFO:     172.17.0.1:57982 - "GET /api/workspace/history/7ffac003-6409-42d8-9d80-1bf3086d7ce3/report HTTP/1.1" 200 OK
+2026-11-11T16:38:13.1289017Z INFO:     172.17.0.1:57990 - "GET /api/workspace/history/7ffac003-6409-42d8-9d80-1bf3086d7ce3/report?format=pdf HTTP/1.1" 200 OK
+2026-11-11T16:38:13.1289563Z INFO:     172.17.0.1:57992 - "GET /api/workspace/jobs/612bc575-1626-462c-aeb5-9af79b6f6ddb/result HTTP/1.1" 200 OK
+2026-11-11T16:38:13.1408014Z Post job cleanup.
+2026-11-11T16:38:13.2148119Z [command]/usr/bin/git version
+2026-11-11T16:38:13.2192994Z git version 2.56.0
+2026-11-11T16:38:13.2225885Z Temporarily overriding HOME='/home/runner/work/_temp/9ef4be0e-76c2-4c9f-9f76-e2975ad0eb1d' before making global git config changes
+2026-11-11T16:38:13.2228669Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-11T16:38:13.2231300Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/satellite-modulation-classification/satellite-modulation-classification
+2026-11-11T16:38:13.2276301Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-11T16:38:13.2317829Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-11T16:38:13.2558980Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-11T16:38:13.2593763Z http.https://github.com/.extraheader
+2026-11-11T16:38:13.2608813Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-11T16:38:13.2684191Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-11T16:38:13.2917246Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-11T16:38:13.2962571Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-11T16:38:13.3471044Z Cleaning up orphan processes
+2026-11-11T16:38:13.3865777Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

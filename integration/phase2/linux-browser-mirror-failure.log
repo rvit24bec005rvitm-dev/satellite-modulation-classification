@@ -1,0 +1,168 @@
+frontend (ubuntu-latest)	Install browser and system dependencies	﻿2026-11-11T16:14:43.1871013Z ##[group]Run npx playwright install --with-deps chromium
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:14:43.1871461Z ^[[36;1mnpx playwright install --with-deps chromium^[[0m
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:14:43.1893505Z shell: /usr/bin/bash -e {0}
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:14:43.1893772Z env:
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:14:43.1894046Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:14:43.1894479Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:14:43.1894901Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:14:43.1895297Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:14:43.1895688Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:14:43.1896084Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:14:43.1896427Z ##[endgroup]
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:14:43.9774166Z Installing dependencies...
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:14:43.9837958Z Switching to root user to install dependencies...
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:14:44.0820638Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:14:44.1157599Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:14:44.1954496Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.6 kB]
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:14:44.2056624Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [764 kB]
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:14:44.2150291Z Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [693 kB]
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:15:04.1358575Z Ign:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:15:24.1583522Z Ign:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:15:44.1775139Z Ign:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:16:04.1983211Z Ign:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:16:24.2246324Z Ign:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:16:44.2522420Z Ign:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:16:44.2538542Z Ign:2 https://archive.ubuntu.com/ubuntu noble InRelease
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:17:04.2729425Z Ign:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:17:04.2786953Z Err:2 https://security.ubuntu.com/ubuntu noble InRelease
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:17:04.2788938Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:17:04.2836076Z Ign:3 https://archive.ubuntu.com/ubuntu noble-updates InRelease
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:17:24.3089900Z Ign:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:17:24.3108555Z Err:3 https://security.ubuntu.com/ubuntu noble-updates InRelease
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:17:24.3109354Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:17:24.3112855Z Ign:4 https://archive.ubuntu.com/ubuntu noble-backports InRelease
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:17:44.3310102Z Err:4 https://security.ubuntu.com/ubuntu noble-backports InRelease
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:17:44.3311015Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:17:44.3358894Z Ign:5 https://archive.ubuntu.com/ubuntu noble-security InRelease
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:04.3555319Z Err:5 https://security.ubuntu.com/ubuntu noble-security InRelease
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:04.3556022Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:06.8867793Z Fetched 1473 kB in 3min 20s (7354 B/s)
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.0323206Z Reading package lists...
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.0481441Z W: Failed to fetch mirror+file:/etc/apt/apt-mirrors.txt/dists/noble/InRelease  Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.0483410Z W: Failed to fetch mirror+file:/etc/apt/apt-mirrors.txt/dists/noble-updates/InRelease  Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.0485343Z W: Failed to fetch mirror+file:/etc/apt/apt-mirrors.txt/dists/noble-backports/InRelease  Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.0487212Z W: Failed to fetch mirror+file:/etc/apt/apt-mirrors.txt/dists/noble-security/InRelease  Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.0489575Z W: Some index files failed to download. They have been ignored, or old ones used instead.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.0643572Z Reading package lists...
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.3244772Z Building dependency tree...
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.3251744Z Reading state information...
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4942814Z libasound2t64 is already the newest version (1.2.11-1ubuntu0.3).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4943652Z libasound2t64 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4944396Z libatk-bridge2.0-0t64 is already the newest version (2.52.0-1build1).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4945122Z libatk-bridge2.0-0t64 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4945813Z libatk1.0-0t64 is already the newest version (2.52.0-1build1).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4946477Z libatk1.0-0t64 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4947140Z libatspi2.0-0t64 is already the newest version (2.52.0-1build1).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4947803Z libatspi2.0-0t64 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4948666Z libcairo2 is already the newest version (1.18.0-3build1).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4949280Z libcairo2 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4949944Z libcups2t64 is already the newest version (2.4.7-1.2ubuntu7.14).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4950585Z libcups2t64 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4951234Z libdbus-1-3 is already the newest version (1.14.10-4ubuntu4.1).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4951678Z libdbus-1-3 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4952103Z libdrm2 is already the newest version (2.4.125-1ubuntu0.1~24.04.2).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4952525Z libdrm2 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4952924Z libgbm1 is already the newest version (25.2.8-0ubuntu0.24.04.4).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4953308Z libgbm1 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4954183Z libglib2.0-0t64 is already the newest version (2.80.0-6ubuntu3.10).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4954601Z libglib2.0-0t64 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4955029Z libnspr4 is already the newest version (2:4.35-1.1build1).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4955425Z libnspr4 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4955809Z libnss3 is already the newest version (2:3.98-1ubuntu0.3).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4956170Z libnss3 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4956583Z libpango-1.0-0 is already the newest version (1.52.1+ds-1build1).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4957023Z libpango-1.0-0 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4957433Z libx11-6 is already the newest version (2:1.8.7-1ubuntu0.1).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4957814Z libx11-6 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4958179Z libxcb1 is already the newest version (1.15-1ubuntu2).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4958778Z libxcb1 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4959198Z libxcomposite1 is already the newest version (1:0.4.5-1build3).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4959639Z libxcomposite1 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4960056Z libxdamage1 is already the newest version (1:1.1.6-1build1).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4960467Z libxdamage1 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4960856Z libxext6 is already the newest version (2:1.3.4-1build2).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4961231Z libxext6 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4961620Z libxfixes3 is already the newest version (1:6.0.0-2build1).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4961997Z libxfixes3 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4962394Z libxkbcommon0 is already the newest version (1.6.0-1build1).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4962782Z libxkbcommon0 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4963188Z libxrandr2 is already the newest version (2:1.5.2-2build1).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4963561Z libxrandr2 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4963944Z xvfb is already the newest version (2:21.1.12-1ubuntu1.9).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4964477Z fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.24.04.1).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4965031Z libfontconfig1 is already the newest version (2.15.0-1.1ubuntu2).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4965440Z libfontconfig1 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4966091Z libfreetype6 is already the newest version (2.13.2+dfsg-1ubuntu0.2).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4966508Z libfreetype6 set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4966912Z fonts-liberation is already the newest version (1:2.1.5-3).
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4967323Z fonts-liberation set to manually installed.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4967719Z The following additional packages will be installed:
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4968073Z   xfonts-encodings xfonts-utils
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4968356Z Recommended packages:
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.4968776Z   fonts-ipafont-mincho fonts-tlwg-loma
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.5142597Z The following NEW packages will be installed:
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.5143431Z   fonts-freefont-ttf fonts-ipafont-gothic fonts-tlwg-loma-otf fonts-unifont
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.5149316Z   fonts-wqy-zenhei xfonts-cyrillic xfonts-encodings xfonts-scalable
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.5149966Z   xfonts-utils
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.5367208Z 0 upgraded, 9 newly installed, 0 to remove and 3 not upgraded.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.5367993Z Need to get 21.1 MB of archives.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.5368916Z After this operation, 79.5 MB of additional disk space will be used.
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:08.5369725Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:28.5746771Z Ign:2 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:18:48.5997414Z Ign:3 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 fonts-freefont-ttf all 20211204+svn4273-2
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:19:08.6206577Z Ign:4 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:19:28.6419302Z Ign:5 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-unifont all 1:15.1.01-1build1
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:19:48.6667178Z Ign:6 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-wqy-zenhei all 0.9.45-8
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:20:08.6910383Z Ign:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:20:28.7161772Z Ign:8 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:20:48.7404530Z Ign:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:21:08.7713664Z Ign:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:21:28.7910183Z Ign:2 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:21:48.8223192Z Ign:2 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:21:48.8294525Z Ign:3 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 fonts-freefont-ttf all 20211204+svn4273-2
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:22:08.8494412Z Err:2 https://security.ubuntu.com/ubuntu noble/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:22:08.8495541Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:22:08.8498766Z Ign:3 https://archive.ubuntu.com/ubuntu noble/main amd64 fonts-freefont-ttf all 20211204+svn4273-2
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:22:08.8527160Z Ign:4 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:22:28.8741874Z Err:3 https://security.ubuntu.com/ubuntu noble/main amd64 fonts-freefont-ttf all 20211204+svn4273-2
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:22:28.8742691Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:22:28.8764973Z Ign:4 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:22:28.8860335Z Ign:5 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-unifont all 1:15.1.01-1build1
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:22:48.9001258Z Err:4 https://security.ubuntu.com/ubuntu noble/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:22:48.9002106Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:22:48.9032129Z Ign:6 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-wqy-zenhei all 0.9.45-8
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:22:48.9043358Z Ign:5 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-unifont all 1:15.1.01-1build1
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:23:08.9281324Z Ign:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:23:08.9389723Z Err:5 https://security.ubuntu.com/ubuntu noble/universe amd64 fonts-unifont all 1:15.1.01-1build1
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:23:08.9390534Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:23:08.9395633Z Ign:6 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-wqy-zenhei all 0.9.45-8
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:23:28.9487246Z Ign:8 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:23:28.9573333Z Err:6 https://security.ubuntu.com/ubuntu noble/universe amd64 fonts-wqy-zenhei all 0.9.45-8
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:23:28.9574010Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:23:28.9581069Z Ign:7 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:23:48.9696863Z Ign:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:23:48.9819038Z Err:7 https://security.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:23:48.9820199Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:23:48.9860418Z Ign:8 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:08.9932362Z Ign:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:09.0011196Z Ign:9 https://archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:09.0101948Z Err:8 https://security.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:09.0103519Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:29.0272449Z Ign:10 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:29.0365649Z Err:9 https://security.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:29.0366421Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:49.0631404Z Err:10 https://security.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:49.0632094Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:49.0693942Z E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/universe/f/fonts-ipafont/fonts-ipafont-gothic_00303-21ubuntu1_all.deb  Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:49.0695545Z E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/main/f/fonts-freefont/fonts-freefont-ttf_20211204%2bsvn4273-2_all.deb  Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:49.0696949Z E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/universe/f/fonts-tlwg/fonts-tlwg-loma-otf_0.7.3-1_all.deb  Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:49.0698304Z E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/universe/u/unifont/fonts-unifont_15.1.01-1build1_all.deb  Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:49.0699911Z E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/universe/f/fonts-wqy-zenhei/fonts-wqy-zenhei_0.9.45-8_all.deb  Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:49.0701240Z E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/main/x/xfonts-encodings/xfonts-encodings_1.0.5-0ubuntu2_all.deb  Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:49.0702536Z E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/main/x/xfonts-utils/xfonts-utils_7.7%2b6build3_amd64.deb  Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:49.0704117Z E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/universe/x/xfonts-cyrillic/xfonts-cyrillic_1.0.5%2bnmu1_all.deb  Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:49.0709064Z E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/main/x/xfonts-scalable/xfonts-scalable_1.0.3-1.3_all.deb  Temporary failure resolving 'azure.archive.ubuntu.com'
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:49.0710565Z E: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:49.0724402Z Failed to install browsers
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:49.0724924Z Error: Installation process exited with code: 100
+frontend (ubuntu-latest)	Install browser and system dependencies	2026-11-11T16:24:49.0971572Z ##[error]Process completed with exit code 1.

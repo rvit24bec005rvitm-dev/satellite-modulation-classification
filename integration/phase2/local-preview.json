@@ -1,0 +1,18 @@
+{
+  "url": "http://127.0.0.1:8162",
+  "health": {
+    "connected": true,
+    "modelId": "1d-cnn",
+    "backend": "NumPy Native Engine",
+    "error": null,
+    "version": "1.0.0"
+  },
+  "spaRoutes": 8,
+  "assets": 2,
+  "realClassification": "BPSK",
+  "generatedSignalClassification": true,
+  "validUploadMatchesDirect": true,
+  "invalidUpload": 422,
+  "evaluationSamples": 900,
+  "unknownApi": 404
+}

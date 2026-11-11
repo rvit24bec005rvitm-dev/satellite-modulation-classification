@@ -1,0 +1,17 @@
+Full export verified: 201 predictions and labels
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.selectOption: Error: strict mode violation: getByLabel('Stored capture') resolved to 2 elements:
+    1) <input value="" class="control"/> aka getByRole('textbox', { name: 'Search stored captures' })
+    2) <select class="control">…</select> aka getByLabel('Stored captureSelect a')
+
+Call log:
+  - waiting for getByLabel('Stored capture')
+
+    at /private/tmp/satmod-phase2-verification/frontend/[eval1]:11:155 {
+  log: [ "  - waiting for getByLabel('Stored capture')" ]
+}
+
+Node.js v24.19.0

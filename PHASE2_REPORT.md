@@ -154,9 +154,9 @@ observations are claimed.
 
 ## Prior implementation record
 
-The following report is retained as historical context. Where a capability is
-extended above (especially background imports and PDF export), the current status
-table above supersedes this earlier checkpoint.
+The following prior-source report and its CI evidence are retained. The current
+follow-up status table above supersedes capabilities subsequently extended.
+
 
 Branch: `feat/phase2-signal-operations`. Starting source: `70c411b`. The working tree was clean at the start. This phase preserves the original production CNN, experimental checkpoints, historical evidence, TanStack routes and Earth/galaxy scene. No model was promoted and no new training or real-world accuracy improvement is claimed.
 
@@ -185,15 +185,18 @@ Branch: `feat/phase2-signal-operations`. Starting source: `70c411b`. The working
 | Reports | COMPLETE AND VERIFIED for individual analyses | Versioned JSON/CSV/PDF with identity/time, active model hash, preprocessing, input hash, metadata, uncalibrated scores, metrics, limitations and vector I/Q plot. Batch/evaluation JSON/CSV available. |
 | Batch PDF / persistent attribution PDF | NOT IMPLEMENTED | Existing genuine IG/saliency and explanation JSON export preserved. No new attribution method or batch PDF renderer. |
 | Training infrastructure / model comparison | EXISTING AND VERIFIED | Existing grouped CNN/ResNet/CLDNN/RF tools/checkpoints retained; no extra expensive fitting without appropriate independent data. |
+| Registry-backed training adapter | NOT IMPLEMENTED | Existing offline NPZ/group-based training tools remain; managed capture manifests are not directly consumed by a new web or offline trainer. No training is launched in request handlers. |
+| External-dataset multi-model evaluation | NOT IMPLEMENTED | New external evaluation runs the active production CNN. Existing experimental Model Arena comparisons remain on their documented synthetic/reference domains; no external RF leaderboard is claimed. |
+| Persistent comparison PDF / metadata report | NOT IMPLEMENTED | Existing real two-signal comparison and JSON exports remain. No new persisted multi-capture comparison report renderer. |
 | Expanded production classes / calibrated production / OOD | BLOCKED | Missing independent acquisition/training/validation/OOD corpus. Production remains three-class, uncalibrated and OOD-not-validated. |
 | New low-SNR training experiments | NOT IMPLEMENTED | Existing synthetic experiments retained; no new data justification for changing production. |
 | Public access controls | COMPLETE AND VERIFIED | Optional per-origin session token in Settings; constant-time server token check; public mode fails closed without configuration. Shared workspace key, not multi-user authorization. |
 | Resource limits and observability | COMPLETE AND VERIFIED | Streamed disk spooling, two import slots, file/record/quota bounds, request IDs, structured logs, safe error responses, job state/counts and real inference summaries. |
 | Production dependencies | COMPLETE AND VERIFIED | Production npm audit: zero findings after removing unused Zod and updating Seroval. Resolved Python web audit: zero findings over 30 dependencies. |
 | Full development-tool remediation | PARTIALLY IMPLEMENTED | All-dependency npm audit still reports 14 development-tool findings (10 moderate, 2 high, 2 critical). Test/build toolchain upgrades were not forced into this feature phase; test servers remain local. Do not interpret runtime audit as a complete security guarantee. |
-| Docker persistence/security | PARTIALLY IMPLEMENTED pending current-image execution | Non-root image, `/data` volume, fail-closed public mode, Compose named volume, secret configuration, pinned dependencies and health check. Local image download exceeded the initial 180-second build budget. The first Phase 2 remote image build and original inference/upload smoke passed on source `41ebc4f`; the strengthened volume-recreation workflow is pending current CI. |
+| Docker persistence/security | COMPLETE AND VERIFIED | Non-root image, `/data` volume, fail-closed public mode, Compose named volume, secret configuration, pinned dependencies and health check. Local image download exceeded the initial 180-second build budget. Remote Linux source `cd5eec7` built the current image and passed real inference/upload checks, protected capture import/batch/PDF checks, then removed/recreated the container and reloaded the same named-volume data. This is image execution evidence, separate from permanent hosting. |
 | Permanent hosting | BLOCKED | No authenticated hosting connection. Render/Railway configuration is prepared. Free/ephemeral host filesystems do not guarantee persistence across redeployments; provision a persistent volume or keep operation local. |
-| Windows browser | PARTIALLY IMPLEMENTED pending current CI | Added a real Windows browser matrix entry; configuration is not execution evidence. Previous Windows backend verification remains separate. |
+| Linux / Windows browser execution | COMPLETE AND VERIFIED | Current source `cd5eec7`: 40 frontend tests, 11 contracts, type/lint/build and 28 production browser scenarios passed on each OS. Linux uses recorded runner Chrome; Windows uses Playwright Chromium. |
 
 ## Architecture and storage
 
@@ -228,15 +231,18 @@ Existing endpoints remain. Protected operations require `X-Satmod-Token` when `S
 ## Executed validation
 
 - Baseline: 149 Python / 35 frontend / 11 real client contract tests executed before implementation; original CI/browser evidence checked.
-- Phase 2 local Python: **195 passed**.
+- Phase 2 local Python: **196 passed**.
 - Frontend: **40 passed**, including 5 new operational UI tests.
 - Real TypeScript-to-Python contracts: **11 passed**.
-- Production Playwright: **28 passed**, including three new external-capture workflows; final small pagination/deletion changes are additionally covered by type/unit/API checks and awaiting current remote regression.
+- Current production browser suites: **28 passed on macOS Chrome**, **28 on Linux Chrome**, **28 on Windows Chromium**. These include the three new external-capture workflows and all original navigation/globe/scientific scenarios. macOS used an exclusive test server (`CI=1`) to prevent reuse of another editor’s server.
 - TypeScript, production build and ESLint passed; 18 pre-existing Fast Refresh warnings remain.
 - Original weights/statistics/demos/evaluation files and prior audit screenshots were preserved; current screenshots and logs are under `integration/phase2/`.
 - Browser test authoring failures (missing jsdom environment and unawaited download path) were corrected; no production predictions or regression assertions were weakened.
 
-First Phase 2 remote checks on `41ebc4f` passed Python on Linux 3.10/3.11/3.12 and Windows 3.12, the image smoke and the resolved Python security audit. Browser jobs and the strengthened follow-up source remain pending until observed. A protected native server was also restarted and its capture, batch output and PDF successfully reloaded using `scripts/check_workspace_deployment.py`; this native check is separate from container volume evidence.
+All eight jobs in [remote run 43060024518](https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/actions/runs/43060024518) passed on implementation source `cd5eec7`: Linux Python 3.10/3.11/3.12, Windows Python 3.12 (196 tests each), Linux/Windows frontend plus real contracts/production browser checks, runtime security audit, and the Docker image/volume-recreation smoke. Source and job metadata are stored in `integration/phase2/github-ci.json`. Later report/evidence commits do not alter application code.
+
+A protected native server was also restarted and its capture, batch output and PDF reloaded using `scripts/check_workspace_deployment.py`; this is separate from container volume evidence. The first Linux browser setup failed on Ubuntu mirror DNS and was corrected by using the runner’s recorded installed Chrome. A local attempt required selecting installed Chrome; a subsequent reused-server attempt lost its shared server after 19 passing cases. The final exclusive-server macOS run passed all 28. These infrastructure attempts are not reported as application passes.
+
 
 ## Performance
 
@@ -254,7 +260,7 @@ npm --prefix frontend ci
 python scripts/dev.py
 ```
 
-The launcher prints available URLs. The current Phase 2 development session uses UI `http://localhost:5192`, API `http://127.0.0.1:8142`; restart it after backend edits. For explicit independent servers, set `SATMOD_API_PORT` / `SATMOD_FRONTEND_PORT` on the combined launcher. Persistent data defaults to `.satmod/`; do not commit it.
+The launcher prints available URLs. Use the URLs printed by the launcher; it selects free ports when defaults are occupied. Restart it after backend edits. For explicit independent servers, set `SATMOD_API_PORT` / `SATMOD_FRONTEND_PORT` on the combined launcher. Persistent data defaults to `.satmod/`; do not commit it.
 
 Production, same-origin native server:
 
@@ -296,3 +302,33 @@ npm --prefix frontend run build
 # and SATMOD_TEST_API_URL variables documented in frontend/playwright.config.ts.
 python scripts/profile_workspace.py
 ```
+
+## Source isolation
+
+Another active editor changed the shared checkout to `feat/phase2-readiness-followup` during final testing. Final Phase 2 verification was isolated in a separate Git worktree on `feat/phase2-signal-operations`; the other checkout and its uncommitted work were preserved. The review branch is available in draft PR #1. Main was not changed by this phase.
+
+## CI browser infrastructure correction
+
+The first Linux browser job failed before browser execution: optional font packages could not be fetched because `azure.archive.ubuntu.com` DNS resolution failed. Application types/tests/contracts/build had passed. Linux CI now records and uses the runner’s preinstalled Google Chrome; Windows installs Playwright Chromium without a Linux package-manager step. The full browser assertions are retained. This is an infrastructure correction, not a suppressed application test. The corrected final Linux run passed all 28 cases. Linux Chrome 156.0.8078.79 was recorded by the runner.
+
+## Upload deadline
+
+`SATMOD_BODY_TIMEOUT_SECONDS` defaults to 120 seconds for complete request-body reads. Slow/chunked requests return 408 and release import slots and spool files. This limits upload reading, not background job execution. A regression test covers managed and ordinary API bodies, request IDs, and a successful subsequent import.
+
+## File inventory and preserved artifacts
+
+[`integration/phase2/files.json`](integration/phase2/files.json) lists created and modified files. [`integration/phase2/preserved-artifacts.json`](integration/phase2/preserved-artifacts.json) records six original artifacts and all four existing experimental checkpoint hashes, verified unchanged. Historical audit reports and screenshot files were preserved; new screenshots/logs have their own Phase 2 directory.
+
+The current local preview is `http://localhost:8162`, serving the compiled React build and real API from one local process. Its temporary preview data is separate from the normal `.satmod/` workspace. This is a local verification service, not durable public hosting. Start the normal launcher for your persistent local workspace.
+
+For an exclusive same-origin production browser run on macOS (after installation/build):
+
+```bash
+CI=1 PLAYWRIGHT_CHANNEL=chrome SATMOD_PYTHON="$PWD/.venv/bin/python" SATMOD_TEST_PRODUCTION=1 SATMOD_TEST_BASE_URL=http://127.0.0.1:18374 SATMOD_TEST_API_URL=http://127.0.0.1:18374 npm --prefix frontend run test:e2e
+```
+
+Chrome must be installed for that command. Alternatively run `npx playwright install chromium` in `frontend/` and omit `PLAYWRIGHT_CHANNEL`. Select a free port; `CI=1` refuses to reuse an unrelated server. Windows CI executes its own installed Chromium browser rather than inferring verification from Linux.
+
+## Additional export and responsive validation
+
+A separate browser inspection downloaded the full evaluation report for 201 known synthetic BPSK windows through the UI, confirming all 201 predictions, manifest entries and ground-truth labels survived beyond the 200-row result page. The expanded external-capture workspace was inspected at 1440px and 390px; mobile document width and scroll width were both 390px. Corrected inspection-script selectors did not change application behavior. Screenshots and `export-layout.json` are retained with Phase 2 evidence. These fixtures do not establish real-RF accuracy.

@@ -276,3 +276,22 @@ def test_chunked_import_size_limit_and_request_id(client,monkeypatch):
     assert response.status_code==413
     assert response.headers['access-control-allow-origin']=='http://localhost:5173'
     assert len(response.headers['x-request-id'])==36
+
+
+def test_slow_request_bodies_time_out_and_release_import_slots(client,monkeypatch):
+    import asyncio,httpx
+    monkeypatch.setenv('SATMOD_BODY_TIMEOUT_SECONDS','.01')
+    async def run(path):
+        async def chunks():
+            yield b'partial'
+            await asyncio.sleep(.2)
+            yield b'incomplete'
+        async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app),base_url='http://test') as session:
+            return await session.post(path,content=chunks())
+    for path in ['/api/workspace/captures','/api/workspace/captures','/api/classify']:
+        response=asyncio.run(run(path))
+        assert response.status_code==408 and 'timed out' in response.text
+        assert response.headers['x-request-id']
+    monkeypatch.setenv('SATMOD_BODY_TIMEOUT_SECONDS','120')
+    assert upload(client).status_code==200
+    assert not list(store.root().glob('*.upload'))

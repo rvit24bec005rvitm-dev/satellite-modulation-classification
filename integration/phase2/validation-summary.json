@@ -1,7 +1,7 @@
 {
   "baseCommit": "70c411b",
   "branch": "feat/phase2-signal-operations",
-  "pythonPassed": 195,
+  "pythonPassed": 196,
   "frontendPassed": 40,
   "contractsPassed": 11,
   "productionBrowserPassed": 28,
@@ -14,7 +14,12 @@
   "runtimeNpmFindings": 0,
   "resolvedPythonWebFindings": 0,
   "remainingDevNpmFindings": 14,
-  "remoteCi": "pending",
+  "remoteCi": {
+    "runId": 43060024518,
+    "source": "cd5eec7fad7b859ebe6fc3ccb2238a1d980b5199",
+    "status": "success",
+    "jobs": 8
+  },
   "modelPromoted": false,
   "preservedArtifacts": [
     {
@@ -50,5 +55,43 @@
   ],
   "globeSourceUnchanged": true,
   "protectedNativeRestart": "passed",
-  "draftPr": "https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/pull/1"
+  "draftPr": "https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/pull/1",
+  "firstPhase2WindowsBrowser": {
+    "runId": 43055972786,
+    "source": "41ebc4f",
+    "passed": 28,
+    "status": "success"
+  },
+  "containerCi": {
+    "runId": 43060024518,
+    "source": "cd5eec7",
+    "status": "success",
+    "protectedManagedCapture": true,
+    "batchWindows": 4,
+    "pdf": true,
+    "persistedAfterContainerRecreation": true
+  },
+  "remotePythonMatrix": {
+    "source": "cd5eec7",
+    "linux": [
+      "3.10",
+      "3.11",
+      "3.12"
+    ],
+    "windows": [
+      "3.12"
+    ],
+    "status": "success",
+    "testsEach": 196
+  },
+  "productionBrowsers": {
+    "macOS Chrome": 28,
+    "Linux Chrome": 28,
+    "Windows Chromium": 28
+  },
+  "bodyReadTimeout": "408 and import slot release verified",
+  "fullUiExportPredictions": 201,
+  "expandedWorkspaceMobileOverflow": false,
+  "preservedOriginalArtifacts": 6,
+  "preservedExperimentalCheckpoints": 4
 }
