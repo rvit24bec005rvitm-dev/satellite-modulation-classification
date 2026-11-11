@@ -25,7 +25,7 @@ working tree were inspected before substantial changes.
 | Batch / evaluation PDF summaries | COMPLETE AND VERIFIED | Reports render stored results without inference. Vector confidence plot, provenance, labels/metrics when supplied and explicit limitations. At most 512 plotted windows, 200 table rows and 20 capture metadata previews; complete data remains in JSON/CSV. |
 | Missing-model errors and upload deadlines | COMPLETE AND VERIFIED | Prediction APIs return safe 503 responses without private artifact paths; slow body reads return 408 and release import slots. |
 | Premium UI, routes and Earth/galaxy | EXISTING AND VERIFIED | Visual design preserved. Globe change adds camera-azimuth diagnostic telemetry only. Browser drag check verifies an actual camera turn. New screenshots no longer overwrite original scientific audit images. |
-| Local Python / frontend / contracts | COMPLETE AND VERIFIED | 208 Python, 43 frontend, 11 real contracts; details below. |
+| Local Python / frontend / contracts | COMPLETE AND VERIFIED | 209 Python, 43 frontend, 11 real contracts; details below. |
 | Final production browser run | COMPLETE AND VERIFIED | 29 scenarios passed in 2.5 minutes against the final compiled app, including asynchronous imports, cancellation, 201-window evaluation export, batch PDF and globe interaction. |
 | Container / Linux / Windows current-source CI | PARTIALLY IMPLEMENTED | Earlier Phase 2 image and protected named-volume recreation passed remotely; follow-up source verification is pending. |
 | Training pipeline and model comparison | EXISTING AND VERIFIED | Existing grouped CNN/ResNet/CLDNN/RF infrastructure and artifacts retained; no training or model promotion performed. |
@@ -74,7 +74,7 @@ Retention of committed captures/reports remains explicit, manual deletion.
 
 Evidence is isolated under `integration/phase2/followup/`. Original audit logs,
 figures, historical evaluations and model weights are preserved. Fresh final
-local results: **208 Python / 43 frontend / 11 real contracts**; production build,
+local results: **209 Python / 43 frontend / 11 real contracts**; production build,
 TypeScript and syntax/undefined-name lint passed. ESLint has zero errors and the
 18 existing Fast Refresh warnings. The final production browser run passed all
 29 scenarios in 2.5 minutes.

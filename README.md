@@ -351,4 +351,6 @@ For public deployment, configure `SATMOD_PUBLIC=1` and a long random `SATMOD_ACC
 
 The production dependency audits found zero known runtime findings after patching Seroval and removing unused Zod. Development-tool findings remain documented in the Phase 2 report; this is not a complete security guarantee. No production calibration, validated OOD detector, new production modulation classes or model promotion was introduced.
 
-Phase 2 verification: 196 Python tests; 40 frontend tests; 11 real API-client contracts; 28 production browser scenarios on each of macOS Chrome, Linux Chrome and Windows Chromium. Current Docker execution also verifies named-volume persistence after container recreation. See the report for exact tested source/CI links, remaining limits and the full file inventory.
+Earlier Phase 2 verification (source `cd5eec7`): 196 Python tests; 40 frontend tests; 11 real API-client contracts; 28 production browser scenarios on each of macOS Chrome, Linux Chrome and Windows Chromium. Current Docker execution also verifies named-volume persistence after container recreation. See the report for exact tested source/CI links, remaining limits and the full file inventory.
+
+Readiness follow-up: 209 Python / 43 frontend / 11 real client contracts / 29 macOS production browser scenarios passed, including background imports, cancellation and PDF summaries. Protected native-server restart persistence passed. Current-source remote CI is recorded separately in PHASE2_REPORT.md.

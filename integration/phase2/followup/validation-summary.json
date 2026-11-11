@@ -9,7 +9,7 @@
     "browserBeforeUI": 28
   },
   "local": {
-    "python": 208,
+    "python": 209,
     "frontend": 43,
     "contracts": 11,
     "productionBrowser": 29,
@@ -30,5 +30,8 @@
   "followupRemoteCi": "pending",
   "artifactPreservation": "preserved-artifacts.json",
   "performance": "performance.json",
-  "protectedRestart": "protected-native-restart.json"
+  "protectedRestart": "protected-native-restart.json",
+  "mergedRegressionLog": "python-merged.log",
+  "applicationSourceUnchangedFrom": "a20660f",
+  "upstreamRetained": "57befd3"
 }

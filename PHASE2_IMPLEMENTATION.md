@@ -22,7 +22,7 @@ The original scientific audit and its checklist were read before implementation.
 The sections below preserve the prior implementation history. New validation
 evidence is kept under `integration/phase2/followup/`.
 
-Final follow-up local checks: **208 Python / 43 frontend / 11 real contracts /
+Final follow-up local checks: **209 Python / 43 frontend / 11 real contracts /
 29 production browser scenarios passed**. TypeScript, production build,
 syntax/undefined-name checks and ESLint passed (18 existing warnings).
 Background labeled-dataset registration, split interval indexing, safe missing
