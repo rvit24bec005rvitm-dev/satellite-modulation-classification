@@ -136,9 +136,13 @@ def test_job_failure_and_restart_recovery(client,monkeypatch):
     assert recovered['state']=='failed' and 'restart' in recovered['error']
 
 
-def test_analysis_restart_history_exports_and_delete(client):
+def test_analysis_restart_history_exports_and_delete(client,monkeypatch):
+    saved=[];real=store.save_analysis
+    def save(*args,**kwargs):saved.append((args,kwargs));return real(*args,**kwargs)
+    monkeypatch.setattr(store,'save_analysis',save)
     rid=upload(client).json()['id'];classified=client.post('/api/workspace/captures/'+rid+'/classify?start=128').json()
     assert classified['predictedModulation'] in ['BPSK','QPSK','16-QAM']
+    assert len(saved)==1 and saved[0][0][1]==rid
     with TestClient(app) as restarted:
         assert restarted.get('/api/workspace/history?search=External%20recording').json()['total']==1
         report=restarted.get(f"/api/workspace/history/{classified['id']}/report").json()
@@ -179,6 +183,12 @@ def test_dataset_evaluation_no_inferred_labels_or_snr(client):
     assert wait(client,job)['state']=='completed'
     result=client.get('/api/workspace/jobs/'+job['id']+'/result').json()
     assert result['metrics']['samples']==3 and result['metrics']['snrAccuracy']==[]
+    assert result['dataset']['hash']==dataset['hash']
+    assert [p['groundTruth'] for p in result['predictions']]==['BPSK','QPSK','16-QAM']
+    assert result['classOrder']==['BPSK','QPSK','16-QAM']
+    exported=client.get('/api/workspace/jobs/'+job['id']+'/export').json()
+    assert exported['dataset']['entries']==dataset['entries']
+    assert b'groundTruth' in client.get('/api/workspace/jobs/'+job['id']+'/export?format=csv').content
     assert sum(map(sum,result['metrics']['confusionMatrix']))==3
     assert client.delete('/api/workspace/captures/'+rid).status_code==409
     assert client.delete('/api/workspace/datasets/'+dataset['id']).status_code==200
@@ -234,6 +244,23 @@ def test_reencoded_overlapping_windows_cannot_cross_splits(client):
     manifest={'name':'Contaminated','source':'Synthetic fixture','license':'Test','entries':[{'captureId':a,'start':0,'split':'train','label':'BPSK'},{'captureId':b,'start':64,'split':'test','label':'BPSK'}]}
     response=client.post('/api/workspace/datasets',json=manifest)
     assert response.status_code==422 and 'Overlapping' in response.text
+
+
+def test_capture_delete_checks_all_dataset_pages_and_uuid_case(client):
+    rid=upload(client).json()['id']
+    reference=store.put('dataset',{'createdAt':'2000-01-01T00:00:00Z','entries':[{'captureId':rid.upper()}]})
+    for _ in range(200):store.put('dataset',{'entries':[]})
+    assert reference['id'] not in [d['id'] for d in store.listing('dataset',200)['items']]
+    assert client.delete('/api/workspace/captures/'+rid.upper()).status_code==409
+    assert store.file_path(rid,'iq').exists()
+
+
+def test_non_npy_import_rejects_before_unbounded_parser_read(client,monkeypatch):
+    import backend.core.config as config
+    monkeypatch.setattr(config,'MAX_UPLOAD_BYTES',64)
+    response=upload(client,payload=b'I,Q\n'+b'0.1,0.2\n'*128,name='large.csv')
+    assert response.status_code==422 and 'bounded upload limit' in response.text
+    assert not list(store.root().glob('*.upload')) and not list(store.root().glob('*.iq'))
 
 
 def test_chunked_import_size_limit_and_request_id(client,monkeypatch):

@@ -1,7 +1,7 @@
 {
   "baseCommit": "70c411b",
   "branch": "feat/phase2-signal-operations",
-  "pythonPassed": 193,
+  "pythonPassed": 195,
   "frontendPassed": 40,
   "contractsPassed": 11,
   "productionBrowserPassed": 28,
@@ -48,5 +48,7 @@
       "unchangedFrom": "ed8a78a"
     }
   ],
-  "globeSourceUnchanged": true
+  "globeSourceUnchanged": true,
+  "protectedNativeRestart": "passed",
+  "draftPr": "https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/pull/1"
 }

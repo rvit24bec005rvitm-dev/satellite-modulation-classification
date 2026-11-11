@@ -3,29 +3,29 @@
 > eslint .
 
 
-<PROJECT>/frontend/src/components/ui/badge.tsx
+/Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend/src/components/ui/badge.tsx
   32:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
 
-<PROJECT>/frontend/src/components/ui/button.tsx
+/Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend/src/components/ui/button.tsx
   49:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
 
-<PROJECT>/frontend/src/components/ui/form.tsx
+/Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend/src/components/ui/form.tsx
   163:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
 
-<PROJECT>/frontend/src/components/ui/navigation-menu.tsx
+/Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend/src/components/ui/navigation-menu.tsx
   111:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
 
-<PROJECT>/frontend/src/components/ui/sidebar.tsx
+/Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend/src/components/ui/sidebar.tsx
   743:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
 
-<PROJECT>/frontend/src/components/ui/toggle.tsx
+/Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend/src/components/ui/toggle.tsx
   42:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
 
-<PROJECT>/frontend/src/components/workspace-ui.tsx
+/Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend/src/components/workspace-ui.tsx
   173:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
   175:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
 
-<PROJECT>/frontend/src/hooks/use-satmod.tsx
+/Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend/src/hooks/use-satmod.tsx
    10:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
    17:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
    19:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components

@@ -110,11 +110,21 @@ def listing(kind: str, limit=50, offset=0, search='', field=None, value=None):
     return {'items':[json.loads(r[0]) for r in rows],'total':total,'limit':limit,'offset':offset}
 
 
+def all_records(kind: str):
+    """Iterate all pages while callers hold LOCK for reference-sensitive changes."""
+    offset=0
+    while True:
+        page=listing(kind,200,offset)
+        yield from page['items'];offset+=200
+        if offset>=page['total']:break
+
+
 def delete(kind: str, record_id: str):
     record_id=identifier(record_id)
-    get(kind,record_id)
-    with connection() as db:db.execute('DELETE FROM records WHERE kind=? AND id=?',(kind,record_id))
-    for suffix in ['iq','json','upload']:file_path(record_id,suffix).unlink(missing_ok=True)
+    with LOCK:
+        get(kind,record_id)
+        with connection() as db:db.execute('DELETE FROM records WHERE kind=? AND id=?',(kind,record_id))
+        for suffix in ['iq','json','upload']:file_path(record_id,suffix).unlink(missing_ok=True)
 
 
 def artifact_hash():

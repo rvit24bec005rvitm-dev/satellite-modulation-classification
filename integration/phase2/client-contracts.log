@@ -3,15 +3,17 @@
 > vitest run --config vitest.integration.config.ts
 
 
- RUN  v2.1.9 <PROJECT>/frontend
+ RUN  v2.1.9 /Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend
 
- ✓ src/test/fullstack.integration.test.ts (11 tests) 12392ms
-   ✓ TypeScript API client → real Python model and DSP > loads health and genuine model metadata 4613ms
-   ✓ TypeScript API client → real Python model and DSP > workflows 2/3: generates BPSK and classifies the full capture 446ms
-   ✓ TypeScript API client → real Python model and DSP > workflows 2/3: generates QPSK and classifies the full capture 345ms
-   ✓ TypeScript API client → real Python model and DSP > analyzes and compares the exact generated samples 1077ms
+ ✓ src/test/fullstack.integration.test.ts (11 tests) 39511ms
+   ✓ TypeScript API client → real Python model and DSP > loads health and genuine model metadata 21388ms
+   ✓ TypeScript API client → real Python model and DSP > workflows 2/3: generates BPSK and classifies the full capture 969ms
+   ✓ TypeScript API client → real Python model and DSP > workflows 2/3: generates QPSK and classifies the full capture 701ms
+   ✓ TypeScript API client → real Python model and DSP > workflow 5: returns measured CNN timings 719ms
+   ✓ TypeScript API client → real Python model and DSP > analyzes and compares the exact generated samples 1408ms
+   ✓ TypeScript API client → real Python model and DSP > computes actual class-specific attributions with explicit trust status 377ms
 
  Test Files  1 passed (1)
       Tests  11 passed (11)
-   Start at  21:30:50
-   Duration  14.93s (transform 180ms, setup 0ms, collect 212ms, tests 12.39s, environment 0ms, prepare 235ms)
+   Start at  21:46:14
+   Duration  42.46s (transform 206ms, setup 0ms, collect 228ms, tests 39.51s, environment 0ms, prepare 353ms)

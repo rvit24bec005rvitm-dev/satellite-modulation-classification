@@ -8,7 +8,7 @@ Branch: `feat/phase2-signal-operations`. Starting source: `70c411b`. The working
 |---|---|---|
 | Existing CNN, canonical preprocessing, generation, explanation, eight pages | EXISTING AND VERIFIED | Baseline: 149 Python, 35 frontend, 11 client contracts; previous remote 25-browser run recorded in original audit. Current regression includes those cases. |
 | Complex/real NPY long recordings | COMPLETE AND VERIFIED | Mapped NPY vectors, N×2 and 2×N arrays; 100,000-sample tests and one-million-sample profile. |
-| Raw complex binary | COMPLETE AND VERIFIED | Nine explicit signed/float encodings; LE/BE, IQ/QI, planar/interleaved, scale, clock, offset and length. 18 encoding/layout tests. No format guessing. |
+| Raw complex binary | COMPLETE AND VERIFIED | Nine explicit signed/float encodings; LE/BE, IQ/QI, planar/interleaved, scale, clock, offset and length. 18 encoding/layout cases. No format guessing. |
 | SigMF ingestion | COMPLETE AND VERIFIED for documented subset | Paired metadata/data, sample clocks, frequency segments, UTC timestamps, SHA-512, description/license and raw metadata preservation; malformed/unsupported formats rejected. |
 | Full SigMF standards/library coverage | PARTIALLY IMPLEMENTED | Bounded specification-based reader, not a full conformance library. Unsigned/real/multichannel datasets, embedded headers, trailing bytes, required extensions and nonzero global offsets are rejected. |
 | Other existing formats | EXISTING AND VERIFIED | CSV/NPZ/MAT/WAV/JSON retain existing 4-MiB/65,536-sample limits. MAT v7.3 remains unsupported. |
@@ -33,7 +33,7 @@ Branch: `feat/phase2-signal-operations`. Starting source: `70c411b`. The working
 | Resource limits and observability | COMPLETE AND VERIFIED | Streamed disk spooling, two import slots, file/record/quota bounds, request IDs, structured logs, safe error responses, job state/counts and real inference summaries. |
 | Production dependencies | COMPLETE AND VERIFIED | Production npm audit: zero findings after removing unused Zod and updating Seroval. Resolved Python web audit: zero findings over 30 dependencies. |
 | Full development-tool remediation | PARTIALLY IMPLEMENTED | All-dependency npm audit still reports 14 development-tool findings (10 moderate, 2 high, 2 critical). Test/build toolchain upgrades were not forced into this feature phase; test servers remain local. Do not interpret runtime audit as a complete security guarantee. |
-| Docker persistence/security | PARTIALLY IMPLEMENTED pending current-image execution | Non-root image, `/data` volume, fail-closed public mode, Compose named volume, secret configuration, pinned dependencies and health check. Local image download exceeded the initial 180-second build budget; previous Phase 1 image success is not current-image proof. |
+| Docker persistence/security | PARTIALLY IMPLEMENTED pending current-image execution | Non-root image, `/data` volume, fail-closed public mode, Compose named volume, secret configuration, pinned dependencies and health check. Local image download exceeded the initial 180-second build budget. The first Phase 2 remote image build and original inference/upload smoke passed on source `41ebc4f`; the strengthened volume-recreation workflow is pending current CI. |
 | Permanent hosting | BLOCKED | No authenticated hosting connection. Render/Railway configuration is prepared. Free/ephemeral host filesystems do not guarantee persistence across redeployments; provision a persistent volume or keep operation local. |
 | Windows browser | PARTIALLY IMPLEMENTED pending current CI | Added a real Windows browser matrix entry; configuration is not execution evidence. Previous Windows backend verification remains separate. |
 
@@ -51,7 +51,7 @@ Legacy classification reports retain their input hash and bounded diagnostics, n
 
 The production input remains I-first `(128,2)` with exactly one saved scalar training z-score. Explicit raw-file scaling is an importer-selected unit conversion, not automatic unit-power normalization. SigMF integer units are not guessed. A missing sample clock uses the existing normalized Fs=1 convention; physical timestamps are emitted only from valid metadata. No SNR is estimated from arbitrary mixtures. CFO requires an explicit BPSK/QPSK assumption and has modulo/bias limitations. IQ imbalance metrics are distribution indicators, not receiver calibration. No sample alignment, resampling, packet decoding, reliable OOD classification or real ephemeris tracking was added.
 
-Ground truth comes from manifests, never model predictions. Test-only evaluation does not fit temperature or alter production. Session and hash checks cannot establish independence of undocumented or deliberately misidentified acquisitions. Domain diagnostics use a demo reference with unknown historical split membership and must not be interpreted as evidence of original training-domain identity.
+Ground truth comes from manifests, never model predictions. Evaluation exports include the frozen manifest/hash, explicit class order and ground truth for each prediction; the UI downloads the complete report rather than just its first prediction page. Test-only evaluation does not fit temperature or alter production. Session and hash checks cannot establish independence of undocumented or deliberately misidentified acquisitions. Domain diagnostics use a demo reference with unknown historical split membership and must not be interpreted as evidence of original training-domain identity.
 
 ## APIs
 
@@ -70,7 +70,7 @@ Existing endpoints remain. Protected operations require `X-Satmod-Token` when `S
 ## Executed validation
 
 - Baseline: 149 Python / 35 frontend / 11 real client contract tests executed before implementation; original CI/browser evidence checked.
-- Phase 2 local Python: **193 passed**.
+- Phase 2 local Python: **195 passed**.
 - Frontend: **40 passed**, including 5 new operational UI tests.
 - Real TypeScript-to-Python contracts: **11 passed**.
 - Production Playwright: **28 passed**, including three new external-capture workflows; final small pagination/deletion changes are additionally covered by type/unit/API checks and awaiting current remote regression.
@@ -78,7 +78,7 @@ Existing endpoints remain. Protected operations require `X-Satmod-Token` when `S
 - Original weights/statistics/demos/evaluation files and prior audit screenshots were preserved; current screenshots and logs are under `integration/phase2/`.
 - Browser test authoring failures (missing jsdom environment and unawaited download path) were corrected; no production predictions or regression assertions were weakened.
 
-Current source-specific remote CI and container results are recorded as pending until observed, not inferred from prior runs.
+First Phase 2 remote checks on `41ebc4f` passed Python on Linux 3.10/3.11/3.12 and Windows 3.12, the image smoke and the resolved Python security audit. Browser jobs and the strengthened follow-up source remain pending until observed. A protected native server was also restarted and its capture, batch output and PDF successfully reloaded using `scripts/check_workspace_deployment.py`; this native check is separate from container volume evidence.
 
 ## Performance
 
@@ -116,4 +116,25 @@ docker compose up --build -d
 python scripts/check_deployment.py http://127.0.0.1:8000 --wait-seconds 90
 ```
 
-Use a local environment containing the Python dependencies for that verifier. Compose binds localhost and uses a named volume owned by container UID 10001; host bind mounts must grant that UID write access. A hosting provider must set `PORT`, the access token and persistent `/data` mount. Keep one process/replica. Render's free plan configuration does not create a persistent disk. No permanent production URL was created in this phase.
+Both deployment verification scripts use only Python’s standard library. Compose binds localhost and uses a named volume owned by container UID 10001; host bind mounts must grant that UID write access. A hosting provider must set `PORT`, the access token and persistent `/data` mount. Keep one process/replica. Render's free plan configuration does not create a persistent disk. No permanent production URL was created in this phase.
+
+## Additional reliability checks
+
+Final storage review added regression coverage for dataset references beyond the first 200-record page, UUID case normalization, one report write per managed classification, and rejection of oversized legacy-format files before reading them into the legacy parser. Dataset/capture deletion and report/result reads are serialized with metadata changes. Evaluation exports retain supplied labels and manifest identity after registration deletion. The container smoke now explicitly removes and recreates the container against the same named volume.
+
+New direct run/check commands:
+
+```bash
+# Windows environment activation instead of the POSIX source command:
+.venv\Scripts\activate
+
+python -m pytest tests/ -q
+npm --prefix frontend test
+npm --prefix frontend run typecheck
+npm --prefix frontend run lint
+npm --prefix frontend run test:integration
+npm --prefix frontend run build
+# Production browser tests use the SATMOD_TEST_PRODUCTION / SATMOD_TEST_BASE_URL
+# and SATMOD_TEST_API_URL variables documented in frontend/playwright.config.ts.
+python scripts/profile_workspace.py
+```

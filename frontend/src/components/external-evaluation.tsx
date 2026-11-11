@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { operationsApi } from "@/lib/operations-api";
-import { downloadJson } from "@/lib/satmod-api";
+import { operationsApi, operationDownload } from "@/lib/operations-api";
 import { Surface, Field, Message } from "@/components/workspace-ui";
 import { Button } from "@/components/ui/button";
 export function ExternalEvaluation() {
@@ -112,7 +111,16 @@ export function ExternalEvaluation() {
           )}
           {result.data && (
             <>
-              <Button onClick={() => downloadJson(result.data, "satmod-external-evaluation.json")}>
+              <Button
+                onClick={() =>
+                  action.mutate(() =>
+                    operationDownload(
+                      `/jobs/${jobId}/export?format=json`,
+                      "satmod-external-evaluation.json",
+                    ),
+                  )
+                }
+              >
                 Export external evaluation JSON
               </Button>
               <pre className="max-h-96 overflow-auto text-xs">

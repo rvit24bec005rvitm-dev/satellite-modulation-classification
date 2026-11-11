@@ -1,0 +1,8 @@
+{
+  "protectedApi": true,
+  "managedCapture": true,
+  "batchWindows": 4,
+  "pdf": true,
+  "persistedAfterRecreation": true,
+  "modelHash": "e9705c98275e26d4a60210b2d563c4cc32ef94f4f0368974f1168245f91cf33d"
+}

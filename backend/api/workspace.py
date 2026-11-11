@@ -63,9 +63,10 @@ def capture_detail(record_id: str):return captures.overview(record_id)
 @router.delete('/captures/{record_id}')
 def delete_capture(record_id: str):
     with store.LOCK:
+        record_id=store.identifier(record_id)
         if any(store.listing('job',1,field='state',value=state)['total'] for state in ['queued','running']):raise HTTPException(409,'Wait for active jobs to finish or cancel them before deleting captures.')
-        for dataset in store.listing('dataset',200)['items']:
-            if any(e['captureId']==record_id for e in dataset.get('entries',[])):raise HTTPException(409,'Remove referencing datasets before deleting this capture.')
+        for dataset in store.all_records('dataset'):
+            if any(store.identifier(e['captureId'])==record_id for e in dataset.get('entries',[])):raise HTTPException(409,'Remove referencing datasets before deleting this capture.')
         store.delete('capture',record_id)
     return {'deleted':True}
 
@@ -78,10 +79,8 @@ def capture_window(record_id: str,start: int=Query(0,ge=0),length: int=Query(128
 @router.post('/captures/{record_id}/classify')
 def classify_window(record_id: str,start: int=Query(0,ge=0)):
     iq,meta=captures.window(record_id,start,128)
-    result=classifier.classify(iq,f"{meta['source']} @ sample {start}",meta['sampleRate'])
-    result['captureMetadata']=meta;result['capturePosition']=captures.timing(meta,start)
-    store.save_analysis(result,record_id)
-    return result
+    return classifier.classify(iq,f"{meta['source']} @ sample {start}",meta['sampleRate'],
+                               capture_metadata=meta,capture_position=captures.timing(meta,start))
 
 
 @router.get('/captures/{record_id}/diagnostics')
@@ -113,13 +112,14 @@ def domain_shift(record_id: str,start: int=Query(0,ge=0)):
 
 @router.get('/jobs/{record_id}/export')
 def export_job(record_id: str,format: Literal['json','csv']='json'):
-    if store.get('job',record_id)['state']!='completed':raise HTTPException(409,'Job is not complete.')
-    data=store.file_path(record_id,'json').read_bytes()
+    with store.LOCK:
+        if store.get('job',record_id)['state']!='completed':raise HTTPException(409,'Job is not complete.')
+        data=store.file_path(record_id,'json').read_bytes()
     if format=='json':return Response(data,media_type='application/json')
     import csv
     output=io.StringIO();writer=csv.writer(output)
-    writer.writerow(['window','sample','class','rawSoftmax','entropyBits','processingMs','timestamp'])
-    for p in json.loads(data)['predictions']:writer.writerow([p['index'],p['start'],p['predictedModulation'],p['confidence'],p['entropyBits'],p['processingMs'],p['timestamp']])
+    writer.writerow(['window','sample','class','rawSoftmax','entropyBits','processingMs','timestamp','groundTruth','snrDb'])
+    for p in json.loads(data)['predictions']:writer.writerow([p['index'],p['start'],p['predictedModulation'],p['confidence'],p['entropyBits'],p['processingMs'],p['timestamp'],p.get('groundTruth',''),p.get('snrDb','')])
     return Response(output.getvalue(),media_type='text/csv')
 
 
@@ -176,8 +176,10 @@ def dataset(body: Dataset):
 
 @router.delete('/datasets/{record_id}')
 def delete_dataset(record_id: str):
-    if any(store.listing('job',1,field='state',value=state)['total'] for state in ['queued','running']):raise HTTPException(409,'Wait for active jobs before deleting datasets.')
-    store.delete('dataset',record_id);return {'deleted':True}
+    with store.LOCK:
+        if any(store.listing('job',1,field='state',value=state)['total'] for state in ['queued','running']):raise HTTPException(409,'Wait for active jobs before deleting datasets.')
+        store.delete('dataset',record_id)
+    return {'deleted':True}
 
 
 @router.post('/datasets/{record_id}/evaluate')
