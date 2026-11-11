@@ -3,10 +3,11 @@ import io
 import json
 import numpy as np
 from fastapi import APIRouter, File, Form, UploadFile, HTTPException, Query
-from fastapi.responses import Response
+from fastapi.responses import Response, JSONResponse
 from pydantic import Field
 from typing import Literal
 from backend.api.schemas import StrictModel
+from backend.api import require_production_model
 from backend.services import workspace_store as store, captures, operations, classifier, technical_reports
 from backend.services.advanced_dsp import diagnostics, activities
 
@@ -41,7 +42,7 @@ def list_captures(limit: int=Query(50,ge=1,le=200),offset: int=Query(0,ge=0),sea
 
 
 @router.post('/captures')
-def import_capture(file: UploadFile=File(...),options: str=Form(...),metadata: UploadFile | None=File(default=None)):
+def import_capture(file: UploadFile=File(...),options: str=Form(...),metadata: UploadFile | None=File(default=None),background: bool=False):
     try:
         if file.size is not None and file.size>captures.IMPORT_LIMIT:raise HTTPException(413,'Capture exceeds external-import size limit.')
         config=captures.ImportOptions.model_validate_json(options)
@@ -50,6 +51,12 @@ def import_capture(file: UploadFile=File(...),options: str=Form(...),metadata: U
             raw=metadata.file.read(65537)
             if len(raw)>65536:raise ValueError('SigMF metadata exceeds 64 KiB.')
             sigmf=json.loads(raw)
+        operations.runner()
+        if background:
+            try:return JSONResponse(operations.submit_import(file,config,sigmf),status_code=202)
+            except ValueError as exc:
+                if 'capacity' in str(exc):raise HTTPException(429,str(exc)) from exc
+                raise
         return captures.import_capture(file,config,sigmf)
     finally:
         file.file.close()
@@ -62,6 +69,7 @@ def capture_detail(record_id: str):return captures.overview(record_id)
 
 @router.delete('/captures/{record_id}')
 def delete_capture(record_id: str):
+    operations.runner()
     with store.LOCK:
         record_id=store.identifier(record_id)
         if any(store.listing('job',1,field='state',value=state)['total'] for state in ['queued','running']):raise HTTPException(409,'Wait for active jobs to finish or cancel them before deleting captures.')
@@ -79,6 +87,7 @@ def capture_window(record_id: str,start: int=Query(0,ge=0),length: int=Query(128
 @router.post('/captures/{record_id}/classify')
 def classify_window(record_id: str,start: int=Query(0,ge=0)):
     iq,meta=captures.window(record_id,start,128)
+    require_production_model()
     return classifier.classify(iq,f"{meta['source']} @ sample {start}",meta['sampleRate'],
                                capture_metadata=meta,capture_position=captures.timing(meta,start))
 
@@ -111,15 +120,29 @@ def domain_shift(record_id: str,start: int=Query(0,ge=0)):
 
 
 @router.get('/jobs/{record_id}/export')
-def export_job(record_id: str,format: Literal['json','csv']='json'):
+def export_job(record_id: str,format: Literal['json','csv','pdf']='json'):
+    operations.runner()
     with store.LOCK:
-        if store.get('job',record_id)['state']!='completed':raise HTTPException(409,'Job is not complete.')
+        job=store.get('job',record_id)
+        if job['state']!='completed':raise HTTPException(409,'Job is not complete.')
+        if job['kind'] in ['capture-import','dataset-import']:
+            if format!='json':raise ValueError('Import provenance is available as JSON; classify windows for prediction CSV.')
+            return JSONResponse(operations.job_result(record_id))
         data=store.file_path(record_id,'json').read_bytes()
     if format=='json':return Response(data,media_type='application/json')
+    report=json.loads(data)
+    if format=='pdf':return Response(technical_reports.batch_pdf(report),media_type='application/pdf',
+                                    headers={'Content-Disposition':'attachment; filename="satmod-batch.pdf"'})
     import csv
     output=io.StringIO();writer=csv.writer(output)
-    writer.writerow(['window','sample','class','rawSoftmax','entropyBits','processingMs','timestamp','groundTruth','snrDb'])
-    for p in json.loads(data)['predictions']:writer.writerow([p['index'],p['start'],p['predictedModulation'],p['confidence'],p['entropyBits'],p['processingMs'],p['timestamp'],p.get('groundTruth',''),p.get('snrDb','')])
+    writer.writerow(['window','sample','class','rawSoftmax','entropyBits','processingMs','timestamp','groundTruth','snrDb',
+                     'jobId','reportVersion','modelVersion','modelHash','datasetHash','captureId','captureHash','sampleRateHz',
+                     'sourceSample','probabilities','preprocessing'])
+    for p in report['predictions']:
+        meta=report['captures'][p['captureId']]
+        writer.writerow([p['index'],p['start'],p['predictedModulation'],p['confidence'],p['entropyBits'],p['processingMs'],p['timestamp'],p.get('groundTruth',''),p.get('snrDb',''),
+                         report['jobId'],report['reportVersion'],report['modelVersion'],report['modelHash'],report.get('dataset',{}).get('hash',''),
+                         p['captureId'],meta['hash'],meta['sampleRate'] if meta['sampleRateKnown'] else '',p['sourceSample'],json.dumps(p['probabilities']),json.dumps(p['preprocessing'])])
     return Response(output.getvalue(),media_type='text/csv')
 
 
@@ -158,7 +181,7 @@ def job_result(record_id: str,offset: int=Query(0,ge=0),limit: int=Query(200,ge=
 
 
 @router.get('/datasets')
-def datasets():
+def datasets(limit: int=Query(50,ge=1,le=200),offset: int=Query(0,ge=0),search: str=Query('',max_length=200)):
     from backend.services.experiments import experiment_reports
     from backend.core.config import ROOT
     import hashlib
@@ -166,16 +189,22 @@ def datasets():
                           'acquisitionType':'provided demonstration subset','samples':300,'sampleRate':None,'sessionId':None,
                           'classLabels':classifier.stats()[2],'license':'Verify original source usage rights','importDate':None,'split':'unknown; prohibited for fitting'},
                           *[{'id':r['id'],**r['dataset'],'acquisitionType':'controlled synthetic experiment','split':r['splitStrategy']} for r in experiment_reports()]],
-            **store.listing('dataset',200)}
+            **store.listing('dataset',limit,offset,search)}
 
 
 @router.post('/datasets')
-def dataset(body: Dataset):
+def dataset(body: Dataset,background: bool=False):
+    if background:
+        try:return JSONResponse(operations.submit('dataset-import',body.model_dump()),status_code=202)
+        except ValueError as exc:
+            if 'capacity' in str(exc):raise HTTPException(429,str(exc)) from exc
+            raise
     with store.LOCK:return operations.register_dataset(body.name,body.entries,body.source,body.license)
 
 
 @router.delete('/datasets/{record_id}')
 def delete_dataset(record_id: str):
+    operations.runner()
     with store.LOCK:
         if any(store.listing('job',1,field='state',value=state)['total'] for state in ['queued','running']):raise HTTPException(409,'Wait for active jobs before deleting datasets.')
         store.delete('dataset',record_id)

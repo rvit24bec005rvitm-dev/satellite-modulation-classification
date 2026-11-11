@@ -20,7 +20,9 @@ test("external binary → late window → actual batch timeline → persisted PD
   await page.getByLabel("Binary datatype and endianness").selectOption("cf32_le");
   await page.getByLabel("Recording sample rate (Hz)").fill("8000");
   await page.getByLabel("Recording session / group ID").fill(group);
+  const importResponse = page.waitForResponse((r) => r.request().method() === "POST" && r.url().includes("/captures?background=true"));
   await page.getByRole("button", { name: "Import external recording", exact: true }).click();
+  expect((await importResponse).status()).toBe(202);
   await expect(page.getByText("131072", { exact: true })).toBeVisible({ timeout: 20000 });
   await page.getByLabel("External window start").fill("130560");
   await page.getByLabel("Batch window count").fill("4");
@@ -31,7 +33,17 @@ test("external binary → late window → actual batch timeline → persisted PD
   await page.getByRole("button", { name: "Export full batch CSV" }).click();
   const batchCsv = await readFile(await (await batchDownload).path(), "utf8");
   expect(batchCsv).toContain("rawSoftmax");
+  expect(batchCsv).toContain("modelHash");
+  expect(batchCsv).toContain("preprocessing");
   expect(batchCsv.trim().split("\n")).toHaveLength(5);
+  const batchPdfDownload = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Export batch PDF summary" }).click();
+  expect((await readFile(await (await batchPdfDownload).path())).subarray(0, 4).toString()).toBe("%PDF");
+  const selectedWindow = page.waitForResponse((r) => r.url().includes("/window?start=130688"));
+  await page.getByRole("row").filter({ has: page.getByRole("cell", { name: "130688", exact: true }) }).getByRole("button", { name: "1", exact: true }).click();
+  expect((await selectedWindow).ok()).toBeTruthy();
+  await expect(page.getByLabel("External window start")).toHaveValue("130688");
+  await page.getByLabel("External window start").fill("130560");
   const classified = page.waitForResponse(
     (r) => r.url().includes("/api/workspace/captures/") && r.url().includes("/classify"),
   );
@@ -129,16 +141,48 @@ test("registered independent labels produce an actual external evaluation report
       name: "Phase2 known-label test",
       source: "Generated test data, not real RF",
       license: "Test fixture",
-      entries: [{ captureId: capture.id, start: 0, label: "BPSK", split: "test" }],
+      entries: Array.from({ length: 201 }, (_, start) => ({ captureId: capture.id, start, label: "BPSK", split: "test" })),
     }),
   );
   await page.getByRole("button", { name: "Register labeled dataset", exact: true }).click();
   const card = page
     .locator("div.border")
-    .filter({ has: page.getByText(/Phase2 known-label test · 1 labeled windows/) })
+    .filter({ has: page.getByText(/Phase2 known-label test · 201 labeled windows/) })
     .last();
   await expect(card).toBeVisible({ timeout: 15000 });
   await card.getByRole("button", { name: "Evaluate held-out windows" }).click();
   await expect(page.getByText(/External evaluation: completed/)).toBeVisible({ timeout: 20000 });
   await expect(page.getByRole("button", { name: "Export external evaluation JSON" })).toBeVisible();
+  const evaluationDownload = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Export external evaluation JSON" }).click();
+  const evaluation = JSON.parse(await readFile(await (await evaluationDownload).path(), "utf8"));
+  expect(evaluation.predictions).toHaveLength(201);
+  expect(evaluation.metrics.samples).toBe(201);
+  expect(evaluation.predictions.every((p: { groundTruth: string }) => p.groundTruth === "BPSK")).toBeTruthy();
+  expect(evaluation.dataset.hash).toMatch(/^[a-f0-9]{64}$/);
+  const evaluationPdfDownload = page.waitForEvent("download");
+  await page.getByRole("button", { name: "Export external evaluation PDF" }).click();
+  expect((await readFile(await (await evaluationPdfDownload).path())).subarray(0, 4).toString()).toBe("%PDF");
+});
+
+test("a running batch can be cancelled through its persistent job controls", async ({ page, request }) => {
+  const values = Float32Array.from({ length: 16000 * 2 }, (_, i) => .006 * Math.sin(i * .031));
+  const imported = await request.post("/api/workspace/captures", {
+    multipart: {
+      file: { name: "cancel-fixture.bin", mimeType: "application/octet-stream", buffer: Buffer.from(values.buffer) },
+      options: JSON.stringify({ format: "raw", datatype: "cf32_le", sampleRate: 8000, sessionId: "cancel-synthetic-session", source: "Generated cancellation fixture, not RF" }),
+    },
+  });
+  expect(imported.ok()).toBeTruthy();
+  const capture = await imported.json();
+  await page.goto("/classifier");
+  await page.locator("summary").filter({ hasText: "External recordings" }).click();
+  await page.getByRole("combobox", { name: "Stored capture", exact: true }).selectOption(capture.id);
+  await page.getByLabel("Batch window count").fill("10000");
+  await page.getByLabel("Batch stride (samples)").fill("1");
+  await page.getByRole("button", { name: "Start batch classification" }).click();
+  const jobControl = page.getByRole("button", { name: /batch · (queued|running)/ });
+  await expect(jobControl).toBeVisible();
+  await jobControl.locator("..").getByRole("button", { name: "Cancel job" }).click();
+  await expect(page.getByText(/Job cancelled/)).toBeVisible({ timeout: 20000 });
 });

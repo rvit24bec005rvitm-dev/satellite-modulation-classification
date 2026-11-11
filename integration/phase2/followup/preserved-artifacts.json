@@ -1,0 +1,52 @@
+[
+  {
+    "path": "models/cnn_weights.npz",
+    "sha256": "e9705c98275e26d4a60210b2d563c4cc32ef94f4f0368974f1168245f91cf33d",
+    "byteIdenticalToOriginal": true
+  },
+  {
+    "path": "satellite_modulation_cnn_all_snr.keras",
+    "sha256": "a0e34e332328ddd6d0709c4af7875ef41127a3c6c3ef3cce8e51a7b7e5cad724",
+    "byteIdenticalToOriginal": true
+  },
+  {
+    "path": "classifier_samples.npz",
+    "sha256": "561343c008b34403e4d4d89d85ea26b3ac54a900d67711d8bcd39a6a774fcaef",
+    "byteIdenticalToOriginal": true
+  },
+  {
+    "path": "normalization_stats_all_snr.npz",
+    "sha256": "6b6500e2366422345b814e0cc3f10469b0114c409d252134c9b67ab93b245f0a",
+    "byteIdenticalToOriginal": true
+  },
+  {
+    "path": "evaluation_results.json",
+    "sha256": "b9aa35ebce1bfe95d75ce16f2f2252020219b4e7f65a2a0b651c4d2f420fc054",
+    "byteIdenticalToOriginal": true
+  },
+  {
+    "path": "snr_accuracy_results.csv",
+    "sha256": "b1a8f2ea01d411800e151b2221bc489992de700ba9f1ee3a44e27237c8f3ce93",
+    "byteIdenticalToOriginal": true
+  },
+  {
+    "path": "experiments/runs/rf-awgn-v1/random-forest.joblib",
+    "sha256": "a3c49aa424551d9c43f88be26bea4a49a8f76e617af4fddad73539670ce8a3ba",
+    "unchangedFromAudit": true
+  },
+  {
+    "path": "experiments/runs/rf-control-v1/random-forest.joblib",
+    "sha256": "9388cc39d7cb8511b7270dbc444db453284fdffbba3e4572c39bd52cd4397ecb",
+    "unchangedFromAudit": true
+  },
+  {
+    "path": "experiments/runs/cldnn-synthetic-v1/best.keras",
+    "sha256": "62aa060d52b37797d81aa1b9c06499d92f4e7fdfadf457838a79fa94f9e395c6",
+    "unchangedFromAudit": true
+  },
+  {
+    "path": "experiments/runs/resnet-synthetic-v1/best.keras",
+    "sha256": "3c8dc0d6f05a69f4c366e48fe48ba7e7c9868d87b0d3dbe883cb4d7490011277",
+    "unchangedFromAudit": true
+  }
+]

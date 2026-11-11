@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "branch": "feat/phase2-readiness-followup",
+  "localStartingCommit": "7b3bc0a",
+  "baseline": {
+    "python": 195,
+    "frontend": 40,
+    "contracts": 11,
+    "browserBeforeUI": 28
+  },
+  "local": {
+    "python": 208,
+    "frontend": 43,
+    "contracts": 11,
+    "productionBrowser": 29,
+    "browserPlatform": "macOS Chrome",
+    "typecheck": "passed",
+    "build": "passed",
+    "pythonSyntaxUndefinedNames": "passed",
+    "eslint": {
+      "errors": 0,
+      "existingWarnings": 18
+    },
+    "protectedNativeFullRestart": "passed"
+  },
+  "productionModelPromoted": false,
+  "productionCalibrationFit": false,
+  "independentSatelliteValidation": "blocked by data",
+  "permanentHosting": "not deployed; requires hosting account and durable storage",
+  "followupRemoteCi": "pending",
+  "artifactPreservation": "preserved-artifacts.json",
+  "performance": "performance.json",
+  "protectedRestart": "protected-native-restart.json"
+}

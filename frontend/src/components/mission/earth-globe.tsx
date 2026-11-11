@@ -760,8 +760,10 @@ function ViewControls({
     };
   }, [camera, commands, invalidate, paused, clock, fitScale]);
   useFrame(() => {
-    if (diagnostics.current)
+    if (diagnostics.current) {
       diagnostics.current.dataset["cameraDistance"] = String(camera.position.length());
+      diagnostics.current.dataset["cameraAzimuth"] = String(Math.atan2(camera.position.x, camera.position.z));
+    }
   });
   return (
     <OrbitControls

@@ -42,7 +42,7 @@ test("impaired signal → real CNN → Integrated Gradients → exported scienti
   expect(report.trust.ood.status).toBe("not-validated");
   expect(errors).toEqual([]);
   await page.screenshot({
-    path: "../integration/audit/classifier-explanation.png",
+    path: `${process.env["SATMOD_SCREENSHOT_DIR"] ?? "../integration/current-browser"}/classifier-explanation.png`,
     fullPage: true,
   });
 });
@@ -130,7 +130,7 @@ test("two captures with mixed known/unknown rates use common normalized axes and
   await expect(
     page.getByText("At least one sample rate is unknown", { exact: false }),
   ).toBeVisible();
-  await page.screenshot({ path: "../integration/audit/signal-comparison.png", fullPage: true });
+  await page.screenshot({ path: `${process.env["SATMOD_SCREENSHOT_DIR"] ?? "../integration/current-browser"}/signal-comparison.png`, fullPage: true });
 });
 
 test("real demo diagnostics and matched experimental comparisons remain distinct from historical scores", async ({
@@ -155,5 +155,5 @@ test("real demo diagnostics and matched experimental comparisons remain distinct
   expect(result.hardware.batchSize).toBe(1);
   expect(result.preprocessing.medianMs).toBeGreaterThan(0);
   await expect(page.getByText("Median preprocessing", { exact: true })).toBeVisible();
-  await page.screenshot({ path: "../integration/audit/model-arena.png", fullPage: true });
+  await page.screenshot({ path: `${process.env["SATMOD_SCREENSHOT_DIR"] ?? "../integration/current-browser"}/model-arena.png`, fullPage: true });
 });

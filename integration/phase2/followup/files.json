@@ -1,0 +1,337 @@
+[
+  {
+    "path": ".env.example",
+    "bytes": 658,
+    "sha256": "58262a253b5207ba94ef33322760422f4538558fb2b2e493ba1731ef4dfacfee"
+  },
+  {
+    "path": ".github/workflows/ci.yml",
+    "bytes": 4901,
+    "sha256": "c987267f2dde47c517cb72d18744ce886e2957e981af1d3ebab71d51534e9692"
+  },
+  {
+    "path": "PHASE2_IMPLEMENTATION.md",
+    "bytes": 6946,
+    "sha256": "4e4e84e09126c1b2a6c882e4f9cf4a858932b13f96f394aad3635e9ef67ad313"
+  },
+  {
+    "path": "PHASE2_REPORT.md",
+    "bytes": 28653,
+    "sha256": "8c1e9f4293c47f6d6359e88b0dcfb0cea39de8d608ba494acc9cedf1d45791df"
+  },
+  {
+    "path": "README.md",
+    "bytes": 36107,
+    "sha256": "740fa38fc2856b840a700bd20fb85ceaca27ed398d730829cf9676072a0ecf98"
+  },
+  {
+    "path": "backend/api/__init__.py",
+    "bytes": 539,
+    "sha256": "13ca3edd6eff58d4fc6a96f86444a89c962b034ca28f41caa20057645da7d1a9"
+  },
+  {
+    "path": "backend/api/workspace.py",
+    "bytes": 11994,
+    "sha256": "1367c52b1e78684f3e3fece591f23e3b4822b8815356882fcc1320c7f5c29817"
+  },
+  {
+    "path": "backend/main.py",
+    "bytes": 20532,
+    "sha256": "0fa8596f74a7b211ce1837920d6e40c11454db3c8a9ea8851d265df5f9d3de43"
+  },
+  {
+    "path": "backend/services/advanced_dsp.py",
+    "bytes": 2866,
+    "sha256": "b35ab64403568b3cb6329086084e75bf94e090e472998abb71dc7b31abbbcfe2"
+  },
+  {
+    "path": "backend/services/captures.py",
+    "bytes": 15914,
+    "sha256": "bfda4e41fa490fd787cf49bc86e9f1865c9c6d710bac1dde616d02f529f9eef9"
+  },
+  {
+    "path": "backend/services/operations.py",
+    "bytes": 14619,
+    "sha256": "8a9715ba3184afb012ab44706bb909393627fb6bad0ee866c201507c7062e853"
+  },
+  {
+    "path": "backend/services/technical_reports.py",
+    "bytes": 8362,
+    "sha256": "6a65aa4192ff0675d777f8e1ecacd854e6594c35dc13d5c08ca6239463c52c50"
+  },
+  {
+    "path": "frontend/e2e/mission-dashboard.spec.ts",
+    "bytes": 9510,
+    "sha256": "0dce8613865ada8ba150b7cf30fd2086de70dab9454f869ec719f87358445f05"
+  },
+  {
+    "path": "frontend/e2e/phase2-workflows.spec.ts",
+    "bytes": 9898,
+    "sha256": "0d0b06e917726f3c93d1b3463aa2361c616096f8a619a2a3fdad8f6765ac1de5"
+  },
+  {
+    "path": "frontend/e2e/scientific-workflows.spec.ts",
+    "bytes": 8823,
+    "sha256": "4d29ce11a9e882e2cdd813c804d468b3d450b273ed6fea06c08a76a0b9fc8cb0"
+  },
+  {
+    "path": "frontend/src/components/external-evaluation.tsx",
+    "bytes": 7184,
+    "sha256": "2f33bb2d302b6bf0b55747d63714ccb60e930b1ff4a979d2370a73dadb0a04cf"
+  },
+  {
+    "path": "frontend/src/components/external-workspace.tsx",
+    "bytes": 29073,
+    "sha256": "5f790bd344414e79279c14a7ba4542f657eb3afbf134311013d4f1b7e405ca4d"
+  },
+  {
+    "path": "frontend/src/components/mission/earth-globe.tsx",
+    "bytes": 29007,
+    "sha256": "6633fc3a079ec049f5d0aada044e12024e58fbab9631c8f6b466633b640a12d4"
+  },
+  {
+    "path": "frontend/src/lib/operations-api.ts",
+    "bytes": 6659,
+    "sha256": "42814a8837eaeb4e3f4362b5cce3eea172c445bef177cdf2f9fdc3d162e44768"
+  },
+  {
+    "path": "frontend/src/test/operations.test.tsx",
+    "bytes": 9340,
+    "sha256": "1614ad47658b60ec507d577dc347ed2fd08bb5458de18bd40577737bf0ad1348"
+  },
+  {
+    "path": "integration/phase2/followup-baseline-types.log",
+    "bytes": 135,
+    "sha256": "980908c1653ebec7b55b22e0495a3c8d895726a04bd7d011f8957a2e7a8d71e3"
+  },
+  {
+    "path": "integration/phase2/followup/baseline-build.log",
+    "bytes": 813,
+    "sha256": "af99e3ccfd607ff39bf4301f228e13819cde5255588cc5388f73abc9fef892d9"
+  },
+  {
+    "path": "integration/phase2/followup/baseline-contracts-current.log",
+    "bytes": 1454,
+    "sha256": "0f8e8fe0aa7fd914d892f8cfa7974f5f223748cef504fb3723c14d45f3b75426"
+  },
+  {
+    "path": "integration/phase2/followup/baseline-frontend-current.log",
+    "bytes": 889,
+    "sha256": "23002b76097b01b5d98fff7c0a3c726ac2e1aa6910c867225888d52c0a4885e8"
+  },
+  {
+    "path": "integration/phase2/followup/baseline-linux-ci.log",
+    "bytes": 86234,
+    "sha256": "d0e9fe807d0cdc8c4dc7bda3abdc1ff87cc2bbbf068a1999642b054daaf43a02"
+  },
+  {
+    "path": "integration/phase2/followup/baseline-python-current.log",
+    "bytes": 272,
+    "sha256": "1eff1367c15a1d18f6eece8a9c76ed3273337bd058f5e1bcd708dba53058147c"
+  },
+  {
+    "path": "integration/phase2/followup/baseline-screenshots/classifier-explanation.png",
+    "bytes": 386948,
+    "sha256": "6de9a33c47f29a7af48dc016b77e24bd07ec849fe35933dc5a290afacea6eea4"
+  },
+  {
+    "path": "integration/phase2/followup/baseline-screenshots/mission-1024.png",
+    "bytes": 500543,
+    "sha256": "6dcb5f1a7f3195145e458f6722b6633f5c62c70240c0abcecec99457ba2caeed"
+  },
+  {
+    "path": "integration/phase2/followup/baseline-screenshots/mission-1440.png",
+    "bytes": 518059,
+    "sha256": "e91047fdc810168922113d5baf5698e78ed5c1337f4371198eae46cd01c1ae41"
+  },
+  {
+    "path": "integration/phase2/followup/baseline-screenshots/mission-390.png",
+    "bytes": 326106,
+    "sha256": "168828570ef56bc564fe3945013fe1570b1908a8e58532bcaad5e8e3e01527bd"
+  },
+  {
+    "path": "integration/phase2/followup/baseline-screenshots/mission-820.png",
+    "bytes": 432104,
+    "sha256": "a2f2816944623871e0a2ba44ad6fb5d890c6b1b61448f6c88c36105d503fd188"
+  },
+  {
+    "path": "integration/phase2/followup/baseline-screenshots/mission-desktop.png",
+    "bytes": 483459,
+    "sha256": "c29cf2b9a5a5dba2adbc69ead28dac5347ded48debbea5bdbb0b6c55d46d44c1"
+  },
+  {
+    "path": "integration/phase2/followup/baseline-screenshots/model-arena.png",
+    "bytes": 326540,
+    "sha256": "a91925b0e7377fbb418366782983ff73bce98efa417a171f962c0d24ee5a76d2"
+  },
+  {
+    "path": "integration/phase2/followup/baseline-screenshots/signal-comparison.png",
+    "bytes": 379938,
+    "sha256": "da0a5cbcb0580d795827ffa02dd60d5e8c89480a11851dffa6b392b6229083af"
+  },
+  {
+    "path": "integration/phase2/followup/baseline-windows-ci.log",
+    "bytes": 200185,
+    "sha256": "5a334c2aa590dadd75df83a437d3f4734b193afd7813578da615274e95cfff9d"
+  },
+  {
+    "path": "integration/phase2/followup/browser-final.log",
+    "bytes": 100309,
+    "sha256": "3861d640e5bfbce5218ec4628ae848971bff9fedcf212f686c9e14e342e282f8"
+  },
+  {
+    "path": "integration/phase2/followup/browser-first-followup.log",
+    "bytes": 117071,
+    "sha256": "d649600bb91cb389627bd3541ce96b2d466c57b729e933a1b9a904b02a1eccfd"
+  },
+  {
+    "path": "integration/phase2/followup/browser-regression-before-ui.log",
+    "bytes": 172453,
+    "sha256": "e0250bb827c6917ae35601b146d4dad416456f892a6d30c84b6f9966aaaf6206"
+  },
+  {
+    "path": "integration/phase2/followup/capture-regression.log",
+    "bytes": 100,
+    "sha256": "b7a2138e33f823275455211bccaa3e29885049a68af39c6771e1c54fbeec239a"
+  },
+  {
+    "path": "integration/phase2/followup/client-contracts-final.log",
+    "bytes": 1309,
+    "sha256": "c3f14061a23a3b051e5382f223cd38b741152e8ffa16cee5a47ad8570fbde023"
+  },
+  {
+    "path": "integration/phase2/followup/eslint-final.log",
+    "bytes": 4297,
+    "sha256": "7816804245606a46ce9e6efdf1404bc94e214b8e6e87260168fa117f0a5aa471"
+  },
+  {
+    "path": "integration/phase2/followup/frontend-final.log",
+    "bytes": 770,
+    "sha256": "aea5770028c1bcb68cb0f7c14ccae19841d0ce26f07ed04b3768257b0c8cd890"
+  },
+  {
+    "path": "integration/phase2/followup/frontend-tests.log",
+    "bytes": 885,
+    "sha256": "7cd6cb1193c34d1e04578d42d3bd9ea99cd28cf862c39b0767999ebaba85de6b"
+  },
+  {
+    "path": "integration/phase2/followup/import-jobs.log",
+    "bytes": 99,
+    "sha256": "97d1040afc7ced88d3d548b741c82a359b045e841f27dd367a4c5970e9a51692"
+  },
+  {
+    "path": "integration/phase2/followup/lint-install.log",
+    "bytes": 1027,
+    "sha256": "2dfac834c26e0b07a847e21b27c987711edf73225a021e885acef75387a8367c"
+  },
+  {
+    "path": "integration/phase2/followup/operations-final.log",
+    "bytes": 100,
+    "sha256": "7fa8e935c369d7d58d5d3fd8324cc03cc07f88d45bd1350578763dfc56f20506"
+  },
+  {
+    "path": "integration/phase2/followup/operations-regression.log",
+    "bytes": 100,
+    "sha256": "f619221bcaf2b7dede1768705f1cdd18f913908c462134b7e48b3a6ed96feabc"
+  },
+  {
+    "path": "integration/phase2/followup/performance.json",
+    "bytes": 804,
+    "sha256": "9b5d681dc20096822bc58b8b89edf73470e5c4e3ff6230f30e698cad58ab0f0c"
+  },
+  {
+    "path": "integration/phase2/followup/preserved-artifacts.json",
+    "bytes": 1765,
+    "sha256": "bc323c3619d4ca6fdbe00d19ad747bb39eac88ed96fdbb10b1a5cdc84715a51d"
+  },
+  {
+    "path": "integration/phase2/followup/production-build.log",
+    "bytes": 813,
+    "sha256": "dfe31bf7bf64419213cf57e91478a856cc07ca14f965fee5119f6223e80be7bf"
+  },
+  {
+    "path": "integration/phase2/followup/protected-native-restart.json",
+    "bytes": 710,
+    "sha256": "251674a1d6aa0dbb870d42baa7d65a7fdf5bdb438100c9a562126796740b8495"
+  },
+  {
+    "path": "integration/phase2/followup/protected-native-server.log",
+    "bytes": 13798,
+    "sha256": "34ac9e5e92a8354837d519d917f0e03b38007b7a79cffb9facc8e9c7c69fa325"
+  },
+  {
+    "path": "integration/phase2/followup/python-final.log",
+    "bytes": 261,
+    "sha256": "bc070c11e6e06349e351e86c01d45f9c550addae95906df6d35ef7a9325f7563"
+  },
+  {
+    "path": "integration/phase2/followup/python-lint.log",
+    "bytes": 2,
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+  },
+  {
+    "path": "integration/phase2/followup/screenshots/classifier-explanation.png",
+    "bytes": 386710,
+    "sha256": "8d17fb08ed1b969ca6651e435a185719f67e06c56f4561fc820f96d528b67215"
+  },
+  {
+    "path": "integration/phase2/followup/screenshots/mission-1024.png",
+    "bytes": 497751,
+    "sha256": "6c696947d55ac6a43441547ea6d707f45349f4e958b62c95ad07a2e6b25191ca"
+  },
+  {
+    "path": "integration/phase2/followup/screenshots/mission-1440.png",
+    "bytes": 516520,
+    "sha256": "a02ba438c7895ea448be2f9ea2fb4e1c6ebaabce3bc0d7744dc6f761d986ba9a"
+  },
+  {
+    "path": "integration/phase2/followup/screenshots/mission-390.png",
+    "bytes": 317874,
+    "sha256": "a5bb2ed5079e77cbde876cfb9d754020d46461cf2fa9ea6b902057ad138e8013"
+  },
+  {
+    "path": "integration/phase2/followup/screenshots/mission-820.png",
+    "bytes": 440994,
+    "sha256": "5d865e31c3de8158ace0d56d974c90195ed230fda7f33ef59dc26b371dc40fe8"
+  },
+  {
+    "path": "integration/phase2/followup/screenshots/mission-desktop.png",
+    "bytes": 483991,
+    "sha256": "3100775df47fe85e12a927dec46561015363487a51291e7726be86317645d0de"
+  },
+  {
+    "path": "integration/phase2/followup/screenshots/model-arena.png",
+    "bytes": 325843,
+    "sha256": "3d5c60488e9027daec7d613814d26e5ae34667bf0c6a808bc240bba6d8b36a07"
+  },
+  {
+    "path": "integration/phase2/followup/screenshots/signal-comparison.png",
+    "bytes": 385320,
+    "sha256": "5ddaa2db7c20a955571af214466ecf8c4dc2d013cf5834d00acc16c375388228"
+  },
+  {
+    "path": "integration/phase2/followup/typecheck-final.log",
+    "bytes": 135,
+    "sha256": "980908c1653ebec7b55b22e0495a3c8d895726a04bd7d011f8957a2e7a8d71e3"
+  },
+  {
+    "path": "integration/phase2/followup/typecheck.log",
+    "bytes": 135,
+    "sha256": "980908c1653ebec7b55b22e0495a3c8d895726a04bd7d011f8957a2e7a8d71e3"
+  },
+  {
+    "path": "integration/phase2/followup/validation-summary.json",
+    "bytes": 959,
+    "sha256": "0ffaefdae99ab34866bfd52312c17b1b452a7316a8a416ca5ba41c2f622519c5"
+  },
+  {
+    "path": "scripts/check_workspace_deployment.py",
+    "bytes": 5819,
+    "sha256": "5079159184db12a8bd3b8277d5e6e889c84cd33bf6ea37dd6cf35654c8326e54"
+  },
+  {
+    "path": "tests/test_import_jobs.py",
+    "bytes": 14659,
+    "sha256": "81c0085f0c777f0a41df6a5ccaad2b2e967766c70d7e06a291482966d8105627"
+  }
+]

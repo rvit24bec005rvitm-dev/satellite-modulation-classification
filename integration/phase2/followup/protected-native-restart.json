@@ -1,0 +1,26 @@
+[
+  {
+    "protectedApi": true,
+    "managedCapture": true,
+    "batchWindows": 4,
+    "pdf": true,
+    "persistedAfterRecreation": false,
+    "backgroundCaptureImport": true,
+    "backgroundDatasetImport": true,
+    "batchPdf": true,
+    "externalEvaluation": true,
+    "modelHash": "e9705c98275e26d4a60210b2d563c4cc32ef94f4f0368974f1168245f91cf33d"
+  },
+  {
+    "protectedApi": true,
+    "managedCapture": true,
+    "batchWindows": 4,
+    "pdf": true,
+    "persistedAfterRecreation": true,
+    "backgroundCaptureImport": true,
+    "backgroundDatasetImport": true,
+    "batchPdf": true,
+    "externalEvaluation": true,
+    "modelHash": "e9705c98275e26d4a60210b2d563c4cc32ef94f4f0368974f1168245f91cf33d"
+  }
+]

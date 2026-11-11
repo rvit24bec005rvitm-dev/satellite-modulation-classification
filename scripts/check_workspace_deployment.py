@@ -23,6 +23,14 @@ def check(base_url, state_file, verify_existing=False):
 
     def api(path,data=None,**kwargs):return json.loads(request(path,data,**kwargs))
 
+    def completed(job):
+        for _ in range(120):
+            current=api('/api/workspace/jobs/'+job['id'])
+            if current['state'] in ['completed','failed','cancelled']:break
+            time.sleep(.25)
+        assert current['state']=='completed',current
+        return current
+
     # The anonymous health route remains useful, while stored signals are protected.
     for _ in range(90):
         try:
@@ -44,16 +52,17 @@ def check(base_url, state_file, verify_existing=False):
         body=(f'--{boundary}\r\nContent-Disposition: form-data; name="options"\r\n\r\n{json.dumps(options)}\r\n'
               f'--{boundary}\r\nContent-Disposition: form-data; name="file"; filename="fixture.bin"\r\n'
               'Content-Type: application/octet-stream\r\n\r\n').encode()+raw+f'\r\n--{boundary}--\r\n'.encode()
-        capture=json.loads(request('/api/workspace/captures',body,f'multipart/form-data; boundary={boundary}'))
+        imported=completed(json.loads(request('/api/workspace/captures?background=true',body,f'multipart/form-data; boundary={boundary}')))
+        capture=api('/api/workspace/jobs/'+imported['id']+'/result')['metadata']
         result=api(f"/api/workspace/captures/{capture['id']}/classify?start=128",{})
-        job=api('/api/workspace/jobs/batch',{'captureId':capture['id'],'windows':4,'stride':128})
-        for _ in range(120):
-            current=api('/api/workspace/jobs/'+job['id'])
-            if current['state'] in ['completed','failed','cancelled']:break
-            time.sleep(.25)
-        assert current['state']=='completed',current
+        job=completed(api('/api/workspace/jobs/batch',{'captureId':capture['id'],'windows':4,'stride':128}))
+        registered=completed(api('/api/workspace/datasets?background=true',{
+            'name':'Synthetic deployment fixture','source':'Generated BPSK, not actual satellite RF','license':'Test fixture',
+            'entries':[{'captureId':capture['id'],'start':0,'label':'BPSK','split':'test'}]}))
+        evaluated=completed(api('/api/workspace/datasets/'+registered['datasetId']+'/evaluate',{}))
         report=api(f"/api/workspace/history/{result['id']}/report")
         Path(state_file).write_text(json.dumps({'captureId':capture['id'],'analysisId':result['id'],'jobId':job['id'],
+                                              'importJobId':imported['id'],'datasetJobId':registered['id'],'evaluationJobId':evaluated['id'],
                                               'modelHash':report['modelHash'],'probabilities':result['probabilities']}))
     state=json.loads(Path(state_file).read_text())
     overview=api('/api/workspace/captures/'+state['captureId'])
@@ -67,7 +76,13 @@ def check(base_url, state_file, verify_existing=False):
     assert batch['total']==4 and len(batch['predictions'])==4
     assert sum(batch['classCounts'].values())==4
     assert all(p['preprocessing']['windowLength']==128 for p in batch['predictions'])
+    assert request(f"/api/workspace/jobs/{state['jobId']}/export?format=pdf").startswith(b'%PDF')
+    assert api('/api/workspace/jobs/'+state['importJobId'])['captureId']==state['captureId']
+    assert api('/api/workspace/jobs/'+state['datasetJobId'])['state']=='completed'
+    evaluated=api('/api/workspace/jobs/'+state['evaluationJobId']+'/result')
+    assert evaluated['metrics']['samples']==1 and evaluated['predictions'][0]['groundTruth']=='BPSK'
     return {'protectedApi':True,'managedCapture':True,'batchWindows':4,'pdf':True,'persistedAfterRecreation':verify_existing,
+            'backgroundCaptureImport':True,'backgroundDatasetImport':True,'batchPdf':True,'externalEvaluation':True,
             'modelHash':state['modelHash']}
 
 

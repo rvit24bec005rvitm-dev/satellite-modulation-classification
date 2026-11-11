@@ -1,0 +1,21 @@
+
+> satmodclass-frontend@1.0.0 test:integration
+> vitest run --config vitest.integration.config.ts
+
+
+ RUN  v2.1.9 /Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend
+
+ ✓ src/test/fullstack.integration.test.ts (11 tests) 22240ms
+   ✓ TypeScript API client → real Python model and DSP > loads health and genuine model metadata 5472ms
+   ✓ TypeScript API client → real Python model and DSP > workflows 2/3: generates BPSK and classifies the full capture 418ms
+   ✓ TypeScript API client → real Python model and DSP > workflows 2/3: generates QPSK and classifies the full capture 802ms
+   ✓ TypeScript API client → real Python model and DSP > workflow 5: returns measured CNN timings 395ms
+   ✓ TypeScript API client → real Python model and DSP > analyzes and compares the exact generated samples 3989ms
+   ✓ TypeScript API client → real Python model and DSP > computes actual class-specific attributions with explicit trust status 760ms
+   ✓ TypeScript API client → real Python model and DSP > normalizes comparison axes while preserving unequal raw captures 526ms
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  22:05:50
+   Duration  24.68s (transform 205ms, setup 0ms, collect 205ms, tests 22.24s, environment 0ms, prepare 247ms)
+

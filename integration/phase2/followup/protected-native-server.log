@@ -1,0 +1,104 @@
+INFO:     Started server process [95033]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:54332 (Press CTRL+C to quit)
+{"event": "request", "requestId": "f03cbfa0-0843-4ae9-8cca-5c58f0ce9766", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 13.82}
+INFO:     127.0.0.1:54372 - "GET /api/health HTTP/1.1" 200 OK
+{"event": "request", "requestId": "d6e874f6-7e46-4b67-98d3-407eb85cac9b", "method": "GET", "path": "/api/workspace/captures", "status": 401, "elapsedMs": 0.54}
+INFO:     127.0.0.1:54373 - "GET /api/workspace/captures HTTP/1.1" 401 Unauthorized
+{"event": "request", "requestId": "087cd829-e8e0-4f73-add4-77d5c08874cc", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 110.75}
+INFO:     127.0.0.1:54374 - "POST /api/signal/generate HTTP/1.1" 200 OK
+{"event": "request", "requestId": "09e4d27e-d88d-46cf-8438-1eb6c0f0c826", "method": "POST", "path": "/api/workspace/captures", "status": 202, "elapsedMs": 46.52}
+INFO:     127.0.0.1:54375 - "POST /api/workspace/captures?background=true HTTP/1.1" 202 Accepted
+{"event": "request", "requestId": "d8e56e38-14a9-4ac2-9389-8a77df87793d", "method": "GET", "path": "/api/workspace/jobs/95aac6a7-021c-44df-ae1f-bc707b824599", "status": 200, "elapsedMs": 4.5}
+INFO:     127.0.0.1:54376 - "GET /api/workspace/jobs/95aac6a7-021c-44df-ae1f-bc707b824599 HTTP/1.1" 200 OK
+{"event": "request", "requestId": "a5a1d3e3-3c11-41fd-92d7-58640d2c292c", "method": "GET", "path": "/api/workspace/jobs/95aac6a7-021c-44df-ae1f-bc707b824599", "status": 200, "elapsedMs": 2.31}
+INFO:     127.0.0.1:54377 - "GET /api/workspace/jobs/95aac6a7-021c-44df-ae1f-bc707b824599 HTTP/1.1" 200 OK
+{"event": "request", "requestId": "f4317e6a-3382-4c0c-9aff-42bcb069a9d8", "method": "GET", "path": "/api/workspace/jobs/95aac6a7-021c-44df-ae1f-bc707b824599/result", "status": 200, "elapsedMs": 2.63}
+INFO:     127.0.0.1:54378 - "GET /api/workspace/jobs/95aac6a7-021c-44df-ae1f-bc707b824599/result HTTP/1.1" 200 OK
+{"event": "request", "requestId": "3a288198-af19-4875-a71e-ee71cc289a69", "method": "POST", "path": "/api/workspace/captures/58a8bdf3-1568-464b-9c93-d2f364b37c6d/classify", "status": 200, "elapsedMs": 54.49}
+INFO:     127.0.0.1:54379 - "POST /api/workspace/captures/58a8bdf3-1568-464b-9c93-d2f364b37c6d/classify?start=128 HTTP/1.1" 200 OK
+{"event": "request", "requestId": "7d19eea7-8fda-47fd-ac7d-ffcc884f4fc7", "method": "POST", "path": "/api/workspace/jobs/batch", "status": 200, "elapsedMs": 3.46}
+INFO:     127.0.0.1:54380 - "POST /api/workspace/jobs/batch HTTP/1.1" 200 OK
+{"event": "request", "requestId": "e614dbc0-85b7-4019-b65a-d8fda4d5467a", "method": "GET", "path": "/api/workspace/jobs/5ea59983-81dd-459c-ac82-f74dd3a222e9", "status": 200, "elapsedMs": 25.02}
+INFO:     127.0.0.1:54381 - "GET /api/workspace/jobs/5ea59983-81dd-459c-ac82-f74dd3a222e9 HTTP/1.1" 200 OK
+{"event": "request", "requestId": "8a2d738e-3973-4597-a866-c3579dcf71eb", "method": "GET", "path": "/api/workspace/jobs/5ea59983-81dd-459c-ac82-f74dd3a222e9", "status": 200, "elapsedMs": 3.06}
+INFO:     127.0.0.1:54382 - "GET /api/workspace/jobs/5ea59983-81dd-459c-ac82-f74dd3a222e9 HTTP/1.1" 200 OK
+{"event": "request", "requestId": "1f020233-4931-47c3-80cd-b8b0d6da5208", "method": "POST", "path": "/api/workspace/datasets", "status": 202, "elapsedMs": 4.77}
+INFO:     127.0.0.1:54383 - "POST /api/workspace/datasets?background=true HTTP/1.1" 202 Accepted
+{"event": "request", "requestId": "a9d36a1f-06da-4bde-8bcb-42b30cfbd44c", "method": "GET", "path": "/api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a", "status": 200, "elapsedMs": 4.71}
+INFO:     127.0.0.1:54384 - "GET /api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a HTTP/1.1" 200 OK
+{"event": "request", "requestId": "5d47fdb9-5261-45e7-ac17-a8c0fc831693", "method": "GET", "path": "/api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a", "status": 200, "elapsedMs": 8.77}
+INFO:     127.0.0.1:54385 - "GET /api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a HTTP/1.1" 200 OK
+{"event": "request", "requestId": "c02b49f8-bde4-4e6c-8b09-b60163e0189b", "method": "GET", "path": "/api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a", "status": 200, "elapsedMs": 4.01}
+INFO:     127.0.0.1:54387 - "GET /api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a HTTP/1.1" 200 OK
+{"event": "request", "requestId": "470fbab5-5d90-4c99-94e1-77d1725ff76a", "method": "GET", "path": "/api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a", "status": 200, "elapsedMs": 8.95}
+INFO:     127.0.0.1:54388 - "GET /api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a HTTP/1.1" 200 OK
+{"event": "request", "requestId": "0313174a-176c-49e5-8dd2-68c780c67e07", "method": "GET", "path": "/api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a", "status": 200, "elapsedMs": 16.73}
+INFO:     127.0.0.1:54393 - "GET /api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a HTTP/1.1" 200 OK
+{"event": "request", "requestId": "64000896-06ca-489b-b50c-1d7fb3add368", "method": "GET", "path": "/api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a", "status": 200, "elapsedMs": 3.54}
+INFO:     127.0.0.1:54400 - "GET /api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a HTTP/1.1" 200 OK
+{"event": "request", "requestId": "367e65b1-331b-40a8-b57e-d95b3cf8146e", "method": "GET", "path": "/api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a", "status": 200, "elapsedMs": 41.44}
+INFO:     127.0.0.1:54401 - "GET /api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a HTTP/1.1" 200 OK
+{"event": "request", "requestId": "f3aca43b-4f78-4700-b555-3921b6d2ac5c", "method": "GET", "path": "/api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a", "status": 200, "elapsedMs": 4.27}
+INFO:     127.0.0.1:54405 - "GET /api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a HTTP/1.1" 200 OK
+{"event": "request", "requestId": "3b4f1916-f9d9-43f6-abbf-21cc4c2ce477", "method": "POST", "path": "/api/workspace/datasets/97b919c1-92f5-4b45-a335-84e47b289db9/evaluate", "status": 200, "elapsedMs": 7.21}
+INFO:     127.0.0.1:54406 - "POST /api/workspace/datasets/97b919c1-92f5-4b45-a335-84e47b289db9/evaluate HTTP/1.1" 200 OK
+{"event": "request", "requestId": "8fbf0cb6-7cdd-4d96-b305-97134ee7bcde", "method": "GET", "path": "/api/workspace/jobs/1f233bd5-8a3c-408e-97cb-9052d43ceaff", "status": 200, "elapsedMs": 28.67}
+INFO:     127.0.0.1:54407 - "GET /api/workspace/jobs/1f233bd5-8a3c-408e-97cb-9052d43ceaff HTTP/1.1" 200 OK
+{"event": "request", "requestId": "3b3f5572-9336-4f37-8b1d-bddc00c3c9a3", "method": "GET", "path": "/api/workspace/jobs/1f233bd5-8a3c-408e-97cb-9052d43ceaff", "status": 200, "elapsedMs": 1.84}
+INFO:     127.0.0.1:54412 - "GET /api/workspace/jobs/1f233bd5-8a3c-408e-97cb-9052d43ceaff HTTP/1.1" 200 OK
+{"event": "request", "requestId": "75c61084-e939-45e4-9c71-f7397eaee742", "method": "GET", "path": "/api/workspace/history/09dd0ce6-67ba-4b80-9fa3-2cd4aff40e57/report", "status": 200, "elapsedMs": 6.66}
+INFO:     127.0.0.1:54413 - "GET /api/workspace/history/09dd0ce6-67ba-4b80-9fa3-2cd4aff40e57/report HTTP/1.1" 200 OK
+{"event": "request", "requestId": "8f6bceac-32e5-403a-bab5-8bda0e42f551", "method": "GET", "path": "/api/workspace/captures/58a8bdf3-1568-464b-9c93-d2f364b37c6d", "status": 200, "elapsedMs": 23.81}
+INFO:     127.0.0.1:54414 - "GET /api/workspace/captures/58a8bdf3-1568-464b-9c93-d2f364b37c6d HTTP/1.1" 200 OK
+{"event": "request", "requestId": "49990018-80b4-4102-93f9-e86fc663017f", "method": "GET", "path": "/api/workspace/captures/58a8bdf3-1568-464b-9c93-d2f364b37c6d/window", "status": 200, "elapsedMs": 44.39}
+INFO:     127.0.0.1:54416 - "GET /api/workspace/captures/58a8bdf3-1568-464b-9c93-d2f364b37c6d/window?start=128 HTTP/1.1" 200 OK
+{"event": "request", "requestId": "4af17aa2-0e03-4964-a1ea-f8e847af5277", "method": "GET", "path": "/api/workspace/history/09dd0ce6-67ba-4b80-9fa3-2cd4aff40e57/report", "status": 200, "elapsedMs": 5.39}
+INFO:     127.0.0.1:54418 - "GET /api/workspace/history/09dd0ce6-67ba-4b80-9fa3-2cd4aff40e57/report HTTP/1.1" 200 OK
+{"event": "request", "requestId": "adad6ebf-f87a-47f9-8136-96c304b2434b", "method": "GET", "path": "/api/workspace/history/09dd0ce6-67ba-4b80-9fa3-2cd4aff40e57/report", "status": 200, "elapsedMs": 122.7}
+INFO:     127.0.0.1:54419 - "GET /api/workspace/history/09dd0ce6-67ba-4b80-9fa3-2cd4aff40e57/report?format=pdf HTTP/1.1" 200 OK
+{"event": "request", "requestId": "75ab96f6-646a-4e4d-b47b-f3016895f973", "method": "GET", "path": "/api/workspace/jobs/5ea59983-81dd-459c-ac82-f74dd3a222e9/result", "status": 200, "elapsedMs": 4.96}
+INFO:     127.0.0.1:54424 - "GET /api/workspace/jobs/5ea59983-81dd-459c-ac82-f74dd3a222e9/result HTTP/1.1" 200 OK
+{"event": "request", "requestId": "62efe0ff-f26a-40f9-9317-bb26b3f4818e", "method": "GET", "path": "/api/workspace/jobs/5ea59983-81dd-459c-ac82-f74dd3a222e9/export", "status": 200, "elapsedMs": 14.17}
+INFO:     127.0.0.1:54425 - "GET /api/workspace/jobs/5ea59983-81dd-459c-ac82-f74dd3a222e9/export?format=pdf HTTP/1.1" 200 OK
+{"event": "request", "requestId": "32842f43-2a53-4252-8efe-9b163358fff0", "method": "GET", "path": "/api/workspace/jobs/95aac6a7-021c-44df-ae1f-bc707b824599", "status": 200, "elapsedMs": 4.7}
+INFO:     127.0.0.1:54426 - "GET /api/workspace/jobs/95aac6a7-021c-44df-ae1f-bc707b824599 HTTP/1.1" 200 OK
+{"event": "request", "requestId": "a656a253-416f-4b55-a163-080a895530f8", "method": "GET", "path": "/api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a", "status": 200, "elapsedMs": 2.27}
+INFO:     127.0.0.1:54427 - "GET /api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a HTTP/1.1" 200 OK
+{"event": "request", "requestId": "d68c825b-f607-4507-9528-fb6bc198fc5c", "method": "GET", "path": "/api/workspace/jobs/1f233bd5-8a3c-408e-97cb-9052d43ceaff/result", "status": 200, "elapsedMs": 7.15}
+INFO:     127.0.0.1:54428 - "GET /api/workspace/jobs/1f233bd5-8a3c-408e-97cb-9052d43ceaff/result HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [95033]
+INFO:     Started server process [95258]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:54332 (Press CTRL+C to quit)
+{"event": "request", "requestId": "417ea878-8aa6-450b-8aaa-8ace8285f342", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 10.75}
+INFO:     127.0.0.1:54472 - "GET /api/health HTTP/1.1" 200 OK
+{"event": "request", "requestId": "7eac9ec5-eddd-467b-a612-bd87f6bbc8ff", "method": "GET", "path": "/api/workspace/captures", "status": 401, "elapsedMs": 0.57}
+INFO:     127.0.0.1:54473 - "GET /api/workspace/captures HTTP/1.1" 401 Unauthorized
+{"event": "request", "requestId": "4b81e3c1-8753-4cae-b1d8-081cf76c2141", "method": "GET", "path": "/api/workspace/captures/58a8bdf3-1568-464b-9c93-d2f364b37c6d", "status": 200, "elapsedMs": 63.63}
+INFO:     127.0.0.1:54474 - "GET /api/workspace/captures/58a8bdf3-1568-464b-9c93-d2f364b37c6d HTTP/1.1" 200 OK
+{"event": "request", "requestId": "408c8973-4d6f-4257-b39e-1d79bcbec96a", "method": "GET", "path": "/api/workspace/captures/58a8bdf3-1568-464b-9c93-d2f364b37c6d/window", "status": 200, "elapsedMs": 42.88}
+INFO:     127.0.0.1:54475 - "GET /api/workspace/captures/58a8bdf3-1568-464b-9c93-d2f364b37c6d/window?start=128 HTTP/1.1" 200 OK
+{"event": "request", "requestId": "fca9d71f-9973-4f0f-86f3-e75b6cf2f28b", "method": "GET", "path": "/api/workspace/history/09dd0ce6-67ba-4b80-9fa3-2cd4aff40e57/report", "status": 200, "elapsedMs": 6.42}
+INFO:     127.0.0.1:54476 - "GET /api/workspace/history/09dd0ce6-67ba-4b80-9fa3-2cd4aff40e57/report HTTP/1.1" 200 OK
+{"event": "request", "requestId": "6538d8bd-282f-4162-8d5e-5ad1e2ca706a", "method": "GET", "path": "/api/workspace/history/09dd0ce6-67ba-4b80-9fa3-2cd4aff40e57/report", "status": 200, "elapsedMs": 88.94}
+INFO:     127.0.0.1:54477 - "GET /api/workspace/history/09dd0ce6-67ba-4b80-9fa3-2cd4aff40e57/report?format=pdf HTTP/1.1" 200 OK
+{"event": "request", "requestId": "49ad3a4c-b952-4eba-915b-3ea816be401d", "method": "GET", "path": "/api/workspace/jobs/5ea59983-81dd-459c-ac82-f74dd3a222e9/result", "status": 200, "elapsedMs": 5.03}
+INFO:     127.0.0.1:54478 - "GET /api/workspace/jobs/5ea59983-81dd-459c-ac82-f74dd3a222e9/result HTTP/1.1" 200 OK
+{"event": "request", "requestId": "d1d7973d-0264-4a56-8006-08a4d80e9a7f", "method": "GET", "path": "/api/workspace/jobs/5ea59983-81dd-459c-ac82-f74dd3a222e9/export", "status": 200, "elapsedMs": 10.45}
+INFO:     127.0.0.1:54479 - "GET /api/workspace/jobs/5ea59983-81dd-459c-ac82-f74dd3a222e9/export?format=pdf HTTP/1.1" 200 OK
+{"event": "request", "requestId": "9f7901c8-cd32-49be-a4e7-6f10551310f7", "method": "GET", "path": "/api/workspace/jobs/95aac6a7-021c-44df-ae1f-bc707b824599", "status": 200, "elapsedMs": 2.77}
+INFO:     127.0.0.1:54480 - "GET /api/workspace/jobs/95aac6a7-021c-44df-ae1f-bc707b824599 HTTP/1.1" 200 OK
+{"event": "request", "requestId": "f8aac2b2-4697-428a-9245-06dd8dd1a66a", "method": "GET", "path": "/api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a", "status": 200, "elapsedMs": 1.97}
+INFO:     127.0.0.1:54481 - "GET /api/workspace/jobs/b79a9d6f-8aec-44ad-9ba9-6b754c88535a HTTP/1.1" 200 OK
+{"event": "request", "requestId": "1aa825a4-36b1-4c45-83d8-696b473a4152", "method": "GET", "path": "/api/workspace/jobs/1f233bd5-8a3c-408e-97cb-9052d43ceaff/result", "status": 200, "elapsedMs": 3.15}
+INFO:     127.0.0.1:54482 - "GET /api/workspace/jobs/1f233bd5-8a3c-408e-97cb-9052d43ceaff/result HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [95258]

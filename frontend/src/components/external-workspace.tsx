@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { operationsApi, operationDownload, type Job } from "@/lib/operations-api";
 import { useSignal } from "@/hooks/use-satmod";
@@ -40,6 +40,7 @@ export function ExternalWorkspace() {
   const [stride, setStride] = useState(128);
   const [job, setJob] = useState<Job | null>(null);
   const [page, setPage] = useState(0);
+  const [jobOffset, setJobOffset] = useState(0);
   const [error, setError] = useState<Error | null>(null);
   const [cfoScheme, setCfoScheme] = useState("");
   const [fullScale, setFullScale] = useState("");
@@ -54,20 +55,36 @@ export function ExternalWorkspace() {
     enabled: !!selected,
   });
   const jobs = useQuery({
-    queryKey: ["workspace-jobs"],
-    queryFn: () => operationsApi.jobs(),
+    queryKey: ["workspace-jobs", jobOffset],
+    queryFn: () => operationsApi.jobs(jobOffset),
     refetchInterval: 1500,
   });
-  const active = jobs.data?.items.find((j) => j.id === job?.id) ?? job;
+  const selectedJob = useQuery({
+    queryKey: ["workspace-job", job?.id],
+    queryFn: () => operationsApi.job(job!.id),
+    enabled: !!job,
+    refetchInterval: (query) =>
+      ["completed", "failed", "cancelled"].includes(query.state.data?.state ?? "") ? false : 1000,
+  });
+  const active = selectedJob.data ?? jobs.data?.items.find((j) => j.id === job?.id) ?? job;
+  useEffect(() => {
+    if (active?.kind === "capture-import" && active.state === "completed" && active.captureId) {
+      setSelected(active.captureId);
+      setCaptureSearch("");
+      setCaptureOffset(0);
+      setStart(0);
+      void cache.invalidateQueries({ queryKey: ["managed-captures"] });
+    }
+  }, [active?.id, active?.kind, active?.state, active?.captureId, cache]);
   const timeline = useQuery({
     queryKey: ["batch-result", active?.id, page],
     queryFn: () => operationsApi.result(active!.id, page),
-    enabled: active?.state === "completed",
+    enabled: active?.state === "completed" && ["batch", "evaluation"].includes(active.kind),
   });
   const importer = useMutation({
     mutationFn: () => {
       if (!file) throw Error("Choose a recording.");
-      return operationsApi.import(
+      return operationsApi.importJob(
         file,
         {
           format,
@@ -86,12 +103,10 @@ export function ExternalWorkspace() {
         metadata,
       );
     },
-    onSuccess: (c) => {
-      setSelected(c.id);
-      setCaptureSearch("");
-      setCaptureOffset(0);
-      setStart(0);
-      void cache.invalidateQueries({ queryKey: ["managed-captures"] });
+    onSuccess: (j) => {
+      setJob(j);
+      setPage(0);
+      void cache.invalidateQueries({ queryKey: ["workspace-jobs"] });
     },
   });
   const inspect = useMutation({
@@ -308,7 +323,8 @@ export function ExternalWorkspace() {
               diagnostics.error ??
               domain.error ??
               activity.error ??
-              jobs.error
+              jobs.error ??
+              selectedJob.error
             }
           />
           <Field label="Search stored captures">
@@ -584,7 +600,7 @@ export function ExternalWorkspace() {
           )}
           <div className="space-y-2">
             <p className="text-sm">Persistent jobs · select to inspect results</p>
-            {jobs.data?.items.slice(0, 20).map((j) => (
+            {jobs.data?.items.map((j) => (
               <div key={j.id} className="flex flex-wrap items-center gap-3 text-xs">
                 <button
                   className="text-primary"
@@ -620,10 +636,18 @@ export function ExternalWorkspace() {
                 )}
               </div>
             ))}
+            <div className="flex gap-2">
+              <Button variant="outline" disabled={jobOffset === 0} onClick={() => setJobOffset(Math.max(0, jobOffset - 50))}>
+                Previous job page
+              </Button>
+              <Button variant="outline" disabled={jobOffset + 50 >= (jobs.data?.total ?? 0)} onClick={() => setJobOffset(jobOffset + 50)}>
+                Next job page
+              </Button>
+            </div>
           </div>
           {active && (
             <p role="status">
-              Job {active.state} · {percent(active.progress)} complete
+              Job {active.state} · {percent(active.progress)} complete{active.phase ? ` · ${active.phase}` : ""}
             </p>
           )}
           {timeline.data && (
@@ -712,6 +736,9 @@ export function ExternalWorkspace() {
                   }
                 >
                   Export full batch CSV
+                </Button>
+                <Button variant="outline" onClick={() => void act(() => operationDownload(`/jobs/${active!.id}/export?format=pdf`, "satmod-batch-report.pdf"))}>
+                  Export batch PDF summary
                 </Button>
               </div>
               <ScientificChart

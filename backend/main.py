@@ -12,6 +12,7 @@ from fastapi.responses import JSONResponse, Response
 import numpy as np
 from backend.core.config import VERSION, CORS_ORIGINS, MAX_UPLOAD_BYTES
 from backend.api.schemas import ClassifyRequest, ClassificationResult, SignalRequest, GenerateRequest, CompareRequest, BenchmarkRequest, HealthStatus, ExplainRequest, ExplanationResult
+from backend.api import require_production_model
 from backend.services import classifier as svc
 from backend.services.signals import analyze, parse_capture, from_rows, rows
 from backend.services.evaluation import evaluation, snr_results
@@ -44,7 +45,10 @@ class BodyLimit:
     async def __call__(self, scope, receive, send):
         if scope['type'] != 'http':
             return await self.app(scope, receive, send)
-        import os
+        import os,asyncio
+        deadline=perf_counter()+max(.001,float(os.getenv('SATMOD_BODY_TIMEOUT_SECONDS','120')))
+        async def body_receive():
+            return await asyncio.wait_for(receive(),timeout=max(.001,deadline-perf_counter()))
         limit = (int(os.getenv('SATMOD_CAPTURE_UPLOAD_BYTES',str(128*1024**2)))+131072 if scope['path']=='/api/workspace/captures'
                  else MAX_UPLOAD_BYTES + 65536 if scope['path'].endswith('/upload') else 16*1024*1024)
         content_length = dict(scope.get('headers', [])).get(b'content-length')
@@ -67,7 +71,9 @@ class BodyLimit:
                 with SpooledTemporaryFile(max_size=1024**2) as spool:
                     size=0
                     while True:
-                        message=await receive()
+                        try:message=await body_receive()
+                        except asyncio.TimeoutError:
+                            return await JSONResponse(status_code=408,content={'detail':'Request body upload timed out.'})(scope,receive,send)
                         if message['type']=='http.disconnect':return
                         chunk=message.get('body',b'');size+=len(chunk)
                         if size>limit:return await JSONResponse(status_code=413,content={'detail':'External capture request exceeds its size limit.'})(scope,receive,send)
@@ -85,7 +91,9 @@ class BodyLimit:
             return
         size, payload = 0, bytearray()
         while True:
-            message = await receive()
+            try:message = await body_receive()
+            except asyncio.TimeoutError:
+                return await JSONResponse(status_code=408,content={'detail':'Request body upload timed out.'})(scope,receive,send)
             if message['type'] == 'http.disconnect': return
             size += len(message.get('body',b''))
             if size > limit:
@@ -170,8 +178,7 @@ def models():
 
 @app.post('/api/classify',response_model=ClassificationResult)
 def classify(body: ClassifyRequest):
-    try: svc.model()
-    except Exception as exc: raise HTTPException(503,str(exc)) from exc
+    require_production_model()
     return svc.classify(from_rows(body.samples),body.source,body.sampleRate,body.windowStart)
 
 @app.post('/api/classify/upload',response_model=ClassificationResult)
@@ -182,8 +189,7 @@ def upload(file: UploadFile = File(...), windowStart: int = Query(0,ge=0,le=6540
         try: iq,fs = parse_capture(file.filename or 'capture',payload)
         except (ValueError, OSError, KeyError, IndexError, EOFError, TypeError, struct.error, zlib.error, zipfile.BadZipFile) as exc:
             raise HTTPException(422,f'Invalid capture: {exc}') from exc
-        try: svc.model()
-        except Exception as exc: raise HTTPException(503,str(exc)) from exc
+        require_production_model()
         return svc.classify(iq,(file.filename or 'upload')[:200],fs,windowStart)
     finally: file.file.close()
 
@@ -269,8 +275,7 @@ def compare(body: CompareRequest):
 
 @app.post('/api/explain',response_model=ExplanationResult)
 def explain(body: ExplainRequest):
-    try: svc.model()
-    except RuntimeError as exc: raise HTTPException(503, str(exc)) from exc
+    require_production_model()
     try: return explain_signal(from_rows(body.samples), body.windowStart, body.targetClass, body.method, body.steps)
     except RuntimeError as exc: raise HTTPException(409,str(exc)) from exc
 

@@ -27,6 +27,9 @@ export interface Job {
   progress: number;
   error?: string;
   cancelRequested: boolean;
+  phase?: string;
+  captureId?: string;
+  datasetId?: string;
 }
 export interface WindowPrediction extends Pick<
   ClassificationResult,
@@ -102,6 +105,13 @@ export const operationsApi = {
     if (metadata) data.append("metadata", metadata);
     return request<ManagedCapture>(`${prefix}/captures`, { method: "POST", body: data });
   },
+  importJob: (file: File, options: Record<string, unknown>, metadata?: File) => {
+    const data = new FormData();
+    data.append("file", file);
+    data.append("options", JSON.stringify(options));
+    if (metadata) data.append("metadata", metadata);
+    return request<Job>(`${prefix}/captures?background=true`, { method: "POST", body: data });
+  },
   overview: (id: string) =>
     request<{
       metadata: ManagedCapture;
@@ -120,7 +130,8 @@ export const operationsApi = {
       method: "POST",
       body: JSON.stringify({ captureId, start, windows, stride }),
     }),
-  jobs: () => request<Page<Job>>(`${prefix}/jobs`),
+  jobs: (offset = 0) => request<Page<Job>>(`${prefix}/jobs?offset=${offset}`),
+  job: (id: string) => request<Job>(`${prefix}/jobs/${id}`),
   cancel: (id: string) => request<Job>(`${prefix}/jobs/${id}/cancel`, { method: "POST" }),
   removeJob: (id: string) => request(`${prefix}/jobs/${id}`, { method: "DELETE" }),
   result: (id: string, offset = 0) =>
@@ -141,9 +152,14 @@ export const operationsApi = {
     ),
   deleteHistory: (id: string) => request(`${prefix}/history/${id}`, { method: "DELETE" }),
   clearHistory: () => request(`${prefix}/history`, { method: "DELETE" }),
-  datasets: () => request<Page<DatasetRow> & { references: unknown[] }>(`${prefix}/datasets`),
+  datasets: (offset = 0, search = "") =>
+    request<Page<DatasetRow> & { references: unknown[] }>(
+      `${prefix}/datasets?offset=${offset}&search=${encodeURIComponent(search)}`,
+    ),
   register: (body: unknown) =>
     request<DatasetRow>(`${prefix}/datasets`, { method: "POST", body: JSON.stringify(body) }),
+  registerJob: (body: unknown) =>
+    request<Job>(`${prefix}/datasets?background=true`, { method: "POST", body: JSON.stringify(body) }),
   evaluate: (id: string) => request<Job>(`${prefix}/datasets/${id}/evaluate`, { method: "POST" }),
   deleteDataset: (id: string) => request(`${prefix}/datasets/${id}`, { method: "DELETE" }),
   status: () => request<Status>(`${prefix}/status`),

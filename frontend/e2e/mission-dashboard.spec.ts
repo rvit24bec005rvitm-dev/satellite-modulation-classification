@@ -27,7 +27,7 @@ test("mission dashboard renders real WebGL, geographical map, and honest data st
   expect(
     await page.locator(".ground-track-map").evaluate((e) => getComputedStyle(e).backgroundColor),
   ).toBe("rgb(7, 20, 33)");
-  await page.screenshot({ path: "../integration/validation/mission-desktop.png", fullPage: true });
+  await page.screenshot({ path: `${process.env["SATMOD_SCREENSHOT_DIR"] ?? "../integration/current-browser"}/mission-desktop.png`, fullPage: true });
   expect(errors).toEqual([]);
 });
 
@@ -77,8 +77,12 @@ test("camera zoom/reset, scroll zoom, and drag interaction work", async ({ page 
     .toBeLessThan(initial);
   await page.getByRole("button", { name: "Reset globe camera", exact: true }).click();
   await page.mouse.move(x, y);
+  const azimuth = Number(await viewport(page).getAttribute("data-camera-azimuth"));
   await page.mouse.down();
-  await page.mouse.move(x + 75, y + 25, { steps: 15 });
+  // A few real pointer events exercise the same drag. Fifteen synchronously
+  // awaited moves saturated Windows software WebGL before reaching assertions.
+  await page.mouse.move(x + 75, y + 25, { steps: 3 });
+  await expect.poll(async () => Math.abs(Number(await viewport(page).getAttribute("data-camera-azimuth")) - azimuth)).toBeGreaterThan(.01);
   await page.waitForTimeout(650);
   const during = await rotation(page);
   await page.waitForTimeout(700);
@@ -192,7 +196,7 @@ for (const width of [1440, 1024, 820, 390])
       );
     expect(clipped).toEqual([]);
     await page.screenshot({
-      path: `../integration/validation/mission-${width}.png`,
+      path: `${process.env["SATMOD_SCREENSHOT_DIR"] ?? "../integration/current-browser"}/mission-${width}.png`,
       fullPage: true,
     });
     if (width <= 1100) {

@@ -1,5 +1,35 @@
 # Phase 2 implementation tracker
 
+## Readiness follow-up (2026-11-11)
+
+This continuation starts from the existing Phase 2 implementation (`41ebc4f`) and
+preserves the in-flight fixes subsequently committed as `7b3bc0a`. Work is on
+`feat/phase2-readiness-followup`; no existing changes or artifacts were discarded.
+Fresh baseline: **195 Python / 40 frontend / 11 real client contracts passed**.
+The original scientific audit and its checklist were read before implementation.
+
+| Remaining requirement | Audited state | Follow-up status |
+|---|---|---|
+| Background capture import and progress/cancellation | Missing; imports block their request until decoded | Implemented and tested — same bounded pool, staged bytes, cooperative cancellation |
+| Restart cleanup of interrupted staged imports | Partially implemented for inference jobs only | Implemented and tested — partial imports cleaned, committed recordings preserved |
+| Capture overview concurrent deletion / mapped-file cleanup | Partially implemented | Implemented and tested — bounded read blocks and explicit mapping closure |
+| Report completeness and batch PDF | Individual PDF omits input identity/position; no batch PDF | Implemented and tested — reproducible CSV, PDF summaries and complete JSON |
+| Dataset/job navigation beyond first page | Partially implemented | Implemented and tested — pagination and direct selected-job polling |
+| Current remote CI / Windows browser / container | Earlier evidence exists; latest runs in progress | Pending actual results |
+| Independent satellite validation / production calibration / OOD | No independent labeled corpus | Blocked by data |
+| Permanent hosting | No authenticated persistent host | Blocked by account authorization / persistent storage |
+
+The sections below preserve the prior implementation history. New validation
+evidence is kept under `integration/phase2/followup/`.
+
+Final follow-up local checks: **208 Python / 43 frontend / 11 real contracts /
+29 production browser scenarios passed**. TypeScript, production build,
+syntax/undefined-name checks and ESLint passed (18 existing warnings).
+Background labeled-dataset registration, split interval indexing, safe missing
+model responses and upload deadlines are also implemented and tested. The
+latest container/cross-platform CI for this branch remains pending until its
+actual result is recorded; prior-source successes are kept separate.
+
 Starting commit: `70c411b`; branch `feat/phase2-signal-operations`. Working tree was clean. Original weights, experiments, routes and globe must remain unchanged.
 
 | Requirement | Initial state | Current evidence/status |

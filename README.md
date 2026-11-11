@@ -319,6 +319,30 @@ streamlit run app.py
 
 ## Phase 2 signal operations
 
+The capture browser now uploads recordings into persistent background import
+jobs. Decode progress and cancellation share the bounded job pool with batch
+classification, labeled-dataset registration and evaluation. A completed import
+selects its actual stored recording; failed or cancelled imports do not create a
+partial capture. The existing synchronous import APIs remain supported.
+
+For API clients, add `?background=true` to `POST /api/workspace/captures` or
+`POST /api/workspace/datasets`, then poll `/api/workspace/jobs/{id}`. A completed
+job contains `captureId` or `datasetId`; `/result` provides provenance. Dataset
+lists accept `limit`, `offset` and `search`. Batch/evaluation exports now include
+`format=pdf` for a bounded technical summary, while JSON/CSV retain every exact
+window result, hashes and preprocessing. The PDF labels all preview limits.
+
+`SATMOD_BODY_TIMEOUT_SECONDS` defaults to 120 for request-body uploads. The
+configured upload cap, managed-storage quota, two upload slots and four-job
+capacity still apply. Use one application process and one persistent data
+directory. Restart recovery cleans UUID-named managed temporary/partial files;
+committed captures and historical reports remain until explicitly deleted.
+
+See [PHASE2_REPORT.md](PHASE2_REPORT.md) for current verification, scientific
+limits and exact run commands. Current browser screenshots go to
+`integration/current-browser/` (or `SATMOD_SCREENSHOT_DIR`) to preserve the
+original audit evidence.
+
 See [PHASE2_REPORT.md](PHASE2_REPORT.md) and [PHASE2_IMPLEMENTATION.md](PHASE2_IMPLEMENTATION.md). The existing Classifier and Intelligence pages now include an expandable managed-recording workspace for explicit raw binary, paired SigMF and long NPY import; window navigation, true batch predictions, quality/activity diagnostics and domain-reference statistics. Evaluation adds independently labeled manifests; individual analysis history supports JSON/CSV/PDF export, filtering and deletion.
 
 Metadata and job state persist in SQLite; raw IQ and reports are bounded files under `SATMOD_DATA_DIR` (default `.satmod/`, ignored by Git). Limits default to 128 MiB per managed upload, 1 GiB managed storage, 10,000 metadata records, two concurrent imports, two workers/four job slots, 10,000 batch windows and 65,536 samples per analysis window. Delete terminal job results, captures or history to manage retention. Legacy small-format parsing limits remain. One process/replica and one shared operator workspace are supported.

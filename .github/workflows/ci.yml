@@ -112,9 +112,13 @@ jobs:
         run: |
           npm --prefix frontend run build
           python scripts/check_production.py
-      - name: Install browser and system dependencies
+      - name: Record the preinstalled Linux browser
+        if: runner.os == 'Linux'
+        run: google-chrome --version
+      - name: Install Windows Chromium
+        if: runner.os == 'Windows'
         working-directory: frontend
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install chromium
       - name: Exercise the compiled application in Chromium
         working-directory: frontend
         env:
@@ -122,6 +126,7 @@ jobs:
           SATMOD_TEST_API_URL: http://127.0.0.1:8000
           SATMOD_TEST_BASE_URL: http://127.0.0.1:8000
           SATMOD_TEST_PRODUCTION: "1"
+          PLAYWRIGHT_CHANNEL: ${{ runner.os == 'Linux' && 'chrome' || '' }}
         run: npm run test:e2e -- --reporter=list,html
       - name: Preserve browser diagnostics
         if: always()

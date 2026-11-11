@@ -1,4 +1,162 @@
-# Phase 2 — external signal operations and deployment readiness
+# Phase 2 — verified implementation and readiness follow-up
+
+This continuation works on `feat/phase2-readiness-followup`, preserving the
+existing Phase 2 implementation and its local follow-up fixes. Fresh baseline
+tests passed **195 Python / 40 frontend / 11 real client contracts**. The existing
+compiled application also passed **28 browser scenarios** before the new UI
+integration was validated. The original scientific report/checklist, history and
+working tree were inspected before substantial changes.
+
+## Current status
+
+| Capability | Status | Current evidence / limit |
+|---|---|---|
+| Production CNN, canonical preprocessing and original data | EXISTING AND VERIFIED | Six original artifacts remain byte-identical to `ed8a78a`; all four experimental checkpoints match `414ddd7`. Hashes: `integration/phase2/followup/preserved-artifacts.json`. |
+| External I/Q / explicit binary / SigMF subset | EXISTING AND VERIFIED | Existing encoding, bounds, clock, scaling and metadata tests preserved. No raw format guessing. Full SigMF conformance is not claimed. |
+| Long-capture browser and genuine window predictions | EXISTING AND VERIFIED | Mapped windows, bounded overview, real inference, selected-window inspection and batch exports. |
+| Background capture import | COMPLETE AND VERIFIED | New HTTP 202 job workflow, staged bytes, bounded decode blocks, persistent progress, shared capacity, cancellation and cleanup tests. Existing synchronous import remains compatible. |
+| Background labeled-dataset registration | COMPLETE AND VERIFIED | Separate persistent import jobs; explicit labels, provenance/split validation, progress and cancellation. Cancellation leaves no partial registration. |
+| Leakage checks | COMPLETE AND VERIFIED | Indexed source intervals preserve exact-duplicate, session and overlapping-window protections, including adjacent-window boundary tests and existing cross-format tests. |
+| Restart recovery | COMPLETE AND VERIFIED | Interrupted staged imports fail clearly and clean partial files. If a capture committed before interruption, recovery preserves it and completes the job. Managed orphan UUID uploads are cleaned before new jobs are admitted. |
+| SQLite history and managed storage | EXISTING AND VERIFIED | Schema remains v1. New job kinds use existing JSON payloads; no destructive migration is required. One process / shared workspace only. |
+| Window quality, Welch, activity and domain indicators | EXISTING AND VERIFIED | Existing DSP preserved. Unknown sample clocks no longer produce a CFO ambiguity interval labeled in Hz. Domain indicators are not validated OOD decisions. |
+| Dataset / job pagination | COMPLETE AND VERIFIED | Search/pagination for datasets; all job pages accessible; selected jobs polled directly even when outside the current list page. |
+| Reproducible JSON / CSV / individual PDFs | COMPLETE AND VERIFIED | Individual PDF now includes input hash, capture position, clock, retention and quantity types. Batch CSV includes exact vectors, preprocessing, source positions, model/capture/dataset hashes. |
+| Batch / evaluation PDF summaries | COMPLETE AND VERIFIED | Reports render stored results without inference. Vector confidence plot, provenance, labels/metrics when supplied and explicit limitations. At most 512 plotted windows, 200 table rows and 20 capture metadata previews; complete data remains in JSON/CSV. |
+| Missing-model errors and upload deadlines | COMPLETE AND VERIFIED | Prediction APIs return safe 503 responses without private artifact paths; slow body reads return 408 and release import slots. |
+| Premium UI, routes and Earth/galaxy | EXISTING AND VERIFIED | Visual design preserved. Globe change adds camera-azimuth diagnostic telemetry only. Browser drag check verifies an actual camera turn. New screenshots no longer overwrite original scientific audit images. |
+| Local Python / frontend / contracts | COMPLETE AND VERIFIED | 208 Python, 43 frontend, 11 real contracts; details below. |
+| Final production browser run | COMPLETE AND VERIFIED | 29 scenarios passed in 2.5 minutes against the final compiled app, including asynchronous imports, cancellation, 201-window evaluation export, batch PDF and globe interaction. |
+| Container / Linux / Windows current-source CI | PARTIALLY IMPLEMENTED | Earlier Phase 2 image and protected named-volume recreation passed remotely; follow-up source verification is pending. |
+| Training pipeline and model comparison | EXISTING AND VERIFIED | Existing grouped CNN/ResNet/CLDNN/RF infrastructure and artifacts retained; no training or model promotion performed. |
+| Independent satellite-domain accuracy, production calibration / OOD / additional output classes | BLOCKED | No independent labeled acquisition corpus or justified production thresholds/checkpoint is available. |
+| Permanent public hosting | BLOCKED | Hosting credentials/account connection and durable storage provisioning are required. No permanent deployment is claimed. |
+| Full SigMF implementation, full-capture background DSP, persistent attribution PDFs | PARTIALLY IMPLEMENTED | Documented SigMF subset and bounded synchronous overview/DSP remain. Existing genuine IG/saliency and explanation JSON export are preserved. Attribution PDF persistence was not added. |
+| Development-tool dependency remediation | PARTIALLY IMPLEMENTED | Previous runtime audits passed; 14 recorded development-tool findings remain. No application runtime dependency changed in this follow-up. |
+
+## New architecture and API behavior
+
+`captures.stage_upload` hashes and stages uploaded bytes once. Both synchronous
+and background paths use the same decoder, with at most 65,536 samples per decode
+block. The shared executor still has **two workers and four admitted jobs**, now
+including capture import, dataset import, batch inference and external evaluation.
+Two request-body upload slots and the configured storage/upload quotas remain in
+force. Progress can be read and cancellation requested between decode/validation
+blocks. A cancellation that arrives after a successful record commit can leave a
+completed job; it does not roll back a valid recording.
+
+The new request variants are:
+
+- `POST /api/workspace/captures?background=true`: multipart recording/options,
+  optional paired SigMF metadata; returns HTTP 202 and a `capture-import` job.
+- `POST /api/workspace/datasets?background=true`: validated labeled manifest;
+  returns HTTP 202 and a `dataset-import` job.
+- Existing `GET /jobs/{id}` exposes phase/progress and the completed capture or
+  dataset identifier. `GET /jobs/{id}/result` returns import provenance for these
+  job kinds. Existing synchronous POST variants are unchanged.
+- `GET /datasets?limit=50&offset=0&search=...` now supports pagination/search.
+- `GET /jobs/{id}/export?format=pdf` returns a batch/evaluation technical summary;
+  import jobs export JSON provenance instead.
+
+All abbreviated endpoints above remain under `/api/workspace`. Authentication,
+body limits and request IDs apply to both new variants. Model errors are logged
+server-side, without exposing filesystem paths in prediction responses.
+
+No SQL schema change was needed: existing `records` kinds remain capture,
+analysis, dataset and job; the job payload adds `phase`, result identifiers and
+staged-file descriptors. Capture and job IDs are distinct, and deleting a
+terminal import job cannot delete its recording. Restart cleanup touches only
+UUID-named managed temporary/canonical files without committed capture records
+inside `SATMOD_DATA_DIR`. Do not share that directory between server processes.
+Retention of committed captures/reports remains explicit, manual deletion.
+
+## Verification and measured performance
+
+Evidence is isolated under `integration/phase2/followup/`. Original audit logs,
+figures, historical evaluations and model weights are preserved. Fresh final
+local results: **208 Python / 43 frontend / 11 real contracts**; production build,
+TypeScript and syntax/undefined-name lint passed. ESLint has zero errors and the
+18 existing Fast Refresh warnings. The final production browser run passed all
+29 scenarios in 2.5 minutes.
+
+The first follow-up browser execution passed 28 scenarios and failed a newly
+added cancellation scenario because its exact label selector included option
+text. The selector now uses the actual combobox accessible name; the failure log
+is retained as `browser-first-followup.log`. No production assertion was removed.
+The earlier remote Windows trace stalled in a 15-event synchronous pointer move;
+the test now uses three pointer events and additionally asserts camera azimuth.
+The earlier Linux job failed during package-mirror DNS resolution. Its existing
+remote-branch fix uses the hosted image's installed Chrome; this was retained.
+
+`scripts/profile_workspace.py` measured a one-million-sample synthetic NPY import
+at **187.59 ms**, with **3,418,907 bytes** peak traced allocation, and the last
+128-sample window at **20.79 ms**. This exercises the shared decoder, excluding job
+queue overhead. Values are host-specific; tracing excludes mapped pages, OS
+cache and pre-existing arrays. They are not RF accuracy or throughput guarantees.
+
+## Files changed in this follow-up
+
+- Backend: `backend/api/__init__.py`, `backend/api/workspace.py`, `backend/main.py`,
+  `backend/services/captures.py`, `operations.py`, `technical_reports.py`,
+  `advanced_dsp.py`.
+- Frontend: `external-workspace.tsx`, `external-evaluation.tsx`,
+  `lib/operations-api.ts`, and diagnostic telemetry in `mission/earth-globe.tsx`.
+- Verification: new `tests/test_import_jobs.py`, extended operational unit and
+  browser tests, and isolated evidence/screenshots.
+- Operations/documentation: `.env.example`, CI browser selection,
+  `PHASE2_IMPLEMENTATION.md`, this report, and the README follow-up runbook.
+
+## Local and production commands
+
+From the repository root, with dependencies installed:
+
+```bash
+.venv/bin/python scripts/dev.py
+# The launcher prints the actual available UI/API ports.
+.venv/bin/python -m pytest tests -q
+npm --prefix frontend test
+npm --prefix frontend run test:integration
+npm --prefix frontend run typecheck
+npm --prefix frontend run lint
+npm --prefix frontend run build
+```
+
+For a same-origin native production server, configure a private persistent data
+directory and set `SATMOD_ACCESS_TOKEN` through the deployment environment:
+
+```bash
+npm --prefix frontend run build
+export SATMOD_SERVE_FRONTEND=1
+export SATMOD_PUBLIC=1
+export SATMOD_DATA_DIR=/absolute/path/to/private-persistent-data
+.venv/bin/python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000
+```
+
+Enter the access token in Settings. Run one process/replica. With the same token
+set in the shell, container deployment is `docker compose up --build -d`; the
+named `/data` volume must persist across recreations. Hosting needs a Python or
+container service, `PORT`, the access token and a persistent data mount. Provision
+those resources before claiming durable public deployment.
+
+Raw complex NPY, real `(N,2)` / `(2,N)` NPY and explicit supported binary formats
+support long captures within the configurable 128 MiB default upload cap.
+CSV/NPZ/MAT/WAV/JSON retain bounded existing parser limits; MAT v7.3, multichannel
+or unsupported SigMF types are rejected. The SigMF subset follows the
+[primary specification](https://sigmf.org/), preserves raw metadata and never
+guesses unsigned-integer offsets, sample rates or scaling.
+
+Independent acquisition data is still required before fitting production
+calibration, validating OOD thresholds, expanding classifier outputs or promoting
+an experimental model. Synthetic fixtures verify implementation behavior only.
+The remaining dataset/hardware/account limitations are not implementation
+successes. No real orbital tracking, communication packet decoding or new RF
+observations are claimed.
+
+## Prior implementation record
+
+The following report is retained as historical context. Where a capability is
+extended above (especially background imports and PDF export), the current status
+table above supersedes this earlier checkpoint.
 
 Branch: `feat/phase2-signal-operations`. Starting source: `70c411b`. The working tree was clean at the start. This phase preserves the original production CNN, experimental checkpoints, historical evidence, TanStack routes and Earth/galaxy scene. No model was promoted and no new training or real-world accuracy improvement is claimed.
 

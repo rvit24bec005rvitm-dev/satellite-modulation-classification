@@ -1,6 +1,7 @@
 """Persistent bounded jobs and independently labeled capture evaluation."""
 from concurrent.futures import ThreadPoolExecutor
 from collections import Counter
+from bisect import bisect_left, insort
 from uuid import uuid4
 import json
 import threading
@@ -10,49 +11,107 @@ from backend.services import workspace_store as store, captures, classifier
 RUNNERS={}
 
 
+class JobCancelled(Exception):
+    """Cooperative cancellation at a bounded-work boundary."""
+
+
+def recover_interrupted_jobs():
+    """Recover once per process/workspace, before admitting new background work."""
+    for job in store.all_records('job'):
+        if job['state'] not in ['queued','running']:continue
+        if job['kind']=='capture-import':
+            staged_id=job['params']['staged']['id']
+            store.file_path(staged_id,'upload').unlink(missing_ok=True)
+            try:
+                # Commit may have succeeded just before a process stopped. Keep
+                # that capture and report its actual state, rather than unlink it.
+                capture=store.get('capture',staged_id)
+            except KeyError:
+                store.file_path(staged_id,'iq').unlink(missing_ok=True)
+            else:
+                store.put('job',{**job,'state':'completed','progress':1,'phase':'complete',
+                                 'captureId':capture['id'],'finishedAt':store.now()})
+                continue
+        elif job['kind']=='dataset-import':
+            try:dataset=store.get('dataset',job['params']['datasetId'])
+            except KeyError:pass
+            else:
+                store.put('job',{**job,'state':'completed','progress':1,'phase':'complete',
+                                 'datasetId':dataset['id'],'finishedAt':store.now()})
+                continue
+        else:store.file_path(job['id'],'json').unlink(missing_ok=True)
+        store.put('job',{**job,'state':'failed','error':'Interrupted by application restart; resubmit explicitly.','finishedAt':store.now()})
+    # Only UUID-named files in the application's private managed directory are
+    # eligible. This also cleans a crash between staging and job registration.
+    for path in store.root().glob('*.upload'):
+        try:store.identifier(path.stem)
+        except ValueError:continue
+        path.unlink(missing_ok=True)
+    for path in store.root().glob('*.iq'):
+        try:
+            record_id=store.identifier(path.stem)
+            store.get('capture',record_id)
+        except KeyError:path.unlink(missing_ok=True)
+        except ValueError:continue
+
+
 def overlaps(a,b):
     if a['sourceHash']==b['sourceHash']:return abs(a['sourceStart']-b['sourceStart'])<128
     return bool(a.get('canonicalSourceHash') and a['canonicalSourceHash']==b.get('canonicalSourceHash') and abs(a['start']-b['start'])<128)
 
 
-def register_dataset(name, entries, source, license_text):
+class SplitGuard:
+    """Index fixed-length windows by source; avoid quadratic manifest checks."""
+    def __init__(self):
+        self.groups={};self.hashes={};self.positions={}
+
+    def add(self, entry):
+        split=entry['split']
+        for key, index, error in [
+            ('sessionId',self.groups,'Source session crosses dataset splits.'),
+            ('frameHash',self.hashes,'Duplicate frame crosses dataset splits.')]:
+            if entry[key] in index and index[entry[key]]!=split:raise ValueError(error)
+            index[entry[key]]=split
+        for prefix, digest, start in [('source',entry['sourceHash'],entry['sourceStart']),
+                                     ('canonical',entry.get('canonicalSourceHash'),entry['start'])]:
+            if not digest:continue
+            positions=self.positions.setdefault((prefix,digest),{})
+            for prior_split, offsets in positions.items():
+                if prior_split==split:continue
+                at=bisect_left(offsets,start)
+                if any(abs(start-offsets[i])<128 for i in [at-1,at] if 0<=i<len(offsets)):
+                    raise ValueError('Overlapping recording windows cross splits.')
+            insort(positions.setdefault(split,[]),start)
+
+
+def register_dataset(name, entries, source, license_text, *, progress=None, record_id=None):
     if not entries or len(entries)>5000:raise ValueError('Supply 1–5000 independently labeled windows.')
     from utils.preprocessing import CLASS_LABELS
     from training.data import forbidden_demo_frame_hashes
     import hashlib
-    groups={};hashes={};normalized=[]
-    for entry in entries:
-        if entry.label not in CLASS_LABELS:raise ValueError('Ground truth must be supplied from the active model classes.')
-        iq,meta=captures.window(entry.captureId,entry.start,128)
-        if meta['split']!='unassigned' and entry.split!=meta['split']:raise ValueError('Window split conflicts with recording split.')
-        if meta['sessionId'] in groups and groups[meta['sessionId']]!=entry.split:raise ValueError('Source session crosses dataset splits.')
-        groups[meta['sessionId']]=entry.split
+    guard=SplitGuard();normalized=[]
+    for index,raw_entry in enumerate(entries):
+        if progress:progress('validating labeled windows',.85*index/len(entries))
+        entry=raw_entry.model_dump() if hasattr(raw_entry,'model_dump') else dict(raw_entry)
+        if entry['label'] not in CLASS_LABELS:raise ValueError('Ground truth must be supplied from the active model classes.')
+        iq,meta=captures.window(entry['captureId'],entry['start'],128)
+        if meta['split']!='unassigned' and entry['split']!=meta['split']:raise ValueError('Window split conflicts with recording split.')
         digest=hashlib.sha256(iq.tobytes()).hexdigest()
         if bytes.fromhex(digest) in forbidden_demo_frame_hashes():raise ValueError('Demo frames have unknown historical split membership; external evaluation/fitting is prohibited.')
-        if digest in hashes and hashes[digest]!=entry.split:raise ValueError('Duplicate frame crosses dataset splits.')
-        hashes[digest]=entry.split
-        candidate={**entry.model_dump(),'captureId':meta['id'],'frameHash':digest,'sessionId':meta['sessionId'],'sourceHash':meta['sourceHash'],'sourceStart':meta['sourceOffset']+entry.start,'canonicalSourceHash':meta['hash']}
-        for prior in normalized:
-            if prior['split']!=entry.split and overlaps(prior,candidate):
-                raise ValueError('Overlapping recording windows cross splits.')
+        candidate={**entry,'captureId':meta['id'],'frameHash':digest,'sessionId':meta['sessionId'],'sourceHash':meta['sourceHash'],'sourceStart':meta['sourceOffset']+entry['start'],'canonicalSourceHash':meta['hash']}
+        guard.add(candidate)
         normalized.append(candidate)
-    # Also reject contamination against previously registered datasets.
-    offset=0
-    while True:
-        page=store.listing('dataset',200,offset)
-        for dataset in page['items']:
+    if progress:progress('checking registered split assignments',.9)
+    # Cross-dataset checks and final registration are atomic relative to other
+    # registrations. Polling/cancellation stays possible during window parsing.
+    with store.LOCK:
+        for dataset in store.all_records('dataset'):
             for previous in dataset.get('entries',[]):
-                for entry in normalized:
-                    if previous['split']!=entry['split'] and (previous['sessionId']==entry['sessionId'] or previous['frameHash']==entry['frameHash'] or
-                        overlaps(previous,entry)):
-                        raise ValueError('Dataset conflicts with an existing session/frame/overlap split assignment.')
-        offset+=200
-        if offset>=page['total']:break
-    import hashlib
-    return store.put('dataset',{'name':name,'source':source,'license':license_text,'acquisitionType':'user-declared external labels',
-        'entries':normalized,'hash':hashlib.sha256(json.dumps(normalized,sort_keys=True).encode()).hexdigest(),
-        'preprocessing':'Canonical saved scalar z-score; no fitting on imported test labels.',
-        'note':'Labels are supplied by the importer, not inferred. Acquisition independence is declared, not automatically proven.'})
+                guard.add(previous)
+        return store.put('dataset',{**({'id':record_id} if record_id else {}),'name':name,'source':source,'license':license_text,'acquisitionType':'user-declared external labels',
+            'entries':normalized,'hash':hashlib.sha256(json.dumps(normalized,sort_keys=True).encode()).hexdigest(),
+            'preprocessing':'Canonical saved scalar z-score; no fitting on imported test labels.',
+            'note':'Labels are supplied by the importer, not inferred. Acquisition independence is declared, not automatically proven.'})
 
 
 def runner():
@@ -60,12 +119,26 @@ def runner():
     with store.LOCK:
         if key not in RUNNERS:
             # A previous process cannot resume in-flight Python work safely.
-            pending=[*store.listing('job',200,field='state',value='queued')['items'],*store.listing('job',200,field='state',value='running')['items']]
-            for job in pending:
-                if job['state'] in ['queued','running']:
-                    store.put('job',{**job,'state':'failed','error':'Interrupted by application restart; resubmit explicitly.'})
+            recover_interrupted_jobs()
             RUNNERS[key]=(ThreadPoolExecutor(max_workers=2,thread_name_prefix='satmod-jobs'),threading.BoundedSemaphore(4))
         return RUNNERS[key]
+
+
+def submit_import(upload, options, metadata=None):
+    executor,slots=runner()
+    if not slots.acquire(blocking=False):raise ValueError('Job capacity reached (two workers, four queued/running jobs).')
+    staged=None
+    try:
+        staged=captures.stage_upload(upload)
+        params={'staged':staged,'options':options.model_dump(),'sigmf':metadata}
+        with store.LOCK:
+            job=store.put('job',{'state':'queued','kind':'capture-import',
+                                'params':params,'phase':'queued','progress':0,'cancelRequested':False})
+            executor.submit(execute,job['id'],slots)
+        return job
+    except BaseException:
+        if staged:store.file_path(staged['id'],'upload').unlink(missing_ok=True)
+        slots.release();raise
 
 
 def submit(kind, params):
@@ -77,6 +150,7 @@ def submit(kind, params):
                 meta=store.get('capture',params['captureId'])
                 if params['start']+(params['windows']-1)*params['stride']+128>meta['sampleCount']:raise ValueError('Batch extends beyond recording.')
             elif kind=='evaluation':store.get('dataset',params['datasetId'])
+            elif kind=='dataset-import':params={**params,'datasetId':str(uuid4())}
             else:raise ValueError('Unsupported job kind.')
             job=store.put('job',{'state':'queued','kind':kind,'params':params,'progress':0,'cancelRequested':False})
             executor.submit(execute,job['id'],slots)
@@ -89,6 +163,7 @@ def update(record_id, **fields):
 
 
 def cancel(record_id):
+    runner()
     with store.LOCK:
         job=store.get('job',record_id)
         if job['state'] not in ['queued','running']:return job
@@ -96,10 +171,26 @@ def cancel(record_id):
 
 
 def execute(record_id, slots):
+    job=None
     try:
         job=store.get('job',record_id)
-        if job['cancelRequested']:update(record_id,state='cancelled');return
+        if job['cancelRequested']:raise JobCancelled()
         update(record_id,state='running');params=job['params'];predictions=[];provenance={}
+        if job['kind'] in ['capture-import','dataset-import']:
+            def progress(phase, fraction):
+                with store.LOCK:
+                    if store.get('job',record_id)['cancelRequested']:raise JobCancelled()
+                    update(record_id,phase=phase,progress=fraction)
+            if job['kind']=='capture-import':
+                capture=captures.import_capture(None,captures.ImportOptions.model_validate(params['options']),
+                                                params.get('sigmf'),staged=params['staged'],progress=progress)
+                output={'captureId':capture['id']}
+            else:
+                dataset=register_dataset(params['name'],params['entries'],params['source'],params['license'],
+                                         progress=progress,record_id=params['datasetId'])
+                output={'datasetId':dataset['id']}
+            update(record_id,state='completed',phase='complete',progress=1,**output,finishedAt=store.now())
+            return
         if job['kind']=='batch':
             entries=[{'captureId':params['captureId'],'start':params['start']+i*params['stride']} for i in range(params['windows'])]
         else:
@@ -108,10 +199,10 @@ def execute(record_id, slots):
             if not entries:raise ValueError('External evaluation requires explicitly labeled test windows.')
         for index,entry in enumerate(entries):
             if store.get('job',record_id)['cancelRequested']:
-                update(record_id,state='cancelled',progress=index/len(entries));return
+                update(record_id,progress=index/len(entries));raise JobCancelled()
             iq,meta=captures.window(entry['captureId'],entry['start'],128)
             if meta['id'] not in provenance:
-                provenance[meta['id']]={k:meta.get(k) for k in ['id','source','hash','sourceHash','sessionId','sampleCount','sampleRate','sampleRateKnown','sourceOffset','centerFrequency','license','createdAt']}
+                provenance[meta['id']]=meta
             result=classifier.predict_window(iq)
             predictions.append({'index':index,'start':entry['start'],'captureId':entry['captureId'],**captures.timing(meta,entry['start']),**result,
                                 **({'groundTruth':entry['label'],'snrDb':entry.get('snrDb')} if job['kind']=='evaluation' else {})})
@@ -132,20 +223,31 @@ def execute(record_id, slots):
                           labelSource='Importer-supplied labels; acquisition independence is declared, not automatically proven',calibration='Diagnostic only; production temperature unchanged')
         data=json.dumps(result,allow_nan=False).encode()
         with store.LOCK:
-            if store.get('job',record_id)['cancelRequested']:update(record_id,state='cancelled');return
+            if store.get('job',record_id)['cancelRequested']:raise JobCancelled()
             store.quota(len(data));store.file_path(record_id,'json').write_bytes(data)
             update(record_id,state='completed',progress=1,finishedAt=store.now())
+    except JobCancelled:
+        update(record_id,state='cancelled',finishedAt=store.now())
     except Exception as exc:
         import logging
         logging.getLogger('satmod').exception('Background operation failed: %s',record_id)
         store.file_path(record_id,'json').unlink(missing_ok=True)
         update(record_id,state='failed',error=str(exc) if isinstance(exc,(ValueError,KeyError)) else 'Processing failed; inspect the server log.',finishedAt=store.now())
-    finally:slots.release()
+    finally:
+        if job and job['kind']=='capture-import':store.file_path(job['params']['staged']['id'],'upload').unlink(missing_ok=True)
+        slots.release()
 
 
 def job_result(record_id,offset=0,limit=200):
+    runner()
     with store.LOCK:
         job=store.get('job',record_id)
         if job['state']!='completed':raise ValueError('Job has no completed result.')
+        if job['kind']=='capture-import':
+            return {'reportVersion':'satmod-import-v1','jobId':job['id'],'captureId':job['captureId'],
+                    'metadata':store.get('capture',job['captureId'])}
+        if job['kind']=='dataset-import':
+            return {'reportVersion':'satmod-dataset-import-v1','jobId':job['id'],
+                    'dataset':store.get('dataset',job['datasetId'])}
         result=json.loads(store.file_path(record_id,'json').read_text())
     predictions=result.pop('predictions');return {**result,'predictions':predictions[offset:offset+limit],'total':len(predictions),'offset':offset}

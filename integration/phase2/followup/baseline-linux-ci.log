@@ -1,0 +1,842 @@
+﻿2026-11-11T16:20:45.9367131Z Current runner version: '2.338.2'
+2026-11-11T16:20:45.9391222Z ##[group]Runner Image Provisioner
+2026-11-11T16:20:45.9392010Z Hosted Compute Agent
+2026-11-11T16:20:45.9392631Z Version: 20261028.624
+2026-11-11T16:20:45.9393212Z Commit: 54898b74c23fde5556c9b3c3a2290865feef0dfe
+2026-11-11T16:20:45.9393969Z Build Date: 2026-10-28T21:51:42Z
+2026-11-11T16:20:45.9394596Z Worker ID: {8e99165a-6f47-443f-964a-ed5752f6ae64}
+2026-11-11T16:20:45.9395228Z Region: westus2
+2026-11-11T16:20:45.9395769Z Cloud: Azure
+2026-11-11T16:20:45.9396503Z ##[endgroup]
+2026-11-11T16:20:45.9398257Z ##[group]Operating System
+2026-11-11T16:20:45.9398921Z Ubuntu
+2026-11-11T16:20:45.9399402Z 24.04.5
+2026-11-11T16:20:45.9399905Z LTS
+2026-11-11T16:20:45.9400360Z ##[endgroup]
+2026-11-11T16:20:45.9400930Z ##[group]Runner Image
+2026-11-11T16:20:45.9401489Z Image: ubuntu-24.04
+2026-11-11T16:20:45.9402014Z Version: 20261101.360.1
+2026-11-11T16:20:45.9403188Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261101.360/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-11T16:20:45.9404644Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261101.360
+2026-11-11T16:20:45.9405538Z ##[endgroup]
+2026-11-11T16:20:45.9407452Z ##[group]GITHUB_TOKEN Permissions
+2026-11-11T16:20:45.9409557Z Contents: read
+2026-11-11T16:20:45.9410118Z Metadata: read
+2026-11-11T16:20:45.9410697Z Packages: read
+2026-11-11T16:20:45.9411207Z ##[endgroup]
+2026-11-11T16:20:45.9413370Z Secret source: Actions
+2026-11-11T16:20:45.9414335Z Cache mode: write
+2026-11-11T16:20:45.9414949Z Prepare workflow directory
+2026-11-11T16:20:45.9741995Z Prepare all required actions
+2026-11-11T16:20:45.9790198Z Getting action download info
+2026-11-11T16:20:46.3339287Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-11-11T16:20:46.4330582Z Download action repository 'actions/setup-python@v5' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-11-11T16:20:46.4949967Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-11-11T16:20:46.5633559Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-11T16:20:46.7918805Z Complete job name: frontend (ubuntu-latest)
+2026-11-11T16:20:46.8800353Z ##[group]Run actions/checkout@v4
+2026-11-11T16:20:46.8801129Z with:
+2026-11-11T16:20:46.8801710Z   repository: rvit24bec005rvitm-dev/satellite-modulation-classification
+2026-11-11T16:20:46.8805373Z   token: ***
+2026-11-11T16:20:46.8805765Z   ssh-strict: true
+2026-11-11T16:20:46.8806525Z   ssh-user: git
+2026-11-11T16:20:46.8806943Z   persist-credentials: true
+2026-11-11T16:20:46.8807382Z   clean: true
+2026-11-11T16:20:46.8807781Z   sparse-checkout-cone-mode: true
+2026-11-11T16:20:46.8808250Z   fetch-depth: 1
+2026-11-11T16:20:46.8808645Z   fetch-tags: false
+2026-11-11T16:20:46.8809046Z   show-progress: true
+2026-11-11T16:20:46.8809454Z   lfs: false
+2026-11-11T16:20:46.8809826Z   submodules: false
+2026-11-11T16:20:46.8810262Z   set-safe-directory: true
+2026-11-11T16:20:46.8810734Z   allow-unsafe-pr-checkout: false
+2026-11-11T16:20:46.8811513Z ##[endgroup]
+2026-11-11T16:20:47.1292076Z Syncing repository: rvit24bec005rvitm-dev/satellite-modulation-classification
+2026-11-11T16:20:47.1294680Z ##[group]Getting Git version info
+2026-11-11T16:20:47.1296525Z Working directory is '/home/runner/work/satellite-modulation-classification/satellite-modulation-classification'
+2026-11-11T16:20:47.1298765Z [command]/usr/bin/git version
+2026-11-11T16:20:47.1379487Z git version 2.56.0
+2026-11-11T16:20:47.1399206Z ##[endgroup]
+2026-11-11T16:20:47.1415056Z Temporarily overriding HOME='/home/runner/work/_temp/14aec962-e823-49dd-93b8-887b6ac194b6' before making global git config changes
+2026-11-11T16:20:47.1417589Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-11T16:20:47.1422221Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/satellite-modulation-classification/satellite-modulation-classification
+2026-11-11T16:20:47.1472505Z Deleting the contents of '/home/runner/work/satellite-modulation-classification/satellite-modulation-classification'
+2026-11-11T16:20:47.1477448Z ##[group]Initializing the repository
+2026-11-11T16:20:47.1487281Z [command]/usr/bin/git init /home/runner/work/satellite-modulation-classification/satellite-modulation-classification
+2026-11-11T16:20:47.1577536Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-11-11T16:20:47.1578775Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-11-11T16:20:47.1579661Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-11-11T16:20:47.1580356Z hint: call:
+2026-11-11T16:20:47.1580727Z hint:
+2026-11-11T16:20:47.1581206Z hint: 	git config --global init.defaultBranch <name>
+2026-11-11T16:20:47.1581772Z hint:
+2026-11-11T16:20:47.1582308Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-11-11T16:20:47.1583203Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-11-11T16:20:47.1583879Z hint:
+2026-11-11T16:20:47.1584248Z hint: 	git branch -m <name>
+2026-11-11T16:20:47.1584676Z hint:
+2026-11-11T16:20:47.1585257Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-11-11T16:20:47.1591332Z Initialized empty Git repository in /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/.git/
+2026-11-11T16:20:47.1602879Z [command]/usr/bin/git remote add origin https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification
+2026-11-11T16:20:47.1653131Z ##[endgroup]
+2026-11-11T16:20:47.1654524Z ##[group]Disabling automatic garbage collection
+2026-11-11T16:20:47.1657910Z [command]/usr/bin/git config --local gc.auto 0
+2026-11-11T16:20:47.1686040Z ##[endgroup]
+2026-11-11T16:20:47.1687202Z ##[group]Setting up auth
+2026-11-11T16:20:47.1693061Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-11T16:20:47.1724562Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-11T16:20:47.2053334Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-11T16:20:47.2107340Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-11T16:20:47.2306085Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-11T16:20:47.2338355Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-11T16:20:47.2518475Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-11-11T16:20:47.2553871Z ##[endgroup]
+2026-11-11T16:20:47.2554604Z ##[group]Fetching the repository
+2026-11-11T16:20:47.2566897Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +1ea3e309c60b46286f090cd111d758bb64222522:refs/remotes/pull/1/merge
+2026-11-11T16:20:48.2084745Z From https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification
+2026-11-11T16:20:48.2085695Z  * [new ref]         1ea3e309c60b46286f090cd111d758bb64222522 -> pull/1/merge
+2026-11-11T16:20:48.2088737Z ##[endgroup]
+2026-11-11T16:20:48.2089810Z ##[group]Determining the checkout info
+2026-11-11T16:20:48.2090799Z ##[endgroup]
+2026-11-11T16:20:48.2095738Z [command]/usr/bin/git sparse-checkout disable
+2026-11-11T16:20:48.2143282Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-11-11T16:20:48.2169592Z ##[group]Checking out the ref
+2026-11-11T16:20:48.2172762Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/1/merge
+2026-11-11T16:20:48.3401941Z Note: switching to 'refs/remotes/pull/1/merge'.
+2026-11-11T16:20:48.3402801Z 
+2026-11-11T16:20:48.3403145Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-11-11T16:20:48.3403831Z changes and commit them, and you can discard any commits you make in this
+2026-11-11T16:20:48.3404475Z state without impacting any branches by switching back to a branch.
+2026-11-11T16:20:48.3404850Z 
+2026-11-11T16:20:48.3405148Z If you want to create a new branch to retain commits you create, you may
+2026-11-11T16:20:48.3405764Z do so (now or later) by using -c with the switch command. Example:
+2026-11-11T16:20:48.3406377Z 
+2026-11-11T16:20:48.3406577Z   git switch -c <new-branch-name>
+2026-11-11T16:20:48.3406938Z 
+2026-11-11T16:20:48.3407199Z Or undo this operation with:
+2026-11-11T16:20:48.3407515Z 
+2026-11-11T16:20:48.3407747Z   git switch -
+2026-11-11T16:20:48.3408093Z 
+2026-11-11T16:20:48.3408467Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-11-11T16:20:48.3408934Z 
+2026-11-11T16:20:48.3409490Z HEAD is now at 1ea3e30 Merge d48a17b9e6e41e134856ac5edc6458a539815996 into 70c411b85de61685f7827bab26990f1388708d07
+2026-11-11T16:20:48.3417665Z ##[endgroup]
+2026-11-11T16:20:48.3464383Z [command]/usr/bin/git log -1 --format=%H
+2026-11-11T16:20:48.3489563Z 1ea3e309c60b46286f090cd111d758bb64222522
+2026-11-11T16:20:48.3765472Z ##[group]Run actions/setup-python@v5
+2026-11-11T16:20:48.3766222Z with:
+2026-11-11T16:20:48.3766625Z   python-version: 3.11
+2026-11-11T16:20:48.3767053Z   check-latest: false
+2026-11-11T16:20:48.3769905Z   token: ***
+2026-11-11T16:20:48.3770322Z   update-environment: true
+2026-11-11T16:20:48.3770768Z   allow-prereleases: false
+2026-11-11T16:20:48.3771224Z   freethreaded: false
+2026-11-11T16:20:48.3771635Z ##[endgroup]
+2026-11-11T16:20:48.5126279Z ##[group]Installed versions
+2026-11-11T16:20:48.5241158Z (node:2308) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-11T16:20:48.5242472Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-11T16:20:48.5243652Z Successfully set up CPython (3.11.18)
+2026-11-11T16:20:48.5244754Z ##[endgroup]
+2026-11-11T16:20:48.5465432Z ##[group]Run actions/setup-node@v4
+2026-11-11T16:20:48.5465766Z with:
+2026-11-11T16:20:48.5466268Z   node-version: 22
+2026-11-11T16:20:48.5466528Z   always-auth: false
+2026-11-11T16:20:48.5466797Z   check-latest: false
+2026-11-11T16:20:48.5469245Z   token: ***
+2026-11-11T16:20:48.5469486Z env:
+2026-11-11T16:20:48.5469794Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:20:48.5470291Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-11T16:20:48.5470764Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:20:48.5471197Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:20:48.5471632Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:20:48.5472058Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-11T16:20:48.5472436Z ##[endgroup]
+2026-11-11T16:20:48.6897436Z Found in cache @ /opt/hostedtoolcache/node/22.23.4/x64
+2026-11-11T16:20:48.6898481Z (node:2316) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-11T16:20:48.6899182Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-11T16:20:48.6900459Z ##[group]Environment details
+2026-11-11T16:20:49.0667436Z node: v22.23.4
+2026-11-11T16:20:49.0668084Z npm: 10.9.9
+2026-11-11T16:20:49.0668458Z yarn: 1.22.22
+2026-11-11T16:20:49.0669325Z ##[endgroup]
+2026-11-11T16:20:49.0793178Z ##[group]Run python -m pip install -r requirements-dev.txt
+2026-11-11T16:20:49.0793782Z [36;1mpython -m pip install -r requirements-dev.txt[0m
+2026-11-11T16:20:49.0819012Z shell: /usr/bin/bash -e {0}
+2026-11-11T16:20:49.0819358Z env:
+2026-11-11T16:20:49.0819687Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:20:49.0820163Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-11T16:20:49.0820826Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:20:49.0821259Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:20:49.0821671Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:20:49.0822093Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-11T16:20:49.0822451Z ##[endgroup]
+2026-11-11T16:20:50.1391617Z Collecting streamlit>=1.35.0 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:20:50.1985125Z   Downloading streamlit-1.67.0-py3-none-any.whl.metadata (10 kB)
+2026-11-11T16:20:50.3938074Z Collecting numpy>=1.24.0 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 2))
+2026-11-11T16:20:50.4013647Z   Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+2026-11-11T16:20:50.5119315Z Collecting pandas>=2.0.0 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 3))
+2026-11-11T16:20:50.5195540Z   Downloading pandas-3.1.1-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (16 kB)
+2026-11-11T16:20:50.6482702Z Collecting scipy>=1.11.0 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 4))
+2026-11-11T16:20:50.6564581Z   Downloading scipy-1.17.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
+2026-11-11T16:20:50.7471544Z Collecting scikit-learn>=1.3.0 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 5))
+2026-11-11T16:20:50.7542466Z   Downloading scikit_learn-1.9.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.3 kB)
+2026-11-11T16:20:50.7831044Z Collecting plotly>=5.20.0 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 6))
+2026-11-11T16:20:50.7903119Z   Downloading plotly-7.1.0-py3-none-any.whl.metadata (8.8 kB)
+2026-11-11T16:20:50.8328417Z Collecting h5py>=3.10.0 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 7))
+2026-11-11T16:20:50.8405413Z   Downloading h5py-3.16.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (3.0 kB)
+2026-11-11T16:20:50.8832411Z Collecting fastapi<1,>=0.115 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:20:50.8901364Z   Downloading fastapi-0.162.4-py3-none-any.whl.metadata (27 kB)
+2026-11-11T16:20:50.9181089Z Collecting uvicorn<1,>=0.30 (from uvicorn[standard]<1,>=0.30->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 9))
+2026-11-11T16:20:50.9251114Z   Downloading uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+2026-11-11T16:20:50.9415230Z Collecting python-multipart<1,>=0.0.20 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 10))
+2026-11-11T16:20:50.9489166Z   Downloading python_multipart-0.0.33-py3-none-any.whl.metadata (6.3 kB)
+2026-11-11T16:20:50.9664065Z Collecting python-dotenv<2,>=1.0 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 11))
+2026-11-11T16:20:50.9741810Z   Downloading python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
+2026-11-11T16:20:51.0627607Z Collecting reportlab<6,>=4 (from -r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 12))
+2026-11-11T16:20:51.0709116Z   Downloading reportlab-5.1.0-py3-none-any.whl.metadata (1.6 kB)
+2026-11-11T16:20:51.0966349Z Collecting pytest<10,>=8 (from -r requirements-dev.txt (line 2))
+2026-11-11T16:20:51.1037083Z   Downloading pytest-9.2.0-py3-none-any.whl.metadata (7.9 kB)
+2026-11-11T16:20:51.1229403Z Collecting httpx<1,>=0.27 (from -r requirements-dev.txt (line 3))
+2026-11-11T16:20:51.1306658Z   Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+2026-11-11T16:20:51.1550720Z Collecting starlette>=0.46.0 (from fastapi<1,>=0.115->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:20:51.1625734Z   Downloading starlette-1.10.0-py3-none-any.whl.metadata (6.6 kB)
+2026-11-11T16:20:51.1837058Z Collecting anyio>=4.1.0 (from fastapi<1,>=0.115->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:20:51.1905509Z   Downloading anyio-4.16.0-py3-none-any.whl.metadata (4.7 kB)
+2026-11-11T16:20:51.2985560Z Collecting pydantic>=2.9.0 (from fastapi<1,>=0.115->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:20:51.3058895Z   Downloading pydantic-2.14.3-py3-none-any.whl.metadata (141 kB)
+2026-11-11T16:20:51.3327248Z Collecting typing-extensions>=4.8.0 (from fastapi<1,>=0.115->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:20:51.3402137Z   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+2026-11-11T16:20:51.3542812Z Collecting typing-inspection>=0.4.2 (from fastapi<1,>=0.115->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:20:51.3612945Z   Downloading typing_inspection-0.4.5-py3-none-any.whl.metadata (2.6 kB)
+2026-11-11T16:20:51.3738925Z Collecting annotated-doc>=0.0.2 (from fastapi<1,>=0.115->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:20:51.3808169Z   Downloading annotated_doc-0.0.6-py3-none-any.whl.metadata (6.5 kB)
+2026-11-11T16:20:51.4007532Z Collecting opentelemetry-api>=1.44.0 (from fastapi<1,>=0.115->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:20:51.4082226Z   Downloading opentelemetry_api-1.45.2-py3-none-any.whl.metadata (1.4 kB)
+2026-11-11T16:20:51.4273828Z Collecting click>=7.0 (from uvicorn<1,>=0.30->uvicorn[standard]<1,>=0.30->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 9))
+2026-11-11T16:20:51.4342903Z   Downloading click-8.5.1-py3-none-any.whl.metadata (2.6 kB)
+2026-11-11T16:20:51.4477241Z Collecting h11>=0.8 (from uvicorn<1,>=0.30->uvicorn[standard]<1,>=0.30->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 9))
+2026-11-11T16:20:51.4549000Z   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+2026-11-11T16:20:51.6021973Z Collecting pillow>=9.0.0 (from reportlab<6,>=4->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 12))
+2026-11-11T16:20:51.6096581Z   Downloading pillow-13.0.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+2026-11-11T16:20:51.7118086Z Collecting charset-normalizer (from reportlab<6,>=4->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 12))
+2026-11-11T16:20:51.7200274Z   Downloading charset_normalizer-3.5.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+2026-11-11T16:20:51.7368233Z Collecting iniconfig>=2 (from pytest<10,>=8->-r requirements-dev.txt (line 2))
+2026-11-11T16:20:51.7438363Z   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+2026-11-11T16:20:51.7606062Z Collecting packaging>=24 (from pytest<10,>=8->-r requirements-dev.txt (line 2))
+2026-11-11T16:20:51.7674360Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-11-11T16:20:51.7828466Z Collecting pluggy<2,>=1.6 (from pytest<10,>=8->-r requirements-dev.txt (line 2))
+2026-11-11T16:20:51.7899035Z   Downloading pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+2026-11-11T16:20:51.8077303Z Collecting pygments>=2.15 (from pytest<10,>=8->-r requirements-dev.txt (line 2))
+2026-11-11T16:20:51.8153416Z   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+2026-11-11T16:20:51.8349533Z Collecting certifi (from httpx<1,>=0.27->-r requirements-dev.txt (line 3))
+2026-11-11T16:20:51.8416709Z   Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+2026-11-11T16:20:51.8590901Z Collecting httpcore==1.* (from httpx<1,>=0.27->-r requirements-dev.txt (line 3))
+2026-11-11T16:20:51.8660514Z   Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+2026-11-11T16:20:51.8829703Z Collecting idna (from httpx<1,>=0.27->-r requirements-dev.txt (line 3))
+2026-11-11T16:20:51.8898908Z   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+2026-11-11T16:20:51.9238004Z Collecting httptools>=0.8.0 (from uvicorn[standard]<1,>=0.30->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 9))
+2026-11-11T16:20:51.9312144Z   Downloading httptools-0.9.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (3.5 kB)
+2026-11-11T16:20:51.9902154Z Collecting pyyaml>=5.1 (from uvicorn[standard]<1,>=0.30->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 9))
+2026-11-11T16:20:51.9976250Z   Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+2026-11-11T16:20:52.0332128Z Collecting uvloop>=0.15.1 (from uvicorn[standard]<1,>=0.30->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 9))
+2026-11-11T16:20:52.0408242Z   Downloading uvloop-0.23.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.1 kB)
+2026-11-11T16:20:52.1093427Z Collecting watchfiles>=0.20 (from uvicorn[standard]<1,>=0.30->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 9))
+2026-11-11T16:20:52.1163422Z   Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+2026-11-11T16:20:52.2214922Z Collecting websockets>=13.0 (from uvicorn[standard]<1,>=0.30->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 9))
+2026-11-11T16:20:52.2287940Z   Downloading websockets-17.4-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
+2026-11-11T16:20:52.2477202Z Collecting altair!=5.4.0,!=5.4.1,<7,>=5.0.0 (from streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:20:52.2545050Z   Downloading altair-6.3.0-py3-none-any.whl.metadata (11 kB)
+2026-11-11T16:20:52.2816574Z Collecting pydeck<1,>=0.8.0b4 (from streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:20:52.2888468Z   Downloading pydeck-0.9.3-py2.py3-none-any.whl.metadata (4.2 kB)
+2026-11-11T16:20:52.4097911Z Collecting protobuf<8,>=5.26.1 (from streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:20:52.4171957Z   Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl.metadata (595 bytes)
+2026-11-11T16:20:52.5183677Z Collecting pyarrow!=25.0.0,<27,>=12.0.0 (from streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:20:52.5251800Z   Downloading pyarrow-26.0.1-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (3.0 kB)
+2026-11-11T16:20:52.5463548Z Collecting requests<3,>=2.27 (from streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:20:52.5530929Z   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+2026-11-11T16:20:52.5767088Z Collecting itsdangerous<3,>=2.1.2 (from streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:20:52.5833210Z   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+2026-11-11T16:20:52.6329720Z Collecting watchdog<8,>=2.1.5 (from streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:20:52.6423830Z   Downloading watchdog-7.1.0-py3-none-manylinux_2_17_x86_64.whl.metadata (62 kB)
+2026-11-11T16:20:52.6603377Z Collecting python-dateutil>=2.9.0 (from pandas>=2.0.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 3))
+2026-11-11T16:20:52.6671946Z   Downloading python_dateutil-4.0.0-py3-none-any.whl.metadata (7.3 kB)
+2026-11-11T16:20:52.6845759Z Collecting jinja2 (from altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:20:52.6915551Z   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+2026-11-11T16:20:52.7139323Z Collecting jsonschema>=3.0 (from altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:20:52.7208196Z   Downloading jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+2026-11-11T16:20:52.7518442Z Collecting narwhals>=2.4.0 (from altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:20:52.7586502Z   Downloading narwhals-2.28.0-py3-none-any.whl.metadata (15 kB)
+2026-11-11T16:20:52.7947397Z Collecting urllib3<3,>=1.26 (from requests<3,>=2.27->streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:20:52.8034771Z   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+2026-11-11T16:20:52.8352472Z Collecting joblib>=1.4.0 (from scikit-learn>=1.3.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 5))
+2026-11-11T16:20:52.8421470Z   Downloading joblib-1.6.0-py3-none-any.whl.metadata (6.5 kB)
+2026-11-11T16:20:52.8606240Z Collecting threadpoolctl>=3.5.0 (from scikit-learn>=1.3.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 5))
+2026-11-11T16:20:52.8677079Z   Downloading threadpoolctl-3.8.0-py3-none-any.whl.metadata (29 kB)
+2026-11-11T16:20:52.9254297Z Collecting MarkupSafe>=2.0 (from jinja2->altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:20:52.9327394Z   Downloading markupsafe-3.0.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+2026-11-11T16:20:52.9490968Z Collecting cloudpickle>=3.0 (from joblib>=1.4.0->scikit-learn>=1.3.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 5))
+2026-11-11T16:20:52.9560786Z   Downloading cloudpickle-3.1.2-py3-none-any.whl.metadata (7.1 kB)
+2026-11-11T16:20:52.9724714Z Collecting attrs>=22.2.0 (from jsonschema>=3.0->altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:20:52.9806947Z   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+2026-11-11T16:20:52.9947046Z Collecting jsonschema-specifications>=2023.03.6 (from jsonschema>=3.0->altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:20:53.0019382Z   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+2026-11-11T16:20:53.0230215Z Collecting referencing>=0.28.4 (from jsonschema>=3.0->altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:20:53.0297933Z   Downloading referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+2026-11-11T16:20:53.2822632Z Collecting rpds-py>=0.25.0 (from jsonschema>=3.0->altair!=5.4.0,!=5.4.1,<7,>=5.0.0->streamlit>=1.35.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 1))
+2026-11-11T16:20:53.2900338Z   Downloading rpds_py-2026.9.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+2026-11-11T16:20:53.3087133Z Collecting annotated-types>=0.6.0 (from pydantic>=2.9.0->fastapi<1,>=0.115->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:20:53.3154106Z   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+2026-11-11T16:20:53.8751235Z Collecting pydantic-core==2.50.4 (from pydantic>=2.9.0->fastapi<1,>=0.115->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 8))
+2026-11-11T16:20:53.8821829Z   Downloading pydantic_core-2.50.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (6.6 kB)
+2026-11-11T16:20:53.9014556Z Collecting tzdata (from python-dateutil>=2.9.0->pandas>=2.0.0->-r /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/requirements.txt (line 3))
+2026-11-11T16:20:53.9083386Z   Downloading tzdata-2026.6-py2.py3-none-any.whl.metadata (1.4 kB)
+2026-11-11T16:20:53.9270611Z Downloading fastapi-0.162.4-py3-none-any.whl (151 kB)
+2026-11-11T16:20:53.9368204Z Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
+2026-11-11T16:20:53.9456236Z Downloading python_multipart-0.0.33-py3-none-any.whl (32 kB)
+2026-11-11T16:20:53.9541016Z Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+2026-11-11T16:20:53.9624931Z Downloading reportlab-5.1.0-py3-none-any.whl (2.0 MB)
+2026-11-11T16:20:53.9818943Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 107.4 MB/s  0:00:00
+2026-11-11T16:20:53.9893829Z Downloading pytest-9.2.0-py3-none-any.whl (411 kB)
+2026-11-11T16:20:53.9990788Z Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+2026-11-11T16:20:54.0081345Z Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+2026-11-11T16:20:54.0173813Z Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+2026-11-11T16:20:54.0266481Z Downloading streamlit-1.67.0-py3-none-any.whl (11.2 MB)
+2026-11-11T16:20:54.0616319Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.2/11.2 MB 334.2 MB/s  0:00:00
+2026-11-11T16:20:54.0687366Z Downloading numpy-2.4.6-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.9 MB)
+2026-11-11T16:20:54.1113493Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.9/16.9 MB 411.8 MB/s  0:00:00
+2026-11-11T16:20:54.1227328Z Downloading pandas-3.1.1-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (12.4 MB)
+2026-11-11T16:20:54.1534171Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.4/12.4 MB 428.2 MB/s  0:00:00
+2026-11-11T16:20:54.1608413Z Downloading altair-6.3.0-py3-none-any.whl (797 kB)
+2026-11-11T16:20:54.1656767Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 797.2/797.2 kB 192.9 MB/s  0:00:00
+2026-11-11T16:20:54.1725195Z Downloading anyio-4.16.0-py3-none-any.whl (134 kB)
+2026-11-11T16:20:54.1826732Z Downloading click-8.5.1-py3-none-any.whl (126 kB)
+2026-11-11T16:20:54.1919098Z Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+2026-11-11T16:20:54.2013734Z Downloading pillow-13.0.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.1 MB)
+2026-11-11T16:20:54.2208766Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.1/7.1 MB 394.0 MB/s  0:00:00
+2026-11-11T16:20:54.2280370Z Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl (343 kB)
+2026-11-11T16:20:54.2376032Z Downloading pyarrow-26.0.1-cp311-cp311-manylinux_2_28_x86_64.whl (55.0 MB)
+2026-11-11T16:20:54.3596432Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 55.0/55.0 MB 458.5 MB/s  0:00:00
+2026-11-11T16:20:54.3670539Z Downloading pydeck-0.9.3-py2.py3-none-any.whl (11.4 MB)
+2026-11-11T16:20:54.3987762Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.4/11.4 MB 381.8 MB/s  0:00:00
+2026-11-11T16:20:54.4065289Z Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+2026-11-11T16:20:54.4161106Z Downloading charset_normalizer-3.5.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (269 kB)
+2026-11-11T16:20:54.4251290Z Downloading idna-3.20-py3-none-any.whl (69 kB)
+2026-11-11T16:20:54.4337355Z Downloading starlette-1.10.0-py3-none-any.whl (80 kB)
+2026-11-11T16:20:54.4420928Z Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+2026-11-11T16:20:54.4504877Z Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+2026-11-11T16:20:54.4592328Z Downloading watchdog-7.1.0-py3-none-manylinux_2_17_x86_64.whl (103 kB)
+2026-11-11T16:20:54.4676514Z Downloading websockets-17.4-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (226 kB)
+2026-11-11T16:20:54.4764359Z Downloading scipy-1.17.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (35.3 MB)
+2026-11-11T16:20:54.5597082Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 35.3/35.3 MB 432.7 MB/s  0:00:00
+2026-11-11T16:20:54.5679571Z Downloading scikit_learn-1.9.1-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (9.3 MB)
+2026-11-11T16:20:54.5940539Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.3/9.3 MB 383.1 MB/s  0:00:00
+2026-11-11T16:20:54.6013694Z Downloading plotly-7.1.0-py3-none-any.whl (9.7 MB)
+2026-11-11T16:20:54.6268688Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.7/9.7 MB 406.7 MB/s  0:00:00
+2026-11-11T16:20:54.6342530Z Downloading h5py-3.16.0-cp311-cp311-manylinux_2_28_x86_64.whl (5.0 MB)
+2026-11-11T16:20:54.6484255Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.0/5.0 MB 395.8 MB/s  0:00:00
+2026-11-11T16:20:54.6554565Z Downloading annotated_doc-0.0.6-py3-none-any.whl (5.3 kB)
+2026-11-11T16:20:54.6640831Z Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+2026-11-11T16:20:54.6734550Z Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+2026-11-11T16:20:54.6825228Z Downloading httptools-0.9.0-cp311-cp311-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (499 kB)
+2026-11-11T16:20:54.6921750Z Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+2026-11-11T16:20:54.7004307Z Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+2026-11-11T16:20:54.7095610Z Downloading joblib-1.6.0-py3-none-any.whl (306 kB)
+2026-11-11T16:20:54.7187495Z Downloading cloudpickle-3.1.2-py3-none-any.whl (22 kB)
+2026-11-11T16:20:54.7272302Z Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+2026-11-11T16:20:54.7359413Z Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+2026-11-11T16:20:54.7453843Z Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+2026-11-11T16:20:54.7540777Z Downloading markupsafe-3.0.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+2026-11-11T16:20:54.7629720Z Downloading narwhals-2.28.0-py3-none-any.whl (490 kB)
+2026-11-11T16:20:54.7733021Z Downloading opentelemetry_api-1.45.2-py3-none-any.whl (60 kB)
+2026-11-11T16:20:54.7822100Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-11-11T16:20:54.7931064Z Downloading pydantic-2.14.3-py3-none-any.whl (494 kB)
+2026-11-11T16:20:54.8032066Z Downloading pydantic_core-2.50.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (2.3 MB)
+2026-11-11T16:20:54.8124834Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.3/2.3 MB 278.6 MB/s  0:00:00
+2026-11-11T16:20:54.8194854Z Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+2026-11-11T16:20:54.8283478Z Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+2026-11-11T16:20:54.8343143Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 252.7 MB/s  0:00:00
+2026-11-11T16:20:54.8419297Z Downloading python_dateutil-4.0.0-py3-none-any.whl (92 kB)
+2026-11-11T16:20:54.8508191Z Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (806 kB)
+2026-11-11T16:20:54.8557203Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 806.6/806.6 kB 179.5 MB/s  0:00:00
+2026-11-11T16:20:54.8628393Z Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
+2026-11-11T16:20:54.8716704Z Downloading rpds_py-2026.9.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (375 kB)
+2026-11-11T16:20:54.8821704Z Downloading threadpoolctl-3.8.0-py3-none-any.whl (32 kB)
+2026-11-11T16:20:54.8905026Z Downloading typing_inspection-0.4.5-py3-none-any.whl (14 kB)
+2026-11-11T16:20:54.8989696Z Downloading uvloop-0.23.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.0 MB)
+2026-11-11T16:20:54.9113242Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.0/4.0 MB 360.2 MB/s  0:00:00
+2026-11-11T16:20:54.9183541Z Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (458 kB)
+2026-11-11T16:20:54.9280557Z Downloading tzdata-2026.6-py2.py3-none-any.whl (348 kB)
+2026-11-11T16:20:55.4360889Z Installing collected packages: websockets, watchdog, uvloop, urllib3, tzdata, typing-extensions, threadpoolctl, rpds-py, pyyaml, python-multipart, python-dotenv, pygments, pyarrow, protobuf, pluggy, pillow, packaging, numpy, narwhals, MarkupSafe, itsdangerous, iniconfig, idna, httptools, h11, cloudpickle, click, charset-normalizer, certifi, attrs, annotated-types, annotated-doc, uvicorn, typing-inspection, scipy, requests, reportlab, referencing, python-dateutil, pytest, pydantic-core, plotly, opentelemetry-api, joblib, jinja2, httpcore, h5py, anyio, watchfiles, starlette, scikit-learn, pydeck, pydantic, pandas, jsonschema-specifications, httpx, jsonschema, fastapi, altair, streamlit
+2026-11-11T16:21:13.7660436Z 
+2026-11-11T16:21:13.7688876Z Successfully installed MarkupSafe-3.0.4 altair-6.3.0 annotated-doc-0.0.6 annotated-types-0.8.0 anyio-4.16.0 attrs-26.1.0 certifi-2026.10.23 charset-normalizer-3.5.2 click-8.5.1 cloudpickle-3.1.2 fastapi-0.162.4 h11-0.16.0 h5py-3.16.0 httpcore-1.0.9 httptools-0.9.0 httpx-0.28.1 idna-3.20 iniconfig-2.3.1 itsdangerous-2.2.0 jinja2-3.1.6 joblib-1.6.0 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 narwhals-2.28.0 numpy-2.4.6 opentelemetry-api-1.45.2 packaging-26.3 pandas-3.1.1 pillow-13.0.0 plotly-7.1.0 pluggy-1.7.0 protobuf-7.36.2 pyarrow-26.0.1 pydantic-2.14.3 pydantic-core-2.50.4 pydeck-0.9.3 pygments-2.21.0 pytest-9.2.0 python-dateutil-4.0.0 python-dotenv-1.2.4 python-multipart-0.0.33 pyyaml-6.0.3 referencing-0.37.0 reportlab-5.1.0 requests-2.34.2 rpds-py-2026.9.1 scikit-learn-1.9.1 scipy-1.17.1 starlette-1.10.0 streamlit-1.67.0 threadpoolctl-3.8.0 typing-extensions-4.16.0 typing-inspection-0.4.5 tzdata-2026.6 urllib3-2.8.0 uvicorn-0.54.0 uvloop-0.23.0 watchdog-7.1.0 watchfiles-1.3.0 websockets-17.4
+2026-11-11T16:21:13.7694410Z 
+2026-11-11T16:21:13.7695307Z [notice] A new release of pip is available: 26.2.2 -> 26.3
+2026-11-11T16:21:13.7696152Z [notice] To update, run: pip install --upgrade pip
+2026-11-11T16:21:13.9633447Z ##[group]Run npm ci
+2026-11-11T16:21:13.9633703Z [36;1mnpm ci[0m
+2026-11-11T16:21:13.9648090Z shell: /usr/bin/bash -e {0}
+2026-11-11T16:21:13.9648353Z env:
+2026-11-11T16:21:13.9648636Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:21:13.9649066Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-11T16:21:13.9649476Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:21:13.9649848Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:21:13.9650214Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:21:13.9650608Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-11T16:21:13.9650920Z ##[endgroup]
+2026-11-11T16:21:16.9597295Z npm warn ERESOLVE overriding peer dependency
+2026-11-11T16:21:16.9601479Z npm warn While resolving: @vitest/mocker@2.1.9
+2026-11-11T16:21:16.9602159Z npm warn Found: vite@7.1.12
+2026-11-11T16:21:16.9602837Z npm warn node_modules/vite
+2026-11-11T16:21:16.9603489Z npm warn   dev vite@"7.1.12" from the root project
+2026-11-11T16:21:16.9604303Z npm warn   2 more (@tailwindcss/vite, @vitejs/plugin-react)
+2026-11-11T16:21:16.9604953Z npm warn
+2026-11-11T16:21:16.9605497Z npm warn Could not resolve dependency:
+2026-11-11T16:21:16.9606446Z npm warn peerOptional vite@"^5.0.0" from @vitest/mocker@2.1.9
+2026-11-11T16:21:16.9607213Z npm warn node_modules/@vitest/mocker
+2026-11-11T16:21:16.9607882Z npm warn   @vitest/mocker@"2.1.9" from vitest@2.1.9
+2026-11-11T16:21:16.9608577Z npm warn   node_modules/vitest
+2026-11-11T16:21:16.9609104Z npm warn
+2026-11-11T16:21:16.9609692Z npm warn Conflicting peer dependency: vite@5.4.21
+2026-11-11T16:21:16.9610256Z npm warn node_modules/vite
+2026-11-11T16:21:16.9610947Z npm warn   peerOptional vite@"^5.0.0" from @vitest/mocker@2.1.9
+2026-11-11T16:21:16.9611628Z npm warn   node_modules/@vitest/mocker
+2026-11-11T16:21:16.9612268Z npm warn     @vitest/mocker@"2.1.9" from vitest@2.1.9
+2026-11-11T16:21:16.9612896Z npm warn     node_modules/vitest
+2026-11-11T16:22:00.1200087Z 
+2026-11-11T16:22:00.1201013Z added 581 packages, and audited 583 packages in 46s
+2026-11-11T16:22:00.1201927Z 
+2026-11-11T16:22:00.1202618Z 85 packages are looking for funding
+2026-11-11T16:22:00.1203228Z   run `npm fund` for details
+2026-11-11T16:22:00.3266013Z 
+2026-11-11T16:22:00.3269112Z 14 vulnerabilities (10 moderate, 2 high, 2 critical)
+2026-11-11T16:22:00.3269413Z 
+2026-11-11T16:22:00.3269619Z To address issues that do not require attention, run:
+2026-11-11T16:22:00.3269954Z   npm audit fix
+2026-11-11T16:22:00.3270106Z 
+2026-11-11T16:22:00.3270326Z To address all issues (including breaking changes), run:
+2026-11-11T16:22:00.3270663Z   npm audit fix --force
+2026-11-11T16:22:00.3270813Z 
+2026-11-11T16:22:00.3270929Z Run `npm audit` for details.
+2026-11-11T16:22:00.3820455Z ##[group]Run npm audit --omit=dev
+2026-11-11T16:22:00.3820785Z [36;1mnpm audit --omit=dev[0m
+2026-11-11T16:22:00.3834723Z shell: /usr/bin/bash -e {0}
+2026-11-11T16:22:00.3834988Z env:
+2026-11-11T16:22:00.3835256Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:00.3835677Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-11T16:22:00.3836353Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:00.3836729Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:00.3837173Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:00.3837637Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-11T16:22:00.3837949Z ##[endgroup]
+2026-11-11T16:22:00.7795610Z found 0 vulnerabilities
+2026-11-11T16:22:00.7893603Z ##[group]Run npm run typecheck
+2026-11-11T16:22:00.7893905Z [36;1mnpm run typecheck[0m
+2026-11-11T16:22:00.7894153Z [36;1mnpm run lint[0m
+2026-11-11T16:22:00.7894371Z [36;1mnpm test[0m
+2026-11-11T16:22:00.7908076Z shell: /usr/bin/bash -e {0}
+2026-11-11T16:22:00.7908333Z env:
+2026-11-11T16:22:00.7908604Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:00.7909031Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-11T16:22:00.7909441Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:00.7909803Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:00.7910179Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:00.7910549Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-11T16:22:00.7910858Z ##[endgroup]
+2026-11-11T16:22:00.8759257Z 
+2026-11-11T16:22:00.8759850Z > satmodclass-frontend@1.0.0 pretypecheck
+2026-11-11T16:22:00.8760410Z > node scripts/generate-routes.mjs
+2026-11-11T16:22:00.8760623Z 
+2026-11-11T16:22:00.9099893Z 
+2026-11-11T16:22:00.9100495Z > satmodclass-frontend@1.0.0 typecheck
+2026-11-11T16:22:00.9100933Z > tsc --noEmit
+2026-11-11T16:22:00.9101069Z 
+2026-11-11T16:22:08.8259275Z 
+2026-11-11T16:22:08.8259890Z > satmodclass-frontend@1.0.0 lint
+2026-11-11T16:22:08.8260322Z > eslint .
+2026-11-11T16:22:08.8260453Z 
+2026-11-11T16:22:10.8236389Z 
+2026-11-11T16:22:10.8254194Z /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend/src/components/ui/badge.tsx
+2026-11-11T16:22:10.8296836Z ##[warning]  32:17  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:22:10.8307929Z 
+2026-11-11T16:22:10.8309249Z /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend/src/components/ui/button.tsx
+2026-11-11T16:22:10.8312747Z ##[warning]  49:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:22:10.8314787Z 
+2026-11-11T16:22:10.8315970Z /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend/src/components/ui/form.tsx
+2026-11-11T16:22:10.8319010Z ##[warning]  163:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:22:10.8320894Z 
+2026-11-11T16:22:10.8322013Z /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend/src/components/ui/navigation-menu.tsx
+2026-11-11T16:22:10.8324986Z ##[warning]  111:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:22:10.8327130Z 
+2026-11-11T16:22:10.8328228Z /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend/src/components/ui/sidebar.tsx
+2026-11-11T16:22:10.8331337Z ##[warning]  743:3  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:22:10.8333287Z 
+2026-11-11T16:22:10.8334335Z /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend/src/components/ui/toggle.tsx
+2026-11-11T16:22:10.8337453Z ##[warning]  42:18  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:22:10.8339317Z 
+2026-11-11T16:22:10.8340417Z /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend/src/components/workspace-ui.tsx
+2026-11-11T16:22:10.8344030Z ##[warning]  173:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:22:10.8348244Z ##[warning]  175:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:22:10.8350136Z 
+2026-11-11T16:22:10.8351163Z /home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend/src/hooks/use-satmod.tsx
+2026-11-11T16:22:10.8354234Z ##[warning]   10:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:22:10.8358367Z ##[warning]   17:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:22:10.8362333Z ##[warning]   19:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:22:10.8366454Z ##[warning]   25:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:22:10.8370385Z ##[warning]   27:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:22:10.8374239Z ##[warning]   29:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:22:10.8378431Z ##[warning]   34:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:22:10.8382527Z ##[warning]   36:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:22:10.8386697Z ##[warning]   38:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:22:10.8389758Z ##[warning]  108:14  warning  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+2026-11-11T16:22:10.8390812Z 
+2026-11-11T16:22:10.8391197Z ✖ 18 problems (0 errors, 18 warnings)
+2026-11-11T16:22:10.8391389Z 
+2026-11-11T16:22:11.0478838Z 
+2026-11-11T16:22:11.0479506Z > satmodclass-frontend@1.0.0 pretest
+2026-11-11T16:22:11.0480170Z > node scripts/generate-routes.mjs
+2026-11-11T16:22:11.0480489Z 
+2026-11-11T16:22:11.0814658Z 
+2026-11-11T16:22:11.0815258Z > satmodclass-frontend@1.0.0 test
+2026-11-11T16:22:11.0815762Z > vitest run
+2026-11-11T16:22:11.0816089Z 
+2026-11-11T16:22:11.4380350Z 
+2026-11-11T16:22:11.4382466Z [1m[7m[36m RUN [39m[27m[22m [36mv2.1.9 [39m[90m/home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend[39m
+2026-11-11T16:22:11.4383542Z 
+2026-11-11T16:22:12.0131192Z  [32m✓[39m src/test/api.test.ts [2m([22m[2m11 tests[22m[2m)[22m[90m 37[2mms[22m[39m
+2026-11-11T16:22:12.0449261Z  [32m✓[39m src/test/orbital-simulation.test.ts [2m([22m[2m10 tests[22m[2m)[22m[90m 35[2mms[22m[39m
+2026-11-11T16:22:12.5328023Z  [32m✓[39m src/test/workspace-ui.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[90m 26[2mms[22m[39m
+2026-11-11T16:22:13.1802368Z  [32m✓[39m src/test/operations.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 349[2mms[22m[39m
+2026-11-11T16:22:13.4509415Z  [32m✓[39m src/test/app-routing.test.tsx [2m([22m[2m8 tests[22m[2m)[22m[90m 10[2mms[22m[39m
+2026-11-11T16:22:13.4637593Z 
+2026-11-11T16:22:13.4638690Z [2m Test Files [22m [1m[32m5 passed[39m[22m[90m (5)[39m
+2026-11-11T16:22:13.4639694Z [2m      Tests [22m [1m[32m40 passed[39m[22m[90m (40)[39m
+2026-11-11T16:22:13.4640451Z [2m   Start at [22m 16:22:11
+2026-11-11T16:22:13.4641844Z [2m   Duration [22m 2.02s[2m (transform 891ms, setup 514ms, collect 1.90s, tests 457ms, environment 565ms, prepare 482ms)[22m
+2026-11-11T16:22:13.4642675Z 
+2026-11-11T16:22:13.4900463Z ##[group]Run npm run test:integration
+2026-11-11T16:22:13.4900779Z [36;1mnpm run test:integration[0m
+2026-11-11T16:22:13.4913946Z shell: /usr/bin/bash -e {0}
+2026-11-11T16:22:13.4914198Z env:
+2026-11-11T16:22:13.4914465Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:13.4914912Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-11T16:22:13.4915331Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:13.4915696Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:13.4916257Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:13.4916636Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-11T16:22:13.4916957Z   SATMOD_PYTHON: python
+2026-11-11T16:22:13.4917176Z ##[endgroup]
+2026-11-11T16:22:13.5787157Z 
+2026-11-11T16:22:13.5787788Z > satmodclass-frontend@1.0.0 test:integration
+2026-11-11T16:22:13.5788654Z > vitest run --config vitest.integration.config.ts
+2026-11-11T16:22:13.5789027Z 
+2026-11-11T16:22:13.9275693Z 
+2026-11-11T16:22:13.9278395Z [1m[7m[36m RUN [39m[27m[22m [36mv2.1.9 [39m[90m/home/runner/work/satellite-modulation-classification/satellite-modulation-classification/frontend[39m
+2026-11-11T16:22:13.9279599Z 
+2026-11-11T16:22:17.5560393Z  [32m✓[39m src/test/fullstack.integration.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 3287[2mms[22m[39m
+2026-11-11T16:22:17.5561848Z    [33m[2m✓[22m[39m TypeScript API client → real Python model and DSP[2m > [22mloads health and genuine model metadata [33m661[2mms[22m[39m
+2026-11-11T16:22:17.5563038Z    [33m[2m✓[22m[39m TypeScript API client → real Python model and DSP[2m > [22manalyzes and compares the exact generated samples [33m354[2mms[22m[39m
+2026-11-11T16:22:17.5691548Z 
+2026-11-11T16:22:17.5702081Z [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+2026-11-11T16:22:17.5703615Z [2m      Tests [22m [1m[32m11 passed[39m[22m[90m (11)[39m
+2026-11-11T16:22:17.5704462Z [2m   Start at [22m 16:22:13
+2026-11-11T16:22:17.5705971Z [2m   Duration [22m 3.64s[2m (transform 93ms, setup 0ms, collect 98ms, tests 3.29s, environment 0ms, prepare 60ms)[22m
+2026-11-11T16:22:17.5706869Z 
+2026-11-11T16:22:17.6028570Z ##[group]Run npm --prefix frontend run build
+2026-11-11T16:22:17.6029432Z [36;1mnpm --prefix frontend run build[0m
+2026-11-11T16:22:17.6030212Z [36;1mpython scripts/check_production.py[0m
+2026-11-11T16:22:17.6051513Z shell: /usr/bin/bash -e {0}
+2026-11-11T16:22:17.6052133Z env:
+2026-11-11T16:22:17.6052826Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:17.6054039Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-11T16:22:17.6055228Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:17.6056230Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:17.6057044Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:17.6058102Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-11T16:22:17.6058938Z ##[endgroup]
+2026-11-11T16:22:17.7115103Z 
+2026-11-11T16:22:17.7115933Z > satmodclass-frontend@1.0.0 prebuild
+2026-11-11T16:22:17.7116662Z > node scripts/generate-routes.mjs
+2026-11-11T16:22:17.7116951Z 
+2026-11-11T16:22:17.7464418Z 
+2026-11-11T16:22:17.7465242Z > satmodclass-frontend@1.0.0 build
+2026-11-11T16:22:17.7466415Z > vite build
+2026-11-11T16:22:17.7466777Z 
+2026-11-11T16:22:18.0918779Z [36mvite v7.1.12 [32mbuilding for production...[36m[39m
+2026-11-11T16:22:18.1621936Z transforming...
+2026-11-11T16:22:38.9421668Z [32m✓[39m 3366 modules transformed.
+2026-11-11T16:22:39.6717061Z rendering chunks...
+2026-11-11T16:22:40.6642496Z computing gzip size...
+2026-11-11T16:22:40.7925028Z [2mdist/[22m[32mindex.html                            [39m[1m[2m    0.85 kB[22m[1m[22m[2m │ gzip:     0.48 kB[22m
+2026-11-11T16:22:40.7926237Z [2mdist/[22m[2massets/[22m[35mground-track-map-CIGW-MKW.css  [39m[1m[2m   15.61 kB[22m[1m[22m[2m │ gzip:     6.46 kB[22m
+2026-11-11T16:22:40.7927191Z [2mdist/[22m[2massets/[22m[35mindex-GHWTy0J_.css             [39m[1m[2m   98.92 kB[22m[1m[22m[2m │ gzip:    17.74 kB[22m
+2026-11-11T16:22:40.7928141Z [2mdist/[22m[2massets/[22m[36mground-track-map-Bt86yWIP.js   [39m[1m[2m  156.04 kB[22m[1m[22m[2m │ gzip:    45.90 kB[22m
+2026-11-11T16:22:40.7929190Z [2mdist/[22m[2massets/[22m[36mindex-BYaJufXb.js              [39m[1m[2m  580.50 kB[22m[1m[22m[2m │ gzip:   181.73 kB[22m
+2026-11-11T16:22:40.7930164Z [2mdist/[22m[2massets/[22m[36mearth-globe-CSpBQsoy.js        [39m[1m[2m  998.12 kB[22m[1m[22m[2m │ gzip:   270.02 kB[22m
+2026-11-11T16:22:40.7931298Z [2mdist/[22m[2massets/[22m[36mplotly.min-FQndyn-C.js         [39m[1m[2m4,776.97 kB[22m[1m[22m[2m │ gzip: 1,472.41 kB[22m
+2026-11-11T16:22:40.7932161Z [32m✓ built in 22.66s[39m
+2026-11-11T16:22:41.2193083Z /opt/hostedtoolcache/Python/3.11.18/x64/lib/python3.11/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+2026-11-11T16:22:41.2194964Z   from starlette.testclient import TestClient as TestClient  # noqa
+2026-11-11T16:22:42.0495050Z {"event": "request", "requestId": "22b51b3e-24b3-4a8d-8885-bf1436d1b4e2", "method": "GET", "path": "/", "status": 200, "elapsedMs": 17.53}
+2026-11-11T16:22:42.0499754Z HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-11-11T16:22:42.0538762Z {"event": "request", "requestId": "b6492843-5f64-43c0-b7d7-c1fa79511c2a", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 1.35}
+2026-11-11T16:22:42.0541909Z HTTP Request: GET http://testserver/classifier "HTTP/1.1 200 OK"
+2026-11-11T16:22:42.0578353Z {"event": "request", "requestId": "0f2efcfc-e151-4e2a-96f6-7b151b704749", "method": "GET", "path": "/studio", "status": 200, "elapsedMs": 1.31}
+2026-11-11T16:22:42.0581782Z HTTP Request: GET http://testserver/studio "HTTP/1.1 200 OK"
+2026-11-11T16:22:42.0619253Z {"event": "request", "requestId": "6823f6ea-30ce-4726-a881-507329772321", "method": "GET", "path": "/evaluation", "status": 200, "elapsedMs": 1.44}
+2026-11-11T16:22:42.0622973Z HTTP Request: GET http://testserver/evaluation "HTTP/1.1 200 OK"
+2026-11-11T16:22:42.0659344Z {"event": "request", "requestId": "61751dc0-5b55-4a94-ac64-b92c5f57170c", "method": "GET", "path": "/arena", "status": 200, "elapsedMs": 1.22}
+2026-11-11T16:22:42.0661691Z HTTP Request: GET http://testserver/arena "HTTP/1.1 200 OK"
+2026-11-11T16:22:42.0701252Z {"event": "request", "requestId": "96f8516c-5c43-4c7c-8594-9a64a341d11f", "method": "GET", "path": "/intelligence", "status": 200, "elapsedMs": 1.04}
+2026-11-11T16:22:42.0704793Z HTTP Request: GET http://testserver/intelligence "HTTP/1.1 200 OK"
+2026-11-11T16:22:42.0737456Z {"event": "request", "requestId": "8063f517-ab8f-4342-a311-102b060cede7", "method": "GET", "path": "/theory", "status": 200, "elapsedMs": 1.07}
+2026-11-11T16:22:42.0740138Z HTTP Request: GET http://testserver/theory "HTTP/1.1 200 OK"
+2026-11-11T16:22:42.0778928Z {"event": "request", "requestId": "e0fad45f-f4af-42b5-9d40-3a6d8d212738", "method": "GET", "path": "/settings", "status": 200, "elapsedMs": 1.12}
+2026-11-11T16:22:42.0783866Z HTTP Request: GET http://testserver/settings "HTTP/1.1 200 OK"
+2026-11-11T16:22:42.0816841Z {"event": "request", "requestId": "ce0d6090-9e1d-43ce-b2b5-05e944524afb", "method": "GET", "path": "/", "status": 200, "elapsedMs": 1.1}
+2026-11-11T16:22:42.0818689Z HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+2026-11-11T16:22:42.0855286Z {"event": "request", "requestId": "715ce7f2-6f26-40e7-9f3c-b6492e7e23ac", "method": "GET", "path": "/assets/index-BYaJufXb.js", "status": 200, "elapsedMs": 0.94}
+2026-11-11T16:22:42.0858509Z HTTP Request: GET http://testserver/assets/index-BYaJufXb.js "HTTP/1.1 200 OK"
+2026-11-11T16:22:42.0928571Z {"event": "request", "requestId": "d511213a-ff2a-4fb3-a9ec-d8307d1cafab", "method": "GET", "path": "/assets/index-GHWTy0J_.css", "status": 200, "elapsedMs": 0.89}
+2026-11-11T16:22:42.0930714Z HTTP Request: GET http://testserver/assets/index-GHWTy0J_.css "HTTP/1.1 200 OK"
+2026-11-11T16:22:42.1011413Z {"event": "request", "requestId": "9b2ae234-49ef-44b7-9f32-4f1bd3f4bc31", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 5.1}
+2026-11-11T16:22:42.1013089Z HTTP Request: GET http://testserver/api/health "HTTP/1.1 200 OK"
+2026-11-11T16:22:42.1041188Z {"event": "request", "requestId": "2ed3f028-0813-4d29-9db5-739d46ac8a2c", "method": "GET", "path": "/api/does-not-exist", "status": 404, "elapsedMs": 0.83}
+2026-11-11T16:22:42.1043319Z HTTP Request: GET http://testserver/api/does-not-exist "HTTP/1.1 404 Not Found"
+2026-11-11T16:22:42.1064458Z {
+2026-11-11T16:22:42.1065080Z   "spaRoutesChecked": [
+2026-11-11T16:22:42.1065732Z     "/",
+2026-11-11T16:22:42.1066466Z     "/classifier",
+2026-11-11T16:22:42.1067071Z     "/studio",
+2026-11-11T16:22:42.1067648Z     "/evaluation",
+2026-11-11T16:22:42.1068236Z     "/arena",
+2026-11-11T16:22:42.1068817Z     "/intelligence",
+2026-11-11T16:22:42.1069455Z     "/theory",
+2026-11-11T16:22:42.1070038Z     "/settings"
+2026-11-11T16:22:42.1070618Z   ],
+2026-11-11T16:22:42.1071222Z   "indexAssetsChecked": [
+2026-11-11T16:22:42.1072057Z     "/assets/index-BYaJufXb.js",
+2026-11-11T16:22:42.1072914Z     "/assets/index-GHWTy0J_.css"
+2026-11-11T16:22:42.1073663Z   ],
+2026-11-11T16:22:42.1074198Z   "health": 200,
+2026-11-11T16:22:42.1074803Z   "unknownApi": 404
+2026-11-11T16:22:42.1075421Z }
+2026-11-11T16:22:42.2444722Z ##[group]Run npx playwright install --with-deps chromium
+2026-11-11T16:22:42.2445218Z [36;1mnpx playwright install --with-deps chromium[0m
+2026-11-11T16:22:42.2460304Z shell: /usr/bin/bash -e {0}
+2026-11-11T16:22:42.2460600Z env:
+2026-11-11T16:22:42.2460922Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:42.2461445Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-11T16:22:42.2461938Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:42.2462375Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:42.2462811Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:22:42.2463259Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-11T16:22:42.2463657Z ##[endgroup]
+2026-11-11T16:22:42.9800367Z Installing dependencies...
+2026-11-11T16:22:42.9855137Z Switching to root user to install dependencies...
+2026-11-11T16:22:43.0878300Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-11-11T16:22:43.1188232Z Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+2026-11-11T16:22:43.2322965Z Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [693 kB]
+2026-11-11T16:22:43.2450286Z Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.6 kB]
+2026-11-11T16:22:43.2473399Z Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [764 kB]
+2026-11-11T16:23:03.1181526Z Ign:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+2026-11-11T16:23:23.1396781Z Ign:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease
+2026-11-11T16:23:43.1680086Z Ign:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease
+2026-11-11T16:24:03.1931724Z Ign:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease
+2026-11-11T16:24:23.2201053Z Ign:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+2026-11-11T16:24:43.2459044Z Ign:2 https://archive.ubuntu.com/ubuntu noble InRelease
+2026-11-11T16:24:43.2510971Z Ign:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease
+2026-11-11T16:25:02.1273730Z Ign:3 https://archive.ubuntu.com/ubuntu noble-updates InRelease
+2026-11-11T16:25:03.2731725Z Ign:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease
+2026-11-11T16:25:03.2762006Z Err:2 https://security.ubuntu.com/ubuntu noble InRelease
+2026-11-11T16:25:03.2762899Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:25:23.1496478Z Ign:4 https://archive.ubuntu.com/ubuntu noble-backports InRelease
+2026-11-11T16:25:23.2985343Z Err:3 https://security.ubuntu.com/ubuntu noble-updates InRelease
+2026-11-11T16:25:23.2986181Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:25:23.3010756Z Ign:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease
+2026-11-11T16:25:43.3262579Z Err:4 https://security.ubuntu.com/ubuntu noble-backports InRelease
+2026-11-11T16:25:43.3263222Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:25:43.3322922Z Ign:5 https://archive.ubuntu.com/ubuntu noble-security InRelease
+2026-11-11T16:26:03.3538348Z Err:5 https://security.ubuntu.com/ubuntu noble-security InRelease
+2026-11-11T16:26:03.3539335Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:26:09.4693152Z Fetched 1473 kB in 3min 20s (7355 B/s)
+2026-11-11T16:26:10.6004515Z Reading package lists...
+2026-11-11T16:26:10.6145101Z W: Failed to fetch mirror+file:/etc/apt/apt-mirrors.txt/dists/noble/InRelease  Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:26:10.6147105Z W: Failed to fetch mirror+file:/etc/apt/apt-mirrors.txt/dists/noble-updates/InRelease  Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:26:10.6149035Z W: Failed to fetch mirror+file:/etc/apt/apt-mirrors.txt/dists/noble-backports/InRelease  Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:26:10.6151374Z W: Failed to fetch mirror+file:/etc/apt/apt-mirrors.txt/dists/noble-security/InRelease  Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:26:10.6152205Z W: Some index files failed to download. They have been ignored, or old ones used instead.
+2026-11-11T16:26:10.6288985Z Reading package lists...
+2026-11-11T16:26:10.8616818Z Building dependency tree...
+2026-11-11T16:26:10.8623242Z Reading state information...
+2026-11-11T16:26:11.0146706Z libasound2t64 is already the newest version (1.2.11-1ubuntu0.3).
+2026-11-11T16:26:11.0147499Z libasound2t64 set to manually installed.
+2026-11-11T16:26:11.0148133Z libatk-bridge2.0-0t64 is already the newest version (2.52.0-1build1).
+2026-11-11T16:26:11.0148884Z libatk-bridge2.0-0t64 set to manually installed.
+2026-11-11T16:26:11.0149777Z libatk1.0-0t64 is already the newest version (2.52.0-1build1).
+2026-11-11T16:26:11.0150340Z libatk1.0-0t64 set to manually installed.
+2026-11-11T16:26:11.0150832Z libatspi2.0-0t64 is already the newest version (2.52.0-1build1).
+2026-11-11T16:26:11.0151323Z libatspi2.0-0t64 set to manually installed.
+2026-11-11T16:26:11.0151790Z libcairo2 is already the newest version (1.18.0-3build1).
+2026-11-11T16:26:11.0152246Z libcairo2 set to manually installed.
+2026-11-11T16:26:11.0152847Z libcups2t64 is already the newest version (2.4.7-1.2ubuntu7.14).
+2026-11-11T16:26:11.0153502Z libcups2t64 set to manually installed.
+2026-11-11T16:26:11.0153984Z libdbus-1-3 is already the newest version (1.14.10-4ubuntu4.1).
+2026-11-11T16:26:11.0154447Z libdbus-1-3 set to manually installed.
+2026-11-11T16:26:11.0154935Z libdrm2 is already the newest version (2.4.125-1ubuntu0.1~24.04.2).
+2026-11-11T16:26:11.0155410Z libdrm2 set to manually installed.
+2026-11-11T16:26:11.0156106Z libgbm1 is already the newest version (25.2.8-0ubuntu0.24.04.4).
+2026-11-11T16:26:11.0156777Z libgbm1 set to manually installed.
+2026-11-11T16:26:11.0157612Z libglib2.0-0t64 is already the newest version (2.80.0-6ubuntu3.10).
+2026-11-11T16:26:11.0158102Z libglib2.0-0t64 set to manually installed.
+2026-11-11T16:26:11.0158593Z libnspr4 is already the newest version (2:4.35-1.1build1).
+2026-11-11T16:26:11.0159046Z libnspr4 set to manually installed.
+2026-11-11T16:26:11.0159588Z libnss3 is already the newest version (2:3.98-1ubuntu0.3).
+2026-11-11T16:26:11.0160016Z libnss3 set to manually installed.
+2026-11-11T16:26:11.0160495Z libpango-1.0-0 is already the newest version (1.52.1+ds-1build1).
+2026-11-11T16:26:11.0160969Z libpango-1.0-0 set to manually installed.
+2026-11-11T16:26:11.0161524Z libx11-6 is already the newest version (2:1.8.7-1ubuntu0.1).
+2026-11-11T16:26:11.0161965Z libx11-6 set to manually installed.
+2026-11-11T16:26:11.0162391Z libxcb1 is already the newest version (1.15-1ubuntu2).
+2026-11-11T16:26:11.0162807Z libxcb1 set to manually installed.
+2026-11-11T16:26:11.0163280Z libxcomposite1 is already the newest version (1:0.4.5-1build3).
+2026-11-11T16:26:11.0163763Z libxcomposite1 set to manually installed.
+2026-11-11T16:26:11.0164256Z libxdamage1 is already the newest version (1:1.1.6-1build1).
+2026-11-11T16:26:11.0164724Z libxdamage1 set to manually installed.
+2026-11-11T16:26:11.0165233Z libxext6 is already the newest version (2:1.3.4-1build2).
+2026-11-11T16:26:11.0165683Z libxext6 set to manually installed.
+2026-11-11T16:26:11.0166446Z libxfixes3 is already the newest version (1:6.0.0-2build1).
+2026-11-11T16:26:11.0166895Z libxfixes3 set to manually installed.
+2026-11-11T16:26:11.0167360Z libxkbcommon0 is already the newest version (1.6.0-1build1).
+2026-11-11T16:26:11.0167815Z libxkbcommon0 set to manually installed.
+2026-11-11T16:26:11.0168286Z libxrandr2 is already the newest version (2:1.5.2-2build1).
+2026-11-11T16:26:11.0168726Z libxrandr2 set to manually installed.
+2026-11-11T16:26:11.0169195Z xvfb is already the newest version (2:21.1.12-1ubuntu1.9).
+2026-11-11T16:26:11.0169814Z fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.24.04.1).
+2026-11-11T16:26:11.0170461Z libfontconfig1 is already the newest version (2.15.0-1.1ubuntu2).
+2026-11-11T16:26:11.0171116Z libfontconfig1 set to manually installed.
+2026-11-11T16:26:11.0171629Z libfreetype6 is already the newest version (2.13.2+dfsg-1ubuntu0.2).
+2026-11-11T16:26:11.0172127Z libfreetype6 set to manually installed.
+2026-11-11T16:26:11.0172602Z fonts-liberation is already the newest version (1:2.1.5-3).
+2026-11-11T16:26:11.0173070Z fonts-liberation set to manually installed.
+2026-11-11T16:26:11.0173526Z The following additional packages will be installed:
+2026-11-11T16:26:11.0173941Z   xfonts-encodings xfonts-utils
+2026-11-11T16:26:11.0174280Z Recommended packages:
+2026-11-11T16:26:11.0174614Z   fonts-ipafont-mincho fonts-tlwg-loma
+2026-11-11T16:26:11.0364993Z The following NEW packages will be installed:
+2026-11-11T16:26:11.0365572Z   fonts-freefont-ttf fonts-ipafont-gothic fonts-tlwg-loma-otf fonts-unifont
+2026-11-11T16:26:11.0372947Z   fonts-wqy-zenhei xfonts-cyrillic xfonts-encodings xfonts-scalable
+2026-11-11T16:26:11.0373416Z   xfonts-utils
+2026-11-11T16:26:11.0539178Z 0 upgraded, 9 newly installed, 0 to remove and 3 not upgraded.
+2026-11-11T16:26:11.0539647Z Need to get 21.1 MB of archives.
+2026-11-11T16:26:11.0540068Z After this operation, 79.5 MB of additional disk space will be used.
+2026-11-11T16:26:11.0540552Z Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+2026-11-11T16:26:31.0879382Z Ign:2 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1
+2026-11-11T16:26:51.1164592Z Ign:3 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 fonts-freefont-ttf all 20211204+svn4273-2
+2026-11-11T16:27:11.1422011Z Ign:4 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1
+2026-11-11T16:27:31.1729310Z Ign:5 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-unifont all 1:15.1.01-1build1
+2026-11-11T16:27:51.1980714Z Ign:6 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-wqy-zenhei all 0.9.45-8
+2026-11-11T16:28:11.2183234Z Ign:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2
+2026-11-11T16:28:31.2378556Z Ign:8 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3
+2026-11-11T16:28:51.2653648Z Ign:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1
+2026-11-11T16:29:11.2820995Z Ign:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3
+2026-11-11T16:29:31.2260136Z Ign:2 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1
+2026-11-11T16:29:51.2485248Z Ign:3 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 fonts-freefont-ttf all 20211204+svn4273-2
+2026-11-11T16:29:51.2539987Z Ign:2 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1
+2026-11-11T16:30:11.2748272Z Ign:4 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1
+2026-11-11T16:30:11.2779689Z Err:2 https://security.ubuntu.com/ubuntu noble/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1
+2026-11-11T16:30:11.2780528Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:30:11.2901768Z Ign:3 https://archive.ubuntu.com/ubuntu noble/main amd64 fonts-freefont-ttf all 20211204+svn4273-2
+2026-11-11T16:30:30.9158476Z Ign:5 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-unifont all 1:15.1.01-1build1
+2026-11-11T16:30:31.3133156Z Err:3 https://security.ubuntu.com/ubuntu noble/main amd64 fonts-freefont-ttf all 20211204+svn4273-2
+2026-11-11T16:30:31.3133887Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:30:31.3167572Z Ign:4 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1
+2026-11-11T16:30:50.9409885Z Ign:6 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-wqy-zenhei all 0.9.45-8
+2026-11-11T16:30:51.3358679Z Err:4 https://security.ubuntu.com/ubuntu noble/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1
+2026-11-11T16:30:51.3359421Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:30:51.3411919Z Ign:5 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-unifont all 1:15.1.01-1build1
+2026-11-11T16:31:10.9657398Z Ign:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2
+2026-11-11T16:31:11.3624295Z Err:5 https://security.ubuntu.com/ubuntu noble/universe amd64 fonts-unifont all 1:15.1.01-1build1
+2026-11-11T16:31:11.3625027Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:31:11.3657268Z Ign:6 https://archive.ubuntu.com/ubuntu noble/universe amd64 fonts-wqy-zenhei all 0.9.45-8
+2026-11-11T16:31:30.9898002Z Ign:8 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3
+2026-11-11T16:31:31.3914703Z Ign:7 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2
+2026-11-11T16:31:31.4004198Z Err:6 https://security.ubuntu.com/ubuntu noble/universe amd64 fonts-wqy-zenhei all 0.9.45-8
+2026-11-11T16:31:31.4005039Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:31:51.0157921Z Ign:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1
+2026-11-11T16:31:51.4201147Z Err:7 https://security.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2
+2026-11-11T16:31:51.4201876Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:31:51.4212344Z Ign:8 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3
+2026-11-11T16:32:11.0421075Z Ign:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3
+2026-11-11T16:32:11.4423377Z Err:8 https://security.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3
+2026-11-11T16:32:11.4466463Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:32:11.4467648Z Ign:9 https://archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1
+2026-11-11T16:32:31.4743757Z Ign:10 https://archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3
+2026-11-11T16:32:31.4755233Z Err:9 https://security.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1
+2026-11-11T16:32:31.4756647Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:32:51.5011130Z Err:10 https://security.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3
+2026-11-11T16:32:51.5012038Z   Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:32:51.5063265Z E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/universe/f/fonts-ipafont/fonts-ipafont-gothic_00303-21ubuntu1_all.deb  Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:32:51.5066593Z E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/main/f/fonts-freefont/fonts-freefont-ttf_20211204%2bsvn4273-2_all.deb  Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:32:51.5069529Z E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/universe/f/fonts-tlwg/fonts-tlwg-loma-otf_0.7.3-1_all.deb  Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:32:51.5072313Z E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/universe/u/unifont/fonts-unifont_15.1.01-1build1_all.deb  Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:32:51.5074584Z E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/universe/f/fonts-wqy-zenhei/fonts-wqy-zenhei_0.9.45-8_all.deb  Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:32:51.5077024Z E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/main/x/xfonts-encodings/xfonts-encodings_1.0.5-0ubuntu2_all.deb  Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:32:51.5079229Z E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/main/x/xfonts-utils/xfonts-utils_7.7%2b6build3_amd64.deb  Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:32:51.5081684Z E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/universe/x/xfonts-cyrillic/xfonts-cyrillic_1.0.5%2bnmu1_all.deb  Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:32:51.5084229Z E: Failed to fetch https://security.ubuntu.com/ubuntu/pool/main/x/xfonts-scalable/xfonts-scalable_1.0.3-1.3_all.deb  Temporary failure resolving 'azure.archive.ubuntu.com'
+2026-11-11T16:32:51.5085974Z E: Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?
+2026-11-11T16:32:51.5091063Z Failed to install browsers
+2026-11-11T16:32:51.5092205Z Error: Installation process exited with code: 100
+2026-11-11T16:32:51.5254706Z ##[error]Process completed with exit code 1.
+2026-11-11T16:32:51.5346575Z ##[group]Run actions/upload-artifact@v4
+2026-11-11T16:32:51.5346881Z with:
+2026-11-11T16:32:51.5347154Z   name: production-browser-diagnostics-ubuntu-latest
+2026-11-11T16:32:51.5347611Z   path: frontend/playwright-report/
+frontend/test-results/
+integration/validation/
+
+2026-11-11T16:32:51.5348029Z   retention-days: 14
+2026-11-11T16:32:51.5348257Z   if-no-files-found: warn
+2026-11-11T16:32:51.5348487Z   compression-level: 6
+2026-11-11T16:32:51.5348705Z   overwrite: false
+2026-11-11T16:32:51.5348921Z   include-hidden-files: false
+2026-11-11T16:32:51.5349149Z env:
+2026-11-11T16:32:51.5349393Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:32:51.5349805Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig
+2026-11-11T16:32:51.5350212Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:32:51.5350578Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:32:51.5350974Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-11T16:32:51.5351342Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib
+2026-11-11T16:32:51.5351650Z ##[endgroup]
+2026-11-11T16:32:51.7004684Z (node:3262) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-11T16:32:51.7005962Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-11T16:32:51.7100315Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-11-11T16:32:51.7103849Z The least common ancestor is /home/runner/work/satellite-modulation-classification/satellite-modulation-classification. This will be the root directory of the artifact
+2026-11-11T16:32:51.7105385Z With the provided path, there will be 27 files uploaded
+2026-11-11T16:32:51.7109379Z Artifact name is valid!
+2026-11-11T16:32:51.7110068Z Root directory input is valid!
+2026-11-11T16:32:52.0962145Z Beginning upload of artifact content to blob storage
+2026-11-11T16:32:52.2440185Z (node:3262) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-11T16:32:52.9721372Z Uploaded bytes 3040715
+2026-11-11T16:32:53.0471376Z Finished uploading artifact content to blob storage!
+2026-11-11T16:32:53.0472434Z SHA256 digest of uploaded artifact zip is ba09877b665dcf51959b020a18c1e1989c23c3a733ee3f92dbee491de4b2ca5d
+2026-11-11T16:32:53.0473986Z Finalizing artifact upload
+2026-11-11T16:32:53.4722030Z Artifact production-browser-diagnostics-ubuntu-latest.zip successfully finalized. Artifact ID 13872626775
+2026-11-11T16:32:53.4724183Z Artifact production-browser-diagnostics-ubuntu-latest has been successfully uploaded! Final size is 3040715 bytes. Artifact ID is 13872626775
+2026-11-11T16:32:53.4730412Z Artifact download URL: https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/actions/runs/43057384206/artifacts/13872626775
+2026-11-11T16:32:53.4939155Z Post job cleanup.
+2026-11-11T16:32:53.5787223Z [command]/usr/bin/git version
+2026-11-11T16:32:53.5811486Z git version 2.56.0
+2026-11-11T16:32:53.5856398Z Temporarily overriding HOME='/home/runner/work/_temp/0384de02-c778-4d76-9b49-7ab814c5cb3b' before making global git config changes
+2026-11-11T16:32:53.5857402Z Adding repository directory to the temporary git global config as a safe directory
+2026-11-11T16:32:53.5863318Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/satellite-modulation-classification/satellite-modulation-classification
+2026-11-11T16:32:53.5904001Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-11-11T16:32:53.5936558Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-11-11T16:32:53.6141495Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-11-11T16:32:53.6165927Z http.https://github.com/.extraheader
+2026-11-11T16:32:53.6176795Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-11-11T16:32:53.6206536Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-11-11T16:32:53.6420642Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-11-11T16:32:53.6456734Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-11-11T16:32:53.6809723Z Cleaning up orphan processes
+2026-11-11T16:32:53.7121251Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-node@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

@@ -14,7 +14,7 @@ def diagnostics(iq, fs, modulation=None, full_scale=None):
         phase=(z/np.abs(z))**m
         coherence=np.mean(phase[1:]*phase[:-1].conj())
         if abs(coherence)>1e-8:cfo={'estimate':float(np.angle(coherence)*fs/(2*np.pi*m)), 'estimateHz':float(np.angle(coherence)*fs/(2*np.pi*m)) if fs!=1 else None,'unit':'Hz' if fs!=1 else 'cycles/sample', 'coherence':float(abs(coherence)),
-            'ambiguityIntervalHz':[-fs/(2*m),fs/(2*m)],'method':f'{m}th-power adjacent phase increment',
+            'ambiguityInterval':[-fs/(2*m),fs/(2*m)],'ambiguityIntervalHz':[-fs/(2*m),fs/(2*m)] if fs!=1 else None,'method':f'{m}th-power adjacent phase increment',
             'assumptions':'Known M-PSK, adequate SNR, negligible symbol/pulse/fading bias. Diagnostic estimate; not carrier recovery or measured CFO.'}
     width=max(1,int(np.ceil(len(x)/256)))
     trajectory=[{'sample':i,'seconds':i/fs,'power':float(power[i:i+width].mean()),'envelope':float(np.sqrt(power[i:i+width]).mean())} for i in range(0,len(x),width)]

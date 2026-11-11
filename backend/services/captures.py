@@ -41,19 +41,38 @@ def finite_block(block):
     return block.astype(np.float32)
 
 
-def import_capture(upload, options: ImportOptions, sigmf: dict | None=None) -> dict:
-    record_id=str(uuid4());temporary=store.file_path(record_id,'upload');destination=store.file_path(record_id,'iq')
-    sha=hashlib.sha256();sha512=hashlib.sha512();size=0; mapped=None
+def stage_upload(upload, record_id=None):
+    """Spool once, before returning an import job; retain no caller file handle."""
+    record_id=store.identifier(record_id) if record_id else str(uuid4())
+    temporary=store.file_path(record_id,'upload')
+    sha=hashlib.sha256();sha512=hashlib.sha512();size=0
     try:
-        with store.LOCK, temporary.open('wb') as target:
+        with temporary.open('xb') as target:
             while True:
                 chunk=upload.file.read(1024**2)
                 if not chunk:break
                 size+=len(chunk)
                 if size>IMPORT_LIMIT:raise ValueError('Capture upload exceeds configured external-import size limit.')
-                store.quota(len(chunk));sha.update(chunk);sha512.update(chunk);target.write(chunk)
+                with store.LOCK:
+                    store.quota(len(chunk));target.write(chunk)
+                sha.update(chunk);sha512.update(chunk)
         if not size:raise ValueError('Capture is empty.')
-        metadata=options.model_dump();metadata.update(filename=Path(upload.filename or 'capture').name[:200],acquisitionType='external',sourceHash=sha.hexdigest(),importBytes=size)
+        return {'id':record_id,'filename':Path(upload.filename or 'capture').name[:200],
+                'size':size,'sourceHash':sha.hexdigest(),'sha512':sha512.hexdigest()}
+    except BaseException:
+        temporary.unlink(missing_ok=True);raise
+
+
+def import_capture(upload, options: ImportOptions, sigmf: dict | None=None, *, staged=None, progress=None) -> dict:
+    """Decode staged bytes in bounded blocks. Progress may raise to cancel safely."""
+    staged=staged if staged is not None else stage_upload(upload)
+    record_id=staged['id'];temporary=store.file_path(record_id,'upload');destination=store.file_path(record_id,'iq')
+    size=staged['size'];mapped=None
+    def notify(phase, fraction):
+        if progress:progress(phase,fraction)
+    try:
+        notify('validating metadata',0)
+        metadata=options.model_dump();metadata.update(filename=staged['filename'],acquisitionType='external',sourceHash=staged['sourceHash'],importBytes=size)
         rate=options.sampleRate;dtype=options.datatype;layout=options.layout;order=options.iqOrder
         if options.format=='sigmf':
             if not isinstance(sigmf,dict) or not isinstance(sigmf.get('global'),dict):raise ValueError('A SigMF metadata object with global properties is required.')
@@ -66,7 +85,7 @@ def import_capture(upload, options: ImportOptions, sigmf: dict | None=None) -> d
             if g.get('core:num_channels',1)!=1 or g.get('core:trailing_bytes',0) or g.get('core:offset',0):raise ValueError('Only conforming single-channel SigMF datasets without headers/trailers/global offsets are supported.')
             if any(e.get('optional',False) is not True for e in g.get('core:extensions',[])):
                 raise ValueError('Required SigMF extensions are not supported.')
-            if g.get('core:sha512') and (not isinstance(g['core:sha512'],str) or g['core:sha512'].lower()!=sha512.hexdigest()):raise ValueError('SigMF data SHA-512 does not match metadata.')
+            if g.get('core:sha512') and (not isinstance(g['core:sha512'],str) or g['core:sha512'].lower()!=staged['sha512']):raise ValueError('SigMF data SHA-512 does not match metadata.')
             if 'core:dataset' in g and g['core:dataset']!=metadata['filename']:raise ValueError('SigMF dataset must match the uploaded filename; external paths are never opened.')
             layout='interleaved';order='IQ';metadata['sigmf']=sigmf
             metadata['description']=str(g.get('core:description',''))[:2000]
@@ -132,29 +151,38 @@ def import_capture(upload, options: ImportOptions, sigmf: dict | None=None) -> d
                 if 'core:datetime' in capture:
                     if not isinstance(capture['core:datetime'],str) or not capture['core:datetime'].endswith('Z'):raise ValueError('SigMF timestamps must be UTC with Z suffix.')
                     datetime.fromisoformat(capture['core:datetime'].replace('Z','+00:00'))
-        with store.LOCK:
-            store.quota((end-start)*8)
-            digest=hashlib.sha256()
-            with destination.open('wb') as target:
-                for block in blocks(start,end):
-                    data=block.astype('<f4').tobytes();digest.update(data);target.write(data)
-            metadata.update(id=record_id,sampleCount=end-start,sourceSampleCount=source_count,sampleRate=float(rate),
+        with store.LOCK:store.quota((end-start)*8)
+        digest=hashlib.sha256();written=0
+        with destination.open('xb') as target:
+            for block in blocks(start,end):
+                notify('decoding samples',.9*written/(end-start))
+                data=block.astype('<f4').tobytes();digest.update(data)
+                with store.LOCK:
+                    store.quota(len(data));target.write(data)
+                written+=len(block)
+        metadata.update(id=record_id,sampleCount=end-start,sourceSampleCount=source_count,sampleRate=float(rate),
                             sampleRateKnown=options.format!='application' or options.sampleRate is not None or detected_rate!=1,
                             sourceOffset=start,datatype=dtype or 'parsed application format',layout=layout,iqOrder=order,
                             hash=digest.hexdigest(),preprocessing='Raw calibrated sample units preserved; saved model z-score only at inference.')
-            # Provenance/split checks are transactional with other imports.
+        notify('checking provenance',.9)
+        if options.split!='unassigned':
+            data=np.memmap(destination,dtype='<f4',mode='r',shape=(end-start,2))
+            from training.data import forbidden_demo_frame_hashes
+            forbidden=forbidden_demo_frame_hashes()
+            try:
+                for i in range(0,len(data)-127,128):
+                    if i%65536==0:notify('checking provenance',.9+.09*i/len(data))
+                    if hashlib.sha256(data[i:i+128].tobytes()).digest() in forbidden:
+                        raise ValueError('Original demo frames have unknown split membership and cannot be assigned a fitting/evaluation split.')
+            finally:data._mmap.close()
+        # Provenance/split checks and the record commit are serialized. No
+        # cancellation point follows the commit: the completed capture survives.
+        with store.LOCK:
             existing=all_captures()
             if options.split!='unassigned':
                 for prior in existing:
-                    if prior['split'] not in ['unassigned',options.split] and (prior['sessionId']==options.sessionId or prior['sourceHash']==sha.hexdigest() or prior['hash']==metadata['hash']):
+                    if prior['split'] not in ['unassigned',options.split] and (prior['sessionId']==options.sessionId or prior['sourceHash']==staged['sourceHash'] or prior['hash']==metadata['hash']):
                         raise ValueError('Dataset split contamination: related session/source or duplicate capture crosses splits.')
-                data=np.memmap(destination,dtype='<f4',mode='r',shape=(end-start,2))
-                from training.data import forbidden_demo_frame_hashes
-                forbidden=forbidden_demo_frame_hashes()
-                try:
-                    if any(hashlib.sha256(data[i:i+128].tobytes()).digest() in forbidden for i in range(0,len(data)-127,128)):
-                        raise ValueError('Original demo frames have unknown split membership and cannot be assigned a fitting/evaluation split.')
-                finally:data._mmap.close()
             return store.put('capture',metadata)
     except BaseException:
         destination.unlink(missing_ok=True);raise
@@ -199,12 +227,18 @@ def inspect(record_id,start=0,length=128):
 
 
 def overview(record_id):
-    meta=store.get('capture',record_id)
-    mm=np.memmap(store.file_path(record_id,'iq'),dtype='<f4',mode='r',shape=(meta['sampleCount'],2))
-    width=max(128,int(np.ceil(len(mm)/512)));points=[]
-    for start in range(0,len(mm),width):
-        segment=np.asarray(mm[start:start+width],dtype=np.float64)
-        power=np.sum(segment**2,axis=1)
-        points.append({'sample':start,'seconds':start/meta['sampleRate'] if meta.get('sampleRateKnown') else None,'power':float(power.mean()),'peakPower':float(power.max())})
-    del mm
+    # Hold the file reference lock to prevent concurrent deletion, including on
+    # Windows. Temporary allocations stay bounded even if the import cap grows.
+    with store.LOCK:
+        meta=store.get('capture',record_id)
+        mm=np.memmap(store.file_path(record_id,'iq'),dtype='<f4',mode='r',shape=(meta['sampleCount'],2))
+        try:
+            width=max(128,int(np.ceil(len(mm)/512)));points=[]
+            for start in range(0,len(mm),width):
+                end=min(len(mm),start+width);total=0.;peak=0.
+                for offset in range(start,end,65536):
+                    segment=np.asarray(mm[offset:min(end,offset+65536)],dtype=np.float64)
+                    power=np.sum(segment**2,axis=1);total+=float(power.sum());peak=max(peak,float(power.max()))
+                points.append({'sample':start,'seconds':start/meta['sampleRate'] if meta.get('sampleRateKnown') else None,'power':total/(end-start),'peakPower':peak})
+        finally:mm._mmap.close()
     return {'metadata':meta,'points':points,'note':'Contiguous power bins, not individual packets. Full-resolution data remains on disk.'}

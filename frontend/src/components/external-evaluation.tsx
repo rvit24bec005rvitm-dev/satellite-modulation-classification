@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { operationsApi, operationDownload } from "@/lib/operations-api";
 import { Surface, Field, Message } from "@/components/workspace-ui";
@@ -7,24 +7,38 @@ export function ExternalEvaluation() {
   const cache = useQueryClient();
   const [text, setText] = useState("");
   const [jobId, setJobId] = useState("");
+  const [offset, setOffset] = useState(0);
+  const [search, setSearch] = useState("");
   const datasets = useQuery({
-    queryKey: ["external-datasets"],
-    queryFn: () => operationsApi.datasets(),
+    queryKey: ["external-datasets", offset, search],
+    queryFn: () => operationsApi.datasets(offset, search),
   });
-  const jobs = useQuery({
-    queryKey: ["workspace-jobs"],
-    queryFn: () => operationsApi.jobs(),
-    refetchInterval: 1500,
+  const jobStatus = useQuery({
+    queryKey: ["workspace-job", jobId],
+    queryFn: () => operationsApi.job(jobId),
+    enabled: !!jobId,
+    refetchInterval: (query) =>
+      ["completed", "failed", "cancelled"].includes(query.state.data?.state ?? "") ? false : 1000,
   });
-  const job = jobs.data?.items.find((j) => j.id === jobId);
+  const job = jobStatus.data;
+  useEffect(() => {
+    if (job?.kind === "dataset-import" && job.state === "completed") {
+      setOffset(0);
+      setSearch("");
+      void cache.invalidateQueries({ queryKey: ["external-datasets"] });
+    }
+  }, [job?.id, job?.kind, job?.state, cache]);
   const result = useQuery({
     queryKey: ["external-eval-result", jobId],
     queryFn: () => operationsApi.result(jobId),
-    enabled: job?.state === "completed",
+    enabled: job?.state === "completed" && job.kind === "evaluation",
   });
   const register = useMutation({
-    mutationFn: () => operationsApi.register(JSON.parse(text)),
-    onSuccess: () => void cache.invalidateQueries({ queryKey: ["external-datasets"] }),
+    mutationFn: () => operationsApi.registerJob(JSON.parse(text)),
+    onSuccess: (j) => {
+      setJobId(j.id);
+      void cache.invalidateQueries({ queryKey: ["workspace-jobs"] });
+    },
   });
   const action = useMutation({ mutationFn: (fn: () => Promise<unknown>) => fn() });
   return (
@@ -69,8 +83,11 @@ export function ExternalEvaluation() {
             Register labeled dataset
           </Button>
           <Message
-            error={register.error ?? datasets.error ?? action.error ?? jobs.error ?? result.error}
+            error={register.error ?? datasets.error ?? action.error ?? jobStatus.error ?? result.error}
           />
+          <Field label="Search registered datasets">
+            <input className="control" value={search} onChange={(e) => { setSearch(e.target.value); setOffset(0); }} />
+          </Field>
           <div className="space-y-3">
             {datasets.data?.items.map((d) => (
               <div key={d.id} className="border border-border p-3 text-xs space-y-2">
@@ -104,10 +121,17 @@ export function ExternalEvaluation() {
               </div>
             ))}
           </div>
+          <div className="flex gap-2">
+            <Button variant="outline" disabled={!offset} onClick={() => setOffset(Math.max(0, offset - 50))}>Previous dataset page</Button>
+            <Button variant="outline" disabled={offset + 50 >= (datasets.data?.total ?? 0)} onClick={() => setOffset(offset + 50)}>Next dataset page</Button>
+          </div>
           {job && (
             <p role="status">
-              External evaluation: {job.state} · {Math.round(job.progress * 100)}% {job.error}
+              {job.kind === "dataset-import" ? "Dataset import" : "External evaluation"}: {job.state} · {Math.round(job.progress * 100)}% {job.phase} {job.error}
             </p>
+          )}
+          {job && ["queued", "running"].includes(job.state) && (
+            <Button variant="outline" onClick={() => action.mutate(() => operationsApi.cancel(job.id))}>Cancel dataset operation</Button>
           )}
           {result.data && (
             <>
@@ -122,6 +146,9 @@ export function ExternalEvaluation() {
                 }
               >
                 Export external evaluation JSON
+              </Button>
+              <Button variant="outline" onClick={() => action.mutate(() => operationDownload(`/jobs/${jobId}/export?format=pdf`, "satmod-external-evaluation.pdf"))}>
+                Export external evaluation PDF
               </Button>
               <pre className="max-h-96 overflow-auto text-xs">
                 {JSON.stringify(result.data.metrics, null, 2)}
