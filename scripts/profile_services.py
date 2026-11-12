@@ -11,6 +11,10 @@ from backend.services.model_registry import hardware_info
 
 
 def main():
+    import argparse
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output',default='integration/profiles/services.json',help='New profile artifact; historical audit evidence is never the default destination.')
+    arguments=parser.parse_args()
     start=perf_counter();model=classifier.model();load_ms=(perf_counter()-start)*1000
     raw=classifier.dataset()['signals'][42];x=classifier.preprocess(raw)
     for _ in range(3):model.predict(x)
@@ -44,6 +48,9 @@ def main():
         results['classificationApi128']=measure(call,10)
         results['classificationApi128']['scope']='ASGI TestClient request, JSON validation, inference, DSP and serialization; no real-network RTT.'
     root=Path(__file__).resolve().parents[1]
-    (root/'integration/audit/performance.json').write_text(json.dumps(results,indent=2)+'\n')
+    destination=Path(arguments.output)
+    if not destination.is_absolute():destination=root/destination
+    destination.parent.mkdir(parents=True,exist_ok=True)
+    destination.write_text(json.dumps(results,indent=2)+'\n')
     print(json.dumps(results,indent=2))
 if __name__=='__main__':main()

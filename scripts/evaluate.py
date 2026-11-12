@@ -33,7 +33,8 @@ def evaluate_run(run_dir,dataset_path):
         error=float(np.max(abs(probabilities-saved['probabilities'])))
         np.testing.assert_allclose(probabilities,saved['probabilities'],atol=1e-6)
     return {'protocolId':report['protocolId'],'artifactSha256':report['artifact']['sha256'],'datasetSha256':data['datasetSha256'],
-            'maxReplayProbabilityError':error,'test':evaluate_probabilities(probabilities,data['labels'][indices],data['snrs'][indices],CLASS_LABELS)}
+            'maxReplayProbabilityError':error,'test':evaluate_probabilities(probabilities,data['labels'][indices],data['snrs'][indices],CLASS_LABELS,
+                                                                            data['snrKnown'][indices] if 'snrKnown' in data else None)}
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--run',required=True);parser.add_argument('--dataset',required=True);parser.add_argument('--output',required=True)

@@ -128,6 +128,7 @@ export interface Capture {
   source: string;
   sampleRate: number;
   analysis: SignalAnalysis;
+  metadata?: { sampleRateKnown?: boolean };
   modulation?: string;
   snrDb?: number;
 }

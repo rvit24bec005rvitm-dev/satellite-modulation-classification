@@ -94,9 +94,9 @@ jobs:
       - name: Install frontend dependencies
         working-directory: frontend
         run: npm ci
-      - name: Audit frontend production dependencies
+      - name: Audit all frontend dependencies
         working-directory: frontend
-        run: npm audit --omit=dev
+        run: npm audit
       - name: Check frontend types, lint, routes, and components
         working-directory: frontend
         run: |

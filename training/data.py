@@ -25,11 +25,28 @@ def load_dataset(path: str | Path, allow_small=False) -> dict:
         if not required.issubset(archive.files): raise ValueError('Dataset requires signals, labels, snrs and original source-capture/session groups.')
         values={key:archive[key].copy() for key in required}
         if 'splits' in archive:values['splits']=archive['splits'].astype(str)
+        if 'snrKnown' in archive:values['snrKnown']=archive['snrKnown'].copy()
+        if 'registryManifest' in archive:
+            import json
+            encoded=archive['registryManifest']
+            if encoded.dtype!=np.uint8 or encoded.ndim!=1 or len(encoded)>8*1024**2:raise ValueError('Invalid bounded registry provenance manifest.')
+            values['registryManifest']=json.loads(encoded.tobytes().decode('utf-8'))
     x,y,snr,groups=values['signals'],values['labels'],values['snrs'],values['groups']
     if x.ndim!=3 or x.shape[1:]!=(128,2) or x.dtype.kind not in 'fiu' or not np.isfinite(x).all() or np.max(abs(x))>1e6:
         raise ValueError('Signals must be finite raw (N,128,2) I-first numeric frames.')
     if groups.dtype.kind not in 'iuUS' or y.dtype.kind not in 'US': raise ValueError('Group IDs must be strings or integers; labels must use the canonical class strings.')
-    if any(value.shape!=(len(x),) for value in [y,snr,groups]) or not np.isfinite(snr).all(): raise ValueError('Labels, SNRs and groups must match the frame count.')
+    if any(value.shape!=(len(x),) for value in [y,snr,groups]): raise ValueError('Labels, SNRs and groups must match the frame count.')
+    if 'snrKnown' in values:
+        known=values['snrKnown']
+        if known.dtype.kind!='b' or known.shape!=(len(x),) or not np.isfinite(snr[known]).all() or not np.isnan(snr[~known]).all():
+            raise ValueError('snrKnown must mark finite known SNRs and NaN-only unavailable SNRs.')
+    elif not np.isfinite(snr).all():raise ValueError('Labels, SNRs and groups must match the frame count; missing SNR requires an explicit snrKnown mask.')
+    if 'registryManifest' in values:
+        manifest=values['registryManifest']
+        if not isinstance(manifest,dict) or manifest.get('schemaVersion')!='satmod-training-content-v1':raise ValueError('Unsupported registry training manifest.')
+        for key,expected in manifest.get('arrayHashes',{}).items():
+            if key not in values or not isinstance(values[key],np.ndarray) or hashlib.sha256(values[key].tobytes()).hexdigest()!=expected:
+                raise ValueError('Registry training arrays no longer match their exported provenance hashes.')
     if len(x)<1000 and not allow_small: raise ValueError('Fewer than 1000 frames: use --allow-small-dataset only for explicitly experimental smoke tests.')
     if any(hashlib.sha256(frame.astype(np.float32).tobytes()).digest() in forbidden_demo_frame_hashes() for frame in x):
         raise ValueError('Dataset contains supplied demo frames with unknown split provenance; repackaging does not make them training data.')

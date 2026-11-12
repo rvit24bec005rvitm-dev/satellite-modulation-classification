@@ -8,7 +8,7 @@ from pydantic import Field
 from typing import Literal
 from backend.api.schemas import StrictModel
 from backend.api import require_production_model
-from backend.services import workspace_store as store, captures, operations, classifier, technical_reports
+from backend.services import workspace_store as store, captures, operations, classifier, technical_reports, sigmf_io
 from backend.services.advanced_dsp import diagnostics, activities
 
 router=APIRouter(prefix='/api/workspace')
@@ -45,12 +45,15 @@ def list_captures(limit: int=Query(50,ge=1,le=200),offset: int=Query(0,ge=0),sea
 def import_capture(file: UploadFile=File(...),options: str=Form(...),metadata: UploadFile | None=File(default=None),background: bool=False):
     try:
         if file.size is not None and file.size>captures.IMPORT_LIMIT:raise HTTPException(413,'Capture exceeds external-import size limit.')
-        config=captures.ImportOptions.model_validate_json(options)
+        try:config=captures.ImportOptions.model_validate_json(options)
+        except RecursionError as exc:raise ValueError('Capture import options exceed the supported JSON nesting depth.') from exc
         sigmf=None
         if metadata:
             raw=metadata.file.read(65537)
             if len(raw)>65536:raise ValueError('SigMF metadata exceeds 64 KiB.')
-            sigmf=json.loads(raw)
+            try:sigmf=json.loads(raw)
+            except RecursionError as exc:raise ValueError('SigMF metadata exceeds the supported JSON nesting depth.') from exc
+            sigmf_io.validate_metadata_depth(sigmf)
         operations.runner()
         if background:
             try:return JSONResponse(operations.submit_import(file,config,sigmf),status_code=202)
@@ -113,6 +116,13 @@ def segment(record_id: str,start: int=Query(0,ge=0),length: int=Query(128,ge=16,
     return Response(buffer.getvalue(),media_type='application/octet-stream',headers={'Content-Disposition':'attachment; filename="satmod-segment.npy"'})
 
 
+@router.get('/captures/{record_id}/sigmf')
+def sigmf_export(record_id: str,start: int=Query(0,ge=0),length: int=Query(128,ge=16,le=65536)):
+    from backend.services.sigmf_io import export_capture
+    return Response(export_capture(record_id,start,length),media_type='application/zip',
+                    headers={'Content-Disposition':'attachment; filename="satmod-window-sigmf.zip"'})
+
+
 @router.get('/captures/{record_id}/domain-shift')
 def domain_shift(record_id: str,start: int=Query(0,ge=0)):
     from backend.services.domain_shift import compare
@@ -137,12 +147,12 @@ def export_job(record_id: str,format: Literal['json','csv','pdf']='json'):
     output=io.StringIO();writer=csv.writer(output)
     writer.writerow(['window','sample','class','rawSoftmax','entropyBits','processingMs','timestamp','groundTruth','snrDb',
                      'jobId','reportVersion','modelVersion','modelHash','datasetHash','captureId','captureHash','sampleRateHz',
-                     'sourceSample','probabilities','preprocessing'])
+                     'sourceSample','probabilities','preprocessing','rawModelScore'])
     for p in report['predictions']:
         meta=report['captures'][p['captureId']]
-        writer.writerow([p['index'],p['start'],p['predictedModulation'],p['confidence'],p['entropyBits'],p['processingMs'],p['timestamp'],p.get('groundTruth',''),p.get('snrDb',''),
+        writer.writerow([p['index'],p['start'],p['predictedModulation'],p['confidence'] if report['modelId']=='1d-cnn' else '',p['entropyBits'],p['processingMs'],p['timestamp'],p.get('groundTruth',''),p.get('snrDb',''),
                          report['jobId'],report['reportVersion'],report['modelVersion'],report['modelHash'],report.get('dataset',{}).get('hash',''),
-                         p['captureId'],meta['hash'],meta['sampleRate'] if meta['sampleRateKnown'] else '',p['sourceSample'],json.dumps(p['probabilities']),json.dumps(p['preprocessing'])])
+                         p['captureId'],meta['hash'],meta['sampleRate'] if meta['sampleRateKnown'] else '',p['sourceSample'],json.dumps(p['probabilities']),json.dumps(p['preprocessing']),p['confidence']])
     return Response(output.getvalue(),media_type='text/csv')
 
 

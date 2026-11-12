@@ -8,17 +8,26 @@ import os
 import sqlite3
 import threading
 import hashlib
+from functools import lru_cache
 
 LOCK = threading.RLock()
-KINDS = {'capture','analysis','dataset','job'}
+KINDS = {'capture','analysis','dataset','job','comparison'}
 CONNECTIONS={}
+
+
+@lru_cache(maxsize=32)
+def _resolved_root(configured: str, relative_to: str) -> Path:
+    path=(Path(relative_to)/configured if relative_to else Path(configured)).resolve()
+    path.mkdir(parents=True,exist_ok=True)
+    return path
 
 
 def root() -> Path:
     from backend.core.config import ROOT
-    path=Path(os.getenv('SATMOD_DATA_DIR',str(ROOT/'.satmod'))).resolve()
-    path.mkdir(parents=True,exist_ok=True)
-    return path
+    configured=os.getenv('SATMOD_DATA_DIR',str(ROOT/'.satmod'))
+    # Keep environment changes (including relative paths after chdir) explicit,
+    # while avoiding repeated resolve/mkdir syscalls for every mapped window.
+    return _resolved_root(configured,'' if Path(configured).is_absolute() else os.getcwd())
 
 
 def identifier(value: str) -> str:
@@ -27,7 +36,7 @@ def identifier(value: str) -> str:
 
 
 def file_path(record_id: str, suffix: str) -> Path:
-    if suffix not in ['iq','json','upload']:raise ValueError('Unsupported managed file type.')
+    if suffix not in ['iq','json','upload','pending']:raise ValueError('Unsupported managed file type.')
     return root()/f'{identifier(record_id)}.{suffix}'
 
 
@@ -43,6 +52,13 @@ def connection():
             db=sqlite3.connect(root()/'workspace.sqlite3',timeout=10,check_same_thread=False)
             db.row_factory=sqlite3.Row
             db.execute('PRAGMA journal_mode=WAL')
+            # These are private atomic-report temporary files, never raw
+            # recordings. A first connection precedes every report write, so
+            # cleanup cannot race a live writer in this single-process design.
+            for pending in root().glob('*.pending'):
+                try:identifier(pending.stem)
+                except ValueError:continue
+                pending.unlink(missing_ok=True)
             CONNECTIONS[key]=db
         try:
             version=db.execute('PRAGMA user_version').fetchone()[0]
@@ -59,6 +75,7 @@ def close_connections():
     with LOCK:
         for db in CONNECTIONS.values():db.close()
         CONNECTIONS.clear()
+        _resolved_root.cache_clear()
 
 
 import atexit
@@ -124,7 +141,34 @@ def delete(kind: str, record_id: str):
     with LOCK:
         get(kind,record_id)
         with connection() as db:db.execute('DELETE FROM records WHERE kind=? AND id=?',(kind,record_id))
-        for suffix in ['iq','json','upload']:file_path(record_id,suffix).unlink(missing_ok=True)
+        for suffix in ['iq','json','upload','pending']:file_path(record_id,suffix).unlink(missing_ok=True)
+
+
+def save_document(kind: str, summary: dict, report: dict):
+    """Atomically replace a bounded managed report, restoring it on DB failure."""
+    record_id=identifier(summary['id'])
+    payload=json.dumps(report,allow_nan=False).encode()
+    if len(payload)>16*1024**2:raise ValueError('Technical report exceeds the 16 MiB document limit.')
+    with LOCK:
+        # Initialize SQLite/recover stale pending files before creating ours.
+        with connection() as db:
+            existing=db.execute('SELECT kind FROM records WHERE id=?',(record_id,)).fetchone()
+            if existing and existing['kind']!=kind:raise ValueError('Managed identifier belongs to another record kind.')
+        target=file_path(record_id,'json');pending=file_path(record_id,'pending')
+        previous=target.read_bytes() if target.exists() else None
+        quota(len(payload)+(131072 if existing is None else 0))
+        try:
+            with pending.open('wb') as stream:
+                stream.write(payload);stream.flush();os.fsync(stream.fileno())
+            os.replace(pending,target)
+            try:put(kind,summary)
+            except BaseException:
+                if previous is None:target.unlink(missing_ok=True)
+                else:
+                    pending.write_bytes(previous);os.replace(pending,target)
+                raise
+        finally:pending.unlink(missing_ok=True)
+    return report
 
 
 def artifact_hash():

@@ -3,11 +3,13 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { operationsApi, operationDownload } from "@/lib/operations-api";
 import { Surface, Message, Field, percent, numeric } from "@/components/workspace-ui";
 import { Button } from "@/components/ui/button";
+import { SavedExplanations } from "@/components/saved-explanations";
 export function PersistentHistory() {
   const cache = useQueryClient();
   const [search, setSearch] = useState("");
   const [offset, setOffset] = useState(0);
   const [modulation, setModulation] = useState("");
+  const [selectedAnalysis, setSelectedAnalysis] = useState("");
   const query = useQuery({
     queryKey: ["analysis-history", search, offset, modulation],
     queryFn: () => operationsApi.history(search, offset, modulation),
@@ -88,6 +90,9 @@ export function PersistentHistory() {
                     <td>{numeric(r.processingMs)}</td>
                     <td>
                       <div className="flex gap-1">
+                        <Button variant="outline" onClick={() => setSelectedAnalysis(r.id)}>
+                          Inspect saved explanations
+                        </Button>
                         {["json", "csv", "pdf"].map((format) => (
                           <Button
                             key={format}
@@ -117,7 +122,10 @@ export function PersistentHistory() {
               </tbody>
             </table>
           </div>
-          <div className="flex gap-2">
+          {selectedAnalysis && (
+            <SavedExplanations key={selectedAnalysis} analysisId={selectedAnalysis} />
+          )}
+          <div className="flex flex-wrap gap-2">
             <Button disabled={offset === 0} onClick={() => setOffset(Math.max(0, offset - 50))}>
               Previous history page
             </Button>

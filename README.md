@@ -315,7 +315,7 @@ streamlit run app.py
 - **Port already in use:** stop the existing process or change the backend port, frontend proxy, and API address together.
 - **Sandbox EPERM:** run development/browser commands from an ordinary terminal that permits local TCP sockets and browser processes. ASGI integration tests can still validate the backend/client contract without sockets.
 - **Offline dependency/type failures:** run a clean `npm install` with registry access. Stripped copies of production libraries may contain JavaScript but omit TypeScript declarations; do not replace missing router types with `any` shims.
-- **Charts:** Plotly is bundled locally. Web fonts have system fallbacks when offline. Large Plotly code is loaded separately from the application chunk.
+- **Charts:** Plotly is bundled locally. Inter, JetBrains Mono and Space Grotesk are bundled locally with their SIL licenses; system fallbacks remain available. Large Plotly code is loaded separately from the application chunk.
 
 ## Phase 2 signal operations
 
@@ -349,8 +349,31 @@ Metadata and job state persist in SQLite; raw IQ and reports are bounded files u
 
 For public deployment, configure `SATMOD_PUBLIC=1` and a long random `SATMOD_ACCESS_TOKEN` through a secret manager. Enter the token in Settings; it is session-only and scoped to the configured API URL. Docker defaults to public/fail-closed mode. `compose.yaml` uses a persistent named `/data` volume and requires the token in the environment. `docker run` must likewise supply `-e SATMOD_ACCESS_TOKEN` and a writable `/data` volume; the earlier simple Docker command is appropriate only after this configuration. Keep raw recordings private and provision real persistent hosting storage; an ephemeral filesystem or the previous temporary tunnel does not provide durable production hosting.
 
-The production dependency audits found zero known runtime findings after patching Seroval and removing unused Zod. Development-tool findings remain documented in the Phase 2 report; this is not a complete security guarantee. No production calibration, validated OOD detector, new production modulation classes or model promotion was introduced.
+The production dependency audits found zero known runtime findings after patching Seroval and removing unused Zod. Phase 3 also resolves the previously documented development-tool findings with tested compatible upgrades; the full npm audit is clean. This is not a complete security guarantee. No production calibration, validated OOD detector, new production modulation classes or model promotion was introduced.
 
 Earlier Phase 2 verification (source `cd5eec7`): 196 Python tests; 40 frontend tests; 11 real API-client contracts; 28 production browser scenarios on each of macOS Chrome, Linux Chrome and Windows Chromium. Current Docker execution also verifies named-volume persistence after container recreation. See the report for exact tested source/CI links, remaining limits and the full file inventory.
 
 Readiness follow-up: 209 Python / 43 frontend / 11 real client contracts / 29 macOS production browser scenarios passed, including background imports, cancellation and PDF summaries. Protected native-server restart persistence passed. All eight current-source CI jobs passed, including Linux/Windows production browsers, the runtime audit, and protected Docker persistence after recreation. Exact source and evidence are recorded in PHASE2_REPORT.md.
+
+## Phase 3 research workflows
+
+Managed recordings support the 28 core SigMF sample datatypes, explicit unsigned
+zero/real conversion/channel selection, capture segments and metadata-preserving
+derived-window ZIP export. The Classifier inspector adds configurable computed
+STFT, waterfall, spectral peaks and frequency markers. Analysis history retains
+full signed saliency/Integrated Gradients and technical PDFs. Intelligence can
+persist and export real managed A/B comparisons without silently resampling.
+
+Model Evaluation selects an actually available registered model and freezes its
+artifact/version/preprocessing with each labeled held-out evaluation. Arena only
+compares identical dataset/split protocols. Registry exports supply validated
+offline training NPZ/config/manifests with session separation, held-out-data
+protection, hashes and an explicit missing-SNR mask. Fitting remains an offline
+operator action; unavailable neural runtimes are disabled and production weights
+are preserved.
+
+See [PHASE3_REPORT.md](PHASE3_REPORT.md) and
+[PHASE3_CHECKLIST.md](PHASE3_CHECKLIST.md) for executed tests, measured performance,
+API inventory, compatibility limits and exact local run commands. Independent
+RF quality, probability calibration and OOD validation still require suitable
+external datasets. New evidence is isolated under `integration/phase3/`.

@@ -51,6 +51,7 @@ export function StudioPage() {
   const [params, setParams] = useState(initial);
   const [signal, setSignal] = useState<GeneratedSignal | null>(null);
   const [audioError, setAudioError] = useState<Error | null>(null);
+  const [audioBusy, setAudioBusy] = useState(false);
   const generation = useGeneration();
   const update = <K extends keyof SignalGenerationRequest>(k: K, v: SignalGenerationRequest[K]) =>
     setParams((p) => ({ ...p, [k]: v }));
@@ -80,20 +81,34 @@ export function StudioPage() {
   const audio = async () => {
     if (!signal) return;
     setAudioError(null);
+    setAudioBusy(true);
     try {
       const r = await fetch(`${apiBase()}/api/signal/audio`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "X-Satmod-Token": sessionStorage.getItem("satmod-access-token:" + apiBase()) ?? "",
+        },
+        signal: AbortSignal.timeout(60000),
         body: JSON.stringify({
           samples: signal.samples,
           sampleRate: signal.sampleRate,
           source: signal.source,
         }),
       });
-      if (!r.ok) throw new Error("Audio generation failed.");
+      if (!r.ok) {
+        const detail = (await r.json().catch(() => null)) as { detail?: unknown } | null;
+        throw new Error(
+          typeof detail?.detail === "string"
+            ? detail.detail
+            : `Audio generation failed (HTTP ${r.status}).`,
+        );
+      }
       downloadBlob(await r.blob(), "satmod-audible-heterodyne.wav");
     } catch (e) {
       setAudioError(e as Error);
+    } finally {
+      setAudioBusy(false);
     }
   };
   return (
@@ -414,8 +429,8 @@ export function StudioPage() {
                 <Button variant="outline" onClick={() => downloadCapture(signal)}>
                   Download I/Q CSV
                 </Button>
-                <Button variant="outline" onClick={() => void audio()}>
-                  Download audible heterodyne
+                <Button variant="outline" disabled={audioBusy} onClick={() => void audio()}>
+                  {audioBusy ? "Exporting audio…" : "Download audible heterodyne"}
                 </Button>
                 {signal.classifierSupported && (
                   <Link to="/classifier" onClick={send}>

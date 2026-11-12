@@ -1,6 +1,6 @@
 import { ExternalWorkspace } from "@/components/external-workspace";
 import { PersistentHistory } from "@/components/persistent-history";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { Play, Upload } from "lucide-react";
@@ -42,7 +42,17 @@ export function ClassifierPage() {
   const [result, setResult] = useState<ClassificationResult | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [busy, setBusy] = useState(false);
+  const acceptedCapture = useRef(capture);
+  useEffect(() => {
+    if (acceptedCapture.current === capture) return;
+    acceptedCapture.current = capture;
+    setSampleRate(capture?.sampleRate ?? 1);
+    setWindowStart(0);
+    setResult(null);
+    setError(null);
+  }, [capture]);
   const accept = (next: Capture) => {
+    acceptedCapture.current = next;
     setCapture(next);
     setWindowStart(0);
     setSampleRate(next.sampleRate);
@@ -68,10 +78,13 @@ export function ClassifierPage() {
       : {}),
   });
   const complete = (value: ClassificationResult) => {
+    const next = previousCaptureFor(value);
+    acceptedCapture.current = next;
     setResult(value);
     setClassification(value);
-    setCapture(previousCaptureFor(value));
+    setCapture(next);
     void queryClient.invalidateQueries({ queryKey: ["history"] });
+    void queryClient.invalidateQueries({ queryKey: ["analysis-history"] });
     toast.success("CNN classification complete");
   };
   const run = async () => {
@@ -288,7 +301,7 @@ export function ClassifierPage() {
                     },
                   ]}
                   xTitle="Modulation"
-                  yTitle="Probability (%)"
+                  yTitle="Raw softmax (%)"
                   height={230}
                 />
                 {displayedResult.warnings.map((w) => (

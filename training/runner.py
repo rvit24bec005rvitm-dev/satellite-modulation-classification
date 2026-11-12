@@ -92,14 +92,15 @@ def run_experiment(dataset_path, output, config, allow_small=False):
     test_logits=predict(normalized['test'])
     raw_probabilities=softmax(test_logits,axis=1);calibrated=softmax(test_logits/temperature,axis=1)
     snrs=data['snrs'][splits['test']]
+    snr_known=data['snrKnown'][splits['test']] if 'snrKnown' in data else None
     report={'status':'experimental', 'productionPromoted':False,'model':kind,'config':config,'dataset':{'id':data['datasetId'],'sha256':data['datasetSha256'],'samples':len(data['signals'])},
             'protocolId':hashlib.sha256((data['datasetSha256']+json.dumps({k:v.tolist() for k,v in splits.items()},sort_keys=True)).encode()).hexdigest(),
             'splitStrategy':'Provided group-disjoint splits' if 'splits' in data else 'Seeded GroupShuffleSplit 60/20/20 by original capture/session',
             'splits':{name:{'samples':len(indices),'groups':len(np.unique(data['groups'][indices])),'indices':indices.tolist()} for name,indices in splits.items()},
             'normalization':{'fitSplit':'train','mean':mean,'std':std,'channelOrder':['I','Q'],'unitPowerApplied':False},
-            'calibration':{'fitSplit':'validation','temperature':temperature,'testRaw':evaluate_probabilities(raw_probabilities,labels['test'],snrs,CLASS_LABELS),
-                           'testCalibrated':evaluate_probabilities(calibrated,labels['test'],snrs,CLASS_LABELS)},
-            'test':evaluate_probabilities(raw_probabilities,labels['test'],snrs,CLASS_LABELS),'trainSeconds':train_seconds,'history':history,
+            'calibration':{'fitSplit':'validation','temperature':temperature,'testRaw':evaluate_probabilities(raw_probabilities,labels['test'],snrs,CLASS_LABELS,snr_known),
+                           'testCalibrated':evaluate_probabilities(calibrated,labels['test'],snrs,CLASS_LABELS,snr_known)},
+            'test':evaluate_probabilities(raw_probabilities,labels['test'],snrs,CLASS_LABELS,snr_known),'trainSeconds':train_seconds,'history':history,
             'featureSchema': {'version':'expert-statistics-v1','description':'Sorted I/Q statistical properties plus scale-free complex moments of order 2,4,6'} if kind=='random-forest' else {'version':'raw-iq-v1','description':'128×2 I-first scalar training z-score'},
             'classLabels':list(CLASS_LABELS),
             'artifact':{'filename':artifact.name,'sha256':hashlib.sha256(artifact.read_bytes()).hexdigest(),'bytes':artifact.stat().st_size},
@@ -108,8 +109,10 @@ def run_experiment(dataset_path, output, config, allow_small=False):
     # Same untouched external test frames, each model's own preprocessing.
     from backend.services.classifier import model as production_model,preprocess as production_prepare
     prod=production_model().predict_batch(np.stack([production_prepare(frame) for frame in data['signals'][splits['test']]]))
-    report['productionOnSameTest']=evaluate_probabilities(prod,labels['test'],snrs,CLASS_LABELS)
-    np.savez_compressed(out/'test-predictions.npz',probabilities=raw_probabilities,calibratedProbabilities=calibrated,productionProbabilities=prod,labels=labels['test'],snrs=snrs,indices=splits['test'])
+    report['productionOnSameTest']=evaluate_probabilities(prod,labels['test'],snrs,CLASS_LABELS,snr_known)
+    if 'registryManifest' in data:report['registeredDatasetProvenance']=data['registryManifest']
+    np.savez_compressed(out/'test-predictions.npz',probabilities=raw_probabilities,calibratedProbabilities=calibrated,productionProbabilities=prod,labels=labels['test'],snrs=snrs,indices=splits['test'],
+                        **({'snrKnown':snr_known} if snr_known is not None else {}))
     # Latencies are measured warm, with feature extraction separately reported.
     example=normalized['test'][:1]
     for _ in range(3):predict(example)

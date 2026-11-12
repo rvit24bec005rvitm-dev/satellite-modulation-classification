@@ -1,9 +1,8 @@
-"""Bounded capture import: explicit raw decoding and a documented SigMF subset."""
+"""Bounded capture import with explicit raw and SigMF channel/unit conversion."""
 from datetime import datetime, timedelta
 from pathlib import Path
 from uuid import uuid4
 import hashlib
-import json
 import os
 import numpy as np
 from pydantic import Field
@@ -11,6 +10,7 @@ from typing import Literal
 from backend.api.schemas import StrictModel
 from backend.services import workspace_store as store
 from backend.services.signals import parse_capture, analyze, rows
+from backend.services import sigmf_io
 
 IMPORT_LIMIT=int(os.getenv('SATMOD_CAPTURE_UPLOAD_BYTES',str(128*1024**2)))
 DTYPES={'ci8':'i1','ci16_le':'<i2','ci16_be':'>i2','ci32_le':'<i4','ci32_be':'>i4',
@@ -25,6 +25,9 @@ class ImportOptions(StrictModel):
     sampleRate: float | None=Field(default=None,ge=1,le=1e9)
     centerFrequency: float | None=Field(default=None,ge=0,le=1e12)
     scale: float=Field(default=1,gt=0,le=1e6)
+    sampleZero: float | None=Field(default=None,ge=-1e12,le=1e12)
+    channelIndex: int | None=Field(default=None,strict=True,ge=0,le=63)
+    realMode: Literal['i-only'] | None=None
     sampleOffset: int=Field(default=0,ge=0)
     sampleCount: int | None=Field(default=None,ge=128)
     source: str=Field(default='External recording',max_length=200)
@@ -74,20 +77,17 @@ def import_capture(upload, options: ImportOptions, sigmf: dict | None=None, *, s
         notify('validating metadata',0)
         metadata=options.model_dump();metadata.update(filename=staged['filename'],acquisitionType='external',sourceHash=staged['sourceHash'],importBytes=size)
         rate=options.sampleRate;dtype=options.datatype;layout=options.layout;order=options.iqOrder
+        if options.format!='sigmf' and (options.channelIndex is not None or options.realMode is not None or options.sampleZero is not None):
+            raise ValueError('channelIndex, sampleZero and realMode are supported by explicit SigMF import only.')
         if options.format=='sigmf':
-            if not isinstance(sigmf,dict) or not isinstance(sigmf.get('global'),dict):raise ValueError('A SigMF metadata object with global properties is required.')
-            if len(json.dumps(sigmf,allow_nan=False))>65536:raise ValueError('SigMF metadata exceeds 64 KiB.')
-            g=sigmf['global'];dtype=g.get('core:datatype');rate=g.get('core:sample_rate')
-            if not isinstance(sigmf.get('captures',[]),list) or len(sigmf.get('captures',[]))>1024 or any(not isinstance(c,dict) for c in sigmf.get('captures',[])):
-                raise ValueError('SigMF captures must be a bounded array of metadata objects.')
-            if not isinstance(g.get('core:extensions',[]),list) or any(not isinstance(e,dict) for e in g.get('core:extensions',[])):
-                raise ValueError('Invalid SigMF extension declarations.')
-            if g.get('core:num_channels',1)!=1 or g.get('core:trailing_bytes',0) or g.get('core:offset',0):raise ValueError('Only conforming single-channel SigMF datasets without headers/trailers/global offsets are supported.')
-            if any(e.get('optional',False) is not True for e in g.get('core:extensions',[])):
-                raise ValueError('Required SigMF extensions are not supported.')
-            if g.get('core:sha512') and (not isinstance(g['core:sha512'],str) or g['core:sha512'].lower()!=staged['sha512']):raise ValueError('SigMF data SHA-512 does not match metadata.')
-            if 'core:dataset' in g and g['core:dataset']!=metadata['filename']:raise ValueError('SigMF dataset must match the uploaded filename; external paths are never opened.')
+            plan=sigmf_io.parse_metadata(sigmf,options,size,metadata['filename'],staged['sha512'])
+            g=sigmf['global'];dtype=plan.datatype;rate=plan.rate
             layout='interleaved';order='IQ';metadata['sigmf']=sigmf
+            metadata.update(sigmfSampleOffset=plan.sample_offset,sourceChannels=plan.channels,channelIndex=plan.channel,
+                            sampleZero=plan.zero,sourceComponents=plan.components,
+                            ignoredOptionalExtensions=list(plan.ignored_extensions),sigmfReaderVersion=sigmf_io.CORE_VERSION,
+                            conversionNote='Canonical float32 = (selected source component - explicit sampleZero) × scale. No resampling or receiver correction.',
+                            realModeNote='Real source stored as I with Q=0; no quadrature or analytic-signal recovery.' if plan.components==1 else None)
             metadata['description']=str(g.get('core:description',''))[:2000]
             if options.license.startswith('Unspecified') and isinstance(g.get('core:license'),str):metadata['license']=g['core:license'][:500]
         if options.format=='application':
@@ -117,6 +117,10 @@ def import_capture(upload, options: ImportOptions, sigmf: dict | None=None, *, s
             rate=rate if rate is not None else detected_rate
             def blocks(start,end):
                 for offset in range(start,end,65536):yield finite_block(slice_iq(offset,min(end,offset+65536)).astype(np.float64)*options.scale)
+        elif options.format=='sigmf':
+            source_count=plan.samples
+            def blocks(start,end):
+                for block in plan.blocks(temporary,start,end):yield finite_block(block)
         else:
             if not isinstance(dtype,str) or dtype not in DTYPES:raise ValueError('Explicit supported complex datatype is required: '+', '.join(DTYPES))
             component=np.dtype(DTYPES[dtype])
@@ -140,17 +144,6 @@ def import_capture(upload, options: ImportOptions, sigmf: dict | None=None, *, s
         start=options.sampleOffset;end=min(source_count,start+options.sampleCount) if options.sampleCount else source_count
         if end-start<128:raise ValueError('Selected capture must contain at least 128 samples.')
         if options.sampleCount and end-start!=options.sampleCount:raise ValueError('Requested sample range extends beyond the source recording.')
-        if sigmf and options.format=='sigmf':
-            previous=-1
-            for capture in sigmf.get('captures',[]):
-                offset=capture.get('core:sample_start')
-                if type(offset) is not int or not previous<offset<source_count:raise ValueError('SigMF capture starts must be increasing indices within the recording.')
-                previous=offset
-                if capture.get('core:header_bytes',0):raise ValueError('SigMF per-capture headers are unsupported.')
-                if 'core:frequency' in capture and (not isinstance(capture['core:frequency'],(int,float)) or isinstance(capture['core:frequency'],bool) or not np.isfinite(capture['core:frequency']) or capture['core:frequency']<0):raise ValueError('Invalid SigMF center frequency.')
-                if 'core:datetime' in capture:
-                    if not isinstance(capture['core:datetime'],str) or not capture['core:datetime'].endswith('Z'):raise ValueError('SigMF timestamps must be UTC with Z suffix.')
-                    datetime.fromisoformat(capture['core:datetime'].replace('Z','+00:00'))
         with store.LOCK:store.quota((end-start)*8)
         digest=hashlib.sha256();written=0
         with destination.open('xb') as target:
@@ -209,21 +202,32 @@ def window(record_id, start=0, length=128):
     return iq,meta
 
 
-def timing(meta, start):
-    absolute=meta['sourceOffset']+start
+def timing(meta, start, length=128):
+    file_sample=meta['sourceOffset']+start
+    absolute=meta.get('sigmfSampleOffset',0)+file_sample
     applicable=[c for c in meta.get('sigmf',{}).get('captures',[]) if c['core:sample_start']<=absolute]
     capture=applicable[-1] if applicable else {}
     timestamp=None
     if capture.get('core:datetime'):
-        timestamp=(datetime.fromisoformat(capture['core:datetime'].replace('Z','+00:00'))+timedelta(seconds=(absolute-capture['core:sample_start'])/meta['sampleRate'])).isoformat()
-    return {'sourceSample':absolute,'seconds':start/meta['sampleRate'] if meta.get('sampleRateKnown') else None,'timestamp':timestamp,
+        try:
+            timestamp=(datetime.fromisoformat(capture['core:datetime'].replace('Z','+00:00'))+timedelta(seconds=(absolute-capture['core:sample_start'])/meta['sampleRate'])).isoformat()
+        except OverflowError as exc:
+            raise ValueError('Derived SigMF timestamp exceeds the supported datetime range.') from exc
+    global_sample=capture.get('core:global_index',capture.get('core:sample_start',absolute))+(absolute-capture.get('core:sample_start',absolute))
+    if 'core:global_index' in capture:sigmf_io.integer(global_sample,'Derived SigMF global_index')
+    boundaries=[c['core:sample_start'] for c in meta.get('sigmf',{}).get('captures',[]) if absolute<c['core:sample_start']<absolute+length]
+    return {'sourceSample':absolute,'fileSample':file_sample,'globalSampleIndex':global_sample,
+            'globalSampleIndexSource':'SigMF core:global_index' if 'core:global_index' in capture else 'Recording sample index; no independent hardware counter supplied',
+            'windowCrossesCaptureSegment':bool(boundaries),'captureBoundariesWithinWindow':boundaries,
+            'captureBoundaryNote':'Timestamp and center frequency describe the window start. Capture metadata changes inside this window; continuity is not assumed.' if boundaries else None,
+            'seconds':start/meta['sampleRate'] if meta.get('sampleRateKnown') else None,'timestamp':timestamp,
             'centerFrequency':capture.get('core:frequency',meta.get('centerFrequency'))}
 
 
 def inspect(record_id,start=0,length=128):
     iq,meta=window(record_id,start,length)
     return {'samples':rows(iq),'sampleRate':meta['sampleRate'],'source':f"{meta['source']} @ sample {start}",
-            'analysis':analyze(iq,meta['sampleRate']),'metadata':meta,'position':timing(meta,start)}
+            'analysis':analyze(iq,meta['sampleRate']),'metadata':meta,'position':timing(meta,start,length)}
 
 
 def overview(record_id):

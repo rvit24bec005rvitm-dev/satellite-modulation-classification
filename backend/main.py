@@ -317,6 +317,12 @@ def audio(body: SignalRequest):
 
 from backend.api.workspace import router as workspace_router
 app.include_router(workspace_router)
+from backend.api.research_models import router as research_models_router
+from backend.api.research_reports import router as research_reports_router
+app.include_router(research_models_router)
+app.include_router(research_reports_router)
+from backend.api.visualization import router as visualization_router
+app.include_router(visualization_router)
 
 # Optional single-origin production hosting after `npm run build`.
 import os
@@ -336,6 +342,6 @@ if os.getenv('SATMOD_SERVE_FRONTEND') == '1':
         requested=(dist/frontend_path).resolve()
         if requested.is_relative_to(dist.resolve()) and requested.is_file():
             return FileResponse(requested)
-        if frontend_path.startswith(('textures/','maps/')) or frontend_path in ['favicon.ico','robots.txt']:
+        if frontend_path.startswith(('textures/','maps/','fonts/')) or frontend_path in ['favicon.ico','robots.txt']:
             raise HTTPException(404,'Static asset does not exist.')
         return FileResponse(dist/'index.html')

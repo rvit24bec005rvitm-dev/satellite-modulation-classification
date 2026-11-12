@@ -72,17 +72,16 @@ const Context = createContext<{
 export function SignalProvider({ children }: { children: ReactNode }) {
   const [classification, setClassification] = useState<ClassificationResult | null>(null);
   const [capture, setCapture] = useState<Capture | null>(null);
-  const [preferences, setPreferences] = useState(defaults);
-  useEffect(() => {
+  const [preferences, setPreferences] = useState<Preferences>(() => {
     try {
       const value = JSON.parse(
         localStorage.getItem("satmod-preferences") ?? "null",
       ) as Partial<Preferences> | null;
-      if (value) setPreferences({ ...defaults, ...value });
+      return value ? { ...defaults, ...value } : defaults;
     } catch {
-      /* Invalid preferences reset to defaults. */
+      return defaults;
     }
-  }, []);
+  });
   useEffect(() => {
     document.documentElement.dataset["theme"] = preferences.theme;
   }, [preferences.theme]);

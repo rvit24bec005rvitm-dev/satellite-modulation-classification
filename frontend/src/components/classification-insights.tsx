@@ -18,6 +18,7 @@ import {
   Message,
 } from "@/components/workspace-ui";
 import { ScientificChart } from "@/components/scientific-chart";
+import { SavedExplanations } from "@/components/saved-explanations";
 
 export function ClassificationInsights({
   result,
@@ -170,6 +171,17 @@ export function ClassificationInsights({
           ))}
         </>
       )}
+      <details className="border-t border-border pt-3">
+        <summary className="cursor-pointer text-primary">
+          Save explanations and technical PDF
+        </summary>
+        <SavedExplanations
+          key={result.id}
+          analysisId={result.id}
+          originalSamples={result.samples}
+          predictedClass={result.predictedModulation}
+        />
+      </details>
     </Surface>
   );
 }

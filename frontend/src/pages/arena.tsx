@@ -15,6 +15,7 @@ import {
 } from "@/components/workspace-ui";
 import { ExperimentResults } from "@/components/experiment-results";
 import { ScientificChart } from "@/components/scientific-chart";
+import { MatchedEvaluations } from "@/components/matched-evaluations";
 export function ArenaPage() {
   const models = useModels(),
     benchmark = useBenchmark();
@@ -187,6 +188,7 @@ export function ArenaPage() {
         </p>
       </Surface>
       <ExperimentResults />
+      <MatchedEvaluations />
     </div>
   );
 }

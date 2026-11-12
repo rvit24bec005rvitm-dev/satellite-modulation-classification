@@ -186,7 +186,8 @@ export function SettingsPage() {
       <Surface className="p-5">
         <SectionHeading title="Application information" note="SATMODCLASS 1.0.0" />
         <p className="text-xs leading-7 text-muted-foreground">
-          {info.data?.historyPolicy ?? "History is in-memory for the current backend session."}{" "}
+          {info.data?.historyPolicy ??
+            "Backend history policy is unavailable until the service connects."}{" "}
           Model artifacts and the legacy Streamlit interface remain in the Python repository. Saved
           browser preferences contain no credentials.
         </p>

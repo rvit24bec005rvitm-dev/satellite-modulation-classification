@@ -1,5 +1,6 @@
 import { ExternalWorkspace } from "@/components/external-workspace";
 import { PersistentHistory } from "@/components/persistent-history";
+import { ManagedComparison } from "@/components/managed-comparison";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useSignal, useAnalysis, useSamples } from "@/hooks/use-satmod";
@@ -32,11 +33,15 @@ export function IntelligencePage() {
     },
   });
   const comparison = useMutation({
-    mutationFn: () => {
-      if (!capture || !second) throw new Error("Select two captures first.");
-      return satmodApi.compare(capture, second);
-    },
+    mutationFn: (pair: { first: Capture; second: Capture }) =>
+      satmodApi.compare(pair.first, pair.second),
   });
+  const displayedComparison =
+    comparison.data &&
+    comparison.variables?.first === capture &&
+    comparison.variables.second === second
+      ? comparison.data
+      : null;
   const load = async (target: "first" | "second") => {
     try {
       const c = await loader.mutateAsync();
@@ -60,6 +65,7 @@ export function IntelligencePage() {
     <div className="space-y-5">
       <ExternalWorkspace />
       <PersistentHistory />
+      <ManagedComparison />
       <Surface className="p-4">
         <SectionHeading title="Capture selection" note="FULL RESOLUTION" />
         <div className="grid gap-4 sm:grid-cols-[1fr_auto_auto]">
@@ -176,18 +182,18 @@ export function IntelligencePage() {
         <Button
           className="mt-4"
           disabled={!capture || !second || comparison.isPending}
-          onClick={() => comparison.mutate()}
+          onClick={() => capture && second && comparison.mutate({ first: capture, second })}
         >
           {comparison.isPending ? "Comparing…" : "Compare signals"}
         </Button>
         <Message error={comparison.error} />
-        {comparison.data && (
+        {displayedComparison && (
           <>
             <div className="mt-4 flex flex-wrap gap-3">
               <ExportButton
                 onClick={() =>
                   downloadJson(
-                    { ...comparison.data, captures: { first: capture, second } },
+                    { ...displayedComparison, captures: { first: capture, second } },
                     "satmod-comparison.json",
                   )
                 }
@@ -195,18 +201,24 @@ export function IntelligencePage() {
             </div>
             <Stats
               items={[
-                ["A − B power", `${numeric(comparison.data.powerDifferenceDb)} dB`],
-                ["Sample MSE", numeric(comparison.data.sampleMse)],
-                ["A samples", comparison.data.first.sampleCount],
-                ["B samples", comparison.data.second.sampleCount],
-                ["Comparison processing", `${numeric(comparison.data.processingMs)} ms`],
-                ["A sample rate", `${comparison.data.first.sampleRate} (1 = unknown/normalized)`],
-                ["B sample rate", `${comparison.data.second.sampleRate} (1 = unknown/normalized)`],
+                ["A − B power", `${numeric(displayedComparison.powerDifferenceDb)} dB`],
+                ["Sample MSE", numeric(displayedComparison.sampleMse)],
+                ["A samples", displayedComparison.first.sampleCount],
+                ["B samples", displayedComparison.second.sampleCount],
+                ["Comparison processing", `${numeric(displayedComparison.processingMs)} ms`],
+                [
+                  "A sample rate",
+                  `${displayedComparison.first.sampleRate} (1 = unknown/normalized)`,
+                ],
+                [
+                  "B sample rate",
+                  `${displayedComparison.second.sampleRate} (1 = unknown/normalized)`,
+                ],
               ]}
             />
             <div className="mt-4 grid gap-4 md:grid-cols-2">
               {(["first", "second"] as const).map((key, i) => {
-                const prediction = comparison.data.predictions[key];
+                const prediction = displayedComparison.predictions[key];
                 return (
                   <Surface key={key} className="p-3">
                     <SectionHeading title={`Capture ${i === 0 ? "A" : "B"} · real CNN`} />
@@ -227,29 +239,33 @@ export function IntelligencePage() {
             </div>
             <div className="mt-4 grid gap-4 lg:grid-cols-2">
               <ScientificChart
-                data={[comparison.data.plots.first, comparison.data.plots.second].map((a, i) => ({
-                  x: a.waveform.map((p) => p.x),
-                  y: a.waveform.map((p) => p.i),
-                  mode: "lines",
-                  type: "scattergl",
-                  name: i === 0 ? "Capture A" : "Capture B",
-                }))}
-                xTitle={comparison.data.plots.timeUnit}
+                data={[displayedComparison.plots.first, displayedComparison.plots.second].map(
+                  (a, i) => ({
+                    x: a.waveform.map((p) => p.x),
+                    y: a.waveform.map((p) => p.i),
+                    mode: "lines",
+                    type: "scattergl",
+                    name: i === 0 ? "Capture A" : "Capture B",
+                  }),
+                )}
+                xTitle={displayedComparison.plots.timeUnit}
                 yTitle="In-phase amplitude (relative)"
               />
               <ScientificChart
-                data={[comparison.data.plots.first, comparison.data.plots.second].map((a, i) => ({
-                  x: a.spectrum.map((p) => p.frequency),
-                  y: a.spectrum.map((p) => p.psd),
-                  mode: "lines",
-                  type: "scattergl",
-                  name: i === 0 ? "Capture A" : "Capture B",
-                }))}
-                xTitle={`Frequency (${comparison.data.plots.frequencyUnit})`}
-                yTitle={`PSD (dB relative / ${comparison.data.plots.frequencyUnit})`}
+                data={[displayedComparison.plots.first, displayedComparison.plots.second].map(
+                  (a, i) => ({
+                    x: a.spectrum.map((p) => p.frequency),
+                    y: a.spectrum.map((p) => p.psd),
+                    mode: "lines",
+                    type: "scattergl",
+                    name: i === 0 ? "Capture A" : "Capture B",
+                  }),
+                )}
+                xTitle={`Frequency (${displayedComparison.plots.frequencyUnit})`}
+                yTitle={`PSD (dB relative / ${displayedComparison.plots.frequencyUnit})`}
               />
             </div>
-            <p className="text-xs text-muted-foreground">{comparison.data.note}</p>
+            <p className="text-xs text-muted-foreground">{displayedComparison.note}</p>
           </>
         )}
       </Surface>

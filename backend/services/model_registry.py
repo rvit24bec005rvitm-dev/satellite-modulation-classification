@@ -32,6 +32,8 @@ class ModelSpec:
     class_labels: tuple[str, ...] = ('BPSK', 'QPSK', '16-QAM')
     preprocessing_metadata: dict | None = None
     evaluation_kind: str = 'historical-stored-report'
+    lifecycle: str = 'Experimental'
+    expected_artifact_sha256: str | None = None
     training_metadata: dict = field(default_factory=lambda: {'status':'unavailable', 'reason':'Original training data, source-capture groups, split IDs and seeds were not supplied.'})
 
 
@@ -41,6 +43,8 @@ REGISTRY: dict[str, ModelSpec] = {}
 def register_model(spec: ModelSpec) -> None:
     if spec.id in REGISTRY: raise ValueError(f'Model is already registered: {spec.id}')
     if spec.loader is not None and spec.prepare is None: raise ValueError('A trained model requires an explicit preprocessing function.')
+    if spec.lifecycle not in ['Production','Experimental','Deprecated']:raise ValueError('Unknown model lifecycle.')
+    if not spec.class_labels or len(set(spec.class_labels))!=len(spec.class_labels):raise ValueError('Registered class labels must be nonempty and unique.')
     REGISTRY[spec.id] = spec
 
 
@@ -64,7 +68,7 @@ def describe_models() -> list[dict]:
     result = []
     for spec in REGISTRY.values():
         item = {'id':spec.id, 'name':spec.name, 'version':spec.version, 'classLabels':list(spec.class_labels),
-                'inputShape':list(spec.input_shape), 'trainingMetadata':spec.training_metadata,
+                'inputShape':list(spec.input_shape), 'trainingMetadata':spec.training_metadata,'lifecycle':spec.lifecycle,
                 'preprocessing':'Saved scalar training z-score; I/Q amplitude preserved' if spec.id=='1d-cnn' else 'The candidate’s own training transform and documented feature schema',
                 'preprocessingConfiguration':spec.preprocessing_metadata}
         if spec.loader is None:
@@ -94,6 +98,7 @@ def describe_models() -> list[dict]:
                     item.update(parameters=total,trainableParameters=total-moving,nonTrainableParameters=moving)
                 elif hasattr(engine,'count_params'):item['parameters']=int(engine.count_params())
             except Exception as exc:item.update(status='unavailable',error=str(exc))
+        item['modelStatus']=spec.lifecycle if item['status']=='available' else 'Unavailable'
         result.append(item)
     return result
 
@@ -120,7 +125,7 @@ def benchmark_model(model_id: str, sample_id=42, iterations=30) -> dict:
 
 
 register_model(ModelSpec('1d-cnn','1D-CNN',loader=classifier.model,prepare=classifier.preprocess,
-                         evaluation_provider=evaluation,artifact_path=MODEL_PATH,version='supplied-cnn-v1'))
+                         evaluation_provider=evaluation,artifact_path=MODEL_PATH,version='supplied-cnn-v1',lifecycle='Production'))
 for model_id,name in [('resnet','ResNet · original domain'),('cldnn','CLDNN · original domain'),('random-forest','Random Forest · original domain')]:
     register_model(ModelSpec(model_id,name))
 
@@ -134,6 +139,7 @@ if _experimental_artifact.is_file():
     register_model(ModelSpec('rf-experimental','Random Forest · synthetic experiment',loader=experimental_rf,
                              prepare=prepare_experimental_rf,evaluation_provider=experimental_rf_evaluation,
                              artifact_path=_experimental_artifact,version='controlled-synthetic-rf-v1',
+                             expected_artifact_sha256=_rf_metadata['artifact']['sha256'],
                              evaluation_kind='held-out-synthetic-experiment',
                              preprocessing_metadata={**_rf_metadata['normalization'],'featureSchema':_rf_metadata.get('featureSchema')},
                              training_metadata={'status':'trained-experimental','reason':'Seeded 1,800-frame generated educational dataset; source groups and validation/test splits recorded. Not validated on independent satellite captures.'}))
@@ -148,6 +154,7 @@ for _run,_name in [('resnet-synthetic-v1','ResNet'),('cldnn-synthetic-v1','CLDNN
                                  prepare=lambda raw,run=_run:prepare_network(raw,run),
                                  evaluation_provider=lambda run=_run:network_evaluation(run),
                                  artifact_path=_directory/'best.keras',version=_run,
+                                 expected_artifact_sha256=_metadata['artifact']['sha256'],
                                  parameter_count=_metadata.get('parameterCounts',{}).get('total'),
                                  preprocessing_metadata=_metadata['normalization'],
                                  evaluation_kind='held-out-synthetic-experiment',

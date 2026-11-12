@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { operationsApi, operationDownload, type Job } from "@/lib/operations-api";
 import { useSignal } from "@/hooks/use-satmod";
@@ -27,6 +27,9 @@ export function ExternalWorkspace() {
   const [order, setOrder] = useState("IQ");
   const [fs, setFs] = useState("");
   const [frequency, setFrequency] = useState("");
+  const [channelIndex, setChannelIndex] = useState("");
+  const [sampleZero, setSampleZero] = useState("");
+  const [realMode, setRealMode] = useState(false);
   const [scale, setScale] = useState(1);
   const [session, setSession] = useState("");
   const [sourceOffset, setSourceOffset] = useState(0);
@@ -45,6 +48,7 @@ export function ExternalWorkspace() {
   const [cfoScheme, setCfoScheme] = useState("");
   const [fullScale, setFullScale] = useState("");
   const [threshold, setThreshold] = useState(0);
+  const selectionGeneration = useRef(0);
   const list = useQuery({
     queryKey: ["managed-captures", captureSearch, captureOffset],
     queryFn: () => operationsApi.captures(captureSearch, captureOffset),
@@ -69,11 +73,13 @@ export function ExternalWorkspace() {
   const active = selectedJob.data ?? jobs.data?.items.find((j) => j.id === job?.id) ?? job;
   useEffect(() => {
     if (active?.kind === "capture-import" && active.state === "completed" && active.captureId) {
+      selectionGeneration.current += 1;
       setSelected(active.captureId);
       setCaptureSearch("");
       setCaptureOffset(0);
       setStart(0);
       void cache.invalidateQueries({ queryKey: ["managed-captures"] });
+      void cache.invalidateQueries({ queryKey: ["comparison-captures"] });
     }
   }, [active?.id, active?.kind, active?.state, active?.captureId, cache]);
   const timeline = useQuery({
@@ -93,6 +99,9 @@ export function ExternalWorkspace() {
           iqOrder: order,
           sampleRate: fs ? Number(fs) : null,
           centerFrequency: frequency ? Number(frequency) : null,
+          channelIndex: format === "sigmf" && channelIndex !== "" ? Number(channelIndex) : null,
+          sampleZero: format === "sigmf" && sampleZero !== "" ? Number(sampleZero) : null,
+          realMode: format === "sigmf" && realMode ? "i-only" : null,
           scale,
           sessionId: session,
           source: file.name,
@@ -110,12 +119,20 @@ export function ExternalWorkspace() {
     },
   });
   const inspect = useMutation({
-    mutationFn: (offset: number) => operationsApi.window(selected, offset),
-    onSuccess: (c) => setCapture(c),
+    mutationFn: (position: { captureId: string; start: number; generation: number }) =>
+      operationsApi.window(position.captureId, position.start),
+    onSuccess: (c, position) => {
+      if (position.generation === selectionGeneration.current) setCapture(c);
+    },
+    onError: (failure, position) => {
+      if (position.generation === selectionGeneration.current) setError(failure);
+    },
   });
   const classify = useMutation({
-    mutationFn: () => operationsApi.classify(selected, start),
-    onSuccess: (r) => {
+    mutationFn: (position: { captureId: string; start: number; generation: number }) =>
+      operationsApi.classify(position.captureId, position.start),
+    onSuccess: (r, position) => {
+      if (position.generation !== selectionGeneration.current) return;
       setClassification(r);
       setCapture(r);
       void cache.invalidateQueries({ queryKey: ["history"] });
@@ -151,11 +168,22 @@ export function ExternalWorkspace() {
     }
   };
   const selectWindow = (offset: number, captureId = selected) => {
+    const generation = ++selectionGeneration.current;
+    setError(null);
     setSelected(captureId);
     setStart(offset);
     classify.reset();
-    void act(async () => setCapture(await operationsApi.window(captureId, offset)));
+    diagnostics.reset();
+    domain.reset();
+    inspect.mutate({ captureId, start: offset, generation });
   };
+  const classification =
+    classify.data &&
+    classify.variables?.captureId === selected &&
+    classify.variables.start === start &&
+    classify.variables.generation === selectionGeneration.current
+      ? classify.data
+      : null;
   return (
     <Surface className="p-4 space-y-4">
       <details>
@@ -195,14 +223,51 @@ export function ExternalWorkspace() {
               />
             </Field>
             {format === "sigmf" && (
-              <Field label="SigMF metadata file">
-                <input
-                  className="control"
-                  type="file"
-                  accept=".sigmf-meta,.json"
-                  onChange={(e) => setMetadata(e.target.files?.[0])}
-                />
-              </Field>
+              <>
+                <Field label="SigMF metadata file">
+                  <input
+                    className="control"
+                    type="file"
+                    accept=".sigmf-meta,.json"
+                    onChange={(e) => setMetadata(e.target.files?.[0])}
+                  />
+                </Field>
+                <Field label="SigMF channel index (required for multiple channels)">
+                  <input
+                    className="control"
+                    type="number"
+                    min={0}
+                    max={63}
+                    value={channelIndex}
+                    onChange={(e) => setChannelIndex(e.target.value)}
+                    placeholder="0-based; blank for single-channel"
+                  />
+                </Field>
+                <Field label="Unsigned ADC zero level (required for unsigned data)">
+                  <input
+                    className="control"
+                    type="number"
+                    value={sampleZero}
+                    onChange={(e) => setSampleZero(e.target.value)}
+                    placeholder="Explicit recorder zero, e.g. 127.5"
+                  />
+                </Field>
+                <Field label="Real-valued SigMF treatment">
+                  <span className="flex gap-2 items-center">
+                    <input
+                      type="checkbox"
+                      checked={realMode}
+                      onChange={(e) => setRealMode(e.target.checked)}
+                    />
+                    I-only data; explicitly synthesize Q=0
+                  </span>
+                </Field>
+                <p className="text-xs text-muted-foreground">
+                  Datatype, byte order and clock come from metadata. Unsigned conversion is (sample
+                  − explicit zero) × scaling. Select a channel explicitly for multichannel files.
+                  Enable I-only only for real-valued recordings.
+                </p>
+              </>
             )}
             {format === "raw" && (
               <>
@@ -342,9 +407,11 @@ export function ExternalWorkspace() {
               className="control"
               value={selected}
               onChange={(e) => {
+                selectionGeneration.current += 1;
                 setSelected(e.target.value);
                 setStart(0);
                 classify.reset();
+                inspect.reset();
                 diagnostics.reset();
                 domain.reset();
                 activity.reset();
@@ -404,6 +471,31 @@ export function ExternalWorkspace() {
                 ]}
                 xTitle="Capture sample index"
                 yTitle="Relative sample power"
+                shapes={[
+                  {
+                    type: "rect",
+                    xref: "x",
+                    yref: "paper",
+                    x0: start,
+                    x1: start + 128,
+                    y0: 0,
+                    y1: 1,
+                    fillcolor: "rgba(0,217,255,0.18)",
+                    line: { width: 0 },
+                  },
+                  ...(activity.data?.segments ?? []).map((segment) => ({
+                    type: "rect",
+                    xref: "x",
+                    yref: "paper",
+                    x0: segment.startSample,
+                    x1: segment.endSample,
+                    y0: 0,
+                    y1: 1,
+                    fillcolor: "rgba(0,220,160,0.12)",
+                    line: { width: 0 },
+                  })),
+                ]}
+                description="Cyan highlights the selected 128-sample CNN window. Green regions, when computed, mark threshold-based signal activity, not decoded packets."
                 height={200}
               />
               <div className="grid gap-3 sm:grid-cols-3">
@@ -413,8 +505,12 @@ export function ExternalWorkspace() {
                   max={overview.data.metadata.sampleCount - 128}
                   value={start}
                   onChange={(n) => {
+                    selectionGeneration.current += 1;
                     setStart(n);
                     classify.reset();
+                    inspect.reset();
+                    diagnostics.reset();
+                    domain.reset();
                   }}
                 />
                 <NumberField
@@ -433,9 +529,18 @@ export function ExternalWorkspace() {
               </div>
               <div className="flex flex-wrap gap-2">
                 <Button disabled={inspect.isPending} onClick={() => selectWindow(start)}>
-                  Inspect selected window
+                  {inspect.isPending ? "Inspecting selected window…" : "Inspect selected window"}
                 </Button>
-                <Button disabled={classify.isPending} onClick={() => classify.mutate()}>
+                <Button
+                  disabled={classify.isPending}
+                  onClick={() =>
+                    classify.mutate({
+                      captureId: selected,
+                      start,
+                      generation: selectionGeneration.current,
+                    })
+                  }
+                >
                   Classify external window
                 </Button>
                 <Button disabled={batch.isPending} onClick={() => batch.mutate()}>
@@ -457,10 +562,24 @@ export function ExternalWorkspace() {
                 <Button
                   variant="outline"
                   onClick={() =>
+                    void act(() =>
+                      operationDownload(
+                        `/captures/${selected}/sigmf?start=${start}&length=128`,
+                        "satmod-selected-window-sigmf.zip",
+                      ),
+                    )
+                  }
+                >
+                  Export metadata-preserving SigMF window
+                </Button>
+                <Button
+                  variant="outline"
+                  onClick={() =>
                     void act(async () => {
                       await operationsApi.removeCapture(selected);
                       setSelected("");
                       await cache.invalidateQueries({ queryKey: ["managed-captures"] });
+                      await cache.invalidateQueries({ queryKey: ["comparison-captures"] });
                     })
                   }
                 >
@@ -575,21 +694,21 @@ export function ExternalWorkspace() {
                   ))}
                 </>
               )}
-              {classify.data && (
+              {classification && (
                 <>
                   <Stats
                     items={[
-                      ["External prediction", classify.data.predictedModulation],
-                      ["Raw softmax", percent(classify.data.confidence)],
-                      ["Entropy bits", numeric(classify.data.entropyBits)],
+                      ["External prediction", classification.predictedModulation],
+                      ["Raw softmax", percent(classification.confidence)],
+                      ["Entropy bits", numeric(classification.entropyBits)],
                     ]}
                   />
                   <ClassificationInsights
-                    key={classify.data.id}
-                    result={classify.data}
+                    key={classification.id}
+                    result={classification}
                     onExplanation={(explanation) =>
                       downloadJson(
-                        { analysis: classify.data, explanation },
+                        { analysis: classification, explanation },
                         "satmod-explained-window.json",
                       )
                     }
@@ -637,17 +756,26 @@ export function ExternalWorkspace() {
               </div>
             ))}
             <div className="flex gap-2">
-              <Button variant="outline" disabled={jobOffset === 0} onClick={() => setJobOffset(Math.max(0, jobOffset - 50))}>
+              <Button
+                variant="outline"
+                disabled={jobOffset === 0}
+                onClick={() => setJobOffset(Math.max(0, jobOffset - 50))}
+              >
                 Previous job page
               </Button>
-              <Button variant="outline" disabled={jobOffset + 50 >= (jobs.data?.total ?? 0)} onClick={() => setJobOffset(jobOffset + 50)}>
+              <Button
+                variant="outline"
+                disabled={jobOffset + 50 >= (jobs.data?.total ?? 0)}
+                onClick={() => setJobOffset(jobOffset + 50)}
+              >
                 Next job page
               </Button>
             </div>
           </div>
           {active && (
             <p role="status">
-              Job {active.state} · {percent(active.progress)} complete{active.phase ? ` · ${active.phase}` : ""}
+              Job {active.state} · {percent(active.progress)} complete
+              {active.phase ? ` · ${active.phase}` : ""}
             </p>
           )}
           {timeline.data && (
@@ -737,7 +865,17 @@ export function ExternalWorkspace() {
                 >
                   Export full batch CSV
                 </Button>
-                <Button variant="outline" onClick={() => void act(() => operationDownload(`/jobs/${active!.id}/export?format=pdf`, "satmod-batch-report.pdf"))}>
+                <Button
+                  variant="outline"
+                  onClick={() =>
+                    void act(() =>
+                      operationDownload(
+                        `/jobs/${active!.id}/export?format=pdf`,
+                        "satmod-batch-report.pdf",
+                      ),
+                    )
+                  }
+                >
                   Export batch PDF summary
                 </Button>
               </div>

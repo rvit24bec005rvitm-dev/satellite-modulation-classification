@@ -12,13 +12,14 @@ import {
 } from "recharts";
 import type { Capture, SignalAnalysis } from "@/lib/satmod-api";
 import { Empty, SectionHeading, Surface } from "./workspace-ui";
+import { TimeFrequencyInspector } from "./time-frequency-inspector";
 interface PlotTrace {
   type?: string;
   mode?: string;
   name?: string;
-  x?: number[] | string[];
-  y?: number[] | string[];
-  z?: number[][];
+  x?: (number | string | null)[];
+  y?: (number | string | null)[];
+  z?: (number | null)[] | (number | null)[][];
   marker?: Record<string, unknown>;
   line?: Record<string, unknown>;
   [key: string]: unknown;
@@ -27,29 +28,57 @@ interface ChartProps {
   data: PlotTrace[];
   xTitle?: string;
   yTitle?: string;
+  zTitle?: string;
   title?: string;
   height?: number;
   equal?: boolean;
+  shapes?: Record<string, unknown>[];
+  description?: string;
 }
 export function ScientificChart({
   data,
   xTitle = "",
   yTitle = "",
+  zTitle = "",
   title = "",
   height = 280,
   equal = false,
+  shapes = [],
+  description,
 }: ChartProps) {
   const element = useRef<HTMLDivElement>(null);
+  const renderQueue = useRef<Promise<void>>(Promise.resolve());
+  const disposePlot = useRef<(() => void) | null>(null);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
   const { preferences } = useSignal();
+  // Job polling recreates equivalent trace objects. Compare their bounded
+  // numeric content so a progress update does not purge a user's zoomed plot.
+  const serialized = JSON.stringify(data);
+  const serializedShapes = JSON.stringify(shapes);
+  useEffect(
+    () => () => {
+      // A render already in flight must finish before releasing its resources.
+      // Prop changes reuse the same graph; only unmount purges it.
+      void renderQueue.current.finally(() => {
+        disposePlot.current?.();
+        disposePlot.current = null;
+      });
+    },
+    [],
+  );
   useEffect(() => {
     let disposed = false;
     const target = element.current;
     if (!target) return;
-    let cleanup: (() => void) | undefined;
-    void import("plotly.js-dist-min")
-      .then(async ({ default: Plotly }) => {
+    setLoading(true);
+    setError("");
+    renderQueue.current = renderQueue.current
+      .then(async () => {
         if (disposed) return;
+        const { default: Plotly } = await import("plotly.js-dist-min");
+        if (disposed) return;
+        const traces = JSON.parse(serialized) as PlotTrace[];
         const style = getComputedStyle(document.documentElement);
         const canvas = document.createElement("canvas");
         canvas.width = canvas.height = 1;
@@ -65,11 +94,13 @@ export function ScientificChart({
         };
         await Plotly.react(
           target,
-          data,
+          traces,
           {
             title: { text: title, font: { size: 12 } },
             height,
             autosize: true,
+            uirevision: `${title}:${xTitle}:${yTitle}`,
+            shapes: JSON.parse(serializedShapes),
             paper_bgcolor: "transparent",
             plot_bgcolor: "transparent",
             font: { color: color("--muted-foreground"), family: "Inter, sans-serif", size: 10 },
@@ -91,43 +122,104 @@ export function ScientificChart({
               zerolinecolor: color("--border"),
               ...(equal ? { scaleanchor: "x", scaleratio: 1 } : {}),
             },
+            scene: {
+              xaxis: { title: { text: xTitle } },
+              yaxis: { title: { text: yTitle } },
+              zaxis: { title: { text: zTitle } },
+            },
             legend: { orientation: "h", y: 1.15 },
-            showlegend: data.length > 1,
+            showlegend: traces.length > 1,
           },
           {
             responsive: true,
             displaylogo: false,
+            modeBarButtonsToRemove: ["sendChartToCloud"],
             displayModeBar: preferences.charts === "interactive",
             scrollZoom: preferences.charts === "interactive",
           },
         );
-        const observer = new ResizeObserver(() => Plotly.Plots.resize(target));
-        observer.observe(target);
-        cleanup = () => {
-          observer.disconnect();
-          Plotly.purge(target);
-        };
-        if (disposed) cleanup();
+        if (!disposePlot.current) {
+          const observer = new ResizeObserver(() => Plotly.Plots.resize(target));
+          observer.observe(target);
+          disposePlot.current = () => {
+            observer.disconnect();
+            Plotly.purge(target);
+          };
+        }
+        if (!disposed) setLoading(false);
       })
       .catch(() => {
-        if (!disposed)
+        if (!disposed) {
+          setLoading(false);
           setError("Scientific chart could not load. Refresh after dependencies are installed.");
+        }
       });
     return () => {
       disposed = true;
-      cleanup?.();
     };
-  }, [data, xTitle, yTitle, title, height, equal, preferences.charts, preferences.theme]);
-  return error ? (
-    <div role="alert">{error}</div>
-  ) : (
-    <div
-      ref={element}
-      role="img"
-      aria-label={title || `${yTitle} versus ${xTitle}`}
-      className="w-full min-w-0"
-      style={{ height }}
-    />
+  }, [
+    serialized,
+    serializedShapes,
+    xTitle,
+    yTitle,
+    zTitle,
+    title,
+    height,
+    equal,
+    preferences.charts,
+    preferences.theme,
+  ]);
+  const tableTrace = data.find((trace) => trace.x && trace.y);
+  return (
+    <div className="min-w-0" role="figure" aria-label={title || `${yTitle} versus ${xTitle}`}>
+      {error && <div role="alert">{error}</div>}
+      {loading && (
+        <span className="sr-only" role="status">
+          Rendering computed signal plot…
+        </span>
+      )}
+      <div
+        ref={element}
+        role="group"
+        aria-label={title || `${yTitle} versus ${xTitle}`}
+        aria-busy={loading}
+        tabIndex={0}
+        className="w-full min-w-0"
+        style={{ height }}
+      />
+      {description && <p className="text-xs text-muted-foreground">{description}</p>}
+      {tableTrace?.x && tableTrace.y && (
+        <details className="text-xs text-muted-foreground">
+          <summary className="cursor-pointer focus-visible:outline-2 focus-visible:outline-primary">
+            Accessible plot data preview
+          </summary>
+          <p>
+            First {Math.min(20, tableTrace.x.length)} points of{" "}
+            {tableTrace.name ?? "the first trace"}. Full values are available in the analysis
+            export.
+          </p>
+          <table className="w-full">
+            <caption className="sr-only">
+              {title || `${yTitle} versus ${xTitle}`} data preview
+            </caption>
+            <thead>
+              <tr>
+                <th>{xTitle}</th>
+                <th>{yTitle}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tableTrace.x.slice(0, 20).map((x, index) => (
+                <tr key={index}>
+                  <td>{x ?? "Unavailable"}</td>
+                  <td>{tableTrace.y?.[index] ?? "Unavailable"}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </details>
+      )}
+    </div>
   );
 }
 export function CapturePlots({ capture }: { capture: Capture | null }) {
@@ -225,19 +317,7 @@ export function CapturePlots({ capture }: { capture: Capture | null }) {
           />
         </TabsContent>
         <TabsContent value="spectrogram">
-          <ScientificChart
-            data={[
-              {
-                x: a.spectrogram.times,
-                y: a.spectrogram.frequencies,
-                z: a.spectrogram.db,
-                type: "heatmap",
-                colorscale: "Viridis",
-              },
-            ]}
-            xTitle={a.sampleRate === 1 ? "Sample index" : "Time (s)"}
-            yTitle={a.sampleRate === 1 ? "Frequency (cycles/sample)" : "Frequency (Hz)"}
-          />
+          <TimeFrequencyInspector capture={capture} />
         </TabsContent>
         {a.phaseTrace && (
           <TabsContent value="phase">

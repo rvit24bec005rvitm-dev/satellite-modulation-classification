@@ -1,4 +1,4 @@
-import { useEffect, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { Link } from "@tanstack/react-router";
 import {
   Activity,
@@ -87,6 +87,39 @@ function AppShell({ page, children }: { page: string; children: React.ReactNode 
       typeof window !== "undefined" && localStorage.getItem("satmod-sidebar-collapsed") === "true",
   );
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigation = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const opener = document.activeElement as HTMLElement | null;
+    const focusables = () =>
+      Array.from(
+        navigation.current?.querySelectorAll<HTMLElement>("a[href],button:not([disabled])") ?? [],
+      );
+    focusables()[0]?.focus();
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setMobileOpen(false);
+        return;
+      }
+      if (event.key !== "Tab") return;
+      const items = focusables();
+      const first = items[0],
+        last = items.at(-1);
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last?.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      if (opener?.isConnected) opener.focus();
+    };
+  }, [mobileOpen]);
   const active = NAV.find((item) => item.key === page) ?? NAV[0];
   const groups = [...new Set(NAV.map((item) => item.group))];
   useEffect(() => {
@@ -97,6 +130,12 @@ function AppShell({ page, children }: { page: string; children: React.ReactNode 
       className={`app-shell ${collapsed ? "nav-collapsed" : ""}`}
       style={{ "--nav-width": collapsed ? "68px" : "232px" } as CSSProperties}
     >
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:bg-card focus:p-3 focus:text-primary"
+      >
+        Skip to workspace content
+      </a>
       {mobileOpen && (
         <button
           className="navigation-scrim"
@@ -104,7 +143,13 @@ function AppShell({ page, children }: { page: string; children: React.ReactNode 
           onClick={() => setMobileOpen(false)}
         />
       )}
-      <aside className={`mission-sidebar ${mobileOpen ? "mobile-open" : ""}`}>
+      <aside
+        ref={navigation}
+        role={mobileOpen ? "dialog" : undefined}
+        aria-modal={mobileOpen || undefined}
+        aria-label={mobileOpen ? "Workspace navigation" : undefined}
+        className={`mission-sidebar ${mobileOpen ? "mobile-open" : ""}`}
+      >
         <Link to="/" className="mission-brand" aria-label="SatModClass overview">
           <span className="brand-symbol">
             <Satellite size={21} />
@@ -131,6 +176,7 @@ function AppShell({ page, children }: { page: string; children: React.ReactNode 
                       to={href}
                       title={collapsed ? title : undefined}
                       aria-label={title}
+                      aria-current={page === key ? "page" : undefined}
                       onClick={() => setMobileOpen(false)}
                       className={`mission-nav-link ${page === key ? "active" : ""}`}
                     >
@@ -187,6 +233,7 @@ function AppShell({ page, children }: { page: string; children: React.ReactNode 
                 setMobileOpen(true);
               }}
               aria-label="Open navigation"
+              aria-expanded={mobileOpen}
             >
               <Menu size={18} />
             </button>
@@ -272,6 +319,8 @@ function AppShell({ page, children }: { page: string; children: React.ReactNode 
           </div>
         </header>
         <main
+          id="main-content"
+          tabIndex={-1}
           className={
             page === "overview" ? "mission-main overview-main" : "mission-main workspace-main"
           }

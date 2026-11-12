@@ -65,23 +65,29 @@ class SplitGuard:
     def __init__(self):
         self.groups={};self.hashes={};self.positions={}
 
-    def add(self, entry):
+    def check(self, entry):
+        """Validate against indexed assignments without retaining more rows."""
         split=entry['split']
         for key, index, error in [
             ('sessionId',self.groups,'Source session crosses dataset splits.'),
             ('frameHash',self.hashes,'Duplicate frame crosses dataset splits.')]:
             if entry[key] in index and index[entry[key]]!=split:raise ValueError(error)
-            index[entry[key]]=split
         for prefix, digest, start in [('source',entry['sourceHash'],entry['sourceStart']),
                                      ('canonical',entry.get('canonicalSourceHash'),entry['start'])]:
             if not digest:continue
-            positions=self.positions.setdefault((prefix,digest),{})
+            positions=self.positions.get((prefix,digest),{})
             for prior_split, offsets in positions.items():
                 if prior_split==split:continue
                 at=bisect_left(offsets,start)
                 if any(abs(start-offsets[i])<128 for i in [at-1,at] if 0<=i<len(offsets)):
                     raise ValueError('Overlapping recording windows cross splits.')
-            insort(positions.setdefault(split,[]),start)
+    def add(self, entry):
+        self.check(entry)
+        split=entry['split']
+        self.groups[entry['sessionId']]=split;self.hashes[entry['frameHash']]=split
+        for prefix,digest,start in [('source',entry['sourceHash'],entry['sourceStart']),
+                                   ('canonical',entry.get('canonicalSourceHash'),entry['start'])]:
+            if digest:insort(self.positions.setdefault((prefix,digest),{}).setdefault(split,[]),start)
 
 
 def register_dataset(name, entries, source, license_text, *, progress=None, record_id=None):
@@ -149,7 +155,15 @@ def submit(kind, params):
             if kind=='batch':
                 meta=store.get('capture',params['captureId'])
                 if params['start']+(params['windows']-1)*params['stride']+128>meta['sampleCount']:raise ValueError('Batch extends beyond recording.')
-            elif kind=='evaluation':store.get('dataset',params['datasetId'])
+                params={**params,'captureId':meta['id']}
+            elif kind=='evaluation':
+                dataset=store.get('dataset',params['datasetId'])
+                from backend.services.research_evaluation import resolve_model
+                labels=[entry['label'] for entry in dataset['entries'] if entry['split']=='test']
+                if not labels:raise ValueError('External evaluation requires explicitly labeled test windows.')
+                context=resolve_model(params.get('modelId','1d-cnn'),params.get('modelVersion'),labels,params.get('modelHash'))
+                params={**params,'datasetId':dataset['id'],'modelId':context.spec.id,
+                        'modelVersion':context.spec.version,'modelHash':context.metadata['modelHash']}
             elif kind=='dataset-import':params={**params,'datasetId':str(uuid4())}
             else:raise ValueError('Unsupported job kind.')
             job=store.put('job',{'state':'queued','kind':kind,'params':params,'progress':0,'cancelRequested':False})
@@ -171,11 +185,15 @@ def cancel(record_id):
 
 
 def execute(record_id, slots):
-    job=None
+    job=None;reader=None
+    def release_reader():
+        nonlocal reader
+        if reader is not None:
+            reader.close();reader=None
     try:
         job=store.get('job',record_id)
         if job['cancelRequested']:raise JobCancelled()
-        update(record_id,state='running');params=job['params'];predictions=[];provenance={}
+        update(record_id,state='running');params=job['params'];predictions=[];provenance={};context=None
         if job['kind'] in ['capture-import','dataset-import']:
             def progress(phase, fraction):
                 with store.LOCK:
@@ -197,43 +215,67 @@ def execute(record_id, slots):
             dataset=store.get('dataset',params['datasetId'])
             entries=[entry for entry in dataset['entries'] if entry['split']=='test']
             if not entries:raise ValueError('External evaluation requires explicitly labeled test windows.')
+            from backend.services.research_evaluation import resolve_model
+            context=resolve_model(params.get('modelId','1d-cnn'),params.get('modelVersion'),
+                                  [entry['label'] for entry in entries],params.get('modelHash'))
+        from backend.services.capture_windows import CaptureWindows
+        reader=CaptureWindows()
         for index,entry in enumerate(entries):
             if store.get('job',record_id)['cancelRequested']:
                 update(record_id,progress=index/len(entries));raise JobCancelled()
-            iq,meta=captures.window(entry['captureId'],entry['start'],128)
+            iq,meta=reader.window(entry['captureId'],entry['start'])
+            if context is not None:
+                import hashlib
+                if entry.get('frameHash')!=hashlib.sha256(iq.astype('<f4').tobytes()).hexdigest():
+                    raise ValueError('Capture window no longer matches the registered dataset frame hash.')
             if meta['id'] not in provenance:
                 provenance[meta['id']]=meta
-            result=classifier.predict_window(iq)
+            result=context.predict(iq) if context is not None else classifier.predict_window(iq)
             predictions.append({'index':index,'start':entry['start'],'captureId':entry['captureId'],**captures.timing(meta,entry['start']),**result,
                                 **({'groundTruth':entry['label'],'snrDb':entry.get('snrDb')} if job['kind']=='evaluation' else {})})
             if index%16==0:update(record_id,progress=(index+1)/len(entries))
+        # Publish a terminal state only after handles have closed. A client may
+        # immediately delete a completed capture; Windows forbids unlinking an
+        # open mapping even though inference itself has already finished.
+        release_reader()
         result={'reportVersion':'satmod-batch-v1','jobId':record_id,'createdAt':job['createdAt'],'parameters':params,'captures':provenance,'modelId':'1d-cnn','modelVersion':'supplied-cnn-v1','modelHash':store.artifact_hash(),
                 'predictions':predictions,'classCounts':dict(Counter(p['predictedModulation'] for p in predictions)),
                 'note':'Adjacent or overlapping windows are dependent. Vote counts do not establish improved accuracy.'}
         if job['kind']=='evaluation':
             from training.metrics import evaluate_probabilities
-            from utils.preprocessing import CLASS_LABELS
-            y=[CLASS_LABELS.index(e['label']) for e in entries]
+            from backend.services.research_evaluation import evaluation_protocol, summarize_evaluation
+            classes=context.spec.class_labels
+            y=[classes.index(e['label']) for e in entries]
             snrs=[e.get('snrDb') for e in entries]
-            metrics=evaluate_probabilities([[p['probabilities'][c] for c in CLASS_LABELS] for p in predictions],y,[s if s is not None else 0 for s in snrs],CLASS_LABELS)
-            # Zero is never substituted as a reported measured SNR.
-            known=[i for i,s in enumerate(snrs) if s is not None]
-            metrics['snrAccuracy']=evaluate_probabilities([[predictions[i]['probabilities'][c] for c in CLASS_LABELS] for i in known],[y[i] for i in known],[snrs[i] for i in known],CLASS_LABELS)['snrAccuracy'] if known else []
-            result.update(metrics=metrics,datasetId=params['datasetId'],dataset=dataset,classOrder=list(CLASS_LABELS),
+            known=np.array([value is not None for value in snrs],dtype=bool)
+            numeric_snr=np.array([value if value is not None else np.nan for value in snrs],dtype=float)
+            metrics=evaluate_probabilities([[p['probabilities'][c] for c in classes] for p in predictions],y,numeric_snr,classes,known)
+            timings=[p['processingMs'] for p in predictions];preparation=[p['preprocessingMs'] for p in predictions]
+            result.update(**context.metadata,reportVersion='satmod-external-evaluation-v2',
+                          metrics=metrics,datasetId=params['datasetId'],dataset=dataset,
+                          completedAt=store.now(),evaluationProtocol=evaluation_protocol(dataset,entries,classes),
+                          latency={'inferenceMedianMs':float(np.median(timings)),'inferenceP95Ms':float(np.percentile(timings,95)),
+                                   'preprocessingMedianMs':float(np.median(preparation)),
+                                   'scope':'Actual per-window inference; preprocessing separate; excludes queue/upload/model initialization.'},
                           labelSource='Importer-supplied labels; acquisition independence is declared, not automatically proven',calibration='Diagnostic only; production temperature unchanged')
         data=json.dumps(result,allow_nan=False).encode()
         with store.LOCK:
             if store.get('job',record_id)['cancelRequested']:raise JobCancelled()
             store.quota(len(data));store.file_path(record_id,'json').write_bytes(data)
-            update(record_id,state='completed',progress=1,finishedAt=store.now())
+            update(record_id,state='completed',progress=1,finishedAt=store.now(),
+                   **({'evaluationSummary':summarize_evaluation(result),'modelId':result['modelId'],'modelHash':result['modelHash'],
+                       'datasetId':result['datasetId'],'datasetHash':result['dataset']['hash']} if job['kind']=='evaluation' else {}))
     except JobCancelled:
+        release_reader()
         update(record_id,state='cancelled',finishedAt=store.now())
     except Exception as exc:
+        release_reader()
         import logging
         logging.getLogger('satmod').exception('Background operation failed: %s',record_id)
         store.file_path(record_id,'json').unlink(missing_ok=True)
         update(record_id,state='failed',error=str(exc) if isinstance(exc,(ValueError,KeyError)) else 'Processing failed; inspect the server log.',finishedAt=store.now())
     finally:
+        release_reader()
         if job and job['kind']=='capture-import':store.file_path(job['params']['staged']['id'],'upload').unlink(missing_ok=True)
         slots.release()
 
