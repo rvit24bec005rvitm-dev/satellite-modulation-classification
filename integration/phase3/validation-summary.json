@@ -76,7 +76,40 @@
     "modelDspApiMemory": "performance-services.json",
     "longCaptureImport": "performance-import.json"
   },
-  "ci": "Repository CI will run on the direct main push; separate evidence records actual results.",
+  "ci": {
+    "status": "success",
+    "jobs": 8,
+    "testedHead": "76aef2496914b11544bb471a0879aae8d5df0373",
+    "runId": 43253979275,
+    "url": "https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/actions/runs/43253979275",
+    "evidence": "ci-validation.json",
+    "sourceHashesUnchangedInLaterDocumentation": true,
+    "python": {
+      "ubuntu3.10": {
+        "passed": 338,
+        "skipped": 2,
+        "reason": "Frozen RF requires recorded scikit-learn 1.9.1; Python3.10 installs1.7.2, so optional model remains unavailable."
+      },
+      "ubuntu3.11": {
+        "passed": 340
+      },
+      "ubuntu3.12": {
+        "passed": 340
+      },
+      "windows3.12": {
+        "passed": 340
+      }
+    },
+    "eachFrontendPlatform": {
+      "components": 60,
+      "contracts": 11,
+      "compiledBrowsers": 44,
+      "platforms": [
+        "Ubuntu Chrome",
+        "Windows Chromium"
+      ]
+    }
+  },
   "limits": [
     "Generated fixtures do not establish independent RF accuracy or calibrated probabilities.",
     "Optional TensorFlow inference unavailable on this host; affected models disabled.",

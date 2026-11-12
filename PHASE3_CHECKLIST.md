@@ -36,7 +36,7 @@ The pre-existing user galaxy CSS edit is included unchanged.
 | Independent acquisition-domain accuracy, calibrated probabilities/OOD | BLOCKED | Suitable independently sourced/split RF validation and calibration data absent; synthetic fixtures never presented as that evidence |
 | Production promotion or unrestricted server training | NOT IMPLEMENTED | Intentionally excluded; production weights unchanged, fitting remains offline |
 | Newly provisioned permanent hosting | NOT IMPLEMENTED | No permanent host provisioned; existing local/server/container launch paths retained |
-| Final Python/frontend/contracts/types/lint/build/browser suite | COMPLETE AND VERIFIED | Final counts/logs in `PHASE3_REPORT.md` and `integration/phase3/validation-summary.json` |
+| Final Python/frontend/contracts/types/lint/build/browser suite | COMPLETE AND VERIFIED | 340 Python / 60 frontend / 11 contracts / 44 local production browsers; all eight repository CI jobs successful; logs in `PHASE3_REPORT.md` and `integration/phase3/validation-summary.json` |
 | Code and evidence published directly to main | COMPLETE AND VERIFIED | No Phase3 feature branch, force push or history rewrite |
 
 The exact supported scope, API/source inventory, commands, measured values and

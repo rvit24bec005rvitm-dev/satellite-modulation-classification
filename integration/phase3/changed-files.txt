@@ -122,6 +122,7 @@ integration/phase3/chart-race-before.log
 integration/phase3/chart-race-format.log
 integration/phase3/chart-race-test-format.log
 integration/phase3/chart-race-verified.log
+integration/phase3/ci-validation.json
 integration/phase3/contracts-complete.log
 integration/phase3/contracts-final.log
 integration/phase3/contracts.log
@@ -161,6 +162,7 @@ integration/phase3/frontend.log
 integration/phase3/generate_report_examples.py
 integration/phase3/lint-including-local-site-packages.log
 integration/phase3/lint-path-quoting-first.log
+integration/phase3/local-preview.json
 integration/phase3/mobile-overflow-before.json
 integration/phase3/npm-audit-complete.json
 integration/phase3/npm-audit-final.json
@@ -178,6 +180,7 @@ integration/phase3/profile_store_access.py
 integration/phase3/protected-restart-smoke.json
 integration/phase3/protected-restart-smoke.log
 integration/phase3/protected-restart-smoke.py
+integration/phase3/publication.json
 integration/phase3/python-complete.log
 integration/phase3/python-final.log
 integration/phase3/python-integration.log

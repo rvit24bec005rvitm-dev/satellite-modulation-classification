@@ -1,0 +1,43 @@
+{
+  "url": "http://127.0.0.1:8162",
+  "samePersistentWorkspace": ".satmod",
+  "historyCountsBefore": {
+    "captures": 0,
+    "history": 294,
+    "datasets": 0
+  },
+  "historyCountsAfter": {
+    "captures": 0,
+    "history": 294,
+    "datasets": 0
+  },
+  "historyCountsPreserved": true,
+  "health": {
+    "connected": true,
+    "modelId": "1d-cnn",
+    "backend": "NumPy Native Engine",
+    "error": null,
+    "version": "1.0.0"
+  },
+  "researchModels": [
+    {
+      "id": "1d-cnn",
+      "available": true
+    },
+    {
+      "id": "rf-experimental",
+      "available": true
+    },
+    {
+      "id": "resnet-synthetic-v1",
+      "available": false
+    },
+    {
+      "id": "cldnn-synthetic-v1",
+      "available": false
+    }
+  ],
+  "sourceCommit": "2f63d7f48d78386776fe514a2f7a5e20483701c8",
+  "frontend": "Final compiled build; local font references verified.",
+  "hostingScope": "Local native preview, not newly provisioned permanent public hosting."
+}

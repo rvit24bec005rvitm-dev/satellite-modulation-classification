@@ -103,7 +103,9 @@ Metadata nesting, timestamp and hardware-index overflow return descriptive
 validation errors before unsafe persistence or response encoding. Unknown
 required extensions are rejected; optional extension metadata is opaque and
 retained. Archives/collections, arbitrary required extension semantics and
-full external schema certification are not implemented.
+full external schema certification are not implemented. Missing version,
+captures or annotations remain accepted for legacy compatibility; this does
+not imply full schema conformance.
 
 ### Genuine external multi-model evaluation
 
@@ -291,9 +293,19 @@ A broad local lint attempt included installed `.venv` dependencies; the final
 clean-checkout source lint excludes those untracked packages and passes.
 
 The implementation and all evidence are published directly to `main` without
-another Phase3 branch, force push or history rewrite. Repository CI results are
-recorded separately when available; the local executed results above are not
-presented as Linux/Windows/container execution.
+another Phase3 branch, force push or history rewrite. [Repository CI run 43253979275](https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/actions/runs/43253979275)
+passed all eight jobs on pushed `main` commit `76aef24`: Python on Ubuntu
+3.10/3.11/3.12 and Windows 3.12, compiled frontend/contracts/browsers on Linux
+and Windows, the runtime security audit, and the protected Docker upload,
+inference and persistent-volume recreation checks. Exact job/step conclusions
+are retained in `integration/phase3/ci-validation.json`. Python 3.11/3.12 on
+Linux and Python 3.12 on Windows each passed 340 tests. Python 3.10 passed 338
+with two honest RF runtime skips: it installs scikit-learn 1.7.2, while the frozen
+RF artifact requires its recorded 1.9.1 version. Both frontend platforms passed
+60 component tests, 11 contracts and 44 compiled browser scenarios (Linux 4.0 min,
+Windows 4.1 min). No unavailable model was substituted. Subsequent documentation
+and evidence publication leaves all 261 source/static/test/configuration/helper
+hashes unchanged.
 
 The controlled reader optimization alternated the old per-window mapping path
 and the bounded eight-map job LRU three times with identical cached metadata,
@@ -342,17 +354,21 @@ remains lazy loaded; it is not presented as a small initial asset.
 ## Local execution and reproduction
 
 From the repository root, use Python 3.10+ (optional TensorFlow training/runtime
-requires a compatible separate Python installation) and Node >=22.12:
+requires a compatible separate Python installation; the supplied RF requires
+its recorded scikit-learn 1.9.1 on Python 3.11+) and Node >=22.12:
 
 ```sh
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements-dev.txt
 npm --prefix frontend ci
 npm --prefix frontend run build
-SATMOD_DATA_DIR="$PWD/data/workspace" .venv/bin/python scripts/serve.py
+SATMOD_DATA_DIR="$PWD/.satmod" .venv/bin/python scripts/serve.py
 ```
 
-Open `http://localhost:8000`. Set `SATMOD_ACCESS_TOKEN` for a protected instance;
+Open `http://localhost:8000`. The refreshed existing local preview is also
+available at `http://localhost:8162`; its matching Phase3 backend retains the
+same `.satmod` workspace and all 294 existing history records. Counts and
+health are verified in `integration/phase3/local-preview.json`. Set `SATMOD_ACCESS_TOKEN` for a protected instance;
 enter the same token in Settings. Windows uses `.venv\Scripts\python.exe` and
 the equivalent environment-variable syntax. Separate development servers use
 `.venv/bin/python scripts/dev.py`.
