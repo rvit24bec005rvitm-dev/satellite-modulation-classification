@@ -1,0 +1,44 @@
+{"event": "request", "requestId": "4cb512e9-9be2-4ded-915d-6665d80ed1d9", "method": "GET", "path": "/", "status": 200, "elapsedMs": 164.05}
+HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "54a6ea5a-d1d8-4b1d-b451-f59e1f8c4a4e", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 6.54}
+HTTP Request: GET http://testserver/classifier "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "e504a940-95ab-4ac6-816f-ac26aea826b2", "method": "GET", "path": "/studio", "status": 200, "elapsedMs": 7.1}
+HTTP Request: GET http://testserver/studio "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "aa934e11-d352-462c-bd48-ef2443692a1f", "method": "GET", "path": "/evaluation", "status": 200, "elapsedMs": 7.36}
+HTTP Request: GET http://testserver/evaluation "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "7d678a22-6f28-4f34-be85-7e625da92681", "method": "GET", "path": "/arena", "status": 200, "elapsedMs": 4.93}
+HTTP Request: GET http://testserver/arena "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "375c6a08-ab97-4a72-81d9-c3ed1749c44c", "method": "GET", "path": "/intelligence", "status": 200, "elapsedMs": 6.11}
+HTTP Request: GET http://testserver/intelligence "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "c5b596d6-deca-4212-a6f0-6a937d23bd80", "method": "GET", "path": "/theory", "status": 200, "elapsedMs": 6.56}
+HTTP Request: GET http://testserver/theory "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "62f8525d-7004-42d4-a7c2-60a431b81298", "method": "GET", "path": "/settings", "status": 200, "elapsedMs": 5.79}
+HTTP Request: GET http://testserver/settings "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "59401f73-18bb-4a2e-82cf-07d92a9f2d2e", "method": "GET", "path": "/", "status": 200, "elapsedMs": 6.61}
+HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "9e27f0a7-52be-4e9f-a14b-510fde05f591", "method": "GET", "path": "/assets/index-D1clTsbt.js", "status": 200, "elapsedMs": 6.22}
+HTTP Request: GET http://testserver/assets/index-D1clTsbt.js "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "129ff225-c671-44aa-b9f9-d0bc038e2404", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 4.22}
+HTTP Request: GET http://testserver/assets/index-D0fZkNOm.css "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "c6fc754f-e2f2-4b16-83f4-b03aefe2389b", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 28.1}
+HTTP Request: GET http://testserver/api/health "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "2d8735bf-bf2b-41fe-8710-4e755ed9561f", "method": "GET", "path": "/api/does-not-exist", "status": 404, "elapsedMs": 5.3}
+HTTP Request: GET http://testserver/api/does-not-exist "HTTP/1.1 404 Not Found"
+{
+  "spaRoutesChecked": [
+    "/",
+    "/classifier",
+    "/studio",
+    "/evaluation",
+    "/arena",
+    "/intelligence",
+    "/theory",
+    "/settings"
+  ],
+  "indexAssetsChecked": [
+    "/assets/index-D1clTsbt.js",
+    "/assets/index-D0fZkNOm.css"
+  ],
+  "health": 200,
+  "unknownApi": 404
+}

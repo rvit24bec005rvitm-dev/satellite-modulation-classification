@@ -1,0 +1,69 @@
+{
+  "scope": "Controlled three-pair ablation using the same current worker, cached metadata, model and seeded synthetic capture. Baseline uses the original captures.window per frame; candidate uses the bounded eight-map LRU. Includes result serialization; excludes upload, generation and HTTP. Timings vary with host load and are not throughput guarantees or RF accuracy.",
+  "configuration": {
+    "samples": 65536,
+    "windows": 512,
+    "stride": 128,
+    "pairs": 3,
+    "seed": 8386,
+    "warmupInference": 8,
+    "warmupWindowsPerMode": 32,
+    "maxCachedMappings": 8
+  },
+  "platform": {
+    "os": "macOS-26.7.1-x86_64-i386-64bit-Mach-O",
+    "machine": "x86_64",
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "threadpools": []
+  },
+  "backend": "NumPy Native Engine",
+  "modelHash": "e9705c98275e26d4a60210b2d563c4cc32ef94f4f0368974f1168245f91cf33d",
+  "measurements": {
+    "previousPerWindowMmap": [
+      {
+        "pair": 0,
+        "seconds": 3.5512309999903664,
+        "windowsPerSecond": 144.1753577847763,
+        "probabilitiesSha256": "d8ebd1c72646d88a776d7e0d94570194cdd7f5b65607175262d955f0fba544ee"
+      },
+      {
+        "pair": 1,
+        "seconds": 2.9586323240073398,
+        "windowsPerSecond": 173.05293254773818,
+        "probabilitiesSha256": "d8ebd1c72646d88a776d7e0d94570194cdd7f5b65607175262d955f0fba544ee"
+      },
+      {
+        "pair": 2,
+        "seconds": 2.9442395790247247,
+        "windowsPerSecond": 173.8988918047217,
+        "probabilitiesSha256": "d8ebd1c72646d88a776d7e0d94570194cdd7f5b65607175262d955f0fba544ee"
+      }
+    ],
+    "boundedJobLru": [
+      {
+        "pair": 0,
+        "seconds": 0.9558898750110529,
+        "windowsPerSecond": 535.6265542556142,
+        "probabilitiesSha256": "d8ebd1c72646d88a776d7e0d94570194cdd7f5b65607175262d955f0fba544ee"
+      },
+      {
+        "pair": 1,
+        "seconds": 1.1037413779995404,
+        "windowsPerSecond": 463.876783280488,
+        "probabilitiesSha256": "d8ebd1c72646d88a776d7e0d94570194cdd7f5b65607175262d955f0fba544ee"
+      },
+      {
+        "pair": 2,
+        "seconds": 1.1436510810162872,
+        "windowsPerSecond": 447.6889922973879,
+        "probabilitiesSha256": "d8ebd1c72646d88a776d7e0d94570194cdd7f5b65607175262d955f0fba544ee"
+      }
+    ]
+  },
+  "medianWindowsPerSecond": {
+    "previousPerWindowMmap": 173.05293254773818,
+    "boundedJobLru": 463.876783280488
+  },
+  "maxProbabilityErrorAll512Windows": 0.0
+}

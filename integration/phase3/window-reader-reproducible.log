@@ -1,0 +1,1 @@
+{"output": "integration/phase3/window-reader-reproducible.json", "medianWindowsPerSecond": {"previousPerWindowMmap": 173.05293254773818, "boundedJobLru": 463.876783280488}, "maxProbabilityErrorAll512Windows": 0.0}

@@ -1,0 +1,121 @@
+{
+  "scope": "Focused warm metadata and 128-sample mapped-window microbenchmark, not an API/network/batch throughput benchmark.",
+  "fixture": "Generated 128x2 float32 zero array; no real RF observations or fitting.",
+  "method": "Two sequential script executions on the same host, before and after the env/cwd-keyed root cache. 20 warmups and 200 perf_counter measurements per operation, each filesystem location. SQLite connections close before temporary-directory cleanup.",
+  "platform": "macOS-26.7.1-x86_64-i386-64bit-Mach-O",
+  "python": "3.14.7",
+  "before": {
+    "temporaryFilesystem": {
+      "resolvedRoot": {
+        "medianMs": 0.11069601168856025,
+        "p95Ms": 0.22387399803847075,
+        "repetitions": 200,
+        "warmup": 20
+      },
+      "filePath": {
+        "medianMs": 0.12333798804320395,
+        "p95Ms": 0.21329900482669473,
+        "repetitions": 200,
+        "warmup": 20
+      },
+      "getRecord": {
+        "medianMs": 0.1768489892128855,
+        "p95Ms": 0.3254949697293341,
+        "repetitions": 200,
+        "warmup": 20
+      },
+      "window128": {
+        "medianMs": 0.939382502110675,
+        "p95Ms": 20.23365197237581,
+        "repetitions": 200,
+        "warmup": 20
+      }
+    },
+    "workspaceFilesystem": {
+      "resolvedRoot": {
+        "medianMs": 0.09387952741235495,
+        "p95Ms": 0.30495901592075825,
+        "repetitions": 200,
+        "warmup": 20
+      },
+      "filePath": {
+        "medianMs": 0.11481647379696369,
+        "p95Ms": 0.3739470266737044,
+        "repetitions": 200,
+        "warmup": 20
+      },
+      "getRecord": {
+        "medianMs": 0.20998797845095396,
+        "p95Ms": 0.4855889710597694,
+        "repetitions": 200,
+        "warmup": 20
+      },
+      "window128": {
+        "medianMs": 0.807768024969846,
+        "p95Ms": 3.196952980943024,
+        "repetitions": 200,
+        "warmup": 20
+      }
+    }
+  },
+  "after": {
+    "temporaryFilesystem": {
+      "resolvedRoot": {
+        "medianMs": 0.010073970770463347,
+        "p95Ms": 0.03224401734769344,
+        "repetitions": 200,
+        "warmup": 20
+      },
+      "filePath": {
+        "medianMs": 0.013991491869091988,
+        "p95Ms": 0.042975007090717554,
+        "repetitions": 200,
+        "warmup": 20
+      },
+      "getRecord": {
+        "medianMs": 0.0538984895683825,
+        "p95Ms": 0.0675269984640181,
+        "repetitions": 200,
+        "warmup": 20
+      },
+      "window128": {
+        "medianMs": 0.39015550282783806,
+        "p95Ms": 0.6018399726599455,
+        "repetitions": 200,
+        "warmup": 20
+      }
+    },
+    "workspaceFilesystem": {
+      "resolvedRoot": {
+        "medianMs": 0.00879299477674067,
+        "p95Ms": 0.011815980542451143,
+        "repetitions": 200,
+        "warmup": 20
+      },
+      "filePath": {
+        "medianMs": 0.013315031537786126,
+        "p95Ms": 0.043787003960460424,
+        "repetitions": 200,
+        "warmup": 20
+      },
+      "getRecord": {
+        "medianMs": 0.1255344832316041,
+        "p95Ms": 0.23540097754448652,
+        "repetitions": 200,
+        "warmup": 20
+      },
+      "window128": {
+        "medianMs": 0.42096295510418713,
+        "p95Ms": 0.9001280413940549,
+        "repetitions": 200,
+        "warmup": 20
+      }
+    }
+  },
+  "limitations": [
+    "Host load and OS caching can affect tail latency. These observations do not isolate every source of latency and are not general speed guarantees.",
+    "Before profile used uncached resolve/mkdir on every root lookup; the rest of the measured store/window functions were unchanged. New report helpers were not exercised.",
+    "The parent application profile must verify aggregate end-to-end impact separately."
+  ],
+  "cacheContract": "SATMOD_DATA_DIR and cwd for relative paths key the cache. close_connections clears it. Dynamic-environment/relative-directory initialization tests execute this contract."
+}

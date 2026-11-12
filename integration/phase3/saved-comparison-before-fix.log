@@ -1,0 +1,272 @@
+
+ RUN  v4.1.12 /Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend
+
+ ❯ src/test/managed-comparison-phase3.test.tsx (1 test | 1 failed) 1271ms
+     × captures the selected UUID before an asynchronous mutation resets the controlled select 1264ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/test/managed-comparison-phase3.test.tsx > Saved comparison selection > captures the selected UUID before an asynchronous mutation resets the controlled select
+AssertionError: expected "comparison" to be called with arguments: [ Array(1) ]
+
+Received:
+
+  1st comparison call:
+
+  [
+-   "2d1b218c-d90e-4f48-b8cb-d815c2874b11",
++   "",
+  ]
+
+
+Number of calls: 1
+
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head />[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<section[39m
+        [33mclass[39m=[32m"min-w-0 border border-border/80 bg-card/70 p-4 space-y-4"[39m
+      [36m>[39m
+        [36m<details[39m
+          [33mopen[39m=[32m""[39m
+        [36m>[39m
+          [36m<summary[39m
+            [33mclass[39m=[32m"cursor-pointer font-semibold text-primary"[39m
+          [36m>[39m
+            [0mManaged recording comparison workstation[0m
+          [36m</summary>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"space-y-4 mt-4"[39m
+          [36m>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [0mCompare exact stored windows. No sample alignment, amplitude normalization or resampling is inferred. Reports retain the capture/window hashes and actual model outputs.[0m
+            [36m</p>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mSearch comparison recordings[0m
+              [36m</span>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"control"[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"grid gap-3 md:grid-cols-2"[39m
+            [36m>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"mb-2 block"[39m
+                [36m>[39m
+                  [0mComparison recording A[0m
+                [36m</span>[39m
+                [36m<select[39m
+                  [33mclass[39m=[32m"control"[39m
+                [36m>[39m
+                  [36m<option[39m
+                    [33mvalue[39m=[32m""[39m
+                  [36m>[39m
+                    [0mSelect recording A[0m
+                  [36m</option>[39m
+                [36m</select>[39m
+              [36m</label>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"mb-2 block"[39m
+                [36m>[39m
+                  [0mComparison recording B[0m
+                [36m</span>[39m
+                [36m<select[39m
+                  [33mclass[39m=[32m"control"[39m
+                [36m>[39m
+                  [36m<option[39m
+                    [33mvalue[39m=[32m""[39m
+                  [36m>[39m
+                    [0mSelect recording B[0m
+                  [36m</option>[39m
+                [36m</select>[39m
+              [36m</label>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"mb-2 block"[39m
+                [36m>[39m
+                  [0mRecording A sample offset[0m
+                [36m</span>[39m
+                [36m<input[39m
+                  [33mclass[39m=[32m"control"[39m
+                  [33mmin[39m=[32m"0"[39m
+                  [33mstep[39m=[32m"1"[39m
+                  [33mtype[39m=[32m"number"[39m
+                  [33mvalue[39m=[32m"0"[39m
+                [36m/>[39m
+              [36m</label>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"mb-2 block"[39m
+                [36m>[39m
+                  [0mRecording B sample offset[0m
+                [36m</span>[39m
+                [36m<input[39m
+                  [33mclass[39m=[32m"control"[39m
+                  [33mmin[39m=[32m"0"[39m
+                  [33mstep[39m=[32m"1"[39m
+                  [33mtype[39m=[32m"number"[39m
+                  [33mvalue[39m=[32m"0"[39m
+                [36m/>[39m
+              [36m</label>[39m
+              [36m<label[39m
+                [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+              [36m>[39m
+                [36m<span[39m
+                  [33mclass[39m=[32m"mb-2 block"[39m
+                [36m>[39m
+                  [0mComparison window length[0m
+                [36m</span>[39m
+                [36m<input[39m
+                  [33mclass[39m=[32m"control"[39m
+                  [33mmax[39m=[32m"65536"[39m
+                  [33mmin[39m=[32m"16"[39m
+                  [33mstep[39m=[32m"1"[39m
+                  [33mtype[39m=[32m"number"[39m
+                  [33mvalue[39m=[32m"128"[39m
+                [36m/>[39m
+              [36m</label>[39m
+            [36m</div>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"flex flex-wrap gap-2"[39m
+            [36m>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"[39m
+                [33mdisabled[39m=[32m""[39m
+              [36m>[39m
+                [0mPrevious recording page[0m
+              [36m</button>[39m
+              [36m<button[39m
+                [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2"[39m
+                [33mdisabled[39m=[32m""[39m
+              [36m>[39m
+                [0mNext recording page[0m
+              [36m</button>[39m
+            [36m</div>[39m
+            [36m<details>[39m
+              [36m<summary[39m
+                [33mclass[39m=[32m"cursor-pointer text-xs"[39m
+              [36m>[39m
+                [0mReuse saved predictions / attribution (optional)[0m
+              [36m</summary>[39m
+              [36m<div[39m
+                [33mclass[39m=[32m"grid gap-3 md:grid-cols-2 mt-3"[39m
+              [36m>[39m
+                [36m<label[39m
+                  [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"mb-2 block"[39m
+                  [36m>[39m
+                    [0mRecording A analysis ID[0m
+                  [36m</span>[39m
+                  [36m<input[39m
+                    [33mclass[39m=[32m"control"[39m
+                    [33mplaceholder[39m=[32m"Exact matching historical analysis ID"[39m
+                    [33mvalue[39m=[32m""[39m
+                  [36m/>[39m
+                [36m</label>[39m
+                [36m<label[39m
+                  [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+                [36m>[39m
+                  [36m<span[39m
+                    [33mclass[39m=[32m"mb-2 block"[39m
+                  [36m>[39m
+                    [0mRecording B analysis ID[0m
+                  [36m</span>[39m
+                  [36m<input[39m
+                    [33mclass[39m=[32m"control"[39m
+                    [33mplaceholder[39m=[32m"Exact matching historical analysis ID"[39m
+                    [33mvalue[39m=[32m""[39m
+                  [36m/>[39m
+                [36m</label>[39m
+              [36m</div>[39m
+              [36m<p[39m
+                [33mclass[39m=[32m"text-xs"[39m
+              [36m>[39m
+                [0mHistorical input, model and preprocessing hashes must match. Attribution differences require the same method/target and compatible sample clocks.[0m
+              [36m</p>[39m
+            [36m</details>[39m
+            [36m<button[39m
+              [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2"[39m
+              [33mdisabled[39m=[32m""[39m
+            [36m>[39m
+              [0mCompare managed windows[0m
+            [36m</button>[39m
+            [36m<div[39m
+              [33mclass[39m=[32m"my-4 border border-destructive/40 bg-destructive/10 p-3 text-sm text-destructive"[39m
+              [33mrole[39m=[32m"alert"[39m
+            [36m>[39m
+              [0mSelected comparison read failed[0m
+            [36m</div>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mInspect saved comparison[0m
+              [36m</span>[39m
+              [36m<select[39m
+                [33mclass[39m=[32m"control"[39m
+              [36m>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m""[39m
+                [36m>[39m
+                  [0mSelect a stored comparison[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"2d1b218c-d90e-4f48-b8cb-d815c2874b11"[39m
+                [36m>[39m
+                  [0m2026-01-01T00:00:00Z[0m
+                  [0m · [0m
+                  [0mGenerated saved comparison fixture[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</label>[39m
+          [36m</div>[39m
+        [36m</details>[39m
+      [36m</section>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+ ❯ src/test/managed-comparison-phase3.test.tsx:33:38
+     31|     await screen.findByRole("option", { name: /Generated saved compari…
+     32|     fireEvent.change(screen.getByRole("combobox", { name: "Inspect sav…
+     33|     await waitFor(() => expect(load).toHaveBeenCalledWith(id));
+       |                                      ^
+     34|     expect(load).toHaveBeenCalledTimes(1);
+     35|     await screen.findByRole("alert");
+ ❯ runWithExpensiveErrorDiagnosticsDisabled node_modules/@testing-library/dom/dist/config.js:47:12
+ ❯ checkCallback node_modules/@testing-library/dom/dist/wait-for.js:124:77
+ ❯ Timeout.checkRealTimersCallback node_modules/@testing-library/dom/dist/wait-for.js:118:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  20:04:49
+   Duration  4.40s (transform 257ms, setup 207ms, import 514ms, tests 1.27s, environment 1.03s)
+

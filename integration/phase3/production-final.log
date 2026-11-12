@@ -1,0 +1,99 @@
+{"event": "request", "requestId": "a61d1a2d-14ed-4e20-b2b6-5377c628f821", "method": "GET", "path": "/", "status": 200, "elapsedMs": 63.74}
+HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "2eafe925-16d2-4316-b697-66db999392c5", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 2.22}
+HTTP Request: GET http://testserver/classifier "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "4cc1094b-622f-43cd-b821-fd511867bab7", "method": "GET", "path": "/studio", "status": 200, "elapsedMs": 2.1}
+HTTP Request: GET http://testserver/studio "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "18fafda2-307e-4f0c-9f47-f27827e8f120", "method": "GET", "path": "/evaluation", "status": 200, "elapsedMs": 2.09}
+HTTP Request: GET http://testserver/evaluation "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "a7e604b4-f87d-4431-b457-c23a3bf4e4ae", "method": "GET", "path": "/arena", "status": 200, "elapsedMs": 2.66}
+HTTP Request: GET http://testserver/arena "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "dc639875-1228-4261-b67c-a0c2841ebcf9", "method": "GET", "path": "/intelligence", "status": 200, "elapsedMs": 2.08}
+HTTP Request: GET http://testserver/intelligence "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "1dc3b294-bfd4-45f7-9e0c-8e9bd9b805a3", "method": "GET", "path": "/theory", "status": 200, "elapsedMs": 2.21}
+HTTP Request: GET http://testserver/theory "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "14b0ceef-d28c-472d-87d1-8870d06028bd", "method": "GET", "path": "/settings", "status": 200, "elapsedMs": 2.34}
+HTTP Request: GET http://testserver/settings "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "ded94f62-45e7-4370-9df4-bbabd2e9e572", "method": "GET", "path": "/", "status": 200, "elapsedMs": 3.95}
+HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "ad2c47fd-7007-403f-b029-36d276db4599", "method": "GET", "path": "/assets/index-CTSRVrOv.js", "status": 200, "elapsedMs": 2.12}
+HTTP Request: GET http://testserver/assets/index-CTSRVrOv.js "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "0185ab41-b2c2-431f-8d76-db0f9654592d", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 2.07}
+HTTP Request: GET http://testserver/assets/index-D0fZkNOm.css "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "e593fa31-08dc-4fcd-90e1-eb8a5e053110", "method": "GET", "path": "/fonts/fonts.css", "status": 200, "elapsedMs": 2.17}
+HTTP Request: GET http://testserver/fonts/fonts.css "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "460fab07-73d2-422b-a303-560fdd6ef67a", "method": "GET", "path": "/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2", "status": 200, "elapsedMs": 2.19}
+HTTP Request: GET http://testserver/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2 "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "4b938dee-0fdb-4b12-850b-f0b3d2a90810", "method": "GET", "path": "/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2", "status": 200, "elapsedMs": 2.27}
+HTTP Request: GET http://testserver/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2 "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "f3660672-37ab-4cf4-b10b-4199bc2a111d", "method": "GET", "path": "/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7W0Q5n-wU.woff2", "status": 200, "elapsedMs": 2.11}
+HTTP Request: GET http://testserver/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7W0Q5n-wU.woff2 "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "cc999092-0655-4fb0-b79e-a369f611bfa3", "method": "GET", "path": "/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2", "status": 200, "elapsedMs": 2.1}
+HTTP Request: GET http://testserver/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2 "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "3e5923e8-4aac-4f37-a1cd-1d64a558e7d5", "method": "GET", "path": "/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2", "status": 200, "elapsedMs": 2.15}
+HTTP Request: GET http://testserver/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2 "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "c64fdd50-6ba8-4f6e-8351-4f88d89fbdd4", "method": "GET", "path": "/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7W0Q5n-wU.woff2", "status": 200, "elapsedMs": 2.87}
+HTTP Request: GET http://testserver/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7W0Q5n-wU.woff2 "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "b58fac4d-bdd9-4a3f-b60b-b2c138c9a443", "method": "GET", "path": "/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7W0Q5n-wU.woff2", "status": 200, "elapsedMs": 2.18}
+HTTP Request: GET http://testserver/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7W0Q5n-wU.woff2 "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "09eac17e-ec7f-40c1-afb5-51adb8576104", "method": "GET", "path": "/fonts/V8mDoQDjQSkFtoMM3T6r8E7mPb54C_k3HqUtEw.woff2", "status": 200, "elapsedMs": 2.33}
+HTTP Request: GET http://testserver/fonts/V8mDoQDjQSkFtoMM3T6r8E7mPb54C_k3HqUtEw.woff2 "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "4cfd23af-d7e7-40c7-b4a3-0ed1ffd8f497", "method": "GET", "path": "/fonts/V8mDoQDjQSkFtoMM3T6r8E7mPb94C_k3HqUtEw.woff2", "status": 200, "elapsedMs": 2.43}
+HTTP Request: GET http://testserver/fonts/V8mDoQDjQSkFtoMM3T6r8E7mPb94C_k3HqUtEw.woff2 "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "1fc4aa00-c378-44c8-beeb-b5004816c16a", "method": "GET", "path": "/fonts/V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2", "status": 200, "elapsedMs": 2.29}
+HTTP Request: GET http://testserver/fonts/V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2 "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "1368b676-82a7-494a-96bc-75abcc217e6e", "method": "GET", "path": "/fonts/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx3cwgknk-6nFg.woff2", "status": 200, "elapsedMs": 4.31}
+HTTP Request: GET http://testserver/fonts/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx3cwgknk-6nFg.woff2 "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "ef4861ee-8df0-42ee-b507-c69797759c4b", "method": "GET", "path": "/fonts/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx7cwgknk-6nFg.woff2", "status": 200, "elapsedMs": 2.17}
+HTTP Request: GET http://testserver/fonts/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx7cwgknk-6nFg.woff2 "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "029bba3d-c2d5-4e7b-81f6-559dd8cd21f4", "method": "GET", "path": "/fonts/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2", "status": 200, "elapsedMs": 2.28}
+HTTP Request: GET http://testserver/fonts/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2 "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "6d13b4ef-db83-41ce-8414-c90f29829323", "method": "GET", "path": "/fonts/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxPcwgknk-6nFg.woff2", "status": 200, "elapsedMs": 2.12}
+HTTP Request: GET http://testserver/fonts/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxPcwgknk-6nFg.woff2 "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "9b9556ef-3b7f-4ab2-845b-95fe961377a2", "method": "GET", "path": "/fonts/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxTcwgknk-6nFg.woff2", "status": 200, "elapsedMs": 2.18}
+HTTP Request: GET http://testserver/fonts/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxTcwgknk-6nFg.woff2 "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "ed21d6a5-9463-4137-9aa2-6d3820520fa5", "method": "GET", "path": "/fonts/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx_cwgknk-6nFg.woff2", "status": 200, "elapsedMs": 2.22}
+HTTP Request: GET http://testserver/fonts/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx_cwgknk-6nFg.woff2 "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "78e33dee-d335-43de-a08d-3dfa2107312c", "method": "GET", "path": "/fonts/missing.woff2", "status": 404, "elapsedMs": 1.95}
+HTTP Request: GET http://testserver/fonts/missing.woff2 "HTTP/1.1 404 Not Found"
+{"event": "request", "requestId": "44a197e6-a0e0-4490-8d18-baf833fd00b3", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 15.46}
+HTTP Request: GET http://testserver/api/health "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "84bfc686-e7a1-4082-9e51-49df56d7a5f9", "method": "GET", "path": "/api/does-not-exist", "status": 404, "elapsedMs": 2.3}
+HTTP Request: GET http://testserver/api/does-not-exist "HTTP/1.1 404 Not Found"
+{
+  "spaRoutesChecked": [
+    "/",
+    "/classifier",
+    "/studio",
+    "/evaluation",
+    "/arena",
+    "/intelligence",
+    "/theory",
+    "/settings"
+  ],
+  "indexAssetsChecked": [
+    "/assets/index-CTSRVrOv.js",
+    "/assets/index-D0fZkNOm.css"
+  ],
+  "localFontAssetsChecked": [
+    "/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa0ZL7W0Q5n-wU.woff2",
+    "/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2",
+    "/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1pL7W0Q5n-wU.woff2",
+    "/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa25L7W0Q5n-wU.woff2",
+    "/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2JL7W0Q5n-wU.woff2",
+    "/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2ZL7W0Q5n-wU.woff2",
+    "/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa2pL7W0Q5n-wU.woff2",
+    "/fonts/V8mDoQDjQSkFtoMM3T6r8E7mPb54C_k3HqUtEw.woff2",
+    "/fonts/V8mDoQDjQSkFtoMM3T6r8E7mPb94C_k3HqUtEw.woff2",
+    "/fonts/V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2",
+    "/fonts/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx3cwgknk-6nFg.woff2",
+    "/fonts/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx7cwgknk-6nFg.woff2",
+    "/fonts/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2",
+    "/fonts/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxPcwgknk-6nFg.woff2",
+    "/fonts/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxTcwgknk-6nFg.woff2",
+    "/fonts/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPx_cwgknk-6nFg.woff2"
+  ],
+  "health": 200,
+  "unknownApi": 404,
+  "missingFont": 404
+}

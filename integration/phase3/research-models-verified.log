@@ -1,0 +1,117 @@
+[WebServer] INFO:     Started server process [22447]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:18384 (Press CTRL+C to quit)
+[WebServer] {"event": "request", "requestId": "46272f8d-6f6b-4137-8df9-a713f195b9d0", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 13.39}
+
+Running 3 tests using 1 worker
+
+(node:22628) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] {"event": "request", "requestId": "bc982ebb-6fe1-4d62-aaaa-48d0f9d3f88e", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 108.09}
+[WebServer] {"event": "request", "requestId": "6ba3c5da-c7ee-48cd-932a-15f1bf67b6e0", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 107.86}
+[WebServer] {"event": "request", "requestId": "9a74885d-d8cb-4af4-9471-ab7917c03d3e", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 107.95}
+[WebServer] {"event": "request", "requestId": "c96e08c4-a9c3-4ecd-a6e2-6ee596bd7fa6", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 49.62}
+[WebServer] {"event": "request", "requestId": "a60c8f63-c090-4e53-aa10-234d78eb0084", "method": "POST", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 54.75}
+[WebServer] {"event": "request", "requestId": "510243cd-138a-4bb4-8dab-5bdca4d80bdd", "method": "GET", "path": "/api/research/models", "status": 200, "elapsedMs": 148.25}
+[WebServer] {"event": "request", "requestId": "9a9e6070-d7d4-47c4-a041-b8512294e6bd", "method": "GET", "path": "/evaluation", "status": 200, "elapsedMs": 24.23}
+[WebServer] {"event": "request", "requestId": "0b1cee1e-b917-4eca-9a09-ae1bcc5d67bc", "method": "GET", "path": "/assets/index-DYKbRcX9.js", "status": 200, "elapsedMs": 4.77}
+[WebServer] {"event": "request", "requestId": "757bdb0c-1dca-418f-a8a3-d081371897ab", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 6.15}
+[WebServer] {"event": "request", "requestId": "f926d68b-2fb2-49b4-8158-d641670a4903", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 14.32}
+[WebServer] {"event": "request", "requestId": "21e8790b-0340-4209-beb6-9aabe59d681a", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 17.62}
+[WebServer] {"event": "request", "requestId": "c808ad4a-22c0-4cba-8569-3835fa7657c2", "method": "GET", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 35.5}
+[WebServer] {"event": "request", "requestId": "7bc8b5a0-2e19-4142-bf89-6592ff4f5536", "method": "GET", "path": "/api/research/models", "status": 200, "elapsedMs": 50.55}
+[WebServer] {"event": "request", "requestId": "ccdc73b4-adbc-4174-9dab-9a23b92e3929", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 18.61}
+[WebServer] {"event": "request", "requestId": "17c49b49-ef5f-4536-b63f-961ea53d79f4", "method": "GET", "path": "/assets/plotly.min-N5FMtaBW.js", "status": 200, "elapsedMs": 10.9}
+[WebServer] {"event": "request", "requestId": "22a4917d-6cbe-43d8-b75f-2a7f29ac79d4", "method": "POST", "path": "/api/research/evaluations", "status": 202, "elapsedMs": 16.49}
+[WebServer] {"event": "request", "requestId": "183aeaf8-7e2b-43ea-bb51-b49fd66b2a38", "method": "GET", "path": "/api/workspace/jobs/7a83feb2-9ff0-4a85-8d95-e2d1ba7c8b87", "status": 200, "elapsedMs": 14.24}
+[WebServer] {"event": "request", "requestId": "05414da2-7445-4ec0-9f10-0fefcc482379", "method": "GET", "path": "/api/workspace/jobs/7a83feb2-9ff0-4a85-8d95-e2d1ba7c8b87", "status": 200, "elapsedMs": 4.88}
+[WebServer] {"event": "request", "requestId": "315d1496-71ed-4988-9d07-805f537e7eaa", "method": "GET", "path": "/api/workspace/jobs/7a83feb2-9ff0-4a85-8d95-e2d1ba7c8b87", "status": 200, "elapsedMs": 3.83}
+[WebServer] {"event": "request", "requestId": "28370716-9156-4709-b101-376c698e3252", "method": "GET", "path": "/api/workspace/jobs/7a83feb2-9ff0-4a85-8d95-e2d1ba7c8b87", "status": 200, "elapsedMs": 4.12}
+[WebServer] {"event": "request", "requestId": "f42ab579-5ffd-4e4a-8e6e-2b7eece291cf", "method": "GET", "path": "/api/workspace/jobs/7a83feb2-9ff0-4a85-8d95-e2d1ba7c8b87/result", "status": 200, "elapsedMs": 7.34}
+[WebServer] {"event": "request", "requestId": "ecf6ac68-f46b-4b5d-9cbe-c44bb0000903", "method": "GET", "path": "/api/workspace/jobs/7a83feb2-9ff0-4a85-8d95-e2d1ba7c8b87/result", "status": 200, "elapsedMs": 5.96}
+[WebServer] {"event": "request", "requestId": "f51b956b-e724-4363-91e2-c8dc67456ca7", "method": "POST", "path": "/api/research/evaluations", "status": 202, "elapsedMs": 11.45}
+[WebServer] {"event": "request", "requestId": "525582d6-8d92-4032-aa61-c339945b3d5f", "method": "GET", "path": "/api/workspace/jobs/2f0ea99b-db33-4a4c-91ad-8a98ee59a2fc", "status": 200, "elapsedMs": 32.81}
+[WebServer] {"event": "request", "requestId": "f75b3c85-28ab-4832-ac3a-575ee1e290b9", "method": "GET", "path": "/api/workspace/jobs/2f0ea99b-db33-4a4c-91ad-8a98ee59a2fc", "status": 200, "elapsedMs": 10.76}
+[WebServer] {"event": "request", "requestId": "653aff30-0771-445b-9d25-a4fba50e6594", "method": "GET", "path": "/api/workspace/jobs/2f0ea99b-db33-4a4c-91ad-8a98ee59a2fc", "status": 200, "elapsedMs": 3.79}
+[WebServer] {"event": "request", "requestId": "88b5c323-0084-45cc-a7f5-52e55fb9a668", "method": "GET", "path": "/api/workspace/jobs/2f0ea99b-db33-4a4c-91ad-8a98ee59a2fc", "status": 200, "elapsedMs": 2.57}
+[WebServer] {"event": "request", "requestId": "65910aab-6c68-4484-a1b9-96feb0dbdd88", "method": "GET", "path": "/api/workspace/jobs/2f0ea99b-db33-4a4c-91ad-8a98ee59a2fc/result", "status": 200, "elapsedMs": 6.24}
+[WebServer] {"event": "request", "requestId": "3782a6d4-c7ae-4f7a-8180-fb4d1f568d90", "method": "GET", "path": "/api/workspace/jobs/2f0ea99b-db33-4a4c-91ad-8a98ee59a2fc/result", "status": 200, "elapsedMs": 5.25}
+[WebServer] {"event": "request", "requestId": "a1239c29-703e-48fb-8260-28e16d088468", "method": "GET", "path": "/arena", "status": 200, "elapsedMs": 2.9}
+[WebServer] {"event": "request", "requestId": "b5aa154e-f0ab-44d3-99fe-93c6de232273", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 10.08}
+[WebServer] {"event": "request", "requestId": "4c399c6c-4f5e-4073-97a5-acbf70bec3a3", "method": "GET", "path": "/api/experiments", "status": 200, "elapsedMs": 37.47}
+[WebServer] {"event": "request", "requestId": "4295d440-a1b7-47a5-8bb8-3d0b14acfc5a", "method": "GET", "path": "/api/models", "status": 200, "elapsedMs": 80.55}
+[WebServer] {"event": "request", "requestId": "a9473192-e4ed-4d17-952a-e294cbf15287", "method": "GET", "path": "/api/research/evaluations", "status": 200, "elapsedMs": 11.09}
+[WebServer] {"event": "request", "requestId": "2977ba35-4c3f-40a1-bd6f-342c4c4dd226", "method": "GET", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 28.06}
+[WebServer] {"event": "request", "requestId": "3d4e312d-b215-4899-9805-c36111f1aa9f", "method": "GET", "path": "/api/research/evaluations", "status": 200, "elapsedMs": 8.78}
+[WebServer] {"event": "request", "requestId": "01847638-6433-4dd6-8210-bc7e98ad6f72", "method": "POST", "path": "/api/research/evaluations/compare", "status": 200, "elapsedMs": 3.77}
+  ✓  1 e2e/research-models.spec.ts:110:1 › available registered models execute real held-out inference and compare on an identical protocol (7.9s)
+[WebServer] {"event": "request", "requestId": "7487978a-4b9c-4244-9d8e-5d54efd97bfe", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 52.15}
+[WebServer] {"event": "request", "requestId": "a038c3d3-6230-4cc3-896d-d87edc027a21", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 96.08}
+[WebServer] {"event": "request", "requestId": "abe7c2fa-11e8-4ef4-ad4e-1e106c2c01e8", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 96.75}
+[WebServer] {"event": "request", "requestId": "66c35d1f-7056-4ef9-8d27-835414a2c65d", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 8.83}
+[WebServer] {"event": "request", "requestId": "98a7ff7b-bb65-4cd8-aceb-b89a116e5058", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 61.94}
+[WebServer] {"event": "request", "requestId": "94cdb55f-5e8e-4a20-b43e-47d6e0099663", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 99.27}
+[WebServer] {"event": "request", "requestId": "ae58659c-744c-49e2-931d-020d73b34998", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 100.96}
+[WebServer] {"event": "request", "requestId": "691c3471-346f-45ae-b3c3-5f9e8e93e4da", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 8.27}
+[WebServer] {"event": "request", "requestId": "26fe1d6e-b08f-4cf8-9329-21002ce625d3", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 75.92}
+[WebServer] {"event": "request", "requestId": "2292f61f-9654-47c4-ad1a-d3e376f0d9c4", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 87.96}
+[WebServer] {"event": "request", "requestId": "b64180ea-49e5-4417-a609-8c60f763d347", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 89.69}
+[WebServer] {"event": "request", "requestId": "2cec788a-37bc-40df-85d0-3a7556ef69d0", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 7.47}
+[WebServer] {"event": "request", "requestId": "7c94b121-7e79-4af8-9e5e-b35f198755bf", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 66.99}
+[WebServer] {"event": "request", "requestId": "fe74f895-d04e-493a-bd5e-84f120354360", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 90.41}
+[WebServer] {"event": "request", "requestId": "ed97a850-10ab-496b-9b15-979b955e654c", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 89.7}
+[WebServer] {"event": "request", "requestId": "1b15fabe-cac0-4f90-8fd9-242fc77dfd6b", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 7.37}
+[WebServer] {"event": "request", "requestId": "52217378-3e9b-4cc0-9f33-e5891580f9f1", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 74.59}
+[WebServer] {"event": "request", "requestId": "c9893377-4f01-46f5-9705-219da6dc9deb", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 92.87}
+[WebServer] {"event": "request", "requestId": "fd4b9c09-27a7-4c72-815e-5d1a7c3b3de5", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 94.19}
+[WebServer] {"event": "request", "requestId": "2fed58ae-48c4-4081-be66-ed217802fa5a", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 7.14}
+[WebServer] {"event": "request", "requestId": "364284dc-cd72-4b26-b8f8-bf230267a995", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 33.91}
+[WebServer] {"event": "request", "requestId": "e185007a-5364-4977-a8ef-195a7342e2ce", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 81.6}
+[WebServer] {"event": "request", "requestId": "7182bc76-1ea8-4b3e-a234-17caacf0c452", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 82.05}
+[WebServer] {"event": "request", "requestId": "d7d4b5e9-db1e-4bd4-a84f-82c77da4166f", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 6.54}
+[WebServer] {"event": "request", "requestId": "72413364-e406-4143-956c-94dc454cf622", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 85.89}
+[WebServer] {"event": "request", "requestId": "3983dde6-5171-4edd-8506-a6a9e4bdfe28", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 87.28}
+[WebServer] {"event": "request", "requestId": "3973f605-f13a-42dd-a70b-d95b34984da2", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 85.94}
+[WebServer] {"event": "request", "requestId": "736fcd22-765c-4995-8340-40ac43f38bf0", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 5.95}
+[WebServer] {"event": "request", "requestId": "b99f6116-aabd-4681-a7ab-f9df5d6b8ec1", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 71.85}
+[WebServer] {"event": "request", "requestId": "884899ca-3a56-45e6-9748-4ef8e58cd3f0", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 91.04}
+[WebServer] {"event": "request", "requestId": "10c5f5df-6671-4a43-a963-83e814ffc5d9", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 90.37}
+[WebServer] {"event": "request", "requestId": "b355b288-9545-4089-a558-1b7e15d3ab42", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 10.56}
+[WebServer] {"event": "request", "requestId": "2b834dea-a96b-40df-ad3a-3f98de4e85a3", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 84.82}
+[WebServer] {"event": "request", "requestId": "53c12db7-8dae-4494-aa41-7427962938a3", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 148.16}
+[WebServer] {"event": "request", "requestId": "4faf19a3-fb20-4741-876a-166733e6ded0", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 150.16}
+[WebServer] {"event": "request", "requestId": "5ea81589-a0fc-4889-b225-3c84445c6596", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 54.64}
+[WebServer] {"event": "request", "requestId": "332493d4-9cfa-4b03-8c83-d26ea8614e89", "method": "POST", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 157.19}
+[WebServer] {"event": "request", "requestId": "1f045e36-4fa6-487e-a32b-2f77185f0919", "method": "GET", "path": "/evaluation", "status": 200, "elapsedMs": 2.82}
+[WebServer] {"event": "request", "requestId": "537fdbd3-0fa4-461e-a2ac-5f37f0a8ec06", "method": "GET", "path": "/assets/index-DYKbRcX9.js", "status": 200, "elapsedMs": 3.77}
+[WebServer] {"event": "request", "requestId": "e2e6eb1d-ac73-49d8-b9c3-a3f136b6cd11", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 4.54}
+[WebServer] {"event": "request", "requestId": "90ea4d74-2841-4b25-9eb8-046bc58636bf", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 8.11}
+[WebServer] {"event": "request", "requestId": "00e8d244-26c4-4f1a-9115-d427eb8897b1", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 14.08}
+[WebServer] {"event": "request", "requestId": "cc3462e9-1ab7-4cb3-aefe-8eaea3e8c556", "method": "GET", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 23.85}
+[WebServer] {"event": "request", "requestId": "f2bac079-7ce1-4837-ae62-94010be49d56", "method": "GET", "path": "/api/research/models", "status": 200, "elapsedMs": 42.53}
+[WebServer] {"event": "request", "requestId": "68911ded-8731-4f3d-af59-a21a6947d2b8", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 5.89}
+[WebServer] {"event": "request", "requestId": "4e1f4c34-690a-43f7-bf98-1a395bbe2e81", "method": "GET", "path": "/assets/plotly.min-N5FMtaBW.js", "status": 200, "elapsedMs": 1.95}
+[WebServer] {"event": "request", "requestId": "8ed6bdad-33c6-4615-887f-417a62bff31b", "method": "GET", "path": "/api/research/datasets/5c92b76f-59c0-49b2-9686-ef63dc95a471/training-manifest", "status": 200, "elapsedMs": 198.47}
+[WebServer] {"event": "request", "requestId": "197ae897-f679-4039-b80c-2a9da35639b1", "method": "GET", "path": "/api/research/datasets/5c92b76f-59c0-49b2-9686-ef63dc95a471/training.npz", "status": 200, "elapsedMs": 326.98}
+  ✓  2 e2e/research-models.spec.ts:191:1 › registered training windows export a provenance manifest, compatible NPZ and offline config (5.5s)
+[WebServer] {"event": "request", "requestId": "08d96805-aa62-4ec2-b55e-d041207cf2a5", "method": "GET", "path": "/api/research/datasets/5c92b76f-59c0-49b2-9686-ef63dc95a471/training.npz", "status": 200, "elapsedMs": 328.26}
+[WebServer] {"event": "request", "requestId": "b6aa45a7-711b-4f24-8622-8e853a223a4d", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 98.31}
+[WebServer] {"event": "request", "requestId": "dfc5185d-2bda-4490-bbef-b7a098aad548", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 100.04}
+[WebServer] {"event": "request", "requestId": "689d42af-3d68-487a-885c-2c2a06aabd1f", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 99.06}
+[WebServer] {"event": "request", "requestId": "8df5c6c7-a263-4ea0-89fc-368333950ba1", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 5.89}
+[WebServer] {"event": "request", "requestId": "385fa43f-0441-4b88-be81-fb219c5cc627", "method": "POST", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 66.57}
+[WebServer] {"event": "request", "requestId": "2a868de0-4901-4894-9d76-2282dc194bd2", "method": "GET", "path": "/evaluation", "status": 200, "elapsedMs": 5.29}
+[WebServer] {"event": "request", "requestId": "d81bdd7e-099d-4f39-9b91-638befca54c2", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 3.57}
+[WebServer] {"event": "request", "requestId": "8826f69a-ba6c-4720-b907-21953582b9c2", "method": "GET", "path": "/assets/index-DYKbRcX9.js", "status": 200, "elapsedMs": 7.44}
+[WebServer] {"event": "request", "requestId": "a8d054e1-1748-409c-893d-6d37d089d901", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 9.88}
+[WebServer] {"event": "request", "requestId": "626c9de7-8ac1-446e-b276-6de53c7b3fda", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 12.42}
+[WebServer] {"event": "request", "requestId": "f6db82b2-b2a7-4fa1-b4aa-bdf89c28d43d", "method": "GET", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 22.61}
+[WebServer] {"event": "request", "requestId": "9453580e-ae5f-4994-948f-932239318811", "method": "GET", "path": "/api/research/models", "status": 200, "elapsedMs": 39.91}
+[WebServer] {"event": "request", "requestId": "100cf27e-029a-47bb-812e-10ce2655aeaa", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 5.75}
+[WebServer] {"event": "request", "requestId": "0a73d042-6595-44b7-98fa-e40642f1258c", "method": "GET", "path": "/assets/plotly.min-N5FMtaBW.js", "status": 200, "elapsedMs": 3.96}
+[WebServer] {"event": "request", "requestId": "274ecb46-7495-426d-9260-a4f28fad552f", "method": "GET", "path": "/api/research/datasets/2e3795e4-8b0e-4188-aa45-8ba9532bdf6c/training-manifest", "status": 422, "elapsedMs": 98.82}
+[WebServer] {"event": "request", "requestId": "2a71855b-a827-479b-a62a-4f75cbb64c13", "method": "GET", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 11.37}
+  ✓  3 e2e/research-models.spec.ts:243:1 › test-only labels cannot be silently reassigned into a training export (25.7s)
+
+  3 passed (49.2s)

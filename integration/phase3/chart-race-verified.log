@@ -1,0 +1,215 @@
+
+ RUN  v4.1.12 /Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend
+
+ ❯ src/test/scientific-chart.test.tsx (4 tests | 1 failed) 1291ms
+     × serializes slow plot updates so an older completion cannot purge the selected data 1138ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/test/scientific-chart.test.tsx > Scientific plot update and resource contract > serializes slow plot updates so an older completion cannot purge the selected data
+TestingLibraryElementError: Found multiple elements with the role "group"
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<div[39m
+  [33maria-busy[39m=[32m"false"[39m
+  [33maria-label[39m=[32m" versus "[39m
+  [33mclass[39m=[32m"w-full min-w-0"[39m
+  [33mrole[39m=[32m"group"[39m
+  [33mstyle[39m=[32m"height: 280px;"[39m
+  [33mtabindex[39m=[32m"0"[39m
+[36m/>[39m
+
+Ignored nodes: comments, script, style
+[36m<details[39m
+  [33mclass[39m=[32m"text-xs text-muted-foreground"[39m
+[36m>[39m
+  [36m<summary[39m
+    [33mclass[39m=[32m"cursor-pointer focus-visible:outline-2 focus-visible:outline-primary"[39m
+  [36m>[39m
+    [0mAccessible plot data preview[0m
+  [36m</summary>[39m
+  [36m<p>[39m
+    [0mFirst [0m
+    [0m1[0m
+    [0m points of[0m
+    [0m [0m
+    [0mthe first trace[0m
+    [0m. Full values are available in the analysis export.[0m
+  [36m</p>[39m
+  [36m<table[39m
+    [33mclass[39m=[32m"w-full"[39m
+  [36m>[39m
+    [36m<caption[39m
+      [33mclass[39m=[32m"sr-only"[39m
+    [36m>[39m
+      [0m versus [0m
+      [0m data preview[0m
+    [36m</caption>[39m
+    [36m<thead>[39m
+      [36m<tr>[39m
+        [36m<th />[39m
+        [36m<th />[39m
+      [36m</tr>[39m
+    [36m</thead>[39m
+    [36m<tbody>[39m
+      [36m<tr>[39m
+        [36m<td>[39m
+          [0m0[0m
+        [36m</td>[39m
+        [36m<td>[39m
+          [0m2[0m
+        [36m</td>[39m
+      [36m</tr>[39m
+    [36m</tbody>[39m
+  [36m</table>[39m
+[36m</details>[39m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<div[39m
+      [33maria-label[39m=[32m" versus "[39m
+      [33mclass[39m=[32m"min-w-0"[39m
+      [33mrole[39m=[32m"figure"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33maria-busy[39m=[32m"false"[39m
+        [33maria-label[39m=[32m" versus "[39m
+        [33mclass[39m=[32m"w-full min-w-0"[39m
+        [33mrole[39m=[32m"group"[39m
+        [33mstyle[39m=[32m"height: 280px;"[39m
+        [33mtabindex[39m=[32m"0"[39m
+      [36m/>[39m
+      [36m<details[39m
+        [33mclass[39m=[32m"text-xs text-muted-foreground"[39m
+      [36m>[39m
+        [36m<summary[39m
+          [33mclass[39m=[32m"cursor-pointer focus-visible:outline-2 focus-visible:outline-primary"[39m
+        [36m>[39m
+          [0mAccessible plot data preview[0m
+        [36m</summary>[39m
+        [36m<p>[39m
+          [0mFirst [0m
+          [0m1[0m
+          [0m points of[0m
+          [0m [0m
+          [0mthe first trace[0m
+          [0m. Full values are available in the analysis export.[0m
+        [36m</p>[39m
+        [36m<table[39m
+          [33mclass[39m=[32m"w-full"[39m
+        [36m>[39m
+          [36m<caption[39m
+            [33mclass[39m=[32m"sr-only"[39m
+          [36m>[39m
+            [0m versus [0m
+            [0m data preview[0m
+          [36m</caption>[39m
+          [36m<thead>[39m
+            [36m<tr>[39m
+              [36m<th />[39m
+              [36m<th />[39m
+            [36m</tr>[39m
+          [36m</thead>[39m
+          [36m<tbody>[39m
+            [36m<tr>[39m
+              [36m<td>[39m
+                [0m0[0m
+              [36m</td>[39m
+              [36m<td>[39m
+                [0m2[0m
+              [36m</td>[39m
+            [36m</tr>[39m
+          [36m</tbody>[39m
+        [36m</table>[39m
+      [36m</details>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head />[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<div[39m
+        [33maria-label[39m=[32m" versus "[39m
+        [33mclass[39m=[32m"min-w-0"[39m
+        [33mrole[39m=[32m"figure"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33maria-busy[39m=[32m"false"[39m
+          [33maria-label[39m=[32m" versus "[39m
+          [33mclass[39m=[32m"w-full min-w-0"[39m
+          [33mrole[39m=[32m"group"[39m
+          [33mstyle[39m=[32m"height: 280px;"[39m
+          [33mtabindex[39m=[32m"0"[39m
+        [36m/>[39m
+        [36m<details[39m
+          [33mclass[39m=[32m"text-xs text-muted-foreground"[39m
+        [36m>[39m
+          [36m<summary[39m
+            [33mclass[39m=[32m"cursor-pointer focus-visible:outline-2 focus-visible:outline-primary"[39m
+          [36m>[39m
+            [0mAccessible plot data preview[0m
+          [36m</summary>[39m
+          [36m<p>[39m
+            [0mFirst [0m
+            [0m1[0m
+            [0m points of[0m
+            [0m [0m
+            [0mthe first trace[0m
+            [0m. Full values are available in the analysis export.[0m
+          [36m</p>[39m
+          [36m<table[39m
+            [33mclass[39m=[32m"w-full"[39m
+          [36m>[39m
+            [36m<caption[39m
+              [33mclass[39m=[32m"sr-only"[39m
+            [36m>[39m
+              [0m versus [0m
+              [0m data preview[0m
+            [36m</caption>[39m
+            [36m<thead>[39m
+              [36m<tr>[39m
+                [36m<th />[39m
+                [36m<th />[39m
+              [36m</tr>[39m
+            [36m</thead>[39m
+            [36m<tbody>[39m
+              [36m<tr>[39m
+                [36m<td>[39m
+                  [0m0[0m
+                [36m</td>[39m
+                [36m<td>[39m
+                  [0m2[0m
+                [36m</td>[39m
+              [36m</tr>[39m
+            [36m</tbody>[39m
+          [36m</table>[39m
+        [36m</details>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+ ❯ Proxy.waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ src/test/scientific-chart.test.tsx:60:11
+     58|     await waitFor(() => expect(plot.react).toHaveBeenCalledTimes(2));
+     59|     expect(plot.react.mock.calls[1]?.[1]).toEqual([{ x: [0], y: [2] }]…
+     60|     await waitFor(() => expect(screen.getByRole("group")).toHaveAttrib…
+       |           ^
+     61|     expect(plot.purge).not.toHaveBeenCalled();
+     62|     unmount();
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  20:26:32
+   Duration  4.77s (transform 198ms, setup 189ms, import 762ms, tests 1.29s, environment 772ms)
+

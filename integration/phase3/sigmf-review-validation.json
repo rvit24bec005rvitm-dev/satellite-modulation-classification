@@ -1,0 +1,68 @@
+{
+  "reportVersion": "satmod-sigmf-time-frequency-review-v1",
+  "fixtures": "Analytically generated complex tones only; not recorded RF",
+  "scipyVersion": "1.18.1",
+  "scipySpectrogramComparisons": [
+    {
+      "window": "hann",
+      "toneHz": -1000,
+      "maximumAbsoluteDbError": 5.684341886080802e-14
+    },
+    {
+      "window": "hann",
+      "toneHz": 0,
+      "maximumAbsoluteDbError": 0.0
+    },
+    {
+      "window": "hann",
+      "toneHz": 1000,
+      "maximumAbsoluteDbError": 7.105427357601002e-15
+    },
+    {
+      "window": "boxcar",
+      "toneHz": -1000,
+      "maximumAbsoluteDbError": 0.0
+    },
+    {
+      "window": "boxcar",
+      "toneHz": 0,
+      "maximumAbsoluteDbError": 0.0
+    },
+    {
+      "window": "boxcar",
+      "toneHz": 1000,
+      "maximumAbsoluteDbError": 0.0
+    }
+  ],
+  "reducedDensityPowerChecks": [
+    {
+      "window": "hann",
+      "fftSize": 777,
+      "expectedPower": 0.0625,
+      "maximumRelativePowerError": 1.7114271333440456e-08
+    },
+    {
+      "window": "boxcar",
+      "fftSize": 777,
+      "expectedPower": 0.0625,
+      "maximumRelativePowerError": 1.7092245174765708e-08
+    }
+  ],
+  "metadataNestingBound": 64,
+  "reviewFixes": [
+    "Descriptive422 for derived timestamp overflow",
+    "Derived core:global_index constrained to signed64-bit nonnegative range",
+    "Metadata nesting rejected before synchronous/background persistence"
+  ],
+  "fileSha256": {
+    "backend/api/workspace.py": "cd08f958b48defe1e0166e1f92ec7c0a8fcd5cdad721a5b7ddc0bc8ebc03cb0b",
+    "backend/services/captures.py": "b88ea3be8d8c0e92b2018ac924d6b1ddf99e9aba4e2cff90de5e69d96a43278a",
+    "backend/services/sigmf_io.py": "f338704f8599a7871613ef7b9e82aba1abf800d294c3f1a346a6526c0bee15d7",
+    "backend/services/time_frequency.py": "58287f60064ca45fb42419f627a979edaadad7e24b5dfdfc14158b926ffcfea3",
+    "backend/api/visualization.py": "bc6167848150b41e782aa94dedfb220a0644d4abacb66f0790fc159defbf24f0",
+    "tests/test_sigmf_phase3.py": "5ec75ba4b116dc31a3ba677bc16a18cffa9637e8d41db17652d38f1686220b5e",
+    "tests/test_time_frequency_phase3.py": "8a78898dfaddbe4fdf49c5aef0b32f36a01654366e5683fc9dccde269e7cc666",
+    "frontend/src/components/time-frequency-inspector.tsx": "278e83d14afb3a4201e61c97b612d8389bab7002647161b702988b17ae26271f",
+    "frontend/e2e/phase3-controls.spec.ts": "9b0bc6f3821036342532414619d86d31b0b83ee2414c9ff0ee2a8fdeac0e6395"
+  }
+}

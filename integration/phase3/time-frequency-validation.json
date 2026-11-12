@@ -1,0 +1,71 @@
+{
+  "reportVersion": "satmod-time-frequency-validation-v1",
+  "source": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.spectrogram.html",
+  "formula": "abs(FFT(periodic window * complex I/Q))**2 / (Fs * sum(window**2))",
+  "semantics": {
+    "spectrum": "Complex two-sided FFT, centered frequency axes",
+    "window": "Periodic Hann or boxcar",
+    "detrend": false,
+    "padding": false,
+    "resampling": false,
+    "frameTime": "start + fftSize / 2 relative to the selected input",
+    "unknownClock": "Fs=1 is normalized unless sampleRateKnown=true is explicitly supplied",
+    "frequencyPlotReduction": "Contiguous bins averaged in linear density; exported widths preserve integrated power",
+    "peaks": "Up to 8 strongest computed local maxima before frequency plotting reduction; not validated carriers",
+    "floor": "-300 dB display floor only; never a measured noise-floor estimate"
+  },
+  "bounds": {
+    "inputSamples": 65536,
+    "fftSize": [
+      16,
+      1024
+    ],
+    "plotFrequencyBins": 256,
+    "plotTimeWindows": 128,
+    "sampling": "Actual complete windows selected evenly from configured hop grid before FFT computation"
+  },
+  "api": {
+    "method": "POST",
+    "path": "/api/research/time-frequency",
+    "requestFields": [
+      "samples",
+      "sampleRate",
+      "fftSize",
+      "overlap",
+      "window",
+      "sampleRateKnown"
+    ]
+  },
+  "component": "TimeFrequencyInspector({capture})",
+  "tests": {
+    "pythonPassed": 23,
+    "frontendPassed": 7,
+    "pythonLog": "integration/phase3/time-frequency-python.log",
+    "frontendLog": "integration/phase3/time-frequency-frontend.log",
+    "typecheckLog": "integration/phase3/time-frequency-typecheck.log",
+    "eslintLog": "integration/phase3/time-frequency-eslint.log",
+    "generatedFixturesOnly": true
+  },
+  "files": [
+    {
+      "path": "backend/services/time_frequency.py",
+      "sha256": "58287f60064ca45fb42419f627a979edaadad7e24b5dfdfc14158b926ffcfea3"
+    },
+    {
+      "path": "backend/api/visualization.py",
+      "sha256": "bc6167848150b41e782aa94dedfb220a0644d4abacb66f0790fc159defbf24f0"
+    },
+    {
+      "path": "frontend/src/components/time-frequency-inspector.tsx",
+      "sha256": "278e83d14afb3a4201e61c97b612d8389bab7002647161b702988b17ae26271f"
+    },
+    {
+      "path": "tests/test_time_frequency_phase3.py",
+      "sha256": "8a78898dfaddbe4fdf49c5aef0b32f36a01654366e5683fc9dccde269e7cc666"
+    },
+    {
+      "path": "frontend/src/test/time-frequency-inspector.test.tsx",
+      "sha256": "c83b35b5d00412cc126a6dce646f9195e89da196c395158ccd616db1813c397e"
+    }
+  ]
+}

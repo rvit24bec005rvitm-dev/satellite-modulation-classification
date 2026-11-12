@@ -1,0 +1,50 @@
+{
+  "modelInitializationMs": 7.100042013917118,
+  "modelInitializationScope": "First exact-artifact load in this process; excludes Python imports; filesystem caches may already be warm.",
+  "preprocessing": {
+    "medianMs": 0.01909548882395029,
+    "p95Ms": 0.05451855249702932,
+    "repetitions": 20
+  },
+  "inference": {
+    "medianMs": 1.1271640250924975,
+    "p95Ms": 1.4822575292782858,
+    "repetitions": 20
+  },
+  "signalGeneration1024": {
+    "medianMs": 1.102479494875297,
+    "p95Ms": 1.3581032311776657,
+    "repetitions": 20
+  },
+  "analysis128": {
+    "medianMs": 7.550750015070662,
+    "p95Ms": 17.452814482385385,
+    "repetitions": 20
+  },
+  "hardware": {
+    "os": "Darwin",
+    "release": "25.6.0",
+    "machine": "x86_64",
+    "processor": "i386",
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "threadpools": [],
+    "device": "CPU",
+    "batchSize": 1
+  },
+  "analysis65536": {
+    "elapsedMs": 84.76512698689476,
+    "peakTracedAllocationsBytes": 11362733,
+    "waveformPoints": 1024,
+    "spectrumBins": 1024,
+    "constellationPoints": 1024,
+    "spectrogramTimeBins": 64
+  },
+  "processPeakRssBytes": 133148672,
+  "classificationApi128": {
+    "medianMs": 20.11714252876118,
+    "p95Ms": 25.836231303401284,
+    "repetitions": 10,
+    "scope": "ASGI TestClient request, JSON validation, inference, DSP and serialization; no real-network RTT."
+  }
+}

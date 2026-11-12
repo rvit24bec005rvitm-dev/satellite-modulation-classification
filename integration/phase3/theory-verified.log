@@ -1,0 +1,23 @@
+[WebServer] INFO:     Started server process [80268]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:18384 (Press CTRL+C to quit)
+[WebServer] {"event": "request", "requestId": "9a36f877-a8ac-4a3f-a96e-4ba32676dc8c", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 19.61}
+
+Running 1 test using 1 worker
+
+(node:81553) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] {"event": "request", "requestId": "53a58539-da46-438e-92ab-54b900af7272", "method": "GET", "path": "/theory", "status": 200, "elapsedMs": 170.5}
+[WebServer] {"event": "request", "requestId": "0dbae9c8-a5c2-4a96-af2c-462c6f2eda55", "method": "GET", "path": "/assets/index-B8RRwTLW.js", "status": 200, "elapsedMs": 16.93}
+[WebServer] {"event": "request", "requestId": "c1e178a5-a383-4c1b-9563-cf16d2742be1", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 19.46}
+[WebServer] {"event": "request", "requestId": "550f58a6-f6cb-4d42-81de-a28c29e62bfe", "method": "GET", "path": "/api/constellations", "status": 200, "elapsedMs": 19.81}
+[WebServer] {"event": "request", "requestId": "f48ea9e0-3701-4cf9-93af-10e2978f1666", "method": "GET", "path": "/api/orbit", "status": 200, "elapsedMs": 30.32}
+[WebServer] {"event": "request", "requestId": "5c519d08-f4ba-4007-a226-eb6714e5aa22", "method": "GET", "path": "/assets/plotly.min-DlLqWaQm.js", "status": 200, "elapsedMs": 25.62}
+[WebServer] {"event": "request", "requestId": "34007089-baca-4fdd-b945-3bf160d45ca3", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 31.95}
+[WebServer] {"event": "request", "requestId": "5a4b824b-816e-49bc-8560-6ddf213430c4", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 17.67}
+[WebServer] {"event": "request", "requestId": "5837244f-0d94-474e-982a-43e24de66a72", "method": "GET", "path": "/api/orbit", "status": 200, "elapsedMs": 20.3}
+[WebServer] {"event": "request", "requestId": "da5e7d84-a9c0-4987-9bd6-8eca36861ef2", "method": "GET", "path": "/api/orbit", "status": 200, "elapsedMs": 8.51}
+  ✓  1 e2e/phase3-controls.spec.ts:285:1 › Theory controls show backend constellation and orbit values with the stated noise and amplifier formulas (9.0s)
+
+  1 passed (24.7s)

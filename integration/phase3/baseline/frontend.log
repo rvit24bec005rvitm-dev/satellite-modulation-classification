@@ -1,0 +1,23 @@
+
+> satmodclass-frontend@1.0.0 pretest
+> node scripts/generate-routes.mjs
+
+
+> satmodclass-frontend@1.0.0 test
+> vitest run
+
+
+ RUN  v2.1.9 /Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend
+
+ ✓ src/test/orbital-simulation.test.ts (10 tests) 44ms
+ ✓ src/test/api.test.ts (11 tests) 34ms
+ ✓ src/test/operations.test.tsx (8 tests) 1055ms
+   ✓ Phase2 operational controls > requires explicit binary encoding, clock and session before import 436ms
+ ✓ src/test/app-routing.test.tsx (8 tests) 22ms
+ ✓ src/test/workspace-ui.test.tsx (6 tests) 21ms
+
+ Test Files  5 passed (5)
+      Tests  43 passed (43)
+   Start at  18:51:25
+   Duration  10.81s (transform 1.24s, setup 976ms, collect 3.81s, tests 1.18s, environment 1.40s, prepare 916ms)
+

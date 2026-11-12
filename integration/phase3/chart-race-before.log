@@ -1,0 +1,26 @@
+
+ RUN  v4.1.12 /Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend
+
+ ❯ src/test/scientific-chart.test.tsx (4 tests | 1 failed) 336ms
+     × serializes slow plot updates so an older completion cannot purge the selected data 187ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/test/scientific-chart.test.tsx > Scientific plot update and resource contract > serializes slow plot updates so an older completion cannot purge the selected data
+AssertionError: expected "vi.fn()" to be called 1 times, but got 2 times
+ ❯ src/test/scientific-chart.test.tsx:48:24
+     46|     rerender(<ScientificChart data={[{ x: [0], y: [2] }]} />);
+     47|     await act(async () => { await Promise.resolve(); });
+     48|     expect(plot.react).toHaveBeenCalledTimes(1);
+       |                        ^
+     49|     expect(plot.purge).not.toHaveBeenCalled();
+     50|     await act(async () => finishFirst());
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 3 passed (4)
+   Start at  20:25:01
+   Duration  8.93s (transform 419ms, setup 360ms, import 3.31s, tests 336ms, environment 1.67s)
+

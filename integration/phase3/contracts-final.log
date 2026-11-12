@@ -1,0 +1,13 @@
+
+> satmodclass-frontend@1.0.0 test:integration
+> vitest run --config vitest.integration.config.ts
+
+
+ RUN  v4.1.12 /Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  20:04:19
+   Duration  7.85s (transform 81ms, setup 0ms, import 106ms, tests 6.51s, environment 0ms)
+

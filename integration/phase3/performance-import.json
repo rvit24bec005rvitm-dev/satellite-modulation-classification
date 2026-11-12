@@ -1,0 +1,26 @@
+{
+  "scope": "Synthetic NPY import and windowed diagnostics; traced allocations exclude pre-existing arrays, mapped pages and OS cache. Not a real RF benchmark.",
+  "python": "3.14.7",
+  "platform": "macOS-26.7.1-x86_64-i386-64bit-Mach-O",
+  "numpy": "2.5.3",
+  "measurements": [
+    {
+      "samples": 100000,
+      "sourceBytes": 800128,
+      "importMs": 50.84902001544833,
+      "peakTracedAllocationBytes": 2424621,
+      "lastWindowMs": 21.504852978978306,
+      "diagnostics128Ms": 4.045966023113579,
+      "welchBins": 128
+    },
+    {
+      "samples": 1000000,
+      "sourceBytes": 8000128,
+      "importMs": 138.182426977437,
+      "peakTracedAllocationBytes": 3418717,
+      "lastWindowMs": 20.65329602919519,
+      "diagnostics128Ms": 3.2401130301877856,
+      "welchBins": 128
+    }
+  ]
+}

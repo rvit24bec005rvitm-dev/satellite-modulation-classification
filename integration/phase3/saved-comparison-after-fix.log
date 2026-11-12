@@ -1,0 +1,9 @@
+
+ RUN  v4.1.12 /Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  20:12:38
+   Duration  2.91s (transform 207ms, setup 164ms, import 360ms, tests 326ms, environment 709ms)
+

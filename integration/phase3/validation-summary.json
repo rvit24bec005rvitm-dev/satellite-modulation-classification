@@ -1,0 +1,85 @@
+{
+  "implementationCommit": "2f63d7f48d78386776fe514a2f7a5e20483701c8",
+  "sourceTreeSha256": "2d2ad5d83ff6ef0fb3cfeb86b1b83d72ff377bde9fc15a392bf97a00cbf21176",
+  "branch": "main",
+  "baseline": {
+    "python": 209,
+    "frontend": 43,
+    "realApiContracts": 11,
+    "productionBrowser": 29
+  },
+  "finalLocal": {
+    "python": {
+      "passed": 340,
+      "evidence": "python-release.log"
+    },
+    "frontend": {
+      "passed": 60,
+      "evidence": "frontend-release.log"
+    },
+    "realApiContracts": {
+      "passed": 11,
+      "evidence": "contracts-complete.log"
+    },
+    "productionBrowser": {
+      "passed": 44,
+      "evidence": "browser-final-release.log",
+      "mode": "Compiled application, macOS Chrome, isolated managed storage, single worker"
+    },
+    "typescript": {
+      "evidence": "typecheck-release.log",
+      "status": "passed"
+    },
+    "eslint": {
+      "errors": 0,
+      "existingWarnings": 18,
+      "evidence": "eslint-release.log",
+      "status": "passed"
+    },
+    "pythonSeverityLint": {
+      "evidence": "repository-source-release-lint.log",
+      "status": "passed"
+    },
+    "productionBuild": {
+      "evidence": "build-final-release.log",
+      "status": "passed"
+    },
+    "productionServing": {
+      "evidence": "production-serving.json",
+      "spaRoutes": 8,
+      "localFontAssets": 16,
+      "status": "passed"
+    },
+    "npmAudit": {
+      "knownVulnerabilities": 0,
+      "evidence": "npm-audit-complete.json"
+    },
+    "renderedInventory": {
+      "snapshots": 16,
+      "overflow": 0,
+      "unnamedControls": 0,
+      "alerts": 0,
+      "evidence": "control-inventory.json"
+    },
+    "protectedRestart": {
+      "requests": 36,
+      "byteIdenticalExports": 6,
+      "getOnlyVerification": true,
+      "unauthorizedStatus": 401,
+      "evidence": "protected-restart-smoke.json"
+    }
+  },
+  "artifactPreservation": "preserved-artifacts.json",
+  "performance": {
+    "controlledReader": "window-reader-reproducible.json",
+    "actualBrowser": "browser-performance.json",
+    "modelDspApiMemory": "performance-services.json",
+    "longCaptureImport": "performance-import.json"
+  },
+  "ci": "Repository CI will run on the direct main push; separate evidence records actual results.",
+  "limits": [
+    "Generated fixtures do not establish independent RF accuracy or calibrated probabilities.",
+    "Optional TensorFlow inference unavailable on this host; affected models disabled.",
+    "No production fitting/promotion or permanent hosting introduced."
+  ]
+}

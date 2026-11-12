@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "brace-expansion": "^5.0.12",
+    "@isaacs/nonrecursive-glob-match": "^1.0.1"
+  },
+  "engines": {
+    "node": "18 || 20 || >=22"
+  }
+}

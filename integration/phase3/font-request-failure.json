@@ -1,0 +1,10 @@
+{
+  "scope": "Actual preserved network failure from the full production browser run browser-release.log; strict original console assertion retained.",
+  "failures": [
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap",
+      "status": -1,
+      "failure": "net::ERR_TIMED_OUT"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+
+> satmodclass-frontend@1.0.0 test:integration
+> vitest run --config vitest.integration.config.ts
+
+
+ RUN  v2.1.9 /Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend
+
+ ✓ src/test/fullstack.integration.test.ts (11 tests) 10212ms
+   ✓ TypeScript API client → real Python model and DSP > loads health and genuine model metadata 3589ms
+   ✓ TypeScript API client → real Python model and DSP > analyzes and compares the exact generated samples 900ms
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  18:51:40
+   Duration  12.02s (transform 123ms, setup 0ms, collect 157ms, tests 10.21s, environment 0ms, prepare 155ms)
+

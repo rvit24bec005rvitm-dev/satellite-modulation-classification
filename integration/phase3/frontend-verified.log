@@ -1,0 +1,17 @@
+
+> satmodclass-frontend@1.0.0 pretest
+> node scripts/generate-routes.mjs
+
+
+> satmodclass-frontend@1.0.0 test
+> vitest run
+
+
+ RUN  v4.1.12 /Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend
+
+
+ Test Files  9 passed (9)
+      Tests  60 passed (60)
+   Start at  20:27:17
+   Duration  17.51s (transform 1.96s, setup 2.91s, import 7.01s, tests 6.02s, environment 8.37s)
+

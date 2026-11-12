@@ -1,0 +1,8 @@
+
+> satmodclass-frontend@1.0.0 pretypecheck
+> node scripts/generate-routes.mjs
+
+
+> satmodclass-frontend@1.0.0 typecheck
+> tsc --noEmit
+

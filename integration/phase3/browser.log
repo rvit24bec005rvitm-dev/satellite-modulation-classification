@@ -1,0 +1,1060 @@
+[WebServer] INFO:     Started server process [97252]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:18384 (Press CTRL+C to quit)
+[WebServer] {"event": "request", "requestId": "b57c4cbb-cc9b-4375-b52d-c7892f0eb3a5", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 12.68}
+
+Running 41 tests using 1 worker
+
+(node:97424) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] {"event": "request", "requestId": "12a7faaa-d66d-48f8-b2e8-2c0f5ff323dd", "method": "GET", "path": "/", "status": 200, "elapsedMs": 173.43}
+[WebServer] {"event": "request", "requestId": "19a6f433-39fb-4070-8bd0-44142f12a031", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 14.09}
+[WebServer] {"event": "request", "requestId": "ff456586-bd99-4047-84ea-7ce450590e14", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 10.82}
+[WebServer] {"event": "request", "requestId": "e392009f-c1dd-4f6d-ab44-ace4553e08c7", "method": "GET", "path": "/assets/ground-track-map-BgQ7j5l8.js", "status": 200, "elapsedMs": 3.02}
+[WebServer] {"event": "request", "requestId": "67ec5f5b-c0e1-4b6a-aa73-547dd3b5da43", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 4.27}
+[WebServer] {"event": "request", "requestId": "9ed7d4d4-e480-485f-bc9e-227132e4b85f", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 2.96}
+[WebServer] {"event": "request", "requestId": "3c851106-674a-4d07-9ee0-f29072645d18", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 3.17}
+[WebServer] {"event": "request", "requestId": "2b57e97d-d722-4af5-9e61-09c07cbf1c32", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 10.08}
+[WebServer] {"event": "request", "requestId": "9062e52a-0080-4e29-b02f-4536c8790ffa", "method": "GET", "path": "/assets/earth-globe-D0t20VKw.js", "status": 200, "elapsedMs": 9.98}
+[WebServer] {"event": "request", "requestId": "e40285f7-7914-4b38-aef1-1966ae221040", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 42.27}
+[WebServer] {"event": "request", "requestId": "c206da87-51fd-4188-8653-9a07376d3fae", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 64.87}
+[WebServer] {"event": "request", "requestId": "ea4423cd-2654-4ca2-89a5-35d94fd2ac87", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 86.17}
+[WebServer] {"event": "request", "requestId": "6f3e0d7d-ad59-4d32-85a0-d776c75fcb3c", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 26.78}
+[WebServer] {"event": "request", "requestId": "e3e1a13e-ce8a-4099-8bb6-51ecbf856616", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 2.9}
+[WebServer] {"event": "request", "requestId": "a9b43ec9-5477-4602-b92d-18995f674ed2", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 2.11}
+[WebServer] {"event": "request", "requestId": "751fc204-4c1f-4465-8eb5-881a0c055443", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 5.33}
+[WebServer] {"event": "request", "requestId": "b206c5ff-5b7a-4c25-8a1b-aff4fdb6187c", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 26.89}
+[WebServer] {"event": "request", "requestId": "66cfeffa-55da-4344-a439-35f47cfb79ec", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 30.06}
+[WebServer] {"event": "request", "requestId": "3e381ca4-73dc-4ab7-bc6a-aa84e3bef143", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 32.48}
+[WebServer] {"event": "request", "requestId": "0648ae70-1c77-49d8-a514-7d93f96c27d7", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 32.52}
+[WebServer] {"event": "request", "requestId": "8abbca9a-d2cb-4771-9a27-9dfabc690482", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 32.24}
+  ✓   1 e2e/mission-dashboard.spec.ts:12:1 › mission dashboard renders real WebGL, geographical map, and honest data states (3.8s)
+[WebServer] {"event": "request", "requestId": "cf621f9c-d4dc-4bdf-ab5f-c13eeb47cbd9", "method": "GET", "path": "/", "status": 200, "elapsedMs": 2.58}
+[WebServer] {"event": "request", "requestId": "581a9322-ce82-4cfc-9724-db1e2677f4ef", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 5.53}
+[WebServer] {"event": "request", "requestId": "c3132ade-b4cf-415a-abf5-59ac979bc510", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 4.71}
+[WebServer] {"event": "request", "requestId": "642c9ddc-76df-46a3-8a8b-6cef8d7fef2a", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 5.85}
+[WebServer] {"event": "request", "requestId": "e2126888-e32c-4783-ae05-a5c72bff4e8f", "method": "GET", "path": "/assets/ground-track-map-BgQ7j5l8.js", "status": 200, "elapsedMs": 9.56}
+[WebServer] {"event": "request", "requestId": "415070f5-0e02-454c-ab65-07012c3d5cdf", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 8.69}
+[WebServer] {"event": "request", "requestId": "9fa7c210-69e7-40c8-bddc-202fd494a9be", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 18.88}
+[WebServer] {"event": "request", "requestId": "8dcc1137-22ce-4507-bf46-3cb0cac45f65", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 45.32}
+[WebServer] {"event": "request", "requestId": "4e1463d9-f6eb-4407-ad67-7014edaf0805", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 92.86}
+[WebServer] {"event": "request", "requestId": "fcc2f83c-0fdb-407d-9d70-b25e1c4d8d47", "method": "GET", "path": "/assets/earth-globe-D0t20VKw.js", "status": 200, "elapsedMs": 92.84}
+[WebServer] {"event": "request", "requestId": "982c2d5e-c071-4ef1-97f4-09f2e73bef93", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 107.07}
+[WebServer] {"event": "request", "requestId": "ca949229-da2f-429d-a4bc-990ed5632c8e", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 123.11}
+[WebServer] {"event": "request", "requestId": "b147d70c-966f-4867-bc6c-b43f3e48521d", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 20.08}
+[WebServer] {"event": "request", "requestId": "0ac2cd7b-8014-4287-a2c1-4fb5cb75a1e1", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 2.26}
+[WebServer] {"event": "request", "requestId": "f10c8e90-b674-4db9-b67c-f6bf3588fe64", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 4.38}
+[WebServer] {"event": "request", "requestId": "1b142f95-6219-4ef3-a407-7eec29a72f7f", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 2.32}
+[WebServer] {"event": "request", "requestId": "bdd2448f-95b1-4d66-bd3f-ca1474a4bd99", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 14.72}
+[WebServer] {"event": "request", "requestId": "ecca6071-ecee-478a-bd50-fde96eeed3c1", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 15.97}
+[WebServer] {"event": "request", "requestId": "952f5f40-7437-4668-ae62-991a6188d956", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 19.07}
+[WebServer] {"event": "request", "requestId": "378ec493-7303-4f1f-a0eb-3e41af56bac7", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 18.28}
+[WebServer] {"event": "request", "requestId": "a0e53bcf-fbfd-4b4f-9853-b8f30e399bcb", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 20.83}
+[WebServer] {"event": "request", "requestId": "cf4388bc-29f3-434c-a4a9-0f308fc65a4b", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 2.98}
+[WebServer] {"event": "request", "requestId": "3ef7508f-f7c5-401c-87c2-a5f7e325e7e3", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 4.69}
+  ✓   2 e2e/mission-dashboard.spec.ts:34:1 › Earth rotates continuously without pointer input and obeys its pause toggle (7.4s)
+[WebServer] {"event": "request", "requestId": "f4bafb6a-3399-4392-8954-77b3ecf09868", "method": "GET", "path": "/", "status": 200, "elapsedMs": 3.34}
+[WebServer] {"event": "request", "requestId": "22c4a8a1-a1e7-4ff0-a0b9-e63c2bd867bb", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 3.92}
+[WebServer] {"event": "request", "requestId": "dbd57bcd-f95a-4476-8823-35dd24cd0a9e", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 5.65}
+[WebServer] {"event": "request", "requestId": "55bd45ae-1589-4802-a3dd-ffeddf89e436", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 5.75}
+[WebServer] {"event": "request", "requestId": "45c5ecde-296b-483c-9351-a4d4eecfa5ee", "method": "GET", "path": "/assets/ground-track-map-BgQ7j5l8.js", "status": 200, "elapsedMs": 6.59}
+[WebServer] {"event": "request", "requestId": "8957c4be-ca41-402a-8714-347ac54032e7", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 15.65}
+[WebServer] {"event": "request", "requestId": "36309c3a-63ee-42d4-95f6-8e367f983604", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 17.82}
+[WebServer] {"event": "request", "requestId": "833fdcb9-44ad-45e8-805d-680616aa0183", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 23.09}
+[WebServer] {"event": "request", "requestId": "ff70043a-3c40-4c46-95bb-ef1c6c5056b7", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 34.04}
+[WebServer] {"event": "request", "requestId": "712a5cee-926b-4948-a457-d6b453ac2566", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 31.28}
+[WebServer] {"event": "request", "requestId": "dd95aff0-9162-4c67-bf52-96a2d4c264d3", "method": "GET", "path": "/assets/earth-globe-D0t20VKw.js", "status": 200, "elapsedMs": 29.42}
+[WebServer] {"event": "request", "requestId": "5e9cabe1-7e73-41b1-ba35-5188108f87c2", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 51.47}
+[WebServer] {"event": "request", "requestId": "1c0e8ed0-7af6-4e3b-b72a-4ee4912a79ee", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 4.16}
+[WebServer] {"event": "request", "requestId": "1d9fb9c6-2064-437b-a2d8-8f2e6fa4384e", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 3.67}
+[WebServer] {"event": "request", "requestId": "9aa0741b-1aab-4046-b048-66fbe033fb17", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 32.58}
+[WebServer] {"event": "request", "requestId": "91bea08d-9eee-424d-934c-1f9cdb464559", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 2.4}
+[WebServer] {"event": "request", "requestId": "10262887-a433-425e-b2aa-cc0830a5369c", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 8.56}
+[WebServer] {"event": "request", "requestId": "3c1d5fff-59f3-4f5d-9e6b-009d64598561", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 9.65}
+[WebServer] {"event": "request", "requestId": "2eedbcd9-92a7-4a2c-9083-e68443acf0f1", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 11.13}
+[WebServer] {"event": "request", "requestId": "a8b8372a-e55f-4f5f-8f2b-0dc860163a9d", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 12.93}
+[WebServer] {"event": "request", "requestId": "e0a19fb2-0e88-4096-965b-4013a5e3f627", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 12.39}
+[WebServer] {"event": "request", "requestId": "3c3a2bac-26da-4f50-bd6f-ee8fd3239a0a", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 6.25}
+[WebServer] {"event": "request", "requestId": "1a655b5f-794f-4643-8d48-0c78c232f4a9", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 7.95}
+  ✓   3 e2e/mission-dashboard.spec.ts:56:1 › camera zoom/reset, scroll zoom, and drag interaction work (7.1s)
+[WebServer] {"event": "request", "requestId": "af3c639f-3ae7-4662-b390-47f378182d71", "method": "GET", "path": "/", "status": 200, "elapsedMs": 3.21}
+[WebServer] {"event": "request", "requestId": "bb6676ec-c0ec-4d8c-bc58-b3d8e9f8be7f", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 6.9}
+[WebServer] {"event": "request", "requestId": "293676d0-f668-483d-805a-4f86bd605fd9", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 6.81}
+[WebServer] {"event": "request", "requestId": "7da4a067-e109-4999-bd6a-a736f349b15b", "method": "GET", "path": "/assets/ground-track-map-BgQ7j5l8.js", "status": 200, "elapsedMs": 2.73}
+[WebServer] {"event": "request", "requestId": "6baa8a4c-111e-4dd1-b61b-e107733804fc", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 4.98}
+[WebServer] {"event": "request", "requestId": "cf85a8c7-e93b-4550-a0f3-2b1d05e3555b", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 6.56}
+[WebServer] {"event": "request", "requestId": "f2e2fdf3-dbca-45bd-86d6-11014fcbfb1e", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 6.74}
+[WebServer] {"event": "request", "requestId": "4138bc73-973d-42e6-b9fe-54de6f0a6757", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 40.4}
+[WebServer] {"event": "request", "requestId": "d2bb4b6a-74b3-4732-a21a-a213f5778351", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 33.2}
+[WebServer] {"event": "request", "requestId": "dc09653a-a84b-41cb-907e-56ad9a7f9b9e", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 40.22}
+[WebServer] {"event": "request", "requestId": "65892ab5-3a42-42d7-9829-1740e9edb468", "method": "GET", "path": "/assets/earth-globe-D0t20VKw.js", "status": 200, "elapsedMs": 35.67}
+[WebServer] {"event": "request", "requestId": "62802f13-4d05-485f-8ade-ddb2d5fe33c5", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 48.87}
+[WebServer] {"event": "request", "requestId": "eb95146e-736c-492d-bbc5-bd1cc8f5b869", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 3.67}
+[WebServer] {"event": "request", "requestId": "10068ea4-30ad-4176-82ad-dea1295d37cf", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 3.17}
+[WebServer] {"event": "request", "requestId": "03def1fa-63d4-48e1-aa8e-eaa8de20bbde", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 2.87}
+[WebServer] {"event": "request", "requestId": "90f64ba5-ab5e-47a5-b4bc-dc5592d76567", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 3.13}
+[WebServer] {"event": "request", "requestId": "69cbf1ac-2b17-47b8-a83a-6bb0475b92cb", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 20.58}
+[WebServer] {"event": "request", "requestId": "f5815a0c-fb15-4f82-a936-e2df1e0c7258", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 21.5}
+[WebServer] {"event": "request", "requestId": "8477f537-4c9f-4a1d-840f-12bfff951d2a", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 21.57}
+[WebServer] {"event": "request", "requestId": "8e6cae04-7e53-4a29-b2a5-e57688a0b991", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 21.43}
+[WebServer] {"event": "request", "requestId": "d6eb5240-71dc-4ba1-829f-d5a6501daed7", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 22.47}
+  ✓   4 e2e/mission-dashboard.spec.ts:95:1 › satellite selector and clickable marker labels update satellite details (3.1s)
+[WebServer] {"event": "request", "requestId": "85007ad6-c18d-4670-aea1-562afba9ef9f", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 4.88}
+[WebServer] {"event": "request", "requestId": "90c73b16-19bf-4895-81f8-b95883513c51", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 5.15}
+[WebServer] {"event": "request", "requestId": "b1739442-3beb-430b-95ab-fa13701b9770", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 7.83}
+[WebServer] {"event": "request", "requestId": "91d77b75-f6db-4f87-addc-ce58ca9a011b", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 11.71}
+[WebServer] {"event": "request", "requestId": "b7640966-bc30-4928-8161-a0ea790f69cc", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 17.41}
+[WebServer] {"event": "request", "requestId": "81fb02e4-81c7-4366-8eed-7bfb1b4438b5", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 23.64}
+[WebServer] {"event": "request", "requestId": "cc602350-7067-42ab-a14e-92bd2f67ac71", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 19.74}
+[WebServer] {"event": "request", "requestId": "22a6b8b9-81a1-414e-8622-e748623aeeee", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 24.56}
+[WebServer] {"event": "request", "requestId": "f6487c56-386c-4cec-8a12-fa89218a25c8", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 38.15}
+[WebServer] {"event": "request", "requestId": "ee12e5b1-5832-4bfd-b079-586f5acd16e7", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 30.82}
+[WebServer] {"event": "request", "requestId": "bc7d945e-673d-4c2a-8840-90475c70b87a", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 3.11}
+[WebServer] {"event": "request", "requestId": "2d95dccf-b57a-4146-bcd3-771c2eae875b", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 48.93}
+[WebServer] {"event": "request", "requestId": "153582f5-9ad2-4baf-adfd-925b0aa06146", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 11.07}
+[WebServer] {"event": "request", "requestId": "b60f9cd1-1f0b-4629-96c6-313ff56eaa62", "method": "GET", "path": "/api/research/analyses/d51c4bf7-0bfc-4834-8e1c-d6122db9ca21/explanations", "status": 200, "elapsedMs": 13.7}
+[WebServer] {"event": "request", "requestId": "450b5771-517b-4b80-b894-5471b4962da7", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 3.65}
+[WebServer] {"event": "request", "requestId": "1dee99bd-0b3f-4fd6-a4b5-a3516f99c656", "method": "GET", "path": "/assets/ground-track-map-BgQ7j5l8.js", "status": 200, "elapsedMs": 3.35}
+[WebServer] {"event": "request", "requestId": "849179a1-486c-48ec-981d-3539fb865562", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 6.97}
+[WebServer] {"event": "request", "requestId": "57dd2be7-c267-4dce-962d-eb706d9ef7f4", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 10.94}
+[WebServer] {"event": "request", "requestId": "b46d894e-b96e-4d17-acbe-f69a6e2871a7", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 13.45}
+[WebServer] {"event": "request", "requestId": "134e5970-e1ad-4316-b472-a32a7fca50e6", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 12.2}
+[WebServer] {"event": "request", "requestId": "f9a35d33-ca19-4427-ab1f-eea80c53b63f", "method": "GET", "path": "/assets/earth-globe-D0t20VKw.js", "status": 200, "elapsedMs": 9.31}
+[WebServer] {"event": "request", "requestId": "a6428424-2254-4c4d-ba3c-c2fcdf37ad3a", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 31.31}
+[WebServer] {"event": "request", "requestId": "dc14eb81-fa7a-4ba2-b9ab-be6dc8418adb", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 32.9}
+[WebServer] {"event": "request", "requestId": "7afa4a8f-eee7-4edb-8049-84f786d17de4", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 3.52}
+[WebServer] {"event": "request", "requestId": "88fd64bf-d990-4f17-b847-ee418ab84b8a", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 2.64}
+  ✓   5 e2e/mission-dashboard.spec.ts:111:1 › shared classifier result populates actual three-class probabilities on Overview (3.7s)
+[WebServer] {"event": "request", "requestId": "c6a3358b-fd4c-4c06-8957-41271788feae", "method": "GET", "path": "/", "status": 200, "elapsedMs": 4.61}
+[WebServer] {"event": "request", "requestId": "4c3813c1-1892-4644-9119-656a75cca5e6", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 4.11}
+[WebServer] {"event": "request", "requestId": "a5902c9d-fbc8-4cd0-9636-be17942c1251", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 3.59}
+[WebServer] {"event": "request", "requestId": "9dc18e52-d541-4855-8605-368a66fffcae", "method": "GET", "path": "/assets/ground-track-map-BgQ7j5l8.js", "status": 200, "elapsedMs": 3.63}
+[WebServer] {"event": "request", "requestId": "a53d0420-1f0c-4e83-ac9b-0a6bbb0f5770", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 6.39}
+[WebServer] {"event": "request", "requestId": "a0652296-d3fd-4361-8ff9-01196b7cd9cb", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 15.03}
+[WebServer] {"event": "request", "requestId": "0717a8e8-3d52-40f1-b9a5-c042fbac9a80", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 18.07}
+[WebServer] {"event": "request", "requestId": "7fca7998-bbf4-46d5-ba80-c45856aa4c29", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 22.04}
+[WebServer] {"event": "request", "requestId": "d71e560c-f47a-40fa-854c-96925f7ff7d2", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 26.93}
+[WebServer] {"event": "request", "requestId": "2f1454a8-a97c-4e19-b8c3-197c40342986", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 41.56}
+[WebServer] {"event": "request", "requestId": "4ccc31f3-4ab6-4dca-bbcf-0497744c0cfe", "method": "GET", "path": "/assets/earth-globe-D0t20VKw.js", "status": 200, "elapsedMs": 28.57}
+[WebServer] {"event": "request", "requestId": "dffa37ee-b348-470c-94eb-9358e5a6ef0b", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 47.81}
+[WebServer] {"event": "request", "requestId": "188344ea-a76a-4341-8cba-1b942515fadf", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 18.64}
+[WebServer] {"event": "request", "requestId": "2b549b86-2df9-427e-af9c-ce5c48b0d35c", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 2.63}
+[WebServer] {"event": "request", "requestId": "2390ab44-f679-4e85-9f75-fb87b06589de", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 5.82}
+[WebServer] {"event": "request", "requestId": "8366c5d1-af4d-4e49-9cdd-504c83bd8fa3", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 2.61}
+[WebServer] {"event": "request", "requestId": "d909fbdc-cce0-4ee1-abbf-e3ece1db2972", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 15.35}
+[WebServer] {"event": "request", "requestId": "7deaef27-8f45-4742-b0d7-35d68814854a", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 18.65}
+[WebServer] {"event": "request", "requestId": "4b216618-5f56-4052-8f4c-b25abce0b572", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 22.79}
+[WebServer] {"event": "request", "requestId": "cd372c88-8d29-4363-b68e-90fd37878826", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 23.85}
+[WebServer] {"event": "request", "requestId": "ac72a182-2ce7-4a92-8cd2-02cd34e2e421", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 24.76}
+  ✓   6 e2e/mission-dashboard.spec.ts:126:1 › reduced-motion preference disables automatic movement by default (3.7s)
+[WebServer] {"event": "request", "requestId": "a8248881-0167-4a92-9adc-b10ac0db5589", "method": "GET", "path": "/", "status": 200, "elapsedMs": 4.25}
+[WebServer] {"event": "request", "requestId": "2bba53f5-d1eb-4655-abf7-85864c4d3972", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 3.28}
+[WebServer] {"event": "request", "requestId": "97227874-5f89-441f-83aa-6cb0073967be", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 3.29}
+[WebServer] {"event": "request", "requestId": "a074cd3c-0d00-426d-b249-c3ba7e318eee", "method": "GET", "path": "/assets/ground-track-map-BgQ7j5l8.js", "status": 200, "elapsedMs": 4.41}
+[WebServer] {"event": "request", "requestId": "2592fbfc-8940-4f80-a122-0c3999e86529", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 6.17}
+[WebServer] {"event": "request", "requestId": "4b789ee3-b408-4381-a590-5f5862e90563", "method": "GET", "path": "/assets/earth-globe-D0t20VKw.js", "status": 200, "elapsedMs": 2.17}
+[WebServer] {"event": "request", "requestId": "50e9a520-1106-47a3-9142-d154d9f59f82", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 2.7}
+[WebServer] {"event": "request", "requestId": "54fe8ead-efd7-4911-861d-1fd5e5629bb9", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 4.98}
+[WebServer] {"event": "request", "requestId": "53835d7c-6bba-427d-90ea-ed5b8ee6583a", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 18.85}
+[WebServer] {"event": "request", "requestId": "fa3b3601-cf67-4528-bd8f-3a6712f9bc57", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 21.31}
+[WebServer] {"event": "request", "requestId": "f4afd6be-e623-4e78-9e1a-90e88a777c29", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 17.01}
+[WebServer] {"event": "request", "requestId": "66549a93-4269-4537-ab1a-14aca6207f45", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 22.45}
+[WebServer] {"event": "request", "requestId": "6d285ba3-4a90-448d-95bd-1ff101a395a3", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 21.94}
+[WebServer] {"event": "request", "requestId": "b737e137-f7cc-4b6a-bacd-a932c7433183", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 26.71}
+  ✓   7 e2e/mission-dashboard.spec.ts:148:1 › backend offline state is explicit while the demonstration remains usable (2.6s)
+[WebServer] {"event": "request", "requestId": "dc9a2290-ec1e-4190-85fe-ac760bae786f", "method": "GET", "path": "/", "status": 200, "elapsedMs": 2.32}
+[WebServer] {"event": "request", "requestId": "eeb59ec5-6c26-46a3-ab7b-8c0c741adf27", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 4.02}
+[WebServer] {"event": "request", "requestId": "acd43640-a285-4aaa-8234-88a97e24c10d", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 3.69}
+[WebServer] {"event": "request", "requestId": "165448b0-55f8-4bc3-a7b6-e88b2de13064", "method": "GET", "path": "/assets/ground-track-map-BgQ7j5l8.js", "status": 200, "elapsedMs": 2.33}
+[WebServer] {"event": "request", "requestId": "f96ca6af-a9a5-4d86-b871-75a173200ed8", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 4.28}
+[WebServer] {"event": "request", "requestId": "0424c9d9-e3d6-42bd-b691-45a96ab9e920", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 10.32}
+[WebServer] {"event": "request", "requestId": "89389ad4-be09-4a9a-8909-04631c03de1f", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 15.01}
+[WebServer] {"event": "request", "requestId": "e390ae37-555d-4a27-b3d8-fd6503ed7ae2", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 30.45}
+[WebServer] {"event": "request", "requestId": "48538407-4db1-4df4-a31f-9d66ffc3bafe", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 36.76}
+[WebServer] {"event": "request", "requestId": "1c498681-931e-4f15-b92c-19cb1852828c", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 36.03}
+[WebServer] {"event": "request", "requestId": "e60a4f18-31ec-43e0-a2c1-4f2e840f65c3", "method": "GET", "path": "/assets/earth-globe-D0t20VKw.js", "status": 200, "elapsedMs": 28.94}
+[WebServer] {"event": "request", "requestId": "86e95c4f-029e-4c04-985b-26012b32f2c8", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 42.98}
+[WebServer] {"event": "request", "requestId": "c23fc3ae-958c-48a3-9fb0-d7ec47438baf", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 9.52}
+[WebServer] {"event": "request", "requestId": "41adc462-c2df-4575-aa85-4e997a2e6c0e", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 2.03}
+[WebServer] {"event": "request", "requestId": "46aa99d8-7f36-4de9-9a0a-c0de805822de", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 2.22}
+  ✓   8 e2e/mission-dashboard.spec.ts:158:1 › WebGL unavailable state offers an honest geographical fallback (1.5s)
+[WebServer] {"event": "request", "requestId": "0863cedf-f3bd-4450-b828-ce181ffaf2e0", "method": "GET", "path": "/", "status": 200, "elapsedMs": 3.34}
+[WebServer] {"event": "request", "requestId": "56ee471e-afce-49db-bd54-b406c20fe204", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 6.24}
+[WebServer] {"event": "request", "requestId": "10d36351-7c95-4e31-ae35-cb849e9173af", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 5.41}
+[WebServer] {"event": "request", "requestId": "f959e0b8-d412-49a6-966e-093b24aa1fa4", "method": "GET", "path": "/assets/ground-track-map-BgQ7j5l8.js", "status": 200, "elapsedMs": 4.62}
+[WebServer] {"event": "request", "requestId": "aef788be-5c81-49db-a318-f1765b11f7f8", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 6.15}
+[WebServer] {"event": "request", "requestId": "a10a5c06-a934-47fd-82db-2a92ebaa03bb", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 9.36}
+[WebServer] {"event": "request", "requestId": "268c76d6-ad1d-4a76-a587-597ee7037cae", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 23.65}
+[WebServer] {"event": "request", "requestId": "50ea7908-d807-4083-b0da-ad43dd365cfa", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 33.14}
+[WebServer] {"event": "request", "requestId": "1869ae64-fb76-44da-bc01-3db66561717f", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 37.35}
+[WebServer] {"event": "request", "requestId": "c98f620c-20ee-40d7-960f-dd83a1f9748b", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 36.75}
+[WebServer] {"event": "request", "requestId": "dc7ea22f-f2d2-4b54-bfb4-8a9899bfcab8", "method": "GET", "path": "/assets/earth-globe-D0t20VKw.js", "status": 200, "elapsedMs": 22.44}
+[WebServer] {"event": "request", "requestId": "ee4f9689-bab5-470a-8196-cf2534bd5577", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 43.36}
+[WebServer] {"event": "request", "requestId": "7f7824f3-9781-4c4f-a8fe-e08d3c43ba32", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 14.16}
+[WebServer] {"event": "request", "requestId": "4acffa42-5a7b-4d03-8a10-1175e39deb2b", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 4.22}
+[WebServer] {"event": "request", "requestId": "b54448ec-ba56-4520-b8f7-71aeec26e536", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 2.1}
+[WebServer] {"event": "request", "requestId": "6f9073eb-2776-402c-9b18-6eb5c407fc91", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 22.94}
+[WebServer] {"event": "request", "requestId": "75b86482-ddfa-4dc5-9571-9ab8ffdd8b49", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 18.05}
+[WebServer] {"event": "request", "requestId": "e0f2fb78-08fe-4a91-99c5-b666d1ec7097", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 19.86}
+[WebServer] {"event": "request", "requestId": "ed4d3463-aab2-4aba-accf-fa605ea97078", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 20.35}
+[WebServer] {"event": "request", "requestId": "9d501087-179d-41fe-ac6b-abd24440901a", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 23.01}
+[WebServer] {"event": "request", "requestId": "7f12ce72-6185-4178-b944-82b648041ba0", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 17.03}
+  ✓   9 e2e/mission-dashboard.spec.ts:178:3 › mission layout remains usable at 1440px (3.1s)
+[WebServer] {"event": "request", "requestId": "ba94091a-10a3-4449-b577-72d8cc4eb725", "method": "GET", "path": "/", "status": 200, "elapsedMs": 4.03}
+[WebServer] {"event": "request", "requestId": "4e8dfd4e-d1e9-44ca-8c82-6c65637387c9", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 3.91}
+[WebServer] {"event": "request", "requestId": "a3125eef-fe39-401c-8fa1-6a9bd85380a6", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 5.84}
+[WebServer] {"event": "request", "requestId": "0e770485-1899-4ed8-be1e-d5ac5d5956f4", "method": "GET", "path": "/assets/ground-track-map-BgQ7j5l8.js", "status": 200, "elapsedMs": 2.54}
+[WebServer] {"event": "request", "requestId": "66e27e09-1d69-4505-b21d-d9d80c10b705", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 3.59}
+[WebServer] {"event": "request", "requestId": "02660c14-e8f9-4d36-a67a-f5c3f64df1e8", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 9.14}
+[WebServer] {"event": "request", "requestId": "209cb9f1-2851-4a9e-8e79-5f5e55ecf9e7", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 12.06}
+[WebServer] {"event": "request", "requestId": "3cee5ee9-9476-4de1-8a3f-ed5a776c7f04", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 29.66}
+[WebServer] {"event": "request", "requestId": "b9deae82-f46a-494c-8d1f-13b5996b0f74", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 33.42}
+[WebServer] {"event": "request", "requestId": "ca949343-37b9-4c76-a813-4530ee3ea703", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 33.26}
+[WebServer] {"event": "request", "requestId": "4786add5-8500-495a-b37e-b3b1dae40b56", "method": "GET", "path": "/assets/earth-globe-D0t20VKw.js", "status": 200, "elapsedMs": 18.22}
+[WebServer] {"event": "request", "requestId": "39090ece-43be-4405-a4ca-6fdac5a55a01", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 38.6}
+[WebServer] {"event": "request", "requestId": "8bbe3318-09ef-45ba-a0f6-34c3d4ddcc58", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 5.5}
+[WebServer] {"event": "request", "requestId": "ed877c3b-119d-43a2-b4a9-814a0e9ab18a", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 4.05}
+[WebServer] {"event": "request", "requestId": "1fbebafa-8b61-4fbf-a8f7-9a5bcd0c2fe0", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 5.51}
+[WebServer] {"event": "request", "requestId": "defda436-8a22-47a6-b9df-b6e73d5360c5", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 12.74}
+[WebServer] {"event": "request", "requestId": "edd703de-316e-43fe-8763-19d224cf7066", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 17.3}
+[WebServer] {"event": "request", "requestId": "d0d3afdc-49d3-4475-b263-ee84b47f0fee", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 10.74}
+[WebServer] {"event": "request", "requestId": "824a7ba1-1a3c-46ce-88aa-6bd9775ee5e1", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 18.29}
+[WebServer] {"event": "request", "requestId": "28eed45c-3bb5-4c74-8979-309e0bc07a2b", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 21.46}
+[WebServer] {"event": "request", "requestId": "b69b4f41-c708-4957-879b-3373192c6f47", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 21.04}
+[WebServer] {"event": "request", "requestId": "28260b23-9a6e-4336-b35a-1dc2e01f72d2", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 8.83}
+[WebServer] {"event": "request", "requestId": "1e885ba0-7061-45fb-9037-d0dbf5366835", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 11.42}
+[WebServer] {"event": "request", "requestId": "82954640-d3ed-4e83-9e9d-78d86f00c7b7", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 20.27}
+[WebServer] {"event": "request", "requestId": "157ab4b3-f528-4674-8fc1-9c3efb59da9b", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 17.39}
+[WebServer] {"event": "request", "requestId": "01146f7b-f4d9-4f27-a76b-10a5ea63802a", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 21.64}
+  ✓  10 e2e/mission-dashboard.spec.ts:178:3 › mission layout remains usable at 1024px (3.7s)
+[WebServer] {"event": "request", "requestId": "fdd38383-6cc8-4054-8b98-bec8c4c8de7d", "method": "GET", "path": "/", "status": 200, "elapsedMs": 3.37}
+[WebServer] {"event": "request", "requestId": "1df28a8f-2600-4352-bfbd-01f178b4cb9e", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 7.87}
+[WebServer] {"event": "request", "requestId": "2c2f8090-5aab-4863-b726-071abaed5551", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 7.92}
+[WebServer] {"event": "request", "requestId": "d64d84ce-b55d-466e-8de4-c15e647bed67", "method": "GET", "path": "/assets/ground-track-map-BgQ7j5l8.js", "status": 200, "elapsedMs": 6.38}
+[WebServer] {"event": "request", "requestId": "0a31058a-76ec-484c-9ee1-22ea4447b56e", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 7.97}
+[WebServer] {"event": "request", "requestId": "ba1bdc31-7f8f-4ab5-919f-3a518eb846bb", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 15.39}
+[WebServer] {"event": "request", "requestId": "b2f0f3d5-2f3e-45ef-b334-744b795f4014", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 43.83}
+[WebServer] {"event": "request", "requestId": "ab0f573d-d867-404b-83bf-fac386fbd45c", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 66.44}
+[WebServer] {"event": "request", "requestId": "0f2d57c1-ccc4-4f88-ad40-c6125b116c7a", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 68.21}
+[WebServer] {"event": "request", "requestId": "8ae17918-84ee-4e40-b079-3a91eec1eb1b", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 68.49}
+[WebServer] {"event": "request", "requestId": "b4f6f677-36f6-41a7-94a6-299af6322c27", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 75.53}
+[WebServer] {"event": "request", "requestId": "1f57d0f1-07d7-4c4d-857d-351262e21758", "method": "GET", "path": "/assets/earth-globe-D0t20VKw.js", "status": 200, "elapsedMs": 15.51}
+[WebServer] {"event": "request", "requestId": "40ee0a84-2444-45d2-b019-da992f48b907", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 19.03}
+[WebServer] {"event": "request", "requestId": "276ad435-e891-444d-bf89-81ffdb7dfc24", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 3.47}
+[WebServer] {"event": "request", "requestId": "3eea34b0-8197-43fa-9f70-f079bb50fb23", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 7.0}
+[WebServer] {"event": "request", "requestId": "ec42c859-b5b4-4150-801d-57f585330a97", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 6.08}
+[WebServer] {"event": "request", "requestId": "64f37542-c7e5-446e-942d-c1b6ca43ae0a", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 18.45}
+[WebServer] {"event": "request", "requestId": "d37ec358-f388-4b34-b74f-b1288a97bf11", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 23.37}
+[WebServer] {"event": "request", "requestId": "7c1d4c06-98c6-4a6f-bc2c-c42e00db0baf", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 25.63}
+[WebServer] {"event": "request", "requestId": "909e1819-654a-472d-a901-b85ade92ef4f", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 28.26}
+[WebServer] {"event": "request", "requestId": "91766b1a-7f55-4bb6-932c-629ac5dea5b8", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 29.29}
+[WebServer] {"event": "request", "requestId": "566e1815-d0fe-444f-b801-6776edefce33", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 8.67}
+[WebServer] {"event": "request", "requestId": "158197e3-a405-429e-b0d6-3f944dbd91d5", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 16.95}
+[WebServer] {"event": "request", "requestId": "8bd813c1-0b16-4441-8c8a-4d6c5782bc21", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 19.29}
+[WebServer] {"event": "request", "requestId": "31be22c6-a472-494b-981f-535c2b7b04cf", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 21.07}
+[WebServer] {"event": "request", "requestId": "48f6ce8d-f5ae-4a82-b193-34ca17e6469f", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 19.82}
+  ✓  11 e2e/mission-dashboard.spec.ts:178:3 › mission layout remains usable at 820px (3.7s)
+[WebServer] {"event": "request", "requestId": "23e7023a-793f-4abd-b575-980d44e0563f", "method": "GET", "path": "/", "status": 200, "elapsedMs": 4.0}
+[WebServer] {"event": "request", "requestId": "f80d4320-00c1-4613-957e-5e9c41e9cdc3", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 5.14}
+[WebServer] {"event": "request", "requestId": "0e13a3b1-36d0-4592-b679-4bec304f5ce4", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 5.21}
+[WebServer] {"event": "request", "requestId": "4458faec-f98e-4974-9107-48b715f51848", "method": "GET", "path": "/assets/ground-track-map-BgQ7j5l8.js", "status": 200, "elapsedMs": 2.34}
+[WebServer] {"event": "request", "requestId": "4933b102-ebce-4128-8f39-884745509464", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 4.73}
+[WebServer] {"event": "request", "requestId": "93c3a80f-5a62-40bd-880c-ee4a270377fa", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 10.52}
+[WebServer] {"event": "request", "requestId": "b8f992df-f993-4e77-84ba-ff7728c7371b", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 16.04}
+[WebServer] {"event": "request", "requestId": "bd2334f4-ef9b-4a56-a8bf-4834237f669c", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 31.66}
+[WebServer] {"event": "request", "requestId": "9296fd16-824a-441e-855f-c0bc3857efb0", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 35.46}
+[WebServer] {"event": "request", "requestId": "18a2a703-c268-453b-8b31-3a0353076124", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 34.72}
+[WebServer] {"event": "request", "requestId": "c46b6079-251f-4c12-9311-f3b8864c26ff", "method": "GET", "path": "/assets/earth-globe-D0t20VKw.js", "status": 200, "elapsedMs": 18.09}
+[WebServer] {"event": "request", "requestId": "74c410bd-7087-47f6-8084-5cdc561ee45e", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 40.43}
+[WebServer] {"event": "request", "requestId": "91cd5701-1e71-4952-ada0-6581de8e061b", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 17.13}
+[WebServer] {"event": "request", "requestId": "11a6e00e-126f-4235-96c7-a2604c881929", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 1.95}
+[WebServer] {"event": "request", "requestId": "5ae0283b-6b72-4392-93a7-e495dafbee9f", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 5.78}
+[WebServer] {"event": "request", "requestId": "4f6748df-5f4e-423a-9a19-b55d2a7d454e", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 3.85}
+[WebServer] {"event": "request", "requestId": "40f68732-9ebe-449f-a0d0-22258f187b79", "method": "GET", "path": "/textures/earth-specular.jpg", "status": 200, "elapsedMs": 16.39}
+[WebServer] {"event": "request", "requestId": "5a05b2c0-1988-4638-856b-0d32e18c3021", "method": "GET", "path": "/textures/earth-clouds.png", "status": 200, "elapsedMs": 17.57}
+[WebServer] {"event": "request", "requestId": "fd40e54b-ed47-4b42-a38e-e1260069c205", "method": "GET", "path": "/textures/earth-normal.jpg", "status": 200, "elapsedMs": 19.29}
+[WebServer] {"event": "request", "requestId": "7c96ef98-f913-4245-8f8f-2dc2f30aa4b9", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 20.38}
+[WebServer] {"event": "request", "requestId": "2b573bbe-339c-49b1-a288-f621a0204224", "method": "GET", "path": "/textures/earth-night.png", "status": 200, "elapsedMs": 23.5}
+[WebServer] {"event": "request", "requestId": "6bf3f714-87c9-4e6e-afbe-860321b3bf40", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 16.28}
+[WebServer] {"event": "request", "requestId": "f61af5ab-1849-4f2f-b10d-43c62729de71", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 32.87}
+[WebServer] {"event": "request", "requestId": "18b1fe73-9679-407c-a135-55e276cfa5fb", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 34.33}
+[WebServer] {"event": "request", "requestId": "58191672-4011-45f6-965f-52b28201680c", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 37.98}
+[WebServer] {"event": "request", "requestId": "e0cc3663-d7a8-4a0d-b2b6-72dc98e61679", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 36.49}
+  ✓  12 e2e/mission-dashboard.spec.ts:178:3 › mission layout remains usable at 390px (3.3s)
+[WebServer] {"event": "request", "requestId": "93a0b038-2d8b-4ad9-827d-2bf340c54381", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 1.97}
+[WebServer] {"event": "request", "requestId": "94dec301-13de-4aba-a994-5fc53f338b41", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 4.0}
+[WebServer] {"event": "request", "requestId": "991d95af-c2e7-43bd-a33a-8094d0696457", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 4.14}
+[WebServer] {"event": "request", "requestId": "1b0498bc-4351-4b20-9cb9-8bff82e2c4fb", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 10.44}
+[WebServer] {"event": "request", "requestId": "92a0510e-ccb0-412c-b939-91d67289eb98", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 16.6}
+[WebServer] {"event": "request", "requestId": "4bfe70e3-90dd-498f-8c6d-ecf1122d669b", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 17.85}
+[WebServer] {"event": "request", "requestId": "456fca58-8ec2-4e02-803a-f145975c19c9", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 14.29}
+[WebServer] {"event": "request", "requestId": "ff353e21-d46d-4a77-b51d-e984eb5f8b8b", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 19.62}
+[WebServer] {"event": "request", "requestId": "2ec30b61-ef04-4af6-a2c2-d4835ac1c338", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 4.21}
+[WebServer] {"event": "request", "requestId": "c88cdd85-96b6-4cf8-b0ae-314575a4d3f7", "method": "POST", "path": "/api/workspace/captures", "status": 202, "elapsedMs": 25.03}
+[WebServer] {"event": "request", "requestId": "9c9d7083-aa6d-49d0-bca2-dee4ee1cb665", "method": "GET", "path": "/api/workspace/jobs/7f9725e3-b4c6-49dc-8323-dd54b235d6fe", "status": 200, "elapsedMs": 7.68}
+[WebServer] {"event": "request", "requestId": "7cac589c-ddfd-4ed5-8a16-3fc6a5372872", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 12.1}
+[WebServer] {"event": "request", "requestId": "d009fa3a-c1a5-4584-8763-3689d0278241", "method": "GET", "path": "/api/workspace/jobs/7f9725e3-b4c6-49dc-8323-dd54b235d6fe", "status": 200, "elapsedMs": 1.96}
+[WebServer] {"event": "request", "requestId": "2fdc0528-43c8-4586-a02b-a9fc4edd3326", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 3.0}
+[WebServer] {"event": "request", "requestId": "60dcf621-9a3b-4a2f-b4cc-857068a4f17e", "method": "GET", "path": "/api/workspace/captures/eab9b55d-fa7b-4f5c-857a-0e7e9d524801", "status": 200, "elapsedMs": 65.94}
+[WebServer] {"event": "request", "requestId": "825ea822-fbc9-4b76-a023-85b7a3ca35fc", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 1.82}
+[WebServer] {"event": "request", "requestId": "85f7c249-4a35-4d88-a975-f213d2628c81", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 2.79}
+[WebServer] {"event": "request", "requestId": "bc7587f9-0d5d-4247-ad3b-833deb9dcf02", "method": "POST", "path": "/api/workspace/jobs/batch", "status": 200, "elapsedMs": 15.25}
+[WebServer] {"event": "request", "requestId": "92f82bf5-beaf-4f24-ab7d-dd25fdd9b883", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 18.93}
+[WebServer] {"event": "request", "requestId": "757c764c-1b12-43e8-adce-b6dc090ef88e", "method": "GET", "path": "/api/workspace/jobs/edd0ed21-85e8-439d-b97d-2bc83d6b2fec", "status": 200, "elapsedMs": 24.39}
+[WebServer] {"event": "request", "requestId": "e89e59d0-b672-487e-b0c6-8bcb16b46278", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 3.62}
+[WebServer] {"event": "request", "requestId": "1bae7575-34c0-4d2c-a702-3ff4e216e34d", "method": "GET", "path": "/api/workspace/jobs/edd0ed21-85e8-439d-b97d-2bc83d6b2fec", "status": 200, "elapsedMs": 2.37}
+[WebServer] {"event": "request", "requestId": "851fa1dc-6d3c-4d0a-8f27-b397d17d2c0f", "method": "GET", "path": "/api/workspace/jobs/edd0ed21-85e8-439d-b97d-2bc83d6b2fec/result", "status": 200, "elapsedMs": 4.23}
+[WebServer] {"event": "request", "requestId": "38269086-f010-45a1-a39e-5cba4b3e4d0e", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 3.31}
+[WebServer] {"event": "request", "requestId": "c135541a-55d9-4a1f-aae2-31ff14e050d4", "method": "GET", "path": "/api/workspace/jobs/edd0ed21-85e8-439d-b97d-2bc83d6b2fec/export", "status": 200, "elapsedMs": 7.69}
+[WebServer] {"event": "request", "requestId": "2db69da5-00bb-4d4a-87a1-c75a40031868", "method": "GET", "path": "/api/workspace/jobs/edd0ed21-85e8-439d-b97d-2bc83d6b2fec/export", "status": 200, "elapsedMs": 5.73}
+[WebServer] {"event": "request", "requestId": "fefae0c5-03d8-433f-9ccf-b2151711043e", "method": "GET", "path": "/api/workspace/jobs/edd0ed21-85e8-439d-b97d-2bc83d6b2fec/export", "status": 200, "elapsedMs": 134.29}
+[WebServer] {"event": "request", "requestId": "7815a88c-e578-4a48-a04f-3b4e9720d71e", "method": "GET", "path": "/api/workspace/jobs/edd0ed21-85e8-439d-b97d-2bc83d6b2fec/export", "status": 200, "elapsedMs": 10.7}
+[WebServer] {"event": "request", "requestId": "fc1974c6-3f89-4365-b4b4-8e12be4671a2", "method": "GET", "path": "/api/workspace/captures/eab9b55d-fa7b-4f5c-857a-0e7e9d524801/window", "status": 200, "elapsedMs": 51.03}
+[WebServer] {"event": "request", "requestId": "7fcb0010-6c66-4738-bd5a-5de19a9cf6f6", "method": "POST", "path": "/api/workspace/captures/eab9b55d-fa7b-4f5c-857a-0e7e9d524801/classify", "status": 200, "elapsedMs": 48.15}
+[WebServer] {"event": "request", "requestId": "3d3984d5-b4df-4456-95f9-c82266e88044", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 2.5}
+[WebServer] {"event": "request", "requestId": "fe2743ff-a515-423e-b60a-660c6fa77a40", "method": "GET", "path": "/api/research/analyses/573a14f7-d5cc-4461-826a-a1c6f746f7d0/explanations", "status": 200, "elapsedMs": 4.49}
+[WebServer] {"event": "request", "requestId": "8395327b-67c1-4574-9148-6c0104df0351", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 6.46}
+[WebServer] {"event": "request", "requestId": "873765da-146d-4672-9b14-f85bfbba50e7", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 11.2}
+[WebServer] {"event": "request", "requestId": "e68d4a36-e76c-4769-8622-61971dbf677f", "method": "GET", "path": "/api/workspace/history/573a14f7-d5cc-4461-826a-a1c6f746f7d0/report", "status": 200, "elapsedMs": 28.88}
+[WebServer] {"event": "request", "requestId": "aa0b8be1-6559-4d28-8a4a-930d8e947107", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 3.01}
+[WebServer] {"event": "request", "requestId": "0a66d6c0-daf7-4657-aafa-2243e5f292cd", "method": "GET", "path": "/api/workspace/history/573a14f7-d5cc-4461-826a-a1c6f746f7d0/report", "status": 200, "elapsedMs": 24.49}
+  ✓  13 e2e/phase2-workflows.spec.ts:5:1 › external binary → late window → actual batch timeline → persisted PDF report (8.2s)
+[WebServer] {"event": "request", "requestId": "08bc3b58-c18b-495f-bd94-1723f0f7e0e2", "method": "GET", "path": "/intelligence", "status": 200, "elapsedMs": 2.83}
+[WebServer] {"event": "request", "requestId": "d051ee2c-b809-474d-8a80-f5bf390f4f80", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 4.7}
+[WebServer] {"event": "request", "requestId": "cf33c70c-5381-4496-b59b-049a18b15b2b", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 5.17}
+[WebServer] {"event": "request", "requestId": "f2edd24e-4934-4b63-87db-9597d8feeecc", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 13.82}
+[WebServer] {"event": "request", "requestId": "9f84c6d9-9c4b-4a8c-926b-7361b93216eb", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 14.04}
+[WebServer] {"event": "request", "requestId": "e0ac4396-44e4-4624-aa31-24a045eadfb8", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 22.02}
+[WebServer] {"event": "request", "requestId": "ea73ee09-ef9b-45e2-a5f7-a2b33dfb0b69", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 20.63}
+[WebServer] {"event": "request", "requestId": "64ab2772-6f87-453c-a5a9-f78c7a444c94", "method": "GET", "path": "/api/research/comparisons", "status": 200, "elapsedMs": 23.99}
+[WebServer] {"event": "request", "requestId": "14ba0b79-052a-47e7-9299-b8ff8fb359f1", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 28.54}
+[WebServer] {"event": "request", "requestId": "ca254635-969b-4e0a-84dc-cf48fe07e329", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 14.85}
+[WebServer] {"event": "request", "requestId": "d32bc7d9-fbed-47e5-b4e8-cb6c3eb9a4e9", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 4.41}
+[WebServer] {"event": "request", "requestId": "f82a972f-8382-4323-9659-40f3d00e22de", "method": "POST", "path": "/api/workspace/captures", "status": 202, "elapsedMs": 10.32}
+[WebServer] {"event": "request", "requestId": "8dc69668-afdf-48e5-a894-20c2be0ecbae", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 15.81}
+[WebServer] {"event": "request", "requestId": "39967ad2-eda6-4e53-9ead-d2a5008d0192", "method": "GET", "path": "/api/workspace/jobs/80c27594-44f9-4d2a-9f9f-91d9690018b3", "status": 200, "elapsedMs": 14.23}
+[WebServer] {"event": "request", "requestId": "9da8e3f4-f4d8-44b4-828a-0abd5dfc9118", "method": "GET", "path": "/api/workspace/jobs/80c27594-44f9-4d2a-9f9f-91d9690018b3", "status": 200, "elapsedMs": 2.17}
+[WebServer] {"event": "request", "requestId": "bb34e1b4-6f98-4fbf-8815-de586339ca44", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 3.87}
+[WebServer] {"event": "request", "requestId": "a37ebfe9-1960-4905-ac05-3269fc6ea75b", "method": "GET", "path": "/api/workspace/captures/62d553de-8906-4802-9d9f-51153fc1e3b6", "status": 200, "elapsedMs": 28.19}
+[WebServer] {"event": "request", "requestId": "df19acc1-ca51-4d9a-ad45-8be2f4f1feff", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 64.95}
+[WebServer] {"event": "request", "requestId": "03a177eb-5ca6-40e9-ae78-76da60de1b86", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 18.9}
+[WebServer] {"event": "request", "requestId": "aaf99db8-c7a5-47f2-8b7c-0869fdd70a74", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 2.74}
+[WebServer] {"event": "request", "requestId": "7f0e7a9c-0760-40d2-aa32-dd11b593fcda", "method": "GET", "path": "/api/workspace/captures/62d553de-8906-4802-9d9f-51153fc1e3b6/window", "status": 200, "elapsedMs": 42.9}
+  ✓  14 e2e/phase2-workflows.spec.ts:66:1 › SigMF metadata supplies sample clock and UTC window timestamp (4.9s)
+[WebServer] {"event": "request", "requestId": "7d73f84e-86b9-4043-81ce-7c5c6ceb4147", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 167.69}
+[WebServer] {"event": "request", "requestId": "978a5fee-6c95-4754-b4ae-1d40691af493", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 7.1}
+[WebServer] {"event": "request", "requestId": "dc17ae70-6f69-4f6b-b2a8-78d0f4f3682b", "method": "GET", "path": "/evaluation", "status": 200, "elapsedMs": 5.08}
+[WebServer] {"event": "request", "requestId": "d63e02b8-197f-4733-bee5-80b9014f2986", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 5.51}
+[WebServer] {"event": "request", "requestId": "260c9e5b-c39f-4ba5-b8b4-38d5a7e215c4", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 5.08}
+[WebServer] {"event": "request", "requestId": "1acb7c06-e8d0-4fa0-9a08-45a85546beeb", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 7.89}
+[WebServer] {"event": "request", "requestId": "c6927985-038e-46ac-9d50-b4dcd6a43ab6", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 13.23}
+[WebServer] {"event": "request", "requestId": "d30447e1-72bb-42cb-a27f-e191775b39c3", "method": "GET", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 21.31}
+[WebServer] {"event": "request", "requestId": "fc65d2d4-8108-42a8-9886-355a217b35a4", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 8.77}
+[WebServer] {"event": "request", "requestId": "9ba7f1d5-5fb3-4722-9ecb-0689ddd27dfe", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 3.6}
+[WebServer] {"event": "request", "requestId": "87a521d3-6f93-442c-8525-36da08f6aec7", "method": "GET", "path": "/api/research/models", "status": 200, "elapsedMs": 281.55}
+[WebServer] {"event": "request", "requestId": "01541773-5848-4846-a91c-2d6a4035f3a1", "method": "POST", "path": "/api/workspace/datasets", "status": 202, "elapsedMs": 10.82}
+[WebServer] {"event": "request", "requestId": "d04a6ced-de2a-4431-aab7-ddff2cf20294", "method": "GET", "path": "/api/workspace/jobs/ff9c11a0-d934-4212-bc58-bc38565b5688", "status": 200, "elapsedMs": 8.49}
+[WebServer] {"event": "request", "requestId": "f648c49c-8edc-4c57-ba34-f2b4586bee45", "method": "GET", "path": "/api/workspace/jobs/ff9c11a0-d934-4212-bc58-bc38565b5688", "status": 200, "elapsedMs": 45.13}
+[WebServer] {"event": "request", "requestId": "4d8f4b13-538e-443e-8d67-c5ced93e0657", "method": "GET", "path": "/api/workspace/jobs/ff9c11a0-d934-4212-bc58-bc38565b5688", "status": 200, "elapsedMs": 31.0}
+[WebServer] {"event": "request", "requestId": "775e78be-a666-4374-b03d-b76b260da088", "method": "GET", "path": "/api/workspace/jobs/ff9c11a0-d934-4212-bc58-bc38565b5688", "status": 200, "elapsedMs": 11.09}
+[WebServer] {"event": "request", "requestId": "dbcaa73d-5ee1-408c-b574-ebef6e84acfe", "method": "GET", "path": "/api/workspace/jobs/ff9c11a0-d934-4212-bc58-bc38565b5688", "status": 200, "elapsedMs": 11.55}
+[WebServer] {"event": "request", "requestId": "3d55f3e6-de41-498f-ba4a-f9aee62f28dd", "method": "GET", "path": "/api/workspace/jobs/ff9c11a0-d934-4212-bc58-bc38565b5688", "status": 200, "elapsedMs": 5.47}
+[WebServer] {"event": "request", "requestId": "e9818b2f-1afe-4a9f-8a0d-ba039d13c4d1", "method": "GET", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 20.55}
+[WebServer] {"event": "request", "requestId": "0fcb6661-cc11-4c85-b2e7-fe315b51f812", "method": "POST", "path": "/api/research/evaluations", "status": 202, "elapsedMs": 14.64}
+[WebServer] {"event": "request", "requestId": "0ca330ee-8828-442c-be21-9eb2beb95332", "method": "GET", "path": "/api/workspace/jobs/75733cbf-8626-4b4f-815c-0796c1c2cdfe", "status": 200, "elapsedMs": 52.72}
+[WebServer] {"event": "request", "requestId": "b5bbbd94-f23a-41ef-9c9f-23944f576a62", "method": "GET", "path": "/api/workspace/jobs/75733cbf-8626-4b4f-815c-0796c1c2cdfe", "status": 200, "elapsedMs": 2.35}
+[WebServer] {"event": "request", "requestId": "1812f581-7ec2-4130-9a3c-7437e8502316", "method": "GET", "path": "/api/workspace/jobs/75733cbf-8626-4b4f-815c-0796c1c2cdfe/result", "status": 200, "elapsedMs": 51.21}
+[WebServer] {"event": "request", "requestId": "37ae92d2-cd90-4b66-aa84-58ed10088d3a", "method": "GET", "path": "/api/workspace/jobs/75733cbf-8626-4b4f-815c-0796c1c2cdfe/export", "status": 200, "elapsedMs": 3.38}
+[WebServer] {"event": "request", "requestId": "40a541fc-7d6f-41ae-a495-67dcae1757e7", "method": "GET", "path": "/api/workspace/jobs/75733cbf-8626-4b4f-815c-0796c1c2cdfe/export", "status": 200, "elapsedMs": 4.69}
+[WebServer] {"event": "request", "requestId": "cd385ff5-d945-4596-bd45-3df2693c1351", "method": "GET", "path": "/api/workspace/jobs/75733cbf-8626-4b4f-815c-0796c1c2cdfe/export", "status": 200, "elapsedMs": 63.19}
+[WebServer] {"event": "request", "requestId": "72912bb3-b0ec-40c6-961e-4e95fad124a5", "method": "GET", "path": "/api/workspace/jobs/75733cbf-8626-4b4f-815c-0796c1c2cdfe/export", "status": 200, "elapsedMs": 79.57}
+[WebServer] {"event": "request", "requestId": "149661af-11b4-430f-b57f-2cfbb83b204c", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 2.09}
+  ✓  15 e2e/phase2-workflows.spec.ts:107:1 › registered independent labels produce an actual external evaluation report (11.1s)
+[WebServer] {"event": "request", "requestId": "82c93a38-1060-4023-a4d3-d992b0797880", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 14.63}
+[WebServer] {"event": "request", "requestId": "0b677293-72d4-4727-9f22-64810c1427df", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 7.43}
+[WebServer] {"event": "request", "requestId": "da0acd58-8f3e-4bdd-a5e7-7774f393e1ad", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 7.13}
+[WebServer] {"event": "request", "requestId": "73268c2e-6f07-411e-a9be-e66268787b8e", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 7.7}
+[WebServer] {"event": "request", "requestId": "26929820-4e01-4faf-bbdf-c3c3906c98c3", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 13.22}
+[WebServer] {"event": "request", "requestId": "2cae85a5-2f65-49d3-9e4d-a1e5362342d0", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 18.57}
+[WebServer] {"event": "request", "requestId": "6c5cb309-7f0c-48df-be4e-ebe534fdabb1", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 15.77}
+[WebServer] {"event": "request", "requestId": "be1fa1c9-3f11-4888-8b93-91dd4d70ced6", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 18.79}
+[WebServer] {"event": "request", "requestId": "c96f4087-9953-4d20-badc-683e16a60b8e", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 28.13}
+[WebServer] {"event": "request", "requestId": "e96db015-0601-44a9-9756-277b54704429", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 10.5}
+[WebServer] {"event": "request", "requestId": "52cc7aba-dae5-432b-b36e-872fee81bf6f", "method": "GET", "path": "/api/workspace/captures/e5ad75ff-7f3d-4fba-8fbb-6bf2b3c48afb", "status": 200, "elapsedMs": 29.43}
+[WebServer] {"event": "request", "requestId": "100d8332-5ba1-44f0-b866-10a633561a13", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 1.74}
+[WebServer] {"event": "request", "requestId": "e971a071-58af-48d7-97f2-7dcc81bdccd6", "method": "POST", "path": "/api/workspace/jobs/batch", "status": 200, "elapsedMs": 24.54}
+[WebServer] {"event": "request", "requestId": "f8b3fa4f-e58e-485b-91b9-cb8726eec873", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 29.03}
+[WebServer] {"event": "request", "requestId": "3fd7ba67-32c2-4908-86b6-ec55660345a4", "method": "GET", "path": "/api/workspace/jobs/3eaac250-6864-4fc7-b706-9d4dba890034", "status": 200, "elapsedMs": 37.19}
+[WebServer] {"event": "request", "requestId": "c96dcb99-0298-4ee5-9747-ad3ff35f3d4b", "method": "POST", "path": "/api/workspace/jobs/3eaac250-6864-4fc7-b706-9d4dba890034/cancel", "status": 200, "elapsedMs": 10.96}
+[WebServer] {"event": "request", "requestId": "e53b09d1-1ce5-4b0f-966d-d49ba9d95e9c", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 10.02}
+[WebServer] {"event": "request", "requestId": "76efcd94-d450-461d-a9ed-afac086aca37", "method": "GET", "path": "/api/workspace/jobs/3eaac250-6864-4fc7-b706-9d4dba890034", "status": 200, "elapsedMs": 10.95}
+  ✓  16 e2e/phase2-workflows.spec.ts:168:1 › a running batch can be cancelled through its persistent job controls (3.8s)
+[WebServer] {"event": "request", "requestId": "76abb97a-0c51-4f6b-8ef2-2c74b2382cbe", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 4.09}
+[WebServer] {"event": "request", "requestId": "beea64b9-27bf-4b17-b39f-554c44a74b21", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 5.22}
+[WebServer] {"event": "request", "requestId": "0668331a-416c-4002-b9e2-0e57856eaa58", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 4.87}
+[WebServer] {"event": "request", "requestId": "1d04b239-9e89-40ef-a3f0-cd3ccfec6eb6", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 6.21}
+[WebServer] {"event": "request", "requestId": "7b0d40a0-2e5e-46bc-85c6-8841bb20d72e", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 13.02}
+[WebServer] {"event": "request", "requestId": "cf29d324-7308-4f60-b05d-c304b53db30c", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 10.78}
+[WebServer] {"event": "request", "requestId": "f2a6547e-7f9c-45de-b766-725bef13ad64", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 17.89}
+[WebServer] {"event": "request", "requestId": "ee012492-2b23-4218-8923-56c656a1ed72", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 16.63}
+[WebServer] {"event": "request", "requestId": "146a7317-9307-4cdd-8fe3-f803e93006c0", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 39.82}
+[WebServer] {"event": "request", "requestId": "603a8d0f-db3a-4793-9e50-9fef5d782144", "method": "POST", "path": "/api/workspace/captures", "status": 202, "elapsedMs": 9.02}
+[WebServer] Background operation failed: 6412dd0e-47e7-47f5-9705-ea481a9b8192
+[WebServer] Traceback (most recent call last):
+[WebServer]   File "/Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend/../backend/services/operations.py", line 197, in execute
+[WebServer]     capture=captures.import_capture(None,captures.ImportOptions.model_validate(params['options']),
+[WebServer]                                     params.get('sigmf'),staged=params['staged'],progress=progress)
+[WebServer]   File "/Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend/../backend/services/captures.py", line 83, in import_capture
+[WebServer]     plan=sigmf_io.parse_metadata(sigmf,options,size,metadata['filename'],staged['sha512'])
+[WebServer]   File "/Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend/../backend/services/sigmf_io.py", line 117, in parse_metadata
+[WebServer]     raise ValueError('Multichannel SigMF requires an explicit channelIndex; no channel is selected automatically.')
+[WebServer] ValueError: Multichannel SigMF requires an explicit channelIndex; no channel is selected automatically.
+[WebServer] {"event": "request", "requestId": "bfddc2ee-f127-4678-aac2-4e37fb5c7d56", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 18.7}
+[WebServer] {"event": "request", "requestId": "50831a15-b38c-4075-80f7-f31e26208411", "method": "GET", "path": "/api/workspace/jobs/6412dd0e-47e7-47f5-9705-ea481a9b8192", "status": 200, "elapsedMs": 15.69}
+[WebServer] {"event": "request", "requestId": "1e34753e-19b9-430a-b317-bd203b7d56f4", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 10.46}
+[WebServer] {"event": "request", "requestId": "84cc6489-7c04-48c2-aaed-ddb4dcac3149", "method": "POST", "path": "/api/workspace/captures", "status": 202, "elapsedMs": 5.47}
+[WebServer] {"event": "request", "requestId": "4976d435-e042-4a3d-bb92-ffe5b4403360", "method": "GET", "path": "/api/workspace/jobs/9ac14620-4d19-4788-9179-d7c379ff7519", "status": 200, "elapsedMs": 12.12}
+[WebServer] {"event": "request", "requestId": "900cbd9d-2cd9-476f-bba5-a7311766756b", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 60.35}
+[WebServer] {"event": "request", "requestId": "44f886c8-dd28-4d3b-a53c-3e93fff2b216", "method": "GET", "path": "/api/workspace/jobs/9ac14620-4d19-4788-9179-d7c379ff7519", "status": 200, "elapsedMs": 3.73}
+[WebServer] {"event": "request", "requestId": "8cb4b9fc-3e4b-4360-907e-0d5d1e2a5175", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 3.69}
+[WebServer] {"event": "request", "requestId": "00f3ee1c-1011-4761-a324-645995b5d5d2", "method": "GET", "path": "/api/workspace/captures/95370b95-6203-4bcf-8cc4-7833f7d6e54a", "status": 200, "elapsedMs": 27.91}
+[WebServer] {"event": "request", "requestId": "d251bed8-a134-4a8c-b1fd-1823591ede50", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 4.38}
+[WebServer] {"event": "request", "requestId": "e5229ba9-c372-4c4f-b638-a93fc3858203", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 11.59}
+[WebServer] {"event": "request", "requestId": "e7b116fc-49cd-4884-be4a-a37846b6555a", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 11.39}
+[WebServer] {"event": "request", "requestId": "d440b5f6-df4d-4767-bae0-b4fe375f7f40", "method": "GET", "path": "/api/workspace/captures/95370b95-6203-4bcf-8cc4-7833f7d6e54a/window", "status": 200, "elapsedMs": 60.75}
+[WebServer] {"event": "request", "requestId": "01745378-6d95-4300-a407-02d2b9a6e16f", "method": "GET", "path": "/api/workspace/captures/95370b95-6203-4bcf-8cc4-7833f7d6e54a/sigmf", "status": 200, "elapsedMs": 24.85}
+[WebServer] {"event": "request", "requestId": "41f067ba-d211-4d2f-9216-b2c078b06b6d", "method": "GET", "path": "/api/workspace/captures/95370b95-6203-4bcf-8cc4-7833f7d6e54a/sigmf", "status": 200, "elapsedMs": 26.24}
+  ✓  17 e2e/phase3-controls.spec.ts:59:1 › unsigned real multichannel SigMF requires explicit conversion and exports consistent derived metadata (7.9s)
+[WebServer] {"event": "request", "requestId": "a62d1927-8fc4-4535-a206-c23611712a00", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 2.35}
+[WebServer] {"event": "request", "requestId": "364d7da0-3bdf-48d3-a9f9-3793ce7d7114", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 4.05}
+[WebServer] {"event": "request", "requestId": "e6287ffe-aac8-4dde-89b1-4c6cee6a36ee", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 4.43}
+[WebServer] {"event": "request", "requestId": "549ed332-1704-4da9-9e39-a564711eb1a0", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 17.88}
+[WebServer] {"event": "request", "requestId": "5ca747be-550b-46e5-b6e4-ac75706cf34f", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 13.35}
+[WebServer] {"event": "request", "requestId": "0cff5ac9-3201-4418-bc03-f24f9658ce45", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 27.61}
+[WebServer] {"event": "request", "requestId": "c223c8fd-21a6-40be-9a54-2834cff914bd", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 25.4}
+[WebServer] {"event": "request", "requestId": "1172b239-aad4-4363-928e-ab6cb4d542e7", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 33.93}
+[WebServer] {"event": "request", "requestId": "5dc013d1-1066-49c8-9cbd-7f6840a1a662", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 7.35}
+[WebServer] {"event": "request", "requestId": "e89ad05a-e7ab-4a97-b99f-ad90c16927a0", "method": "POST", "path": "/api/classify/upload", "status": 200, "elapsedMs": 66.31}
+[WebServer] {"event": "request", "requestId": "25960bc7-8cb3-43d4-b499-04e2e7240ab0", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 2.38}
+[WebServer] {"event": "request", "requestId": "8f6e7504-5d27-450b-aab7-b66f57c0f6ac", "method": "GET", "path": "/api/research/analyses/3c49a6f1-5a10-4c47-a476-e3d45506d876/explanations", "status": 200, "elapsedMs": 17.17}
+[WebServer] {"event": "request", "requestId": "925bc411-a3a2-4451-b0b4-bead87ca1601", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 3.11}
+[WebServer] {"event": "request", "requestId": "62eaf1fe-7384-4cbb-8c9d-c5ee0be67d82", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 65.56}
+[WebServer] {"event": "request", "requestId": "7a12b4e4-1a82-4002-b2f4-ce60b437c49f", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 2.08}
+[WebServer] {"event": "request", "requestId": "cdecfd1c-17eb-4d45-bd06-77c7c419b6c1", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 6.98}
+[WebServer] {"event": "request", "requestId": "9289d33e-0160-496d-9faf-8946906f5a9a", "method": "GET", "path": "/api/research/analyses/2002a454-b902-49b2-b805-deccbd7f397d/explanations", "status": 200, "elapsedMs": 13.24}
+[WebServer] {"event": "request", "requestId": "0cbde5ef-2f63-43f9-8d1f-2e399f09dc38", "method": "POST", "path": "/api/research/time-frequency", "status": 200, "elapsedMs": 15.55}
+[WebServer] {"event": "request", "requestId": "eaa51b2a-89ec-4807-8cf3-97a1969f8e99", "method": "POST", "path": "/api/research/time-frequency", "status": 200, "elapsedMs": 14.58}
+[WebServer] {"event": "request", "requestId": "ff8240c6-7d9f-4c8f-ba72-c2942f07a480", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 7.5}
+  ✓  18 e2e/phase3-controls.spec.ts:117:1 › time-frequency controls, marker, waterfall and export use actual computed density (8.1s)
+[WebServer] {"event": "request", "requestId": "036d67af-4b8a-42be-a169-7b4db1f7ebff", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 10.86}
+[WebServer] {"event": "request", "requestId": "03fc5d85-0511-49ea-82a2-3591a77a88eb", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 5.83}
+[WebServer] {"event": "request", "requestId": "b254b5da-e6a3-491f-9ec1-e9bcbfe046ae", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 3.88}
+[WebServer] {"event": "request", "requestId": "c97c9222-e8e2-4097-a26c-e362ef5fa207", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 5.73}
+[WebServer] {"event": "request", "requestId": "3475a1a5-3642-4b0b-8e8b-83d57bd00653", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 9.18}
+[WebServer] {"event": "request", "requestId": "a3d04c75-715d-4167-86f9-3ff116aa05a4", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 14.97}
+[WebServer] {"event": "request", "requestId": "9b080bec-03d6-41e3-a73a-0c4f1a8cefc9", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 21.32}
+[WebServer] {"event": "request", "requestId": "7a4f59fd-e321-41ac-a212-c541585f1cc5", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 16.86}
+[WebServer] {"event": "request", "requestId": "f2c961b9-022b-4717-bd6a-e67f848b3cd8", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 22.38}
+[WebServer] {"event": "request", "requestId": "53bfcde6-a348-45bc-840e-4b8bb88111c1", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 31.12}
+[WebServer] {"event": "request", "requestId": "1372976c-c89b-441e-a0a4-a47c5396e724", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 12.51}
+[WebServer] {"event": "request", "requestId": "4e8891eb-5d58-4207-b627-a59040b168ea", "method": "POST", "path": "/api/classify/upload", "status": 200, "elapsedMs": 72.4}
+[WebServer] {"event": "request", "requestId": "71fd24b6-4966-46af-a741-80d4d8c7452b", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 3.73}
+[WebServer] {"event": "request", "requestId": "834c0686-b771-4bb6-af44-1bd9aa760675", "method": "GET", "path": "/api/research/analyses/ebfeb463-f6cf-4c41-be26-247c2b1b3ed1/explanations", "status": 200, "elapsedMs": 22.52}
+[WebServer] {"event": "request", "requestId": "1900d2ad-7356-4199-a2dd-7f5763e2f64c", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 5.19}
+[WebServer] {"event": "request", "requestId": "c6f64ad7-bfe6-4fa3-9c80-d5229caf3eea", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 10.69}
+[WebServer] {"event": "request", "requestId": "ea77f595-f3ed-4bf7-a9c9-0a586e2a4fbb", "method": "GET", "path": "/api/workspace/captures/806f087e-7577-4d80-a0c0-f842bbf1441e", "status": 200, "elapsedMs": 25.11}
+[WebServer] {"event": "request", "requestId": "42df6cb9-e102-4e43-90eb-b3a70e2b1577", "method": "GET", "path": "/api/workspace/captures/806f087e-7577-4d80-a0c0-f842bbf1441e/window", "status": 200, "elapsedMs": 30.81}
+[WebServer] {"event": "request", "requestId": "2b775afa-706b-479c-a1c3-111cb1ae969e", "method": "GET", "path": "/api/workspace/captures/0e5ac441-4492-474e-a962-152af4aa712d", "status": 200, "elapsedMs": 23.02}
+[WebServer] {"event": "request", "requestId": "f3f65f60-b84f-46f4-81b2-1574c3bc8de9", "method": "GET", "path": "/api/workspace/captures/0e5ac441-4492-474e-a962-152af4aa712d/window", "status": 200, "elapsedMs": 98.61}
+[WebServer] {"event": "request", "requestId": "332e31f2-7b14-4085-9e8c-de9809206b05", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 30.55}
+[WebServer] {"event": "request", "requestId": "f3a7e80b-cc0d-44c3-813e-98015fd31d38", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 2.46}
+[WebServer] {"event": "request", "requestId": "b1d0bd27-763f-4df8-a53c-574b2645f2bd", "method": "GET", "path": "/api/research/analyses/3c2f90ed-ba1c-4afb-a3bf-777380e57eca/explanations", "status": 200, "elapsedMs": 4.28}
+[WebServer] {"event": "request", "requestId": "bac7473a-bf9c-4ae3-8f88-bf9411083b35", "method": "POST", "path": "/api/workspace/captures/0e5ac441-4492-474e-a962-152af4aa712d/classify", "status": 200, "elapsedMs": 87.38}
+[WebServer] {"event": "request", "requestId": "6b3bbcb0-f641-47b8-9241-5419fea8a269", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 15.81}
+  ✓  19 e2e/phase3-controls.spec.ts:159:1 › imported window synchronizes the mounted Classifier sample clock and CNN window offset (5.0s)
+[WebServer] {"event": "request", "requestId": "33ec183a-bd9c-4452-a8a6-f02ddeb2bafd", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 3.55}
+[WebServer] {"event": "request", "requestId": "f9d0f215-e8bb-4a8c-83e7-5d0e53679d02", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 3.17}
+[WebServer] {"event": "request", "requestId": "3ddd4680-e218-4607-9d83-74021f13fd69", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 4.36}
+[WebServer] {"event": "request", "requestId": "fcbddce0-2f00-45a6-bca4-b6cc773c5ea9", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 31.25}
+[WebServer] {"event": "request", "requestId": "5b770e03-d922-4413-9a23-30742bad003d", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 30.6}
+[WebServer] {"event": "request", "requestId": "f0c188c4-63b6-4e23-96ea-46db23574e67", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 40.03}
+[WebServer] {"event": "request", "requestId": "752f57cf-ab6d-4007-bbdb-fa6750f32189", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 39.02}
+[WebServer] {"event": "request", "requestId": "c349c7ef-133f-446b-b72e-996990c03e20", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 40.98}
+[WebServer] {"event": "request", "requestId": "1fd6ede1-7673-4273-b29d-c18d96531de8", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 4.82}
+[WebServer] {"event": "request", "requestId": "c1df0237-f995-458d-822a-2ed9dff07b59", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 9.37}
+[WebServer] {"event": "request", "requestId": "5075fb67-c606-4659-b597-da0140b808b7", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 15.4}
+[WebServer] {"event": "request", "requestId": "1c530e43-f367-415b-a573-3fb34b75fc27", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 34.29}
+[WebServer] {"event": "request", "requestId": "54715fdd-a053-4b9c-9dbb-64e852e5dc39", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 25.42}
+[WebServer] {"event": "request", "requestId": "d078c6c6-6b51-41e2-a69f-0a0f7a15e98d", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 36.14}
+[WebServer] {"event": "request", "requestId": "988cd0bd-75eb-445c-85a6-da9200c00293", "method": "GET", "path": "/api/research/comparisons", "status": 200, "elapsedMs": 32.53}
+[WebServer] {"event": "request", "requestId": "288149be-4bc2-4bb0-8a66-3ef78457e42c", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 31.97}
+  ✓  20 e2e/phase3-controls.spec.ts:211:1 › mobile keyboard navigation traps focus, closes with Escape and restores the opener (2.7s)
+[WebServer] {"event": "request", "requestId": "d1779ac2-67b1-4854-b7ab-433f2b73c17c", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 14.13}
+[WebServer] {"event": "request", "requestId": "625bfc9d-b89e-4f17-903b-b7fa73318c87", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 3.43}
+[WebServer] {"event": "request", "requestId": "4b7763d5-b80b-4f06-9866-61d363bd4198", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 5.52}
+[WebServer] {"event": "request", "requestId": "1180ac1e-bc11-4d29-a97c-e822f3d6f1b4", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 6.46}
+[WebServer] {"event": "request", "requestId": "d7e35d91-54fe-4cc9-a7cb-9ef93a6a9597", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 23.41}
+[WebServer] {"event": "request", "requestId": "c9381e54-849b-402a-bd53-cacab1adc9e1", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 17.33}
+[WebServer] {"event": "request", "requestId": "48d08a1d-3373-4e14-9bfd-162350048b61", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 18.36}
+[WebServer] {"event": "request", "requestId": "96d257b6-3dc8-46c0-98bd-957c7f0a5716", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 24.99}
+[WebServer] {"event": "request", "requestId": "62dfeda6-7889-4dd4-9ceb-6d152a814f12", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 34.18}
+[WebServer] {"event": "request", "requestId": "81a8bca1-d4dc-4a2e-a41a-8365557518a0", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 9.76}
+[WebServer] {"event": "request", "requestId": "4169b1de-2847-43a6-911c-2ee64ea9e9a9", "method": "GET", "path": "/api/workspace/captures/522cab91-4b5d-4229-8832-da9cfd135e7d", "status": 200, "elapsedMs": 87.46}
+[WebServer] {"event": "request", "requestId": "814edff9-3dd2-4005-a950-0e04be50df9b", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 5.57}
+[WebServer] {"event": "request", "requestId": "5ac0a28c-7d4d-4c77-b780-e1ab6ae6ce53", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 16.42}
+[WebServer] {"event": "request", "requestId": "77048574-69e0-41fc-ac69-6db6ab738ed2", "method": "POST", "path": "/api/workspace/jobs/batch", "status": 200, "elapsedMs": 7.45}
+[WebServer] {"event": "request", "requestId": "30637ac0-d753-4a43-be68-05fd924317eb", "method": "GET", "path": "/api/workspace/jobs/02523369-9db8-4852-b400-eac72eb66c8e", "status": 200, "elapsedMs": 11.35}
+[WebServer] {"event": "request", "requestId": "dd85b0cd-b46a-4232-b0a5-f643c3c12d14", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 25.94}
+[WebServer] {"event": "request", "requestId": "df1f0ad9-e516-4942-a3f4-804307197639", "method": "GET", "path": "/api/workspace/jobs/02523369-9db8-4852-b400-eac72eb66c8e", "status": 200, "elapsedMs": 24.97}
+[WebServer] {"event": "request", "requestId": "f3199262-1277-4ce2-b5e3-2f13f55a5d8e", "method": "GET", "path": "/api/workspace/jobs/02523369-9db8-4852-b400-eac72eb66c8e", "status": 200, "elapsedMs": 5.08}
+[WebServer] {"event": "request", "requestId": "cfc20722-4500-4633-a98f-e19bf54314d5", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 5.51}
+[WebServer] {"event": "request", "requestId": "faa656a6-5f69-42c1-8094-84abad4664ac", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 8.74}
+[WebServer] {"event": "request", "requestId": "13cf6e1b-464f-4602-a0fb-b8193b188353", "method": "GET", "path": "/api/workspace/jobs/02523369-9db8-4852-b400-eac72eb66c8e", "status": 200, "elapsedMs": 4.15}
+[WebServer] {"event": "request", "requestId": "e6012a3e-8f15-4517-b127-951d04458ffc", "method": "POST", "path": "/api/workspace/jobs/02523369-9db8-4852-b400-eac72eb66c8e/cancel", "status": 200, "elapsedMs": 7.35}
+[WebServer] {"event": "request", "requestId": "cc057277-4092-4bcf-8d95-e25d6c7fcf3f", "method": "GET", "path": "/api/workspace/jobs/02523369-9db8-4852-b400-eac72eb66c8e", "status": 200, "elapsedMs": 1.88}
+[WebServer] {"event": "request", "requestId": "0c49ee16-dd0d-4529-ab06-833fff3bb479", "method": "GET", "path": "/api/workspace/jobs/02523369-9db8-4852-b400-eac72eb66c8e", "status": 200, "elapsedMs": 2.17}
+  ✓  21 e2e/phase3-controls.spec.ts:241:1 › actual job polling preserves a genuine Plotly zoom and its rendered SVG (7.8s)
+[WebServer] {"event": "request", "requestId": "1b656c77-4fb9-425d-bd7f-fb12e7212903", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 48.93}
+[WebServer] {"event": "request", "requestId": "e2ab5595-7e13-477e-a55f-714d56961bce", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 94.33}
+[WebServer] {"event": "request", "requestId": "9059aeed-186a-4adc-afd2-d6e14a4cea09", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 69.93}
+[WebServer] {"event": "request", "requestId": "165e86e0-1f13-4e3d-a953-23f49faf81d7", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 7.46}
+[WebServer] {"event": "request", "requestId": "8bfbdf15-d628-45b4-82f3-78cd6efb697b", "method": "POST", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 27.33}
+[WebServer] {"event": "request", "requestId": "20a0d513-0847-466d-aafa-832f86d64693", "method": "GET", "path": "/api/research/models", "status": 200, "elapsedMs": 21.27}
+[WebServer] {"event": "request", "requestId": "6c852ea1-dcb5-4c98-aee1-d8817e3e2ecf", "method": "GET", "path": "/evaluation", "status": 200, "elapsedMs": 2.16}
+[WebServer] {"event": "request", "requestId": "50fc00e2-7c66-455b-aa9b-d0563231dc7c", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 3.4}
+[WebServer] {"event": "request", "requestId": "e6f51146-59f4-452f-a4c0-e38d70e00e99", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 3.42}
+[WebServer] {"event": "request", "requestId": "d5d95cc0-8121-4151-b85d-f934a73d7551", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 8.11}
+[WebServer] {"event": "request", "requestId": "f4ac58c3-4bef-4485-9120-a0a68a4109dc", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 9.83}
+[WebServer] {"event": "request", "requestId": "a5c37787-3df2-42f5-82e2-c0f81c6af3e1", "method": "GET", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 28.9}
+[WebServer] {"event": "request", "requestId": "84363f96-b2e7-4f9e-8d6b-a3ad1c8eee60", "method": "GET", "path": "/api/research/models", "status": 200, "elapsedMs": 45.16}
+[WebServer] {"event": "request", "requestId": "a151d8a0-ac53-439e-9ecb-71e2ee5933a3", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 5.92}
+[WebServer] {"event": "request", "requestId": "c540e9cb-2620-4da8-a21f-e0e7783f344c", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 1.67}
+  ✘  22 e2e/research-models.spec.ts:110:1 › available registered models execute real held-out inference and compare on an identical protocol (6.7s)
+(node:1448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] {"event": "request", "requestId": "828a71df-d61a-481f-a322-d5a183b21981", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 85.35}
+[WebServer] {"event": "request", "requestId": "8c215f83-35ea-43a8-a123-c78c61bcddd1", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 101.25}
+[WebServer] {"event": "request", "requestId": "9203ea0c-712c-4a61-8673-349ed826972f", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 102.44}
+[WebServer] {"event": "request", "requestId": "b3c37324-da54-492d-9716-dc63c93dcb5f", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 10.15}
+[WebServer] {"event": "request", "requestId": "136d795f-beaf-4769-a5ad-a9d0e3491ffd", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 70.24}
+[WebServer] {"event": "request", "requestId": "54b6d2a7-a4ee-4e1e-b30a-cde3ae56f245", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 84.12}
+[WebServer] {"event": "request", "requestId": "21b30bd8-b3ef-4ea7-8fd1-c93de3bddc9a", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 84.29}
+[WebServer] {"event": "request", "requestId": "b9f98422-20fb-4917-97b0-dfd5843405c2", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 7.06}
+[WebServer] {"event": "request", "requestId": "df88c71f-44a8-46ca-8e7d-9ecb2eb85f28", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 195.12}
+[WebServer] {"event": "request", "requestId": "829de826-9240-4d69-8dbb-f6b3bf912711", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 193.63}
+[WebServer] {"event": "request", "requestId": "e9b4ff5c-6e2f-4f67-a067-27bd3943a59a", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 195.2}
+[WebServer] {"event": "request", "requestId": "9848f62e-d6bc-4328-9392-5dd5a1e52a6c", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 9.91}
+[WebServer] {"event": "request", "requestId": "e991c957-37ff-449f-83f4-cc1f25cfb851", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 67.33}
+[WebServer] {"event": "request", "requestId": "135ade6c-414e-43c3-bf03-106423401deb", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 84.5}
+[WebServer] {"event": "request", "requestId": "f5430784-01c3-458f-a910-cc613c597189", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 84.41}
+[WebServer] {"event": "request", "requestId": "6161cecb-9e30-4074-803c-e5660a415cc2", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 6.68}
+[WebServer] {"event": "request", "requestId": "c0bb61ab-5bd2-4d46-a72f-6b5c29c4de58", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 77.94}
+[WebServer] {"event": "request", "requestId": "5ac4eecf-0263-435d-82f6-4ffd9bd05e27", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 77.73}
+[WebServer] {"event": "request", "requestId": "607d9218-cbcd-4bc2-84a9-8ce33efe35a1", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 77.93}
+[WebServer] {"event": "request", "requestId": "e95cd10f-e727-4161-a3df-c6d2c636e23d", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 7.76}
+[WebServer] {"event": "request", "requestId": "e60fc4af-8b20-4413-8d46-c979be2c0a75", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 79.48}
+[WebServer] {"event": "request", "requestId": "e5d463ee-e241-425e-a0d8-01a83b7b9ab0", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 79.29}
+[WebServer] {"event": "request", "requestId": "c707c71a-0011-4a97-a639-7198620d8c70", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 79.16}
+[WebServer] {"event": "request", "requestId": "4af3a84f-b5e1-41a9-98d2-c1083c65952f", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 7.8}
+[WebServer] {"event": "request", "requestId": "84593dba-a6ec-4fd3-8db4-a64657a62b1d", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 56.59}
+[WebServer] {"event": "request", "requestId": "53dd53a4-5ef6-4b8d-80cb-1c574230c369", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 58.11}
+[WebServer] {"event": "request", "requestId": "3d504c2f-7119-4245-873c-61bd1b3f94dc", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 78.64}
+[WebServer] {"event": "request", "requestId": "6f3b1ce1-4409-4b16-990e-6b16e8d0e842", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 7.44}
+[WebServer] {"event": "request", "requestId": "3109830f-9a37-4001-b6c3-4baa50711d5e", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 73.88}
+[WebServer] {"event": "request", "requestId": "f8a31a9e-160a-43cf-9e5a-389e72232a76", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 91.45}
+[WebServer] {"event": "request", "requestId": "b0eb2fca-0d66-419e-9cd6-b84db0061606", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 90.94}
+[WebServer] {"event": "request", "requestId": "e2706c25-bde6-46a0-b214-a78f7396c356", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 7.19}
+[WebServer] {"event": "request", "requestId": "1fdd3c54-cc38-4f91-97c3-2fbc9ee11a3c", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 71.91}
+[WebServer] {"event": "request", "requestId": "ba2533e7-822c-499f-9f8b-73a076fbfc21", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 71.27}
+[WebServer] {"event": "request", "requestId": "c1c26359-1e79-4097-accb-220e78133ff4", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 72.19}
+[WebServer] {"event": "request", "requestId": "f8830534-c4ee-4e49-bea4-f51d4b658d7b", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 6.68}
+[WebServer] {"event": "request", "requestId": "6ea9d24a-cb2d-49e6-a0cf-06ab6e3ec21a", "method": "POST", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 66.56}
+[WebServer] {"event": "request", "requestId": "8b430633-ac93-4955-8c8a-2df8285115a5", "method": "GET", "path": "/evaluation", "status": 200, "elapsedMs": 2.52}
+[WebServer] {"event": "request", "requestId": "a4190f93-9c4a-4b5e-a0aa-b0bac3d283b2", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 3.02}
+[WebServer] {"event": "request", "requestId": "c1a23e7d-da4a-4830-a41c-4f8c4c83bc16", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 4.66}
+[WebServer] {"event": "request", "requestId": "5c849b4f-727b-45e8-8b1a-8deccfcdd953", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 11.79}
+[WebServer] {"event": "request", "requestId": "ff56566b-50eb-443c-816f-ae489b74fc44", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 16.59}
+[WebServer] {"event": "request", "requestId": "afd73434-1518-42cb-86a4-ee01adb36b5c", "method": "GET", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 35.18}
+[WebServer] {"event": "request", "requestId": "b171f3c3-ff5e-4b3e-a85e-c0d69c0ea6ed", "method": "GET", "path": "/api/research/models", "status": 200, "elapsedMs": 81.46}
+[WebServer] {"event": "request", "requestId": "9f16cda6-d863-4a0b-9c1e-96e05f436331", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 19.97}
+[WebServer] {"event": "request", "requestId": "266b1fcd-0c0c-4ee7-bf90-e92d0380f7dd", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 70.3}
+[WebServer] {"event": "request", "requestId": "8cb36f00-dbc8-42d6-8d60-2413298e3827", "method": "GET", "path": "/api/research/datasets/da77546a-c5b5-4e26-83b6-4bca139d4710/training-manifest", "status": 200, "elapsedMs": 310.44}
+[WebServer] {"event": "request", "requestId": "e6b84e81-3cbf-4ad3-9d98-3b0319c65351", "method": "GET", "path": "/api/research/datasets/da77546a-c5b5-4e26-83b6-4bca139d4710/training.npz", "status": 200, "elapsedMs": 347.51}
+  ✓  23 e2e/research-models.spec.ts:191:1 › registered training windows export a provenance manifest, compatible NPZ and offline config (6.1s)
+[WebServer] {"event": "request", "requestId": "bd1cf93e-1566-4162-b990-d3cd0f128224", "method": "GET", "path": "/api/research/datasets/da77546a-c5b5-4e26-83b6-4bca139d4710/training.npz", "status": 200, "elapsedMs": 450.0}
+[WebServer] {"event": "request", "requestId": "552e1079-ec81-4989-b8ea-f4386c3250f7", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 72.5}
+[WebServer] {"event": "request", "requestId": "0404dd2d-6d1d-48f4-81ce-f348236459d5", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 72.21}
+[WebServer] {"event": "request", "requestId": "1653d2cc-36db-49a1-9dbb-329e43431945", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 88.02}
+[WebServer] {"event": "request", "requestId": "ad91d254-e235-4904-9f36-f2d15c1a758a", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 7.76}
+[WebServer] {"event": "request", "requestId": "eedf1147-02bb-4e4b-828d-af99401f13f0", "method": "POST", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 27.54}
+[WebServer] {"event": "request", "requestId": "f4b5d237-a486-4ba5-be4a-a46063a309b3", "method": "GET", "path": "/evaluation", "status": 200, "elapsedMs": 2.88}
+[WebServer] {"event": "request", "requestId": "1b937e03-01a0-460c-b89d-84d39b6a5beb", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 3.35}
+[WebServer] {"event": "request", "requestId": "57611c01-632c-43ea-aa00-7d06483847ac", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 5.49}
+[WebServer] {"event": "request", "requestId": "e34eaaa5-39b8-46db-8f1a-2c095f357adb", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 6.78}
+[WebServer] {"event": "request", "requestId": "4fdb63d2-23d0-4072-9502-df7a2a3e9f37", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 7.9}
+[WebServer] {"event": "request", "requestId": "7e95cfad-bef8-4681-9650-57211dfd35da", "method": "GET", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 27.93}
+[WebServer] {"event": "request", "requestId": "2b5ba7b7-26f3-49c4-b1c9-4af8f8b47479", "method": "GET", "path": "/api/research/models", "status": 200, "elapsedMs": 48.06}
+[WebServer] {"event": "request", "requestId": "e93c0cc6-2039-4317-b90b-7046f3473319", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 18.68}
+[WebServer] {"event": "request", "requestId": "04dd7bb4-f5f2-4396-bed1-6d23973adb28", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 5.74}
+[WebServer] {"event": "request", "requestId": "caded1c7-05e7-4fcb-ba38-c7c9eceb8f36", "method": "GET", "path": "/api/research/datasets/c364aa14-2940-4418-9542-fd8280ee1664/training-manifest", "status": 422, "elapsedMs": 69.76}
+[WebServer] {"event": "request", "requestId": "99f70e95-dec1-4588-ab5d-2a10cc61a637", "method": "GET", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 15.82}
+  ✓  24 e2e/research-models.spec.ts:236:1 › test-only labels cannot be silently reassigned into a training export (3.4s)
+[WebServer] {"event": "request", "requestId": "0002517b-1ba4-4ed3-b792-59b95fa0f475", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 143.98}
+[WebServer] {"event": "request", "requestId": "9f0ab829-c916-409b-a5ac-fedac153b93f", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 10.6}
+[WebServer] {"event": "request", "requestId": "259de3f7-1050-451b-a410-8a2680aa1ef0", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 2.81}
+[WebServer] {"event": "request", "requestId": "248e8e6b-d6d5-4be7-bb1d-b72d157d6856", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 5.66}
+[WebServer] {"event": "request", "requestId": "25406f80-ad14-4d19-9e09-318c10264da6", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 6.92}
+[WebServer] {"event": "request", "requestId": "8ddf3be1-19af-4888-918e-8e66bce03f98", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 13.19}
+[WebServer] {"event": "request", "requestId": "f4f01536-fe50-492d-b4e1-d43ee273fc32", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 18.9}
+[WebServer] {"event": "request", "requestId": "8c402551-ec82-4d11-862d-c10b189d3170", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 18.07}
+[WebServer] {"event": "request", "requestId": "ffbb316d-dc4b-4128-9c88-6e3593df3ce3", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 16.74}
+[WebServer] {"event": "request", "requestId": "e802fde7-f3aa-4db0-964a-0db03415625e", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 30.66}
+[WebServer] {"event": "request", "requestId": "1d0fcb4f-f5c1-443b-aaef-a59a125f0e20", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 36.98}
+[WebServer] {"event": "request", "requestId": "2fe38ce3-2d29-405a-a7e1-022f721a3780", "method": "GET", "path": "/api/workspace/captures/4cf1f25f-bb9f-4de3-8ac8-d6f562255b2f", "status": 200, "elapsedMs": 25.24}
+[WebServer] {"event": "request", "requestId": "af557c7e-76e8-4d74-b156-c8c0e58f0b7a", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 1.87}
+[WebServer] {"event": "request", "requestId": "127241cc-eb40-4883-93ed-eb7b7a2e909e", "method": "POST", "path": "/api/workspace/captures/4cf1f25f-bb9f-4de3-8ac8-d6f562255b2f/classify", "status": 200, "elapsedMs": 62.96}
+[WebServer] {"event": "request", "requestId": "c51e8d5a-4c22-4c4d-ab2d-90dfa7abd200", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 13.4}
+[WebServer] {"event": "request", "requestId": "160e57d9-cb53-4ac0-a226-18d922b3d27c", "method": "GET", "path": "/api/research/analyses/4e409027-9fbc-4ebb-b2c2-a6bb164f5f24/explanations", "status": 200, "elapsedMs": 6.78}
+[WebServer] {"event": "request", "requestId": "74b7b078-fbd5-49ad-822c-fa9b71f1b30b", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 11.38}
+[WebServer] {"event": "request", "requestId": "1a2bc20a-6d7e-4e93-9815-dec9e88222b5", "method": "POST", "path": "/api/research/analyses/4e409027-9fbc-4ebb-b2c2-a6bb164f5f24/explanations", "status": 200, "elapsedMs": 1220.92}
+[WebServer] {"event": "request", "requestId": "fc0b89a7-b9e8-4764-aaf9-05e4094350f4", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 12.77}
+[WebServer] {"event": "request", "requestId": "a4ee2766-3b24-4431-82cb-0215dd62e41e", "method": "GET", "path": "/api/workspace/history/4e409027-9fbc-4ebb-b2c2-a6bb164f5f24/report", "status": 200, "elapsedMs": 65.16}
+[WebServer] {"event": "request", "requestId": "56141600-0e4c-4c73-bd50-88c74b402792", "method": "GET", "path": "/api/workspace/history/4e409027-9fbc-4ebb-b2c2-a6bb164f5f24/report", "status": 200, "elapsedMs": 58.96}
+[WebServer] {"event": "request", "requestId": "64867d99-1c69-4f17-be28-af2830938542", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 19.96}
+[WebServer] {"event": "request", "requestId": "72674229-2630-4e38-8b85-fb39ac069df0", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 9.62}
+[WebServer] {"event": "request", "requestId": "5f5d6abf-e473-4bf4-8e5c-c3242a89436e", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 10.51}
+[WebServer] {"event": "request", "requestId": "93af317a-f38e-46d9-91a2-e1720111ae50", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 18.64}
+[WebServer] {"event": "request", "requestId": "21739bfc-ad00-4899-ac78-5a255bdd007c", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 18.65}
+[WebServer] {"event": "request", "requestId": "af54b353-aec1-4e8c-9f9f-11e4b8411077", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 28.2}
+[WebServer] {"event": "request", "requestId": "f61ff8a6-d58f-4ef4-be44-db236f3a9ccf", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 4.14}
+[WebServer] {"event": "request", "requestId": "0d97d379-e30f-4988-af89-dde6710881fa", "method": "GET", "path": "/api/research/analyses/4e409027-9fbc-4ebb-b2c2-a6bb164f5f24/explanations", "status": 200, "elapsedMs": 28.09}
+[WebServer] {"event": "request", "requestId": "cbb3da0b-51e2-447d-ae38-a165b864552e", "method": "GET", "path": "/api/workspace/history/4e409027-9fbc-4ebb-b2c2-a6bb164f5f24/report", "status": 200, "elapsedMs": 53.15}
+[WebServer] {"event": "request", "requestId": "2a1ee742-bd58-4a6f-b449-1e442661d479", "method": "GET", "path": "/api/workspace/history/4e409027-9fbc-4ebb-b2c2-a6bb164f5f24/report", "status": 200, "elapsedMs": 68.05}
+[WebServer] {"event": "request", "requestId": "37f3a33a-1bb8-4b08-a75a-8c8008004cf7", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 7.28}
+  ✓  25 e2e/research-workflows.spec.ts:62:1 › managed live explanation persists both real methods and full history JSON/PDF after reload (7.0s)
+[WebServer] {"event": "request", "requestId": "a67d8fe7-cc80-4c32-8b36-cadebd5acd69", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 138.86}
+[WebServer] {"event": "request", "requestId": "293db936-59de-4eb2-81ff-89fe1c0d5a8b", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 9.22}
+[WebServer] {"event": "request", "requestId": "7583b565-1fa9-4c4e-a388-7142f11b888c", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 113.34}
+[WebServer] {"event": "request", "requestId": "e1f802a4-f692-42ba-a79c-53c210cb92f1", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 7.41}
+[WebServer] {"event": "request", "requestId": "8137d992-524e-4f6b-b547-8190f0f64541", "method": "POST", "path": "/api/workspace/captures/19f8c293-98dc-43e7-ae7d-ca9c562d5c76/classify", "status": 200, "elapsedMs": 45.35}
+[WebServer] {"event": "request", "requestId": "7eb177b0-82fd-49b3-8c26-da35d67133e9", "method": "POST", "path": "/api/workspace/captures/d17c9f9e-e3cf-44a7-9bac-709d6494988e/classify", "status": 200, "elapsedMs": 46.29}
+[WebServer] {"event": "request", "requestId": "ae559a86-06c5-435b-ac57-201bcf62c34f", "method": "GET", "path": "/intelligence", "status": 200, "elapsedMs": 3.15}
+[WebServer] {"event": "request", "requestId": "604f6b4d-c72e-434f-89b9-494df27bb599", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 4.27}
+[WebServer] {"event": "request", "requestId": "62ca0869-7f34-4141-916c-6ee2c436938f", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 4.16}
+[WebServer] {"event": "request", "requestId": "0b474e89-6a07-440d-bdfb-80f79f6dba9d", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 12.23}
+[WebServer] {"event": "request", "requestId": "70737582-c846-4a63-8d7d-a3386477cc1d", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 13.07}
+[WebServer] {"event": "request", "requestId": "5be4a816-8b5e-47af-b80e-980f233b9a29", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 25.4}
+[WebServer] {"event": "request", "requestId": "6917e8a9-7f2c-48ee-8acb-12da05fa0f87", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 24.79}
+[WebServer] {"event": "request", "requestId": "1a88799c-5dc1-458c-add8-4503bfb36f14", "method": "GET", "path": "/api/research/comparisons", "status": 200, "elapsedMs": 25.01}
+[WebServer] {"event": "request", "requestId": "0dd910be-d7f5-4bbc-8e51-b1b465e93e94", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 37.23}
+[WebServer] {"event": "request", "requestId": "638129b9-0627-4f3f-871f-0f6a5293e500", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 14.95}
+[WebServer] {"event": "request", "requestId": "b761a5cb-79af-428f-beab-c84f6fc6c10f", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 7.45}
+[WebServer] {"event": "request", "requestId": "edef261a-1cfe-4b04-947a-c319e03a4921", "method": "POST", "path": "/api/research/comparisons", "status": 200, "elapsedMs": 154.23}
+[WebServer] {"event": "request", "requestId": "b9f638f7-4809-422e-8773-ada069005c71", "method": "GET", "path": "/api/research/comparisons", "status": 200, "elapsedMs": 4.2}
+[WebServer] {"event": "request", "requestId": "f6cff0db-74a7-47d6-9d1b-b8228c1cbb07", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 6.78}
+[WebServer] {"event": "request", "requestId": "c7917932-fd89-4551-a93a-064313aeb41a", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 18.27}
+[WebServer] {"event": "request", "requestId": "443c18c4-9ff8-489d-b036-744d5eae299f", "method": "GET", "path": "/api/research/comparisons/22fc2538-ca16-4783-9571-74c7beb65cd9/export", "status": 200, "elapsedMs": 33.64}
+[WebServer] {"event": "request", "requestId": "41cbb1ef-7c72-4049-aa1a-1d310559816e", "method": "GET", "path": "/api/research/comparisons/22fc2538-ca16-4783-9571-74c7beb65cd9/export", "status": 200, "elapsedMs": 34.81}
+[WebServer] {"event": "request", "requestId": "92da5b8e-95b2-4fda-b2ee-f086e2df6b90", "method": "GET", "path": "/api/research/comparisons/22fc2538-ca16-4783-9571-74c7beb65cd9/export", "status": 200, "elapsedMs": 137.91}
+[WebServer] {"event": "request", "requestId": "eb4b9072-e124-4dcf-aec3-e4a02df8a29d", "method": "GET", "path": "/api/research/comparisons/22fc2538-ca16-4783-9571-74c7beb65cd9/export", "status": 200, "elapsedMs": 115.61}
+[WebServer] {"event": "request", "requestId": "2eeceb3f-b5d8-43fa-a029-d1f0aa458607", "method": "GET", "path": "/intelligence", "status": 200, "elapsedMs": 82.67}
+[WebServer] {"event": "request", "requestId": "a58cc772-3767-4451-b269-3c020e8d2513", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 13.0}
+[WebServer] {"event": "request", "requestId": "4faad417-955d-44c5-b516-eab3d76130e1", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 22.15}
+[WebServer] {"event": "request", "requestId": "62638f0b-c5b9-4079-a206-c44ec1262799", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 16.4}
+[WebServer] {"event": "request", "requestId": "e5f59ad4-bbb9-4cf9-bc95-cf45e8e6174c", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 25.53}
+[WebServer] {"event": "request", "requestId": "96ef3ab0-05ad-447f-94eb-6e6d81da6a5e", "method": "GET", "path": "/api/research/comparisons", "status": 200, "elapsedMs": 24.02}
+[WebServer] {"event": "request", "requestId": "4ca9631c-f7d1-42ed-a960-ae9a640ab54c", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 36.55}
+[WebServer] {"event": "request", "requestId": "fc2eeab5-c4f2-4e5b-a72e-9483f500a35b", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 18.62}
+[WebServer] {"event": "request", "requestId": "a5ca8dc2-1ac5-4329-9bef-52b0c77866e5", "method": "GET", "path": "/api/research/comparisons/", "status": 404, "elapsedMs": 2.81}
+[WebServer] {"event": "request", "requestId": "30691526-5ff4-464e-8f34-84ec0309546b", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 8.43}
+[WebServer] {"event": "request", "requestId": "33dec419-d990-4649-8072-7529c1cd37a7", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 6.99}
+[WebServer] {"event": "request", "requestId": "3aef5afd-3c91-4a87-86c6-9956af25039d", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 6.98}
+[WebServer] {"event": "request", "requestId": "81859d13-76eb-4d37-a79f-33ab5f95fa00", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 4.71}
+[WebServer] {"event": "request", "requestId": "4471001f-0f8e-4e7a-a58d-f5ce1f994429", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 7.9}
+[WebServer] {"event": "request", "requestId": "d5f12ce8-6963-4046-982b-bb8af27a388b", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 11.48}
+[WebServer] {"event": "request", "requestId": "8c79ca3c-a046-4db9-a84b-69abfcb9b889", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 12.51}
+[WebServer] {"event": "request", "requestId": "573544bc-1aa0-4b9c-9fb2-6f0af014be5a", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 4.83}
+[WebServer] {"event": "request", "requestId": "4d08a3cb-eecb-46f0-ba15-f8fb5996d406", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 6.21}
+[WebServer] {"event": "request", "requestId": "fc03cde8-3f4a-4769-a835-ddb4ddb452dd", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 27.41}
+[WebServer] {"event": "request", "requestId": "d3904fc6-0dd9-428b-94f0-7610680add5d", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 6.65}
+[WebServer] {"event": "request", "requestId": "737110be-7301-4ca6-9e86-397bd4d33ca6", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 7.49}
+[WebServer] {"event": "request", "requestId": "669fbbea-18ca-49a2-9481-e49828db770f", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 12.09}
+[WebServer] {"event": "request", "requestId": "70683b91-574b-40f1-9526-fb7251cffa14", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 10.85}
+[WebServer] {"event": "request", "requestId": "a2f40bfc-b269-4424-a922-9967a79988d3", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 6.69}
+[WebServer] {"event": "request", "requestId": "d3c77e47-4e9a-4299-9428-30fe97dd81ee", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 7.0}
+[WebServer] {"event": "request", "requestId": "6c70f3d9-e301-453e-85fa-45728b983a3b", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 7.28}
+[WebServer] {"event": "request", "requestId": "ea51404a-162f-463c-a9ca-46517167aa04", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 2.12}
+[WebServer] {"event": "request", "requestId": "6323deee-d1ec-4a5a-b212-0e92880ca31a", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 5.09}
+[WebServer] {"event": "request", "requestId": "a60a7ca7-099d-4eb5-82ef-56e106e03de0", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 10.44}
+[WebServer] {"event": "request", "requestId": "783b927b-0fa7-4a8d-a36c-d564112a704a", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 14.94}
+[WebServer] {"event": "request", "requestId": "651d9240-a39e-4f9d-bcec-748cb71f4c99", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 11.07}
+[WebServer] {"event": "request", "requestId": "4f6d3b14-2c0c-4cea-aa6e-eee98786e9f3", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 2.33}
+[WebServer] {"event": "request", "requestId": "47e4a540-e6ea-4c5b-9eb0-4bf944810c3d", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 6.53}
+[WebServer] {"event": "request", "requestId": "794eb54c-b581-4cc6-b200-8961226219b0", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 10.9}
+[WebServer] {"event": "request", "requestId": "61f90910-fd73-41c1-bcd8-a133c4d81f73", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 12.28}
+[WebServer] {"event": "request", "requestId": "a8e94346-5f1e-459d-b185-a1bc46689b86", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 2.67}
+[WebServer] {"event": "request", "requestId": "20e96826-123b-4381-8b6a-9668133413b4", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 4.61}
+[WebServer] {"event": "request", "requestId": "8d63c6d9-74b0-4b34-8cd5-141dcd23b401", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 12.18}
+[WebServer] {"event": "request", "requestId": "21b2b7c9-df58-430f-8df4-97cd79768cdb", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 7.96}
+[WebServer] {"event": "request", "requestId": "78640a1a-36f6-438c-9ce6-15dc04ea67e8", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 10.68}
+[WebServer] {"event": "request", "requestId": "6b730b00-2b42-4e03-b9fb-8c204255e9d8", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 6.93}
+[WebServer] {"event": "request", "requestId": "58014702-9895-42c4-a349-3b8a66b791a2", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 4.93}
+[WebServer] {"event": "request", "requestId": "9f3c49e1-72f6-4751-b26d-cf68f763621b", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 10.28}
+[WebServer] {"event": "request", "requestId": "9fff8000-7d01-427e-886f-a5d751e9bacf", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 8.67}
+[WebServer] {"event": "request", "requestId": "6e6173cd-b262-41a5-ba22-a53adad05337", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 11.43}
+[WebServer] {"event": "request", "requestId": "fb4da42c-3abe-4f49-83c5-8e266da645ef", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 1.86}
+[WebServer] {"event": "request", "requestId": "1a3d9c09-81b4-43b8-a504-7360bb05a588", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 4.76}
+[WebServer] {"event": "request", "requestId": "6b078a1b-1d80-4c8b-af34-4265f3ebfb46", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 6.63}
+[WebServer] {"event": "request", "requestId": "da808bc3-8a36-40e0-90cc-1a6fe659eea2", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 11.86}
+[WebServer] {"event": "request", "requestId": "1df3d375-7805-4efc-9cf0-05f0588d354c", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 8.83}
+[WebServer] {"event": "request", "requestId": "c6e83bf4-7331-4bfa-a2b7-e0ad048b5267", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 4.61}
+[WebServer] {"event": "request", "requestId": "7b8d3015-7c31-446c-bf2b-5fc91f724bc4", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 12.27}
+[WebServer] {"event": "request", "requestId": "5d5e37f6-59d4-4d52-97d6-325729234b1d", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 8.7}
+[WebServer] {"event": "request", "requestId": "31e0f4f4-10d9-45dc-9697-56f32becf6d3", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 12.04}
+[WebServer] {"event": "request", "requestId": "3763cf80-e918-40a8-b37c-0abc29103be8", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 2.84}
+[WebServer] {"event": "request", "requestId": "9792edad-3913-404f-ae49-a0c0158ec53b", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 9.27}
+[WebServer] {"event": "request", "requestId": "e6a0cf42-94e4-48c2-872e-00f1e8198c83", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 2.37}
+[WebServer] {"event": "request", "requestId": "896e9f8b-bf14-4b2c-835b-b3a9202b3c82", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 11.59}
+[WebServer] {"event": "request", "requestId": "ccc3b87a-1136-40d4-9b8a-4241430b7a46", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 10.14}
+[WebServer] {"event": "request", "requestId": "d647f7d7-9d69-4ef4-a797-9ecb8df9e16f", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 12.05}
+[WebServer] {"event": "request", "requestId": "56a26385-0e18-4563-8bf9-3fa6c08c562c", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 5.26}
+  ✘  26 e2e/research-workflows.spec.ts:130:1 › managed A/B workstation preserves real predictions and normalized PSD across unequal sample clocks (1.0m)
+(node:3910) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] {"event": "request", "requestId": "95120c7b-e8f4-4bce-a42d-20647c21c40e", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 160.66}
+[WebServer] {"event": "request", "requestId": "eee2a70f-a597-4a12-a0a6-943971ba94e2", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 13.69}
+[WebServer] {"event": "request", "requestId": "d5a1404a-5416-427c-a25a-f0a2675a4f78", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 111.01}
+[WebServer] {"event": "request", "requestId": "3aaed219-3129-4aea-aadf-5a82f6ae6442", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 14.38}
+[WebServer] {"event": "request", "requestId": "a7b0625a-bf38-4d0a-8d45-fe14d3288649", "method": "POST", "path": "/api/workspace/captures/92a1198f-028e-4a6c-ba21-6157474cc735/classify", "status": 200, "elapsedMs": 55.77}
+[WebServer] {"event": "request", "requestId": "ad4b904b-fa53-4c4a-abff-1aa3039bf40d", "method": "POST", "path": "/api/workspace/captures/51f8d4ed-1c89-48a7-b7ea-a332ba14d258/classify", "status": 200, "elapsedMs": 51.41}
+[WebServer] {"event": "request", "requestId": "fa95507c-cb7d-410b-9446-1203116a28a5", "method": "POST", "path": "/api/research/analyses/021eee82-621f-4f61-bece-048e661fd6e5/explanations", "status": 200, "elapsedMs": 898.5}
+[WebServer] {"event": "request", "requestId": "e16be2d6-a0df-4b7d-b29a-cb34302512b5", "method": "POST", "path": "/api/research/analyses/042c0a76-b3d3-40f7-8c0f-d9c621636827/explanations", "status": 200, "elapsedMs": 464.62}
+[WebServer] {"event": "request", "requestId": "145629fe-d5d2-4017-aefe-bf4965d0f6a6", "method": "GET", "path": "/intelligence", "status": 200, "elapsedMs": 4.8}
+[WebServer] {"event": "request", "requestId": "69fd43a1-f208-4812-9523-2adbc4b10a1e", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 8.23}
+[WebServer] {"event": "request", "requestId": "c4e90037-3c8f-4855-9c16-b0feebe245e8", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 7.53}
+[WebServer] {"event": "request", "requestId": "d64eba44-1fbe-4117-b698-8a33b977207a", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 20.92}
+[WebServer] {"event": "request", "requestId": "acebd12f-dd72-429d-9c1f-bc60d087f893", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 17.28}
+[WebServer] {"event": "request", "requestId": "b1b16121-a889-4cf1-83ec-4f44098a7d8f", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 27.3}
+[WebServer] {"event": "request", "requestId": "93ab1d84-a246-4351-a0a2-da47e026af8c", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 19.75}
+[WebServer] {"event": "request", "requestId": "f1002f72-3919-4583-a4ba-9346bf7a2db6", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 38.08}
+[WebServer] {"event": "request", "requestId": "f5e2479e-d9de-4d71-a6c9-c3eebc1ac0d7", "method": "GET", "path": "/api/research/comparisons", "status": 200, "elapsedMs": 32.16}
+[WebServer] {"event": "request", "requestId": "1efaf908-48b6-4a40-adca-272034f20db7", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 16.11}
+[WebServer] {"event": "request", "requestId": "7c037a93-e66a-4575-9b3f-f623eb8d48ac", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 6.84}
+[WebServer] {"event": "request", "requestId": "6708d78b-730c-45a8-bbae-84efc8174ec1", "method": "POST", "path": "/api/research/comparisons", "status": 200, "elapsedMs": 118.02}
+[WebServer] {"event": "request", "requestId": "f654dc91-74fd-4300-8371-f2dc68ce6e56", "method": "GET", "path": "/api/research/comparisons", "status": 200, "elapsedMs": 2.72}
+[WebServer] {"event": "request", "requestId": "bdb36feb-5776-471f-8210-688be3025b11", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 1.87}
+[WebServer] {"event": "request", "requestId": "e0fe1a93-4756-4bd4-a23f-bbe71124a406", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 8.34}
+[WebServer] {"event": "request", "requestId": "fb3afd6f-869f-4cb3-99f4-a7c63efa176f", "method": "GET", "path": "/api/research/comparisons/0fb90e35-7c7a-4a35-9934-281538a31b16/export", "status": 200, "elapsedMs": 24.49}
+[WebServer] {"event": "request", "requestId": "465c8596-9925-4319-a634-93708cb3ec10", "method": "GET", "path": "/api/research/comparisons/0fb90e35-7c7a-4a35-9934-281538a31b16/export", "status": 200, "elapsedMs": 23.54}
+  ✓  27 e2e/research-workflows.spec.ts:182:1 › matching historical analyses supply genuine same-target attribution differences in the comparison workstation (7.8s)
+[WebServer] {"event": "request", "requestId": "63c18c29-d38c-4e51-8025-8a80550c91ca", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 71.14}
+[WebServer] {"event": "request", "requestId": "5d872fb4-1237-492e-ae2a-215e447746bd", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 40.07}
+[WebServer] {"event": "request", "requestId": "5c10fdf8-1711-4294-836f-48a9beb1bc72", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 2.32}
+[WebServer] {"event": "request", "requestId": "66710bfb-8c35-4b71-b3e8-5b2048fbf994", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 6.63}
+[WebServer] {"event": "request", "requestId": "2ffbe684-2931-4ce7-90c8-4e81e61c6d31", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 8.44}
+[WebServer] {"event": "request", "requestId": "e2978b3f-572c-424f-9c24-8aaaadc46038", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 19.82}
+[WebServer] {"event": "request", "requestId": "812c30d4-04df-4cd4-8695-e3170e4d8c62", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 16.16}
+[WebServer] {"event": "request", "requestId": "e2731e92-fe5d-47c7-b310-11e822e17a5d", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 21.26}
+[WebServer] {"event": "request", "requestId": "83b2e112-6630-410d-863a-5d4ea632c984", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 20.1}
+[WebServer] {"event": "request", "requestId": "035d6409-2385-4bc9-88a1-f457924ca5bc", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 32.28}
+[WebServer] {"event": "request", "requestId": "47eb790f-2007-4ecb-afda-fc6e7470818d", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 5.62}
+[WebServer] {"event": "request", "requestId": "4c6660f7-7063-4297-936d-e69e1ed418c2", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 3.35}
+[WebServer] {"event": "request", "requestId": "bcba0ef1-acc6-406b-a28e-660f43f4d7ac", "method": "GET", "path": "/api/research/analyses/ab300bc7-e6d4-4749-a705-ee69a245dd4a/explanations", "status": 200, "elapsedMs": 10.84}
+[WebServer] {"event": "request", "requestId": "e595e5b3-da0c-40ff-89f3-555c68ad8209", "method": "POST", "path": "/api/research/analyses/ab300bc7-e6d4-4749-a705-ee69a245dd4a/explanations", "status": 409, "elapsedMs": 24.39}
+[WebServer] {"event": "request", "requestId": "4a4cd8b3-580d-4c70-9f84-2a881728ce95", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 19.0}
+  ✓  28 e2e/research-workflows.spec.ts:223:1 › history explanations clearly reject legacy analyses whose original samples were not retained (4.5s)
+[WebServer] {"event": "request", "requestId": "f8cbf82a-53da-4bbf-bc65-3a5d1256fe04", "method": "GET", "path": "/studio", "status": 200, "elapsedMs": 4.19}
+[WebServer] {"event": "request", "requestId": "b50f6ba5-fd94-42d2-bfe3-4a068d52d472", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 6.64}
+[WebServer] {"event": "request", "requestId": "97ffe4c4-65b3-4449-89f2-49fe9e554289", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 6.15}
+[WebServer] {"event": "request", "requestId": "936f90ff-394d-4178-a134-365a5ea2da69", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 1.69}
+[WebServer] {"event": "request", "requestId": "08a2280e-29b7-4d8c-b815-33a8ccf01702", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 9.6}
+[WebServer] {"event": "request", "requestId": "02a4147f-3100-4048-a777-fe20d09d9955", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 142.35}
+[WebServer] {"event": "request", "requestId": "9d2c900a-d9ba-4ff0-8862-bc72c6d99ef5", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 6.11}
+[WebServer] {"event": "request", "requestId": "e08b9948-db97-4686-8469-fd31a92003f3", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 28.57}
+[WebServer] {"event": "request", "requestId": "f3848166-a31c-4b58-929f-034559f43f2e", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 33.81}
+[WebServer] {"event": "request", "requestId": "b68ca6c4-62ba-42e4-aac7-4513649f7bca", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 30.64}
+[WebServer] {"event": "request", "requestId": "18cb57d1-6ae0-4d65-a61e-11f6c989de11", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 35.15}
+[WebServer] {"event": "request", "requestId": "7aff1014-3247-4298-81cc-ee29f57e6048", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 48.78}
+[WebServer] {"event": "request", "requestId": "d62f1365-5160-4d05-8e85-77f43392f4ee", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 74.59}
+[WebServer] {"event": "request", "requestId": "b933cc51-42e0-428a-b91a-8e7a4d16dae2", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 4.16}
+[WebServer] {"event": "request", "requestId": "a02fdadf-787b-421b-a464-a7db2f59fde0", "method": "GET", "path": "/api/research/analyses/44981dc5-6465-45ae-8728-e91f6bff537f/explanations", "status": 200, "elapsedMs": 16.56}
+[WebServer] {"event": "request", "requestId": "b4e38c9a-6eba-4ae2-8786-88af6976ef18", "method": "POST", "path": "/api/explain", "status": 200, "elapsedMs": 606.97}
+[WebServer] {"event": "request", "requestId": "a7e37ccf-16a1-4e8d-8cd2-02842937de2e", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 17.0}
+  ✓  29 e2e/scientific-workflows.spec.ts:4:1 › impaired signal → real CNN → Integrated Gradients → exported scientific report (7.1s)
+[WebServer] {"event": "request", "requestId": "2cace079-fa73-48fc-b3c7-b14138d123f2", "method": "GET", "path": "/api/samples/97", "status": 200, "elapsedMs": 27.73}
+[WebServer] {"event": "request", "requestId": "e2fc5756-0391-4f7c-8e1c-40b99f1ac13c", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 2.05}
+[WebServer] {"event": "request", "requestId": "7cdf42a3-5d38-4435-918a-de3dde759af0", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 3.91}
+[WebServer] {"event": "request", "requestId": "94b27e94-2a86-4a17-a75b-e6f17edf3d26", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 3.6}
+[WebServer] {"event": "request", "requestId": "97fb3f4a-4cb7-4c22-bec3-a383c0ccd3de", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 9.8}
+[WebServer] {"event": "request", "requestId": "e088b2d8-ef6a-4536-9570-0bb248166308", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 10.08}
+[WebServer] {"event": "request", "requestId": "026b325a-e791-4e45-9346-70edcf9a315e", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 18.9}
+[WebServer] {"event": "request", "requestId": "d00cea60-ed4f-4022-ad0d-56c2609657e5", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 18.64}
+[WebServer] {"event": "request", "requestId": "9e886521-c2cc-4fc6-b72a-630e6882a6b9", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 27.65}
+[WebServer] {"event": "request", "requestId": "a4937062-bd3b-4192-b4e7-6d5a24c7dd1d", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 36.39}
+[WebServer] {"event": "request", "requestId": "f7bf80f8-1a7a-4f57-a1fc-1a27211bc7bc", "method": "POST", "path": "/api/classify/upload", "status": 200, "elapsedMs": 55.81}
+[WebServer] {"event": "request", "requestId": "ab36e004-61dc-47f0-a72b-b1b6a177628f", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 13.06}
+[WebServer] {"event": "request", "requestId": "6b5f2256-48ba-459d-9ded-04aa771f397e", "method": "GET", "path": "/api/research/analyses/3aec3e4c-d274-4a49-a225-db0ef4de469b/explanations", "status": 200, "elapsedMs": 8.26}
+[WebServer] {"event": "request", "requestId": "0a80cd44-d574-4f39-bd8b-8d15a951f97f", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 2.24}
+[WebServer] {"event": "request", "requestId": "ba4e4b5a-9ce6-419f-a1bf-1fa34eeecac9", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 35.78}
+[WebServer] {"event": "request", "requestId": "b023439f-b155-4e70-b5f9-7e75a33b04b7", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 24.15}
+[WebServer] {"event": "request", "requestId": "107b8a7e-ac8f-4dce-9614-315d11555152", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 21.14}
+[WebServer] {"event": "request", "requestId": "7a6dc768-9c61-4f91-8d8a-87335462029f", "method": "GET", "path": "/api/research/analyses/c01d86b5-1df2-4e39-ada2-ea75e2b1fc72/explanations", "status": 200, "elapsedMs": 17.51}
+  ✓  30 e2e/scientific-workflows.spec.ts:50:1 › upload preserves raw samples and applies an explicitly changed sample clock (3.7s)
+[WebServer] {"event": "request", "requestId": "b68d7bdf-3911-4558-9a34-0da669473dc6", "method": "GET", "path": "/studio", "status": 200, "elapsedMs": 2.35}
+[WebServer] {"event": "request", "requestId": "d882d3ae-bfb2-4bcd-a22e-36800569faf9", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 3.51}
+[WebServer] {"event": "request", "requestId": "a6b2f7e2-3fd2-4119-88d9-f2431776f62a", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 4.03}
+[WebServer] {"event": "request", "requestId": "9a2339a2-8a9a-44d5-a030-530efc51aeea", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 2.77}
+[WebServer] {"event": "request", "requestId": "7eb1772c-9de7-464b-b98b-9cd8731101a6", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 14.61}
+[WebServer] {"event": "request", "requestId": "874648e9-c388-4f6e-bae9-4ac76aa3b630", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 148.32}
+[WebServer] {"event": "request", "requestId": "5061bb30-f1d9-4227-8d16-82c20c408cd0", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 2.83}
+[WebServer] {"event": "request", "requestId": "7d1ce01f-dc3c-48cf-9e71-4785b5da5a70", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 230.36}
+  ✓  31 e2e/scientific-workflows.spec.ts:75:1 › GMSK and BFSK controls drive real frequency modulation without fake symbol eyes (4.2s)
+[WebServer] {"event": "request", "requestId": "2b9fc908-07be-4b96-b9c7-a6df341bc20b", "method": "GET", "path": "/api/samples/97", "status": 200, "elapsedMs": 31.0}
+[WebServer] {"event": "request", "requestId": "2e324b84-3555-47c2-a8e8-ef18fdb0faac", "method": "GET", "path": "/studio", "status": 200, "elapsedMs": 3.89}
+[WebServer] {"event": "request", "requestId": "89e3fd50-6d8f-4e2c-afcf-8e706982a3b8", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 2.74}
+[WebServer] {"event": "request", "requestId": "efea7be8-a6d1-408e-9f54-fe8bb6af7fa1", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 5.63}
+[WebServer] {"event": "request", "requestId": "188c7ef0-2a5a-4579-a0c4-079c974666e5", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 3.97}
+[WebServer] {"event": "request", "requestId": "d014db75-51d7-4d38-91eb-925267fe8684", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 11.57}
+[WebServer] {"event": "request", "requestId": "bb481672-83ac-4181-a02a-2dcf34ed7f48", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 139.4}
+[WebServer] {"event": "request", "requestId": "68fc75d9-ebd4-4471-979c-37d74b97f80c", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 2.14}
+[WebServer] {"event": "request", "requestId": "23420d63-b233-4a98-9600-dac83f4146e7", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 14.11}
+[WebServer] {"event": "request", "requestId": "65b41dc0-c56c-4625-8c21-54249d33b81a", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 25.0}
+[WebServer] {"event": "request", "requestId": "597d9521-e61d-419f-9b39-bd08e857288d", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 29.58}
+[WebServer] {"event": "request", "requestId": "3acf9172-4644-4acb-920a-04c3ac5dec1a", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 13.05}
+[WebServer] {"event": "request", "requestId": "6e043fe4-f28f-44a3-8cf4-6f271e48bf07", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 23.85}
+[WebServer] {"event": "request", "requestId": "0ba7a1d1-f6d8-417f-8ce5-b7a28dfbe19a", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 20.51}
+[WebServer] {"event": "request", "requestId": "b6f50f6a-0423-4709-ab20-82e667f32bfb", "method": "GET", "path": "/api/research/comparisons", "status": 200, "elapsedMs": 24.89}
+[WebServer] {"event": "request", "requestId": "aff86281-721f-411b-8246-248359d81e5d", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 10.1}
+[WebServer] {"event": "request", "requestId": "838fcb62-a755-4f04-a8af-01bc4ce75384", "method": "POST", "path": "/api/signal/upload", "status": 200, "elapsedMs": 29.65}
+[WebServer] {"event": "request", "requestId": "d8a453c7-d8b7-4116-a051-08b66e3d3707", "method": "POST", "path": "/api/signal/compare", "status": 200, "elapsedMs": 160.07}
+  ✓  32 e2e/scientific-workflows.spec.ts:105:1 › two captures with mixed known/unknown rates use common normalized axes and real predictions (5.6s)
+[WebServer] {"event": "request", "requestId": "edee934c-1ef8-416f-ba03-2a860242a8af", "method": "GET", "path": "/evaluation", "status": 200, "elapsedMs": 3.8}
+[WebServer] {"event": "request", "requestId": "1475c403-daf9-44db-ace6-4296dbc5b051", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 2.81}
+[WebServer] {"event": "request", "requestId": "61fd4046-848b-4e2f-87ae-44474163850b", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 4.91}
+[WebServer] {"event": "request", "requestId": "b9cf3cd6-ad93-4418-9496-fd895f9595d7", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 8.24}
+[WebServer] {"event": "request", "requestId": "b0141e49-3863-4c6e-97f9-c814fa35bb77", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 9.99}
+[WebServer] {"event": "request", "requestId": "39fcca50-d688-4915-91b0-63dfd98b9069", "method": "GET", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 29.06}
+[WebServer] {"event": "request", "requestId": "afdacd6a-ff85-4fc5-a915-4b2ffffa000e", "method": "GET", "path": "/api/research/models", "status": 200, "elapsedMs": 45.54}
+[WebServer] {"event": "request", "requestId": "58f28f3f-699f-40b7-90d3-827d02eccb60", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 7.79}
+[WebServer] {"event": "request", "requestId": "924b84aa-b57c-4056-8e94-3b6af159d091", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 2.05}
+[WebServer] {"event": "request", "requestId": "a52e64d2-f987-4a3c-899d-c08f17fc7763", "method": "GET", "path": "/api/evaluation/diagnostics", "status": 200, "elapsedMs": 1413.72}
+[WebServer] {"event": "request", "requestId": "d68d6a99-dd12-4f0a-b426-3657014f5b02", "method": "GET", "path": "/arena", "status": 200, "elapsedMs": 4.13}
+[WebServer] {"event": "request", "requestId": "72402125-6305-4fe0-976c-e8c10eb462e9", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 29.01}
+[WebServer] {"event": "request", "requestId": "ed1e3196-88b1-4b6f-af7e-5e684b2e1375", "method": "GET", "path": "/api/experiments", "status": 200, "elapsedMs": 33.54}
+[WebServer] {"event": "request", "requestId": "f04e1cfd-fde1-4a22-b5ff-f0fb017a3c75", "method": "GET", "path": "/api/models", "status": 200, "elapsedMs": 65.08}
+[WebServer] {"event": "request", "requestId": "9a5af6fd-8f76-43fa-a44b-4cd9c30f9bc5", "method": "POST", "path": "/api/benchmark", "status": 200, "elapsedMs": 565.86}
+  ✓  33 e2e/scientific-workflows.spec.ts:136:1 › real demo diagnostics and matched experimental comparisons remain distinct from historical scores (5.0s)
+[WebServer] {"event": "request", "requestId": "d28c0e00-001f-48a9-8f98-6bf08c68f307", "method": "GET", "path": "/api/samples/97", "status": 200, "elapsedMs": 29.26}
+[WebServer] {"event": "request", "requestId": "eb755daf-933a-44be-8d7e-7b397ee4c5a6", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 2.57}
+[WebServer] {"event": "request", "requestId": "37cbf09e-f1b3-402a-89e2-61c00808b9e1", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 2.39}
+[WebServer] {"event": "request", "requestId": "37254043-7290-4e96-8a8d-e26988f00c8d", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 5.67}
+[WebServer] {"event": "request", "requestId": "c96d43b6-af8d-420e-97b5-d9275a0e8718", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 11.43}
+[WebServer] {"event": "request", "requestId": "0237ba70-db8a-489f-8444-2e4e2f8cea86", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 11.92}
+[WebServer] {"event": "request", "requestId": "e522dcb6-07e7-42bb-a934-3ea1743d22d3", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 22.37}
+[WebServer] {"event": "request", "requestId": "e76107e9-3eea-4033-9661-12ba25622b9a", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 21.75}
+[WebServer] {"event": "request", "requestId": "220bea41-8695-4159-9110-4b9ba26b3258", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 31.64}
+[WebServer] {"event": "request", "requestId": "a07e0c09-7290-409f-9423-f9bb33bb15dd", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 5.98}
+[WebServer] {"event": "request", "requestId": "f09ef26d-0944-425d-b1f5-c33671a31dfd", "method": "POST", "path": "/api/classify/upload", "status": 200, "elapsedMs": 25.98}
+[WebServer] {"event": "request", "requestId": "075ee8e5-cd86-48c4-b5c4-d6189e5a1527", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 3.23}
+[WebServer] {"event": "request", "requestId": "f5aaf5de-674f-46b4-97dd-23895a80ebd7", "method": "GET", "path": "/api/research/analyses/94027787-09fb-4027-b681-c8e729abf515/explanations", "status": 200, "elapsedMs": 4.36}
+[WebServer] {"event": "request", "requestId": "ab45e0c9-a598-407e-baa5-7905b4f0b0ad", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 3.47}
+[WebServer] {"event": "request", "requestId": "0fff76ad-8ef0-4cfc-bf54-c09909fcdf67", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 20.19}
+  ✓  34 e2e/workflows.spec.ts:3:1 › workflow 1: upload a real saved I/Q frame and display CNN output (3.8s)
+[WebServer] {"event": "request", "requestId": "091e0dc5-9466-42f5-be51-e4c18228ef96", "method": "GET", "path": "/studio", "status": 200, "elapsedMs": 2.54}
+[WebServer] {"event": "request", "requestId": "797d8958-e2cc-4704-8565-d8f433b774e9", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 5.16}
+[WebServer] {"event": "request", "requestId": "55041c18-9480-4ab0-9e40-23e79d571dca", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 8.16}
+[WebServer] {"event": "request", "requestId": "76771086-b113-4a7f-9f0b-0a6ac1cdc212", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 2.73}
+[WebServer] {"event": "request", "requestId": "ce649d67-a7ad-4014-9c66-a2366508c845", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 4.48}
+[WebServer] {"event": "request", "requestId": "f2ae918c-e5b0-4bd6-82db-4049b1351cfd", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 122.52}
+[WebServer] {"event": "request", "requestId": "cbe958be-5bc0-4b1a-abab-6dacc9df99f9", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 2.04}
+[WebServer] {"event": "request", "requestId": "a5f4326e-f7cc-4ebc-93cf-bd1fe4a242fa", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 7.57}
+[WebServer] {"event": "request", "requestId": "a9ba9364-deb8-49e0-8a85-c3478b27369c", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 17.7}
+[WebServer] {"event": "request", "requestId": "f0b22738-9352-4640-aa5a-19ee216a2edd", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 13.63}
+[WebServer] {"event": "request", "requestId": "35fa22cb-520b-4890-af4e-73e6b9699206", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 20.52}
+[WebServer] {"event": "request", "requestId": "56c60418-0ebc-4606-991f-be8016e6045d", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 40.66}
+[WebServer] {"event": "request", "requestId": "cb77462f-ddc3-4b0f-ada5-ec7275f28de5", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 77.62}
+[WebServer] {"event": "request", "requestId": "038956b1-836e-4de7-946b-20f0195ffe5f", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 4.26}
+[WebServer] {"event": "request", "requestId": "b885b441-5b9c-410e-9f16-ebcd76a0bb09", "method": "GET", "path": "/api/research/analyses/8e616757-6470-4a26-9d16-beb9b40483a4/explanations", "status": 200, "elapsedMs": 16.0}
+  ✓  35 e2e/workflows.spec.ts:24:3 › workflow 2: generate BPSK and classify the same full capture (4.5s)
+[WebServer] {"event": "request", "requestId": "34ec54b6-77e8-42fe-a82a-8e49d3b07257", "method": "GET", "path": "/studio", "status": 200, "elapsedMs": 2.95}
+[WebServer] {"event": "request", "requestId": "58aca293-6537-4499-a1a9-b9e86d53c3d7", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 3.74}
+[WebServer] {"event": "request", "requestId": "f393ef37-f30e-457e-bdb7-61d0c6e0cc80", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 4.22}
+[WebServer] {"event": "request", "requestId": "78c36eac-26a8-48a1-ad33-a44a6579241b", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 1.77}
+[WebServer] {"event": "request", "requestId": "fe1ad06c-59e6-4cb0-84f7-184f01acd6ff", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 12.97}
+[WebServer] {"event": "request", "requestId": "eac9aa3a-484f-416c-819d-fc0ad71c84a0", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 340.82}
+[WebServer] {"event": "request", "requestId": "ed37652c-8a21-4d90-b3e8-2d015f982f98", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 5.51}
+[WebServer] {"event": "request", "requestId": "1d959e22-765d-4382-ae67-a1c9da7ef080", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 16.33}
+[WebServer] {"event": "request", "requestId": "aa222c5e-9f19-4f88-a58d-3dfdd72f0e70", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 22.5}
+[WebServer] {"event": "request", "requestId": "80443515-9de6-4149-8baf-5d37b69ae63b", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 37.89}
+[WebServer] {"event": "request", "requestId": "d5fd25d2-a06f-47cd-b604-e9b84436e884", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 42.49}
+[WebServer] {"event": "request", "requestId": "b3e9e5bb-90c1-4cd2-ad4e-ae6df170426f", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 57.38}
+[WebServer] {"event": "request", "requestId": "f6d91308-e8aa-49b9-9d6d-d0dc822bf876", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 99.07}
+[WebServer] {"event": "request", "requestId": "81e170a4-8507-4ed0-a151-074f1991e691", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 11.24}
+[WebServer] {"event": "request", "requestId": "c5c3008b-1017-488b-bad1-4744500c4d6a", "method": "GET", "path": "/api/research/analyses/db0e57ba-b093-445d-8833-c02f11cfe688/explanations", "status": 200, "elapsedMs": 60.77}
+[WebServer] {"event": "request", "requestId": "c4e8231a-cdbd-4a7f-b956-d1eb8297228f", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 69.46}
+  ✓  36 e2e/workflows.spec.ts:24:3 › workflow 3: generate QPSK and classify the same full capture (4.3s)
+[WebServer] {"event": "request", "requestId": "e666b5a1-30ea-4972-824c-beeb41039c0c", "method": "GET", "path": "/evaluation", "status": 200, "elapsedMs": 3.25}
+[WebServer] {"event": "request", "requestId": "3a9816ea-eef1-46e5-a814-c9c99062e474", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 2.56}
+[WebServer] {"event": "request", "requestId": "892d87bf-ef88-4834-94b9-0002f23c877e", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 4.57}
+[WebServer] {"event": "request", "requestId": "bf28ca4d-47d0-4b4a-acd3-343038a844cb", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 20.62}
+[WebServer] {"event": "request", "requestId": "b8742dac-005d-46c1-a03c-072c526aa05a", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 22.32}
+[WebServer] {"event": "request", "requestId": "e4761ffa-968f-4ebd-bee7-30fc20cd7f6a", "method": "GET", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 74.12}
+[WebServer] {"event": "request", "requestId": "3e226fd7-7038-4855-a2c0-1182cdd325c2", "method": "GET", "path": "/api/research/models", "status": 200, "elapsedMs": 96.55}
+[WebServer] {"event": "request", "requestId": "d40ff67a-9e99-4885-bf20-56cffce47776", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 27.31}
+[WebServer] {"event": "request", "requestId": "767ea9ef-d76e-4ac4-8d79-23140ec29ef8", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 35.1}
+  ✓  37 e2e/workflows.spec.ts:54:1 › workflow 4: actual evaluation matrices, SNR curves, and per-class metrics (3.9s)
+[WebServer] {"event": "request", "requestId": "6d1a9316-9425-43f3-9b11-f20c88e7cc61", "method": "GET", "path": "/arena", "status": 200, "elapsedMs": 4.24}
+[WebServer] {"event": "request", "requestId": "36e2b9cf-80a0-41eb-8f01-ff55e4ce2f0d", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 5.47}
+[WebServer] {"event": "request", "requestId": "439add25-5240-4358-96d0-d0b0655fb786", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 5.08}
+[WebServer] {"event": "request", "requestId": "0fdd0fca-3225-48b9-b49f-e58460c4f520", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 12.17}
+[WebServer] {"event": "request", "requestId": "b6182feb-111a-47f3-a1ab-2447352b08c1", "method": "GET", "path": "/api/experiments", "status": 200, "elapsedMs": 45.0}
+[WebServer] {"event": "request", "requestId": "0b772c66-e4e2-45c2-bb55-f5e8b2ad642f", "method": "GET", "path": "/api/models", "status": 200, "elapsedMs": 72.64}
+[WebServer] {"event": "request", "requestId": "9cb48c1a-fb3b-4430-a056-56abbcbceac5", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 9.36}
+[WebServer] {"event": "request", "requestId": "db05ce28-3df3-4e0a-b79d-377ca9c4e53c", "method": "POST", "path": "/api/benchmark", "status": 200, "elapsedMs": 77.7}
+[WebServer] {"event": "request", "requestId": "de0cff88-8f12-4333-888d-7f5a87945750", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 2.65}
+  ✓  38 e2e/workflows.spec.ts:70:1 › workflow 5: measured CNN latency and unavailable model comparison (7.3s)
+[WebServer] {"event": "request", "requestId": "29a57780-1740-4d91-99b5-d7e94f3a7766", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 4.45}
+[WebServer] {"event": "request", "requestId": "40d31f41-da98-4516-aeb8-c485be28fc5c", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 6.44}
+[WebServer] {"event": "request", "requestId": "78697833-d968-4aa2-86b6-4fd5717e7d26", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 8.66}
+  ✓  39 e2e/workflows.spec.ts:78:1 › workflow 6: backend disconnection never produces predictions (2.5s)
+[WebServer] {"event": "request", "requestId": "86eda935-e3ab-4b63-b0db-a2cbbb7c974a", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 2.23}
+[WebServer] {"event": "request", "requestId": "8bf1c455-cad2-4285-a568-1a7be8eded69", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 4.46}
+[WebServer] {"event": "request", "requestId": "1bbd417e-9f02-447d-976e-283f5d15ff75", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 4.94}
+[WebServer] {"event": "request", "requestId": "79b70ab7-0a47-468a-a039-28d92f2ce7ea", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 15.16}
+[WebServer] {"event": "request", "requestId": "adf2a6db-9d5b-475d-9d50-0d4cbd60e539", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 29.2}
+[WebServer] {"event": "request", "requestId": "6aa11517-4552-48d1-8b77-199b9a19c535", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 23.36}
+[WebServer] {"event": "request", "requestId": "b788691a-b91d-43c3-81d7-3824f78e4e36", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 31.48}
+[WebServer] {"event": "request", "requestId": "1632f316-5999-4de4-8152-c899c9ce0d1b", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 46.5}
+[WebServer] {"event": "request", "requestId": "dd5b0f68-3175-41fb-becb-60ebdf03356b", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 26.12}
+[WebServer] {"event": "request", "requestId": "db788fe4-d621-4976-89d9-a2110a22cdbc", "method": "POST", "path": "/api/classify/upload", "status": 422, "elapsedMs": 6.81}
+  ✓  40 e2e/workflows.spec.ts:86:1 › workflow 7: malformed upload is rejected visibly (1.2s)
+[WebServer] {"event": "request", "requestId": "c1a602fa-29c3-4f10-a867-ef04e8dcac9a", "method": "GET", "path": "/", "status": 200, "elapsedMs": 4.56}
+[WebServer] {"event": "request", "requestId": "27ee956e-bc21-4184-a6ee-8a875ffef4d1", "method": "GET", "path": "/assets/index-D0fZkNOm.css", "status": 200, "elapsedMs": 2.7}
+[WebServer] {"event": "request", "requestId": "cc4c2a9a-23a6-4ef7-a978-ed1c18591a58", "method": "GET", "path": "/assets/index-B16TvoTx.js", "status": 200, "elapsedMs": 4.74}
+[WebServer] {"event": "request", "requestId": "83e27685-ae1f-4819-8a44-6c92eb67f169", "method": "GET", "path": "/assets/ground-track-map-BgQ7j5l8.js", "status": 200, "elapsedMs": 37.51}
+[WebServer] {"event": "request", "requestId": "c10ab08d-b90b-4172-80ca-c845d37ddd7f", "method": "GET", "path": "/assets/ground-track-map-CIGW-MKW.css", "status": 200, "elapsedMs": 38.67}
+[WebServer] {"event": "request", "requestId": "75138796-5380-47df-bf55-428cae26178e", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 9.8}
+[WebServer] {"event": "request", "requestId": "f5c21dfb-75cb-45e4-8b3f-3c88f16e0198", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 13.86}
+[WebServer] {"event": "request", "requestId": "fdf3acfb-c704-49f3-b16c-79ab61f8cd2d", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 15.45}
+[WebServer] {"event": "request", "requestId": "ed49caa7-0cc8-433e-b873-94d73c6265f0", "method": "GET", "path": "/api/samples/42", "status": 200, "elapsedMs": 37.2}
+[WebServer] {"event": "request", "requestId": "44278e7e-16e3-4fcd-9953-ab0f780d8347", "method": "GET", "path": "/assets/earth-globe-D0t20VKw.js", "status": 200, "elapsedMs": 39.13}
+[WebServer] {"event": "request", "requestId": "b8dbd535-ec43-4b30-83e3-d66ffabefc88", "method": "GET", "path": "/api/history", "status": 200, "elapsedMs": 47.02}
+[WebServer] {"event": "request", "requestId": "2b662414-ccc9-4fda-a430-685d2f3824ba", "method": "GET", "path": "/api/workspace/status", "status": 200, "elapsedMs": 64.34}
+[WebServer] {"event": "request", "requestId": "9b96ba3e-2c76-4415-9b65-cc5aca0178b4", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 13.2}
+[WebServer] {"event": "request", "requestId": "af1be4d1-1532-4824-84de-23b0b4938048", "method": "GET", "path": "/maps/countries.geojson", "status": 200, "elapsedMs": 2.01}
+[WebServer] {"event": "request", "requestId": "6ee6aad3-e2f0-4e37-b411-893972a155ae", "method": "GET", "path": "/textures/earth-day.jpg", "status": 200, "elapsedMs": 15.17}
+[WebServer] {"event": "request", "requestId": "2f169df2-a9c1-4796-9b5b-f2f42d5ce6d1", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 3.85}
+[WebServer] {"event": "request", "requestId": "570fef65-895e-4f9f-b14e-d417b1b29436", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 15.01}
+[WebServer] {"event": "request", "requestId": "3468b551-3a29-414a-8672-b53453ce7372", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 38.81}
+[WebServer] {"event": "request", "requestId": "1bcba069-090b-4aca-9ed4-bd3606755ffc", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 36.64}
+[WebServer] {"event": "request", "requestId": "9968ffac-a9cf-4c7c-ab26-64935415ec1e", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 35.84}
+[WebServer] {"event": "request", "requestId": "c648fc04-4c5a-459a-8da7-9f1cac10b0c5", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 42.94}
+[WebServer] {"event": "request", "requestId": "afd813aa-528a-48e1-8538-eee74958d7c4", "method": "GET", "path": "/studio", "status": 200, "elapsedMs": 2.96}
+[WebServer] {"event": "request", "requestId": "a2c2fffc-0b57-41b3-bb76-e2ae53a48595", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 2.02}
+[WebServer] {"event": "request", "requestId": "853ce7d9-a494-4ba4-903f-cb54bab52fb2", "method": "GET", "path": "/evaluation", "status": 200, "elapsedMs": 2.82}
+[WebServer] {"event": "request", "requestId": "0c35ba8f-09b8-471c-b491-bdd2035804e3", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 6.06}
+[WebServer] {"event": "request", "requestId": "1d02244e-ec7e-4ed1-ae72-278172965d00", "method": "GET", "path": "/api/evaluation", "status": 200, "elapsedMs": 9.91}
+[WebServer] {"event": "request", "requestId": "39e774e5-c177-44c7-8668-92f6e6a282d6", "method": "GET", "path": "/api/workspace/datasets", "status": 200, "elapsedMs": 41.93}
+[WebServer] {"event": "request", "requestId": "e841b5d0-dd41-495a-b79f-40e3911b18a9", "method": "GET", "path": "/assets/plotly.min-CvEx9yEi.js", "status": 200, "elapsedMs": 10.83}
+[WebServer] {"event": "request", "requestId": "85c88a15-8e61-4a64-8597-dfe866fd3dd4", "method": "GET", "path": "/api/research/models", "status": 200, "elapsedMs": 68.1}
+[WebServer] {"event": "request", "requestId": "d88f3803-7da4-4a2a-85fa-1f9715e6c5be", "method": "GET", "path": "/arena", "status": 200, "elapsedMs": 3.48}
+[WebServer] {"event": "request", "requestId": "d4f60387-2e8e-4046-a6c8-e9977d3adab0", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 6.92}
+[WebServer] {"event": "request", "requestId": "4ab776aa-6b90-4072-b069-e12540a04182", "method": "GET", "path": "/api/experiments", "status": 200, "elapsedMs": 57.49}
+[WebServer] {"event": "request", "requestId": "3657b2d4-af76-456a-aafb-133df8907ca7", "method": "GET", "path": "/api/models", "status": 200, "elapsedMs": 75.53}
+[WebServer] {"event": "request", "requestId": "c74855ea-1d1b-48a6-b6f8-b7ed75c65965", "method": "GET", "path": "/intelligence", "status": 200, "elapsedMs": 2.21}
+[WebServer] {"event": "request", "requestId": "88ad1549-2369-4bc8-8a99-cfd826af9c34", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 11.73}
+[WebServer] {"event": "request", "requestId": "04c187af-fb04-4148-b30f-ac5420dd5d49", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 17.98}
+[WebServer] {"event": "request", "requestId": "2a61d85d-af06-49e8-8895-b5513d05c19e", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 14.32}
+[WebServer] {"event": "request", "requestId": "963e20b9-fc97-4c51-ae50-d0989210e364", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 21.55}
+[WebServer] {"event": "request", "requestId": "4e44ce79-6370-4f96-9476-553c51152f0c", "method": "GET", "path": "/api/research/comparisons", "status": 200, "elapsedMs": 21.89}
+[WebServer] {"event": "request", "requestId": "6a07b3ec-3883-43fa-8a72-48ea8f8ff468", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 30.88}
+[WebServer] {"event": "request", "requestId": "72cea818-7ff3-465e-a439-2e816e46ab91", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 16.83}
+[WebServer] {"event": "request", "requestId": "09ff5370-ee68-4001-b8a0-784bc4285d14", "method": "GET", "path": "/theory", "status": 200, "elapsedMs": 2.85}
+[WebServer] {"event": "request", "requestId": "20be126a-72b2-484c-883a-b38fc129ffd0", "method": "GET", "path": "/api/orbit", "status": 200, "elapsedMs": 25.11}
+[WebServer] {"event": "request", "requestId": "bfc7c055-8d5c-4f85-a029-4288411218de", "method": "GET", "path": "/api/constellations", "status": 200, "elapsedMs": 25.82}
+[WebServer] {"event": "request", "requestId": "70a65764-6151-4be6-9db2-f794ebe184a5", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 27.86}
+[WebServer] {"event": "request", "requestId": "35010b6e-c106-46ff-866a-899db1a181ce", "method": "GET", "path": "/settings", "status": 200, "elapsedMs": 2.88}
+[WebServer] {"event": "request", "requestId": "9d4f47c2-5e9f-4d56-8ae2-a87663c2807a", "method": "GET", "path": "/api/system/info", "status": 200, "elapsedMs": 10.78}
+[WebServer] {"event": "request", "requestId": "0c694a0d-ccd2-48c8-b8f8-8f36de544a16", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 16.9}
+[WebServer] {"event": "request", "requestId": "e9178738-28dc-4289-8579-ab2b28b168be", "method": "GET", "path": "/api/models", "status": 200, "elapsedMs": 26.68}
+[WebServer] {"event": "request", "requestId": "c0c971da-5c7e-488f-a142-bfec9919af50", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 38.15}
+[WebServer] {"event": "request", "requestId": "0f024483-9d98-4dd9-92ea-79a1e4fe9499", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 43.98}
+[WebServer] {"event": "request", "requestId": "b7de1def-b42d-422a-95b5-4d3cf1fbef4b", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 42.59}
+[WebServer] {"event": "request", "requestId": "881f0eb5-b922-43b4-8585-ec44d36f802c", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 43.47}
+[WebServer] {"event": "request", "requestId": "8e096752-8957-45a0-a389-6c6e7767adec", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 57.08}
+  ✓  41 e2e/workflows.spec.ts:97:1 › all routes remain reachable on a narrow viewport (3.8s)
+
+
+  1) e2e/research-models.spec.ts:110:1 › available registered models execute real held-out inference and compare on an identical protocol 
+
+    Error: expect(locator).toBeDisabled() failed
+
+    Locator:  getByRole('combobox', { name: 'External evaluation model', exact: true }).locator('option[value="resnet-synthetic-v1"]')
+    Expected: disabled
+    Received: enabled
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toBeDisabled" with timeout 5000ms
+      - waiting for getByRole('combobox', { name: 'External evaluation model', exact: true }).locator('option[value="resnet-synthetic-v1"]')
+        10 × locator resolved to <option disabled value="resnet-synthetic-v1">Experimental ResNet · resnet-synthetic-v1 · Unava…</option>
+           - unexpected value "enabled"
+
+
+      128 |       .getByRole("combobox", { name: "External evaluation model", exact: true })
+      129 |       .locator(`option[value="${model.id}"]`);
+    > 130 |     await expect(option).toBeDisabled();
+          |                          ^
+      131 |   }
+      132 |   const first = await evaluateInBrowser(page, request, dataset.id, "1d-cnn");
+      133 |   expect(first.report.classOrder).toEqual(labels);
+        at /Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend/e2e/research-models.spec.ts:130:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/research-models-available--48115-re-on-an-identical-protocol/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/research-models-available--48115-re-on-an-identical-protocol/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/research-models-available--48115-re-on-an-identical-protocol/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/research-models-available--48115-re-on-an-identical-protocol/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) e2e/research-workflows.spec.ts:130:1 › managed A/B workstation preserves real predictions and normalized PSD across unequal sample clocks 
+
+    Test timeout of 60000ms exceeded.
+
+    Error: page.waitForResponse: Test timeout of 60000ms exceeded.
+
+      173 |   await page.reload();
+      174 |   await page.locator("summary").filter({ hasText: /^Managed recording comparison workstation$/ }).click();
+    > 175 |   const persisted = page.waitForResponse((r) => r.request().method() === "GET" && new URL(r.url()).pathname === `/api/research/comparisons/${report.id}`);
+          |                          ^
+      176 |   await page.getByRole("combobox", { name: "Inspect saved comparison", exact: true }).selectOption(report.id);
+      177 |   expect(await (await persisted).json()).toEqual(report);
+      178 |   await expect(page.getByText("Normalized sample/frequency axes", { exact: true })).toBeVisible();
+        at /Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend/e2e/research-workflows.spec.ts:175:26
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/research-workflows-managed-1d442-cross-unequal-sample-clocks/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/research-workflows-managed-1d442-cross-unequal-sample-clocks/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/research-workflows-managed-1d442-cross-unequal-sample-clocks/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/research-workflows-managed-1d442-cross-unequal-sample-clocks/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2 failed
+    e2e/research-models.spec.ts:110:1 › available registered models execute real held-out inference and compare on an identical protocol 
+    e2e/research-workflows.spec.ts:130:1 › managed A/B workstation preserves real predictions and normalized PSD across unequal sample clocks 
+  39 passed (4.6m)

@@ -1,0 +1,4 @@
+npm error code ETARGET
+npm error notarget No matching version found for @isaacs/nonrecursive-glob-match@^1.1.0.
+npm error notarget In most cases you or one of your dependencies are requesting a package version that doesn't exist.
+npm error A complete log of this run can be found in: /Users/chandankv/.npm/_logs/2026-11-12T13_32_58_292Z-debug-0.log

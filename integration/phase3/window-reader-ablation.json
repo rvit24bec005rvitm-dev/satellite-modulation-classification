@@ -1,0 +1,51 @@
+{
+  "scope": "Controlled three-pair reader ablation on the same current worker, host, cached metadata, model and fixed synthetic capture. Baseline calls the original captures.window for every window; optimized uses the bounded eight-entry mmap LRU. Includes result serialization and excludes upload/generation/HTTP. Not RF performance or a general throughput guarantee.",
+  "modelHash": "e9705c98275e26d4a60210b2d563c4cc32ef94f4f0368974f1168245f91cf33d",
+  "measurements": {
+    "previousPerWindowMmap": [
+      {
+        "pair": 0,
+        "seconds": 11.609579119947739,
+        "windowsPerSecond": 44.101512613861644,
+        "probabilitiesSha256": "d8ebd1c72646d88a776d7e0d94570194cdd7f5b65607175262d955f0fba544ee"
+      },
+      {
+        "pair": 1,
+        "seconds": 12.637374599988107,
+        "windowsPerSecond": 40.51474425712457,
+        "probabilitiesSha256": "d8ebd1c72646d88a776d7e0d94570194cdd7f5b65607175262d955f0fba544ee"
+      },
+      {
+        "pair": 2,
+        "seconds": 6.024123470997438,
+        "windowsPerSecond": 84.9916178619138,
+        "probabilitiesSha256": "d8ebd1c72646d88a776d7e0d94570194cdd7f5b65607175262d955f0fba544ee"
+      }
+    ],
+    "boundedJobLru": [
+      {
+        "pair": 0,
+        "seconds": 3.3898361470201053,
+        "windowsPerSecond": 151.03974876487248,
+        "probabilitiesSha256": "d8ebd1c72646d88a776d7e0d94570194cdd7f5b65607175262d955f0fba544ee"
+      },
+      {
+        "pair": 1,
+        "seconds": 6.2674255250021815,
+        "windowsPerSecond": 81.69223518612482,
+        "probabilitiesSha256": "d8ebd1c72646d88a776d7e0d94570194cdd7f5b65607175262d955f0fba544ee"
+      },
+      {
+        "pair": 2,
+        "seconds": 3.3732819920405746,
+        "windowsPerSecond": 151.7809661949666,
+        "probabilitiesSha256": "d8ebd1c72646d88a776d7e0d94570194cdd7f5b65607175262d955f0fba544ee"
+      }
+    ]
+  },
+  "medianWindowsPerSecond": {
+    "previousPerWindowMmap": 44.101512613861644,
+    "boundedJobLru": 151.03974876487248
+  },
+  "maxProbabilityErrorAll512Windows": 0.0
+}

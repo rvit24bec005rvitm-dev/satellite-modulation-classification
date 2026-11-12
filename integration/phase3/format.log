@@ -1,0 +1,13 @@
+src/lib/research-api.ts 1148ms
+src/components/scientific-chart.tsx 527ms
+src/components/classification-insights.tsx 102ms
+src/components/saved-explanations.tsx 232ms
+src/components/managed-comparison.tsx 345ms
+src/components/external-workspace.tsx 531ms
+src/components/persistent-history.tsx 80ms
+src/components/satmod-app.tsx 319ms
+src/pages/classifier.tsx 198ms (unchanged)
+src/pages/intelligence.tsx 357ms
+src/pages/arena.tsx 86ms (unchanged)
+src/pages/settings.tsx 186ms
+src/test/scientific-chart.test.tsx 68ms

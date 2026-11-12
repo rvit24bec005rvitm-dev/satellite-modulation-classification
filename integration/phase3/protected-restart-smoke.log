@@ -1,0 +1,49 @@
+2026-11-12T15:04:12.833106+00:00 smoke: started owned server PID 1492, stage initial
+{"event": "request", "requestId": "b2d449af-8e25-49ef-8a2a-20ff993c4483", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 17.03}
+2026-11-12T15:04:24.276573+00:00 smoke: owned server became healthy
+{"event": "request", "requestId": "f94a42ac-1132-4add-878d-945cf5746177", "method": "GET", "path": "/api/research/models", "status": 401, "elapsedMs": 0.8}
+{"event": "request", "requestId": "ec7858ba-e8be-4dc0-90ff-7a7c95b29056", "method": "POST", "path": "/api/research/comparisons", "status": 401, "elapsedMs": 0.42}
+{"event": "request", "requestId": "1032ce2d-1422-46df-8a6f-a4f2de083ad7", "method": "GET", "path": "/api/research/models", "status": 200, "elapsedMs": 247.09}
+{"event": "request", "requestId": "b45e8e9e-5dee-4ac7-82e5-b28be2f58470", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 207.9}
+{"event": "request", "requestId": "9246ba48-edbb-4fb3-8ea3-0c241a70d7da", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 29.6}
+{"event": "request", "requestId": "4f875e44-048e-4d99-b13c-f01cb8c394d1", "method": "POST", "path": "/api/workspace/captures/4e70360b-334b-4933-a22e-41d3b25d220c/classify", "status": 200, "elapsedMs": 65.39}
+{"event": "request", "requestId": "7a083e4b-3324-4917-9e5b-2a78b99b60c9", "method": "POST", "path": "/api/research/analyses/c2bdf51b-3c57-4fe5-8afc-1a7a05ae6c30/explanations", "status": 200, "elapsedMs": 1372.16}
+2026-11-12T15:04:26.263868+00:00 smoke: created synthetic managed capture A, real classification and both methods at 16 steps
+{"event": "request", "requestId": "d3d00871-2d0f-4ae3-9105-9b602efae51b", "method": "POST", "path": "/api/signal/generate", "status": 200, "elapsedMs": 127.06}
+{"event": "request", "requestId": "a15cd61e-d334-4db2-a95a-5a6273a38372", "method": "POST", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 9.39}
+{"event": "request", "requestId": "b776bd79-4496-4c4d-a797-ad97305dbb0b", "method": "POST", "path": "/api/workspace/captures/b80a5472-289f-4e70-a25a-34414935ff8b/classify", "status": 200, "elapsedMs": 57.15}
+{"event": "request", "requestId": "f348f320-a05e-4702-a912-c1349a49c2a9", "method": "POST", "path": "/api/research/analyses/dd4073ea-488c-44bb-831b-c44e277c645c/explanations", "status": 200, "elapsedMs": 676.91}
+2026-11-12T15:04:27.165908+00:00 smoke: created synthetic managed capture B, real classification and both methods at 16 steps
+{"event": "request", "requestId": "446de540-58e0-4b25-8cf2-c227611bca79", "method": "POST", "path": "/api/research/comparisons", "status": 200, "elapsedMs": 177.55}
+{"event": "request", "requestId": "ab14f655-a6ac-47da-b6f2-248dfbf52ffb", "method": "POST", "path": "/api/research/time-frequency", "status": 200, "elapsedMs": 21.94}
+{"event": "request", "requestId": "c14e67fa-eeeb-4857-9ef3-c30d9d05b0a2", "method": "GET", "path": "/api/research/analyses/c2bdf51b-3c57-4fe5-8afc-1a7a05ae6c30/explanations", "status": 200, "elapsedMs": 20.39}
+{"event": "request", "requestId": "50d1320e-53c7-4f28-9ea9-8b8be2b69e44", "method": "GET", "path": "/api/workspace/history/c2bdf51b-3c57-4fe5-8afc-1a7a05ae6c30/report", "status": 200, "elapsedMs": 19.02}
+{"event": "request", "requestId": "ef2f224b-d620-4c90-9b15-e2f0238665cb", "method": "GET", "path": "/api/workspace/history/c2bdf51b-3c57-4fe5-8afc-1a7a05ae6c30/report", "status": 200, "elapsedMs": 210.16}
+{"event": "request", "requestId": "419815f5-2eb8-47e4-a991-a669d25d08a8", "method": "GET", "path": "/api/research/analyses/dd4073ea-488c-44bb-831b-c44e277c645c/explanations", "status": 200, "elapsedMs": 19.23}
+{"event": "request", "requestId": "8d65ef01-5c85-4aae-81e9-e705e6f137c4", "method": "GET", "path": "/api/workspace/history/dd4073ea-488c-44bb-831b-c44e277c645c/report", "status": 200, "elapsedMs": 8.97}
+{"event": "request", "requestId": "43fb8ed7-6eee-4317-9ecd-54912d975637", "method": "GET", "path": "/api/workspace/history/dd4073ea-488c-44bb-831b-c44e277c645c/report", "status": 200, "elapsedMs": 75.22}
+{"event": "request", "requestId": "2eab3232-0c79-4ae1-a98f-25dd36c52994", "method": "GET", "path": "/api/research/comparisons/e93145e8-ae00-472b-b2b5-dd5ebb891792", "status": 200, "elapsedMs": 77.14}
+{"event": "request", "requestId": "42a61569-e06b-4a8c-ab28-3abce6c2a979", "method": "GET", "path": "/api/research/comparisons/e93145e8-ae00-472b-b2b5-dd5ebb891792/export", "status": 200, "elapsedMs": 18.14}
+{"event": "request", "requestId": "524d186c-71b0-4a6f-841f-16faf9fa4a01", "method": "GET", "path": "/api/research/comparisons/e93145e8-ae00-472b-b2b5-dd5ebb891792/export", "status": 200, "elapsedMs": 123.9}
+{"event": "request", "requestId": "94308774-ab03-46ce-98c3-fe8b47fb4a83", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 8.26}
+{"event": "request", "requestId": "465dad2d-f932-41d8-ac1d-1f8f426a3282", "method": "GET", "path": "/api/research/comparisons", "status": 200, "elapsedMs": 5.26}
+2026-11-12T15:04:28.066147+00:00 smoke: captured full-resolution history and managed comparison JSON/PDF hashes before restart
+2026-11-12T15:04:28.301298+00:00 smoke: stopped owned server PID 1492, exit -15
+2026-11-12T15:04:28.309666+00:00 smoke: started owned server PID 2450, stage afterRestart
+{"event": "request", "requestId": "fc66f019-07f2-4a46-ad77-df21da4bb79d", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 19.03}
+2026-11-12T15:04:59.181679+00:00 smoke: owned server became healthy
+{"event": "request", "requestId": "4752816b-782c-4b97-96d5-55298fb4947f", "method": "GET", "path": "/api/research/models", "status": 401, "elapsedMs": 2.22}
+{"event": "request", "requestId": "8a8b56d9-8a5f-4c51-a84e-762a978669bb", "method": "GET", "path": "/api/research/analyses/c2bdf51b-3c57-4fe5-8afc-1a7a05ae6c30/explanations", "status": 200, "elapsedMs": 125.32}
+{"event": "request", "requestId": "c4750633-f2a8-454a-b1be-b843a1e23626", "method": "GET", "path": "/api/workspace/history/c2bdf51b-3c57-4fe5-8afc-1a7a05ae6c30/report", "status": 200, "elapsedMs": 14.15}
+{"event": "request", "requestId": "5ad34b34-5552-4879-8abf-e2bd0d0a31c2", "method": "GET", "path": "/api/workspace/history/c2bdf51b-3c57-4fe5-8afc-1a7a05ae6c30/report", "status": 200, "elapsedMs": 213.23}
+{"event": "request", "requestId": "736e5655-7062-49c6-aaf0-7844b855b221", "method": "GET", "path": "/api/research/analyses/dd4073ea-488c-44bb-831b-c44e277c645c/explanations", "status": 200, "elapsedMs": 19.04}
+{"event": "request", "requestId": "abbf19fe-519a-49f3-89e0-0f292556d16f", "method": "GET", "path": "/api/workspace/history/dd4073ea-488c-44bb-831b-c44e277c645c/report", "status": 200, "elapsedMs": 124.72}
+{"event": "request", "requestId": "cc5ed6fd-7424-463c-aa43-d6c89929291b", "method": "GET", "path": "/api/workspace/history/dd4073ea-488c-44bb-831b-c44e277c645c/report", "status": 200, "elapsedMs": 100.32}
+{"event": "request", "requestId": "441aeea0-c2dd-45e9-8ac1-d027496addb6", "method": "GET", "path": "/api/research/comparisons/e93145e8-ae00-472b-b2b5-dd5ebb891792", "status": 200, "elapsedMs": 81.29}
+{"event": "request", "requestId": "07a55451-fce5-4a77-b719-af2fd7492d20", "method": "GET", "path": "/api/research/comparisons/e93145e8-ae00-472b-b2b5-dd5ebb891792/export", "status": 200, "elapsedMs": 31.78}
+{"event": "request", "requestId": "925a67da-0d44-46eb-bf12-09eb1b4a638b", "method": "GET", "path": "/api/research/comparisons/e93145e8-ae00-472b-b2b5-dd5ebb891792/export", "status": 200, "elapsedMs": 117.33}
+{"event": "request", "requestId": "1d6d302d-d4ca-4cfa-8a79-d853dc5627db", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 4.59}
+{"event": "request", "requestId": "077ed361-fd2e-44e2-aa22-42c6bc133e79", "method": "GET", "path": "/api/research/comparisons", "status": 200, "elapsedMs": 3.98}
+2026-11-12T15:05:00.120950+00:00 smoke: restart verified: all six JSON/PDF exports byte-identical; only GET requests after restart
+2026-11-12T15:05:00.297790+00:00 smoke: stopped owned server PID 2450, exit -15
+Result: PASS; owned processes stopped and isolated data cleaned.

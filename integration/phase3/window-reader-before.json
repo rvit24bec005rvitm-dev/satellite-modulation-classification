@@ -1,0 +1,37 @@
+{
+  "scope": "Three repeated 512-window real-CNN worker jobs on one seeded synthetic capture; excludes generation/import and HTTP. Single host, same code/model/parameters except reader optimization. Not RF accuracy.",
+  "modelHash": "e9705c98275e26d4a60210b2d563c4cc32ef94f4f0368974f1168245f91cf33d",
+  "measurements": [
+    {
+      "seconds": 2.7175979490275495,
+      "windowsPerSecond": 188.40167294916134,
+      "firstProbabilities": {
+        "BPSK": 0.33457764983177185,
+        "QPSK": 0.3788551092147827,
+        "16-QAM": 0.28656724095344543
+      },
+      "lastPageSize": 200
+    },
+    {
+      "seconds": 7.768536782008596,
+      "windowsPerSecond": 65.90687723661904,
+      "firstProbabilities": {
+        "BPSK": 0.33457764983177185,
+        "QPSK": 0.3788551092147827,
+        "16-QAM": 0.28656724095344543
+      },
+      "lastPageSize": 200
+    },
+    {
+      "seconds": 4.971441693021916,
+      "windowsPerSecond": 102.98823391988294,
+      "firstProbabilities": {
+        "BPSK": 0.33457764983177185,
+        "QPSK": 0.3788551092147827,
+        "16-QAM": 0.28656724095344543
+      },
+      "lastPageSize": 200
+    }
+  ],
+  "medianWindowsPerSecond": 102.98823391988294
+}

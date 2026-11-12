@@ -1,0 +1,537 @@
+{
+  "schemaVersion": "satmod-phase3-native-protected-restart-v1",
+  "startedAt": "2026-11-12T15:04:12.636145+00:00",
+  "passed": true,
+  "fixture": "Two seeded generated QPSK recordings; synthetic integration fixtures, not independently acquired RF.",
+  "scope": "Actual protected native HTTP server, managed storage, production CNN inference, real explanations and DSP; no browser, training or promotion.",
+  "environment": {
+    "python": "3.14.7",
+    "platform": "macOS-26.7.1-x86_64-i386-64bit-Mach-O",
+    "SATMOD_PUBLIC": "1",
+    "tokenConfigured": true,
+    "tokenLogged": false,
+    "temporaryIsolatedDataDirectory": true,
+    "inferenceThreads": 1,
+    "port": 18591
+  },
+  "requests": [
+    {
+      "stage": "initial",
+      "method": "GET",
+      "path": "/api/research/models",
+      "authorized": false,
+      "status": 401
+    },
+    {
+      "stage": "initial",
+      "method": "POST",
+      "path": "/api/research/comparisons",
+      "authorized": false,
+      "status": 401
+    },
+    {
+      "stage": "initial",
+      "method": "GET",
+      "path": "/api/research/models",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "POST",
+      "path": "/api/signal/generate",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "POST",
+      "path": "/api/workspace/captures",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "POST",
+      "path": "/api/workspace/captures/4e70360b-334b-4933-a22e-41d3b25d220c/classify?start=128",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "POST",
+      "path": "/api/research/analyses/c2bdf51b-3c57-4fe5-8afc-1a7a05ae6c30/explanations",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "POST",
+      "path": "/api/signal/generate",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "POST",
+      "path": "/api/workspace/captures",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "POST",
+      "path": "/api/workspace/captures/b80a5472-289f-4e70-a25a-34414935ff8b/classify?start=256",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "POST",
+      "path": "/api/research/analyses/dd4073ea-488c-44bb-831b-c44e277c645c/explanations",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "POST",
+      "path": "/api/research/comparisons",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "POST",
+      "path": "/api/research/time-frequency",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "GET",
+      "path": "/api/research/analyses/c2bdf51b-3c57-4fe5-8afc-1a7a05ae6c30/explanations",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "GET",
+      "path": "/api/workspace/history/c2bdf51b-3c57-4fe5-8afc-1a7a05ae6c30/report?format=json",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "GET",
+      "path": "/api/workspace/history/c2bdf51b-3c57-4fe5-8afc-1a7a05ae6c30/report?format=pdf",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "GET",
+      "path": "/api/research/analyses/dd4073ea-488c-44bb-831b-c44e277c645c/explanations",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "GET",
+      "path": "/api/workspace/history/dd4073ea-488c-44bb-831b-c44e277c645c/report?format=json",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "GET",
+      "path": "/api/workspace/history/dd4073ea-488c-44bb-831b-c44e277c645c/report?format=pdf",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "GET",
+      "path": "/api/research/comparisons/e93145e8-ae00-472b-b2b5-dd5ebb891792",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "GET",
+      "path": "/api/research/comparisons/e93145e8-ae00-472b-b2b5-dd5ebb891792/export?format=json",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "GET",
+      "path": "/api/research/comparisons/e93145e8-ae00-472b-b2b5-dd5ebb891792/export?format=pdf",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "GET",
+      "path": "/api/workspace/history",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "initial",
+      "method": "GET",
+      "path": "/api/research/comparisons",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "afterRestart",
+      "method": "GET",
+      "path": "/api/research/models",
+      "authorized": false,
+      "status": 401
+    },
+    {
+      "stage": "afterRestart",
+      "method": "GET",
+      "path": "/api/research/analyses/c2bdf51b-3c57-4fe5-8afc-1a7a05ae6c30/explanations",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "afterRestart",
+      "method": "GET",
+      "path": "/api/workspace/history/c2bdf51b-3c57-4fe5-8afc-1a7a05ae6c30/report?format=json",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "afterRestart",
+      "method": "GET",
+      "path": "/api/workspace/history/c2bdf51b-3c57-4fe5-8afc-1a7a05ae6c30/report?format=pdf",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "afterRestart",
+      "method": "GET",
+      "path": "/api/research/analyses/dd4073ea-488c-44bb-831b-c44e277c645c/explanations",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "afterRestart",
+      "method": "GET",
+      "path": "/api/workspace/history/dd4073ea-488c-44bb-831b-c44e277c645c/report?format=json",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "afterRestart",
+      "method": "GET",
+      "path": "/api/workspace/history/dd4073ea-488c-44bb-831b-c44e277c645c/report?format=pdf",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "afterRestart",
+      "method": "GET",
+      "path": "/api/research/comparisons/e93145e8-ae00-472b-b2b5-dd5ebb891792",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "afterRestart",
+      "method": "GET",
+      "path": "/api/research/comparisons/e93145e8-ae00-472b-b2b5-dd5ebb891792/export?format=json",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "afterRestart",
+      "method": "GET",
+      "path": "/api/research/comparisons/e93145e8-ae00-472b-b2b5-dd5ebb891792/export?format=pdf",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "afterRestart",
+      "method": "GET",
+      "path": "/api/workspace/history",
+      "authorized": true,
+      "status": 200
+    },
+    {
+      "stage": "afterRestart",
+      "method": "GET",
+      "path": "/api/research/comparisons",
+      "authorized": true,
+      "status": 200
+    }
+  ],
+  "processes": [
+    {
+      "pid": 1492,
+      "stage": "initial",
+      "stopped": true,
+      "exitCode": -15
+    },
+    {
+      "pid": 2450,
+      "stage": "afterRestart",
+      "stopped": true,
+      "exitCode": -15
+    }
+  ],
+  "catalog": {
+    "productionId": "1d-cnn",
+    "productionVersion": "supplied-cnn-v1",
+    "productionArtifactSha256": "e9705c98275e26d4a60210b2d563c4cc32ef94f4f0368974f1168245f91cf33d",
+    "modelCount": 4
+  },
+  "timeFrequency": {
+    "reportVersion": "satmod-time-frequency-v1",
+    "inputHash": "62d5daf10dbe9d34109410fc7eb8e20a44227bbfae38b8a71dc04cc56862f091",
+    "frequencyBins": 128,
+    "timeWindows": 15,
+    "parameters": {
+      "fftSize": 128,
+      "overlap": 0.5,
+      "window": "hann",
+      "overlapSamples": 64,
+      "effectiveOverlap": 0.5,
+      "hopSamples": 64,
+      "availableTimeWindows": 15,
+      "sampledTimeWindows": 15,
+      "sampledWindowStarts": [
+        0,
+        64,
+        128,
+        192,
+        256,
+        320,
+        384,
+        448,
+        512,
+        576,
+        640,
+        704,
+        768,
+        832,
+        896
+      ],
+      "frequencyBinWidths": [
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5,
+        62.5
+      ],
+      "outputFrequencyBins": 128,
+      "detrend": false,
+      "padding": false,
+      "displayFloorDb": -300.0,
+      "timeReference": "Complete-window center: start + FFT size / 2"
+    },
+    "responseSha256": "f71ea473656b0995c3bf7f09bede3d9e844841fbba316bb35321a0a0109ed94a"
+  },
+  "beforeRestart": {
+    "historyA.json": {
+      "sha256": "450737e7759c016804e550bf634cd05c0f5aff3570203da488f81ecdc98e86df",
+      "bytes": 164614
+    },
+    "historyA.pdf": {
+      "sha256": "7461627b2094794b6930229c9f522f871eff69ceb7975fe871e13984ad7cbad3",
+      "bytes": 46584
+    },
+    "historyB.json": {
+      "sha256": "80efa1d8622a1ba1149625951603fa8fbffd946f4c640d35e7095c2622d64724",
+      "bytes": 164211
+    },
+    "historyB.pdf": {
+      "sha256": "49917acd8988203a779ef2a70ead3b33a8c00faaf77fdd6d6a57f7234f5e0075",
+      "bytes": 46414
+    },
+    "comparison.json": {
+      "sha256": "9b7abbf5b20d4a02f3b5a267024d6c92613aa3beb1dede5b0c8349fcb5e44689",
+      "bytes": 344166
+    },
+    "comparison.pdf": {
+      "sha256": "ca3f07c58bf4811def6affdd6ec5e076da4f68af9c7c1ae7967b13ab041b7158",
+      "bytes": 123837
+    }
+  },
+  "fixtureIds": {
+    "A": {
+      "captureId": "4e70360b-334b-4933-a22e-41d3b25d220c",
+      "analysisId": "c2bdf51b-3c57-4fe5-8afc-1a7a05ae6c30",
+      "inputHash": "be1476e94179a05960993aebbacbd47c1a2fd26e2d42a5ff6eaae555774178d4",
+      "modelHash": "e9705c98275e26d4a60210b2d563c4cc32ef94f4f0368974f1168245f91cf33d"
+    },
+    "B": {
+      "captureId": "b80a5472-289f-4e70-a25a-34414935ff8b",
+      "analysisId": "dd4073ea-488c-44bb-831b-c44e277c645c",
+      "inputHash": "18c71a71cd810cc09478aab47e13679e0f8ef8103ed8c6cc77c55dbc76197bd3",
+      "modelHash": "e9705c98275e26d4a60210b2d563c4cc32ef94f4f0368974f1168245f91cf33d"
+    }
+  },
+  "comparisonId": "e93145e8-ae00-472b-b2b5-dd5ebb891792",
+  "afterRestart": {
+    "historyA.json": {
+      "sha256": "450737e7759c016804e550bf634cd05c0f5aff3570203da488f81ecdc98e86df",
+      "bytes": 164614
+    },
+    "historyA.pdf": {
+      "sha256": "7461627b2094794b6930229c9f522f871eff69ceb7975fe871e13984ad7cbad3",
+      "bytes": 46584
+    },
+    "historyB.json": {
+      "sha256": "80efa1d8622a1ba1149625951603fa8fbffd946f4c640d35e7095c2622d64724",
+      "bytes": 164211
+    },
+    "historyB.pdf": {
+      "sha256": "49917acd8988203a779ef2a70ead3b33a8c00faaf77fdd6d6a57f7234f5e0075",
+      "bytes": 46414
+    },
+    "comparison.json": {
+      "sha256": "9b7abbf5b20d4a02f3b5a267024d6c92613aa3beb1dede5b0c8349fcb5e44689",
+      "bytes": 344166
+    },
+    "comparison.pdf": {
+      "sha256": "ca3f07c58bf4811def6affdd6ec5e076da4f68af9c7c1ae7967b13ab041b7158",
+      "bytes": 123837
+    }
+  },
+  "byteIdenticalAcrossRestart": true,
+  "onlyReadRequestsAfterRestart": true,
+  "savedExplanationMethods": [
+    "integrated-gradients",
+    "saliency"
+  ],
+  "integrationSteps": 16,
+  "temporaryDataCleaned": true,
+  "ownedProcessesStopped": true,
+  "finishedAt": "2026-11-12T15:05:00.304944+00:00"
+}

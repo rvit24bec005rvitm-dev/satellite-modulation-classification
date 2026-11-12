@@ -1,0 +1,106 @@
+{
+  "reportVersion": "satmod-sigmf-compatibility-v1",
+  "specification": {
+    "version": "1.2.6",
+    "source": "https://sigmf.org/",
+    "schema": "https://github.com/sigmf/SigMF/blob/main/sigmf-schema.json"
+  },
+  "supportedDatatypes": [
+    "ci8",
+    "cu8",
+    "ci16_le",
+    "ci16_be",
+    "ci32_le",
+    "ci32_be",
+    "cu16_le",
+    "cu16_be",
+    "cu32_le",
+    "cu32_be",
+    "cf32_le",
+    "cf32_be",
+    "cf64_le",
+    "cf64_be",
+    "ri8",
+    "ru8",
+    "ri16_le",
+    "ri16_be",
+    "ri32_le",
+    "ri32_be",
+    "ru16_le",
+    "ru16_be",
+    "ru32_le",
+    "ru32_be",
+    "rf32_le",
+    "rf32_be",
+    "rf64_le",
+    "rf64_be"
+  ],
+  "explicitOptions": {
+    "channelIndex": "Required for more than one channel; zero-based 0..63",
+    "sampleZero": "Required for unsigned component encodings; no ADC midpoint inference",
+    "realMode": "i-only is required for real encodings; Q is explicitly zero, with no Hilbert/receiver recovery",
+    "scale": "Explicit positive sample-unit conversion, retaining existing saved-z-score inference"
+  },
+  "supportedMetadata": [
+    "core:offset as absolute sample origin, separate from file-relative import sampleOffset",
+    "scoped captures: frequency, UTC datetime, global_index, geolocation",
+    "multiple increasing capture segments and non-conforming per-segment headers",
+    "declared matching non-conforming datasets with trailing byte counts",
+    "sorted annotations including capture-bounded implicit duration and paired frequency edges",
+    "bounded optional extension metadata retained without applying unknown calibration",
+    "SHA-512 source dataset verification"
+  ],
+  "export": {
+    "helper": "backend.services.sigmf_io.export_capture(record_id,start=0,length=128)",
+    "container": "ZIP convenience bundle, not a SigMF .sigmf tar archive",
+    "sampleBound": 65536,
+    "canonicalData": "capture.sigmf-data / cf32_le with fresh SHA-512",
+    "derivedMetadata": "capture.sigmf-meta / new datatype, channel count, sample-index origin, UTC segments, clipped core annotations and conversion provenance",
+    "originalMetadata": "source.sigmf-meta retained separately as source provenance; original ADC bytes are not retained/exported",
+    "units": "Same managed float32 sample values; no resampling, normalization, or automatic calibration"
+  },
+  "limits": {
+    "channels": 64,
+    "metadataBytes": 65536,
+    "captureSegments": 1024,
+    "annotations": 4096,
+    "sampleRateHz": [
+      1,
+      1000000000
+    ],
+    "decoderMaxReadBytes": 1048576,
+    "decoderMaxSamplesPerBlock": 65536
+  },
+  "unsupported": [
+    "Unknown required extensions",
+    "SigMF Collections / .sigmf tar archive ingestion",
+    "Leap-second UTC conversion",
+    "Unknown unsigned zero levels or unselected multichannel input",
+    "Real-to-analytic conversion or quadrature reconstruction",
+    "Arbitrary device formats not explicitly described as core datasets / named NCDs",
+    "Complete SigMF schema-conformance certification"
+  ],
+  "compatibility": "Legacy missing core:version/captures/annotations is accepted as prior application behavior; not advertised as full conformance validation.",
+  "tests": {
+    "targetedCommand": ".venv/bin/python -m pytest tests/test_sigmf_phase3.py tests/test_phase2.py tests/test_import_jobs.py -q",
+    "passed": 128,
+    "log": "integration/phase3/sigmf-final.log",
+    "generatedFixturesOnly": true,
+    "newCases": 68,
+    "lint": "syntax/undefined-name checks passed"
+  },
+  "files": [
+    {
+      "path": "backend/services/captures.py",
+      "sha256": "5ae6ba9429af9034f5ca01ad8cd8812193bb89bce9c38e741c3a352c506a24db"
+    },
+    {
+      "path": "backend/services/sigmf_io.py",
+      "sha256": "1f7aa0261cc54824212894a5d59719ab48ea39ed2e8ea43aa4c0366c65f75d00"
+    },
+    {
+      "path": "tests/test_sigmf_phase3.py",
+      "sha256": "8c91bb218e89f6c262a7556d57d0a1a31b30ab9b490bc7613f65e63e4b7854b6"
+    }
+  ]
+}

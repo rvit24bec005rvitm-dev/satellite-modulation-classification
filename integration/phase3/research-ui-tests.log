@@ -1,0 +1,368 @@
+
+ RUN  v4.1.12 /Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend
+
+ ❯ src/test/operations.test.tsx (8 tests | 1 failed) 2805ms
+     × loads the real timeline selection and surfaces its window error 1311ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/test/operations.test.tsx > Phase2 operational controls > loads the real timeline selection and surfaces its window error
+TestingLibraryElementError: Unable to find an element with the text: Selected window unavailable. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33mclass[39m=[32m"min-w-0 border border-border/80 bg-card/70 p-4 space-y-4"[39m
+    [36m>[39m
+      [36m<details[39m
+        [33mopen[39m=[32m""[39m
+      [36m>[39m
+        [36m<summary[39m
+          [33mclass[39m=[32m"cursor-pointer font-semibold text-primary"[39m
+        [36m>[39m
+          [0mExternal recordings · capture browser, jobs and prediction timeline[0m
+        [36m</summary>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"mt-4 space-y-4"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-xs text-muted-foreground"[39m
+          [36m>[39m
+            [0mManaged disk storage; raw samples preserve explicit scaling. Windows use the existing 128 × 2 CNN. No model result establishes a real satellite label.[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"grid gap-3 md:grid-cols-3"[39m
+          [36m>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mExternal recording file[0m
+              [36m</span>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"control"[39m
+                [33mtype[39m=[32m"file"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mExternal import format[0m
+              [36m</span>[39m
+              [36m<select[39m
+                [33mclass[39m=[32m"control"[39m
+              [36m>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"application"[39m
+                [36m>[39m
+                  [0mExisting NPY/NPZ/CSV/MAT/WAV/JSON[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"raw"[39m
+                [36m>[39m
+                  [0mExplicit complex binary[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"sigmf"[39m
+                [36m>[39m
+                  [0mSigMF data + metadata[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mRecording session / group ID[0m
+              [36m</span>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"control"[39m
+                [33mplaceholder[39m=[32m"Required: acquisition session"[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mRecording sample rate (Hz)[0m
+              [36m</span>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"control"[39m
+                [33mmin[39m=[32m"1"[39m
+                [33mplaceholder[39m=[32m"Required for raw; SigMF reads metadata"[39m
+                [33mtype[39m=[32m"number"[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mCenter frequency (Hz, optional)[0m
+              [36m</span>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"control"[39m
+                [33mmin[39m=[32m"0"[39m
+                [33mtype[39m=[32m"number"[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mExplicit sample scaling[0m
+              [36m</span>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"control"[39m
+                [33mmin[39m=[32m"0"[39m
+                [33mstep[39m=[32m"1"[39m
+                [33mtype[39m=[32m"number"[39m
+                [33mvalue[39m=[32m"1"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mImport sample offset[0m
+              [36m</span>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"control"[39m
+                [33mmin[39m=[32m"0"[39m
+                [33mstep[39m=[32m"1"[39m
+                [33mtype[39m=[32m"number"[39m
+                [33mvalue[39m=[32m"0"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mImport window length (blank = remainder)[0m
+              [36m</span>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"control"[39m
+                [33mmin[39m=[32m"128"[39m
+                [33mtype[39m=[32m"number"[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mLicense / usage restrictions[0m
+              [36m</span>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"control"[39m
+                [33mvalue[39m=[32m...
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<section[39m
+      [33mclass[39m=[32m"min-w-0 border border-border/80 bg-card/70 p-4 space-y-4"[39m
+    [36m>[39m
+      [36m<details[39m
+        [33mopen[39m=[32m""[39m
+      [36m>[39m
+        [36m<summary[39m
+          [33mclass[39m=[32m"cursor-pointer font-semibold text-primary"[39m
+        [36m>[39m
+          [0mExternal recordings · capture browser, jobs and prediction timeline[0m
+        [36m</summary>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"mt-4 space-y-4"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"text-xs text-muted-foreground"[39m
+          [36m>[39m
+            [0mManaged disk storage; raw samples preserve explicit scaling. Windows use the existing 128 × 2 CNN. No model result establishes a real satellite label.[0m
+          [36m</p>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"grid gap-3 md:grid-cols-3"[39m
+          [36m>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mExternal recording file[0m
+              [36m</span>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"control"[39m
+                [33mtype[39m=[32m"file"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mExternal import format[0m
+              [36m</span>[39m
+              [36m<select[39m
+                [33mclass[39m=[32m"control"[39m
+              [36m>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"application"[39m
+                [36m>[39m
+                  [0mExisting NPY/NPZ/CSV/MAT/WAV/JSON[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"raw"[39m
+                [36m>[39m
+                  [0mExplicit complex binary[0m
+                [36m</option>[39m
+                [36m<option[39m
+                  [33mvalue[39m=[32m"sigmf"[39m
+                [36m>[39m
+                  [0mSigMF data + metadata[0m
+                [36m</option>[39m
+              [36m</select>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mRecording session / group ID[0m
+              [36m</span>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"control"[39m
+                [33mplaceholder[39m=[32m"Required: acquisition session"[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mRecording sample rate (Hz)[0m
+              [36m</span>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"control"[39m
+                [33mmin[39m=[32m"1"[39m
+                [33mplaceholder[39m=[32m"Required for raw; SigMF reads metadata"[39m
+                [33mtype[39m=[32m"number"[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mCenter frequency (Hz, optional)[0m
+              [36m</span>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"control"[39m
+                [33mmin[39m=[32m"0"[39m
+                [33mtype[39m=[32m"number"[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mExplicit sample scaling[0m
+              [36m</span>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"control"[39m
+                [33mmin[39m=[32m"0"[39m
+                [33mstep[39m=[32m"1"[39m
+                [33mtype[39m=[32m"number"[39m
+                [33mvalue[39m=[32m"1"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mImport sample offset[0m
+              [36m</span>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"control"[39m
+                [33mmin[39m=[32m"0"[39m
+                [33mstep[39m=[32m"1"[39m
+                [33mtype[39m=[32m"number"[39m
+                [33mvalue[39m=[32m"0"[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mImport window length (blank = remainder)[0m
+              [36m</span>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"control"[39m
+                [33mmin[39m=[32m"128"[39m
+                [33mtype[39m=[32m"number"[39m
+                [33mvalue[39m=[32m""[39m
+              [36m/>[39m
+            [36m</label>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"mb-4 block min-w-0 text-xs text-muted-foreground"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"mb-2 block"[39m
+              [36m>[39m
+                [0mLicense / usage restrictions[0m
+              [36m</span>[39m
+              [36m<input[39m
+                [33mclass[39m=[32m"control"[39m
+                [33mvalue[39m=[32m...
+ ❯ waitForWrapper node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:86:33
+ ❯ src/test/operations.test.tsx:172:18
+    170|     fireEvent.click(screen.getByRole("button", { name: /^3$/ }));
+    171|     await waitFor(() => expect(windowRequest).toHaveBeenCalledWith("ti…
+    172|     await screen.findByText("Selected window unavailable");
+       |                  ^
+    173|   });
+    174|   it("registers a manifest through a tracked dataset import job", asyn…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 12 passed (13)
+   Start at  19:42:10
+   Duration  9.37s (transform 727ms, setup 856ms, import 1.60s, tests 4.41s, environment 4.03s)
+

@@ -1,0 +1,21 @@
+
+> satmodclass-frontend@1.0.0 prebuild
+> node scripts/generate-routes.mjs
+
+
+> satmodclass-frontend@1.0.0 build
+> vite build
+
+vite v7.3.8 building client environment for production...
+transforming...
+✓ 3372 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                0.65 kB │ gzip:     0.39 kB
+dist/assets/ground-track-map-CIGW-MKW.css     15.61 kB │ gzip:     6.46 kB
+dist/assets/index-D0fZkNOm.css                99.56 kB │ gzip:    17.87 kB
+dist/assets/ground-track-map-BT9w9s51.js     155.89 kB │ gzip:    45.80 kB
+dist/assets/index-CTSRVrOv.js                615.82 kB │ gzip:   192.18 kB
+dist/assets/earth-globe-B1ogZsFv.js          996.63 kB │ gzip:   269.65 kB
+dist/assets/plotly.min-wSYsP0p7.js         4,775.06 kB │ gzip: 1,471.63 kB
+✓ built in 39.47s

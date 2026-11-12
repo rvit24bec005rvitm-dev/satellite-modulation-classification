@@ -1,0 +1,70 @@
+{"event": "request", "requestId": "7d4fadc1-1cf6-496a-9ad5-586662891a8f", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 25.26}
+HTTP Request: POST http://testserver/api/classify "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "d332c710-5b9e-4cff-82b7-108e820a80d2", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 17.08}
+HTTP Request: POST http://testserver/api/classify "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "61d29949-3961-4767-a6dc-9a8788a780d9", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 18.13}
+HTTP Request: POST http://testserver/api/classify "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "4bd7987a-dc72-4f13-ab9e-8c50fe790601", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 17.25}
+HTTP Request: POST http://testserver/api/classify "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "882d1fd9-e3b3-4ed3-b141-37f09bc38c2e", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 16.66}
+HTTP Request: POST http://testserver/api/classify "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "2ab7f5bb-2841-441d-a92d-d6c957510bd2", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 17.85}
+HTTP Request: POST http://testserver/api/classify "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "f29aba01-c1d7-4905-8bb0-e9be246d510c", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 18.22}
+HTTP Request: POST http://testserver/api/classify "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "cd4d92eb-1eb7-4fe7-9e6f-d31e905f03f4", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 20.89}
+HTTP Request: POST http://testserver/api/classify "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "8e9e3002-156d-4ede-a39f-92d9d3b0f6b7", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 17.27}
+HTTP Request: POST http://testserver/api/classify "HTTP/1.1 200 OK"
+{"event": "request", "requestId": "824b3926-37b7-48a9-8dd0-ffc7f4512167", "method": "POST", "path": "/api/classify", "status": 200, "elapsedMs": 17.63}
+HTTP Request: POST http://testserver/api/classify "HTTP/1.1 200 OK"
+{
+  "modelInitializationMs": 7.100042013917118,
+  "modelInitializationScope": "First exact-artifact load in this process; excludes Python imports; filesystem caches may already be warm.",
+  "preprocessing": {
+    "medianMs": 0.01909548882395029,
+    "p95Ms": 0.05451855249702932,
+    "repetitions": 20
+  },
+  "inference": {
+    "medianMs": 1.1271640250924975,
+    "p95Ms": 1.4822575292782858,
+    "repetitions": 20
+  },
+  "signalGeneration1024": {
+    "medianMs": 1.102479494875297,
+    "p95Ms": 1.3581032311776657,
+    "repetitions": 20
+  },
+  "analysis128": {
+    "medianMs": 7.550750015070662,
+    "p95Ms": 17.452814482385385,
+    "repetitions": 20
+  },
+  "hardware": {
+    "os": "Darwin",
+    "release": "25.6.0",
+    "machine": "x86_64",
+    "processor": "i386",
+    "python": "3.14.7",
+    "numpy": "2.5.3",
+    "threadpools": [],
+    "device": "CPU",
+    "batchSize": 1
+  },
+  "analysis65536": {
+    "elapsedMs": 84.76512698689476,
+    "peakTracedAllocationsBytes": 11362733,
+    "waveformPoints": 1024,
+    "spectrumBins": 1024,
+    "constellationPoints": 1024,
+    "spectrogramTimeBins": 64
+  },
+  "processPeakRssBytes": 133148672,
+  "classificationApi128": {
+    "medianMs": 20.11714252876118,
+    "p95Ms": 25.836231303401284,
+    "repetitions": 10,
+    "scope": "ASGI TestClient request, JSON validation, inference, DSP and serialization; no real-network RTT."
+  }
+}
