@@ -1,28 +1,18 @@
 [
   {
-    "path": ".env.example",
-    "bytes": 658,
-    "sha256": "58262a253b5207ba94ef33322760422f4538558fb2b2e493ba1731ef4dfacfee"
-  },
-  {
-    "path": ".github/workflows/ci.yml",
-    "bytes": 4901,
-    "sha256": "c987267f2dde47c517cb72d18744ce886e2957e981af1d3ebab71d51534e9692"
-  },
-  {
     "path": "PHASE2_IMPLEMENTATION.md",
-    "bytes": 6946,
-    "sha256": "4e4e84e09126c1b2a6c882e4f9cf4a858932b13f96f394aad3635e9ef67ad313"
+    "bytes": 7599,
+    "sha256": "eff7a8156f1a07de08f8b54171a1beabbd422a63bfdaa29dac7c605829cc0453"
   },
   {
     "path": "PHASE2_REPORT.md",
-    "bytes": 28653,
-    "sha256": "8c1e9f4293c47f6d6359e88b0dcfb0cea39de8d608ba494acc9cedf1d45791df"
+    "bytes": 35009,
+    "sha256": "04b1517d08a8435a986f55cde8751f6d0b70a7a1944041d0d9d48e4ec523ce9c"
   },
   {
     "path": "README.md",
-    "bytes": 36107,
-    "sha256": "740fa38fc2856b840a700bd20fb85ceaca27ed398d730829cf9676072a0ecf98"
+    "bytes": 37009,
+    "sha256": "7aa192efa2cdd43406b285c339ec3c7a5819d73832a5068f5c08c3dc03c06b1b"
   },
   {
     "path": "backend/api/__init__.py",
@@ -98,6 +88,21 @@
     "path": "frontend/src/test/operations.test.tsx",
     "bytes": 9340,
     "sha256": "1614ad47658b60ec507d577dc347ed2fd08bb5458de18bd40577737bf0ad1348"
+  },
+  {
+    "path": "integration/phase2/baseline-contracts-current.log",
+    "bytes": 195,
+    "sha256": "5c9545374489c5b45560af7c4b4e2e44092124147a3f65a85b11cdbb21504c82"
+  },
+  {
+    "path": "integration/phase2/baseline-frontend-current.log",
+    "bytes": 534,
+    "sha256": "aa63a872d0adf2a3ae8fa03cbee2ae94ac9d0644766def7145cd5f4562b9dee0"
+  },
+  {
+    "path": "integration/phase2/baseline-python-current.log",
+    "bytes": 86,
+    "sha256": "b577276045e2f81d1f599d54d647595fd4d151770b39f242e2218b696ada5288"
   },
   {
     "path": "integration/phase2/followup-baseline-types.log",
@@ -200,6 +205,11 @@
     "sha256": "c3f14061a23a3b051e5382f223cd38b741152e8ffa16cee5a47ad8570fbde023"
   },
   {
+    "path": "integration/phase2/followup/container-current-ci.log",
+    "bytes": 49651,
+    "sha256": "f1fd219ff21d2d6cadc90e63126a9739f658917ff32af273bed16407f5a953e3"
+  },
+  {
     "path": "integration/phase2/followup/eslint-final.log",
     "bytes": 4297,
     "sha256": "7816804245606a46ce9e6efdf1404bc94e214b8e6e87260168fa117f0a5aa471"
@@ -215,6 +225,16 @@
     "sha256": "7cd6cb1193c34d1e04578d42d3bd9ea99cd28cf862c39b0767999ebaba85de6b"
   },
   {
+    "path": "integration/phase2/followup/github-ci-jobs.json",
+    "bytes": 23177,
+    "sha256": "39877c5ba35f1ea1233057eb4916fcbf5542bf8071c12e2cc4c8c8ae3ba351e2"
+  },
+  {
+    "path": "integration/phase2/followup/github-ci-run.json",
+    "bytes": 304,
+    "sha256": "99293dde7369abaad0cb807685e184bdc8d4b257283ed9a1b4babdaedfbf9d23"
+  },
+  {
     "path": "integration/phase2/followup/import-jobs.log",
     "bytes": 99,
     "sha256": "97d1040afc7ced88d3d548b741c82a359b045e841f27dd367a4c5970e9a51692"
@@ -223,6 +243,16 @@
     "path": "integration/phase2/followup/lint-install.log",
     "bytes": 1027,
     "sha256": "2dfac834c26e0b07a847e21b27c987711edf73225a021e885acef75387a8367c"
+  },
+  {
+    "path": "integration/phase2/followup/linux-current-ci.log",
+    "bytes": 191008,
+    "sha256": "1e29eb8844c14dc0eb3be30c91314a56f03e8078547b3f876db0114dabad5ffc"
+  },
+  {
+    "path": "integration/phase2/followup/local-preview.json",
+    "bytes": 399,
+    "sha256": "8a66ee0a37164b8afd751b7364b70e18d94c9542b4309f14841bb0488588f48f"
   },
   {
     "path": "integration/phase2/followup/operations-final.log",
@@ -268,6 +298,11 @@
     "path": "integration/phase2/followup/python-lint.log",
     "bytes": 2,
     "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+  },
+  {
+    "path": "integration/phase2/followup/python-merged.log",
+    "bytes": 261,
+    "sha256": "94fa536b56315d702573de6881b279a1d46ee6c1373d1dc75960977b1416c8c3"
   },
   {
     "path": "integration/phase2/followup/screenshots/classifier-explanation.png",
@@ -321,8 +356,13 @@
   },
   {
     "path": "integration/phase2/followup/validation-summary.json",
-    "bytes": 959,
-    "sha256": "0ffaefdae99ab34866bfd52312c17b1b452a7316a8a416ca5ba41c2f622519c5"
+    "bytes": 2604,
+    "sha256": "56eacd72f5b89549809395775657eee4a15276b1b888ad29855912f245428770"
+  },
+  {
+    "path": "integration/phase2/followup/windows-current-ci.log",
+    "bytes": 195719,
+    "sha256": "5b568132d5c18ed576c1785de4c11d6a49759e5e6bffe9c1b0c6d2173640c748"
   },
   {
     "path": "scripts/check_workspace_deployment.py",

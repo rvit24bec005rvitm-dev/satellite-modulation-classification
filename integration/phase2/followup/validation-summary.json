@@ -27,11 +27,66 @@
   "productionCalibrationFit": false,
   "independentSatelliteValidation": "blocked by data",
   "permanentHosting": "not deployed; requires hosting account and durable storage",
-  "followupRemoteCi": "pending",
+  "followupRemoteCi": {
+    "status": "success",
+    "applicationSource": "b4f1c209e8118870d3030a8a47d3c9dfffeb5917",
+    "url": "https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/actions/runs/43072081077",
+    "jobs": [
+      {
+        "name": "runtime-security",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "container",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "frontend (ubuntu-latest)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "test (ubuntu-latest, 3.12)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "test (windows-latest, 3.12)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "test (ubuntu-latest, 3.11)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "frontend (windows-latest)",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "test (ubuntu-latest, 3.10)",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ],
+    "linuxBrowserPassed": 29,
+    "windowsBrowserPassed": 29,
+    "containerRecreationPersistence": "passed",
+    "runtimeDependencyAudit": "passed"
+  },
   "artifactPreservation": "preserved-artifacts.json",
   "performance": "performance.json",
   "protectedRestart": "protected-native-restart.json",
   "mergedRegressionLog": "python-merged.log",
   "applicationSourceUnchangedFrom": "a20660f",
-  "upstreamRetained": "57befd3"
+  "upstreamRetained": "57befd3",
+  "localPreview": {
+    "url": "http://127.0.0.1:8162",
+    "verification": "local-preview.json",
+    "hostingScope": "local native preview; no permanent host"
+  }
 }

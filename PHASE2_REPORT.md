@@ -27,7 +27,8 @@ working tree were inspected before substantial changes.
 | Premium UI, routes and Earth/galaxy | EXISTING AND VERIFIED | Visual design preserved. Globe change adds camera-azimuth diagnostic telemetry only. Browser drag check verifies an actual camera turn. New screenshots no longer overwrite original scientific audit images. |
 | Local Python / frontend / contracts | COMPLETE AND VERIFIED | 209 Python, 43 frontend, 11 real contracts; details below. |
 | Final production browser run | COMPLETE AND VERIFIED | 29 scenarios passed in 2.5 minutes against the final compiled app, including asynchronous imports, cancellation, 201-window evaluation export, batch PDF and globe interaction. |
-| Container / Linux / Windows current-source CI | PARTIALLY IMPLEMENTED | Earlier Phase 2 image and protected named-volume recreation passed remotely; follow-up source verification is pending. |
+| Container / Linux / Windows current-source CI | COMPLETE AND VERIFIED | All eight jobs passed on application source `b4f1c20`: Linux Python 3.10–3.12, Windows Python 3.12, Linux/Windows browsers, runtime security and container execution with protected named-volume recreation. |
+| Windows and Linux production browsers | COMPLETE AND VERIFIED | Actual Windows Chromium and Linux Chrome runners each passed all 29 scenarios; macOS Chrome also passed 29 locally. |
 | Training pipeline and model comparison | EXISTING AND VERIFIED | Existing grouped CNN/ResNet/CLDNN/RF infrastructure and artifacts retained; no training or model promotion performed. |
 | Independent satellite-domain accuracy, production calibration / OOD / additional output classes | BLOCKED | No independent labeled acquisition corpus or justified production thresholds/checkpoint is available. |
 | Permanent public hosting | BLOCKED | Hosting credentials/account connection and durable storage provisioning are required. No permanent deployment is claimed. |
@@ -78,6 +79,23 @@ local results: **209 Python / 43 frontend / 11 real contracts**; production buil
 TypeScript and syntax/undefined-name lint passed. ESLint has zero errors and the
 18 existing Fast Refresh warnings. The final production browser run passed all
 29 scenarios in 2.5 minutes.
+
+The [current application CI run](https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/actions/runs/43072081077)
+passed all eight jobs for source `b4f1c209e8118870d3030a8a47d3c9dfffeb5917`.
+Linux Chrome and Windows Chromium each executed all 29 production browser
+scenarios. The container built and verified protected asynchronous capture and
+dataset import, real evaluation, both PDF export paths and retained state after
+named-volume recreation. `github-ci-run.json`, `github-ci-jobs.json` and the
+platform/container logs retain the actual results under the follow-up evidence
+directory. Later documentation/evidence commits do not change that application
+source. No permanent host was published.
+
+The updated native preview at **http://127.0.0.1:8162** passed model health, all
+eight SPA routes, referenced assets, real generated/uploaded inference, invalid
+upload rejection and API error handling. A separate protected temporary native
+workspace verified recording/job/dataset/evaluation/report persistence across a
+complete server restart; see `protected-native-restart.json`. This is local
+serving evidence, not a permanent hosted deployment.
 
 The first follow-up browser execution passed 28 scenarios and failed a newly
 added cancellation scenario because its exact label selector included option

@@ -15,7 +15,7 @@ The original scientific audit and its checklist were read before implementation.
 | Capture overview concurrent deletion / mapped-file cleanup | Partially implemented | Implemented and tested — bounded read blocks and explicit mapping closure |
 | Report completeness and batch PDF | Individual PDF omits input identity/position; no batch PDF | Implemented and tested — reproducible CSV, PDF summaries and complete JSON |
 | Dataset/job navigation beyond first page | Partially implemented | Implemented and tested — pagination and direct selected-job polling |
-| Current remote CI / Windows browser / container | Earlier evidence exists; latest runs in progress | Pending actual results |
+| Current remote CI / Windows browser / container | Earlier evidence existed | Implemented and tested — all eight current-source CI jobs passed; 29 browser scenarios on each Linux and Windows runner, protected container persistence verified |
 | Independent satellite validation / production calibration / OOD | No independent labeled corpus | Blocked by data |
 | Permanent hosting | No authenticated persistent host | Blocked by account authorization / persistent storage |
 
@@ -27,8 +27,12 @@ Final follow-up local checks: **209 Python / 43 frontend / 11 real contracts /
 syntax/undefined-name checks and ESLint passed (18 existing warnings).
 Background labeled-dataset registration, split interval indexing, safe missing
 model responses and upload deadlines are also implemented and tested. The
-latest container/cross-platform CI for this branch remains pending until its
-actual result is recorded; prior-source successes are kept separate.
+latest container/cross-platform CI for application source `b4f1c20` passed all
+eight jobs: https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/actions/runs/43072081077.
+Linux Chrome and Windows Chromium each passed 29 actual production scenarios.
+The protected named-volume container recreation and a full native-server restart
+both retained capture/job/dataset/evaluation/report state. Prior-source successes
+remain separate. Permanent hosting and independent RF validation remain blocked.
 
 ## Prior implementation tracker
 
