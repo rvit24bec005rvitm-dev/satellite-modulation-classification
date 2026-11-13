@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark light"><meta name="description" content="A complete offline teaching guide to SatModClass: I/Q, modulation, CNN inference, DSP, research workflows, training, evaluation, and a junior demonstration."><title>SatModClass — The Complete Teaching Guide</title><style>
+:root{color-scheme:dark;--bg:#08131b;--panel:#0d1d27;--panel-2:#102632;--text:#e3edf3;--muted:#a7bbc8;--accent:#7be3c5;--accent-ink:#062b22;--gold:#f1c482;--line:#28404e;--grid:#203543;--rail:272px;--mono:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;--sans:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.78 var(--sans);-webkit-font-smoothing:antialiased}button,a,summary{-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer}a{color:var(--accent);text-decoration-color:color-mix(in srgb,var(--accent) 45%,transparent);text-underline-offset:4px}button:focus-visible,a:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--gold);outline-offset:5px}button:disabled{opacity:.4;cursor:default}::selection{background:#7be3c5;color:#08271e}p{margin:0 0 1.25em}strong{color:var(--text);font-weight:650}code,pre{font-family:var(--mono)}code{font-size:.88em;padding:.14em .4em;background:var(--panel-2);border:1px solid var(--line);border-radius:4px;overflow-wrap:anywhere}pre{overflow:auto;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);padding:22px 24px;border-radius:6px;line-height:1.85;max-width:100%;font-size:13px}pre code{padding:0;border:0;background:none;white-space:pre;overflow-wrap:normal;font-size:inherit}ul,ol{padding-left:1.4em;margin:0 0 1.7em}li{padding-left:.3em;margin:.55em 0}li::marker{color:var(--accent)}blockquote{margin:28px 0 18px;padding:22px 28px;border-left:3px solid var(--gold);background:var(--panel);font-size:1.1rem;line-height:1.9;color:var(--text)}blockquote p:last-child{margin-bottom:0}h1,h2,h3{line-height:1.15;letter-spacing:-.035em;margin:0}h2{font-size:clamp(25px,3.1vw,36px);font-weight:620}h3{font-size:21px;line-height:1.35}var{font-family:var(--mono);font-style:normal}sub{font-size:.65em}svg{max-width:100%}
+.skip{position:fixed;top:10px;left:10px;z-index:200;background:var(--accent);color:#06251d;padding:10px 16px;transform:translateY(-180%)}.skip:focus{transform:none}.rail{position:fixed;inset:0 auto 0 0;width:var(--rail);background:var(--bg);border-right:1px solid var(--line);padding:31px 24px 22px;z-index:90;overflow-y:auto;scrollbar-width:thin;display:flex;flex-direction:column}.brand{display:flex;gap:11px;align-items:center;color:var(--text);text-decoration:none;letter-spacing:.06em;font:700 14px var(--mono)}.brand svg{width:31px;height:31px;color:var(--accent);flex:none}.brand small{display:block;font-size:9px;letter-spacing:.16em;color:var(--muted);margin-top:5px}.rail-label{margin:35px 0 13px;color:var(--muted);font:10px var(--mono);letter-spacing:.17em}.toc{display:flex;flex-direction:column;gap:3px}.toc a{padding:7px 8px;border-left:2px solid transparent;text-decoration:none;color:var(--muted);font-size:12px;line-height:1.7;display:flex;gap:12px;align-items:center}.toc a span{font:10px var(--mono);color:var(--muted);opacity:.7}.toc a:hover{background:var(--panel);color:var(--text)}.toc a[aria-current]{color:var(--accent);border-color:var(--accent);background:var(--panel)}.rail-bottom{margin-top:auto;padding-top:30px;color:var(--muted);font:10px/1.8 var(--mono)}.rail-bottom a{font-size:11px}.mobile-close{display:none}.topbar{height:69px;position:fixed;top:0;left:var(--rail);right:0;border-bottom:1px solid var(--line);background:var(--bg);z-index:70;display:flex;align-items:center;justify-content:space-between;padding:0 5%;gap:14px}.topbar-label{font:10px var(--mono);letter-spacing:.13em;color:var(--muted);white-space:nowrap}.tools{display:flex;gap:8px;align-items:center}.tool{border:1px solid var(--line);background:transparent;color:var(--text);border-radius:6px;font-size:11px;font-weight:550;padding:7px 11px;line-height:1.5;white-space:nowrap;min-height:34px}.tool:hover,.tool[aria-pressed=true]{background:var(--panel-2);border-color:var(--accent)}.tool-primary{background:var(--accent);border-color:var(--accent);color:#092b22}.tool-primary:hover{color:var(--text)}.menu-button{display:none}.reading-track{position:fixed;top:68px;left:var(--rail);right:0;height:2px;z-index:80;pointer-events:none}.reading-track span{height:100%;display:block;width:0;background:var(--accent)}main{margin-left:var(--rail);padding:69px 7.5% 0;min-width:0}.content{max-width:1000px;margin:0 auto}.hero{padding:70px 0 60px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}.hero:before{content:"";position:absolute;right:-90px;top:10px;width:350px;height:350px;opacity:.25;border:1px solid var(--line);border-radius:50%;box-shadow:0 0 0 50px #10263255,0 0 0 100px #10263233;pointer-events:none}.hero>*{position:relative}.eyebrow{font:10px/1.6 var(--mono);letter-spacing:.16em;color:var(--accent);display:block;margin-bottom:17px}.hero h1{font-size:clamp(38px,5.7vw,69px);font-weight:580;max-width:850px}.hero h1 em{font-style:normal;color:var(--accent)}.hero-description{color:var(--muted);font-size:17px;max-width:590px;margin:24px 0 30px}.hero-meta{display:flex;flex-wrap:wrap;gap:10px 22px;font:10px/1.7 var(--mono);color:var(--muted)}.hero-meta span{display:flex;align-items:center;gap:7px}.status-dot{height:6px;width:6px;border-radius:50%;background:var(--accent)}.hero-facts{display:flex;gap:42px;flex-wrap:wrap;margin-top:40px}.hero-facts strong{font:500 27px/1.3 var(--mono);color:var(--text);display:block}.hero-facts span{font:10px var(--mono);color:var(--muted)}.chapter{padding:65px 0;border-bottom:1px solid var(--line);scroll-margin-top:24px}.chapter-top{display:flex;gap:20px;align-items:baseline;margin-bottom:30px}.chapter-number{font:12px var(--mono);color:var(--accent);flex:none}.prose{max-width:800px}.prose>p:first-child{font-size:17px;color:var(--muted)}.prose>p:first-child strong{color:var(--text)}.prose>p:last-child{margin-bottom:0}.prose a{overflow-wrap:anywhere}.copy-intro{border:1px solid var(--line);background:transparent;border-radius:5px;padding:10px 14px;color:var(--accent);font:11px var(--mono)}.copy-intro:hover{background:var(--panel-2)}.copy-status{color:var(--muted);font:11px var(--mono);margin-left:12px}.table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:6px;margin:28px 0 30px;max-width:100%;scrollbar-width:thin}table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.8;min-width:380px}caption{caption-side:top;text-align:left;padding:12px 17px;color:var(--muted);background:var(--panel);font:10px/1.7 var(--mono);letter-spacing:.06em;border-bottom:1px solid var(--line)}th{text-align:left;color:var(--accent);font-size:11px;font-weight:600;background:var(--panel);padding:12px 17px;vertical-align:top}td{padding:13px 17px;border-top:1px solid var(--line);vertical-align:top}td:first-child{color:var(--text);font-weight:550}tbody tr:nth-child(even){background:color-mix(in srgb,var(--panel) 45%,transparent)}table code{white-space:nowrap}.equation{font:18px/2.2 var(--mono);padding:24px;background:var(--panel);border:1px solid var(--line);border-radius:6px;margin:25px 0;overflow-x:auto;text-align:center}.fraction{display:inline-flex;flex-direction:column;vertical-align:middle;font-size:.84em;line-height:1.7;margin-left:8px;text-align:center}.fraction>span:first-child{border-bottom:1px solid var(--muted);padding:0 6px 3px}.fraction>span:last-child{padding-top:3px}.pipeline{margin:30px 0;padding:28px;background:var(--panel);border:1px solid var(--line);border-radius:8px}.flow-node{background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:15px;font-size:13px;text-align:center;line-height:1.7}.flow-node small{display:block;color:var(--accent);font:9px var(--mono);letter-spacing:.15em;margin-bottom:7px}.flow-wide{max-width:480px;margin:0 auto}.flow-arrow{display:block;text-align:center;padding:7px;color:var(--accent)}.branches{display:grid;grid-template-columns:.9fr 1.1fr;gap:20px}.branch{border:1px solid var(--line);padding:17px;border-radius:6px}.branch-label{display:block;color:var(--muted);font:9px var(--mono);letter-spacing:.1em;margin-bottom:17px}.branch p{font-size:12px;color:var(--muted);line-height:1.8;margin:17px 0 0}.model-flow{padding:0;margin:0;list-style:none}.model-flow li{background:var(--bg);padding:9px 12px;border-left:2px solid var(--accent);font-size:12px;margin:0 0 7px}.model-flow li:last-child{margin-bottom:0}.flow-result{border-color:var(--accent)}figcaption{font-size:11px;color:var(--muted);line-height:1.8;margin-top:17px}.interactive-panel,.quiz{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:26px;margin-top:34px}.panel-top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.panel-top .eyebrow{font-size:9px;margin-bottom:9px}.tag{border:1px solid var(--line);color:var(--muted);font:8px var(--mono);padding:5px 7px;white-space:nowrap;border-radius:3px}.scheme-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}.scheme-buttons button{border:1px solid var(--line);color:var(--muted);background:var(--bg);border-radius:4px;padding:7px 15px;font:11px var(--mono)}.scheme-buttons button[aria-pressed=true]{border-color:var(--accent);color:var(--accent);background:var(--panel-2)}.constellation-layout{display:grid;grid-template-columns:1.3fr 1fr;gap:20px;align-items:center}.constellation-description{font-size:14px}.scheme-name{font:500 26px var(--mono);color:var(--accent)}.constellation-description p{margin:12px 0}.small-note{color:var(--muted);font-size:11px;line-height:1.8}.plot-grid{stroke:var(--grid);stroke-width:1}.plot-grid .plot-axis{stroke:var(--muted);stroke-width:1}.plot-label{font:11px var(--mono);fill:var(--muted)}.plot-points{fill:var(--accent);stroke:var(--bg);stroke-width:2}.iq-figure{max-width:390px;margin:32px auto;padding:8px 20px 20px;border:1px solid var(--line);background:var(--panel);border-radius:8px}.vector{stroke:var(--accent);stroke-width:3;fill:none}.arrow-fill{fill:var(--accent)}.phase-arc{stroke:var(--gold);stroke-width:2}.clarification{border-left:3px solid var(--gold);padding:17px 22px;background:var(--panel);font-size:13px;margin:27px 0;line-height:1.9;color:var(--muted)}.clarification strong{display:block;color:var(--gold);margin-bottom:6px}.quiz>p{color:var(--muted);font-size:13px;margin:15px 0}.quiz details{border-top:1px solid var(--line);padding:15px 0}.quiz details:last-child{padding-bottom:0}.quiz summary{cursor:pointer;font-size:13px;line-height:1.9;list-style:none;display:flex;align-items:baseline;gap:12px}.quiz summary:after{content:"+";font:18px var(--mono);margin-left:auto;color:var(--accent)}.quiz details[open] summary:after{content:"−"}.quiz-number{font:10px var(--mono);color:var(--accent)}.quiz details p{margin:13px 0 0 28px;color:var(--muted);font-size:13px;line-height:1.9}.footer{padding:30px 0 60px;color:var(--muted);font:10px/1.8 var(--mono);display:flex;justify-content:space-between;gap:20px}.backdrop{display:none}.presentation-nav{display:none}.presentation .rail{display:none}.presentation main{margin-left:0;padding-left:10%;padding-right:10%;font-size:19px}.presentation .topbar,.presentation .reading-track{left:0}.presentation .content{max-width:1000px}.presentation .hero{padding-top:50px}.presentation .chapter{padding:80px 0}.presentation .prose{max-width:850px}.presentation .presentation-nav{display:flex;position:fixed;bottom:18px;right:20px;gap:8px;padding:8px;background:var(--bg);border:1px solid var(--line);border-radius:8px;z-index:60}.presentation .menu-button{display:none}
+[data-theme=light]{color-scheme:light;--bg:#f5f6f2;--panel:#fff;--panel-2:#e9f0ec;--text:#142b35;--muted:#4f6673;--accent:#126653;--accent-ink:#fff;--gold:#895115;--line:#d0dad8;--grid:#e2e7e2}.tool-primary{color:var(--accent-ink)}[data-theme=light] .hero:before{box-shadow:0 0 0 50px #dce8e255,0 0 0 100px #dce8e233}
+@media(min-width:1600px){main{padding-left:9%;padding-right:9%}.hero{padding-top:90px}.hero-description{max-width:650px}}
+@media(max-width:1150px){:root{--rail:237px}.rail{padding-left:17px;padding-right:17px}main{padding-left:5%;padding-right:5%}.topbar{padding-left:5%;padding-right:5%}.topbar-label{font-size:9px}.toc a{font-size:11px}}
+@media(max-width:960px){:root{--rail:272px}.rail{transform:translateX(-110%);visibility:hidden;transition:transform .2s ease,visibility .2s}.drawer-open .rail{transform:none;visibility:visible}.drawer-open .backdrop{display:block;position:fixed;inset:0;background:#02070bb8;border:0;z-index:85;cursor:pointer}.drawer-open{overflow:hidden}.topbar,.reading-track{left:0}.topbar{padding:0 22px}.topbar-label{margin-right:auto}.menu-button,.mobile-close{display:inline-flex}.mobile-close{position:absolute;right:14px;top:17px}.rail .brand{margin-top:17px}.menu-button{font-size:11px;padding:7px 10px}main{margin-left:0;padding-left:7%;padding-right:7%}.hero h1{font-size:clamp(37px,7.5vw,65px)}.hero:before{right:-170px}.presentation main{padding-left:7%;padding-right:7%}}
+@media(max-width:560px){body{font-size:15px}.topbar{height:64px;padding:0 14px;gap:8px}.topbar-label{display:none}.tools{margin-left:auto;gap:5px}.tool{font-size:10px;padding:7px 9px;min-height:33px}.reading-track{top:63px}main{padding:64px 20px 0}.hero{padding:47px 0 39px}.hero h1{font-size:39px;letter-spacing:-.045em}.hero-description{font-size:15px;line-height:1.9}.hero-meta{gap:7px 15px;font-size:9px}.hero-facts{gap:22px;margin-top:29px}.hero-facts strong{font-size:23px}.hero-facts span{font-size:9px}.chapter{padding:44px 0}.chapter-top{gap:13px;margin-bottom:23px;align-items:flex-start}.chapter-number{margin-top:6px;font-size:10px}h2{font-size:26px}.prose>p:first-child{font-size:16px}blockquote{padding:16px 19px;font-size:15px}pre{padding:17px;font-size:11px}.equation{font-size:14px;padding:20px 10px}.fraction{font-size:.75em}.pipeline{padding:16px}.branches{grid-template-columns:1fr;gap:12px}.branch{padding:15px}.flow-node{font-size:12px}.interactive-panel,.quiz{padding:19px}.panel-top{flex-wrap:wrap}h3{font-size:19px}.constellation-layout{grid-template-columns:1fr;gap:0}.constellation-layout svg{max-width:330px;margin:auto}.constellation-description{padding:0 5px}.scheme-name{font-size:23px}.clarification{padding:14px 17px;font-size:12px}.footer{flex-direction:column;gap:8px;font-size:9px}.presentation main{padding-left:20px;padding-right:20px;font-size:16px}.presentation .chapter{padding:52px 0}.presentation .presentation-nav{right:12px;bottom:12px;left:12px;justify-content:space-between}.quiz summary{font-size:12px}.table-scroll{margin:22px 0}td,th{padding-left:13px;padding-right:13px}.copy-status{display:block;margin:8px 0 0}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+@page{size:A4;margin:17mm 16mm}
+@media print{:root,[data-theme=light]{color-scheme:light;--bg:#fff;--panel:#f4f6f5;--panel-2:#f1f3f3;--text:#10252d;--muted:#455d66;--accent:#09604b;--gold:#76501c;--line:#cbd5d5;--grid:#dce3e3}html{scroll-behavior:auto}body{font-size:10.5pt;line-height:1.65}.rail,.topbar,.reading-track,.presentation-nav,.skip,.backdrop,.copy-intro,.copy-status,.scheme-buttons{display:none!important}main,.presentation main{margin:0;padding:0;font-size:10.5pt}.content{max-width:none}.hero{padding:0 0 20px}.hero:before{display:none}.hero h1{font-size:32pt;max-width:100%}.hero-description{font-size:12pt;max-width:100%;margin:16px 0}.hero-facts{margin-top:23px;gap:35px}.hero-facts strong{font-size:21pt}.hero-facts span,.hero-meta{font-size:8pt}.chapter,.presentation .chapter{padding:26px 0;border-bottom:1px solid var(--line);break-inside:auto}.chapter-top{margin-bottom:15px;break-after:avoid}h2{font-size:20pt}h3{font-size:14pt}.chapter-number{font-size:9pt}.prose{max-width:none}.prose>p:first-child{font-size:11pt}blockquote{font-size:11pt;padding:14px 17px;margin:18px 0}pre{font-size:8pt;padding:13px;white-space:pre-wrap;break-inside:avoid}pre code{white-space:pre-wrap}table{font-size:9pt;min-width:0;line-height:1.6}caption{font-size:8pt}td,th{padding:8px 10px}thead{display:table-header-group}tr{break-inside:avoid}.table-scroll{overflow:visible;break-inside:auto;border-radius:0;margin:18px 0}a{color:var(--accent);text-decoration:underline}.equation{font-size:13pt;break-inside:avoid}.pipeline,.interactive-panel,.iq-figure,.clarification{break-inside:avoid}.pipeline{padding:18px}.branch p{font-size:9pt}.flow-node,.model-flow li{font-size:9pt}.branch-label{font-size:7pt}.iq-figure{max-width:300px}.constellation-layout{grid-template-columns:1.2fr 1fr}.constellation-layout svg{max-width:270px}.constellation-description{font-size:10pt}.small-note,figcaption{font-size:8pt}.quiz{padding:18px;break-inside:auto}.quiz details{break-inside:avoid}.quiz summary,.quiz details p{font-size:9pt}.quiz summary:after{display:none}.footer{font-size:8pt;padding:20px 0 0}button{display:none}}
+</style></head>
+<body>
+<a class="skip" href="#guide">Skip to teaching content</a>
+<aside class="rail" id="chapter-rail" aria-label="Guide chapters">
+ <a class="brand" href="#top"><svg viewBox="0 0 36 36" fill="none" aria-hidden="true"><circle cx="18" cy="18" r="13" stroke="currentColor"/><ellipse cx="18" cy="18" rx="5" ry="13" stroke="currentColor"/><path d="M5 18H31M8 10Q18 16 28 10M8 26Q18 20 28 26" stroke="currentColor"/><circle cx="29" cy="11" r="3" fill="currentColor" stroke="var(--bg)" stroke-width="2"/></svg><span>SATMODCLASS<small>THE TEACHING GUIDE</small></span></a>
+ <button class="tool mobile-close" id="menu-close" type="button" aria-label="Close chapters">Close ×</button>
+ <div class="rail-label">FOLLOW THE SIGNAL</div><nav class="toc" aria-label="Chapters"><a href="#overview" data-chapter="0"><span>00</span>The big picture</a><a href="#iq" data-chapter="1"><span>01</span>I/Q fundamentals</a><a href="#modulation" data-chapter="2"><span>02</span>Modulation & scope</a><a href="#architecture" data-chapter="3"><span>03</span>System architecture</a><a href="#classification" data-chapter="4"><span>04</span>The inference journey</a><a href="#cnn" data-chapter="5"><span>05</span>The actual CNN</a><a href="#plots" data-chapter="6"><span>06</span>Signal processing</a><a href="#studio" data-chapter="7"><span>07</span>Satellite Studio</a><a href="#workspaces" data-chapter="8"><span>08</span>The eight pages</a><a href="#research" data-chapter="9"><span>09</span>Research workflows</a><a href="#explainability" data-chapter="10"><span>10</span>Explainability</a><a href="#training" data-chapter="11"><span>11</span>Training & models</a><a href="#evaluation" data-chapter="12"><span>12</span>Evaluation & evidence</a><a href="#code" data-chapter="13"><span>13</span>Source reading path</a><a href="#teach" data-chapter="14"><span>14</span>Live demo & self-check</a></nav>
+ <div class="rail-bottom">One signal. The whole system.<br><a href="https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/tree/main" target="_blank" rel="noopener noreferrer">Explore the project on GitHub ↗</a><br>All teaching content works offline.</div>
+</aside>
+<button type="button" id="backdrop" class="backdrop" tabindex="-1" aria-label="Close chapters"></button>
+<header class="topbar"><button class="tool menu-button" type="button" id="menu-toggle" aria-expanded="false" aria-controls="chapter-rail">☰ Chapters</button><span class="topbar-label">PROJECT FIELD GUIDE <span aria-hidden="true">/</span> <span id="chapter-position">01 / 15</span></span><div class="tools"><button type="button" class="tool" id="theme-toggle">Light theme</button><button type="button" class="tool" id="presentation-toggle" aria-pressed="false">Present</button><button type="button" class="tool tool-primary" id="print-guide">Print / PDF</button></div></header>
+<div class="reading-track" id="reading-progress" role="progressbar" aria-label="Reading position" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progress-fill"></span></div>
+<main id="guide" tabindex="-1"><div class="content"><header class="hero" id="top"><span class="eyebrow">UNDERSTAND IT. EXPLAIN IT. BUILD ON IT.</span><h1>From I/Q samples<br>to <em>reproducible research.</em></h1><p class="hero-description">The complete SatModClass project, explained as the journey of one signal. A practical guide for you—and the juniors you teach.</p><div class="hero-meta"><span><i class="status-dot" aria-hidden="true"></i>SELF-CONTAINED &amp; OFFLINE</span><span>15 TOPICS</span><span>DIAGRAMS · CODE PATH · LIVE DEMO</span></div><div class="hero-facts"><div><strong>3</strong><span>PRODUCTION CLASSES</span></div><div><strong>128 × 2</strong><span>CNN INPUT SHAPE</span></div><div><strong>8</strong><span>CONNECTED WORKSPACES</span></div></div></header>
+<section class="chapter" id="overview" aria-labelledby="heading-overview"><div class="chapter-top"><span class="chapter-number">00</span><h2 id="heading-overview">The project in one minute</h2></div><div class="prose"><p><strong>SatModClass is a signal-analysis laboratory with a machine-learning classifier inside it.</strong> It lets someone generate or import a radio signal, inspect its properties, classify its modulation, compare results, and save reproducible reports.</p>
+<p>You can introduce it to your juniors like this:</p>
+<blockquote>
+<p>“Our project works with digital samples of radio signals. We use signal processing to understand their waveform and frequency content, and a trained neural network to recognize BPSK, QPSK, or 16-QAM. The application combines a React interface, a Python backend, scientific analysis, and persistent research reports.”</p>
+</blockquote>
+<p>The easiest way to understand the project is to follow <strong>one signal from input to report</strong>.</p><button class="copy-intro" type="button" id="copy-intro">Copy the introduction <span aria-hidden="true">↗</span></button><span id="copy-status" class="copy-status" role="status"></span></div></section>
+<section class="chapter" id="iq" aria-labelledby="heading-iq"><div class="chapter-top"><span class="chapter-number">01</span><h2 id="heading-iq">Read a signal as I/Q</h2></div><div class="prose"><p><strong>Start with what a signal looks like inside the computer.</strong></p>
+<p>A receiver supplies a sequence of <strong>I/Q samples</strong>:</p>
+<div class="equation" role="math" aria-label="x at sample n equals I at sample n plus j times Q at sample n"><var>x</var>[n] = <var>I</var>[n] + j<var>Q</var>[n]</div>
+
+<p>Think of each sample as an arrow on graph paper:</p>
+<ul>
+<li><strong>I—in-phase:</strong> its horizontal coordinate.</li>
+<li><strong>Q—quadrature:</strong> its vertical coordinate.</li>
+<li>The arrow’s length represents amplitude.</li>
+<li>Its angle represents phase.</li>
+<li>Consecutive samples show how those properties change.</li>
+</ul>
+<p>For example, a capture might look like:</p>
+<pre><code class="language-text">Sample       I          Q
+0          0.004      0.006
+1          0.005      0.003
+2         -0.002      0.007
+...
+</code></pre>
+<p>These are two components of one complex signal. They do not automatically represent two antennas.</p>
+<p>The <strong>sample rate</strong> supplies the clock. At 8,000 samples per second, a 128-sample window spans:</p>
+<pre><code class="language-text">128 / 8000 = 0.016 seconds = 16 milliseconds
+</code></pre>
+<p>Also distinguish <strong>samples</strong> from <strong>symbols</strong>. A transmitter can represent one symbol using several samples. Therefore, 128 samples does not necessarily mean 128 transmitted symbols.</p>
+<figure class="iq-figure"><svg viewBox="0 0 360 270" role="img" aria-labelledby="iq-title iq-desc"><title id="iq-title">An I/Q sample as an arrow</title><desc id="iq-desc">An illustrative arrow from the origin to a point in the positive I and Q quadrant. Its horizontal projection is I, vertical projection is Q, length is amplitude, and angle is phase.</desc><defs><marker id="arrow-head" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0L0 6L7 3Z" class="arrow-fill"/></marker></defs><g class="plot-grid" fill="none"><path class="plot-axis" d="M35 210H320 M70 240V25"/><path stroke-dasharray="4 5" d="M70 65H255V210"/></g><path class="vector" d="M70 210L255 65" marker-end="url(#arrow-head)"/><path class="phase-arc" d="M115 210A45 45 0 0 0 105.4 182.2" fill="none"/><g class="plot-label"><text x="322" y="215">I</text><text x="58" y="25">Q</text><text x="142" y="234">I component</text><text x="14" y="136">Q</text><text x="116" y="196">phase</text><text x="173" y="117" transform="rotate(-38 173 117)">amplitude</text></g></svg><figcaption>A geometric illustration of one sample. Follow the arrow’s length and angle as samples change.</figcaption></figure></div></section>
+<section class="chapter" id="modulation" aria-labelledby="heading-modulation"><div class="chapter-top"><span class="chapter-number">02</span><h2 id="heading-modulation">Recognize the modulation</h2></div><div class="prose"><p><strong>Modulation is the pattern we are trying to recognize.</strong></p>
+<p>A transmitter communicates by changing a waveform’s phase, amplitude, or frequency according to symbols.</p>
+<p>The production classifier recognizes these three schemes:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Production modulation schemes"><table><caption>Production modulation schemes</caption>
+<thead>
+<tr>
+<th scope="col">Modulation</th>
+<th scope="col">Ideal symbol pattern</th>
+<th style="text-align: right;">Bits per symbol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BPSK</td>
+<td>Two phase states</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr>
+<td>QPSK</td>
+<td>Four phase states</td>
+<td style="text-align: right;">2</td>
+</tr>
+<tr>
+<td>16-QAM</td>
+<td>Sixteen amplitude/phase combinations</td>
+<td style="text-align: right;">4</td>
+</tr>
+</tbody>
+</table></div>
+<p>For an alphabet containing <var>M</var> symbols, each symbol can represent log<sub>2</sub>(<var>M</var>) bits.</p>
+<p>A useful distinction for your juniors is:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Classification, demodulation and decoding"><table><caption>Classification, demodulation and decoding</caption>
+<thead>
+<tr>
+<th scope="col">Task</th>
+<th scope="col">What it produces</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Modulation classification</td>
+<td>A label such as “QPSK”</td>
+</tr>
+<tr>
+<td>Demodulation</td>
+<td>Estimates of transmitted symbols</td>
+</tr>
+<tr>
+<td>Payload decoding</td>
+<td>The recovered message after framing, coding, and other processing</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>SatModClass focuses on classification and analysis.</strong> Recovering satellite messages would require a fuller receiver pipeline with synchronization, symbol recovery, framing, and error correction.</p>
+<div class="interactive-panel">
+ <div class="panel-top"><div><span class="eyebrow">TRY THE IDEA</span><h3>One alphabet. Different symbol locations.</h3></div><span class="tag">IDEAL SYMBOLS</span></div>
+ <div class="scheme-buttons" role="group" aria-label="Choose an ideal modulation constellation">
+  <button type="button" data-scheme="BPSK" aria-pressed="false">BPSK</button><button type="button" data-scheme="QPSK" aria-pressed="true">QPSK</button><button type="button" data-scheme="16-QAM" aria-pressed="false">16-QAM</button>
+ </div>
+ <div class="constellation-layout">
+ <svg id="constellation" viewBox="0 0 360 270" role="img" aria-labelledby="const-title const-desc">
+  <title id="const-title">Ideal QPSK constellation</title><desc id="const-desc">Four ideal symbol locations with two possible signs on each I and Q axis, at unit average symbol energy.</desc>
+  <g class="plot-grid" fill="none"><path d="M80 30V230 M130 30V230 M230 30V230 M280 30V230 M55 80H305 M55 180H305"/><path class="plot-axis" d="M55 130H315 M180 25V235"/></g>
+  <g class="plot-label"><text x="320" y="135">I</text><text x="187" y="26">Q</text><text x="72" y="149">−1</text><text x="275" y="149">+1</text><text x="161" y="33">+1</text><text x="161" y="234">−1</text><text x="166" y="147">0</text></g>
+  <g id="const-points" class="plot-points"><circle cx="109.29" cy="59.29" r="6"/><circle cx="250.71" cy="59.29" r="6"/><circle cx="109.29" cy="200.71" r="6"/><circle cx="250.71" cy="200.71" r="6"/></g>
+ </svg>
+ <div class="constellation-description" aria-live="polite" aria-atomic="true"><span id="scheme-name" class="scheme-name">QPSK</span><p id="scheme-detail">Four phase states. Each ideal symbol represents 2 bits.</p><p class="small-note">These are mathematical symbol locations for teaching, not received measurements or CNN predictions.</p></div>
+ </div>
+</div></div></section>
+<section class="chapter" id="architecture" aria-labelledby="heading-architecture"><div class="chapter-top"><span class="chapter-number">03</span><h2 id="heading-architecture">Follow the system</h2></div><div class="prose"><p><strong>The application follows this processing flow.</strong></p>
+<figure class="pipeline" aria-label="Signal processing pipeline">
+  <div class="flow-node flow-wide"><small>INPUT</small>Import a recording or generate a signal</div>
+  <span class="flow-arrow" aria-hidden="true">↓</span>
+  <div class="flow-node flow-wide"><small>VALIDATION</small>Validate and prepare I/Q samples</div>
+  <span class="flow-arrow" aria-hidden="true">↓</span>
+  <div class="branches">
+    <div class="branch"><span class="branch-label">SCIENTIFIC ANALYSIS</span><div class="flow-node">Analyze the selected signal with DSP</div><p>Inspect waveform, constellation, frequency content and power.</p></div>
+    <div class="branch"><span class="branch-label">MACHINE LEARNING</span><ol class="model-flow"><li>Select a complete 128-sample window</li><li>Apply saved training normalization</li><li>Run the trained CNN</li><li>Class scores and explanations</li></ol></div>
+  </div>
+  <span class="flow-arrow" aria-hidden="true">↓</span>
+  <div class="flow-node flow-wide flow-result"><small>OUTPUT</small>Charts, comparisons, history and reports</div>
+  <figcaption>Both paths use the supplied signal. The CNN classifies its selected 128-sample window.</figcaption>
+</figure>
+
+<p>Different parts of the software handle different responsibilities:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Software responsibilities"><table><caption>Software responsibilities</caption>
+<thead>
+<tr>
+<th scope="col">Part</th>
+<th scope="col">Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>React + TypeScript</td>
+<td>Forms, navigation, charts, loading states, and displaying results</td>
+</tr>
+<tr>
+<td>FastAPI backend</td>
+<td>Receives requests, validates inputs, and coordinates processing</td>
+</tr>
+<tr>
+<td>NumPy and DSP services</td>
+<td>Signal calculations and production CNN inference</td>
+</tr>
+<tr>
+<td>SQLite + managed files</td>
+<td>Persistent metadata, recordings, jobs, analyses, and reports</td>
+</tr>
+<tr>
+<td>Offline training scripts</td>
+<td>Train and evaluate experimental candidate models</td>
+</tr>
+<tr>
+<td>Three.js globe</td>
+<td>Educational satellite geometry and visualization</td>
+</tr>
+</tbody>
+</table></div>
+<p>The browser sends HTTP requests to the backend. The backend performs the scientific computation and returns results for the browser to display.</p>
+<p>The main entry point is <a href="https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/blob/main/backend/main.py" target="_blank" rel="noopener noreferrer">backend/main.py</a>.</p></div></section>
+<section class="chapter" id="classification" aria-labelledby="heading-classification"><div class="chapter-top"><span class="chapter-number">04</span><h2 id="heading-classification">Trace one classification</h2></div><div class="prose"><p><strong>Here is exactly what happens when someone clicks “Run CNN classification.”</strong></p>
+<ol>
+<li><strong>Read the capture.</strong> Samples come from an uploaded file, a saved example, or Satellite Studio.</li>
+<li><strong>Validate it.</strong> The backend checks channel layout, numeric values, sample count, and the selected offset.</li>
+<li><strong>Select 128 samples.</strong> A longer recording remains available, but one complete window goes into this classification.</li>
+<li><strong>Apply the saved normalization.</strong></li>
+<li><strong>Run the CNN using fixed trained weights.</strong></li>
+<li><strong>Return the predicted class, scores, timing, preprocessing details, and warnings.</strong></li>
+<li><strong>Save the analysis for later inspection and reporting.</strong></li>
+</ol>
+<p>The normalization is:</p>
+<div class="equation" role="math" aria-label="Model input equals the raw window minus the saved training mean, divided by the saved training standard deviation"><var>x</var><sub>model</sub> = <span class="fraction"><span><var>x</var><sub>window</sub> − μ<sub>training</sub></span><span>σ<sub>training</sub></span></span></div>
+
+<p>The saved mean and standard deviation come from <code>normalization_stats_all_snr.npz</code>.</p>
+<p>This matters because the model learned patterns at a particular input scale. Changing preprocessing can change its predictions. The application preserves the supplied amplitude and applies the recorded transform consistently.</p>
+<p>The contract is implemented in <a href="https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/blob/main/utils/preprocessing.py" target="_blank" rel="noopener noreferrer">preprocessing.py</a>, and classification is coordinated by <a href="https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/blob/main/backend/services/classifier.py" target="_blank" rel="noopener noreferrer">classifier.py</a>.</p>
+<p><strong>Clicking Classify performs inference: it uses existing weights. Training is a separate operation that changes candidate weights.</strong></p></div></section>
+<section class="chapter" id="cnn" aria-labelledby="heading-cnn"><div class="chapter-top"><span class="chapter-number">05</span><h2 id="heading-cnn">Look inside the CNN</h2></div><div class="prose"><p><strong>The production CNN learns patterns directly from the I/Q sequence.</strong></p>
+<p>Its input is a <code>128 × 2</code> array. The FFT and spectrogram help people inspect the signal; the production CNN receives the normalized I/Q samples themselves.</p>
+<p>Its actual architecture is:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Production CNN stages and output shapes"><table><caption>Production CNN stages and output shapes</caption>
+<thead>
+<tr>
+<th scope="col">Stage</th>
+<th scope="col">Output shape</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I/Q input</td>
+<td><code>128 × 2</code></td>
+</tr>
+<tr>
+<td>Conv1D: 32 filters, kernel 5 → ReLU → BatchNorm</td>
+<td><code>128 × 32</code></td>
+</tr>
+<tr>
+<td>Max pooling</td>
+<td><code>64 × 32</code></td>
+</tr>
+<tr>
+<td>Conv1D: 64 filters, kernel 5 → ReLU → BatchNorm</td>
+<td><code>64 × 64</code></td>
+</tr>
+<tr>
+<td>Max pooling</td>
+<td><code>32 × 64</code></td>
+</tr>
+<tr>
+<td>Conv1D: 96 filters, kernel 3 → ReLU → BatchNorm</td>
+<td><code>32 × 96</code></td>
+</tr>
+<tr>
+<td>Global average pooling</td>
+<td><code>96</code></td>
+</tr>
+<tr>
+<td>Dense layer with ReLU</td>
+<td><code>64</code></td>
+</tr>
+<tr>
+<td>Dense layer with softmax</td>
+<td><code>3</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>Explain those operations in plain language:</p>
+<ul>
+<li><strong>Convolution:</strong> slides learned detectors across time to recognize local patterns.</li>
+<li><strong>ReLU:</strong> adds nonlinear behavior so the network can learn more complex relationships.</li>
+<li><strong>Batch normalization:</strong> applies learned feature scaling using saved statistics during inference.</li>
+<li><strong>Pooling:</strong> compresses the internal feature sequence.</li>
+<li><strong>Global average pooling:</strong> summarizes each learned feature across time.</li>
+<li><strong>Dense layers:</strong> combine those features into three class scores.</li>
+<li><strong>Softmax:</strong> converts those scores into positive values that sum to one.</li>
+</ul>
+<p>The original model also has dropout layers for training. Dropout is inactive during inference.</p>
+<p>The default application runs this network through a <strong>NumPy implementation of the saved model</strong>. NumPy carries out the convolution, normalization, pooling, and matrix calculations using the learned weights. TensorFlow is therefore optional for normal production classification.</p>
+<p>See <a href="https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/blob/main/utils/model_backend.py" target="_blank" rel="noopener noreferrer">model_backend.py</a>.</p>
+<p><strong>A high softmax score expresses a strong preference among the three classes.</strong> Its relationship to real-world correctness has not been calibrated. An unsupported external signal can still receive a confident-looking classification.</p>
+<p>Entropy adds another view: it describes how concentrated or spread out the three scores are.</p></div></section>
+<section class="chapter" id="plots" aria-labelledby="heading-plots"><div class="chapter-top"><span class="chapter-number">06</span><h2 id="heading-plots">Read the scientific plots</h2></div><div class="prose"><p><strong>Signal processing helps explain what is present in the recording.</strong></p>
+<p>Each plot answers a different question:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Scientific plots and their questions"><table><caption>Scientific plots and their questions</caption>
+<thead>
+<tr>
+<th scope="col">View</th>
+<th scope="col">Question it helps answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I/Q waveform</td>
+<td>How do the sample values change over time?</td>
+</tr>
+<tr>
+<td>Constellation</td>
+<td>How are amplitude and phase distributed?</td>
+</tr>
+<tr>
+<td>FFT/spectrum</td>
+<td>Which frequency components are present?</td>
+</tr>
+<tr>
+<td>Power spectral density—PSD</td>
+<td>How is signal power distributed across frequency?</td>
+</tr>
+<tr>
+<td>Spectrogram</td>
+<td>How does frequency content change over time?</td>
+</tr>
+<tr>
+<td>Waterfall</td>
+<td>How can we inspect the time-frequency data spatially?</td>
+</tr>
+<tr>
+<td>Phase / instantaneous frequency</td>
+<td>How does the signal rotate or change frequency?</td>
+</tr>
+<tr>
+<td>Amplitude histogram</td>
+<td>Which magnitudes occur frequently?</td>
+</tr>
+<tr>
+<td>Eye diagram</td>
+<td>How do known symbol intervals overlap?</td>
+</tr>
+</tbody>
+</table></div>
+<p>Actual constellation plots can contain clouds and trajectories because of noise, filtering, timing, and channel effects. Ideal QPSK has four symbol states, but every oversampled received point need not sit exactly on one of those four locations.</p>
+<p>The sample clock also controls units. With a known clock, frequency can be shown in Hz. With an unknown clock, normalized frequency is appropriate.</p>
+<p>Power is generally expressed in <strong>relative sample units</strong> unless receiver calibration is supplied. An arbitrary recording alone does not uniquely reveal its noise power or true SNR.</p></div></section>
+<section class="chapter" id="studio" aria-labelledby="heading-studio"><div class="chapter-top"><span class="chapter-number">07</span><h2 id="heading-studio">Build a controlled signal</h2></div><div class="prose"><p><strong>Satellite Studio supplies controlled signals for experiments.</strong></p>
+<p>Studio supports nine generators:</p>
+<pre><code class="language-text">BPSK, QPSK, 8-PSK, 16-QAM, 32-QAM,
+16-APSK, 32-APSK, BFSK, GMSK
+</code></pre>
+<p>The <strong>generator supports nine schemes; the production CNN supports three classes</strong>. Keep those capabilities separate when presenting.</p>
+<p>Studio can apply:</p>
+<ul>
+<li>Noise, controlled through SNR.</li>
+<li>Doppler or carrier-frequency offset.</li>
+<li>Phase noise.</li>
+<li>Fading.</li>
+<li>Amplifier distortion.</li>
+<li>Explicit amplitude calibration.</li>
+</ul>
+<p>A simplified generation chain is:</p>
+<pre><code class="language-text">Bits → modulation and pulse shaping
+     → transmitter amplitude calibration
+     → amplifier distortion
+     → fading
+     → phase noise
+     → frequency offset
+     → noise
+     → selected output scaling
+</code></pre>
+<p>A random seed makes experiments reproducible. You can keep the underlying generated data consistent while changing a channel parameter.</p>
+<p>Because the simulator knows its separate clean and noise components, it can calculate a realized SNR. External recordings require independently supplied SNR information.</p>
+<p>The simulator definitions live in <a href="https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/blob/main/utils/signal_processing.py" target="_blank" rel="noopener noreferrer">signal_processing.py</a>.</p></div></section>
+<section class="chapter" id="workspaces" aria-labelledby="heading-workspaces"><div class="chapter-top"><span class="chapter-number">08</span><h2 id="heading-workspaces">Navigate all eight workspaces</h2></div><div class="prose"><p><strong>The eight pages organize these capabilities into a workflow.</strong></p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="The eight application workspaces"><table><caption>The eight application workspaces</caption>
+<thead>
+<tr>
+<th scope="col">Page</th>
+<th scope="col">How to explain it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Overview</strong></td>
+<td>The mission dashboard: service status, active capture information, classification results, and simulated satellite geometry</td>
+</tr>
+<tr>
+<td><strong>Live Classifier</strong></td>
+<td>Import or select a signal, choose a window, run the CNN, inspect scores and explanations</td>
+</tr>
+<tr>
+<td><strong>Satellite Studio</strong></td>
+<td>Generate controlled signals and channel impairments</td>
+</tr>
+<tr>
+<td><strong>Model Evaluation</strong></td>
+<td>Inspect stored evaluation evidence and evaluate available models on registered labeled datasets</td>
+</tr>
+<tr>
+<td><strong>Model Arena</strong></td>
+<td>Compare models using compatible evidence from the same dataset and test protocol</td>
+</tr>
+<tr>
+<td><strong>Signal Intelligence</strong></td>
+<td>Investigate signal properties and compare recordings or selected windows</td>
+</tr>
+<tr>
+<td><strong>Satellite Theory</strong></td>
+<td>Explore the equations and concepts behind the processing</td>
+</tr>
+<tr>
+<td><strong>Settings</strong></td>
+<td>Configure connectivity, access token, preferences, and default generation parameters</td>
+</tr>
+</tbody>
+</table></div>
+<p>The rotating Earth and spacecraft are <strong>educational simulations</strong>. Their geometry provides satellite context; it does not establish the origin of an uploaded recording.</p></div></section>
+<section class="chapter" id="research" aria-labelledby="heading-research"><div class="chapter-top"><span class="chapter-number">09</span><h2 id="heading-research">Make experiments repeatable</h2></div><div class="prose"><p><strong>The advanced workflows make the experiments repeatable.</strong></p>
+<p>A binary recording needs an instruction label. <strong>SigMF</strong> supplies metadata such as sample datatype, byte order, sample rate, channel count, timestamps, and annotations.</p>
+<p>For ambiguous inputs, the application requires explicit choices—for example, selecting a channel or specifying the zero level for unsigned samples. That prevents it from quietly applying the wrong interpretation.</p>
+<p>Large imports and batch classifications run as background jobs with progress and cancellation. Managed window reading avoids repeatedly loading an entire large recording.</p>
+<p>SQLite stores metadata and relationships; managed files store recordings and larger results. Saved reports retain identities such as:</p>
+<ul>
+<li>Capture and dataset hashes.</li>
+<li>Model version and artifact hash.</li>
+<li>Selected window.</li>
+<li>Preprocessing configuration.</li>
+<li>Actual predictions and metrics.</li>
+</ul>
+<p>A hash works like a fingerprint. It helps answer: <strong>“Did these two experiments actually use the same data and model?”</strong></p>
+<p>Signal Intelligence can compare two windows and save JSON/PDF reports. Sample-rate mismatches are explicit. Equal sample rates alone do not establish synchronized recording clocks or physical time alignment.</p></div></section>
+<section class="chapter" id="explainability" aria-labelledby="heading-explainability"><div class="chapter-top"><span class="chapter-number">10</span><h2 id="heading-explainability">Investigate a decision</h2></div><div class="prose"><p><strong>Explainability investigates the model’s decision.</strong></p>
+<p>The project implements two methods:</p>
+<ul>
+<li><strong>Saliency:</strong> measures how sensitive a selected class score is to small changes in each input sample.</li>
+<li><strong>Integrated Gradients:</strong> follows a path from a zero-raw-I/Q baseline to the actual input and accumulates contributions to the selected class score.</li>
+</ul>
+<aside class="clarification"><strong>Read the attribution units correctly.</strong> The selected score here is the pre-softmax class logit. Saliency gives local signed derivatives per raw sample unit. The baseline-relative positive/negative contribution interpretation below applies to Integrated Gradients. Their raw magnitudes have different units.</aside><p>The reports show signed I/Q contributions:</p>
+<ul>
+<li>Positive contributions increase the selected class score relative to the baseline.</li>
+<li>Negative contributions decrease it.</li>
+<li>An IG completeness residual checks how closely the summed contributions match the score difference.</li>
+</ul>
+<p>These describe the model’s behavior. Establishing physical causes requires additional signal experiments.</p>
+<p>The application preserves full attribution arrays in machine-readable exports and renders plots in technical PDFs.</p></div></section>
+<section class="chapter" id="training" aria-labelledby="heading-training"><div class="chapter-top"><span class="chapter-number">11</span><h2 id="heading-training">Train and compare candidates</h2></div><div class="prose"><p><strong>Training and evaluation are separate research workflows.</strong></p>
+<p>The supplied production model is already trained. Its complete original training data and split history were not supplied.</p>
+<p>The offline pipeline lets researchers train <strong>new candidates</strong> with controlled provenance:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="Training, validation and test responsibilities"><table><caption>Training, validation and test responsibilities</caption>
+<thead>
+<tr>
+<th scope="col">Split</th>
+<th scope="col">Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Training</td>
+<td>Fit model parameters and training normalization</td>
+</tr>
+<tr>
+<td>Validation</td>
+<td>Select settings, checkpoints, and supported calibration</td>
+</tr>
+<tr>
+<td>Test</td>
+<td>Measure the frozen candidate on held-out data</td>
+</tr>
+</tbody>
+</table></div>
+<p>A crucial rule is <strong>session separation</strong>. Adjacent windows from the same recording can be very similar. Putting related windows into both training and testing can make evaluation look better than genuine generalization.</p>
+<p>The registry-to-training bridge checks splits, duplicates, sessions, and known held-out provenance before exporting NPZ data and experiment configuration. Missing SNR remains explicitly unavailable.</p>
+<p>The project includes these model approaches:</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="The production and experimental model approaches"><table><caption>The production and experimental model approaches</caption>
+<thead>
+<tr>
+<th scope="col">Model</th>
+<th scope="col">Approach</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Production CNN</td>
+<td>Learns local patterns from I/Q sequences</td>
+</tr>
+<tr>
+<td>Experimental Random Forest</td>
+<td>Uses engineered statistical features and decision trees</td>
+</tr>
+<tr>
+<td>Experimental ResNet</td>
+<td>Uses convolution blocks with skip connections</td>
+</tr>
+<tr>
+<td>Experimental CLDNN</td>
+<td>Combines convolutional features with an LSTM for temporal relationships</td>
+</tr>
+</tbody>
+</table></div>
+<p>Here, <strong>RF model</strong> means Random Forest; <strong>RF recording</strong> means radio-frequency recording. Spell those out when teaching to avoid confusion.</p>
+<p>Experimental models use their own recorded preprocessing and runtime requirements. Their availability is shown honestly in the application.</p></div></section>
+<section class="chapter" id="evaluation" aria-labelledby="heading-evaluation"><div class="chapter-top"><span class="chapter-number">12</span><h2 id="heading-evaluation">Put accuracy in context</h2></div><div class="prose"><p><strong>When someone asks “How accurate is it?”, explain the evidence before the percentage.</strong></p>
+<p>The historical report contains 900 observations, with 652 correct predictions:</p>
+<div class="equation" role="math" aria-label="652 correct out of 900 observations is approximately 72.44 percent">652 ÷ 900 ≈ <strong>72.44%</strong></div>
+
+<p>That describes that stored evaluation. Independent performance on a new receiver, channel, or satellite dataset requires fresh labeled evaluation.</p>
+<p>The supplied 300-frame demo library is a separate subset with unknown split provenance. It cannot recreate the complete historical evaluation and is excluded from fitting.</p>
+<p>The project also contains genuine synthetic experiments. Comparisons are meaningful when models use the same held-out windows and protocol. Arena enforces those identities.</p>
+<p>Explain the main metrics this way:</p>
+<ul>
+<li><strong>Accuracy:</strong> how many predictions were correct overall?</li>
+<li><strong>Precision:</strong> when the model predicts a class, how often is it correct?</li>
+<li><strong>Recall:</strong> how many actual examples of that class did it find?</li>
+<li><strong>F1:</strong> how well does it balance precision and recall?</li>
+<li><strong>Confusion matrix:</strong> which classes are being confused?</li>
+</ul>
+<p>Automated tests verify parsing, calculations, model behavior, APIs, persistence, and browser workflows. Independent RF evaluation establishes how well the classifier generalizes to real acquisitions.</p></div></section>
+<section class="chapter" id="code" aria-labelledby="heading-code"><div class="chapter-top"><span class="chapter-number">13</span><h2 id="heading-code">Walk through the code</h2></div><div class="prose"><p><strong>For a code walkthrough, follow this reading order.</strong></p>
+<ol>
+<li><a href="https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/blob/main/frontend/src/pages/classifier.tsx" target="_blank" rel="noopener noreferrer">Classifier page</a> — what the user does.</li>
+<li><a href="https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/blob/main/frontend/src/lib/satmod-api.ts" target="_blank" rel="noopener noreferrer">Typed API client</a> — what the browser sends.</li>
+<li><a href="https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/blob/main/backend/main.py" target="_blank" rel="noopener noreferrer">FastAPI entry point</a> — how requests enter Python.</li>
+<li><a href="https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/blob/main/backend/services/classifier.py" target="_blank" rel="noopener noreferrer">Classification service</a> — how processing is coordinated.</li>
+<li><a href="https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/blob/main/utils/preprocessing.py" target="_blank" rel="noopener noreferrer">Preprocessing</a> and <a href="https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/blob/main/utils/model_backend.py" target="_blank" rel="noopener noreferrer">CNN engine</a> — how prediction happens.</li>
+<li><a href="https://github.com/rvit24bec005rvitm-dev/satellite-modulation-classification/blob/main/training/runner.py" target="_blank" rel="noopener noreferrer">Training runner</a> — how new candidates are trained and evaluated.</li>
+</ol></div></section>
+<section class="chapter" id="teach" aria-labelledby="heading-teach"><div class="chapter-top"><span class="chapter-number">14</span><h2 id="heading-teach">Teach the team</h2></div><div class="prose"><p><strong>For your junior demonstration, use this sequence:</strong></p>
+<ol>
+<li>Draw an I/Q arrow and the three ideal modulation patterns.</li>
+<li>Generate a seeded QPSK signal in Studio.</li>
+<li>Inspect its waveform, constellation, and spectrogram.</li>
+<li>Classify a complete 128-sample window.</li>
+<li>Reduce SNR and observe the changes without promising a particular prediction.</li>
+<li>Inspect a class explanation and export its report.</li>
+<li>Open history to show persistence.</li>
+<li>Finish in Arena by explaining why fair comparisons require identical test data.</li>
+</ol>
+<p>Then ask them three questions: <strong>What does one I/Q sample represent? What happens between clicking Classify and receiving a label? What evidence would justify trusting the model on a new recording?</strong></p><div class="quiz"><div class="panel-top"><div><span class="eyebrow">CHECK UNDERSTANDING</span><h3>Let the juniors explain it back.</h3></div></div><p>Try an answer before opening each explanation.</p><details><summary><span class="quiz-number">01</span>What does a single I/Q sample represent?</summary><p>One complex-signal observation: I is the horizontal component and Q the vertical component. Together they describe amplitude and phase at a sampling instant.</p></details><details><summary><span class="quiz-number">02</span>The simulator has nine schemes. How many classes does the production CNN recognize?</summary><p>Three: BPSK, QPSK and 16-QAM. Generator capability and classifier coverage are separate.</p></details><details><summary><span class="quiz-number">03</span>What does receiving a QPSK classification tell us about the payload?</summary><p>It identifies the predicted modulation family. Recovering the message additionally requires receiver synchronization, symbol recovery, framing and error correction.</p></details><details><summary><span class="quiz-number">04</span>How long is a 128-sample window at 8,000 samples per second?</summary><p>128 / 8,000 = 0.016 seconds, or 16 milliseconds. A physical duration requires a known sample clock.</p></details><details><summary><span class="quiz-number">05</span>Does a high softmax score establish real-world correctness?</summary><p>It expresses preference among the three learned classes. It is uncalibrated and can be high for an unsupported external signal.</p></details><details><summary><span class="quiz-number">06</span>Why keep related recording windows in the same data split?</summary><p>Neighboring windows can be very similar. Splitting related data across training and test can leak information and exaggerate generalization performance.</p></details></div></div></section>
+<footer class="footer"><span>SATMODCLASS / KNOWLEDGE TRANSFER<br>Complete explanation · Source links open GitHub</span><a href="#top">Back to the beginning ↑</a></footer></div></main>
+<div class="presentation-nav" aria-label="Presentation navigation"><button class="tool" id="prev-chapter" type="button" disabled>← Previous topic</button><button class="tool" id="next-chapter" type="button">Next topic →</button></div>
+<noscript><p style="padding:20px">All guide content and diagrams are available. Enable JavaScript for constellation switching, presentation controls, reading progress and copy/print buttons. Your browser’s Print command also works.</p></noscript>
+<script>
+(() => {
+ 'use strict';
+ const body=document.body, root=document.documentElement;
+ const sections=[...document.querySelectorAll('.chapter')];
+ const chapterLinks=[...document.querySelectorAll('.toc a')];
+ const menu=document.getElementById('menu-toggle'), rail=document.getElementById('chapter-rail'), main=document.getElementById('guide');
+ const mq=matchMedia('(max-width: 960px)');
+ let current=0, queued=false, printStates=null;
+ function setMenu(open,restore=true){
+   open=!!open&&mq.matches;
+   body.classList.toggle('drawer-open',open);menu.setAttribute('aria-expanded',String(open));
+   if(open){rail.setAttribute('role','dialog');rail.setAttribute('aria-modal','true');main.inert=true;document.getElementById('menu-close').focus();}
+   else{rail.removeAttribute('role');rail.removeAttribute('aria-modal');main.inert=false;if(restore&&mq.matches)menu.focus();}
+ }
+ menu.addEventListener('click',()=>setMenu(!body.classList.contains('drawer-open')));
+ document.getElementById('menu-close').addEventListener('click',()=>setMenu(false));
+ document.getElementById('backdrop').addEventListener('click',()=>setMenu(false));
+ mq.addEventListener('change',()=>setMenu(false,false));
+ chapterLinks.forEach(a=>a.addEventListener('click',()=>{if(mq.matches)setMenu(false,false);}));
+ document.addEventListener('keydown',event=>{
+   if(body.classList.contains('drawer-open')){
+     if(event.key==='Escape'){event.preventDefault();setMenu(false);}
+     if(event.key==='Tab'){
+       const nodes=[...rail.querySelectorAll('a[href],button')].filter(el=>el.getClientRects().length&&getComputedStyle(el).display!=='none');
+       const first=nodes[0],last=nodes[nodes.length-1];
+       if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
+       else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
+     }
+   }else if(event.key==='Escape'&&body.classList.contains('presentation'))setPresentation(false);
+ });
+ function updateReading(){
+   const max=document.documentElement.scrollHeight-innerHeight;
+   const percent=max>0?Math.max(0,Math.min(100,scrollY/max*100)):100;
+   document.getElementById('progress-fill').style.width=percent+'%';
+   document.getElementById('reading-progress').setAttribute('aria-valuenow',String(Math.round(percent)));
+   let next=0;sections.forEach((section,index)=>{if(section.getBoundingClientRect().top<165)next=index;});current=next;
+   chapterLinks.forEach((link,index)=>{if(index===current)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});
+   document.getElementById('chapter-position').textContent=String(current+1).padStart(2,'0')+' / '+sections.length;
+   document.getElementById('prev-chapter').disabled=current===0;document.getElementById('next-chapter').disabled=current===sections.length-1;
+   queued=false;
+ }
+ function requestUpdate(){if(!queued){queued=true;requestAnimationFrame(updateReading);}}
+ addEventListener('scroll',requestUpdate,{passive:true});addEventListener('resize',requestUpdate);
+ function setPresentation(enabled){body.classList.toggle('presentation',enabled);document.getElementById('presentation-toggle').setAttribute('aria-pressed',String(enabled));setMenu(false,false);requestUpdate();}
+ document.getElementById('presentation-toggle').addEventListener('click',()=>setPresentation(!body.classList.contains('presentation')));
+ function jump(offset){const next=Math.max(0,Math.min(sections.length-1,current+offset));sections[next].scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});}
+ document.getElementById('prev-chapter').addEventListener('click',()=>jump(-1));document.getElementById('next-chapter').addEventListener('click',()=>jump(1));
+ try{if(localStorage.getItem('satmod-teaching-theme')==='light')root.dataset.theme='light';}catch{}
+ const themeButton=document.getElementById('theme-toggle');
+ function labelTheme(){const light=root.dataset.theme==='light';themeButton.textContent=light?'Dark theme':'Light theme';themeButton.setAttribute('aria-label',light?'Switch to dark theme':'Switch to light theme');}
+ labelTheme();themeButton.addEventListener('click',()=>{root.dataset.theme=root.dataset.theme==='light'?'dark':'light';labelTheme();try{localStorage.setItem('satmod-teaching-theme',root.dataset.theme);}catch{}});
+ document.getElementById('copy-intro').addEventListener('click',async()=>{
+   const value=document.querySelector('#overview blockquote').textContent.trim(),status=document.getElementById('copy-status');
+   try{
+     if(navigator.clipboard&&isSecureContext)await navigator.clipboard.writeText(value);
+     else{const field=document.createElement('textarea');field.value=value;field.style.cssText='position:fixed;left:-9999px';body.append(field);field.select();const ok=document.execCommand('copy');field.remove();if(!ok)throw Error('Clipboard unavailable');document.getElementById('copy-intro').focus();}
+     status.textContent='Introduction copied.';
+   }catch{status.textContent='Select the introduction text to copy it manually.';}
+ });
+ const schemes={
+   'BPSK':{points:[[-1,0],[1,0]],description:'Two phase states. Each ideal symbol represents 1 bit.',alt:'Two ideal points on the I axis at minus one and plus one, representing two opposite phases.'},
+   'QPSK':{points:[[-1,-1],[-1,1],[1,-1],[1,1]].map(([i,q])=>[i/Math.sqrt(2),q/Math.sqrt(2)]),description:'Four phase states. Each ideal symbol represents 2 bits.',alt:'Four ideal symbol locations with two possible signs on each I and Q axis, at unit average symbol energy.'},
+   '16-QAM':{points:[-3,-1,1,3].flatMap(i=>[-3,-1,1,3].map(q=>[i/Math.sqrt(10),q/Math.sqrt(10)])),description:'Sixteen amplitude/phase combinations. Each ideal symbol represents 4 bits.',alt:'Sixteen ideal points in a four by four grid, normalized to unit average symbol energy.'}
+ };
+ document.querySelectorAll('[data-scheme]').forEach(button=>button.addEventListener('click',()=>{
+   const name=button.dataset.scheme,scheme=schemes[name],group=document.getElementById('const-points');
+   group.replaceChildren(...scheme.points.map(([i,q])=>{const circle=document.createElementNS('http://www.w3.org/2000/svg','circle');circle.setAttribute('cx',String(180+i*100));circle.setAttribute('cy',String(130-q*100));circle.setAttribute('r','6');return circle;}));
+   document.getElementById('scheme-name').textContent=name;document.getElementById('scheme-detail').textContent=scheme.description;document.getElementById('const-title').textContent='Ideal '+name+' constellation';document.getElementById('const-desc').textContent=scheme.alt;
+   document.querySelectorAll('[data-scheme]').forEach(el=>el.setAttribute('aria-pressed',String(el===button)));
+ }));
+ addEventListener('beforeprint',()=>{if(printStates)return;printStates=[...document.querySelectorAll('details')].map(el=>({el,open:el.open}));printStates.forEach(({el})=>{el.open=true;});});
+ addEventListener('afterprint',()=>{if(printStates){printStates.forEach(({el,open})=>{el.open=open;});printStates=null;}});
+ document.getElementById('print-guide').addEventListener('click',()=>window.print());
+ updateReading();
+})();
+</script>
+</body></html>

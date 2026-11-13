@@ -2,6 +2,12 @@
 
 A unified React + FastAPI application for classifying and inspecting complex baseband satellite signals. The React interface preserves the Lovable mission-control design. The supplied trained CNN recognizes **BPSK, QPSK, and 16-QAM only**. Streamlit remains available as a legacy reference.
 
+For a complete beginner-friendly project walkthrough, download and open
+[the standalone HTML teaching guide](docs/satmodclass-teaching-guide.html) in a
+browser. It includes all explanations, diagrams, eight tables, an interactive
+constellation, a code reading path, a junior demonstration and a self-check quiz.
+The guide works offline and includes presentation and print-to-PDF controls.
+
 ## Local installation
 
 Use Python 3.10+ (3.11 or 3.12 recommended), Node.js **22.12+**, and npm. TensorFlow is optional; normal application inference uses the supplied NumPy weights.
