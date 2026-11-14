@@ -1,0 +1,101 @@
+{
+  "reportVersion": "satmod-deployment-readiness-v1",
+  "scope": "Completed local college-project implementation and portable container verification. Cloud hosting was explicitly left aside; optional provider configuration was not provisioned and incurred no hosting spend.",
+  "baseCommit": "14347143eebeb81e0b2c0a913cccc580aaa6885e",
+  "sourceSha256": {
+    "Dockerfile": "0d2ea820ba625f950230a5b91ad24f560e77b16b8fea2c8db4016afbd5995796",
+    ".dockerignore": "3cb30f0a272fd168771ce98aa65740c2bdb240d746bea11d046fb603416d823e",
+    "render.yaml": "108f1223b4aabd67b6af0edd5801d8e5d4bbda3b1d9236ab8293791d8bcce24c",
+    "railway.toml": "548321e52c762b5d4c2dc4f5c4d9acb9f9f30e11e888e78a30eeafdc0c490ca5",
+    "backend/api/readiness.py": "d2d39bc54203f5a469b0fc372a42bd9561a84e127f0c1c8812d80863781b8f52",
+    "backend/services/deployment_readiness.py": "f3c9d47f17e45897ba278b75f217d9f2d68324411c6e09351b8afdff45247348",
+    "backend/services/deployment_entrypoint.py": "347093d505e1c105e36052dfc275844910b63b6f994cbc2a42d35cb0608cc072",
+    "backend/services/neural_numpy.py": "8dde8881d604068dba2a478df77658b17a0c86162470f63b8a5b443a9afc7243",
+    "backend/services/experiments.py": "ac1bcbe948ac1936cacda383bcca9432c5507ab80fd233799387ad259115da7a",
+    "tests/test_deployment_readiness.py": "4c0ba0992903d56d9452fca873b0a0ee893a8888f45b21552448b30fd46aa351",
+    "tests/test_neural_numpy.py": "ea855c3a852620f700d5dcbc97eb07968b6dc033dc68e2d59522697ad4952076"
+  },
+  "checks": {
+    "publicReadinessEndpoint": "/api/ready",
+    "legacyLivenessEndpoint": "/api/health",
+    "readyRequires": [
+      "supported declared single worker/replica configuration",
+      "nonempty valid ASCII workspace token in public mode",
+      "explicit absolute public storage directory",
+      "real temporary file write/fsync/rename/read with cleanup",
+      "SQLite no-row-change write transaction",
+      "actual bounded 128-sample production CNN forward pass"
+    ],
+    "anonymousProbeCacheSeconds": 2,
+    "cacheInvalidatesFor": "Token, path, worker, replica, port or launch-argument configuration changes",
+    "startupPreflight": "Always fresh; closes SQLite handles before replacing its process with explicit one-worker Uvicorn",
+    "readinessDoesNotProve": [
+      "Physical persistence of a writable mount; provider disk configuration and restart verification are still required",
+      "Discovery of undeclared extra replicas on unrelated disks",
+      "Independent RF accuracy or model calibration"
+    ],
+    "privateProbeRecovery": "Exact owned temporary filename pattern plus complete/partial known marker; unrelated files and committed recordings are preserved."
+  },
+  "validation": {
+    "focusedReadinessTests": 26,
+    "focusedNeuralTests": 22,
+    "result": "passed",
+    "logs": [
+      "integration/completion/deployment-readiness-final-tests.log",
+      "integration/completion/neural-numpy-tests.log",
+      "integration/completion/neural-numpy-integration-tests.log"
+    ],
+    "syntaxAndUndefinedNameLint": "passed",
+    "initialContainerProof": "integration/completion/docker-readiness.json",
+    "allFourModelApiAndResourceProof": "integration/completion/neural-numpy-container.json",
+    "finalReady2ContainerProof": "integration/completion/final-portable-container.json",
+    "fullInstalledPackageAuditProvenance": "integration/completion/thin-final-audit-provenance.json"
+  },
+  "providerConfiguration": {
+    "renderPlan": "0.5c-512mb",
+    "instances": 1,
+    "diskMount": "/data",
+    "diskGB": 2,
+    "runtimeUser": "Only /data mount ownership may be initialized as root. Non-symlink workspace children are created after supplementary-group/GID/UID drop. API UID10001; existing record files are never recursively chowned.",
+    "existingFileOwnership": "Never rewritten recursively; a restored workspace needs explicit correct ownership.",
+    "permanentHostingProvisioned": false,
+    "feesApprovedByThisWork": false,
+    "status": "Unused optional manual configuration; college-project delivery requires no cloud account.",
+    "workspaceDirectory": "/data/workspace",
+    "dockerExistingDefaultDirectory": "/data"
+  },
+  "runtimeProfiles": {
+    "default": {
+      "pythonImage": "python:3.14-slim",
+      "requirements": "requirements-web.txt",
+      "numpyProductionInference": true,
+      "registeredInferenceBackends": [
+        "Production NumPy CNN",
+        "scikit-learn Random Forest",
+        "NumPy exact fixed ResNet",
+        "NumPy exact fixed CLDNN"
+      ],
+      "tensorflowRequired": false
+    },
+    "optional": {
+      "pythonImage": "python:3.12-slim",
+      "requirements": "requirements-neural.txt",
+      "availability": "Independent current Linux TensorFlow CPU2.21 verification profile passed original CNN/neural vector replay and full installed-package audit after pip26.3 remediation. It is not required for the college application."
+    }
+  },
+  "officialProviderSources": [
+    "https://render.com/docs/disks",
+    "https://render.com/docs/compute-plans",
+    "https://render.com/docs/blueprint-spec",
+    "https://render.com/docs/docker",
+    "https://docs.railway.com/volumes/reference"
+  ],
+  "finalImageId": "sha256:6fd7d20feb0ca2c543c5cdcb7df200528d019b70c38e28861fd7a56b59bcd16d",
+  "allFourMemoryObservation": {
+    "containerLimitBytes": 536870912,
+    "cpuLimit": 0.5,
+    "serverPeakRssBytes": 212021248,
+    "scope": "Four genuine three-frame API evaluations and matched comparison; all360 independent reference vectors per neural model passed in the same512MiB Linux container. This is an executed workload observation, not a universal capacity guarantee.",
+    "evidence": "integration/completion/neural-numpy-container.json"
+  }
+}

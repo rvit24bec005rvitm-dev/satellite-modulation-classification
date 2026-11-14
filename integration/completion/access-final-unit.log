@@ -1,0 +1,16 @@
+
+> satmodclass-frontend@1.0.0 pretest
+> node scripts/generate-routes.mjs
+
+
+> satmodclass-frontend@1.0.0 test
+> vitest run src/test/workspace-access.test.tsx
+
+
+ RUN  v4.1.12 /Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/frontend
+
+
+ Test Files  1 passed (1)
+      Tests  6 passed (6)
+   Start at  00:12:10
+   Duration  3.69s (transform 205ms, setup 207ms, import 756ms, tests 433ms, environment 914ms)

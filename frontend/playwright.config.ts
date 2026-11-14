@@ -1,4 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
+import { randomUUID } from "node:crypto";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 const python =
   process.env["SATMOD_PYTHON"] ??
   (process.platform === "win32" ? "..\\.venv\\Scripts\\python.exe" : "../.venv/bin/python");
@@ -15,7 +18,11 @@ const backendServer = {
   url: `${apiURL}/api/health`,
   reuseExistingServer: !process.env["CI"],
   timeout: 60000,
-  env: { SATMOD_SERVE_FRONTEND: production ? "1" : "0" },
+  env: {
+    SATMOD_SERVE_FRONTEND: production ? "1" : "0",
+    SATMOD_DATA_DIR:
+      process.env["SATMOD_TEST_DATA_DIR"] ?? join(tmpdir(), "satmod-browser-" + randomUUID()),
+  },
 };
 export default defineConfig({
   testDir: "./e2e",

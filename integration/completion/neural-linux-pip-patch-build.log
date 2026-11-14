@@ -1,0 +1,46 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from neural-oracle-patched.Dockerfile
+#1 transferring dockerfile: 211B 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/satmodclass:neural-oracle
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 311B done
+#3 DONE 0.0s
+
+#4 [1/2] FROM docker.io/library/satmodclass:neural-oracle@sha256:1278a12db77c47599386161f2663c4f10ed5813c1ccc326b9c764d034aaa47ff
+#4 resolve docker.io/library/satmodclass:neural-oracle@sha256:1278a12db77c47599386161f2663c4f10ed5813c1ccc326b9c764d034aaa47ff 0.1s done
+#4 DONE 0.2s
+
+#4 [1/2] FROM docker.io/library/satmodclass:neural-oracle@sha256:1278a12db77c47599386161f2663c4f10ed5813c1ccc326b9c764d034aaa47ff
+#4 DONE 0.6s
+
+#5 [2/2] RUN python -m pip install --no-cache-dir --upgrade --index-url https://pypi.org/simple pip==26.3
+#5 10.35 Collecting pip==26.3
+#5 10.48   Downloading pip-26.3-py3-none-any.whl.metadata (4.6 kB)
+#5 10.52 Downloading pip-26.3-py3-none-any.whl (2.0 MB)
+#5 10.64    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 28.4 MB/s eta 0:00:00
+#5 10.99 Installing collected packages: pip
+#5 11.02   Attempting uninstall: pip
+#5 11.03     Found existing installation: pip 25.0.1
+#5 11.40     Uninstalling pip-25.0.1:
+#5 12.21       Successfully uninstalled pip-25.0.1
+#5 15.94 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#5 15.94 Successfully installed pip-26.3
+#5 DONE 16.7s
+
+#6 exporting to image
+#6 exporting layers
+#6 exporting layers 1.9s done
+#6 exporting manifest sha256:abd39181f47b6f008f3f29c8eb5475075314f52a6a07d3897ed2c50f150c3ce8 0.0s done
+#6 exporting config sha256:fd06f7a0f962171b66cc5ba6b1e95da288e56bc9bda86d1c47f2bbf8f9cc1a06 0.1s done
+#6 exporting attestation manifest sha256:b6e7b1880d5fd360dc41a8f426d8f572034c6505d70b4bdbf1856b1861694376 0.1s done
+#6 exporting manifest list sha256:e4301c4429f9715a27efeb8372b51e37c8e96f9e1f19f8c5e5eb825bf9c721ba
+#6 exporting manifest list sha256:e4301c4429f9715a27efeb8372b51e37c8e96f9e1f19f8c5e5eb825bf9c721ba 0.1s done
+#6 naming to docker.io/library/satmodclass:neural-oracle-audited 0.0s done
+#6 unpacking to docker.io/library/satmodclass:neural-oracle-audited
+#6 unpacking to docker.io/library/satmodclass:neural-oracle-audited 0.8s done
+#6 DONE 3.4s

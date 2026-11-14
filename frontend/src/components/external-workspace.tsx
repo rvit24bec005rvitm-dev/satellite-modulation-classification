@@ -71,17 +71,6 @@ export function ExternalWorkspace() {
       ["completed", "failed", "cancelled"].includes(query.state.data?.state ?? "") ? false : 1000,
   });
   const active = selectedJob.data ?? jobs.data?.items.find((j) => j.id === job?.id) ?? job;
-  useEffect(() => {
-    if (active?.kind === "capture-import" && active.state === "completed" && active.captureId) {
-      selectionGeneration.current += 1;
-      setSelected(active.captureId);
-      setCaptureSearch("");
-      setCaptureOffset(0);
-      setStart(0);
-      void cache.invalidateQueries({ queryKey: ["managed-captures"] });
-      void cache.invalidateQueries({ queryKey: ["comparison-captures"] });
-    }
-  }, [active?.id, active?.kind, active?.state, active?.captureId, cache]);
   const timeline = useQuery({
     queryKey: ["batch-result", active?.id, page],
     queryFn: () => operationsApi.result(active!.id, page),
@@ -109,7 +98,7 @@ export function ExternalWorkspace() {
           sampleCount: sourceLength ? Number(sourceLength) : null,
           license,
         },
-        metadata,
+        format === "sigmf" ? metadata : undefined,
       );
     },
     onSuccess: (j) => {
@@ -159,6 +148,29 @@ export function ExternalWorkspace() {
   });
   const domain = useMutation({ mutationFn: () => operationsApi.domain(selected, start) });
   const activity = useMutation({ mutationFn: () => operationsApi.activity(selected, threshold) });
+  const resetClassification = classify.reset;
+  const resetInspection = inspect.reset;
+  const resetDiagnostics = diagnostics.reset;
+  const resetDomain = domain.reset;
+  const resetActivity = activity.reset;
+  useEffect(() => {
+    if (active?.kind === "capture-import" && active.state === "completed" && active.captureId) {
+      selectionGeneration.current += 1;
+      setSelected(active.captureId);
+      setCaptureSearch("");
+      setCaptureOffset(0);
+      setStart(0);
+      setError(null);
+      resetClassification();
+      resetInspection();
+      resetDiagnostics();
+      resetDomain();
+      resetActivity();
+      void cache.invalidateQueries({ queryKey: ["managed-captures"] });
+      void cache.invalidateQueries({ queryKey: ["comparison-captures"] });
+    }
+  }, [active?.id, active?.kind, active?.state, active?.captureId, cache,
+    resetClassification, resetInspection, resetDiagnostics, resetDomain, resetActivity]);
   const act = async (fn: () => Promise<unknown>) => {
     setError(null);
     try {
@@ -823,7 +835,7 @@ export function ExternalWorkspace() {
                   </tbody>
                 </table>
               </div>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <Button disabled={page === 0} onClick={() => setPage(Math.max(0, page - 200))}>
                   Previous prediction page
                 </Button>

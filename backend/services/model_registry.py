@@ -158,4 +158,4 @@ for _run,_name in [('resnet-synthetic-v1','ResNet'),('cldnn-synthetic-v1','CLDNN
                                  parameter_count=_metadata.get('parameterCounts',{}).get('total'),
                                  preprocessing_metadata=_metadata['normalization'],
                                  evaluation_kind='held-out-synthetic-experiment',
-                                 training_metadata={'status':'trained-experimental','reason':'Real checkpoint from an eight-epoch bounded synthetic experiment; requires optional TensorFlow for online inference. Not validated on original-domain independent satellite data.'}))
+                                 training_metadata={'status':'trained-experimental','reason':'Real checkpoint from an eight-epoch bounded synthetic experiment; fixed-architecture NumPy inference uses its original hash-verified weights. Not validated on original-domain independent satellite data.'}))

@@ -1,0 +1,11 @@
+Started UTC: 2026-11-14T18:58:39.329154+00:00
+Command: [".venv-neural-audit-tools/bin/python", "-m", "pip_audit", "--strict", "--progress-spinner", "off", "--format", "json", "--requirement", "requirements-web.txt"]
+Tool: pip-audit 2.10.1
+Audit interpreter: 3.12.16 Darwin x86_64
+Orchestrator Python: 3.14.7
+Platform: Darwin x86_64
+Requirements SHA256 before/after: 8a33faa5a730f20b668371d905cd20c7e736b62488e15b6e5605aa3d2f3ad9b8 / 8a33faa5a730f20b668371d905cd20c7e736b62488e15b6e5605aa3d2f3ad9b8
+Elapsed seconds: 33.06
+Exit code: 0
+
+No known vulnerabilities found

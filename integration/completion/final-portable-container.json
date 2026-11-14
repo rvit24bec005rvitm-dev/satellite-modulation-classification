@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "satmod-final-portable-container-v1",
+  "scope": "Final local college-project image, frozen READY2 frontend source, one process, private synthetic fixture and disposable named volume; no cloud hosting or paid resources.",
+  "passed": true,
+  "tokenLogged": false,
+  "imageId": "sha256:6fd7d20feb0ca2c543c5cdcb7df200528d019b70c38e28861fd7a56b59bcd16d",
+  "runtime": {
+    "uid": "10001\t10001\t10001\t10001",
+    "workspaceUid": 10001,
+    "pip": "26.3",
+    "tensorflowInstalled": false
+  },
+  "operatorBackupCliHelp": true,
+  "models": [
+    {
+      "id": "1d-cnn",
+      "backend": "NumPy Native Engine"
+    },
+    {
+      "id": "rf-experimental",
+      "backend": "scikit-learn Random Forest \u2014 synthetic experiment"
+    },
+    {
+      "id": "resnet-synthetic-v1",
+      "backend": "NumPy exact ResNet \u2014 published synthetic checkpoint"
+    },
+    {
+      "id": "cldnn-synthetic-v1",
+      "backend": "NumPy exact CLDNN \u2014 published synthetic checkpoint"
+    }
+  ],
+  "anonymousProtection": 401,
+  "childWorkspaceRestartPersistence": true,
+  "unchangedJsonAndPdfAfterRecreation": true,
+  "ownedContainersAndVolumeRemoved": true
+}

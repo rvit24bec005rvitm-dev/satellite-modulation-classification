@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useSignal, useHealth, useInfo, useModels } from "@/hooks/use-satmod";
-import { apiBase } from "@/lib/satmod-api";
+import { apiBase, satmodApi } from "@/lib/satmod-api";
 import { Button } from "@/components/ui/button";
 import { Surface, SectionHeading, Field, NumberField, Message } from "@/components/workspace-ui";
 export function SettingsPage() {
@@ -13,6 +13,33 @@ export function SettingsPage() {
   const client = useQueryClient();
   const [url, setUrl] = useState(apiBase);
   const [error, setError] = useState<Error | null>(null);
+  const [workspaceToken, setWorkspaceToken] = useState(
+    () => sessionStorage.getItem("satmod-access-token:" + apiBase()) ?? "",
+  );
+  const [tokenError, setTokenError] = useState<Error | null>(null);
+  const [tokenBusy, setTokenBusy] = useState(false);
+  const tokenVerification = useRef<AbortController | null>(null);
+  useEffect(() => () => tokenVerification.current?.abort(), []);
+  const saveToken = async () => {
+    const key = "satmod-access-token:" + apiBase();
+    setTokenError(null);
+    setTokenBusy(true);
+    tokenVerification.current?.abort();
+    const controller = new AbortController();
+    tokenVerification.current = controller;
+    try {
+      await satmodApi.session(controller.signal, workspaceToken);
+      if (controller.signal.aborted) return;
+      sessionStorage.setItem(key, workspaceToken);
+      void client.invalidateQueries();
+      toast.success("Workspace access verified");
+    } catch (reason) {
+      if (controller.signal.aborted) return;
+      setTokenError(reason as Error);
+    } finally {
+      if (!controller.signal.aborted) setTokenBusy(false);
+    }
+  };
   const save = () => {
     try {
       const trimmed = url.trim().replace(/\/$/, "");
@@ -80,13 +107,15 @@ export function SettingsPage() {
             className="control"
             type="password"
             autoComplete="off"
-            defaultValue={sessionStorage.getItem("satmod-access-token:" + apiBase()) ?? ""}
-            onChange={(e) => {
-              sessionStorage.setItem("satmod-access-token:" + apiBase(), e.target.value);
-              void client.invalidateQueries();
-            }}
+            value={workspaceToken}
+            disabled={tokenBusy}
+            onChange={(e) => setWorkspaceToken(e.target.value)}
           />
         </Field>
+        <Button variant="outline" disabled={tokenBusy} onClick={() => void saveToken()}>
+          {tokenBusy ? "Verifying access…" : "Verify workspace token"}
+        </Button>
+        <Message error={tokenError} />
         <SectionHeading title="Workspace preferences" note="LOCAL TO THIS BROWSER" />
         <Field label="Theme">
           <select

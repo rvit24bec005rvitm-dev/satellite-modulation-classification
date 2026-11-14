@@ -3,7 +3,11 @@ builder = "DOCKERFILE"
 dockerfilePath = "Dockerfile"
 
 [deploy]
-healthcheckPath = "/api/health"
+healthcheckPath = "/api/ready"
 healthcheckTimeout = 300
+numReplicas = 1
+# Attach a persistent /data volume and set SATMOD_ACCESS_TOKEN in the service.
+# For Railway's root-owned volume, RAILWAY_RUN_UID=0 permits the image entrypoint
+# to initialize only the mount directory, then drop to UID 10001 before serving.
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 3

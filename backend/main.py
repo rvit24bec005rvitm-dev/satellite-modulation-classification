@@ -30,12 +30,13 @@ class WorkspaceAccess:
     def __init__(self,app):self.app=app
     async def __call__(self,scope,receive,send):
         import os,hmac
-        if scope['type']=='http' and scope['path'].startswith('/api/') and scope['path']!='/api/health' and scope['method']!='OPTIONS':
+        if scope['type']=='http' and scope['path'].startswith('/api/') and scope['path'] not in ['/api/health','/api/ready','/api/access'] and scope['method']!='OPTIONS':
             expected=os.getenv('SATMOD_ACCESS_TOKEN','')
-            supplied=dict(scope.get('headers',[])).get(b'x-satmod-token',b'').decode('latin1')
-            if os.getenv('SATMOD_PUBLIC')=='1' and not expected:
+            supplied=dict(scope.get('headers',[])).get(b'x-satmod-token',b'')
+            from backend.services.deployment_readiness import access_ready
+            if not access_ready():
                 return await JSONResponse(status_code=503,content={'detail':'Public workspace access is not configured.'})(scope,receive,send)
-            if expected and not hmac.compare_digest(supplied,expected):
+            if expected and not hmac.compare_digest(supplied,expected.encode('ascii')):
                 return await JSONResponse(status_code=401,content={'detail':'Workspace access token required. Configure it in Settings.'})(scope,receive,send)
         await self.app(scope,receive,send)
 
@@ -149,6 +150,9 @@ async def log_request(request: Request, call_next):
     t0 = perf_counter()
     response = await call_next(request)
     response.headers['X-Request-ID']=request_id
+    response.headers['X-Content-Type-Options']='nosniff'
+    if request.url.path.startswith('/api/'):
+        response.headers['Cache-Control']='no-store'
     logger.info(json.dumps({'event':'request','requestId':request_id,'method':request.method,'path':request.url.path,'status':response.status_code,'elapsedMs':round((perf_counter()-t0)*1000,2)}))
     return response
 
@@ -323,6 +327,10 @@ app.include_router(research_models_router)
 app.include_router(research_reports_router)
 from backend.api.visualization import router as visualization_router
 app.include_router(visualization_router)
+from backend.api.readiness import router as readiness_router
+app.include_router(readiness_router)
+from backend.api.access import router as access_router
+app.include_router(access_router)
 
 # Optional single-origin production hosting after `npm run build`.
 import os

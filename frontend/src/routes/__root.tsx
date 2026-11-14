@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createRootRouteWithContext, Link, Outlet } from "@tanstack/react-router";
 import { Toaster } from "sonner";
 import { SignalProvider } from "@/hooks/use-satmod";
+import { WorkspaceAccess } from "@/components/workspace-access";
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   component: Root,
   notFoundComponent: () => (
@@ -24,10 +25,18 @@ function Root() {
   const { queryClient } = Route.useRouteContext();
   return (
     <QueryClientProvider client={queryClient}>
-      <SignalProvider>
-        <Outlet />
-        <Toaster richColors position="bottom-right" />
-      </SignalProvider>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:bg-card focus:p-3 focus:text-primary"
+      >
+        Skip to workspace content
+      </a>
+      <WorkspaceAccess>
+        <SignalProvider>
+          <Outlet />
+          <Toaster richColors position="bottom-right" />
+        </SignalProvider>
+      </WorkspaceAccess>
     </QueryClientProvider>
   );
 }

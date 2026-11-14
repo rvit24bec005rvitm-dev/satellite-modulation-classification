@@ -1,5 +1,6 @@
 import {
   apiBase,
+  notifyWorkspaceUnauthorized,
   request,
   downloadBlob,
   type AttributionResult,
@@ -268,6 +269,7 @@ export async function researchDownload(path: string, filename: string) {
     signal: AbortSignal.timeout(60000),
   });
   if (!response.ok) {
+    notifyWorkspaceUnauthorized(response.status);
     let detail = `Export failed: HTTP ${response.status}`;
     try {
       detail = (await response.json()).detail ?? detail;

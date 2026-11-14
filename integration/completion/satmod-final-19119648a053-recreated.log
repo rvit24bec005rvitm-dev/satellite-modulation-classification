@@ -1,0 +1,10 @@
+INFO:     172.17.0.1:62382 - "GET /api/ready HTTP/1.1" 200 OK
+INFO:     172.17.0.1:62388 - "GET /api/workspace/history/474bc018-37b4-4eb6-aae4-acdaba6a07a2/report HTTP/1.1" 200 OK
+INFO:     172.17.0.1:62396 - "GET /api/workspace/history/474bc018-37b4-4eb6-aae4-acdaba6a07a2/report?format=pdf HTTP/1.1" 200 OK
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+{"event": "request", "requestId": "f64f6260-d682-4565-916f-c6fa1c5c1990", "method": "GET", "path": "/api/ready", "status": 200, "elapsedMs": 188.62}
+{"event": "request", "requestId": "92d1110d-73ac-4d2e-81d4-956e2136cb05", "method": "GET", "path": "/api/workspace/history/474bc018-37b4-4eb6-aae4-acdaba6a07a2/report", "status": 200, "elapsedMs": 7.26}
+{"event": "request", "requestId": "f50f0805-eb73-478a-870a-9be7cd9fb377", "method": "GET", "path": "/api/workspace/history/474bc018-37b4-4eb6-aae4-acdaba6a07a2/report", "status": 200, "elapsedMs": 176.17}

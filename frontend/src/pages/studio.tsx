@@ -6,6 +6,7 @@ import {
   downloadCapture,
   downloadBlob,
   apiBase,
+  notifyWorkspaceUnauthorized,
   type SignalGenerationRequest,
   type GeneratedSignal,
 } from "@/lib/satmod-api";
@@ -97,6 +98,7 @@ export function StudioPage() {
         }),
       });
       if (!r.ok) {
+        notifyWorkspaceUnauthorized(r.status);
         const detail = (await r.json().catch(() => null)) as { detail?: unknown } | null;
         throw new Error(
           typeof detail?.detail === "string"

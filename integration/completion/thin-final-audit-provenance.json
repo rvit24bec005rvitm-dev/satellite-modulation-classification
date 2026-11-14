@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "satmod-final-thin-installed-audit-v1",
+  "auditedImage": "sha256:17629eb67cdc2438cda8eda048af6888c65e677e283af93a03e1e416c43879db linux amd64 171001554",
+  "finalImage": "sha256:6fd7d20feb0ca2c543c5cdcb7df200528d019b70c38e28861fd7a56b59bcd16d linux amd64 171001676",
+  "auditedFreeze": "thin-installed-requirements.txt",
+  "finalFreeze": "thin-final-installed-requirements.txt",
+  "freezeSha256": "c6a45abbdc36512c8b0639c2f129db21c44a1e29da4cd5e724fd93a748ef1c00",
+  "packageFreezesByteIdentical": true,
+  "audit": "thin-installed-audit.json",
+  "auditSha256": "42fdf0e35d59c54ed632c188ab86703891527dfad2c5a3bfeca60aeaa307e1a1",
+  "installedPackages": 33,
+  "knownVulnerabilities": 0,
+  "skippedPackages": 0,
+  "pipVersion": "26.3",
+  "scope": "Final UI/backend image has byte-identical installed dependencies to the complete audited candidate; no dependency changes between images."
+}

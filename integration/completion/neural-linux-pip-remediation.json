@@ -1,0 +1,14 @@
+{
+  "baseImage": "satmodclass:neural-oracle",
+  "patchedImage": "satmodclass:neural-oracle-audited",
+  "patchedImageIdentity": "sha256:e4301c4429f9715a27efeb8372b51e37c8e96f9e1f19f8c5e5eb825bf9c721ba linux amd64 498351588",
+  "changedFrom": [
+    "pip==25.0.1"
+  ],
+  "changedTo": [
+    "pip==26.3"
+  ],
+  "allOtherInstalledPackagesUnchanged": true,
+  "independentModelVerification": "neural-linux-verification.json",
+  "scope": "Only the installer changed; Python, TensorFlow, model checkpoints, preprocessing and API/ML dependencies are unchanged."
+}

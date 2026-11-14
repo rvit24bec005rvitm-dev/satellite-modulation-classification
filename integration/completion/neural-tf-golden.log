@@ -1,0 +1,3 @@
+resnet-synthetic-v1 direct TensorFlow vectors: 360 original stored probability error: 0.0
+cldnn-synthetic-v1 direct TensorFlow vectors: 360 original stored probability error: 0.0
+{"output": "integration/completion/neural-tf-golden.npz", "sha256": "bf29443193b42c6d7b78ded35360aae2923f6f1dd6cd75a61467735d3044d7a4"}

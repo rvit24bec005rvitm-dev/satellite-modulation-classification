@@ -8,16 +8,22 @@ browser. It includes all explanations, diagrams, eight tables, an interactive
 constellation, a code reading path, a junior demonstration and a self-check quiz.
 The guide works offline and includes presentation and print-to-PDF controls.
 
+The finished college-project submission runs locally without a hosting account. Follow
+[the college demonstration guide](docs/college-demo.md) for setup, a viva-ready
+architecture explanation, a short live demonstration and the evidence to present.
+The supplied CNN and three separately labeled experimental models use real saved
+weights; generated signals and simulated satellites are clearly identified.
+
 ## Local installation
 
-Use Python 3.10+ (3.11 or 3.12 recommended), Node.js **22.12+**, and npm. TensorFlow is optional; normal application inference uses the supplied NumPy weights.
+Use Python **3.12–3.14** for the pinned application runtime, Node.js **22.12+**, and npm. TensorFlow is optional; normal application inference uses the supplied weights through NumPy/scikit-learn. The broader development test matrix also covers older Python versions with compatible dependencies.
 
 From this repository:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements-dev.txt
+python -m pip install -r requirements-web.txt -r requirements-dev.txt
 cp .env.example .env
 cd frontend
 npm install
@@ -32,7 +38,7 @@ Windows PowerShell uses:
 ```powershell
 py -m venv .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements-dev.txt
+python -m pip install -r requirements-web.txt -r requirements-dev.txt
 Copy-Item .env.example .env
 cd frontend
 npm install
@@ -62,16 +68,20 @@ cd ..
 python scripts/serve.py
 ```
 
-This serves the compiled frontend and API together at **http://localhost:8000**. All eight frontend routes have a SPA fallback. Frontend hosting elsewhere must provide a history fallback and a backend URL. The development interface and API are intended for a trusted local environment; authentication and multi-user storage are not included.
+This serves the compiled frontend and API together at **http://localhost:8000**. All eight frontend routes have a SPA fallback. Frontend hosting elsewhere must provide a history fallback and a backend URL. Local development needs no token by default. Public hosting requires `SATMOD_PUBLIC=1`, an explicit absolute `SATMOD_DATA_DIR`, and a private `SATMOD_ACCESS_TOKEN`. The browser verifies that token before opening the shared operator workspace, keeps it in tab-scoped session storage, and clears private state when locked. This is one shared workspace, with no per-user accounts or isolated tenants.
 
-For deployment, the multi-stage Docker image builds React and serves it alongside the real NumPy/FastAPI API. It includes the supplied model, normalization statistics, evaluation files, demo data and experimental reports. Python web dependencies are pinned in `requirements-web.txt`; TensorFlow and legacy Streamlit are not needed for production CNN inference.
+For deployment, the multi-stage Docker image builds React and serves it alongside the real NumPy/FastAPI API. It includes the supplied model, normalization statistics, evaluation files, demo data and experimental reports. Python web dependencies are pinned in `requirements-web.txt`; all four registered trained models run without TensorFlow. The synthetic RF, ResNet and CLDNN remain separately identified experiments, with their original weights and research limitations.
 
 ```bash
 docker build -t satmodclass .
-docker run --rm -p 8000:8000 satmodclass
+docker volume create satmod-data
+# Set/export your private SATMOD_ACCESS_TOKEN before running this command.
+docker run -d --name satmodclass -p 8000:8000 -e SATMOD_ACCESS_TOKEN --mount type=volume,src=satmod-data,dst=/data satmodclass
 ```
 
-The service listens on `0.0.0.0` and the host-provided `PORT` (default 8000). `/api/health` verifies the actual CNN and normalization files. `railway.toml` and `render.yaml` configure Docker builds and health checks; connecting the repository to a hosting account is still required. After deployment, use the HTTPS URL returned by that provider and verify `/api/health` plus a real classification. A GitHub commit or temporary tunnel does not establish a permanent production deployment.
+The service listens on `0.0.0.0` and the host-provided `PORT` (default 8000). `/api/health` checks the supplied CNN; `/api/ready` additionally checks access configuration, single-process settings, writable SQLite/files and a real forward pass. Startup fails closed on invalid public configuration. Exactly one worker and one service instance are supported by the local job queue and SQLite workspace.
+
+Hosting is optional for the college project. `render.yaml` prepares a paid 512 MiB service on **main**, a 2 GB persistent disk mounted at `/data`, workspace data at `/data/workspace`, and `/api/ready` health checks. The service runs as UID 10001 after bounded mount initialization. No hosting account is needed for the local demonstration and no cloud service has been provisioned. See [the optional deployment and recovery runbook](docs/deployment.md) and [the final project evidence](integration/completion/REPORT.md). `railway.toml` remains an alternative configuration.
 
 The Overview includes an interactive, continuously rotating Earth with a restrained procedural galaxy, seeded stars and decorative constellation links. Earth stays the primary illuminated subject; the star patterns are scenery, not an astronomical catalog. Globe pause, reduced-motion preferences and hidden-tab handling also stop background drift.
 
@@ -144,6 +154,9 @@ The generator now uses true continuous-phase BFSK/GMSK instead of BPSK aliases, 
 | Method | Endpoint | Purpose |
 | --- | --- | --- |
 | GET | `/api/health` | Load/check model and training stats; 503 on failure |
+| GET | `/api/ready` | Public deployment readiness; 503 for invalid access/storage/process configuration |
+| GET | `/api/access` | Public access requirements, without credentials or workspace contents |
+| GET | `/api/session` | Verify the supplied workspace token |
 | GET | `/api/system/info` | Model contract, app metadata, limits |
 | GET | `/api/models` | Actual model registry and parameter counts |
 | POST | `/api/classify` | JSON I/Q classification with optional window offset |
@@ -162,7 +175,7 @@ The generator now uses true continuous-phase BFSK/GMSK instead of BPSK aliases, 
 | GET | `/api/constellations` | Shared unit-energy transmitter symbol tables |
 | GET | `/api/evaluation/diagnostics` | Fresh descriptive 300-frame demo diagnostics; no fitting |
 | GET | `/api/experiments` | Published actual experimental reports and matched-test evidence |
-| GET | `/api/history` | Most recent 100 classifications, in memory |
+| GET | `/api/history` | Recent classification history from the managed workspace |
 | GET | `/api/orbit` | Approximate educational orbital-pass geometry |
 
 Request schemas, bounds, and response details are available through `/docs`. Bodies are bounded before parsing, including chunked requests. File decompression and array dimensions are checked before materializing uploaded captures. Model loading is cached, inference is serialized where required, CORS is configurable, and request logs include method/path/status/timing without capture contents.
@@ -218,7 +231,7 @@ Keras CNN, residual CNN and CLDNN (convolutions → dense per time step → LSTM
 
 Completed synthetic RF runs are in `experiments/runs/rf-control-v1` and `rf-awgn-v1`, using 1,800 frames from 300 independent seeded sessions and an identical 360-frame test partition. The control RF measured **66.94%**, AWGN-augmented RF **66.67%**, and the unchanged CNN **65.83% on that same synthetic test**. At −6 dB, augmentation improved RF accuracy from 48.33% to 56.67%, while +6 dB fell from 76.67% to 70.00% and overall accuracy fell by one correct frame. This does not justify production replacement. These scores must not be compared directly with the historical 72.44% score from a different domain. The experimental RF is separately identified as `rf-experimental`; original-domain alternatives remain unavailable until genuine compatible evidence exists.
 
-Two real bounded neural experiments were also completed for eight epochs using the same source groups and untouched test frames. `resnet-synthetic-v1` measured **49.44%** and `cldnn-synthetic-v1` **68.89%**, versus the same CNN **65.83%** baseline. CLDNN improved low-SNR accuracy but reduced high-SNR accuracy; ResNet underperformed in this bounded run. Neither was promoted. Both have real `.keras` checkpoints, separate normalization, recorded validation-selected checkpoints/temperatures, and replayable test probabilities. They appear under separate synthetic experiment IDs. On the default NumPy-only interpreter, their online inference is explicitly Unavailable until compatible optional TensorFlow dependencies are installed; their genuine stored experiment evidence remains visible.
+Two real bounded neural experiments were also completed for eight epochs using the same source groups and untouched test frames. `resnet-synthetic-v1` measured **49.44%** and `cldnn-synthetic-v1` **68.89%**, versus the same CNN **65.83%** baseline. CLDNN improved low-SNR accuracy but reduced high-SNR accuracy; ResNet underperformed in this bounded run. Neither was promoted. Both have real `.keras` checkpoints, separate normalization, recorded validation-selected checkpoints/temperatures, and replayable test probabilities. They appear under separate synthetic experiment IDs. Their fixed inference graphs now run directly in NumPy from the unchanged, allowlisted checkpoint tensors. An independent TensorFlow oracle matched all **360** held-out class decisions; maximum probability differences were **1.79×10⁻⁷** for ResNet and **4.77×10⁻⁷** for CLDNN. Graph, artifact hash, tensor shape and finite-value guards reject incompatible checkpoints rather than substituting another model. TensorFlow remains optional for retraining and independent reproduction; these forward-only engines do not provide neural gradients.
 
 Reproduce the preprocessing/engine audit and measure this host with:
 

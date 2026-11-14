@@ -1,0 +1,146 @@
+{
+  "schemaVersion": "satmod-independent-tensorflow-golden-v1",
+  "python": "3.12.16",
+  "platform": "macOS-26.7.1-x86_64-i386-64bit",
+  "tensorflow": "2.16.2",
+  "keras": "3.15.1",
+  "numpy": "1.26.4",
+  "datasetSha256": "8ee79e4b788674c0bcb4da668199384c3cb10901e219462e1a2a04d1161ecaf6",
+  "dataset": "experiments/data/controlled-synthetic-v1.npz",
+  "referencePath": "Direct tf.keras.models.load_model and inference; never registry/NumPy candidate loaders.",
+  "purpose": "Numerical implementation parity only; no independent RF performance, fitting, selection or promotion claim.",
+  "classLabels": [
+    "BPSK",
+    "QPSK",
+    "16-QAM"
+  ],
+  "models": {
+    "resnet-synthetic-v1": {
+      "modelId": "resnet-synthetic-v1",
+      "modelVersion": "resnet-synthetic-v1",
+      "modelHash": "3c8dc0d6f05a69f4c366e48fe48ba7e7c9868d87b0d3dbe883cb4d7490011277",
+      "normalization": {
+        "fitSplit": "train",
+        "mean": 3.378142076460055e-05,
+        "std": 0.006069947804230244,
+        "channelOrder": [
+          "I",
+          "Q"
+        ],
+        "unitPowerApplied": false,
+        "dtype": "float32"
+      },
+      "normalizationFileSha256": "c93bce044b254d8a0d2dc7f2cfe1760fd56a11935847dcd1e11012c2809efb74",
+      "samples": 360,
+      "logitsArray": "resnet_logits",
+      "probabilitiesArray": "resnet_probabilities",
+      "originalRecordedMaxProbabilityError": 0.0,
+      "classMismatchCount": 0
+    },
+    "cldnn-synthetic-v1": {
+      "modelId": "cldnn-synthetic-v1",
+      "modelVersion": "cldnn-synthetic-v1",
+      "modelHash": "62aa060d52b37797d81aa1b9c06499d92f4e7fdfadf457838a79fa94f9e395c6",
+      "normalization": {
+        "fitSplit": "train",
+        "mean": 3.378142076460055e-05,
+        "std": 0.006069947804230244,
+        "channelOrder": [
+          "I",
+          "Q"
+        ],
+        "unitPowerApplied": false,
+        "dtype": "float32"
+      },
+      "normalizationFileSha256": "c93bce044b254d8a0d2dc7f2cfe1760fd56a11935847dcd1e11012c2809efb74",
+      "samples": 360,
+      "logitsArray": "cldnn_logits",
+      "probabilitiesArray": "cldnn_probabilities",
+      "originalRecordedMaxProbabilityError": 0.0,
+      "classMismatchCount": 0
+    }
+  },
+  "arrays": {
+    "classLabels": {
+      "shape": [
+        3
+      ],
+      "dtype": "<U6",
+      "sha256": "12d26f4d224cdae3931fec83abc61d5053b0894892ad11932993e31ca6597e28"
+    },
+    "signals": {
+      "shape": [
+        360,
+        128,
+        2
+      ],
+      "dtype": "float32",
+      "sha256": "9b3c0220c6a6e2615dcbc4b5e54b2f4d47b129a0973632d7b64815da03aeef67"
+    },
+    "labels": {
+      "shape": [
+        360
+      ],
+      "dtype": "int64",
+      "sha256": "68f00b9ad4601e781294dda5f9bd1f8fe2fb2d5dc208c1930a81b2ae3e0406fb"
+    },
+    "sourceIndices": {
+      "shape": [
+        360
+      ],
+      "dtype": "int64",
+      "sha256": "b19e31cbd941912c37df371032dd8664348c77e5bff620f28cc91f1f590b3fc3"
+    },
+    "groups": {
+      "shape": [
+        360
+      ],
+      "dtype": "<U4",
+      "sha256": "3b0c1d6f2d3338357189874bc50f70e4bcd2bad06aef3d9ab20cb7d422e4f5ba"
+    },
+    "snrs": {
+      "shape": [
+        360
+      ],
+      "dtype": "int64",
+      "sha256": "3288f1d4ebc7dd38f690ab494311375cc1bc628aab2bc07f3a4506678fed6e44"
+    },
+    "resnet_logits": {
+      "shape": [
+        360,
+        3
+      ],
+      "dtype": "float32",
+      "sha256": "784fb707ed78e5a58ff915c86b316e58e5621c1c8007d8697cdfa5af75b2ee4b"
+    },
+    "resnet_probabilities": {
+      "shape": [
+        360,
+        3
+      ],
+      "dtype": "float32",
+      "sha256": "0f0fd9e5df4923127e8f1c426c8158755450d4b6bafe3672a64a10dc9a950280"
+    },
+    "cldnn_logits": {
+      "shape": [
+        360,
+        3
+      ],
+      "dtype": "float32",
+      "sha256": "3d950f25d411f46fd96388d2b85cb260d5890633b1afbdb5ccf3ccae39903252"
+    },
+    "cldnn_probabilities": {
+      "shape": [
+        360,
+        3
+      ],
+      "dtype": "float32",
+      "sha256": "fe1cddb2c021571d72eec4d01208744a7d651e2bd407e4fd7a75a74f9425b4d2"
+    }
+  },
+  "artifact": {
+    "filename": "neural-tf-golden.npz",
+    "sha256": "bf29443193b42c6d7b78ded35360aae2923f6f1dd6cd75a61467735d3044d7a4",
+    "bytes": 361479
+  }
+}

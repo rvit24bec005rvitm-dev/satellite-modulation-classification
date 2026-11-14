@@ -2,11 +2,29 @@ services:
   - type: web
     name: satmodclass
     runtime: docker
-    plan: free
+    # Durable recordings/SQLite require a paid instance with an attached disk.
+    plan: 0.5c-512mb
+    numInstances: 1
     branch: main
     dockerfilePath: ./Dockerfile
     dockerContext: .
-    healthCheckPath: /api/health
+    healthCheckPath: /api/ready
+    disk:
+      name: satmod-workspace
+      mountPath: /data
+      sizeGB: 2
     envVars:
+      # Render passes declared Docker ARGs from service environment variables.
+      # Only mount initialization runs as root; the API runs as UID 10001.
+      - key: RUNTIME_USER
+        value: root
+      - key: SATMOD_DATA_DIR
+        value: /data/workspace
+      - key: SATMOD_PUBLIC
+        value: "1"
+      - key: SATMOD_REPLICAS
+        value: "1"
+      - key: WEB_CONCURRENCY
+        value: "1"
       - key: SATMOD_ACCESS_TOKEN
         sync: false

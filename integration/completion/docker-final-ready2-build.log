@@ -1,0 +1,130 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.83kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:22-bookworm-slim
+#2 ...
+
+#3 [internal] load metadata for docker.io/library/python:3.14-slim
+#3 DONE 1.6s
+
+#2 [internal] load metadata for docker.io/library/node:22-bookworm-slim
+#2 DONE 1.6s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 311B 0.0s done
+#4 DONE 0.1s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [application  1/12] FROM docker.io/library/python:3.14-slim@sha256:9aaa474097d094040649f2162a627c0049b408f52138d980916788d80f04802f
+#6 resolve docker.io/library/python:3.14-slim@sha256:9aaa474097d094040649f2162a627c0049b408f52138d980916788d80f04802f
+#6 resolve docker.io/library/python:3.14-slim@sha256:9aaa474097d094040649f2162a627c0049b408f52138d980916788d80f04802f 0.1s done
+#6 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 62.88kB 0.0s done
+#5 DONE 0.1s
+
+#7 [frontend 1/7] FROM docker.io/library/node:22-bookworm-slim@sha256:e9f565d32859f0cbfb52125eafe8be39390f24dac302dc3cdf566e8ba3ab21ee
+#7 resolve docker.io/library/node:22-bookworm-slim@sha256:e9f565d32859f0cbfb52125eafe8be39390f24dac302dc3cdf566e8ba3ab21ee 0.1s done
+#7 DONE 0.1s
+
+#8 [application  2/12] WORKDIR /app
+#8 CACHED
+
+#9 [application  3/12] COPY requirements-web.txt requirements-neural.txt ./
+#9 CACHED
+
+#10 [application  4/12] RUN python -m pip install --no-cache-dir --upgrade pip==26.3     && python -m pip install --no-cache-dir -r "requirements-web.txt"     && useradd --create-home --uid 10001 satmod     && mkdir /data && chown satmod:satmod /data
+#10 CACHED
+
+#11 [frontend 3/7] COPY frontend/package.json frontend/package-lock.json ./
+#11 CACHED
+
+#12 [frontend 4/7] COPY frontend/vendor/ ./vendor/
+#12 CACHED
+
+#13 [frontend 2/7] WORKDIR /build/frontend
+#13 CACHED
+
+#14 [frontend 5/7] RUN npm ci
+#14 CACHED
+
+#15 [application  5/12] COPY backend/ ./backend/
+#15 DONE 0.1s
+
+#16 [frontend 6/7] COPY frontend/ ./
+#16 DONE 0.2s
+
+#17 [application  6/12] COPY utils/ ./utils/
+#17 DONE 0.1s
+
+#18 [frontend 7/7] RUN npm run build
+#18 ...
+
+#19 [application  7/12] COPY training/ ./training/
+#19 DONE 0.2s
+
+#20 [application  8/12] COPY scripts/workspace_backup.py ./scripts/workspace_backup.py
+#20 DONE 0.2s
+
+#18 [frontend 7/7] RUN npm run build
+#18 ...
+
+#21 [application  9/12] COPY models/ ./models/
+#21 DONE 0.2s
+
+#22 [application 10/12] COPY experiments/ ./experiments/
+#22 DONE 0.2s
+
+#18 [frontend 7/7] RUN npm run build
+#18 ...
+
+#23 [application 11/12] COPY classifier_samples.npz normalization_stats_all_snr.npz satellite_modulation_cnn_all_snr.keras evaluation_results.json snr_accuracy_results.csv ./
+#23 DONE 0.2s
+
+#18 [frontend 7/7] RUN npm run build
+#18 1.728
+#18 1.728 > satmodclass-frontend@1.0.0 prebuild
+#18 1.728 > node scripts/generate-routes.mjs
+#18 1.728
+#18 2.148
+#18 2.148 > satmodclass-frontend@1.0.0 build
+#18 2.148 > vite build
+#18 2.148
+#18 4.188 vite v7.3.8 building client environment for production...
+#18 4.603 transforming...
+#18 91.74 ✓ 3373 modules transformed.
+#18 94.33 rendering chunks...
+#18 101.9 computing gzip size...
+#18 102.6 dist/index.html                                0.65 kB │ gzip:     0.39 kB
+#18 102.6 dist/assets/ground-track-map-CIGW-MKW.css     15.61 kB │ gzip:     6.46 kB
+#18 102.6 dist/assets/index-DTdOqJap.css                99.93 kB │ gzip:    17.93 kB
+#18 102.6 dist/assets/ground-track-map-BdHrcltz.js     155.89 kB │ gzip:    45.80 kB
+#18 102.6 dist/assets/index-Cu03Gq1i.js                620.86 kB │ gzip:   193.87 kB
+#18 102.6 dist/assets/earth-globe-Cw0uO8MK.js          996.63 kB │ gzip:   269.65 kB
+#18 102.6 dist/assets/plotly.min-C7n3EWL7.js         4,775.06 kB │ gzip: 1,471.63 kB
+#18 102.6 ✓ built in 1m 38s
+#18 DONE 103.3s
+
+#24 [application 12/12] COPY --from=frontend /build/frontend/dist/ ./frontend/dist/
+#24 DONE 0.2s
+
+#25 exporting to image
+#25 exporting layers
+#25 exporting layers 4.6s done
+#25 exporting manifest sha256:4cc2f9f765f81d0842a4942f2a9e07e040f703ea1061a5fe1d31f82680ca33a1
+#25 exporting manifest sha256:4cc2f9f765f81d0842a4942f2a9e07e040f703ea1061a5fe1d31f82680ca33a1 0.1s done
+#25 exporting config sha256:5892fea4fb02632cb6553e354bcbb9d22443ff7e265b3c4f52932f17370e62af
+#25 exporting config sha256:5892fea4fb02632cb6553e354bcbb9d22443ff7e265b3c4f52932f17370e62af 0.0s done
+#25 exporting attestation manifest sha256:05b3f52bdd22e2a0e2f6f30713085629ddf47c34803fc08334d8fa1f5874b864 0.1s done
+#25 exporting manifest list sha256:6fd7d20feb0ca2c543c5cdcb7df200528d019b70c38e28861fd7a56b59bcd16d
+#25 exporting manifest list sha256:6fd7d20feb0ca2c543c5cdcb7df200528d019b70c38e28861fd7a56b59bcd16d 0.0s done
+#25 naming to docker.io/library/satmodclass:deployment-final done
+#25 unpacking to docker.io/library/satmodclass:deployment-final
+#25 unpacking to docker.io/library/satmodclass:deployment-final 0.7s done
+#25 DONE 5.8s

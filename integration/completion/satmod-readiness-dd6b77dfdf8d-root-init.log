@@ -1,0 +1,34 @@
+INFO:     172.17.0.1:56504 - "GET /api/ready HTTP/1.1" 200 OK
+INFO:     172.17.0.1:56506 - "GET /api/system/info HTTP/1.1" 401 Unauthorized
+INFO:     172.17.0.1:56516 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:56530 - "GET /api/health HTTP/1.1" 200 OK
+INFO:     172.17.0.1:56532 - "GET /api/workspace/captures HTTP/1.1" 401 Unauthorized
+INFO:     172.17.0.1:56548 - "GET /api/workspace/captures/9dbf2ff3-8055-452b-a783-efc855d5602a HTTP/1.1" 200 OK
+INFO:     172.17.0.1:56552 - "GET /api/workspace/captures/9dbf2ff3-8055-452b-a783-efc855d5602a/window?start=128 HTTP/1.1" 200 OK
+INFO:     172.17.0.1:56558 - "GET /api/workspace/history/b2964981-83af-4171-a1b4-481683904fb2/report HTTP/1.1" 200 OK
+INFO:     172.17.0.1:56562 - "GET /api/workspace/history/b2964981-83af-4171-a1b4-481683904fb2/report?format=pdf HTTP/1.1" 200 OK
+INFO:     172.17.0.1:56568 - "GET /api/workspace/jobs/7febef15-dda0-496c-8d20-6fbe7d624e40/result HTTP/1.1" 200 OK
+INFO:     172.17.0.1:56582 - "GET /api/workspace/jobs/7febef15-dda0-496c-8d20-6fbe7d624e40/export?format=pdf HTTP/1.1" 200 OK
+INFO:     172.17.0.1:56596 - "GET /api/workspace/jobs/efb34503-b454-4a68-8481-2abe3d02ddff HTTP/1.1" 200 OK
+INFO:     172.17.0.1:56598 - "GET /api/workspace/jobs/31676917-f91d-49ab-a201-940a5741af07 HTTP/1.1" 200 OK
+INFO:     172.17.0.1:56606 - "GET /api/workspace/jobs/fdb7d91b-e7a7-4066-90b4-6b29e2f5dc0d/result HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35826 - "GET /api/ready HTTP/1.1" 200 OK
+INFO:     Started server process [1]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+{"event": "request", "requestId": "f94cf74c-d39c-400e-a1d3-d55fb87afa09", "method": "GET", "path": "/api/ready", "status": 200, "elapsedMs": 205.99}
+{"event": "request", "requestId": "12dd87d1-b397-4557-8c5b-132af90b34fd", "method": "GET", "path": "/api/system/info", "status": 401, "elapsedMs": 20.06}
+{"event": "request", "requestId": "99d85565-a280-44be-9ee7-bf938ed9209c", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 6.09}
+{"event": "request", "requestId": "24045d52-0d87-48ac-9efb-ff9082e6c7c4", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 4.23}
+{"event": "request", "requestId": "f912ab6f-346a-48a8-8bc6-e91ded9ab992", "method": "GET", "path": "/api/workspace/captures", "status": 401, "elapsedMs": 0.63}
+{"event": "request", "requestId": "60922d92-ea25-4ce2-8059-6d219eefe803", "method": "GET", "path": "/api/workspace/captures/9dbf2ff3-8055-452b-a783-efc855d5602a", "status": 200, "elapsedMs": 5.08}
+{"event": "request", "requestId": "28fe5ae0-9409-4ffc-9f89-d08fb7dfc932", "method": "GET", "path": "/api/workspace/captures/9dbf2ff3-8055-452b-a783-efc855d5602a/window", "status": 200, "elapsedMs": 73.83}
+{"event": "request", "requestId": "fde97d56-c452-4ec5-a933-b319b5ad9655", "method": "GET", "path": "/api/workspace/history/b2964981-83af-4171-a1b4-481683904fb2/report", "status": 200, "elapsedMs": 9.56}
+{"event": "request", "requestId": "093c95a8-1fc4-4414-928e-1fd0c1e2bcad", "method": "GET", "path": "/api/workspace/history/b2964981-83af-4171-a1b4-481683904fb2/report", "status": 200, "elapsedMs": 474.54}
+{"event": "request", "requestId": "e3469a13-dfdf-4895-aaf3-40b14eaac498", "method": "GET", "path": "/api/workspace/jobs/7febef15-dda0-496c-8d20-6fbe7d624e40/result", "status": 200, "elapsedMs": 68.92}
+{"event": "request", "requestId": "26248a64-a338-4133-8afc-99fc63440d5f", "method": "GET", "path": "/api/workspace/jobs/7febef15-dda0-496c-8d20-6fbe7d624e40/export", "status": 200, "elapsedMs": 29.13}
+{"event": "request", "requestId": "b09551bc-693e-4712-ab80-843de14c1a7d", "method": "GET", "path": "/api/workspace/jobs/efb34503-b454-4a68-8481-2abe3d02ddff", "status": 200, "elapsedMs": 44.76}
+{"event": "request", "requestId": "f3c9bb7c-b169-4540-a579-9025c6083781", "method": "GET", "path": "/api/workspace/jobs/31676917-f91d-49ab-a201-940a5741af07", "status": 200, "elapsedMs": 7.35}
+{"event": "request", "requestId": "989508a5-d165-447e-b4da-f7dfbaadc2e4", "method": "GET", "path": "/api/workspace/jobs/fdb7d91b-e7a7-4066-90b4-6b29e2f5dc0d/result", "status": 200, "elapsedMs": 14.66}
+{"event": "request", "requestId": "8b1b22c4-23e3-4a4f-a3dc-d325a56d254e", "method": "GET", "path": "/api/ready", "status": 200, "elapsedMs": 17.63}

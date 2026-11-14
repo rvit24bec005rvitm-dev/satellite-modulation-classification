@@ -1,0 +1,245 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.70kB 0.0s done
+#1 DONE 0.1s
+
+#2 [internal] load metadata for docker.io/library/node:22-bookworm-slim
+#2 ...
+
+#3 [internal] load metadata for docker.io/library/python:3.14-slim
+#3 DONE 1.9s
+
+#2 [internal] load metadata for docker.io/library/node:22-bookworm-slim
+#2 DONE 1.9s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 311B 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [frontend 1/7] FROM docker.io/library/node:22-bookworm-slim@sha256:e9f565d32859f0cbfb52125eafe8be39390f24dac302dc3cdf566e8ba3ab21ee
+#6 resolve docker.io/library/node:22-bookworm-slim@sha256:e9f565d32859f0cbfb52125eafe8be39390f24dac302dc3cdf566e8ba3ab21ee 0.1s done
+#6 DONE 0.1s
+
+#7 [application  1/11] FROM docker.io/library/python:3.14-slim@sha256:9aaa474097d094040649f2162a627c0049b408f52138d980916788d80f04802f
+#7 resolve docker.io/library/python:3.14-slim@sha256:9aaa474097d094040649f2162a627c0049b408f52138d980916788d80f04802f 0.1s done
+#7 DONE 0.1s
+
+#5 [internal] load build context
+#5 transferring context: 67.05kB 0.1s done
+#5 DONE 0.1s
+
+#8 [application  2/11] WORKDIR /app
+#8 CACHED
+
+#9 [application  3/11] COPY requirements-web.txt requirements-neural.txt ./
+#9 CACHED
+
+#10 [frontend 2/7] WORKDIR /build/frontend
+#10 CACHED
+
+#11 [frontend 3/7] COPY frontend/package.json frontend/package-lock.json ./
+#11 CACHED
+
+#12 [frontend 4/7] COPY frontend/vendor/ ./vendor/
+#12 CACHED
+
+#13 [frontend 5/7] RUN npm ci
+#13 CACHED
+
+#14 [frontend 6/7] COPY frontend/ ./
+#14 DONE 0.3s
+
+#15 [application  4/11] RUN python -m pip install --no-cache-dir -r "requirements-web.txt"     && useradd --create-home --uid 10001 satmod     && mkdir /data && chown satmod:satmod /data
+#15 ...
+
+#16 [frontend 7/7] RUN npm run build
+#16 1.214
+#16 1.214 > satmodclass-frontend@1.0.0 prebuild
+#16 1.214 > node scripts/generate-routes.mjs
+#16 1.214
+#16 1.349
+#16 1.349 > satmodclass-frontend@1.0.0 build
+#16 1.349 > vite build
+#16 1.349
+#16 2.576 vite v7.3.8 building client environment for production...
+#16 2.780 transforming...
+#16 ...
+
+#15 [application  4/11] RUN python -m pip install --no-cache-dir -r "requirements-web.txt"     && useradd --create-home --uid 10001 satmod     && mkdir /data && chown satmod:satmod /data
+#15 6.997 Collecting numpy==2.5.3 (from -r requirements-web.txt (line 2))
+#15 7.162   Downloading numpy-2.5.3-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+#15 7.805 Collecting scipy==1.18.1 (from -r requirements-web.txt (line 3))
+#15 7.831   Downloading scipy-1.18.1-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
+#15 8.465 Collecting scikit-learn==1.9.1 (from -r requirements-web.txt (line 4))
+#15 8.489   Downloading scikit_learn-1.9.1-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.3 kB)
+#15 8.618 Collecting joblib==1.6.0 (from -r requirements-web.txt (line 5))
+#15 8.645   Downloading joblib-1.6.0-py3-none-any.whl.metadata (6.5 kB)
+#15 9.006 Collecting h5py==3.16.0 (from -r requirements-web.txt (line 6))
+#15 9.030   Downloading h5py-3.16.0-cp314-cp314-manylinux_2_28_x86_64.whl.metadata (3.0 kB)
+#15 9.289 Collecting fastapi==0.142.2 (from -r requirements-web.txt (line 7))
+#15 9.329   Downloading fastapi-0.142.2-py3-none-any.whl.metadata (27 kB)
+#15 9.465 Collecting uvicorn==0.54.0 (from uvicorn[standard]==0.54.0->-r requirements-web.txt (line 8))
+#15 9.489   Downloading uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+#15 9.547 Collecting python-multipart==0.0.32 (from -r requirements-web.txt (line 9))
+#15 9.573   Downloading python_multipart-0.0.32-py3-none-any.whl.metadata (2.1 kB)
+#15 9.636 Collecting python-dotenv==1.2.4 (from -r requirements-web.txt (line 10))
+#15 9.660   Downloading python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
+#15 10.19 Collecting reportlab==5.0.1 (from -r requirements-web.txt (line 11))
+#15 10.22   Downloading reportlab-5.0.1-py3-none-any.whl.metadata (1.6 kB)
+#15 10.44 Collecting narwhals>=2.0.1 (from scikit-learn==1.9.1->-r requirements-web.txt (line 4))
+#15 10.47   Downloading narwhals-2.28.0-py3-none-any.whl.metadata (15 kB)
+#15 10.52 Collecting threadpoolctl>=3.5.0 (from scikit-learn==1.9.1->-r requirements-web.txt (line 4))
+#15 10.55   Downloading threadpoolctl-3.8.0-py3-none-any.whl.metadata (29 kB)
+#15 10.64 Collecting cloudpickle>=3.0 (from joblib==1.6.0->-r requirements-web.txt (line 5))
+#15 10.66   Downloading cloudpickle-3.1.2-py3-none-any.whl.metadata (7.1 kB)
+#15 10.78 Collecting starlette>=0.46.0 (from fastapi==0.142.2->-r requirements-web.txt (line 7))
+#15 10.81   Downloading starlette-1.10.0-py3-none-any.whl.metadata (6.6 kB)
+#15 11.35 Collecting pydantic>=2.9.0 (from fastapi==0.142.2->-r requirements-web.txt (line 7))
+#15 11.38   Downloading pydantic-2.14.3-py3-none-any.whl.metadata (141 kB)
+#15 11.60 Collecting typing-extensions>=4.8.0 (from fastapi==0.142.2->-r requirements-web.txt (line 7))
+#15 11.63   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#15 11.66 Collecting typing-inspection>=0.4.2 (from fastapi==0.142.2->-r requirements-web.txt (line 7))
+#15 11.69   Downloading typing_inspection-0.4.5-py3-none-any.whl.metadata (2.6 kB)
+#15 11.72 Collecting annotated-doc>=0.0.2 (from fastapi==0.142.2->-r requirements-web.txt (line 7))
+#15 11.74   Downloading annotated_doc-0.0.6-py3-none-any.whl.metadata (6.5 kB)
+#15 11.84 Collecting opentelemetry-api>=1.44.0 (from fastapi==0.142.2->-r requirements-web.txt (line 7))
+#15 11.88   Downloading opentelemetry_api-1.45.2-py3-none-any.whl.metadata (1.4 kB)
+#15 11.95 Collecting click>=7.0 (from uvicorn==0.54.0->uvicorn[standard]==0.54.0->-r requirements-web.txt (line 8))
+#15 11.97   Downloading click-8.5.1-py3-none-any.whl.metadata (2.6 kB)
+#15 12.01 Collecting h11>=0.8 (from uvicorn==0.54.0->uvicorn[standard]==0.54.0->-r requirements-web.txt (line 8))
+#15 12.03   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#15 14.88 Collecting pillow>=9.0.0 (from reportlab==5.0.1->-r requirements-web.txt (line 11))
+#15 14.91   Downloading pillow-13.0.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+#15 15.68 Collecting charset-normalizer (from reportlab==5.0.1->-r requirements-web.txt (line 11))
+#15 15.70   Downloading charset_normalizer-3.5.2-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+#15 15.93 Collecting httptools>=0.8.0 (from uvicorn[standard]==0.54.0->-r requirements-web.txt (line 8))
+#15 15.96   Downloading httptools-0.9.0-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (3.5 kB)
+#15 16.19 Collecting pyyaml>=5.1 (from uvicorn[standard]==0.54.0->-r requirements-web.txt (line 8))
+#15 16.21   Downloading pyyaml-6.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+#15 16.42 Collecting uvloop>=0.15.1 (from uvicorn[standard]==0.54.0->-r requirements-web.txt (line 8))
+#15 16.44   Downloading uvloop-0.23.0-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.1 kB)
+#15 17.12 Collecting watchfiles>=0.20 (from uvicorn[standard]==0.54.0->-r requirements-web.txt (line 8))
+#15 17.14   Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+#15 18.34 Collecting websockets>=13.0 (from uvicorn[standard]==0.54.0->-r requirements-web.txt (line 8))
+#15 18.37   Downloading websockets-17.4-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
+#15 18.45 Collecting annotated-types>=0.6.0 (from pydantic>=2.9.0->fastapi==0.142.2->-r requirements-web.txt (line 7))
+#15 18.47   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+#15 23.08 Collecting pydantic-core==2.50.4 (from pydantic>=2.9.0->fastapi==0.142.2->-r requirements-web.txt (line 7))
+#15 23.11   Downloading pydantic_core-2.50.4-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (6.6 kB)
+#15 23.20 Collecting anyio<5,>=4.0.0 (from starlette>=0.46.0->fastapi==0.142.2->-r requirements-web.txt (line 7))
+#15 23.22   Downloading anyio-4.16.0-py3-none-any.whl.metadata (4.7 kB)
+#15 23.29 Collecting idna>=2.8 (from anyio<5,>=4.0.0->starlette>=0.46.0->fastapi==0.142.2->-r requirements-web.txt (line 7))
+#15 23.31   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+#15 23.36 Downloading numpy-2.5.3-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.7 MB)
+#15 31.35    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.7/16.7 MB 2.2 MB/s  0:00:07
+#15 31.38 Downloading scipy-1.18.1-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (35.3 MB)
+#15 34.76    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 35.3/35.3 MB 10.5 MB/s  0:00:03
+#15 34.79 Downloading scikit_learn-1.9.1-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (9.2 MB)
+#15 35.45    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.2/9.2 MB 14.2 MB/s  0:00:00
+#15 35.47 Downloading joblib-1.6.0-py3-none-any.whl (306 kB)
+#15 35.52 Downloading h5py-3.16.0-cp314-cp314-manylinux_2_28_x86_64.whl (5.4 MB)
+#15 35.97    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.4/5.4 MB 12.6 MB/s  0:00:00
+#15 36.00 Downloading fastapi-0.142.2-py3-none-any.whl (144 kB)
+#15 36.03 Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
+#15 36.06 Downloading python_multipart-0.0.32-py3-none-any.whl (30 kB)
+#15 36.09 Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+#15 36.14 Downloading reportlab-5.0.1-py3-none-any.whl (2.0 MB)
+#15 36.33    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 11.5 MB/s  0:00:00
+#15 36.36 Downloading annotated_doc-0.0.6-py3-none-any.whl (5.3 kB)
+#15 36.38 Downloading click-8.5.1-py3-none-any.whl (126 kB)
+#15 36.41 Downloading cloudpickle-3.1.2-py3-none-any.whl (22 kB)
+#15 36.44 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#15 36.47 Downloading httptools-0.9.0-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (514 kB)
+#15 36.54 Downloading narwhals-2.28.0-py3-none-any.whl (490 kB)
+#15 36.60 Downloading opentelemetry_api-1.45.2-py3-none-any.whl (60 kB)
+#15 36.64 Downloading pillow-13.0.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.1 MB)
+#15 37.21    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.1/7.1 MB 12.6 MB/s  0:00:00
+#15 37.24 Downloading pydantic-2.14.3-py3-none-any.whl (494 kB)
+#15 37.30 Downloading pydantic_core-2.50.4-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (2.3 MB)
+#15 37.47    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.3/2.3 MB 13.5 MB/s  0:00:00
+#15 37.50 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+#15 37.53 Downloading pyyaml-6.0.3-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (794 kB)
+#15 37.59    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 794.2/794.2 kB 13.2 MB/s  0:00:00
+#15 37.61 Downloading starlette-1.10.0-py3-none-any.whl (80 kB)
+#15 37.64 Downloading anyio-4.16.0-py3-none-any.whl (134 kB)
+#15 37.68 Downloading idna-3.20-py3-none-any.whl (69 kB)
+#15 37.70 Downloading threadpoolctl-3.8.0-py3-none-any.whl (32 kB)
+#15 37.73 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#15 37.76 Downloading typing_inspection-0.4.5-py3-none-any.whl (14 kB)
+#15 37.79 Downloading uvloop-0.23.0-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.4 MB)
+#15 38.11    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.4/4.4 MB 13.8 MB/s  0:00:00
+#15 38.14 Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (458 kB)
+#15 38.20 Downloading websockets-17.4-cp314-cp314-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (226 kB)
+#15 38.24 Downloading charset_normalizer-3.5.2-cp314-cp314-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (255 kB)
+#15 39.75 Installing collected packages: websockets, uvloop, typing-extensions, threadpoolctl, pyyaml, python-multipart, python-dotenv, pillow, numpy, narwhals, idna, httptools, h11, cloudpickle, click, charset-normalizer, annotated-types, annotated-doc, uvicorn, typing-inspection, scipy, reportlab, pydantic-core, opentelemetry-api, joblib, h5py, anyio, watchfiles, starlette, scikit-learn, pydantic, fastapi
+#15 94.38
+#15 94.39 Successfully installed annotated-doc-0.0.6 annotated-types-0.8.0 anyio-4.16.0 charset-normalizer-3.5.2 click-8.5.1 cloudpickle-3.1.2 fastapi-0.142.2 h11-0.16.0 h5py-3.16.0 httptools-0.9.0 idna-3.20 joblib-1.6.0 narwhals-2.28.0 numpy-2.5.3 opentelemetry-api-1.45.2 pillow-13.0.0 pydantic-2.14.3 pydantic-core-2.50.4 python-dotenv-1.2.4 python-multipart-0.0.32 pyyaml-6.0.3 reportlab-5.0.1 scikit-learn-1.9.1 scipy-1.18.1 starlette-1.10.0 threadpoolctl-3.8.0 typing-extensions-4.16.0 typing-inspection-0.4.5 uvicorn-0.54.0 uvloop-0.23.0 watchfiles-1.3.0 websockets-17.4
+#15 94.39 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#15 94.39
+#15 94.39 [notice] A new release of pip is available: 26.2.2 -> 26.3
+#15 94.39 [notice] To update, run: pip install --upgrade pip
+#15 DONE 95.4s
+
+#16 [frontend 7/7] RUN npm run build
+#16 ...
+
+#17 [application  5/11] COPY backend/ ./backend/
+#17 DONE 0.2s
+
+#16 [frontend 7/7] RUN npm run build
+#16 ...
+
+#18 [application  6/11] COPY utils/ ./utils/
+#18 DONE 0.1s
+
+#19 [application  7/11] COPY training/ ./training/
+#19 DONE 0.2s
+
+#16 [frontend 7/7] RUN npm run build
+#16 ...
+
+#20 [application  8/11] COPY models/ ./models/
+#20 DONE 0.1s
+
+#21 [application  9/11] COPY experiments/ ./experiments/
+#21 DONE 0.1s
+
+#16 [frontend 7/7] RUN npm run build
+#16 ...
+
+#22 [application 10/11] COPY classifier_samples.npz normalization_stats_all_snr.npz satellite_modulation_cnn_all_snr.keras evaluation_results.json snr_accuracy_results.csv ./
+#22 DONE 0.2s
+
+#16 [frontend 7/7] RUN npm run build
+#16 96.82 ✓ 3373 modules transformed.
+#16 99.09 rendering chunks...
+#16 102.4 computing gzip size...
+#16 102.8 dist/index.html                                0.65 kB │ gzip:     0.39 kB
+#16 102.8 dist/assets/ground-track-map-CIGW-MKW.css     15.61 kB │ gzip:     6.46 kB
+#16 102.8 dist/assets/index-DTdOqJap.css                99.93 kB │ gzip:    17.93 kB
+#16 102.8 dist/assets/ground-track-map-DYMp29ix.js     155.89 kB │ gzip:    45.80 kB
+#16 102.8 dist/assets/index-CTwZUBZU.js                620.67 kB │ gzip:   193.83 kB
+#16 102.8 dist/assets/earth-globe-C1cEX5Bd.js          996.63 kB │ gzip:   269.65 kB
+#16 102.8 dist/assets/plotly.min-DJACpGfY.js         4,775.06 kB │ gzip: 1,471.63 kB
+#16 102.8 ✓ built in 1m 40s
+#16 DONE 103.2s
+
+#23 [application 11/11] COPY --from=frontend /build/frontend/dist/ ./frontend/dist/
+#23 DONE 0.1s
+
+#24 exporting to image
+#24 exporting layers
+#24 exporting layers 42.8s done
+#24 exporting manifest sha256:52e7a94c82816291a0843efff89fb3682f8ef9628b39f6950dbee09f93df0440 0.0s done
+#24 exporting config sha256:74a9ba1ba506f4cd42452060d3e5dae70186d98aac6b17568a46c20b8bc007d2 0.1s done
+#24 exporting attestation manifest sha256:00c7d24f0525e1ba9e7792061b291363940ba5575c3e6e605301e9cebf122b2d
+#24 exporting attestation manifest sha256:00c7d24f0525e1ba9e7792061b291363940ba5575c3e6e605301e9cebf122b2d 0.0s done
+#24 exporting manifest list sha256:9d9fabb9e344ff8ee9f1480668b7431e945610ad3975837c03a0daeee7543370 0.0s done
+#24 naming to docker.io/library/satmodclass:deployment-readiness done
+#24 unpacking to docker.io/library/satmodclass:deployment-readiness
+#24 unpacking to docker.io/library/satmodclass:deployment-readiness 12.7s done
+#24 DONE 55.9s

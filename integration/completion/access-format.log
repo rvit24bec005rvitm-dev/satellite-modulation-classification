@@ -1,0 +1,6 @@
+src/components/workspace-access.tsx 402ms
+src/pages/settings.tsx 127ms
+src/routes/__root.tsx 32ms (unchanged)
+src/lib/satmod-api.ts 188ms
+src/components/satmod-app.tsx 97ms (unchanged)
+src/test/workspace-access.test.tsx 49ms

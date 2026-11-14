@@ -1,0 +1,89 @@
+{
+  "scope": "Actual local Linux Docker under 512 MiB / 0.5 CPU, synthetic fixtures only; no cloud deployment or real RF accuracy claim.",
+  "passed": true,
+  "tokenLogged": false,
+  "resources": {
+    "memoryBytes": 536870912,
+    "cpus": 0.5
+  },
+  "checks": {
+    "initialReadiness": {
+      "ready": true,
+      "version": "1.0.0",
+      "checks": {
+        "configuration": true,
+        "access": true,
+        "storage": true,
+        "model": true
+      },
+      "errors": []
+    },
+    "initialApplicationUid": "Uid:\t10001\t10001\t10001\t10001",
+    "legacyLivenessAndAnonymousProtection": true,
+    "realDeploymentApi": {
+      "url": "http://127.0.0.1:56450",
+      "health": {
+        "connected": true,
+        "modelId": "1d-cnn",
+        "backend": "NumPy Native Engine",
+        "error": null,
+        "version": "1.0.0"
+      },
+      "spaRoutes": 8,
+      "assets": 2,
+      "realClassification": "BPSK",
+      "generatedSignalClassification": true,
+      "validUploadMatchesDirect": true,
+      "invalidUpload": 422,
+      "evaluationSamples": 900,
+      "unknownApi": 404
+    },
+    "managedBeforeRecreation": {
+      "protectedApi": true,
+      "managedCapture": true,
+      "batchWindows": 4,
+      "pdf": true,
+      "persistedAfterRecreation": false,
+      "backgroundCaptureImport": true,
+      "backgroundDatasetImport": true,
+      "batchPdf": true,
+      "externalEvaluation": true,
+      "modelHash": "e9705c98275e26d4a60210b2d563c4cc32ef94f4f0368974f1168245f91cf33d"
+    },
+    "rootMountReadiness": {
+      "ready": true,
+      "version": "1.0.0",
+      "checks": {
+        "configuration": true,
+        "access": true,
+        "storage": true,
+        "model": true
+      },
+      "errors": []
+    },
+    "rootInitializerApplicationUid": "Uid:\t10001\t10001\t10001\t10001",
+    "managedAfterRecreation": {
+      "protectedApi": true,
+      "managedCapture": true,
+      "batchWindows": 4,
+      "pdf": true,
+      "persistedAfterRecreation": true,
+      "backgroundCaptureImport": true,
+      "backgroundDatasetImport": true,
+      "batchPdf": true,
+      "externalEvaluation": true,
+      "modelHash": "e9705c98275e26d4a60210b2d563c4cc32ef94f4f0368974f1168245f91cf33d"
+    },
+    "missing-token": {
+      "exitCode": 1,
+      "safeReason": "workspace-access-not-configured"
+    },
+    "multiple-workers": {
+      "exitCode": 1,
+      "safeReason": "single-process-required"
+    }
+  },
+  "imageId": "sha256:9d9fabb9e344ff8ee9f1480668b7431e945610ad3975837c03a0daeee7543370",
+  "configuredUser": "satmod",
+  "ownedContainersAndVolumeRemoved": true
+}

@@ -1,4 +1,10 @@
-import { request, apiBase, type Capture, type ClassificationResult } from "./satmod-api";
+import {
+  request,
+  apiBase,
+  notifyWorkspaceUnauthorized,
+  type Capture,
+  type ClassificationResult,
+} from "./satmod-api";
 export interface ManagedCapture {
   id: string;
   source: string;
@@ -159,7 +165,10 @@ export const operationsApi = {
   register: (body: unknown) =>
     request<DatasetRow>(`${prefix}/datasets`, { method: "POST", body: JSON.stringify(body) }),
   registerJob: (body: unknown) =>
-    request<Job>(`${prefix}/datasets?background=true`, { method: "POST", body: JSON.stringify(body) }),
+    request<Job>(`${prefix}/datasets?background=true`, {
+      method: "POST",
+      body: JSON.stringify(body),
+    }),
   evaluate: (id: string) => request<Job>(`${prefix}/datasets/${id}/evaluate`, { method: "POST" }),
   deleteDataset: (id: string) => request(`${prefix}/datasets/${id}`, { method: "DELETE" }),
   status: () => request<Status>(`${prefix}/status`),
@@ -169,7 +178,10 @@ export async function operationDownload(path: string, name: string) {
     headers: { "X-Satmod-Token": sessionStorage.getItem("satmod-access-token:" + apiBase()) ?? "" },
     signal: AbortSignal.timeout(60000),
   });
-  if (!response.ok) throw new Error(`Export failed: HTTP ${response.status}`);
+  if (!response.ok) {
+    notifyWorkspaceUnauthorized(response.status);
+    throw new Error(`Export failed: HTTP ${response.status}`);
+  }
   const url = URL.createObjectURL(await response.blob());
   const link = document.createElement("a");
   link.href = url;

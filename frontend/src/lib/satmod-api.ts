@@ -337,6 +337,11 @@ export function apiBase(): string {
   const stored = typeof window === "undefined" ? null : localStorage.getItem("satmod-api-url");
   return (stored ?? import.meta.env["VITE_API_BASE_URL"] ?? "").replace(/\/$/, "");
 }
+export function notifyWorkspaceUnauthorized(status: number) {
+  if (status === 401 && typeof window !== "undefined") {
+    window.dispatchEvent(new Event("satmod:workspace-unauthorized"));
+  }
+}
 export async function request<T>(path: string, options: RequestInit = {}): Promise<T> {
   let response: Response;
   try {
@@ -361,6 +366,7 @@ export async function request<T>(path: string, options: RequestInit = {}): Promi
     );
   }
   if (!response.ok) {
+    if (path !== "/api/session") notifyWorkspaceUnauthorized(response.status);
     const body: unknown = await response.json().catch(() => null);
     const detail =
       typeof body === "object" && body !== null
@@ -379,6 +385,18 @@ export async function request<T>(path: string, options: RequestInit = {}): Promi
 const post = <T>(path: string, body: unknown, signal?: AbortSignal) =>
   request<T>(path, { method: "POST", body: JSON.stringify(body), ...(signal ? { signal } : {}) });
 export const satmodApi = {
+  access: (signal?: AbortSignal) =>
+    request<{
+      tokenRequired: boolean;
+      configured: boolean;
+      publicMode: boolean;
+      sharedWorkspace: boolean;
+    }>("/api/access", signal ? { signal } : {}),
+  session: (signal?: AbortSignal, token?: string) =>
+    request<{ authorized: boolean; sharedWorkspace: boolean }>("/api/session", {
+      ...(signal ? { signal } : {}),
+      ...(token !== undefined ? { headers: { "X-Satmod-Token": token } } : {}),
+    }),
   health: (signal?: AbortSignal) => request<HealthStatus>("/api/health", signal ? { signal } : {}),
   info: (signal?: AbortSignal) => request<SystemInfo>("/api/system/info", signal ? { signal } : {}),
   classify: (body: ClassifyRequest) => post<ClassificationResult>("/api/classify", body),

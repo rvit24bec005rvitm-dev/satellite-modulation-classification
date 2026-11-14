@@ -1,0 +1,23 @@
+F                                                                        [100%]
+=================================== FAILURES ===================================
+_ test_interrupted_owned_readiness_files_are_cleaned_without_deleting_other_data _
+
+client = <starlette.testclient.TestClient object at 0x1111f67b0>
+
+    def test_interrupted_owned_readiness_files_are_cleaned_without_deleting_other_data(client):
+        directory = store.root()
+        marker = b'satmod-ready\n'
+        stale = [directory / '.readiness-abcdefgh', directory / '.readiness-abcdefgi.verified']
+        stale[0].write_bytes(b'')  # Crash after allocation, before the first write.
+        stale[1].write_bytes(marker)
+        unrelated = directory / '.readiness-abcdefgj'
+        unrelated.write_bytes(b'Unrelated operator file')
+        assert client.get('/api/ready').status_code == 200
+>       assert all(not path.exists() for path in stale)
+E       assert False
+E        +  where False = all(<generator object test_interrupted_owned_readiness_files_are_cleaned_without_deleting_other_data.<locals>.<genexpr> at 0x125ba9d80>)
+
+tests/test_deployment_readiness.py:105: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_deployment_readiness.py::test_interrupted_owned_readiness_files_are_cleaned_without_deleting_other_data
+1 failed in 7.48s

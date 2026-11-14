@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "scope": "Extracted source-plus-compiled-frontend college package, started with scripts/serve.py using already-installed pinned Python runtime; no Node, TensorFlow, hosting or operator workspace required",
+  "allSourceManifestHashesMatch": true,
+  "frontendBuildIncluded": true,
+  "teachingGuideIncluded": true,
+  "routes": [
+    "/",
+    "/classifier",
+    "/studio",
+    "/evaluation",
+    "/arena",
+    "/intelligence",
+    "/theory",
+    "/settings"
+  ],
+  "readiness": 200,
+  "localAccessRequiresToken": false,
+  "actualAvailableModelIds": [
+    "1d-cnn",
+    "rf-experimental",
+    "resnet-synthetic-v1",
+    "cldnn-synthetic-v1"
+  ],
+  "actualCnnClassificationPassed": true,
+  "classes": [
+    "BPSK",
+    "QPSK",
+    "16-QAM"
+  ],
+  "privateDataIncluded": false,
+  "originalWorkspaceTouched": false,
+  "ownedServerStopped": true,
+  "extractionRemoved": true
+}

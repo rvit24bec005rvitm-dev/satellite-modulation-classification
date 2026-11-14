@@ -1,0 +1,13 @@
+{
+  "operation": "existing-private-workspace-backup-restore",
+  "records": 294,
+  "analyses": 294,
+  "reports": 294,
+  "logicalMetadataIdentical": true,
+  "allReportHashesIdentical": true,
+  "archiveMode": "0o600",
+  "restoreMode": "0o700",
+  "archiveOutsideRepository": true,
+  "privateDataPublished": false,
+  "hostedMigrationPerformed": false
+}

@@ -138,7 +138,7 @@ test("managed live explanation persists both real methods and full history JSON/
   const restoredJson = JSON.parse((await downloaded(page, restored.getByRole("button", { name: "Export full-resolution explanations JSON", exact: true }))).toString("utf8")) as ExplanationReport;
   expect(restoredJson).toEqual(report);
   expect((await downloaded(page, restored.getByRole("button", { name: "Download saved explanation PDF", exact: true }))).equals(pdf)).toBeTruthy();
-  await page.screenshot({ path: `${process.env["SATMOD_SCREENSHOT_DIR"] ?? "../integration/phase3/screenshots"}/research-explanation-history.png`, fullPage: true });
+  await page.screenshot({ path: `${process.env["SATMOD_SCREENSHOT_DIR"] ?? "../integration/current-browser"}/research-explanation-history.png`, fullPage: true });
 });
 
 test("managed A/B workstation preserves real predictions and normalized PSD across unequal sample clocks", async ({ page, request }) => {
@@ -191,7 +191,7 @@ test("managed A/B workstation preserves real predictions and normalized PSD acro
   await page.getByRole("combobox", { name: "Inspect saved comparison", exact: true }).selectOption(report.id);
   expect(await (await persisted).json()).toEqual(report);
   await expect(page.getByText("Normalized sample/frequency axes", { exact: true })).toBeVisible();
-  await page.screenshot({ path: `${process.env["SATMOD_SCREENSHOT_DIR"] ?? "../integration/phase3/screenshots"}/research-comparison-clock-mismatch.png`, fullPage: true });
+  await page.screenshot({ path: `${process.env["SATMOD_SCREENSHOT_DIR"] ?? "../integration/current-browser"}/research-comparison-clock-mismatch.png`, fullPage: true });
   await page.getByRole("combobox", { name: "Comparison recording A", exact: true }).selectOption(unknown.id);
   await page.getByRole("combobox", { name: "Comparison recording B", exact: true }).selectOption(b.id);
   const unknownClock = page.waitForResponse((r) => r.request().method() === "POST" && new URL(r.url()).pathname === "/api/research/comparisons");

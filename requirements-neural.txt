@@ -1,0 +1,16 @@
+# Optional current whole-API CPU profile. Use Python 3.12 on Linux x86-64.
+# Default NumPy inference remains requirements-web.txt. Intel macOS reproduction
+# has a separate local compatibility profile; do not deploy its old protobuf.
+tensorflow-cpu==2.21.0
+keras==3.15.1
+numpy==2.5.3
+scipy==1.18.1
+scikit-learn==1.9.1
+joblib==1.6.0
+# TensorFlow CPU 2.21 requires h5py >=3.11,<3.15.
+h5py==3.14.0
+fastapi==0.142.2
+uvicorn[standard]==0.54.0
+python-multipart==0.0.32
+python-dotenv==1.2.4
+reportlab==5.0.1

@@ -1,0 +1,44 @@
+
+> satmodclass-frontend@1.0.0 test:e2e
+> playwright test e2e/phase3-controls.spec.ts --grep mobile keyboard --reporter=list
+
+[WebServer] INFO:     Started server process [34481]
+[WebServer] INFO:     Waiting for application startup.
+[WebServer] INFO:     Application startup complete.
+[WebServer] INFO:     Uvicorn running on http://127.0.0.1:18532 (Press CTRL+C to quit)
+[WebServer] {"event": "request", "requestId": "69652ba3-536b-4618-a0f0-8a121439b2fe", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 13.0}
+
+Running 1 test using 1 worker
+
+(node:34698) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+[WebServer] {"event": "request", "requestId": "1215974e-d18f-4395-88c3-d0cd0e5253c4", "method": "GET", "path": "/classifier", "status": 200, "elapsedMs": 94.73}
+[WebServer] {"event": "request", "requestId": "064a6b60-7cb8-4135-ac21-7b85131afde4", "method": "GET", "path": "/assets/index-Cu03Gq1i.js", "status": 200, "elapsedMs": 6.36}
+[WebServer] {"event": "request", "requestId": "7f538000-4b12-42f6-a299-6b6a81f1514c", "method": "GET", "path": "/fonts/fonts.css", "status": 200, "elapsedMs": 9.07}
+[WebServer] {"event": "request", "requestId": "8eff3b7a-9444-4fc2-825a-8491112c5396", "method": "GET", "path": "/assets/index-DTdOqJap.css", "status": 200, "elapsedMs": 10.29}
+[WebServer] {"event": "request", "requestId": "041f897e-a7f2-4900-bc0d-a187583a92f9", "method": "GET", "path": "/api/access", "status": 200, "elapsedMs": 44.35}
+[WebServer] {"event": "request", "requestId": "9e17b71e-6142-45e0-8918-ab8d824e9c58", "method": "GET", "path": "/favicon.ico", "status": 200, "elapsedMs": 19.0}
+[WebServer] {"event": "request", "requestId": "87543551-2288-4661-9244-e4600096f4dd", "method": "GET", "path": "/fonts/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2", "status": 200, "elapsedMs": 26.5}
+[WebServer] {"event": "request", "requestId": "1f4610aa-92bf-4789-8738-4b2c8c41c328", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 11.02}
+[WebServer] {"event": "request", "requestId": "9ab5fcdd-d6ea-4ff7-9084-a12fa9144a05", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 27.1}
+[WebServer] {"event": "request", "requestId": "9edc3bc1-2a0a-4f23-9b59-c08d09357a09", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 35.11}
+[WebServer] {"event": "request", "requestId": "d57374b6-7fd8-4b67-a6e2-dc8849e22f40", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 33.13}
+[WebServer] {"event": "request", "requestId": "fcb226fb-dc86-4f26-a70e-2313873282e0", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 38.59}
+[WebServer] {"event": "request", "requestId": "d9fa378a-1de2-480a-b6e0-0db2faa49dc1", "method": "GET", "path": "/fonts/V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2", "status": 200, "elapsedMs": 8.3}
+[WebServer] {"event": "request", "requestId": "eabb6d4c-06f2-45b4-ba66-e975f167868c", "method": "GET", "path": "/fonts/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2", "status": 200, "elapsedMs": 6.82}
+[WebServer] {"event": "request", "requestId": "1499d93b-1613-441d-9fea-8bafaa9f2174", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 16.8}
+[WebServer] {"event": "request", "requestId": "fba2135b-2c53-46f4-a0cc-7241d7943f55", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 16.61}
+[WebServer] {"event": "request", "requestId": "b812e9e4-a580-435d-91fd-e122d0b944da", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 18.48}
+[WebServer] {"event": "request", "requestId": "c5921346-9b87-4a9e-af94-432d768ad0b0", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 26.97}
+[WebServer] {"event": "request", "requestId": "b7231fc5-47ae-495c-9419-d93c363f35d7", "method": "GET", "path": "/api/research/comparisons", "status": 200, "elapsedMs": 33.82}
+[WebServer] {"event": "request", "requestId": "ca54d49d-8596-42ca-b2ef-92b85a8882ba", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 33.84}
+[WebServer] {"event": "request", "requestId": "86515bcb-b675-4145-972b-20596d9a68de", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 18.74}
+[WebServer] {"event": "request", "requestId": "c1fae8a2-61b7-415d-93ed-16840ce813ee", "method": "GET", "path": "/api/access", "status": 200, "elapsedMs": 4.72}
+[WebServer] {"event": "request", "requestId": "c30d305a-133f-4a2f-bc27-43ad524eba3e", "method": "GET", "path": "/api/workspace/captures", "status": 200, "elapsedMs": 15.68}
+[WebServer] {"event": "request", "requestId": "910f3c43-c2d3-4ffd-abc9-0b7d1d33a2e7", "method": "GET", "path": "/api/samples", "status": 200, "elapsedMs": 23.29}
+[WebServer] {"event": "request", "requestId": "6a24f238-57a6-48f9-a617-7e2f31e3ac3c", "method": "GET", "path": "/api/workspace/jobs", "status": 200, "elapsedMs": 27.14}
+[WebServer] {"event": "request", "requestId": "0d271f2c-8b26-486c-876f-83bad95c0afb", "method": "GET", "path": "/api/workspace/history", "status": 200, "elapsedMs": 33.06}
+[WebServer] {"event": "request", "requestId": "fa9d51ae-a914-4ac1-be3c-08c714b7687f", "method": "GET", "path": "/api/health", "status": 200, "elapsedMs": 38.57}
+  ✓  1 e2e/phase3-controls.spec.ts:212:1 › mobile keyboard navigation traps focus, closes with Escape and restores the opener (3.3s)
+
+  1 passed (15.0s)

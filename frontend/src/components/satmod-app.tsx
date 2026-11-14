@@ -130,12 +130,6 @@ function AppShell({ page, children }: { page: string; children: React.ReactNode 
       className={`app-shell ${collapsed ? "nav-collapsed" : ""}`}
       style={{ "--nav-width": collapsed ? "68px" : "232px" } as CSSProperties}
     >
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:bg-card focus:p-3 focus:text-primary"
-      >
-        Skip to workspace content
-      </a>
       {mobileOpen && (
         <button
           className="navigation-scrim"
@@ -305,14 +299,14 @@ function AppShell({ page, children }: { page: string; children: React.ReactNode 
                 <button
                   className="operator-button"
                   aria-label="Operator session"
-                  title="Local operator session"
+                  title="Operator workspace"
                 >
                   <UserRound size={15} />
                 </button>
               </PopoverTrigger>
               <PopoverContent align="end" className="mission-popover">
-                <strong>Local operator</strong>
-                <p>Local workspace · browser preferences</p>
+                <strong>Operator workspace</strong>
+                <p>Shared research workspace · browser preferences</p>
                 <Link to="/settings">Workspace settings →</Link>
               </PopoverContent>
             </Popover>

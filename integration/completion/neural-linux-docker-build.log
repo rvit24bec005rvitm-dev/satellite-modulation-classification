@@ -1,0 +1,324 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.70kB 0.0s done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/node:22-bookworm-slim
+#2 ...
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 1.6s
+
+#2 [internal] load metadata for docker.io/library/node:22-bookworm-slim
+#2 DONE 1.6s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 311B 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 DONE 0.0s
+
+#6 [frontend 1/7] FROM docker.io/library/node:22-bookworm-slim@sha256:e9f565d32859f0cbfb52125eafe8be39390f24dac302dc3cdf566e8ba3ab21ee
+#6 resolve docker.io/library/node:22-bookworm-slim@sha256:e9f565d32859f0cbfb52125eafe8be39390f24dac302dc3cdf566e8ba3ab21ee 0.1s done
+#6 DONE 0.1s
+
+#7 [application  1/11] FROM docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b
+#7 resolve docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b
+#7 resolve docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b 0.1s done
+#7 DONE 0.1s
+
+#8 [application  2/11] WORKDIR /app
+#8 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 97.54kB 0.1s done
+#5 DONE 0.1s
+
+#9 [frontend 2/7] WORKDIR /build/frontend
+#9 CACHED
+
+#10 [frontend 3/7] COPY frontend/package.json frontend/package-lock.json ./
+#10 CACHED
+
+#11 [frontend 4/7] COPY frontend/vendor/ ./vendor/
+#11 CACHED
+
+#12 [frontend 5/7] RUN npm ci
+#12 CACHED
+
+#13 [application  3/11] COPY requirements-web.txt requirements-neural.txt ./
+#13 DONE 0.1s
+
+#14 [frontend 6/7] COPY frontend/ ./
+#14 DONE 0.3s
+
+#15 [application  4/11] RUN python -m pip install --no-cache-dir -r "requirements-neural.txt"     && useradd --create-home --uid 10001 satmod     && mkdir /data && chown satmod:satmod /data
+#15 4.591 Collecting tensorflow-cpu==2.21.0 (from -r requirements-neural.txt (line 4))
+#15 4.712   Downloading tensorflow_cpu-2.21.0-cp312-cp312-manylinux_2_27_x86_64.whl.metadata (4.4 kB)
+#15 4.827 Collecting keras==3.15.1 (from -r requirements-neural.txt (line 5))
+#15 4.855   Downloading keras-3.15.1-py3-none-any.whl.metadata (6.4 kB)
+#15 5.525 Collecting numpy==2.5.3 (from -r requirements-neural.txt (line 6))
+#15 5.549   Downloading numpy-2.5.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+#15 5.953 Collecting scipy==1.18.1 (from -r requirements-neural.txt (line 7))
+#15 5.977   Downloading scipy-1.18.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
+#15 6.264 Collecting scikit-learn==1.9.1 (from -r requirements-neural.txt (line 8))
+#15 6.288   Downloading scikit_learn-1.9.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.3 kB)
+#15 6.352 Collecting joblib==1.6.0 (from -r requirements-neural.txt (line 9))
+#15 6.377   Downloading joblib-1.6.0-py3-none-any.whl.metadata (6.5 kB)
+#15 6.553 Collecting h5py==3.14.0 (from -r requirements-neural.txt (line 11))
+#15 6.575   Downloading h5py-3.14.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.7 kB)
+#15 6.786 Collecting fastapi==0.142.2 (from -r requirements-neural.txt (line 12))
+#15 6.808   Downloading fastapi-0.142.2-py3-none-any.whl.metadata (27 kB)
+#15 6.919 Collecting uvicorn==0.54.0 (from uvicorn[standard]==0.54.0->-r requirements-neural.txt (line 13))
+#15 6.969   Downloading uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)
+#15 7.046 Collecting python-multipart==0.0.32 (from -r requirements-neural.txt (line 14))
+#15 7.069   Downloading python_multipart-0.0.32-py3-none-any.whl.metadata (2.1 kB)
+#15 7.116 Collecting python-dotenv==1.2.4 (from -r requirements-neural.txt (line 15))
+#15 7.140   Downloading python_dotenv-1.2.4-py3-none-any.whl.metadata (29 kB)
+#15 7.541 Collecting reportlab==5.0.1 (from -r requirements-neural.txt (line 16))
+#15 7.563   Downloading reportlab-5.0.1-py3-none-any.whl.metadata (1.6 kB)
+#15 7.604 Collecting absl-py>=1.0.0 (from tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 7.627   Downloading absl_py-2.5.1-py3-none-any.whl.metadata (3.3 kB)
+#15 7.663 Collecting astunparse>=1.6.0 (from tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 7.688   Downloading astunparse-1.6.3-py2.py3-none-any.whl.metadata (4.4 kB)
+#15 7.725 Collecting flatbuffers>=25.9.23 (from tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 7.745   Downloading flatbuffers-25.12.19-py2.py3-none-any.whl.metadata (1.0 kB)
+#15 7.784 Collecting gast!=0.5.0,!=0.5.1,!=0.5.2,>=0.2.1 (from tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 7.805   Downloading gast-0.7.0-py3-none-any.whl.metadata (1.5 kB)
+#15 7.838 Collecting google_pasta>=0.1.1 (from tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 7.860   Downloading google_pasta-0.2.0-py3-none-any.whl.metadata (814 bytes)
+#15 7.900 Collecting libclang>=13.0.0 (from tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 7.922   Downloading libclang-18.1.1-py2.py3-none-manylinux2010_x86_64.whl.metadata (5.2 kB)
+#15 7.966 Collecting opt_einsum>=2.3.2 (from tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 7.989   Downloading opt_einsum-3.4.0-py3-none-any.whl.metadata (6.3 kB)
+#15 8.032 Collecting packaging (from tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 8.053   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+#15 8.756 Collecting protobuf<8.0.0,>=6.31.1 (from tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 8.778   Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl.metadata (595 bytes)
+#15 8.885 Collecting requests<3,>=2.21.0 (from tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 8.907   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+#15 9.597 Collecting setuptools (from tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 9.625   Downloading setuptools-84.2.1-py3-none-any.whl.metadata (6.6 kB)
+#15 9.693 Collecting six>=1.12.0 (from tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 9.713   Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+#15 9.746 Collecting termcolor>=1.1.0 (from tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 9.770   Downloading termcolor-3.3.0-py3-none-any.whl.metadata (6.5 kB)
+#15 9.839 Collecting typing_extensions>=3.6.6 (from tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 9.860   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#15 ...
+
+#16 [frontend 7/7] RUN npm run build
+#16 0.650
+#16 0.650 > satmodclass-frontend@1.0.0 prebuild
+#16 0.650 > node scripts/generate-routes.mjs
+#16 0.650
+#16 0.732
+#16 0.732 > satmodclass-frontend@1.0.0 build
+#16 0.732 > vite build
+#16 0.732
+#16 1.598 vite v7.3.8 building client environment for production...
+#16 1.812 transforming...
+#16 ...
+
+#15 [application  4/11] RUN python -m pip install --no-cache-dir -r "requirements-neural.txt"     && useradd --create-home --uid 10001 satmod     && mkdir /data && chown satmod:satmod /data
+#15 11.63 Collecting wrapt>=1.11.0 (from tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 11.65   Downloading wrapt-2.5.2-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (7.6 kB)
+#15 15.60 Collecting grpcio<2.0,>=1.24.3 (from tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 15.63   Downloading grpcio-1.85.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (3.8 kB)
+#15 15.77 Collecting ml_dtypes<1.0.0,>=0.5.1 (from tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 15.79   Downloading ml_dtypes-0.6.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.8 kB)
+#15 15.97 Collecting rich (from keras==3.15.1->-r requirements-neural.txt (line 5))
+#15 15.99   Downloading rich-15.0.0-py3-none-any.whl.metadata (18 kB)
+#15 16.04 Collecting namex (from keras==3.15.1->-r requirements-neural.txt (line 5))
+#15 16.09   Downloading namex-0.1.0-py3-none-any.whl.metadata (322 bytes)
+#15 16.75 Collecting optree (from keras==3.15.1->-r requirements-neural.txt (line 5))
+#15 16.78   Downloading optree-0.20.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (32 kB)
+#15 17.11 Collecting narwhals>=2.0.1 (from scikit-learn==1.9.1->-r requirements-neural.txt (line 8))
+#15 17.13   Downloading narwhals-2.28.0-py3-none-any.whl.metadata (15 kB)
+#15 17.19 Collecting threadpoolctl>=3.5.0 (from scikit-learn==1.9.1->-r requirements-neural.txt (line 8))
+#15 17.22   Downloading threadpoolctl-3.8.0-py3-none-any.whl.metadata (29 kB)
+#15 17.30 Collecting cloudpickle>=3.0 (from joblib==1.6.0->-r requirements-neural.txt (line 9))
+#15 17.32   Downloading cloudpickle-3.1.2-py3-none-any.whl.metadata (7.1 kB)
+#15 17.50 Collecting starlette>=0.46.0 (from fastapi==0.142.2->-r requirements-neural.txt (line 12))
+#15 17.52   Downloading starlette-1.10.0-py3-none-any.whl.metadata (6.6 kB)
+#15 18.25 Collecting pydantic>=2.9.0 (from fastapi==0.142.2->-r requirements-neural.txt (line 12))
+#15 18.28   Downloading pydantic-2.14.3-py3-none-any.whl.metadata (141 kB)
+#15 18.44 Collecting typing-inspection>=0.4.2 (from fastapi==0.142.2->-r requirements-neural.txt (line 12))
+#15 18.46   Downloading typing_inspection-0.4.5-py3-none-any.whl.metadata (2.6 kB)
+#15 18.51 Collecting annotated-doc>=0.0.2 (from fastapi==0.142.2->-r requirements-neural.txt (line 12))
+#15 18.53   Downloading annotated_doc-0.0.6-py3-none-any.whl.metadata (6.5 kB)
+#15 18.69 Collecting opentelemetry-api>=1.44.0 (from fastapi==0.142.2->-r requirements-neural.txt (line 12))
+#15 18.71   Downloading opentelemetry_api-1.45.2-py3-none-any.whl.metadata (1.4 kB)
+#15 18.82 Collecting click>=7.0 (from uvicorn==0.54.0->uvicorn[standard]==0.54.0->-r requirements-neural.txt (line 13))
+#15 18.84   Downloading click-8.5.1-py3-none-any.whl.metadata (2.6 kB)
+#15 18.90 Collecting h11>=0.8 (from uvicorn==0.54.0->uvicorn[standard]==0.54.0->-r requirements-neural.txt (line 13))
+#15 18.92   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#15 19.84 Collecting pillow>=9.0.0 (from reportlab==5.0.1->-r requirements-neural.txt (line 16))
+#15 19.86   Downloading pillow-13.0.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+#15 20.61 Collecting charset-normalizer (from reportlab==5.0.1->-r requirements-neural.txt (line 16))
+#15 20.63   Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+#15 20.95 Collecting httptools>=0.8.0 (from uvicorn[standard]==0.54.0->-r requirements-neural.txt (line 13))
+#15 20.97   Downloading httptools-0.9.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (3.5 kB)
+#15 21.17 Collecting pyyaml>=5.1 (from uvicorn[standard]==0.54.0->-r requirements-neural.txt (line 13))
+#15 21.19   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+#15 21.37 Collecting uvloop>=0.15.1 (from uvicorn[standard]==0.54.0->-r requirements-neural.txt (line 13))
+#15 21.39   Downloading uvloop-0.23.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.1 kB)
+#15 21.84 Collecting watchfiles>=0.20 (from uvicorn[standard]==0.54.0->-r requirements-neural.txt (line 13))
+#15 21.86   Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+#15 22.36 Collecting websockets>=13.0 (from uvicorn[standard]==0.54.0->-r requirements-neural.txt (line 13))
+#15 22.39   Downloading websockets-17.4-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (6.3 kB)
+#15 22.48 Collecting wheel<1.0,>=0.23.0 (from astunparse>=1.6.0->tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 22.50   Downloading wheel-0.48.0-py3-none-any.whl.metadata (2.3 kB)
+#15 22.58 Collecting annotated-types>=0.6.0 (from pydantic>=2.9.0->fastapi==0.142.2->-r requirements-neural.txt (line 12))
+#15 22.60   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+#15 26.21 Collecting pydantic-core==2.50.4 (from pydantic>=2.9.0->fastapi==0.142.2->-r requirements-neural.txt (line 12))
+#15 26.24   Downloading pydantic_core-2.50.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (6.6 kB)
+#15 26.41 Collecting idna<4,>=2.5 (from requests<3,>=2.21.0->tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 26.43   Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+#15 26.53 Collecting urllib3<3,>=1.26 (from requests<3,>=2.21.0->tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 26.55   Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+#15 26.61 Collecting certifi>=2023.5.7 (from requests<3,>=2.21.0->tensorflow-cpu==2.21.0->-r requirements-neural.txt (line 4))
+#15 26.63   Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+#15 26.70 Collecting anyio<5,>=4.0.0 (from starlette>=0.46.0->fastapi==0.142.2->-r requirements-neural.txt (line 12))
+#15 26.73   Downloading anyio-4.16.0-py3-none-any.whl.metadata (4.7 kB)
+#15 26.83 Collecting markdown-it-py>=2.2.0 (from rich->keras==3.15.1->-r requirements-neural.txt (line 5))
+#15 26.85   Downloading markdown_it_py-4.3.0-py3-none-any.whl.metadata (7.9 kB)
+#15 27.34 Collecting pygments<3.0.0,>=2.13.0 (from rich->keras==3.15.1->-r requirements-neural.txt (line 5))
+#15 27.36   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+#15 27.48 Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich->keras==3.15.1->-r requirements-neural.txt (line 5))
+#15 27.50   Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+#15 27.55 Downloading tensorflow_cpu-2.21.0-cp312-cp312-manylinux_2_27_x86_64.whl (274.0 MB)
+#15 ...
+
+#16 [frontend 7/7] RUN npm run build
+#16 49.58 ✓ 3373 modules transformed.
+#16 51.18 rendering chunks...
+#16 53.58 computing gzip size...
+#16 53.88 dist/index.html                                0.65 kB │ gzip:     0.39 kB
+#16 53.88 dist/assets/ground-track-map-CIGW-MKW.css     15.61 kB │ gzip:     6.46 kB
+#16 53.88 dist/assets/index-DTdOqJap.css                99.93 kB │ gzip:    17.93 kB
+#16 53.89 dist/assets/ground-track-map-DYMp29ix.js     155.89 kB │ gzip:    45.80 kB
+#16 53.89 dist/assets/index-CTwZUBZU.js                620.67 kB │ gzip:   193.83 kB
+#16 53.89 dist/assets/earth-globe-C1cEX5Bd.js          996.63 kB │ gzip:   269.65 kB
+#16 53.89 dist/assets/plotly.min-DJACpGfY.js         4,775.06 kB │ gzip: 1,471.63 kB
+#16 53.89 ✓ built in 52.21s
+#16 DONE 54.4s
+
+#15 [application  4/11] RUN python -m pip install --no-cache-dir -r "requirements-neural.txt"     && useradd --create-home --uid 10001 satmod     && mkdir /data && chown satmod:satmod /data
+#15 408.6    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 274.0/274.0 MB 710.9 kB/s eta 0:00:00
+#15 408.6 Downloading keras-3.15.1-py3-none-any.whl (2.4 MB)
+#15 411.6    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.4/2.4 MB 773.6 kB/s eta 0:00:00
+#15 411.7 Downloading numpy-2.5.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.7 MB)
+#15 434.4    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.7/16.7 MB 741.1 kB/s eta 0:00:00
+#15 434.4 Downloading scipy-1.18.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (35.3 MB)
+#15 480.8    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 35.3/35.3 MB 780.5 kB/s eta 0:00:00
+#15 480.8 Downloading scikit_learn-1.9.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (9.2 MB)
+#15 491.4    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.2/9.2 MB 878.4 kB/s eta 0:00:00
+#15 491.4 Downloading joblib-1.6.0-py3-none-any.whl (306 kB)
+#15 491.7 Downloading h5py-3.14.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.9 MB)
+#15 498.1    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.9/4.9 MB 759.4 kB/s eta 0:00:00
+#15 498.2 Downloading fastapi-0.142.2-py3-none-any.whl (144 kB)
+#15 498.4 Downloading uvicorn-0.54.0-py3-none-any.whl (87 kB)
+#15 498.5 Downloading python_multipart-0.0.32-py3-none-any.whl (30 kB)
+#15 498.5 Downloading python_dotenv-1.2.4-py3-none-any.whl (23 kB)
+#15 498.6 Downloading reportlab-5.0.1-py3-none-any.whl (2.0 MB)
+#15 500.4    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 1.2 MB/s eta 0:00:00
+#15 500.4 Downloading absl_py-2.5.1-py3-none-any.whl (137 kB)
+#15 500.6 Downloading annotated_doc-0.0.6-py3-none-any.whl (5.3 kB)
+#15 500.6 Downloading astunparse-1.6.3-py2.py3-none-any.whl (12 kB)
+#15 500.6 Downloading click-8.5.1-py3-none-any.whl (126 kB)
+#15 500.8 Downloading cloudpickle-3.1.2-py3-none-any.whl (22 kB)
+#15 500.8 Downloading flatbuffers-25.12.19-py2.py3-none-any.whl (26 kB)
+#15 500.8 Downloading gast-0.7.0-py3-none-any.whl (22 kB)
+#15 500.9 Downloading google_pasta-0.2.0-py3-none-any.whl (57 kB)
+#15 501.0 Downloading grpcio-1.85.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (7.4 MB)
+#15 509.1    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.4/7.4 MB 928.1 kB/s eta 0:00:00
+#15 509.1 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#15 509.2 Downloading httptools-0.9.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (552 kB)
+#15 509.8    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 552.8/552.8 kB 1.3 MB/s eta 0:00:00
+#15 509.8 Downloading libclang-18.1.1-py2.py3-none-manylinux2010_x86_64.whl (24.5 MB)
+#15 540.8    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 24.5/24.5 MB 793.1 kB/s eta 0:00:00
+#15 540.9 Downloading ml_dtypes-0.6.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (409 kB)
+#15 541.3 Downloading narwhals-2.28.0-py3-none-any.whl (490 kB)
+#15 541.6 Downloading opentelemetry_api-1.45.2-py3-none-any.whl (60 kB)
+#15 541.6 Downloading opt_einsum-3.4.0-py3-none-any.whl (71 kB)
+#15 541.7 Downloading pillow-13.0.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (7.1 MB)
+#15 550.4    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.1/7.1 MB 802.4 kB/s eta 0:00:00
+#15 550.4 Downloading protobuf-7.36.2-cp310-abi3-manylinux2014_x86_64.whl (343 kB)
+#15 550.9 Downloading pydantic-2.14.3-py3-none-any.whl (494 kB)
+#15 551.4 Downloading pydantic_core-2.50.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (2.3 MB)
+#15 553.5    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.3/2.3 MB 1.1 MB/s eta 0:00:00
+#15 553.5 Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+#15 554.5    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 1.1 MB/s eta 0:00:00
+#15 554.5 Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+#15 554.6 Downloading charset_normalizer-3.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (257 kB)
+#15 554.9 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+#15 555.0 Downloading starlette-1.10.0-py3-none-any.whl (80 kB)
+#15 555.1 Downloading termcolor-3.3.0-py3-none-any.whl (7.7 kB)
+#15 555.2 Downloading threadpoolctl-3.8.0-py3-none-any.whl (32 kB)
+#15 555.2 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#15 555.4 Downloading typing_inspection-0.4.5-py3-none-any.whl (14 kB)
+#15 555.4 Downloading uvloop-0.23.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.5 MB)
+#15 562.2    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.5/4.5 MB 678.5 kB/s eta 0:00:00
+#15 562.2 Downloading watchfiles-1.3.0-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (458 kB)
+#15 562.7 Downloading websockets-17.4-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (226 kB)
+#15 562.9 Downloading wrapt-2.5.2-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (250 kB)
+#15 563.3 Downloading namex-0.1.0-py3-none-any.whl (5.9 kB)
+#15 563.3 Downloading optree-0.20.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (488 kB)
+#15 564.0 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#15 564.1 Downloading rich-15.0.0-py3-none-any.whl (310 kB)
+#15 564.4 Downloading setuptools-84.2.1-py3-none-any.whl (876 kB)
+#15 565.3    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 876.3/876.3 kB 892.3 kB/s eta 0:00:00
+#15 565.3 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+#15 565.3 Downloading anyio-4.16.0-py3-none-any.whl (134 kB)
+#15 565.5 Downloading certifi-2026.10.23-py3-none-any.whl (135 kB)
+#15 565.7 Downloading idna-3.20-py3-none-any.whl (69 kB)
+#15 565.8 Downloading markdown_it_py-4.3.0-py3-none-any.whl (96 kB)
+#15 565.9 Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+#15 567.7    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 695.4 kB/s eta 0:00:00
+#15 567.7 Downloading urllib3-2.8.0-py3-none-any.whl (135 kB)
+#15 567.9 Downloading wheel-0.48.0-py3-none-any.whl (33 kB)
+#15 568.0 Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+#15 569.5 Installing collected packages: namex, libclang, flatbuffers, wrapt, websockets, uvloop, urllib3, typing_extensions, threadpoolctl, termcolor, six, setuptools, pyyaml, python-multipart, python-dotenv, pygments, protobuf, pillow, packaging, opt_einsum, numpy, narwhals, mdurl, idna, httptools, h11, gast, cloudpickle, click, charset-normalizer, certifi, annotated-types, annotated-doc, absl-py, wheel, uvicorn, typing-inspection, scipy, requests, reportlab, pydantic-core, optree, opentelemetry-api, ml_dtypes, markdown-it-py, joblib, h5py, grpcio, google_pasta, anyio, watchfiles, starlette, scikit-learn, rich, pydantic, astunparse, keras, fastapi, tensorflow-cpu
+#15 660.4 Successfully installed absl-py-2.5.1 annotated-doc-0.0.6 annotated-types-0.8.0 anyio-4.16.0 astunparse-1.6.3 certifi-2026.10.23 charset-normalizer-3.5.2 click-8.5.1 cloudpickle-3.1.2 fastapi-0.142.2 flatbuffers-25.12.19 gast-0.7.0 google_pasta-0.2.0 grpcio-1.85.1 h11-0.16.0 h5py-3.14.0 httptools-0.9.0 idna-3.20 joblib-1.6.0 keras-3.15.1 libclang-18.1.1 markdown-it-py-4.3.0 mdurl-0.1.2 ml_dtypes-0.6.0 namex-0.1.0 narwhals-2.28.0 numpy-2.5.3 opentelemetry-api-1.45.2 opt_einsum-3.4.0 optree-0.20.0 packaging-26.3 pillow-13.0.0 protobuf-7.36.2 pydantic-2.14.3 pydantic-core-2.50.4 pygments-2.21.0 python-dotenv-1.2.4 python-multipart-0.0.32 pyyaml-6.0.3 reportlab-5.0.1 requests-2.34.2 rich-15.0.0 scikit-learn-1.9.1 scipy-1.18.1 setuptools-84.2.1 six-1.17.0 starlette-1.10.0 tensorflow-cpu-2.21.0 termcolor-3.3.0 threadpoolctl-3.8.0 typing-inspection-0.4.5 typing_extensions-4.16.0 urllib3-2.8.0 uvicorn-0.54.0 uvloop-0.23.0 watchfiles-1.3.0 websockets-17.4 wheel-0.48.0 wrapt-2.5.2
+#15 660.4 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#15 660.7
+#15 660.7 [notice] A new release of pip is available: 25.0.1 -> 26.3
+#15 660.7 [notice] To update, run: pip install --upgrade pip
+#15 DONE 662.0s
+
+#17 [application  5/11] COPY backend/ ./backend/
+#17 DONE 0.7s
+
+#18 [application  6/11] COPY utils/ ./utils/
+#18 DONE 0.1s
+
+#19 [application  7/11] COPY training/ ./training/
+#19 DONE 0.1s
+
+#20 [application  8/11] COPY models/ ./models/
+#20 DONE 0.1s
+
+#21 [application  9/11] COPY experiments/ ./experiments/
+#21 DONE 1.9s
+
+#22 [application 10/11] COPY classifier_samples.npz normalization_stats_all_snr.npz satellite_modulation_cnn_all_snr.keras evaluation_results.json snr_accuracy_results.csv ./
+#22 DONE 0.1s
+
+#23 [application 11/11] COPY --from=frontend /build/frontend/dist/ ./frontend/dist/
+#23 DONE 0.1s
+
+#24 exporting to image
+#24 exporting layers
+#24 exporting layers 147.8s done
+#24 exporting manifest sha256:11c93653303923c656918d8dc28242ce85e426d567cbf811cc980550c8dd7338 0.0s done
+#24 exporting config sha256:2c4a199c4cac33baa457b06356521f648cf64b6f4d76b98b948099bf02126c34 0.0s done
+#24 exporting attestation manifest sha256:9c116c53ee214cd6e4fb852ebb4ee0378ee6117aa3b607d1941db6c36e9687f6 0.0s done
+#24 exporting manifest list sha256:1278a12db77c47599386161f2663c4f10ed5813c1ccc326b9c764d034aaa47ff
+#24 exporting manifest list sha256:1278a12db77c47599386161f2663c4f10ed5813c1ccc326b9c764d034aaa47ff 0.0s done
+#24 naming to docker.io/library/satmodclass:neural-oracle done
+#24 unpacking to docker.io/library/satmodclass:neural-oracle
+#24 unpacking to docker.io/library/satmodclass:neural-oracle 34.3s done
+#24 DONE 182.4s

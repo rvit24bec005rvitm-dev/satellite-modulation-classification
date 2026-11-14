@@ -64,27 +64,19 @@ def experimental_rf_evaluation():
 
 @lru_cache(maxsize=4)
 def experimental_network(run_id: str):
-    """Load only a named, locally trained, hash-checked synthetic experiment."""
+    """Run the exact fixed synthetic checkpoint; no optional-runtime substitution."""
     if run_id not in ['resnet-synthetic-v1','cldnn-synthetic-v1']:
         raise ValueError('Unpublished neural experiment.')
-    try: import tensorflow as tf
-    except ImportError as exc:
-        raise RuntimeError('This experiment is trained, but this runtime lacks optional TensorFlow. Use a compatible requirements-training environment; predictions are unavailable here.') from exc
-    import hashlib
-    import numpy as np
-    from scipy.special import softmax
+    from backend.services.neural_numpy import FixedNeuralEngine
     directory=ROOT/'experiments/runs'/run_id
     report=json.loads((directory/'report.json').read_text())
     path=directory/'best.keras'
-    if hashlib.sha256(path.read_bytes()).hexdigest()!=report['artifact']['sha256']:
-        raise RuntimeError('Experimental neural checkpoint hash does not match its report.')
-    network=tf.keras.models.load_model(path,compile=False,safe_mode=True)
-    if network.input_shape!=(None,128,2) or network.output_shape!=(None,3) or network.layers[-1].get_config().get('activation')!='linear':
-        raise RuntimeError('Experimental neural input/logit contract does not match its report.')
+    engine=FixedNeuralEngine.from_checkpoint(run_id,path,report['artifact']['sha256'])
     class Network:
-        backend_name=f'TensorFlow {tf.__version__} — synthetic experiment'
-        _session=network
-        def predict(self,value):return softmax(network(value[None],training=False).numpy()[0]).astype(np.float32)
+        backend_name=engine.backend_name
+        artifact_sha256=engine.artifact_sha256
+        _session=engine
+        def predict(self,value):return engine.predict(value)
     return Network()
 
 

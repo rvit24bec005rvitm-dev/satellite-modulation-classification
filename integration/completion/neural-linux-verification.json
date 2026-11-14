@@ -1,0 +1,1168 @@
+{
+  "schemaVersion": "satmod-completion-neural-runtime-v1",
+  "passed": true,
+  "python": "3.12.16",
+  "platform": "Linux-7.0.12-linuxkit-x86_64-with-glibc2.41",
+  "scope": "Existing trusted checkpoints only; no training, fitting, promotion, benchmark, or independent RF accuracy claim.",
+  "preservedBefore": {
+    "models/cnn_weights.npz": "e9705c98275e26d4a60210b2d563c4cc32ef94f4f0368974f1168245f91cf33d",
+    "satellite_modulation_cnn_all_snr.keras": "a0e34e332328ddd6d0709c4af7875ef41127a3c6c3ef3cce8e51a7b7e5cad724",
+    "normalization_stats_all_snr.npz": "6b6500e2366422345b814e0cc3f10469b0114c409d252134c9b67ab93b245f0a",
+    "classifier_samples.npz": "561343c008b34403e4d4d89d85ea26b3ac54a900d67711d8bcd39a6a774fcaef",
+    "evaluation_results.json": "b9aa35ebce1bfe95d75ce16f2f2252020219b4e7f65a2a0b651c4d2f420fc054",
+    "snr_accuracy_results.csv": "b1a8f2ea01d411800e151b2221bc489992de700ba9f1ee3a44e27237c8f3ce93",
+    "experiments/runs/resnet-synthetic-v1/splits.npz": "66574759c1ddf3b615b44d3d1daf5911990f03a586e53cb78906fa4dd7ebe001",
+    "experiments/runs/resnet-synthetic-v1/best.keras": "3c8dc0d6f05a69f4c366e48fe48ba7e7c9868d87b0d3dbe883cb4d7490011277",
+    "experiments/runs/resnet-synthetic-v1/normalization.npz": "c93bce044b254d8a0d2dc7f2cfe1760fd56a11935847dcd1e11012c2809efb74",
+    "experiments/runs/resnet-synthetic-v1/report.json": "8b6ec245c6a7c245fa39fae0fae28fb15cbc2e119b5f3a4b06ff1cb6b663a125",
+    "experiments/runs/resnet-synthetic-v1/test-predictions.npz": "467098e30ea929cce77dac87fe923d3550edd5091ed787a944b0cd10dad4d5c6",
+    "experiments/runs/rf-awgn-v1/random-forest.joblib": "a3c49aa424551d9c43f88be26bea4a49a8f76e617af4fddad73539670ce8a3ba",
+    "experiments/runs/rf-awgn-v1/splits.npz": "66574759c1ddf3b615b44d3d1daf5911990f03a586e53cb78906fa4dd7ebe001",
+    "experiments/runs/rf-awgn-v1/normalization.npz": "c93bce044b254d8a0d2dc7f2cfe1760fd56a11935847dcd1e11012c2809efb74",
+    "experiments/runs/rf-awgn-v1/report.json": "baf3bc259f0a066439e4f18673f1e03ce741758ea616714532dd041d5e40981b",
+    "experiments/runs/rf-awgn-v1/test-predictions.npz": "bb8488f1328dad85ab5101df8d9b3a899dbd7b960bd3575e594d9bf4130de06e",
+    "experiments/runs/cldnn-synthetic-v1/splits.npz": "66574759c1ddf3b615b44d3d1daf5911990f03a586e53cb78906fa4dd7ebe001",
+    "experiments/runs/cldnn-synthetic-v1/best.keras": "62aa060d52b37797d81aa1b9c06499d92f4e7fdfadf457838a79fa94f9e395c6",
+    "experiments/runs/cldnn-synthetic-v1/normalization.npz": "c93bce044b254d8a0d2dc7f2cfe1760fd56a11935847dcd1e11012c2809efb74",
+    "experiments/runs/cldnn-synthetic-v1/report.json": "053fa83947a344880b443a37049a94b1023319e3861d3ea5b34cd8952e436d65",
+    "experiments/runs/cldnn-synthetic-v1/test-predictions.npz": "d95caaa06a3fae89b18eda552c3ed34e329826c2887c7e1e2533695f59d918b6",
+    "experiments/runs/rf-control-v1/random-forest.joblib": "9388cc39d7cb8511b7270dbc444db453284fdffbba3e4572c39bd52cd4397ecb",
+    "experiments/runs/rf-control-v1/splits.npz": "66574759c1ddf3b615b44d3d1daf5911990f03a586e53cb78906fa4dd7ebe001",
+    "experiments/runs/rf-control-v1/normalization.npz": "c93bce044b254d8a0d2dc7f2cfe1760fd56a11935847dcd1e11012c2809efb74",
+    "experiments/runs/rf-control-v1/report.json": "38f2c5b1d80536740aa1fcaa1bc5c2930b67d1978c81c480ae30056c2ffc6f67",
+    "experiments/runs/rf-control-v1/test-predictions.npz": "950da502a7cb12de0a71c5251dc2c6d3d3dcdc2bc592be9e04e8971202cd5fd1",
+    "experiments/data/controlled-synthetic-v1.json": "b462d48b6cceb238f7892770919c119c20c421ab1111135f291ffaa55f999736",
+    "experiments/data/controlled-synthetic-v1.npz": "8ee79e4b788674c0bcb4da668199384c3cb10901e219462e1a2a04d1161ecaf6"
+  },
+  "versions": {
+    "tensorflow": "2.21.0",
+    "keras": "3.15.1",
+    "numpy": "2.5.3",
+    "scikitLearn": "1.9.1",
+    "scipy": "1.18.1"
+  },
+  "originalProductionCnnParity": {
+    "frames": 300,
+    "maxAbsoluteProbabilityError": 4.172325134277344e-07,
+    "classMismatchCount": 0,
+    "savedWeightTensorsIdentical": true,
+    "probabilityTolerance": {
+      "atol": 2e-05,
+      "rtol": 2e-05
+    }
+  },
+  "originalRecordedReplays": {
+    "resnet-synthetic-v1": {
+      "protocolId": "c7c74ee438f937fdcf4e409028c3abf4802d9f275c400d631c3c3ba1e594db44",
+      "artifactSha256": "3c8dc0d6f05a69f4c366e48fe48ba7e7c9868d87b0d3dbe883cb4d7490011277",
+      "datasetSha256": "8ee79e4b788674c0bcb4da668199384c3cb10901e219462e1a2a04d1161ecaf6",
+      "maxReplayProbabilityError": 1.1920928955078125e-07,
+      "test": {
+        "samples": 360,
+        "accuracy": 0.49444444444444446,
+        "precision": 0.5081023168608544,
+        "recall": 0.5176608187134503,
+        "macroF1": 0.4237939876648758,
+        "confusionMatrix": [
+          [
+            79,
+            55,
+            16
+          ],
+          [
+            0,
+            96,
+            0
+          ],
+          [
+            0,
+            111,
+            3
+          ]
+        ],
+        "perClass": [
+          {
+            "className": "BPSK",
+            "precision": 1.0,
+            "recall": 0.5266666666666666,
+            "f1": 0.6899563318777293,
+            "support": 150
+          },
+          {
+            "className": "QPSK",
+            "precision": 0.366412213740458,
+            "recall": 1.0,
+            "f1": 0.5363128491620112,
+            "support": 96
+          },
+          {
+            "className": "16-QAM",
+            "precision": 0.15789473684210525,
+            "recall": 0.02631578947368421,
+            "f1": 0.045112781954887216,
+            "support": 114
+          }
+        ],
+        "snrAccuracy": [
+          {
+            "snrDb": -12.0,
+            "samples": 60,
+            "accuracy": 0.26666666666666666,
+            "perClass": {
+              "BPSK": 0.0,
+              "QPSK": 1.0,
+              "16-QAM": 0.0
+            }
+          },
+          {
+            "snrDb": -6.0,
+            "samples": 60,
+            "accuracy": 0.26666666666666666,
+            "perClass": {
+              "BPSK": 0.0,
+              "QPSK": 1.0,
+              "16-QAM": 0.0
+            }
+          },
+          {
+            "snrDb": 0.0,
+            "samples": 60,
+            "accuracy": 0.43333333333333335,
+            "perClass": {
+              "BPSK": 0.4,
+              "QPSK": 1.0,
+              "16-QAM": 0.0
+            }
+          },
+          {
+            "snrDb": 6.0,
+            "samples": 60,
+            "accuracy": 0.6333333333333333,
+            "perClass": {
+              "BPSK": 0.84,
+              "QPSK": 1.0,
+              "16-QAM": 0.05263157894736842
+            }
+          },
+          {
+            "snrDb": 12.0,
+            "samples": 60,
+            "accuracy": 0.6666666666666666,
+            "perClass": {
+              "BPSK": 0.92,
+              "QPSK": 1.0,
+              "16-QAM": 0.05263157894736842
+            }
+          },
+          {
+            "snrDb": 18.0,
+            "samples": 60,
+            "accuracy": 0.7,
+            "perClass": {
+              "BPSK": 1.0,
+              "QPSK": 1.0,
+              "16-QAM": 0.05263157894736842
+            }
+          }
+        ],
+        "calibration": {
+          "ece": 0.132718758781751,
+          "nll": 1.0126210996683442,
+          "brier": 0.6228253153155827,
+          "reliability": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 0,
+              "accuracy": null,
+              "confidence": null
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 0,
+              "accuracy": null,
+              "confidence": null
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.3,
+              "count": 0,
+              "accuracy": null,
+              "confidence": null
+            },
+            {
+              "lower": 0.3,
+              "upper": 0.4,
+              "count": 37,
+              "accuracy": 0.5405405405405406,
+              "confidence": 0.37686606436162384
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 112,
+              "accuracy": 0.5535714285714286,
+              "confidence": 0.4491560818361385
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6,
+              "count": 111,
+              "accuracy": 0.36936936936936937,
+              "confidence": 0.5530562486734476
+            },
+            {
+              "lower": 0.6,
+              "upper": 0.7,
+              "count": 90,
+              "accuracy": 0.5333333333333333,
+              "confidence": 0.6394674691889021
+            },
+            {
+              "lower": 0.7,
+              "upper": 0.8,
+              "count": 10,
+              "accuracy": 0.7,
+              "confidence": 0.7086962878704071
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 0,
+              "accuracy": null,
+              "confidence": null
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 0,
+              "accuracy": null,
+              "confidence": null
+            }
+          ],
+          "samples": 360,
+          "bins": 10,
+          "brierConvention": "Mean sum of squared class-probability errors, range 0\u20132"
+        },
+        "snrAvailability": {
+          "knownSamples": 360,
+          "unavailableSamples": 0,
+          "source": "Supplied dataset metadata; measurement provenance is the importer\u2019s responsibility."
+        }
+      },
+      "individualClassDecisions": {
+        "samples": 360,
+        "classMismatchCount": 0,
+        "maxAbsoluteProbabilityError": 1.1920928955078125e-07
+      },
+      "probabilityTolerance": {
+        "atol": 1e-06,
+        "rtol": 1e-07
+      }
+    },
+    "cldnn-synthetic-v1": {
+      "protocolId": "c7c74ee438f937fdcf4e409028c3abf4802d9f275c400d631c3c3ba1e594db44",
+      "artifactSha256": "62aa060d52b37797d81aa1b9c06499d92f4e7fdfadf457838a79fa94f9e395c6",
+      "datasetSha256": "8ee79e4b788674c0bcb4da668199384c3cb10901e219462e1a2a04d1161ecaf6",
+      "maxReplayProbabilityError": 2.384185791015625e-07,
+      "test": {
+        "samples": 360,
+        "accuracy": 0.6888888888888889,
+        "precision": 0.6852243363871272,
+        "recall": 0.6770540935672514,
+        "macroF1": 0.6686904265252199,
+        "confusionMatrix": [
+          [
+            124,
+            13,
+            13
+          ],
+          [
+            5,
+            71,
+            20
+          ],
+          [
+            3,
+            58,
+            53
+          ]
+        ],
+        "perClass": [
+          {
+            "className": "BPSK",
+            "precision": 0.9393939393939394,
+            "recall": 0.8266666666666667,
+            "f1": 0.8794326241134752,
+            "support": 150
+          },
+          {
+            "className": "QPSK",
+            "precision": 0.5,
+            "recall": 0.7395833333333334,
+            "f1": 0.5966386554621849,
+            "support": 96
+          },
+          {
+            "className": "16-QAM",
+            "precision": 0.6162790697674418,
+            "recall": 0.4649122807017544,
+            "f1": 0.53,
+            "support": 114
+          }
+        ],
+        "snrAccuracy": [
+          {
+            "snrDb": -12.0,
+            "samples": 60,
+            "accuracy": 0.3333333333333333,
+            "perClass": {
+              "BPSK": 0.2,
+              "QPSK": 0.5,
+              "16-QAM": 0.3684210526315789
+            }
+          },
+          {
+            "snrDb": -6.0,
+            "samples": 60,
+            "accuracy": 0.6,
+            "perClass": {
+              "BPSK": 0.76,
+              "QPSK": 0.5625,
+              "16-QAM": 0.42105263157894735
+            }
+          },
+          {
+            "snrDb": 0.0,
+            "samples": 60,
+            "accuracy": 0.75,
+            "perClass": {
+              "BPSK": 1.0,
+              "QPSK": 0.75,
+              "16-QAM": 0.42105263157894735
+            }
+          },
+          {
+            "snrDb": 6.0,
+            "samples": 60,
+            "accuracy": 0.8,
+            "perClass": {
+              "BPSK": 1.0,
+              "QPSK": 0.875,
+              "16-QAM": 0.47368421052631576
+            }
+          },
+          {
+            "snrDb": 12.0,
+            "samples": 60,
+            "accuracy": 0.8333333333333334,
+            "perClass": {
+              "BPSK": 1.0,
+              "QPSK": 0.875,
+              "16-QAM": 0.5789473684210527
+            }
+          },
+          {
+            "snrDb": 18.0,
+            "samples": 60,
+            "accuracy": 0.8166666666666667,
+            "perClass": {
+              "BPSK": 1.0,
+              "QPSK": 0.875,
+              "16-QAM": 0.5263157894736842
+            }
+          }
+        ],
+        "calibration": {
+          "ece": 0.04877739225824673,
+          "nll": 0.6422689474549702,
+          "brier": 0.3898172259503361,
+          "reliability": [
+            {
+              "lower": 0.0,
+              "upper": 0.1,
+              "count": 0,
+              "accuracy": null,
+              "confidence": null
+            },
+            {
+              "lower": 0.1,
+              "upper": 0.2,
+              "count": 0,
+              "accuracy": null,
+              "confidence": null
+            },
+            {
+              "lower": 0.2,
+              "upper": 0.3,
+              "count": 0,
+              "accuracy": null,
+              "confidence": null
+            },
+            {
+              "lower": 0.3,
+              "upper": 0.4,
+              "count": 19,
+              "accuracy": 0.3157894736842105,
+              "confidence": 0.37582725443338094
+            },
+            {
+              "lower": 0.4,
+              "upper": 0.5,
+              "count": 81,
+              "accuracy": 0.49382716049382713,
+              "confidence": 0.45752720406026015
+            },
+            {
+              "lower": 0.5,
+              "upper": 0.6,
+              "count": 67,
+              "accuracy": 0.6119402985074627,
+              "confidence": 0.5453903772937718
+            },
+            {
+              "lower": 0.6,
+              "upper": 0.7,
+              "count": 57,
+              "accuracy": 0.5789473684210527,
+              "confidence": 0.6446872980971086
+            },
+            {
+              "lower": 0.7,
+              "upper": 0.8,
+              "count": 31,
+              "accuracy": 0.8064516129032258,
+              "confidence": 0.7486842755348452
+            },
+            {
+              "lower": 0.8,
+              "upper": 0.9,
+              "count": 20,
+              "accuracy": 0.9,
+              "confidence": 0.8501497775316238
+            },
+            {
+              "lower": 0.9,
+              "upper": 1.0,
+              "count": 85,
+              "accuracy": 1.0,
+              "confidence": 0.9707643025061663
+            }
+          ],
+          "samples": 360,
+          "bins": 10,
+          "brierConvention": "Mean sum of squared class-probability errors, range 0\u20132"
+        },
+        "snrAvailability": {
+          "knownSamples": 360,
+          "unavailableSamples": 0,
+          "source": "Supplied dataset metadata; measurement provenance is the importer\u2019s responsibility."
+        }
+      },
+      "individualClassDecisions": {
+        "samples": 360,
+        "classMismatchCount": 0,
+        "maxAbsoluteProbabilityError": 2.384185791015625e-07
+      },
+      "probabilityTolerance": {
+        "atol": 1e-06,
+        "rtol": 1e-07
+      }
+    }
+  },
+  "catalog": [
+    {
+      "id": "1d-cnn",
+      "name": "Production CNN",
+      "version": "supplied-cnn-v1",
+      "classLabels": [
+        "BPSK",
+        "QPSK",
+        "16-QAM"
+      ],
+      "lifecycle": "Production",
+      "inputShape": [
+        128,
+        2
+      ],
+      "available": true,
+      "status": "Production",
+      "artifactSha256": "e9705c98275e26d4a60210b2d563c4cc32ef94f4f0368974f1168245f91cf33d",
+      "backend": "NumPy Native Engine",
+      "preprocessingConfiguration": {
+        "mean": -6.560127076227218e-05,
+        "std": 0.006070038769394159,
+        "dtype": "float32",
+        "channelOrder": [
+          "I",
+          "Q"
+        ],
+        "windowLength": 128,
+        "unitPowerApplied": false,
+        "statisticsSource": "Supplied production training statistics; original corpus unavailable"
+      },
+      "trainingProvenance": {
+        "status": "unavailable",
+        "reason": "Original training data, source-capture groups, split IDs and seeds were not supplied."
+      }
+    },
+    {
+      "id": "rf-experimental",
+      "name": "Experimental Random Forest",
+      "version": "controlled-synthetic-rf-v1",
+      "classLabels": [
+        "BPSK",
+        "QPSK",
+        "16-QAM"
+      ],
+      "lifecycle": "Experimental",
+      "inputShape": [
+        128,
+        2
+      ],
+      "available": true,
+      "status": "Experimental",
+      "artifactSha256": "9388cc39d7cb8511b7270dbc444db453284fdffbba3e4572c39bd52cd4397ecb",
+      "backend": "scikit-learn Random Forest \u2014 synthetic experiment",
+      "preprocessingConfiguration": {
+        "fitSplit": "train",
+        "mean": 3.378142076460055e-05,
+        "std": 0.006069947804230244,
+        "channelOrder": [
+          "I",
+          "Q"
+        ],
+        "unitPowerApplied": false,
+        "featureSchema": {
+          "version": "expert-statistics-v1",
+          "description": "Sorted I/Q statistical properties plus scale-free complex moments of order 2,4,6"
+        },
+        "windowLength": 128,
+        "dtype": "float32"
+      },
+      "trainingProvenance": {
+        "status": "trained-experimental",
+        "reason": "Seeded 1,800-frame generated educational dataset; source groups and validation/test splits recorded. Not validated on independent satellite captures."
+      }
+    },
+    {
+      "id": "resnet-synthetic-v1",
+      "name": "Experimental ResNet",
+      "version": "resnet-synthetic-v1",
+      "classLabels": [
+        "BPSK",
+        "QPSK",
+        "16-QAM"
+      ],
+      "lifecycle": "Experimental",
+      "inputShape": [
+        128,
+        2
+      ],
+      "available": true,
+      "status": "Experimental",
+      "artifactSha256": "3c8dc0d6f05a69f4c366e48fe48ba7e7c9868d87b0d3dbe883cb4d7490011277",
+      "backend": "TensorFlow 2.21.0 \u2014 synthetic experiment",
+      "preprocessingConfiguration": {
+        "fitSplit": "train",
+        "mean": 3.378142076460055e-05,
+        "std": 0.006069947804230244,
+        "channelOrder": [
+          "I",
+          "Q"
+        ],
+        "unitPowerApplied": false,
+        "dtype": "float32",
+        "windowLength": 128
+      },
+      "trainingProvenance": {
+        "status": "trained-experimental",
+        "reason": "Real checkpoint from an eight-epoch bounded synthetic experiment; requires optional TensorFlow for online inference. Not validated on original-domain independent satellite data."
+      }
+    },
+    {
+      "id": "cldnn-synthetic-v1",
+      "name": "Experimental CLDNN",
+      "version": "cldnn-synthetic-v1",
+      "classLabels": [
+        "BPSK",
+        "QPSK",
+        "16-QAM"
+      ],
+      "lifecycle": "Experimental",
+      "inputShape": [
+        128,
+        2
+      ],
+      "available": true,
+      "status": "Experimental",
+      "artifactSha256": "62aa060d52b37797d81aa1b9c06499d92f4e7fdfadf457838a79fa94f9e395c6",
+      "backend": "TensorFlow 2.21.0 \u2014 synthetic experiment",
+      "preprocessingConfiguration": {
+        "fitSplit": "train",
+        "mean": 3.378142076460055e-05,
+        "std": 0.006069947804230244,
+        "channelOrder": [
+          "I",
+          "Q"
+        ],
+        "unitPowerApplied": false,
+        "dtype": "float32",
+        "windowLength": 128
+      },
+      "trainingProvenance": {
+        "status": "trained-experimental",
+        "reason": "Real checkpoint from an eight-epoch bounded synthetic experiment; requires optional TensorFlow for online inference. Not validated on original-domain independent satellite data."
+      }
+    }
+  ],
+  "actualApiEvaluations": [
+    {
+      "jobId": "2b7db9b5-1828-4a0a-8d12-d2aaee515aeb",
+      "modelId": "1d-cnn",
+      "modelVersion": "supplied-cnn-v1",
+      "modelHash": "e9705c98275e26d4a60210b2d563c4cc32ef94f4f0368974f1168245f91cf33d",
+      "backend": "NumPy Native Engine",
+      "datasetHash": "c004db9e48457d5126aee3c1eb026e557bc1fab60a446c6d48cf1958feebadb8",
+      "protocol": {
+        "datasetId": "3d0e9d3c-00d9-463c-acda-9f88ffdfd3e6",
+        "datasetHash": "c004db9e48457d5126aee3c1eb026e557bc1fab60a446c6d48cf1958feebadb8",
+        "split": "test",
+        "testWindowsHash": "ec90dbbfe1be2d57a35033eeea03dc304af8989569696ec5b0e40a0d88082f76",
+        "classLabels": [
+          "16-QAM",
+          "BPSK",
+          "QPSK"
+        ],
+        "protocolId": "be84d75f70d55330c1f39aa71dba331ae549eba2b5debb57b5790f2f941ec4ae"
+      },
+      "preprocessing": {
+        "mean": -6.560127076227218e-05,
+        "std": 0.006070038769394159,
+        "dtype": "float32",
+        "channelOrder": [
+          "I",
+          "Q"
+        ],
+        "windowLength": 128,
+        "unitPowerApplied": false,
+        "statisticsSource": "Supplied production training statistics; original corpus unavailable"
+      },
+      "samples": 3,
+      "maxApiVersusTrustedLoaderProbabilityError": 0.0,
+      "predictions": [
+        {
+          "groundTruth": "BPSK",
+          "predictedModulation": "BPSK",
+          "probabilities": {
+            "BPSK": 0.9997310042381287,
+            "QPSK": 0.0001988668809644878,
+            "16-QAM": 7.00442396919243e-05
+          }
+        },
+        {
+          "groundTruth": "QPSK",
+          "predictedModulation": "QPSK",
+          "probabilities": {
+            "BPSK": 0.0001164555869763717,
+            "QPSK": 0.9943199157714844,
+            "16-QAM": 0.005563609302043915
+          }
+        },
+        {
+          "groundTruth": "16-QAM",
+          "predictedModulation": "16-QAM",
+          "probabilities": {
+            "BPSK": 0.001742746913805604,
+            "QPSK": 0.47762614488601685,
+            "16-QAM": 0.5206310749053955
+          }
+        }
+      ]
+    },
+    {
+      "jobId": "3d168f6c-8b03-4d57-9eb1-fc4a556439e5",
+      "modelId": "rf-experimental",
+      "modelVersion": "controlled-synthetic-rf-v1",
+      "modelHash": "9388cc39d7cb8511b7270dbc444db453284fdffbba3e4572c39bd52cd4397ecb",
+      "backend": "scikit-learn Random Forest \u2014 synthetic experiment",
+      "datasetHash": "c004db9e48457d5126aee3c1eb026e557bc1fab60a446c6d48cf1958feebadb8",
+      "protocol": {
+        "datasetId": "3d0e9d3c-00d9-463c-acda-9f88ffdfd3e6",
+        "datasetHash": "c004db9e48457d5126aee3c1eb026e557bc1fab60a446c6d48cf1958feebadb8",
+        "split": "test",
+        "testWindowsHash": "ec90dbbfe1be2d57a35033eeea03dc304af8989569696ec5b0e40a0d88082f76",
+        "classLabels": [
+          "16-QAM",
+          "BPSK",
+          "QPSK"
+        ],
+        "protocolId": "be84d75f70d55330c1f39aa71dba331ae549eba2b5debb57b5790f2f941ec4ae"
+      },
+      "preprocessing": {
+        "fitSplit": "train",
+        "mean": 3.378142076460055e-05,
+        "std": 0.006069947804230244,
+        "channelOrder": [
+          "I",
+          "Q"
+        ],
+        "unitPowerApplied": false,
+        "featureSchema": {
+          "version": "expert-statistics-v1",
+          "description": "Sorted I/Q statistical properties plus scale-free complex moments of order 2,4,6"
+        },
+        "windowLength": 128,
+        "dtype": "float32"
+      },
+      "samples": 3,
+      "maxApiVersusTrustedLoaderProbabilityError": 0.0,
+      "predictions": [
+        {
+          "groundTruth": "BPSK",
+          "predictedModulation": "BPSK",
+          "probabilities": {
+            "BPSK": 1.0,
+            "QPSK": 0.0,
+            "16-QAM": 0.0
+          }
+        },
+        {
+          "groundTruth": "QPSK",
+          "predictedModulation": "QPSK",
+          "probabilities": {
+            "BPSK": 0.0,
+            "QPSK": 0.5655,
+            "16-QAM": 0.43450000000000005
+          }
+        },
+        {
+          "groundTruth": "16-QAM",
+          "predictedModulation": "16-QAM",
+          "probabilities": {
+            "BPSK": 0.026666666666666665,
+            "QPSK": 0.1505,
+            "16-QAM": 0.8228333333333334
+          }
+        }
+      ]
+    },
+    {
+      "jobId": "16533037-6959-4dbe-a6d9-db67acbf4367",
+      "modelId": "resnet-synthetic-v1",
+      "modelVersion": "resnet-synthetic-v1",
+      "modelHash": "3c8dc0d6f05a69f4c366e48fe48ba7e7c9868d87b0d3dbe883cb4d7490011277",
+      "backend": "TensorFlow 2.21.0 \u2014 synthetic experiment",
+      "datasetHash": "c004db9e48457d5126aee3c1eb026e557bc1fab60a446c6d48cf1958feebadb8",
+      "protocol": {
+        "datasetId": "3d0e9d3c-00d9-463c-acda-9f88ffdfd3e6",
+        "datasetHash": "c004db9e48457d5126aee3c1eb026e557bc1fab60a446c6d48cf1958feebadb8",
+        "split": "test",
+        "testWindowsHash": "ec90dbbfe1be2d57a35033eeea03dc304af8989569696ec5b0e40a0d88082f76",
+        "classLabels": [
+          "16-QAM",
+          "BPSK",
+          "QPSK"
+        ],
+        "protocolId": "be84d75f70d55330c1f39aa71dba331ae549eba2b5debb57b5790f2f941ec4ae"
+      },
+      "preprocessing": {
+        "fitSplit": "train",
+        "mean": 3.378142076460055e-05,
+        "std": 0.006069947804230244,
+        "channelOrder": [
+          "I",
+          "Q"
+        ],
+        "unitPowerApplied": false,
+        "dtype": "float32",
+        "windowLength": 128
+      },
+      "samples": 3,
+      "maxApiVersusTrustedLoaderProbabilityError": 0.0,
+      "predictions": [
+        {
+          "groundTruth": "BPSK",
+          "predictedModulation": "16-QAM",
+          "probabilities": {
+            "BPSK": 0.34405916929244995,
+            "QPSK": 0.2714093327522278,
+            "16-QAM": 0.38453149795532227
+          }
+        },
+        {
+          "groundTruth": "QPSK",
+          "predictedModulation": "QPSK",
+          "probabilities": {
+            "BPSK": 0.12104219198226929,
+            "QPSK": 0.6080653071403503,
+            "16-QAM": 0.27089253067970276
+          }
+        },
+        {
+          "groundTruth": "16-QAM",
+          "predictedModulation": "QPSK",
+          "probabilities": {
+            "BPSK": 0.13701196014881134,
+            "QPSK": 0.5686721801757812,
+            "16-QAM": 0.294315904378891
+          }
+        }
+      ]
+    },
+    {
+      "jobId": "edab0873-b7e0-47e3-809d-2b6041228163",
+      "modelId": "cldnn-synthetic-v1",
+      "modelVersion": "cldnn-synthetic-v1",
+      "modelHash": "62aa060d52b37797d81aa1b9c06499d92f4e7fdfadf457838a79fa94f9e395c6",
+      "backend": "TensorFlow 2.21.0 \u2014 synthetic experiment",
+      "datasetHash": "c004db9e48457d5126aee3c1eb026e557bc1fab60a446c6d48cf1958feebadb8",
+      "protocol": {
+        "datasetId": "3d0e9d3c-00d9-463c-acda-9f88ffdfd3e6",
+        "datasetHash": "c004db9e48457d5126aee3c1eb026e557bc1fab60a446c6d48cf1958feebadb8",
+        "split": "test",
+        "testWindowsHash": "ec90dbbfe1be2d57a35033eeea03dc304af8989569696ec5b0e40a0d88082f76",
+        "classLabels": [
+          "16-QAM",
+          "BPSK",
+          "QPSK"
+        ],
+        "protocolId": "be84d75f70d55330c1f39aa71dba331ae549eba2b5debb57b5790f2f941ec4ae"
+      },
+      "preprocessing": {
+        "fitSplit": "train",
+        "mean": 3.378142076460055e-05,
+        "std": 0.006069947804230244,
+        "channelOrder": [
+          "I",
+          "Q"
+        ],
+        "unitPowerApplied": false,
+        "dtype": "float32",
+        "windowLength": 128
+      },
+      "samples": 3,
+      "maxApiVersusTrustedLoaderProbabilityError": 0.0,
+      "predictions": [
+        {
+          "groundTruth": "BPSK",
+          "predictedModulation": "BPSK",
+          "probabilities": {
+            "BPSK": 0.9838373064994812,
+            "QPSK": 0.006196415051817894,
+            "16-QAM": 0.009966316632926464
+          }
+        },
+        {
+          "groundTruth": "QPSK",
+          "predictedModulation": "QPSK",
+          "probabilities": {
+            "BPSK": 0.14394135773181915,
+            "QPSK": 0.47070255875587463,
+            "16-QAM": 0.38535603880882263
+          }
+        },
+        {
+          "groundTruth": "16-QAM",
+          "predictedModulation": "QPSK",
+          "probabilities": {
+            "BPSK": 0.12515932321548462,
+            "QPSK": 0.5891057848930359,
+            "16-QAM": 0.2857349216938019
+          }
+        }
+      ]
+    }
+  ],
+  "matchedComparison": {
+    "evaluationProtocol": {
+      "datasetId": "3d0e9d3c-00d9-463c-acda-9f88ffdfd3e6",
+      "datasetHash": "c004db9e48457d5126aee3c1eb026e557bc1fab60a446c6d48cf1958feebadb8",
+      "split": "test",
+      "testWindowsHash": "ec90dbbfe1be2d57a35033eeea03dc304af8989569696ec5b0e40a0d88082f76",
+      "classLabels": [
+        "16-QAM",
+        "BPSK",
+        "QPSK"
+      ],
+      "protocolId": "be84d75f70d55330c1f39aa71dba331ae549eba2b5debb57b5790f2f941ec4ae"
+    },
+    "models": [
+      "1d-cnn",
+      "rf-experimental",
+      "resnet-synthetic-v1",
+      "cldnn-synthetic-v1"
+    ]
+  },
+  "ownedServerStopped": true,
+  "httpCalls": [
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/research/models",
+      "status": 401
+    },
+    {
+      "method": "GET",
+      "path": "/api/research/models",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/signal/generate",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/workspace/captures",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/signal/generate",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/workspace/captures",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/signal/generate",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/workspace/captures",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/workspace/datasets",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/research/evaluations",
+      "status": 202
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/2b7db9b5-1828-4a0a-8d12-d2aaee515aeb",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/2b7db9b5-1828-4a0a-8d12-d2aaee515aeb",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/2b7db9b5-1828-4a0a-8d12-d2aaee515aeb/result",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/research/evaluations",
+      "status": 202
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/3d168f6c-8b03-4d57-9eb1-fc4a556439e5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/3d168f6c-8b03-4d57-9eb1-fc4a556439e5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/3d168f6c-8b03-4d57-9eb1-fc4a556439e5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/3d168f6c-8b03-4d57-9eb1-fc4a556439e5/result",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/research/evaluations",
+      "status": 202
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/16533037-6959-4dbe-a6d9-db67acbf4367",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/16533037-6959-4dbe-a6d9-db67acbf4367",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/16533037-6959-4dbe-a6d9-db67acbf4367",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/16533037-6959-4dbe-a6d9-db67acbf4367",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/16533037-6959-4dbe-a6d9-db67acbf4367",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/16533037-6959-4dbe-a6d9-db67acbf4367/result",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/research/evaluations",
+      "status": 202
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/edab0873-b7e0-47e3-809d-2b6041228163",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/edab0873-b7e0-47e3-809d-2b6041228163",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/edab0873-b7e0-47e3-809d-2b6041228163",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/edab0873-b7e0-47e3-809d-2b6041228163",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/edab0873-b7e0-47e3-809d-2b6041228163",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/edab0873-b7e0-47e3-809d-2b6041228163",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/edab0873-b7e0-47e3-809d-2b6041228163",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/edab0873-b7e0-47e3-809d-2b6041228163",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/edab0873-b7e0-47e3-809d-2b6041228163",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/edab0873-b7e0-47e3-809d-2b6041228163",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/edab0873-b7e0-47e3-809d-2b6041228163",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/edab0873-b7e0-47e3-809d-2b6041228163",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/edab0873-b7e0-47e3-809d-2b6041228163",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/edab0873-b7e0-47e3-809d-2b6041228163",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/edab0873-b7e0-47e3-809d-2b6041228163",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/edab0873-b7e0-47e3-809d-2b6041228163",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/edab0873-b7e0-47e3-809d-2b6041228163",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/edab0873-b7e0-47e3-809d-2b6041228163",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/workspace/jobs/edab0873-b7e0-47e3-809d-2b6041228163/result",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/research/evaluations/compare",
+      "status": 200
+    }
+  ],
+  "preservedAfter": {
+    "models/cnn_weights.npz": "e9705c98275e26d4a60210b2d563c4cc32ef94f4f0368974f1168245f91cf33d",
+    "satellite_modulation_cnn_all_snr.keras": "a0e34e332328ddd6d0709c4af7875ef41127a3c6c3ef3cce8e51a7b7e5cad724",
+    "normalization_stats_all_snr.npz": "6b6500e2366422345b814e0cc3f10469b0114c409d252134c9b67ab93b245f0a",
+    "classifier_samples.npz": "561343c008b34403e4d4d89d85ea26b3ac54a900d67711d8bcd39a6a774fcaef",
+    "evaluation_results.json": "b9aa35ebce1bfe95d75ce16f2f2252020219b4e7f65a2a0b651c4d2f420fc054",
+    "snr_accuracy_results.csv": "b1a8f2ea01d411800e151b2221bc489992de700ba9f1ee3a44e27237c8f3ce93",
+    "experiments/runs/resnet-synthetic-v1/splits.npz": "66574759c1ddf3b615b44d3d1daf5911990f03a586e53cb78906fa4dd7ebe001",
+    "experiments/runs/resnet-synthetic-v1/best.keras": "3c8dc0d6f05a69f4c366e48fe48ba7e7c9868d87b0d3dbe883cb4d7490011277",
+    "experiments/runs/resnet-synthetic-v1/normalization.npz": "c93bce044b254d8a0d2dc7f2cfe1760fd56a11935847dcd1e11012c2809efb74",
+    "experiments/runs/resnet-synthetic-v1/report.json": "8b6ec245c6a7c245fa39fae0fae28fb15cbc2e119b5f3a4b06ff1cb6b663a125",
+    "experiments/runs/resnet-synthetic-v1/test-predictions.npz": "467098e30ea929cce77dac87fe923d3550edd5091ed787a944b0cd10dad4d5c6",
+    "experiments/runs/rf-awgn-v1/random-forest.joblib": "a3c49aa424551d9c43f88be26bea4a49a8f76e617af4fddad73539670ce8a3ba",
+    "experiments/runs/rf-awgn-v1/splits.npz": "66574759c1ddf3b615b44d3d1daf5911990f03a586e53cb78906fa4dd7ebe001",
+    "experiments/runs/rf-awgn-v1/normalization.npz": "c93bce044b254d8a0d2dc7f2cfe1760fd56a11935847dcd1e11012c2809efb74",
+    "experiments/runs/rf-awgn-v1/report.json": "baf3bc259f0a066439e4f18673f1e03ce741758ea616714532dd041d5e40981b",
+    "experiments/runs/rf-awgn-v1/test-predictions.npz": "bb8488f1328dad85ab5101df8d9b3a899dbd7b960bd3575e594d9bf4130de06e",
+    "experiments/runs/cldnn-synthetic-v1/splits.npz": "66574759c1ddf3b615b44d3d1daf5911990f03a586e53cb78906fa4dd7ebe001",
+    "experiments/runs/cldnn-synthetic-v1/best.keras": "62aa060d52b37797d81aa1b9c06499d92f4e7fdfadf457838a79fa94f9e395c6",
+    "experiments/runs/cldnn-synthetic-v1/normalization.npz": "c93bce044b254d8a0d2dc7f2cfe1760fd56a11935847dcd1e11012c2809efb74",
+    "experiments/runs/cldnn-synthetic-v1/report.json": "053fa83947a344880b443a37049a94b1023319e3861d3ea5b34cd8952e436d65",
+    "experiments/runs/cldnn-synthetic-v1/test-predictions.npz": "d95caaa06a3fae89b18eda552c3ed34e329826c2887c7e1e2533695f59d918b6",
+    "experiments/runs/rf-control-v1/random-forest.joblib": "9388cc39d7cb8511b7270dbc444db453284fdffbba3e4572c39bd52cd4397ecb",
+    "experiments/runs/rf-control-v1/splits.npz": "66574759c1ddf3b615b44d3d1daf5911990f03a586e53cb78906fa4dd7ebe001",
+    "experiments/runs/rf-control-v1/normalization.npz": "c93bce044b254d8a0d2dc7f2cfe1760fd56a11935847dcd1e11012c2809efb74",
+    "experiments/runs/rf-control-v1/report.json": "38f2c5b1d80536740aa1fcaa1bc5c2930b67d1978c81c480ae30056c2ffc6f67",
+    "experiments/runs/rf-control-v1/test-predictions.npz": "950da502a7cb12de0a71c5251dc2c6d3d3dcdc2bc592be9e04e8971202cd5fd1",
+    "experiments/data/controlled-synthetic-v1.json": "b462d48b6cceb238f7892770919c119c20c421ab1111135f291ffaa55f999736",
+    "experiments/data/controlled-synthetic-v1.npz": "8ee79e4b788674c0bcb4da668199384c3cb10901e219462e1a2a04d1161ecaf6"
+  },
+  "originalArtifactsAndDefaultEnvironmentUnchanged": true,
+  "temporaryDataRemoved": true
+}

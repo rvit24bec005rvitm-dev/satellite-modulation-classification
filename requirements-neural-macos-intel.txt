@@ -1,0 +1,16 @@
+# Local reproduction of the saved Intel macOS experiment environment (Python 3.12).
+# TensorFlow 2.16 is the final Intel macOS wheel. Its protobuf<5 dependency has
+# CVE-2026-0994; this compatibility profile is not a public deployment profile.
+# See integration/completion/neural-runtime-audit.json for the actual audit.
+tensorflow==2.16.2
+keras==3.15.1
+numpy==1.26.4
+scipy==1.17.1
+scikit-learn==1.9.1
+joblib==1.6.0
+h5py==3.16.0
+fastapi==0.142.2
+uvicorn[standard]==0.54.0
+python-multipart==0.0.32
+python-dotenv==1.2.4
+reportlab==5.0.1

@@ -1,0 +1,8 @@
+Started UTC: 2026-11-14T18:58:48.332430+00:00
+Command (frontend cwd): ["npm", "audit", "--json"]
+Node: v24.19.0
+Npm: 11.17.0
+Input SHA256 before: {"frontend/package-lock.json": "8aafc805066e762568dfa3e29092d445a145d62c5f9c9e935f0057241346fbcf", "frontend/package.json": "434e7ba38221bd34075ec27d42ff56f2395e30cb7ed5e5ba18ceb7a906e156c2"}
+Input SHA256 after: {"frontend/package-lock.json": "8aafc805066e762568dfa3e29092d445a145d62c5f9c9e935f0057241346fbcf", "frontend/package.json": "434e7ba38221bd34075ec27d42ff56f2395e30cb7ed5e5ba18ceb7a906e156c2"}
+Elapsed seconds: 4.20
+Exit code: 0

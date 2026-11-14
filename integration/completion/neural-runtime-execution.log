@@ -1,0 +1,3 @@
+resnet-synthetic-v1 frozen test replay maximum probability error: 0.0
+cldnn-synthetic-v1 frozen test replay maximum probability error: 0.0
+{"passed": true, "output": "integration/completion/neural-runtime-verification.json", "originalArtifactsAndDefaultEnvironmentUnchanged": true}

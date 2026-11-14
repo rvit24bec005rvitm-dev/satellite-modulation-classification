@@ -1,0 +1,1 @@
+{"passed": true, "evidence": "/Users/chandankv/Desktop/gagana babe/satellite-modulation-classification/integration/completion/neural-numpy-api.json", "models": ["1d-cnn", "rf-experimental", "resnet-synthetic-v1", "cldnn-synthetic-v1"]}

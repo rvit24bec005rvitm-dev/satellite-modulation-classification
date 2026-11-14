@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "satmod-optional-neural-memory-v1",
+  "passed": true,
+  "platform": "macOS-26.7.1-x86_64-i386-64bit-Mach-O",
+  "python": "3.14.7",
+  "apiWorkers": 1,
+  "scope": "Process RSS after health/model loading/actual 3-frame evaluation by all four models; child high-water RSS. No concurrent load or hosting headroom claim.",
+  "rssAfterHealthBytes": 217174016,
+  "rssAfterAllModelsLoadedBytes": 243134464,
+  "models": [
+    "1d-cnn",
+    "rf-experimental",
+    "resnet-synthetic-v1",
+    "cldnn-synthetic-v1"
+  ],
+  "rssAfterAllFourEvaluationsBytes": 250646528,
+  "ownedServerStopped": true,
+  "apiChildPeakRssBytes": 250667008,
+  "peakMeasurement": "getrusage(RUSAGE_CHILDREN).ru_maxrss; includes the API child and tiny ps children; API is the dominant child.",
+  "originalArtifactsAndDefaultEnvironmentUnchanged": true,
+  "temporaryDataRemoved": true
+}

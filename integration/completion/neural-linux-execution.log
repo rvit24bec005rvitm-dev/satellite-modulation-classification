@@ -1,0 +1,8 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794682202.514822       1 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794682211.735933       1 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+Production CNN original-weight parity: {'frames': 300, 'maxAbsoluteProbabilityError': 4.172325134277344e-07, 'classMismatchCount': 0, 'savedWeightTensorsIdentical': True, 'probabilityTolerance': {'atol': 2e-05, 'rtol': 2e-05}}
+resnet-synthetic-v1 frozen test replay maximum probability error: 1.1920928955078125e-07
+cldnn-synthetic-v1 frozen test replay maximum probability error: 2.384185791015625e-07
+{"passed": true, "output": "integration/completion/neural-linux-verification.json", "originalArtifactsAndDefaultEnvironmentUnchanged": true}

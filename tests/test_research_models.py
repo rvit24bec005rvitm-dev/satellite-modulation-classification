@@ -160,6 +160,47 @@ def test_csv_retains_cnn_softmax_but_labels_forest_proportions_as_model_scores(c
             assert row['rawSoftmax'] == ''
 
 
+def test_fixed_neural_models_run_actual_same_test_evaluations_without_tensorflow(client):
+    catalog = {item['id']: item for item in client.get('/api/research/models').json()}
+    dataset = labeled_dataset(client)
+    ids = []
+    for model_id in ['1d-cnn', 'resnet-synthetic-v1', 'cldnn-synthetic-v1']:
+        selected = catalog[model_id]
+        assert selected['available'] is True
+        assert 'NumPy' in selected['backend']
+        job, report = evaluate(client, dataset, model_id)
+        ids.append(job['id'])
+        context = resolve_model(model_id)
+        assert report['modelHash'] == selected['artifactSha256']
+        assert report['modelVersion'] == selected['version']
+        assert report['classOrder'] == ['BPSK', 'QPSK', '16-QAM']
+        assert report['evaluationProtocol']['split'] == 'test'
+        assert report['metrics']['samples'] == 3 and report['metrics']['snrAccuracy'] == []
+        assert report['preprocessingConfiguration'] == context.metadata['preprocessingConfiguration']
+        for entry, prediction in zip(dataset['entries'], report['predictions']):
+            frame, _ = captures.window(entry['captureId'], entry['start'])
+            expected = context.predict(frame)
+            np.testing.assert_allclose(list(prediction['probabilities'].values()),
+                                       list(expected['probabilities'].values()), atol=1e-6, rtol=1e-6)
+    compared = client.post('/api/research/evaluations/compare', json={'jobIds': ids})
+    assert compared.status_code == 200, compared.text
+    assert {item['modelId'] for item in compared.json()['evaluations']} == {'1d-cnn', 'resnet-synthetic-v1', 'cldnn-synthetic-v1'}
+
+
+def test_missing_fixed_neural_artifact_is_unavailable_instead_of_using_another_model(client, monkeypatch, tmp_path):
+    from backend.services.research_evaluation import model_catalog
+    dataset = labeled_dataset(client)
+    model_id = 'resnet-synthetic-v1'
+    original = REGISTRY[model_id]
+    monkeypatch.setitem(REGISTRY, model_id, replace(original, artifact_path=tmp_path / 'missing.keras'))
+    selected = next(item for item in model_catalog() if item['id'] == model_id)
+    assert selected['available'] is False and selected['status'] == 'Unavailable'
+    response = client.post('/api/research/evaluations', json={
+        'datasetId': dataset['id'], 'modelId': model_id, 'modelVersion': original.version})
+    assert response.status_code == 503
+    assert client.get('/api/workspace/jobs').json()['total'] == 0
+
+
 def test_unknown_unavailable_version_and_class_mapping_are_not_substituted(client, monkeypatch):
     dataset = labeled_dataset(client)
     request = {'datasetId': dataset['id'], 'modelId': '1d-cnn'}

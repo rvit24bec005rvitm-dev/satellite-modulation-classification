@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "satmod-native-independent-tf-parity-v1",
+  "python": "3.14.7",
+  "platform": "macOS-26.7.1-x86_64-i386-64bit-Mach-O",
+  "numpy": "2.5.3",
+  "reference": "integration/completion/neural-tf-golden.npz",
+  "referenceSha256": "bf29443193b42c6d7b78ded35360aae2923f6f1dd6cd75a61467735d3044d7a4",
+  "referenceTensorflow": "2.16.2",
+  "classLabels": [
+    "BPSK",
+    "QPSK",
+    "16-QAM"
+  ],
+  "datasetSha256": "8ee79e4b788674c0bcb4da668199384c3cb10901e219462e1a2a04d1161ecaf6",
+  "probabilityTolerance": {
+    "atol": 2e-06,
+    "rtol": 2e-05
+  },
+  "scope": "All 360 original frozen synthetic held-out windows; numeric implementation parity, no fitting or independent RF performance claim.",
+  "models": {
+    "resnet-synthetic-v1": {
+      "modelId": "resnet-synthetic-v1",
+      "modelVersion": "resnet-synthetic-v1",
+      "modelHash": "3c8dc0d6f05a69f4c366e48fe48ba7e7c9868d87b0d3dbe883cb4d7490011277",
+      "backend": "NumPy exact ResNet \u2014 published synthetic checkpoint",
+      "preprocessing": {
+        "fitSplit": "train",
+        "mean": 3.378142076460055e-05,
+        "std": 0.006069947804230244,
+        "channelOrder": [
+          "I",
+          "Q"
+        ],
+        "unitPowerApplied": false,
+        "dtype": "float32",
+        "windowLength": 128
+      },
+      "samples": 360,
+      "classMismatchCount": 0,
+      "maximumAbsoluteProbabilityError": 1.7881393432617188e-07,
+      "actualProbabilityArraySha256": "044d7eba0198c502d5118f0ac05b4b41b3937bf21e06cdb97b5c88f88c4bb5ff",
+      "referenceProbabilityArraySha256": "0f0fd9e5df4923127e8f1c426c8158755450d4b6bafe3672a64a10dc9a950280",
+      "actualClassIndexSha256": "13d3378a24ed19bf9ef63cb5ad96b049266ee9ef65e8c8a1426abbce10016f3e"
+    },
+    "cldnn-synthetic-v1": {
+      "modelId": "cldnn-synthetic-v1",
+      "modelVersion": "cldnn-synthetic-v1",
+      "modelHash": "62aa060d52b37797d81aa1b9c06499d92f4e7fdfadf457838a79fa94f9e395c6",
+      "backend": "NumPy exact CLDNN \u2014 published synthetic checkpoint",
+      "preprocessing": {
+        "fitSplit": "train",
+        "mean": 3.378142076460055e-05,
+        "std": 0.006069947804230244,
+        "channelOrder": [
+          "I",
+          "Q"
+        ],
+        "unitPowerApplied": false,
+        "dtype": "float32",
+        "windowLength": 128
+      },
+      "samples": 360,
+      "classMismatchCount": 0,
+      "maximumAbsoluteProbabilityError": 4.76837158203125e-07,
+      "actualProbabilityArraySha256": "c5acc2ff329411bc03367abcb563d255483b37a069e234c36c3a2443c7c82852",
+      "referenceProbabilityArraySha256": "fe1cddb2c021571d72eec4d01208744a7d651e2bd407e4fd7a75a74f9425b4d2",
+      "actualClassIndexSha256": "accc9520e4fbb1a427669837dbf2fcfa713bb254d1eade92485b4beeec4861ad"
+    }
+  },
+  "passed": true,
+  "tensorflowImported": false
+}

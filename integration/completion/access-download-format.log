@@ -1,0 +1,6 @@
+src/lib/satmod-api.ts 196ms (unchanged)
+src/lib/operations-api.ts 46ms
+src/lib/research-api.ts 48ms (unchanged)
+src/pages/studio.tsx 90ms (unchanged)
+src/test/workspace-access.test.tsx 58ms
+e2e/protected-workspace.spec.ts 49ms
